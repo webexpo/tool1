@@ -17,32 +17,34 @@
 # This section will eventually be refactored into proper R scripts.
 
 
+# Alias to htmltools' list containing
+# functions used to create HTML5 tags.
 html <- htmltools::tags
 
-
+# CSS to include in <head>.
+# TODO: (JMP) Store these statements in a real CSS file later.
 mycss <- "
-div.shiny-plot-output { margin: 0 auto }
-div.plot-1 { width: 50% !important }
-div.plot-2 { width: 100% !important }
-div.shiny-plot-output > img { width: 100% }
-div.width-100, div.width-100 > * { width: 100% !important }
-div.width-140, div.width-140 > * { width: 140px !important }
-div.colour-inp { width: 24% !important }
-div.colour-inp > div > label { font-size: 12px }
-.inline-b { display: inline-block !important }
-.ital { font-style: italic !important }
-.va-mid { vertical-align: middle !important }
-div.float-l { float: left !important }
-div.float-r { float: right !important }
-#fieldset { border: 1px dotted grey !important; padding: 5px !important }
-fieldset > legend { font-size: 14px !important; margin-bottom: 2px !important }
-div.fieldset-body { display: none }
-legend.toggle-personnalisation > * { cursor: pointer; font-size: 15px !important; font-style: italic }
-div[data-shiny-input-type=colour] { margin-bottom: 2px !important }
-div[data-shiny-input-type=colour] input { height: 35px }
-div.fig-var-desc { text-align: justify; font-size: 14px !important; margin-left: 20px; margin-right: 20px }
-div.shiny-input-container { margin-bottom: 2px !important }
-"
+    div.shiny-plot-output { margin: 0 auto }
+    div.plot-1 { width: 50% !important }
+    div.plot-2 { width: 100% !important }
+    div.shiny-plot-output > img { width: 100% }
+    div.width-100, div.width-100 > * { width: 100% !important }
+    div.width-140, div.width-140 > * { width: 140px !important }
+    div.colour-inp { width: 24% !important }
+    div.colour-inp > div > label { font-size: 12px }
+    .inline-b { display: inline-block !important }
+    .ital { font-style: italic !important }
+    .va-mid { vertical-align: middle !important }
+    div.float-l { float: left !important }
+    div.float-r { float: right !important }
+    #fieldset { border: 1px dotted grey !important; padding: 5px !important }
+    fieldset > legend { font-size: 14px !important; margin-bottom: 2px !important }
+    div.fieldset-body { display: none }
+    legend.toggle-personnalisation > * { cursor: pointer; font-size: 15px !important; font-style: italic }
+    div[data-shiny-input-type=colour] { margin-bottom: 2px !important }
+    div[data-shiny-input-type=colour] input { height: 35px }
+    div.fig-var-desc { text-align: justify; font-size: 14px !important; margin-left: 20px; margin-right: 20px }
+    div.shiny-input-container { margin-bottom: 2px !important }"
 
 # TODO: (JMP) Store this function in its own script later.
 # FIXME: (JMP) This function initializes the text area in the
@@ -56,16 +58,14 @@ inputTextArea <- function(inputId, value = "", nrows, ncols) {
             htmltools::singleton(html$body(html$noscript(src = "gatm.js"))),
             html$textarea(
                 id    = inputId,
-                class = "inputTextarea",
                 rows  = nrows,
                 cols  = ncols,
                 as.character(value),
                 "28.9\n19.4\n<5.5\n149.9\n26.42\n56.1")))
 }
 
-source("./langParams.R")
-
-tt <- function(param, txt="[0 &lt; valid &le; 100]") {
+# TODO: (JMP) Store this function in its own script later.
+tooltip <- function(param, txt="[0 &lt; valid &le; 100]") {
   return(
     shinyBS::bsTooltip(
         id        = param,
@@ -148,25 +148,25 @@ ui <- shiny::fluidPage(
                 label = gett("input.2"),
                 value = 100,
                 width = inputWidth),
-            tt("oel", gett("input.2.tooltip")),
+            tooltip("oel", gett("input.2.tooltip")),
 
             shiny::numericInput("al",
                 label = gett("input.3"),
                 value = 1,
                 width = inputWidth),
-            tt("al", gett("input.3.tooltip")),
+            tooltip("al", gett("input.3.tooltip")),
 
             shiny::numericInput("conf",
                 label = gett("input.4"),
                 value = 90,
                 width = inputWidth),
-            tt("conf", gett("input.4.tooltip")),
+            tooltip("conf", gett("input.4.tooltip")),
 
             shiny::numericInput("psi",
                 label = gett("input.5"),
                 value = 30,
                 width = inputWidth),
-            tt("psi", gett("input.5.tooltip")),
+            tooltip("psi", gett("input.5.tooltip")),
 
             html$h4(gett("input.6")),
             inputTextArea("Data", NULL, nrows = 10L, ncols = 10L)
@@ -243,7 +243,7 @@ ui <- shiny::fluidPage(
                         width   = "160px",
                         value   = 5),
 
-                    tt("frac_threshold", gett("frac.1.tooltip")),
+                    tooltip("frac_threshold", gett("frac.1.tooltip")),
 
 
                     ###### Risk Decision ---------------------------------------
@@ -468,7 +468,7 @@ ui <- shiny::fluidPage(
                         label   = gett("perc.1"),
                         value   = 95,
                         width   = "160px"),
-                    tt("target_perc" , gett("perc.1.tooltip")),
+                    tooltip("target_perc" , gett("perc.1.tooltip")),
 
 
                     ###### Risk Decision ---------------------------------------
