@@ -44,7 +44,10 @@ div.fig-var-desc { text-align: justify; font-size: 14px !important; margin-left:
 div.shiny-input-container { margin-bottom: 2px !important }
 "
 
-inputTextarea <- function(inputId, value="", nrows, ncols) {
+# TODO: (JMP) Store this function in its own script later.
+# FIXME: (JMP) This function initializes the text area in the
+# sidebar but also sets Google Analytics in <head>? Why? Fix.
+inputTextArea <- function(inputId, value = "", nrows, ncols) {
     return(
         htmltools::tagList(
             htmltools::singleton(html$head(html$script(src = "textarea.js"))),
@@ -166,7 +169,7 @@ ui <- shiny::fluidPage(
             tt("psi", gett("input.5.tooltip")),
 
             html$h4(gett("input.6")),
-            inputTextarea("Data", "", 10, 10)
+            inputTextArea("Data", NULL, nrows = 10L, ncols = 10L)
         ),
 
 
