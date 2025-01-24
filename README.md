@@ -3,7 +3,7 @@
 <!-- badges: start -->
 [![Version](https://img.shields.io/badge/version-1.0.0-blue)](https://github.com/webexpo/app-tool1/releases/tag/v1.0.0)
 [![Lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-[![Location](https://img.shields.io/badge/deployed%20on-shinyapps.io-cyan)](https://lavoue.shinyapps.io/Tool1v3En/)
+[![Location](https://img.shields.io/badge/live-shinyapps.io-5b90bf)](https://lavoue.shinyapps.io/Tool1v3En/)
 <!-- badges: end -->
 
 A Shiny application developed by the Industrial Hygiene team from the
