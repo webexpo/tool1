@@ -25,7 +25,7 @@ library(ggimage)
 # Where to store images.
 images_dir <- file.path("www", "images")
 
-# Standard width for sidebar's main inputs.
+# Standard width for all inputs.
 input_width <- "110px"
 
 # Alias to htmltools' list containing
@@ -35,9 +35,6 @@ html <- htmltools::tags
 
 # Scripts ----------------------------------------------------------------------
 
-
-# FIXME: (JMP) Remove this script once source text is reintegrated.
-source("langParams.R")
 
 source("scripts/SEG/Data formatting functions_SEG.R")
 source("scripts/Common/Simple censored imputation functions.R")
