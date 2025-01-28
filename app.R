@@ -950,8 +950,8 @@ server <- function(input, output, session) {
 
         paramsVariantes <- paramsVariantesFracDep(
             images_dir,
-            file.path(images_dir, "fiole.png"),
-            file.path(images_dir, "fioleHach.png"),
+            file.path(images_dir, "flask.png"),
+            file.path(images_dir, "flask-lines.png"),
             input$couleurRisque,
             input$couleurAucunRisque,
             input$couleurSeuil,
