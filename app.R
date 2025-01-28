@@ -58,21 +58,32 @@ mycss <- "
     div.shiny-input-container { margin-bottom: 2px !important }"
 
 # TODO: (JMP) Store this function in its own script later.
-# FIXME: (JMP) This function initializes the text area in the
-# sidebar but also sets Google Analytics in <head>? Why? Fix.
-inputTextArea <- function(inputId, value = "", nrows, ncols) {
+# FIXME: (JMP) Implement proper input checks.
+inputTextArea <- function(
+    inputId = "",
+    label   = "",
+    value   = "",
+    width   = "",
+    nrows   = 10L)
+{
     return(
         htmltools::tagList(
-            htmltools::singleton(html$head(html$script(src = "textarea.js"))),
-            htmltools::singleton(html$head(html$script(src = "ga-id.js"))),
-            htmltools::singleton(html$head(html$script(src = "google-analytics.js"))),
-            htmltools::singleton(html$body(html$noscript(src = "gatm.js"))),
+            # Shiny-like label for the <textarea> defined below.
+            html$label(
+                id    = sprintf("%s-label", inputId),
+                class = "control-label",
+                `for` = inputId,  # for is a reserved keyword in R.
+                label),
+
+            # Shiny-like custom <textarea> input box.
+            # HTML attribute rows controls the default
+            # vertical length of the <textarea> box.
             html$textarea(
                 id    = inputId,
                 rows  = nrows,
-                cols  = ncols,
-                as.character(value),
-                "28.9\n19.4\n<5.5\n149.9\n26.42\n56.1")))
+                class = "form-control",
+                style = sprintf("width:%s!important", width),
+                as.character(value))))
 }
 
 # TODO: (JMP) Store this function in its own script later.
@@ -185,8 +196,13 @@ ui <- shiny::fluidPage(
                 width   = input_width),
             add_tooltip("psi", gett("input.5.tooltip")),
 
-            html$h4(gett("input.6")),
-            inputTextArea("Data", NULL, nrows = 10L, ncols = 10L)
+            inputTextArea(
+                inputId = "Data",
+                label   = gett("input.6"),
+                value   = "28.9\n19.4\n<5.5\n149.9\n26.42\n56.1",
+                width   = input_width),
+            # NOTE: (JMP) Translation input.6.tooltip does not exist (yet).
+            add_tooltip("Data", gett("input.6.tooltip")),
         ),
 
 
