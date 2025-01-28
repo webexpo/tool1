@@ -111,6 +111,11 @@ source("scripts/Common/Main graph functions.R")
 # User Interface ---------------------------------------------------------------
 
 
+# FIXME: (JMP) I would strongly consider breaking the app into Shiny modules:
+# one for each panel. See shiny::moduleServer() for more information. Modules
+# can be tested with shiny::testServer().
+
+
 ui <- shiny::fluidPage(
     # NOTE: (JMP) I just discovered arg lang. This is awesome and could
     # naturally be integrated with transltr in a near future. This note
