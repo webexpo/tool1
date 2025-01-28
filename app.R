@@ -32,31 +32,6 @@ input_width <- "110px"
 # functions used to create HTML5 tags.
 html <- htmltools::tags
 
-# CSS to include in <head>.
-# TODO: (JMP) Store these statements in a real CSS file later.
-mycss <- "
-    div.shiny-plot-output { margin: 0 auto }
-    div.plot-1 { width: 50% !important }
-    div.plot-2 { width: 100% !important }
-    div.shiny-plot-output > img { width: 100% }
-    div.width-100, div.width-100 > * { width: 100% !important }
-    div.width-140, div.width-140 > * { width: 140px !important }
-    div.colour-inp { width: 24% !important }
-    div.colour-inp > div > label { font-size: 12px }
-    .inline-b { display: inline-block !important }
-    .ital { font-style: italic !important }
-    .va-mid { vertical-align: middle !important }
-    div.float-l { float: left !important }
-    div.float-r { float: right !important }
-    #fieldset { border: 1px dotted grey !important; padding: 5px !important }
-    fieldset > legend { font-size: 14px !important; margin-bottom: 2px !important }
-    div.fieldset-body { display: none }
-    legend.toggle-personnalisation > * { cursor: pointer; font-size: 15px !important; font-style: italic }
-    div[data-shiny-input-type=colour] { margin-bottom: 2px !important }
-    div[data-shiny-input-type=colour] input { height: 35px }
-    div.fig-var-desc { text-align: justify; font-size: 14px !important; margin-left: 20px; margin-right: 20px }
-    div.shiny-input-container { margin-bottom: 2px !important }"
-
 # TODO: (JMP) Store this function in its own script later.
 # FIXME: (JMP) Implement proper input checks.
 inputTextArea <- function(
@@ -121,15 +96,29 @@ ui <- shiny::fluidPage(
     # naturally be integrated with transltr in a near future. This note
     # serves as a reminder.
     lang  = NULL,
-    title = gett("main.title.t1"),
     theme = shinythemes::shinytheme("flatly"),
 
 
-    ## Header ------------------------------------------------------------------
+    ## Head --------------------------------------------------------------------
 
 
-    html$head(html$style(htmltools::HTML(mycss))),
-    shiny::titlePanel(gett("main.title.t1"), NULL),
+    html$head(
+        html$link(rel = "stylesheet", media = "all", href = "/css/main.css"),
+        html$link(rel = "stylesheet", media = "all", href = "/css/banner-wait.css"),
+
+        # Logic for UI of Exceedance Plot (Panel Exceedance).
+        html$script(src = "js/exceedance-plot.js"),
+
+        # FIXME: (JMP) To remove. Unused.
+        html$script(src = "js/textarea.js"),
+
+        # NOTE: Google Analytics deactivated until further notice.
+        # html$script(src = file.path("www", "js", "ga-id.js")),
+        # html$script(src = file.path("www", "js", "ga.js")),
+        # html$noscript(src = file.path("www", "js", "ga-tm.js")),
+    ),
+
+    shiny::titlePanel(gett("main.title.t1")),
 
 
     ## Body --------------------------------------------------------------------
@@ -143,40 +132,6 @@ ui <- shiny::fluidPage(
 
         shiny::sidebarPanel(
             width = 3,
-            htmltools::singleton(
-                html$head(
-                    html$script(
-                        'Shiny.addCustomMessageHandler("handler1", function(message) {
-                            $fig = $("#fracDepVariantes");
-                            $fig.removeClass("plot-2 plot-1");
-                            $fig.addClass("plot-"+ message);
-                            });'
-                    )
-                )
-            ),
-
-            htmltools::singleton(
-                html$head(
-                    html$script('
-                        $(document).ready(function() {
-                            $("legend.toggle-personnalisation").click(function() {
-                                $fieldset = $(this).closest("fieldset");
-                                $icon = $fieldset.find(".glyphicon");
-                                $fbody = $fieldset.find(".fieldset-body");
-                                $fbody.toggleClass("show");
-                                var show = $fbody.hasClass("show");
-                                if ( show ) {
-                                $fbody.show("blind");
-                                } else {
-                                $fbody.hide("blind");
-                                }
-                                $icon.removeClass("glyphicon-plus glyphicon-minus");
-                                $icon.addClass("glyphicon-" + (show ? "minus" : "plus"));
-                            });
-                        });'
-                    )
-                )
-            ),
 
             html$h4(gett("input.1")),
             html$br(),
@@ -225,19 +180,15 @@ ui <- shiny::fluidPage(
         shiny::mainPanel(
 
 
-            #### Waiting Message -----------------------------------------------
+            #### Top Banner for Calculations -----------------------------------
 
 
-            html$head(
-                html$style(
-                    type="text/css",
-                    "#waitmessage { position: fixed; top: 0px; left: 0px; width: 100%; padding: 5px 0px 5px 0px; text-align: center; font-weight: bold; font-size: 100%; color: #000000; background-color: #CCFF66; z-index: 105; } #probsituacceptable, [for='probsituacceptable'] {display: none;} input[type='number'] { -moz-appearance:textfield; } input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; } ")
-            ),
-
+            # It is shown whenever the Shiny engine is blocked.
+            # See file www/css/wait-banner.css for styling.
             shiny::conditionalPanel(
                 html$div(gett("input.8")),
-                id        = "waitmessage",
-                condition = "$('html').hasClass('shiny-busy')"
+                id        = "banner-wait",
+                condition = r"{$("html").hasClass("shiny-busy")}"
             ),
 
 
@@ -404,6 +355,7 @@ ui <- shiny::fluidPage(
                                 "4" = "figure4"))
                     ),
 
+                    # See file www/js/exceedance-plot.js for further UI logic.
                     html$fieldset(
                         html$legend(
                             class = "toggle-personnalisation",
@@ -1654,5 +1606,4 @@ server <- function(input, output, session) {
 # Instantiation ----------------------------------------------------------------
 
 
-# Pass app to shiny::runApp() to launch the application.
 app <- shiny::shinyApp(ui, server)
