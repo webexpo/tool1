@@ -1,11 +1,11 @@
 transDomain <- "default"
-transDir <- "./Rtrans"
+transDir    <- "./Rtrans"
 
 # NOTE: (JMP) Sys.setlocale() throws an error on Ubuntu 24.04.
 # Since NLS is deactivated below, I also deactivated these calls until
 # further notice.
-#loc <- "en_CA"
-#Sys.setlocale("LC_MESSAGES", loc)
+# loc <- "en_CA"
+# Sys.setlocale("LC_MESSAGES", loc)
 
 
 # NOTE: (JMP) gett() and gettt() will soon be deprecated and are unstable
