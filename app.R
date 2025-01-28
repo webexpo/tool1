@@ -76,7 +76,8 @@ inputTextArea <- function(inputId, value = "", nrows, ncols) {
 }
 
 # TODO: (JMP) Store this function in its own script later.
-tooltip <- function(param, txt="[0 &lt; valid &le; 100]") {
+# FIXME: (JMP) New version does not work? Fix required.
+add_tooltip <- function(param, txt = "[0 &lt; valid &le; 100]") {
   return(
     shinyBS::bsTooltip(
         id        = param,
@@ -155,29 +156,34 @@ ui <- shiny::fluidPage(
 
             html$h4(gett("input.1")),
             html$br(),
-            shiny::numericInput("oel",
-                label = gett("input.2"),
-                value = 100,
-                width = inputWidth),
-            tooltip("oel", gett("input.2.tooltip")),
 
-            shiny::numericInput("al",
-                label = gett("input.3"),
-                value = 1,
-                width = inputWidth),
-            tooltip("al", gett("input.3.tooltip")),
+            shiny::numericInput(
+                inputId = "oel",
+                label   = gett("input.2"),
+                value   = 100,
+                width   = input_width),
+            add_tooltip("oel", gett("input.2.tooltip")),
 
-            shiny::numericInput("conf",
-                label = gett("input.4"),
-                value = 90,
-                width = inputWidth),
-            tooltip("conf", gett("input.4.tooltip")),
+            shiny::numericInput(
+                inputId = "al",
+                label   = gett("input.3"),
+                value   = 1,
+                width   = input_width),
+            add_tooltip("al", gett("input.3.tooltip")),
 
-            shiny::numericInput("psi",
-                label = gett("input.5"),
-                value = 30,
-                width = inputWidth),
-            tooltip("psi", gett("input.5.tooltip")),
+            shiny::numericInput(
+                inputId = "conf",
+                label   = gett("input.4"),
+                value   = 90,
+                width   = input_width),
+            add_tooltip("conf", gett("input.4.tooltip")),
+
+            shiny::numericInput(
+                inputId = "psi",
+                label   = gett("input.5"),
+                value   = 30,
+                width   = input_width),
+            add_tooltip("psi", gett("input.5.tooltip")),
 
             html$h4(gett("input.6")),
             inputTextArea("Data", NULL, nrows = 10L, ncols = 10L)
