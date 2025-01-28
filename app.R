@@ -218,16 +218,28 @@ ui <- shiny::fluidPage(
                 shiny::tabPanel(
                     title = gett("descriptive.tab.name"),
                     html$h3(gett("descriptive.title")),
-                    shiny::tableOutput("res.desc"),
 
+
+                    ##### Descriptive statistics -------------------------------
+
+
+                    shiny::tableOutput("res.desc"),
                     html$h4(gett("descriptive.1")),
                     shiny::htmlOutput("descriptive.2"),
+
+
+                    ##### QQ Plot ----------------------------------------------
+
 
                     html$br(),
                     html$h3(gett("descriptive.3")),
                     shiny::plotOutput("qqplot"),
                     html$br(),
                     html$p(gettt("descriptive.4")),
+
+
+                    ##### Box and Whiskers Plot --------------------------------
+
 
                     html$br(),
                     html$h3(gett("descriptive.5")),
@@ -1608,6 +1620,5 @@ server <- function(input, output, session) {
 # Instantiation ----------------------------------------------------------------
 
 
-# Pass this object to shiny::runApp()
-# to launch the application.
+# Pass app to shiny::runApp() to launch the application.
 app <- shiny::shinyApp(ui, server)
