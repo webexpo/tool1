@@ -105,12 +105,7 @@ ui <- shiny::fluidPage(
     html$head(
         html$link(rel = "stylesheet", media = "all", href = "/css/main.css"),
         html$link(rel = "stylesheet", media = "all", href = "/css/banner-wait.css"),
-
-        # Logic for UI of Exceedance Plot (Panel Exceedance).
         html$script(src = "js/exceedance-plot.js"),
-
-        # FIXME: (JMP) To remove. Unused.
-        html$script(src = "js/textarea.js"),
 
         # NOTE: Google Analytics deactivated until further notice.
         # html$script(src = file.path("www", "js", "ga-id.js")),
