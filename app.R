@@ -293,10 +293,9 @@ ui <- shiny::fluidPage(
                     shiny::numericInput(
                         inputId = "frac_threshold",
                         label   = gett("frac.1"),
-                        width   = "160px",
+                        width   = input_width,
                         value   = 5),
-
-                    tooltip("frac_threshold", gett("frac.1.tooltip")),
+                    add_tooltip("frac_threshold", gett("frac.1.tooltip")),
 
 
                     ###### Risk Decision ---------------------------------------
@@ -523,7 +522,7 @@ ui <- shiny::fluidPage(
                         label   = gett("perc.1"),
                         value   = 95,
                         width   = input_width),
-                    tooltip("target_perc" , gett("perc.1.tooltip")),
+                    add_tooltip("target_perc" , gett("perc.1.tooltip")),
 
 
                     ###### Risk Decision ---------------------------------------
