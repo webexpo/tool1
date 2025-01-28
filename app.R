@@ -97,7 +97,15 @@ add_tooltip <- function(param, txt = "[0 &lt; valid &le; 100]") {
         options   = list(container = "body")))
 }
 
-inputWidth <- "110px"
+source("langParams.R")
+source("R/format.R")
+source("scripts/SEG/Data formatting functions_SEG.R")
+source("scripts/Common/Simple censored imputation functions.R")
+source("scripts/Common/Descriptive numerical output functions.R")
+source("scripts/Common/Descriptive graphs functions.R")
+source("scripts/Common/Bayesian engine functions.R")
+source("scripts/Common/Numerical output functions.R")
+source("scripts/Common/Main graph functions.R")
 
 
 # User Interface ---------------------------------------------------------------
