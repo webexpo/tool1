@@ -11,11 +11,22 @@
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
 
+library(rjags)
+library(ggplot2)
+library(ggimage)
+
+
 # Setup (Temporary) ------------------------------------------------------------
 
 
 # This section will eventually be refactored into proper R scripts.
 
+
+# Where to store images.
+images_dir <- file.path("www", "images")
+
+# Standard width for sidebar's main inputs.
+input_width <- "110px"
 
 # Alias to htmltools' list containing
 # functions used to create HTML5 tags.
