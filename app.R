@@ -1,86 +1,27 @@
 #' Tool1: Data Interpretation for One Similarly Exposed Group
 #'
-#' This script includes both the UI and server logic. The current refactoring
-#' focuses on providing an explicit namespace for each function call. The
-#' overall structure will change in the future.
+#' Define the application's user interface (`ui`) and [server()] logic.
 #'
 #' @usage
-#' source("app.R")
+#' # Further arguments may be required.
+#' shiny::runApp()
+#'
+#' @details
+#' Static assets are stored in `www/` and are served under `/` at runtime by
+#' the application. For example, file `www/css/main.css` has the following
+#' URL: `http<s>://<domain>.<tld>/css/main.css`.
+#'
+#' Required objects and functions are stored in `R/` and loaded automatically
+#' when the application is launch with [shiny::runApp()]. All scripts stored
+#' in this directory are sourced.
+#'
+#' For historical reasons, the application further depends on a set of scripts
+#' stored in `scripts/`. These must be explicitly loaded at runtime. See script
+#' `R/global.R`. It is worthwhile noting they were **not** refactored.
+#'
 #'
 #' @author Jérôme Lavoué (<jerome.lavoue@@umontreal.ca>)
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
-
-
-library(rjags)
-library(ggplot2)
-library(ggimage)
-
-
-# Setup (Temporary) ------------------------------------------------------------
-
-
-# This section will eventually be refactored into proper R scripts.
-
-
-# Where to store images.
-images_dir <- file.path("www", "images")
-
-# Standard width for sidebar's main inputs.
-input_width <- "110px"
-
-# Alias to htmltools' list containing
-# functions used to create HTML5 tags.
-html <- htmltools::tags
-
-# TODO: (JMP) Store this function in its own script later.
-# FIXME: (JMP) Implement proper input checks.
-inputTextArea <- function(
-    inputId = "",
-    label   = "",
-    value   = "",
-    width   = "",
-    nrows   = 10L)
-{
-    return(
-        htmltools::tagList(
-            # Shiny-like label for the <textarea> defined below.
-            html$label(
-                id    = sprintf("%s-label", inputId),
-                class = "control-label",
-                `for` = inputId,  # for is a reserved keyword in R.
-                label),
-
-            # Shiny-like custom <textarea> input box.
-            # HTML attribute rows controls the default
-            # vertical length of the <textarea> box.
-            html$textarea(
-                id    = inputId,
-                rows  = nrows,
-                class = "form-control",
-                style = sprintf("width:%s!important", width),
-                as.character(value))))
-}
-
-# TODO: (JMP) Store this function in its own script later.
-# FIXME: (JMP) New version does not work? Fix required.
-add_tooltip <- function(param, txt = "[0 &lt; valid &le; 100]") {
-  return(
-    shinyBS::bsTooltip(
-        id        = param,
-        title     = txt,
-        placement = "right",
-        options   = list(container = "body")))
-}
-
-source("langParams.R")
-source("R/format.R")
-source("scripts/SEG/Data formatting functions_SEG.R")
-source("scripts/Common/Simple censored imputation functions.R")
-source("scripts/Common/Descriptive numerical output functions.R")
-source("scripts/Common/Descriptive graphs functions.R")
-source("scripts/Common/Bayesian engine functions.R")
-source("scripts/Common/Numerical output functions.R")
-source("scripts/Common/Main graph functions.R")
 
 
 # User Interface ---------------------------------------------------------------
@@ -1074,7 +1015,7 @@ server <- function(input, output, session) {
     # See subsection Panel: Exceedance - Shared Outputs
     # above for output$acceptableExpo1.
 
-    # FIXME: (JMP) Use a formatting function such as as_percentage().
+    # FIXME: (JMP) Use a dedicated formatting function.
     output$probrisk <- shiny::renderText({
         return(paste0(signif(num.res()$frac.risk, 3L), "%"))
     })
@@ -1246,7 +1187,7 @@ server <- function(input, output, session) {
     # for output$perc.percentile.title, output$perc.percentile.h3,
     # and perc.percentile.risk.decision.
 
-    # FIXME: (JMP) Use a formatting function such as as_percentage().
+    # FIXME: (JMP) Use a dedicated formatting function.
     output$probrisk.perc <- shiny::renderText({
         return(paste0(signif(num.res()$perc.risk, 3L), "%"))
     })
@@ -1400,7 +1341,7 @@ server <- function(input, output, session) {
     ### Risk Decision ----------------------------------------------------------
 
 
-    # FIXME: (JMP) Use a formatting function such as as_percentage().
+    # FIXME: (JMP) Use a dedicated formatting function.
     output$probrisk.AM <- shiny::renderText({
         return(paste0(signif(num.res()$am.risk, 3L), "%"))
     })

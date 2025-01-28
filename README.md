@@ -61,8 +61,8 @@ To serve this application locally, run the following lines of code in a fresh
 R session.
 
 ```r
-source("app.R")
-shiny::runApp(app, port = 3090L, launch.browser = FALSE)
+# Further arguments may be passed to runApp().
+shiny::runApp(port = 3090L, launch.browser = FALSE)
 ```
 
 You may use any other `port` value (aside from standard unsafe ports `3659`,
