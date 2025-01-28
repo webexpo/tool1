@@ -16,9 +16,9 @@
 
 
 options(
-    warnPartialMatchArgs   = TRUE,
-    warnPartialMatchDollar = TRUE,
-    warnPartialMatchAttr   = TRUE)
+    warnPartialMatchArgs     = TRUE,
+    warnPartialMatchDollar   = TRUE,
+    warnPartialMatchAttr     = TRUE)
 
 
 # Development tools and utility functions --------------------------------------
