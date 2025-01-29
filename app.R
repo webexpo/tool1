@@ -22,6 +22,22 @@
 #' [server()] is currently organized according to the source `ui` object:
 #' outputs are in same order as the inputs.
 #'
+#' @note
+#' Google Analytics has been deactivated until further notice. We are required
+#' by law (Quebec's Loi 25, effective since September 2023) to inform users we
+#' collect usage data from them. We further require a formal Terms of Service,
+#' and a Privacy Policy.
+#'
+#' Here how it used to be in `html$head()` below.
+#'
+#' ```r
+#' html$script(src = file.path("www", "js", "ga-id.js"))
+#' html$script(src = file.path("www", "js", "ga.js"))
+#' html$noscript(src = file.path("www", "js", "ga-tm.js"))
+#' ```
+#'
+#' Google Analytics changed its API recently. This may require further tweaks.
+#'
 #' @author Jérôme Lavoué (<jerome.lavoue@@umontreal.ca>)
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
@@ -46,14 +62,10 @@ ui <- shiny::fluidPage(
 
 
     html$head(
+        # Using htmltools::singleton() is overkill here.
         html$link(rel = "stylesheet", media = "all", href = "/css/main.css"),
         html$link(rel = "stylesheet", media = "all", href = "/css/banner-wait.css"),
         html$script(src = "js/exceedance-plot.js"),
-
-        # NOTE: Google Analytics deactivated until further notice.
-        # html$script(src = file.path("www", "js", "ga-id.js")),
-        # html$script(src = file.path("www", "js", "ga.js")),
-        # html$noscript(src = file.path("www", "js", "ga-tm.js")),
     ),
 
     shiny::titlePanel(gett("main.title.t1")),
