@@ -1,17 +1,9 @@
-div.shiny-plot-output {
-  margin: 0 auto;
-}
-
 div.plot-1 {
   width: 50% !important;
 }
 
 div.plot-2 {
   width: 100% !important;
-}
-
-div.shiny-plot-output > img {
-  width: 100%;
 }
 
 div.width-100,
