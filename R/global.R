@@ -33,13 +33,22 @@ input_width <- "110px"
 html <- htmltools::tags
 
 
+# Internationalization ---------------------------------------------------------
+
+
+# NOTE: (JMP) Temporary alias to be able to launch the application while
+# integrating source text back into it.
+# TODO: (JMP) Remove alias and replace calls by transltr::translate().
+translate <- \(str) transltr:::normalize(str)
+
+
 # Scripts ----------------------------------------------------------------------
 
 
-source("scripts/SEG/Data formatting functions_SEG.R")
-source("scripts/Common/Simple censored imputation functions.R")
-source("scripts/Common/Descriptive numerical output functions.R")
-source("scripts/Common/Descriptive graphs functions.R")
-source("scripts/Common/Bayesian engine functions.R")
-source("scripts/Common/Numerical output functions.R")
-source("scripts/Common/Main graph functions.R")
+source(file.path("scripts", "SEG",    "Data formatting functions_SEG.R"))
+source(file.path("scripts", "Common", "Simple censored imputation functions.R"))
+source(file.path("scripts", "Common", "Descriptive numerical output functions.R"))
+source(file.path("scripts", "Common", "Descriptive graphs functions.R"))
+source(file.path("scripts", "Common", "Bayesian engine functions.R"))
+source(file.path("scripts", "Common", "Numerical output functions.R"))
+source(file.path("scripts", "Common", "Main graph functions.R"))
