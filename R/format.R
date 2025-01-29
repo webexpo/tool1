@@ -2,11 +2,18 @@ percText <- function(perc) {
     rem <- as.integer(perc %% 10L)
 
     if (rem == 1L) {
-        suff <- gett("st")
-    } else if ( rem == 2L) {
-        suff <- gett("nd")
-    } else if ( rem == 3L) {
-        suff <- gett("rd")
+        suff <- translate("st")
+    } else if (rem == 2L) {
+        suff <- translate("nd")
+    } else if (rem == 3L) {
+        suff <- translate("rd")
+    } else {
+        suff <- translate("th")
+    }
+
+    return(paste0(perc, suff, " ", translate("percentile")))
+}
+
     } else {
         suff <- gett("th")
     }
