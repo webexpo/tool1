@@ -1,6 +1,10 @@
+# Ignore environment variables. See README.
+.Renviron
+
 # Ignore local and temporary files.
 .local
 
 # Ignore by-products and temporary files.
 .RData
 www/images/img*.png
+www/sbs

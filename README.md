@@ -68,7 +68,7 @@ shiny::runApp(port = 3090L, launch.browser = FALSE)
 You may use any other `port` value (aside from standard unsafe ports `3659`,
 `4045`, `5060`, `5061`, `6000`, `6566`, and `6665:6669`).
 
-### Deploying to shinyapps.io
+## Deploying to shinyapps.io
 
 This application is deployed to and runs on
 [shinyapps.io](https://lavoue.shinyapps.io/Tool1v3En/). Use this code snippet
@@ -77,6 +77,31 @@ to automatically upload a new version.
 ```r
 # To be determined.
 ```
+
+## Environment variables
+
+The application requires the following environment variables. They must be
+stored in a top-level `.Renviron` file.
+
+* **Include** this file in bundles published to
+  [shinyapps.io](https://www.shinyapps.io).
+* **Ignore** this file for versioning purposes.
+
+### `INCLUDE_SHINYBS_FILES`: `true`, or `false`.
+
+When serving the application locally, assets required by the `shinyBS` R
+package at runtime are not included. Users get back a `404 Not Found` HTTP
+error for the required JS and CSS files. This seems to be a bug related to
+`shiny` itself.
+
+The current workaround is to set `INCLUDE_SHINYBS_FILES` equal to `true`.
+This allows the application to copy `shinyBS` external files over to `www/sbs`
+so that they can be served as expected by `shiny` under URL `/sbs/<file>.<ext>`.
+
+The overall process is implemented in `.Rprofile`.
+
+The subdirectory `www/sbs` is created if it does not exist. It is also deleted
+automatically when the R process exits (gracefully, via `q()`).
 
 ## Bugs and Feedback
 

@@ -1,8 +1,8 @@
-add_tooltip <- function(param, txt = "[0 &lt; valid &le; 100]") {
+add_tooltip <- function(inputId = "", title = "") {
     return(
         shinyBS::bsTooltip(
-            id        = param,
-            title     = txt,
+            id        = inputId,
+            title     = title,
             placement = "right",
             options   = list(container = "body")))
 }
