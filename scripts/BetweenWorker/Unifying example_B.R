@@ -101,14 +101,14 @@ data.imputed.worker <-simple.censored.treatment(observations.formatted=X.worker$
 
 Y <- data.imputed.worker
 
-p <- fun.qqplot(data.simply.imputed= Y  , 
+p <- fun.qqplot(data.simply.imputed= Y  ,
                 notcensored = X.worker$notcensored)
 
 
 ### for the whole group, one colour per worker
 
-fun.qqplot.group(data.sample.imputed , 
-                            notcensored = data.sample.formatted$notcensored , 
+fun.qqplot.group(data.sample.imputed ,
+                            notcensored = data.sample.formatted$notcensored ,
                             workers = data.sample.formatted$data$worker
                             )
 
@@ -122,28 +122,28 @@ proc.time() - ptm
 
 ptm <- proc.time()
 res2 <-fun.bayes.stan.B(data.formatted=data.sample.formatted,updateProgress= NULL,
-                      mypath <-"C:/jerome/Dropbox/bureau/RStudio/expostats/shinyapps/unified functions/Between-worker") 
+                      mypath <-"C:/jerome/Dropbox/bureau/RStudio/expostats/shinyapps/unified functions/Between-worker")
 proc.time() - ptm
 
 ptm <- proc.time()
 res3 <-fun.bayes.webexpo.B(data.formatted=data.sample.formatted,updateProgress= NULL,
-                      mypath <-"C:/jerome/Dropbox/bureau/RStudio/expostats/shinyapps/unified functions/Between-worker") 
+                      mypath <-"C:/jerome/Dropbox/bureau/RStudio/expostats/shinyapps/unified functions/Between-worker")
 proc.time() - ptm
 
 
 ##comparing densities
 
 
-fun.compare.dens(jags.chain=res1$mu ,stan.chain=res2$mu,webexpo.chain=res3$mu) 
+fun.compare.dens(jags.chain=res1$mu ,stan.chain=res2$mu,webexpo.chain=res3$mu)
 
 
-fun.compare.dens(jags.chain=res1$sw,stan.chain=res2$sw,webexpo.chain=res3$sw) 
+fun.compare.dens(jags.chain=res1$sw,stan.chain=res2$sw,webexpo.chain=res3$sw)
 
-fun.compare.dens(jags.chain=res1$sb,stan.chain=res2$sb,webexpo.chain=res3$sb) 
+fun.compare.dens(jags.chain=res1$sb,stan.chain=res2$sb,webexpo.chain=res3$sb)
 
 fun.compare.dens(jags.chain=res1$mu.workers[res1$worker.index$numberinoutput[res1$worker.index$worker=="worker-5"],],
                                        stan.chain=res2$mu.workers[res2$worker.index$numberinoutput[res2$worker.index$worker=="worker-5"],],
-                                      webexpo.chain=res2$mu.workers[res2$worker.index$numberinoutput[res2$worker.index$worker=="worker-5"],]) 
+                                      webexpo.chain=res2$mu.workers[res2$worker.index$numberinoutput[res2$worker.index$worker=="worker-5"],])
 
 
 
@@ -159,9 +159,9 @@ num.res.B <-all.numeric.B(bayesian.output.B=res1,user.input.B=user.input.B)
 
 ##numerical results for the whole group, not taking worker into account, can also be used for worker specific results
 num.res.group <-all.numeric(mu.chain=res1$mu ,
-                            sigma.chain=res1$stot , 
+                            sigma.chain=res1$stot ,
                             conf=user.input.B$conf ,
-                            c.oel=data.sample.formatted$c.oel , 
+                            c.oel=data.sample.formatted$c.oel ,
                             frac_threshold=user.input.B$frac_threshold ,
                             target_perc=user.input.B$target_perc)
 
@@ -174,20 +174,20 @@ calendar.plot(frac.est = num.res.group$frac$est)
 
 #sequential plot
 
-sequential.plot.frac(gm=num.res.group$gm$est , 
+sequential.plot.frac(gm=num.res.group$gm$est ,
                      gsd=num.res.group$gsd$est ,
-                     frac=num.res.group$frac$est , 
+                     frac=num.res.group$frac$est ,
                      c.oel=data.sample.formatted$c.oel ,
                      data.simply.imputed=data.sample.imputed)
 
-sequential.plot.perc(gm=num.res.group$gm$est , 
+sequential.plot.perc(gm=num.res.group$gm$est ,
                      gsd=num.res.group$gsd$est ,
                      perc=num.res.group$perc$est ,
                      target_perc=user.input.B$target_perc,
                      c.oel=data.sample.formatted$c.oel ,
                      data.simply.imputed=data.sample.imputed)
 
-sequential.plot.am(gm=num.res.group$gm$est , 
+sequential.plot.am(gm=num.res.group$gm$est ,
                    gsd=num.res.group$gsd$est ,
                    am=num.res.group$am$est ,
                    c.oel=data.sample.formatted$c.oel ,
@@ -196,18 +196,18 @@ sequential.plot.am(gm=num.res.group$gm$est ,
 
 #distribution plot
 
-distribution.plot.frac(gm=num.res.group$gm$est , 
+distribution.plot.frac(gm=num.res.group$gm$est ,
                        gsd=num.res.group$gsd$est ,
-                       frac=num.res.group$frac$est , 
+                       frac=num.res.group$frac$est ,
                        c.oel=data.sample.formatted$c.oel)
 
-distribution.plot.perc(gm=num.res.group$gm$est , 
+distribution.plot.perc(gm=num.res.group$gm$est ,
                        gsd=num.res.group$gsd$est ,
                        perc=num.res.group$perc$est ,
                        target_perc=user.input.B$target_perc,
                        c.oel=data.sample.formatted$c.oel)
 
-distribution.plot.am(gm=num.res.group$gm$est , 
+distribution.plot.am(gm=num.res.group$gm$est ,
                      gsd=num.res.group$gsd$est ,
                      am=num.res.group$am$est ,
                      c.oel=data.sample.formatted$c.oel)
@@ -239,9 +239,9 @@ dessinerRisqueMetre(actualProb=num.res.group$frac.risk, minProbUnacceptable=user
 
 ##### boxplots by worker
 
-boxplot.by.worker(data.formatted = data.sample.formatted , 
-                  data.simply.imputed = data.sample.imputed , 
-                  bayesian.output.B = res1 , 
+boxplot.by.worker(data.formatted = data.sample.formatted ,
+                  data.simply.imputed = data.sample.imputed ,
+                  bayesian.output.B = res1 ,
                   worker.list=data.sample.formatted$data$worker)
 
 X <- data.sample.formatted
@@ -251,15 +251,15 @@ Y <- data.sample.imputed
 Z <- res1
 
   Freq.table <- data.frame(table(X$data$worker))
-  
-  names(Freq.table) <-c("nom","n")
-  
-  ListOfWorkers <-as.character(Freq.table$nom)
-  
 
-p1 <-boxplot.by.worker(data.formatted = X , 
-                       data.simply.imputed = Y , 
-                       bayesian.output.B = Z , 
+  names(Freq.table) <-c("nom","n")
+
+  ListOfWorkers <-as.character(Freq.table$nom)
+
+
+p1 <-boxplot.by.worker(data.formatted = X ,
+                       data.simply.imputed = Y ,
+                       bayesian.output.B = Z ,
                        worker.list = ListOfWorkers)
 
 suppressWarnings(print(p1))
@@ -302,9 +302,9 @@ mu.chain.worker <- X$mu.workers[X$worker.index$numberinoutput[X$worker.index$wor
 sigma.chain.worker <-X$sw
 
 num.res.worker <- all.numeric(mu.chain=mu.chain.worker ,
-                      sigma.chain=sigma.chain.worker , 
+                      sigma.chain=sigma.chain.worker ,
                       conf=Z$conf ,
-                      c.oel=Y$c.oel , 
+                      c.oel=Y$c.oel ,
                       frac_threshold=Z$frac_threshold ,
                       target_perc=Z$target_perc)
 
@@ -325,9 +325,9 @@ Z <- data.imputed.worker
 
 X <- num.res.worker
 
-graph2 <- sequential.plot.frac(gm=X$gm$est , 
+graph2 <- sequential.plot.frac(gm=X$gm$est ,
                                gsd=X$gsd$est ,
-                               frac=X$frac$est , 
+                               frac=X$frac$est ,
                                c.oel=Y.worker$c.oel ,
                                data.simply.imputed=Z)
 

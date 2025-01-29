@@ -10,7 +10,7 @@
 #
 #
 
-#library(rstan)              
+#library(rstan)
 ##model
 
 modelString = "
@@ -95,6 +95,6 @@ normal_lcdf(intcensored_left_values[n]  | group_mean[group_intcensored[n]],group
 " # close quote for modelString
 
 
-stanmodel.D<- stan_model( model_code=modelString )  
+stanmodel.D<- stan_model( model_code=modelString )
 
 saveRDS(stanmodel.D,"C:/jerome/Dropbox/bureau/RStudio/expostats/shinyapps/expostats functions 2018/Determinant specific functions/stanmodel.D.RDS")

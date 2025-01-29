@@ -16,20 +16,20 @@
 ##
 
 fun.desc.stat <-function(data.simply.imputed , c.oel) {
-    
+
 
 #res is the data element of the fun.NDexpo output
-  
+
   res <-data.simply.imputed$imputed$data
 
   if (length(res[res$is.censored==0,1])==0) {
-    
+
     results <-data.frame(parameter=c('n','PropCensored','min',
                                      'Q25','Q50','Q75','maximum',
                                      'propOverOEL','am','asd',
                                      'cv','gm','gsd'),
                          value=numeric(13),stringsAsFactors=F)
-    
+
     results[1,2] <- as.character(dim(res)[1])
     results[2,2] <- as.character(0)
     results[3,2] <- as.character(signif(min(res$x),3))
@@ -44,9 +44,9 @@ fun.desc.stat <-function(data.simply.imputed , c.oel) {
     results[12,2] <- as.character(signif(exp(mean(res$yfin)),3))
     results[13,2] <- as.character(signif(exp(sd(res$yfin)),3))
   }
-  
+
 if (length(res[res$is.censored==0,1])!=0)
-    
+
   {
   results <-data.frame(parameter=c('n','PropCensored','min',
                                    'Q25','Q50','Q75','maximum',
@@ -67,12 +67,12 @@ if (length(res[res$is.censored==0,1])!=0)
     results[11,2] <- as.character(paste(signif(100*sd(exp(res$yfin))/mean(exp(res$yfin)),3),'%',sep=' '))
     results[12,2] <- as.character(signif(exp(mean(res$yfin)),3))
     results[13,2] <- as.character(signif(exp(sd(res$yfin)),3))
-    
-    
+
+
   }
-  
+
   return(results)
-  
+
   }
 
 

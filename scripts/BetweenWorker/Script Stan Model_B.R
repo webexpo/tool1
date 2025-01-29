@@ -11,7 +11,7 @@
 #
 #
 
-#library(rstan)              
+#library(rstan)
 ##model
 
 modelString = "
@@ -101,6 +101,6 @@ normal_lcdf(intcensored_left_values[n]  | mu_group+worker_effect[worker_intcenso
 " # close quote for modelString
 
 
-stanmodel.B <- stan_model( model_code=modelString )  
+stanmodel.B <- stan_model( model_code=modelString )
 
 saveRDS(stanmodel.B,"C:/jerome/Dropbox/bureau/RStudio/expostats/shinyapps/unified functions/Between-worker/stanmodel.B.RDS")
