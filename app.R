@@ -19,6 +19,8 @@
 #' stored in `scripts/`. These must be explicitly loaded at runtime. See script
 #' `R/global.R`. It is worthwhile noting they were **not** refactored.
 #'
+#' [server()] is currently organized according to the source `ui` object:
+#' outputs are in same order as the inputs.
 #'
 #' @author Jérôme Lavoué (<jerome.lavoue@@umontreal.ca>)
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
@@ -720,10 +722,6 @@ ui <- shiny::fluidPage(
 
 
 server <- function(input, output, session) {
-
-    ## Shared Reactive Values --------------------------------------------------
-
-
     # NOTE: (JMP) This reactive value is called by bayesian.analysis
     # below. It has no other reference in the code. This could later
     # be refactored by removing it, and passing 1L to fun.bayes.jags().
@@ -741,7 +739,6 @@ server <- function(input, output, session) {
         return(!strtoi(prior))
     })
 
-    # User inputs stemming from the main sidebar.
     user.input <- shiny::reactive({
         return(
             list(
@@ -753,7 +750,6 @@ server <- function(input, output, session) {
                 target_perc = input$target_perc))
     })
 
-    # Format a subset of the main sidebar's inputs.
     formatted.sample <- shiny::reactive({
         return(
             data.formatting.SEG(
