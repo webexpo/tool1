@@ -76,7 +76,7 @@ fun.qqplot <-function( data.simply.imputed , notcensored ,
 
   }
 
-  print(p)
+  return(p)
 
 }
 
@@ -140,9 +140,7 @@ fun.boxplot <-function( data.simply.imputed , notcensored , c.oel,
     theme(axis.title.y=element_text(size=16,angle=90))+
     theme(axis.text.y=element_text(size=13,angle=90))
 
-    print(p1)
-
-
+    return(p1)
 }
 
 #
