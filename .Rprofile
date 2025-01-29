@@ -60,14 +60,16 @@ if (interactive()) {
         # ignored by Git, it does not matter (much) if this function
         # fails to remove it.
         reg.finalizer(onexit = TRUE, e = globalenv(), f = \(e) {
-            unlink(shinybs_dir, recursive = TRUE, force = TRUE)
-            return(invisible())
+            return(
+                unlink(shinybs_dir,
+                    recursive = TRUE,
+                    force     = TRUE))
         })
 
         # Get absolute paths to required files.
         shinybs_files <- c(
-            system.file("www/shinyBS.js",  package = "shinyBS"),
-            system.file("www/shinyBS.css", package = "shinyBS"))
+            system.file(file.path("www", "shinyBS.js"),  package = "shinyBS"),
+            system.file(file.path("www", "shinyBS.css"), package = "shinyBS"))
 
         # Copy required files in the temporary subdirectory.
         file.copy(
