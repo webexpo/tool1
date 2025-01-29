@@ -1,13 +1,31 @@
 # Tool1: Data Interpretation for One Similarly Exposed Group
 
 <!-- badges: start -->
+[![Version](https://img.shields.io/badge/version-1.0.0-blue)](https://github.com/webexpo/app-tool1/releases/tag/v1.0.0)
 [![Lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![Location](https://img.shields.io/badge/live-shinyapps.io-5b90bf)](https://lavoue.shinyapps.io/Tool1v3En/)
 <!-- badges: end -->
 
 A Shiny application developed by the Industrial Hygiene team from the
 Department of Environmental and Occupational Health at the
 [School of Public Health](https://espum.umontreal.ca/english/home/) of the
 [Université de Montréal](https://www.umontreal.ca/en/).
+
+## Disclaimer
+
+[Jean-Mathieu Potvin](https://github.com/jeanmathieupotvin)
+([Ununoctium, coding simplified](https://ununoctium.dev/en)) is currently
+working on (partially) refactoring this project. The objective is threefold:
+
+1. Integrate package [transltr](https://cran.r-project.org/package=transltr)
+   and use it as its internationalization engine.
+2. Restructure code and make it easier to maintain (including translations).
+3. Fix bugs, inconsistencies and enforce R best practices, including
+   [Google's R Style Guide](https://google.github.io/styleguide/Rguide.html)
+   (whenever possible).
+
+The scripts stored in `scripts/` are **out of scope** of this refactoring
+effort.
 
 ## Introduction
 
@@ -36,6 +54,29 @@ are thoroughly described in
 
 Further references are available on
 [expostats.ca](https://www.expostats.ca/site/en/info.html).
+
+## Usage
+
+To serve this application locally, run the following lines of code in a fresh
+R session.
+
+```r
+# Further arguments may be passed to runApp().
+shiny::runApp(port = 3090L, launch.browser = FALSE)
+```
+
+You may use any other `port` value (aside from standard unsafe ports `3659`,
+`4045`, `5060`, `5061`, `6000`, `6566`, and `6665:6669`).
+
+### Deploying to shinyapps.io
+
+This application is deployed to and runs on
+[shinyapps.io](https://lavoue.shinyapps.io/Tool1v3En/). Use this code snippet
+to automatically upload a new version.
+
+```r
+# To be determined.
+```
 
 ## Bugs and Feedback
 

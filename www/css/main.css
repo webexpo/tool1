@@ -1,0 +1,92 @@
+div.shiny-plot-output {
+  margin: 0 auto;
+}
+
+div.plot-1 {
+  width: 50% !important;
+}
+
+div.plot-2 {
+  width: 100% !important;
+}
+
+div.shiny-plot-output > img {
+  width: 100%;
+}
+
+div.width-100,
+div.width-100 > * {
+  width: 100% !important;
+}
+
+div.width-140,
+div.width-140 > * {
+  width: 140px !important;
+}
+
+div.colour-inp {
+  width: 24% !important;
+}
+
+div.colour-inp > div > label {
+  font-size: 12px;
+}
+
+.inline-b {
+  display: inline-block !important;
+}
+
+.ital {
+  font-style: italic !important;
+}
+
+.va-mid {
+  vertical-align: middle !important;
+}
+
+div.float-l {
+  float: left !important;
+}
+
+div.float-r {
+  float: right !important;
+}
+
+#fieldset {
+  border: 1px dotted grey !important;
+  padding: 5px !important;
+}
+
+fieldset > legend {
+  font-size: 14px !important;
+  margin-bottom: 2px !important;
+}
+
+div.fieldset-body {
+  display: none;
+}
+
+legend.toggle-personnalisation > * {
+  cursor: pointer;
+  font-size: 15px !important;
+  font-style: italic;
+}
+
+div[data-shiny-input-type="colour"] {
+  margin-bottom: 2px !important;
+}
+
+div[data-shiny-input-type="colour"] input {
+  height: 35px;
+}
+
+div.fig-var-desc {
+  text-align: justify;
+  font-size: 14px !important;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+div.shiny-input-container {
+  margin-bottom: 2px !important;
+}
