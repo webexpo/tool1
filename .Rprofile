@@ -30,6 +30,10 @@ if (interactive()) {
         require(microbenchmark)
     })
 
+    # Load global constants.
+    # This can be useful for debugging purposes.
+    source(file.path("R", "global.R"))
+
     # Attach aliases and small dev tools.
     # Names are as small as possible by design.
     attach(name = "tools:dev", what = local({
