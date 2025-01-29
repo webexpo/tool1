@@ -19,15 +19,26 @@ library(ggplot2)
 library(ggimage)
 
 
+# External Scripts -------------------------------------------------------------
+
+
+source(file.path("scripts", "SEG",    "Data formatting functions_SEG.R"))
+source(file.path("scripts", "Common", "Simple censored imputation functions.R"))
+source(file.path("scripts", "Common", "Descriptive numerical output functions.R"))
+source(file.path("scripts", "Common", "Descriptive graphs functions.R"))
+source(file.path("scripts", "Common", "Bayesian engine functions.R"))
+source(file.path("scripts", "Common", "Numerical output functions.R"))
+source(file.path("scripts", "Common", "Main graph functions.R"))
+
+
 # Constants --------------------------------------------------------------------
 
 
 # Where to store images.
 images_dir <- file.path("www", "images")
 
-# Alias to htmltools' list containing
-# functions used to create HTML5 tags.
-html <- htmltools::tags
+# Alias to shiny' list of functions used to create HTML tags.
+html <- shiny::tags
 
 
 # Internationalization ---------------------------------------------------------
@@ -39,13 +50,19 @@ html <- htmltools::tags
 translate <- \(str) transltr:::normalize(str)
 
 
-# Scripts ----------------------------------------------------------------------
+# Links ------------------------------------------------------------------------
 
 
-source(file.path("scripts", "SEG",    "Data formatting functions_SEG.R"))
-source(file.path("scripts", "Common", "Simple censored imputation functions.R"))
-source(file.path("scripts", "Common", "Descriptive numerical output functions.R"))
-source(file.path("scripts", "Common", "Descriptive graphs functions.R"))
-source(file.path("scripts", "Common", "Bayesian engine functions.R"))
-source(file.path("scripts", "Common", "Numerical output functions.R"))
-source(file.path("scripts", "Common", "Main graph functions.R"))
+# List of <a> tags stored as shiny::shiny.tag objects.
+links_tags <- list(
+    ndexpo = html$a(
+        "NDexpo",
+        href   = "http://www.expostats.ca/site/app-local/NDExpo/",
+        target = "_blank"),
+    dennis = html$a(
+        "Dennis Helsel",
+        href   = "http://www.practicalstats.com/info2use/books.html",
+        target = "_blank"))
+
+# List of <a> tags stored as character strings.
+links_strings <- vapply(links_tags, as.character, NA_character_)
