@@ -98,10 +98,18 @@ The current workaround is to set `INCLUDE_SHINYBS_FILES` equal to `true`.
 This allows the application to copy `shinyBS` external files over to `www/sbs`
 so that they can be served as expected by `shiny` under URL `/sbs/<file>.<ext>`.
 
-The overall process is implemented in `.Rprofile`.
-
 The subdirectory `www/sbs` is created if it does not exist. It is also deleted
-automatically when the R process exits (gracefully, via `q()`).
+automatically when the R process exits (gracefully, via `q()`). See `.Rprofile`
+for details.
+
+Ignore related warnings thrown by `shiny`. They are misleading.
+
+```
+Warning: Found subdirectories of your app's www/ directory that conflict with
+other resource URL prefixes. Consider renaming these directories: 'www/sbs'.
+```
+
+This is intended.
 
 ## Bugs and Feedback
 
