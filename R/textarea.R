@@ -1,9 +1,9 @@
-# FIXME: (JMP) Implement proper input checks.
+# TODO: (JMP) Implement proper input checks.
 inputTextArea <- function(
     inputId = "",
     label   = "",
     value   = "",
-    width   = "",
+    width   = "100%",
     nrows   = 10L)
 {
     return(

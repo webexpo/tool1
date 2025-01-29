@@ -80,47 +80,62 @@ ui <- shiny::fluidPage(
         ### Sidebar ------------------------------------------------------------
 
 
+        # NOTE: (JMP) I removed custom width = input_width value from all
+        # sidebar's inputs. I believe we should let Shiny handle containers'
+        # sizes. Setting absolute values can induce unintended consequences.
         shiny::sidebarPanel(
             width = 3,
 
-            html$h4(gett("input.1")),
-            html$br(),
-
             shiny::numericInput(
                 inputId = "oel",
-                label   = gett("input.2"),
-                value   = 100,
-                width   = input_width),
-            add_tooltip("oel", gett("input.2.tooltip")),
+                label   = translate("Exposure Limit"),
+                value   = 100),
+
+            add_tooltip("oel", translate("
+                Use the exposure limit to assess overexposure. It
+                must have the same unit as the measurement data.")),
 
             shiny::numericInput(
                 inputId = "al",
-                label   = gett("input.3"),
-                value   = 1,
-                width   = input_width),
-            add_tooltip("al", gett("input.3.tooltip")),
+                label   = translate("Exposure Limit Multiplier"),
+                value   = 1),
+
+            add_tooltip("al", translate("
+                Use this multiplier to modify the exposure limit. The product
+                of the former and the latter is the actual exposure limit value
+                for calculation purposes.")),
 
             shiny::numericInput(
                 inputId = "conf",
-                label   = gett("input.4"),
-                value   = 90,
-                width   = input_width),
-            add_tooltip("conf", gett("input.4.tooltip")),
+                label   = translate("Credible Interval Probability"),
+                value   = 90),
+
+            add_tooltip("conf", translate("
+                Use this value as a probability for the credible intervals
+                around parameter estimates. It must be between 0% and 100%.
+                The default value is set equal to 90%. The credible interval
+                is the Bayesian equivalent of the confidence interval.")),
 
             shiny::numericInput(
                 inputId = "psi",
-                label   = gett("input.5"),
-                value   = 30,
-                width   = input_width),
-            add_tooltip("psi", gett("input.5.tooltip")),
+                label   = translate("Overexposure Risk Threshold"),
+                value   = 30),
+
+            add_tooltip("psi", translate("
+                Use this value as the maximal overexposure risk. It must be
+                between 0% and 100%. It represents the maximal probability that
+                the overexposure limit is met. Above this value, the situation
+                should trigger remedial action. INRS and BOHS suggest using 5%
+                and 30%, respectively.")),
 
             inputTextArea(
-                inputId = "Data",
-                label   = gett("input.6"),
-                value   = "28.9\n19.4\n<5.5\n149.9\n26.42\n56.1",
-                width   = input_width),
-            # NOTE: (JMP) Translation input.6.tooltip does not exist (yet).
-            add_tooltip("Data", gett("input.6.tooltip")),
+                inputId = "data",
+                label   = translate("Measurement Data"),
+                value   = "28.9\n19.4\n<5.5\n149.9\n26.42\n56.1"),
+
+            add_tooltip("data", translate("
+                The measurement dataset. There must be one value per line.
+                Values can be censored to the left (<) or to the right (>)."))
         ),
 
 
@@ -196,12 +211,18 @@ ui <- shiny::fluidPage(
                     ###### Input: Exceedance Threshold -------------------------
 
 
+                    # NOTE: (JMP) I removed custom width = input_width value
+                    # from all sidebar's inputs. I believe we should let Shiny
+                    # handle containers' sizes. Setting absolute values can
+                    # induce unintended consequences.
+                    # TODO: (JMP) Move this input to the sidebar and hide it
+                    # unless the underlying panel is active/visible.
                     shiny::numericInput(
                         inputId = "frac_threshold",
-                        label   = gett("frac.1"),
-                        width   = input_width,
+                        label   = translate("frac.1"),
                         value   = 5),
-                    add_tooltip("frac_threshold", gett("frac.1.tooltip")),
+
+                    add_tooltip("frac_threshold", translate("frac.1.tooltip")),
 
 
                     ###### Risk Decision ---------------------------------------
@@ -426,12 +447,18 @@ ui <- shiny::fluidPage(
                     ###### Input: Percentile -----------------------------------
 
 
+                    # NOTE: (JMP) I removed custom width = input_width value
+                    # from all sidebar's inputs. I believe we should let Shiny
+                    # handle containers' sizes. Setting absolute values can
+                    # induce unintended consequences.
+                    # TODO: (JMP) Move this input to the sidebar and hide it
+                    # unless the underlying panel is active/visible.
                     shiny::numericInput(
                         inputId = "target_perc",
-                        label   = gett("perc.1"),
-                        value   = 95,
-                        width   = input_width),
-                    add_tooltip("target_perc" , gett("perc.1.tooltip")),
+                        label   = translate("perc.1"),
+                        value   = 95),
+
+                    add_tooltip("target_perc" , translate("perc.1.tooltip")),
 
 
                     ###### Risk Decision ---------------------------------------

@@ -25,9 +25,6 @@ library(ggimage)
 # Where to store images.
 images_dir <- file.path("www", "images")
 
-# Standard width for all inputs.
-input_width <- "110px"
-
 # Alias to htmltools' list containing
 # functions used to create HTML5 tags.
 html <- htmltools::tags
