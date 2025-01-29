@@ -347,7 +347,8 @@ fun.2cat.risk <-function(data.formatted , bayesian.output.D , cat1 , cat2 , user
                          comp.2cat.1 = "Exceedance",
                          comp.2cat.2 = "Percentile",
                          comp.2cat.3 = "Arithmetic mean",
-                         comp.2cat.4 = "Parameter") {
+                         comp.2cat.4 = "Parameter",
+                         comp.2cat.5 = "Overexpo") {
 
   conf <- user.input$conf
   thresh <- user.input$frac_threshold
@@ -398,7 +399,7 @@ fun.2cat.risk <-function(data.formatted , bayesian.output.D , cat1 , cat2 , user
 
   names(res)[1] <- comp.2cat.4
   for (i in 2:length(names(res))) {
-    names(res)[i] <- gsub("overexpo", gett("overexpo"), names(res)[i])
+    names(res)[i] <- gsub("overexpo", comp.2cat.5, names(res)[i])
   }
 
   return(res)

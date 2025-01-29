@@ -88,7 +88,8 @@ fun.boxplot <-function( data.simply.imputed , notcensored , c.oel,
                         boxplot.2="Concentration",
                         boxplot.3="OEL",
                         boxplot.4="Censored",
-                        boxplot.5="Detected") {
+                        boxplot.5="Detected",
+                        boxplot.6="Data") {
 
   #data.simply.imputed <- data.sample.imputed
 
@@ -108,7 +109,7 @@ fun.boxplot <-function( data.simply.imputed , notcensored , c.oel,
 
   if (length(notcensored[!notcensored])==0) {
 
-  p1 <-ggplot(data.f, aes(x="Data", y=x),ylim=c(min.val,max.val))
+  p1 <-ggplot(data.f, aes(x=boxplot.6, y=x),ylim=c(min.val,max.val))
   p1 <-p1+geom_point(position=position_jitter(width=0.3), alpha=0.9, size=3 , color="blue1")
   p1<-p1+stat_summary(fun.data = f, geom="boxplot",size=1.0,alpha=0, outlier.size=0)
   p1<-p1+stat_summary(fun.data = f, geom="boxplot",size=1.0,alpha=0, outlier.size=0,color=alpha("black",0.3))
@@ -120,7 +121,7 @@ fun.boxplot <-function( data.simply.imputed , notcensored , c.oel,
 
   if (length(notcensored[!notcensored])!=0) {
 
-    p1 <-ggplot(data.f, aes(x=gett("Data"), y=x),ylim=c(min.val,max.val))
+    p1 <-ggplot(data.f, aes(x=boxplot.6, y=x),ylim=c(min.val,max.val))
     p1 <-p1+geom_point(position=position_jitter(width=0.3), alpha=0.9, aes(color=notcensored), size=3)
     p1<-p1+stat_summary(fun.data = f, geom="boxplot",size=1.0,alpha=0, outlier.size=0)
     p1<-p1+stat_summary(fun.data = f, geom="boxplot",size=1.0,alpha=0, outlier.size=0,color=alpha("black",0.3))
