@@ -295,13 +295,15 @@ ui <- shiny::fluidPage(
 
                     # See file www/js/exceedance-plot.js for further UI logic.
                     html$fieldset(
+                        id = "exceedance-plot-customize",
                         html$legend(
+                            id    = "exceedance-plot-customize-legend",
                             class = "toggle-personnalisation",
                             html$span(gett("frac.graph.13.2")),
                             html$span(class = "glyphicon glyphicon-plus")
                         ),
                         html$div(
-                            class="fieldset-body",
+                            class = "fieldset-body",
                             html$div(
                                 class = "colour-inp inline-b",
                                 html$div(html$label(gett("frac.graph.13.3.1"))),
@@ -990,7 +992,9 @@ server <- function(input, output, session) {
                     seuil = seuil)))
 
         leng <- length(dalist[[input$varianteFracDep]])
-        session$sendCustomMessage("handler1", leng);
+
+        # The JS handler function is defined in www/js/exceedance-plot.js.
+        session$sendCustomMessage("exceedance-plot-handler", leng);
         return(dalist)
     })
 
