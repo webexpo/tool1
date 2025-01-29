@@ -64,7 +64,7 @@ if (interactive()) {
             return(invisible())
         })
 
-        # Get aboslute paths to required files.
+        # Get absolute paths to required files.
         shinybs_files <- c(
             system.file("www/shinyBS.js",  package = "shinyBS"),
             system.file("www/shinyBS.css", package = "shinyBS"))
