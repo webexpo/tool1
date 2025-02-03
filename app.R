@@ -205,20 +205,18 @@ ui <- shiny::fluidPage(
             # is placed here to maximize visibility on all screens.
             html$footer(
                 class = "app-footer",
-                html$p("Tool 1 version 4.0.0-RC1."),
+                html$p(translate("Tool 1"), "version", current_version),
 
                 html$p(sprintf_html(translate(
                     "Source code available on %s."),
                     a_strs[["source"]])),
 
                 # This produces a <p> containing a single line of text:
-                # <a>Jérôme Lavoué</a> (YYY). All rights reserved.
+                # <a>Jérôme Lavoué</a> (YYYY). All rights reserved.
                 html$p(
-                    sprintf_html(
-                        "%s (%s). %s.",
-                        a_strs[["jerome_lavoue"]],
-                        current_year,
-                        translate("All rights reserved")))
+                    static$a$jerome_lavoue,
+                    sprintf("(%s)", current_year),
+                    translate("All rights reserved"))
             )
         ),
 

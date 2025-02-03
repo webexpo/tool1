@@ -38,7 +38,10 @@ source(file.path("scripts", "Common", "Main graph functions.R"))
 # Where to store images.
 images_dir <- file.path("www", "images")
 
-# Current year.
+# Current version in production (release). Shown in footer.
+current_version <- "4.0.0-RC1"
+
+# Current year. Shown in footer.
 current_year <- format(Sys.time(), tz = "EST", format = "%Y")
 
 # Default height of plots.
