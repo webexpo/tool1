@@ -1121,20 +1121,19 @@ server <- function(input, output, session) {
 
     ### Exceedance Plot --------------------------------------------------------
 
-
+    # FIXME: (JMP) This does not scale accordingly on
+    # first clicks on varianteFracDep.
     output$fracDepVariantes <- shiny::renderPlot({
-        ptlist <- toutesVariantesFD()[[input$varianteFracDep]]
-        margin <- ggplot2::theme(
-            plot.margin = ggplot2::unit(c(1L, 1L, 1L, 1L), "cm"))
+        variant <- input$varianteFracDep
 
-        return(
-            gridExtra::grid.arrange(
-                grobs = lapply(ptlist, `+`, margin),
-                ncol  = length(ptlist)))
+        shinyjs::removeClass("fracDepVariantes", "app-half-width")
+        switch(variant,
+            figure3 = shinyjs::addClass("fracDepVariantes", "app-half-width"),
+            figure4 = shinyjs::addClass("fracDepVariantes", "app-half-width"))
+
+        ptlist <- toutesVariantesFD()[[variant]]
+        return(gridExtra::grid.arrange(grobs = ptlist, ncol = length(ptlist)))
     })
-
-    output$fracDepVarianteDesc <-shiny::renderText({
-        return(gett(paste0("frac.graph.13.4.desc.", input$varianteFracDep)))
     })
 
 
