@@ -50,19 +50,71 @@ html <- shiny::tags
 translate <- \(str) transltr:::normalize(str)
 
 
-# Links ------------------------------------------------------------------------
+# Static UI elements -----------------------------------------------------------
 
 
-# List of <a> tags stored as shiny::shiny.tag objects.
-links_tags <- list(
-    ndexpo = html$a(
-        "NDexpo",
-        href   = "http://www.expostats.ca/site/app-local/NDExpo/",
-        target = "_blank"),
-    dennis = html$a(
-        "Dennis Helsel",
-        href   = "http://www.practicalstats.com/info2use/books.html",
-        target = "_blank"))
+static <- list(
+    # <i> tags representing icons stored as shiny.tag objects.
+    icons = list(
+        bottom = shiny::icon(
+            lib   = "glyphicon",
+            name  = "triangle-bottom",
+            style = "padding-right: 10px;"),
+        top = shiny::icon(
+            lib   = "glyphicon",
+            name  = "triangle-top",
+            style = "padding-right: 10px;")),
+    # <a> tags stored as shiny.tag objects.
+    a = list(
+        aiha = shiny::tags$a(
+            "AIHA",
+            href   = "https://www.aiha.org",
+            target = "_blank"),
+        expostats_ndexpo = shiny::tags$a(
+            "NDexpo",
+            href   = "http://www.expostats.ca/site/app-local/NDExpo/",
+            target = "_blank"),
+        expostats_paper = shiny::tags$a(
+            "https://doi.org/10.1093/annweh/wxy100",
+            target = "_blank",
+            href   = "https://doi.org/10.1093/annweh/wxy100"),
+        expostats_info_fr = shiny::tags$a(
+            "expostats.ca",
+            target = "_blank",
+            href   = "http://www.expostats.ca/site/info.html"),
+        expostats_info_en = shiny::tags$a(
+            "expostats.ca",
+            target = "_blank",
+            href   = "http://www.expostats.ca/site/en/info.html"),
+        epsum_en = shiny::tags$a(
+            "School of Public Health",
+            href   = "https://espum.umontreal.ca/english/home",
+            target = "_blank"),
+        epsum_fr = shiny::tags$a(
+            "École de santé publique",
+            href   = "https://espum.umontreal.ca/accueil",
+            target = "_blank"),
+        udm = shiny::tags$a(
+            "Université de Montréal",
+            href   = "https://www.umontreal.ca",
+            target = "_blank"),
+        dennis_helsel = shiny::tags$a(
+            "Dennis Helsel",
+            href   = "http://www.practicalstats.com/info2use/books.html",
+            target = "_blank"),
+        source = shiny::tags$a(
+            "GitHub",
+            href   = "https://github.com/webexpo/app-tool1",
+            target = "_blank"),
+        jerome_lavoue = shiny::tags$a(
+            "Jérôme Lavoué",
+            href   = "https://orcid.org/0000-0003-4950-5475",
+            target = "_blank"),
+        ununoctium = shiny::tags$a(
+            "Ununoctium",
+            href   = "https://ununoctium.dev",
+            target = "_blank")))
 
 # List of <a> tags stored as character strings.
-links_strings <- vapply(links_tags, as.character, NA_character_)
+# These strings can be passed to sprintf_html().
+a_strs <- vapply(static$a, as.character, NA_character_)
