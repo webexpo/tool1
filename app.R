@@ -1,6 +1,6 @@
 #' Tool1: Data Interpretation for One Similarly Exposed Group
 #'
-#' Define the application's user interface (`ui`) and [server()] logic.
+#' Define the user interface (`ui`) and [server()] logic.
 #'
 #' @usage
 #' # Further arguments may be required.
@@ -15,14 +15,27 @@
 #' when the application is launch with [shiny::runApp()]. All scripts stored
 #' in this directory are sourced.
 #'
+#' ## `scripts/`
+#'
 #' For historical reasons, the application further depends on a set of scripts
 #' stored in `scripts/`. These must be explicitly loaded at runtime. See script
 #' `R/global.R`. It is worthwhile noting they were **not** refactored.
 #'
-#' [server()] is currently organized according to the source `ui` object:
-#' outputs are in same order as the inputs.
+#' @section Naming Conventions:
+#  All R custom functions, [shiny] reactive values, and identifiers (`inputId`
+#' and `outputId`) use `snake_case`.
 #'
-#' @note
+#'   * Custom functions are easily identifiable as such.
+#'   * Reactive values are functions and are treated like other custom
+#'     functions.
+#'   * Identifiers written in `snake_case` yield syntactic names.
+#'
+#' See file IO.md for more information.
+#'
+#' CSS Classes uses `dash-case`. Each class must use the prefix `app-` to
+#' avoid collisions.
+#'
+#' @section Google Analytics:
 #' Google Analytics has been deactivated until further notice. We are required
 #' by law (Quebec's Loi 25, effective since September 2023) to inform users we
 #' collect usage data from them. We further require a formal Terms of Service,
@@ -42,693 +55,988 @@
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
 
+# NOTE: (JMP) I would strongly consider breaking the app into Shiny modules
+# or functions that returns each tabPanel().
+
+# FIXME: (JMP) It would be best to document all inputs and constants in a
+# dedicated R script using roxygen2 syntax.
+
+# FIXME: (JMP) Many numeric values are passed to signif() which yields a
+# variable number of (significant) digits. Is this truly needed? For UX
+# purposes, I suggest always showing 1 or 2 digits?
+
+# FIXME: (JMP) The app heavily relies on functions defined in scripts. These
+# must be revamped (those containing plot functions being the top priority).
+# Theis contents should be split into a proper set of functions stored in
+# multiple R files in R/. Each function should be documented and manually
+# tested (at least).
+
+# FIXME: (JMP) Plots are not generated with the same margins. They must be
+# standardized. For some plots, this is a bigger problem and I left a TODO.
+
+# FIXME: (JMP) OEL (Occupational Exposure Limit) and EL (Exposure Limit)
+# are both used interchangeably. Choose one and stick to it. Below, I
+# chose the latter until further notice. All other inputs have slightly
+# different names (sometimes) in the app. More consistency is required.
+
+
 # User Interface ---------------------------------------------------------------
 
 
-# FIXME: (JMP) I would strongly consider breaking the app into Shiny modules:
-# one for each panel. See shiny::moduleServer() for more information. Modules
-# can be tested with shiny::testServer().
-
-
 ui <- shiny::fluidPage(
-    # NOTE: (JMP) I just discovered arg lang. This is awesome and could
-    # naturally be integrated with transltr in a near future. This note
-    # serves as a reminder.
-    lang  = NULL,
-    theme = shinythemes::shinytheme("flatly"),
-
+    # TODO: (JMP) Integrate this value with transltr in a near future.
+    lang  = "en",
+    theme = bslib::bs_theme(version = 5L, preset = "flatly"),
 
     ## Head --------------------------------------------------------------------
 
-
     html$head(
-        # Using htmltools::singleton() is overkill here.
+        html$title(translate("Expostats | Tool 1")),
         html$link(rel = "stylesheet", media = "all", href = "/css/main.css"),
-        html$link(rel = "stylesheet", media = "all", href = "/css/banner-wait.css"),
-        html$script(src = "js/exceedance-plot.js"),
+        shinyjs::useShinyjs()
     ),
-
-    shiny::titlePanel(gett("main.title.t1")),
-
 
     ## Body --------------------------------------------------------------------
 
+    html$h1(
+        class = "app-title",
+        translate("Tool 1: Data Interpretation for One Similarly Exposed Group")),
 
     shiny::sidebarLayout(
 
-
         ### Sidebar ------------------------------------------------------------
 
-
-        # NOTE: (JMP) I removed custom width = input_width value from all
-        # sidebar's inputs. I believe we should let Shiny handle containers'
-        # sizes. Setting absolute values can induce unintended consequences.
         shiny::sidebarPanel(
-            width = 3,
+            width = 2L,
+
+            #### Inputs --------------------------------------------------------
 
             shiny::numericInput(
                 inputId = "oel",
-                label   = translate("Exposure Limit"),
-                value   = 100),
-
-            add_tooltip("oel", translate("
-                Use the exposure limit to assess overexposure. It
-                must have the same unit as the measurement data.")),
+                label   = translate("Exposure Limit:"),
+                value   = 100) |>
+                bslib::tooltip(
+                    html$p(translate("
+                        Use the exposure limit to assess overexposure. It
+                        must have the same unit as the measurement data."))),
 
             shiny::numericInput(
                 inputId = "al",
-                label   = translate("Exposure Limit Multiplier"),
-                value   = 1),
-
-            add_tooltip("al", translate("
-                Use this multiplier to modify the exposure limit. The product
-                of the former and the latter is the actual exposure limit value
-                for calculation purposes.")),
+                label   = translate("Exposure Limit Multiplier:"),
+                value   = 1) |>
+                bslib::tooltip(html$p(translate("
+                    Use this multiplier to modify the exposure limit. The
+                    product of the former and the latter is the actual exposure
+                    limit value for calculation purposes."))),
 
             shiny::numericInput(
                 inputId = "conf",
-                label   = translate("Credible Interval Probability"),
-                value   = 90),
-
-            add_tooltip("conf", translate("
-                Use this value as a probability for the credible intervals
-                around parameter estimates. It must be between 0% and 100%.
-                The default value is set equal to 90%. The credible interval
-                is the Bayesian equivalent of the confidence interval.")),
+                label   = translate("Credible Interval Probability:"),
+                value   = 90) |>
+                bslib::tooltip(html$p(translate("
+                    Use this value as a probability for the credible intervals
+                    around parameter estimates. It must be between 0% and 100%.
+                    The default value is set equal to 90%. The credible interval
+                    is the Bayesian equivalent of the confidence interval."))),
 
             shiny::numericInput(
                 inputId = "psi",
-                label   = translate("Overexposure Risk Threshold"),
-                value   = 30),
+                label   = translate("Overexposure Risk Threshold:"),
+                value   = 30) |>
+                bslib::tooltip(html$p(translate("
+                    Use this value as the maximal overexposure risk. It must be
+                    between 0% and 100%. It represents the maximal probability
+                    that the overexposure limit is met. Above this value, the
+                    situation should trigger remedial action. INRS and BOHS
+                    suggest using 5% and 30%, respectively."))),
 
-            add_tooltip("psi", translate("
-                Use this value as the maximal overexposure risk. It must be
-                between 0% and 100%. It represents the maximal probability that
-                the overexposure limit is met. Above this value, the situation
-                should trigger remedial action. INRS and BOHS suggest using 5%
-                and 30%, respectively.")),
-
-            inputTextArea(
+            add_input_text_area(
                 inputId = "data",
-                label   = translate("Measurement Data"),
-                value   = "28.9\n19.4\n<5.5\n149.9\n26.42\n56.1"),
+                label   = translate("Measurements:"),
+                value   = c(
+                    "28.9",
+                    "19.4",
+                    "<5.5",
+                    "149.9",
+                    "26.42",
+                    "56.1")) |>
+                bslib::tooltip(html$p(translate("
+                    The measurement dataset. There must be one value per line.
+                    Values can be censored to the left (<), to the right (>),
+                    or interval censored ([X-Y])."))),
 
-            add_tooltip("data", translate("
-                The measurement dataset. There must be one value per line.
-                Values can be censored to the left (<) or to the right (>)."))
+            # This output is only shown when the active panel is
+            # exceedance. See observer in section Sidebar of server().
+            shiny::numericInput(
+                inputId = "frac_threshold",
+                label   = translate("Exceedance Fraction Threshold:"),
+                value   = 5) |>
+                htmltools::tagAppendAttributes(style = "display: none;") |>
+                bslib::tooltip(html$p(translate("
+                    Use this value as an acceptable proportion of exposures
+                    above the exposure limit (OEL). It must be between 0%
+                    and 100%. The traditional default value is 5%."))),
+
+            # This output is only shown when the active panel is
+            # percentiles. See observer in section Sidebar of server().
+            shiny::numericInput(
+                inputId = "target_perc",
+                label   = translate("Critical Percentile:"),
+                value   = 95) |>
+                htmltools::tagAppendAttributes(style = "display: none;") |>
+                bslib::tooltip(html$p(translate("
+                    Use this value to set the percentile of the exposure
+                    distribution that will be compared to the OEL. It must
+                    be between 0% and 100%. The traditional default value
+                    is 95%."))),
+
+            #### Footer --------------------------------------------------------
+
+            # A footer can be passed to shiny::tabsetPanel(), but it
+            # is placed here to maximize visibility on all screens.
+            html$footer(
+                class = "app-footer",
+                html$p("Tool 1 version 4.0.0-RC1."),
+
+                html$p(sprintf_html(translate(
+                    "Source code available on %s."),
+                    a_strs[["source"]])),
+
+                # This produces a <p> containing a single line of text:
+                # <a>Jérôme Lavoué</a> (YYY). All rights reserved.
+                html$p(
+                    sprintf_html(
+                        "%s (%s). %s.",
+                        a_strs[["jerome_lavoue"]],
+                        current_year,
+                        translate("All rights reserved")))
+            )
         ),
-
 
         ### Main ---------------------------------------------------------------
 
-
-        shiny::mainPanel(
-
+        shiny::mainPanel(width = 8L,
 
             #### Top Banner for Calculations -----------------------------------
 
-
             # It is shown whenever the Shiny engine is blocked.
-            # See file www/css/wait-banner.css for styling.
             shiny::conditionalPanel(
-                html$div(gett("input.8")),
-                id        = "banner-wait",
+                html$p(
+                    class = "app-banner-wait",
+                    translate("Calculating... Please wait.")),
                 condition = r"{$("html").hasClass("shiny-busy")}"
             ),
 
-
             #### Panels --------------------------------------------------------
 
+            shiny::tabsetPanel(id = "active_panel",
 
-            shiny::tabsetPanel(
-
-
-                ##### Panel: Descriptive ---------------------------------------
-
+                ##### Panel: Statistics ----------------------------------------
 
                 shiny::tabPanel(
-                    title = gett("descriptive.tab.name"),
-                    html$h3(gett("descriptive.title")),
+                    value = "statistics",
+                    title = translate("Statistics"),
 
+                    ##### Descriptive Statistics -------------------------------
 
-                    ##### Descriptive statistics -------------------------------
+                    html$h2(
+                        class = "app-panel-title",
+                        translate("Descriptive Statistics")),
 
+                    shiny::fluidRow(
+                        shiny::column(width = 6L,
+                            html$h3(
+                                class = "app-panel-subtitle",
+                                translate("Summary")),
 
-                    shiny::tableOutput("res.desc"),
-                    html$h4(gett("descriptive.1")),
-                    shiny::htmlOutput("descriptive.2"),
+                            shiny::tableOutput("res.desc"),
+                        ),
+                        shiny::column(width = 6L,
+                            add_bs_alert_info(
+                                html$p(translate("
+                                    Censored measurements are subject to one
+                                    of the following procedure.")),
 
+                                html$ul(
+                                    html$li(translate("
+                                        Interval censored measurements are
+                                        imputed as the mid-range.")),
+
+                                    html$li(translate("
+                                        Measurements censored to the right are
+                                        imputed as 9/4 of the censoring point.")),
+
+                                    html$li(sprintf_html(translate("
+                                        Measurements censored to the left are
+                                        treated using robust regression on order
+                                        statistics, or a Log-probit regression.
+                                        The algorithm used is derived from %s
+                                        (itself derived from previous work of
+                                        %s)."),
+                                        a_strs[["expostats_ndexpo"]],
+                                        a_strs[["dennis_helsel"]]))
+                                )
+                            )
+                        )
+                    ),
 
                     ##### QQ Plot ----------------------------------------------
 
+                    html$h2(
+                        class = "app-panel-title",
+                        translate("Quantile-Quantile Plot")),
 
-                    html$br(),
-                    html$h3(gett("descriptive.3")),
-                    shiny::plotOutput("qqplot"),
-                    html$br(),
-                    html$p(gettt("descriptive.4")),
+                    # This plot is ugly if it is rendered using the
+                    # full available width of its parent container.
+                    # Width is restricted to 50%, and margin are set
+                    # by the browser to center the underlying image.
+                    # plotOutput() rerturns a <div> tag by default.
+                    shiny::plotOutput("qqplot",
+                        width  = "50%",
+                        height = plot_height) |>
+                        htmltools::tagAppendAttributes(style = "margin: auto;"),
 
+                    # TODO: (JMP) Standardize margins and remove style.
+                    html$p(style = "margin: 10.5px 0 0 0;", translate("
+                        The points above should follow a straight line. Random
+                        deviations from it are expected. However, significant
+                        deviations suggest that the data may have to be split
+                        into distinct subsets, or that some outliers must be
+                        investigated.")),
 
                     ##### Box and Whiskers Plot --------------------------------
 
+                    html$h2(
+                        class = "app-panel-title",
+                        translate("Box and Whiskers Plot")),
 
-                    html$br(),
-                    html$h3(gett("descriptive.5")),
-                    shiny::plotOutput("boxplot"),
-                    html$p(gett("descriptive.6")),
-                    html$br()
+                    shiny::plotOutput("boxplot", height = plot_height),
+
+                    html$p(sprintf_html(translate("
+                        The measurements are scattered around the x-axis middle
+                        point. The box (outer horizontal lines) represents the
+                        spread between the 25th and 75th percentiles. The
+                        whiskers (vertical lines) represent the spread between
+                        the 10th and 90th percentiles. The inner horizontal
+                        line is the median."))),
                 ),
 
-
-                ##### Panel: Exceedance ----------------------------------------
-
+                ##### Panel: Exceedance Fraction -------------------------------
 
                 shiny::tabPanel(
-                    title = gett("frac.tab.name"),
-                    html$h3(gett("frac.title")),
-
-
-                    ###### Input: Exceedance Threshold -------------------------
-
-
-                    # NOTE: (JMP) I removed custom width = input_width value
-                    # from all sidebar's inputs. I believe we should let Shiny
-                    # handle containers' sizes. Setting absolute values can
-                    # induce unintended consequences.
-                    # TODO: (JMP) Move this input to the sidebar and hide it
-                    # unless the underlying panel is active/visible.
-                    shiny::numericInput(
-                        inputId = "frac_threshold",
-                        label   = translate("frac.1"),
-                        value   = 5),
-
-                    add_tooltip("frac_threshold", translate("frac.1.tooltip")),
-
+                    value = "exceedance",
+                    title = translate("Exceedance Fraction"),
 
                     ###### Risk Decision ---------------------------------------
 
+                    html$h2(
+                        class = "app-panel-title",
+                        translate("Risk Analysis Based on the Exceedance Fraction")),
 
-                    html$br(),
-                    html$div(
-                        style = "block",
-                        class = "plot-with-text",
-                        html$div(
-                            style = "display:inline-block;width:55%",
-                            class = "text",
-                            html$h4(html$strong(gett("frac.7"))),
+                    shiny::fluidRow(
+                        shiny::column(width = 6L,
+                            html$h3(
+                                class = "app-panel-subtitle",
+                                translate("Risk Decision")),
 
-                            html$p("\u25B9", gett("frac.8")),
-                            html$p(
-                                "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0",
-                                html$strong(gett("frac.9"),
-                                "\u2265 ",
-                                shiny::textOutput("acceptableExpo1", inline = TRUE))
+                            html$ul(
+                                class = "app-ul",
+
+                                html$li(sprintf_html(translate("
+                                    Overexposure is defined as the exceedance
+                                    fraction being greater than or equal to %s."),
+                                    add_bold_text_output("acceptableExpo1"))),
+
+                                html$li(sprintf_html(translate("
+                                    The probability that this criterion is met
+                                    is equal to %s."),
+                                    add_bold_text_output("probrisk"))),
+
+                                html$li(sprintf_html(translate("
+                                    The probability that this criterion is met
+                                    should be lower than %s."),
+                                    add_bold_text_output("frac.probSituUnacceptable1"))),
+
+                                html$li(sprintf_html(translate("
+                                    Consequently, the current situation is
+                                    declared to be %s."),
+                                    add_bold_text_output("finalrisk")))
                             ),
-                            html$p("\u25B9", gett("frac.10")),
-                            html$p(
-                                "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0",
-                                html$strong(
-                                    shiny::textOutput("probrisk", inline = TRUE))
-                            ),
-                            html$p("\u25B9", gett("frac.11")),
-                            html$p(
-                                "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0",
-                                html$strong(
-                                    "<",
-                                   shiny::textOutput("frac.probSituUnacceptable", inline = TRUE))
-                            ),
-                            html$p("\u25B9", gett("frac.12")),
-                            html$p(
-                                "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0",
-                                html$strong(shiny::textOutput("finalrisk", inline = TRUE))
-                            )
+
+                            html$p(translate("
+                                This risk meter shows the probability of the
+                                exposure being too high when compared to the
+                                occupational exposure limit. The red zone
+                                indicates a poorly controlled exposure."))
                         ),
 
-                        html$div(
-                            style = "display: inline-block;width:44%;vertical-align:top",
-                            class = "plot",
-                            shiny::plotOutput("risquemetre"))
+                        shiny::column(width = 6L,
+                            # Add a top margin to the plot <img> to match the
+                            # margin of top <h3> above (see other column. This
+                            # aligns both elements horizontally.
+                            htmltools::tagAppendAttributes(
+                                style = "margin-top: 21px",
+                                shiny::plotOutput(
+                                    outputId = "risquemetre",
+                                    height   = plot_risk_meter_height))
+                        )
                     ),
 
+                    ###### Parameter Estimates ---------------------------------
 
-                    ###### Parameter Estimates: Distribution -------------------
+                    html$h2(
+                        class = "app-panel-title",
+                        translate("Parameters Estimates")),
 
+                    shiny::fluidRow(
+                        shiny::column(width = 6L,
+                            html$h3(
+                                class = "app-panel-subtitle",
+                                translate("Distribution Parameters")),
 
-                    html$h4(html$strong(gett("frac.4"))),
-                    html$p(
-                        shiny::textOutput("gm1.dist", inline = TRUE),
-                        html$strong(shiny::textOutput("gm1", inline = TRUE))
+                            html$ul(
+                                class = "app-ul",
+
+                                html$li(sprintf_html(translate("
+                                    The geometric mean point estimate is equal
+                                    to %s."),
+                                    add_bold_text_output("gm1"))),
+
+                                html$li(sprintf_html(translate("
+                                    The geometric standard deviation point
+                                    estimate is equal to %s."),
+                                    add_bold_text_output("gsd1")))
+                            ),
+
+                            html$p(translate("
+                                Square brackets indicate the underlying
+                                credible intervals."))
+                        ),
+                        shiny::column(width = 6L,
+                            html$h3(
+                                class = "app-panel-subtitle",
+                                translate("Exceedance Fraction")),
+
+                            html$ul(
+                                class = "app-ul",
+
+                                html$li(sprintf_html(translate("
+                                    The point estimate is equal to %s."),
+                                    add_bold_text_output("Frac")))
+                            )
+                        )
                     ),
-                    html$p(
-                        shiny::textOutput("gsd1.dist", inline = TRUE),
-                        html$strong(shiny::textOutput("gsd1", inline = TRUE))
-                    ),
-
-
-                    ###### Parameter Estimates: Exceedance Fraction ------------
-
-
-                    html$br(),
-                    html$h4(html$strong(gett("frac.5"))),
-                    html$p(
-                        gett("frac.6"),
-                        html$strong(shiny::textOutput("Frac", inline = TRUE))
-                    ),
-
-                    html$p(
-                        gett("frac.6.1"),
-                        html$strong(shiny::textOutput("Frac.ci", inline = TRUE))
-                    ),
-
 
                     ###### Exceedance Plot -------------------------------------
 
+                    html$h2(
+                        class = "app-panel-title",
+                        translate("Exceedance Plot")),
 
-                    html$br(),
-                    html$h4(html$strong(gett("frac.graph.1"))),
+                    html$p(translate("
+                        The following plot illustrates the proportion of exposures
+                        that would be above the OEL in a fictional sample of one
+                        hundred measurements. Each flask represents an exposure.
+                        Red flasks correspond to exposures that are above the
+                        exposure limit. The plot can be shown in one of four
+                        variations. You may choose any variant (an alternative
+                        way of displaying the same information) below and,
+                        optionally, customize colors.")),
 
-                    html$p(html$strong(gett("frac.graph.13"))),
-                    html$p(gett("frac.graph.13.1")),
-                    html$span(
-                        class = "inline-b ital va-mid",
-                        gett("frac.graph.13.4.variante")),
+                    shiny::radioButtons(
+                        inputId  = "varianteFracDep",
+                        label    = translate("Variants:"),
+                        inline   = TRUE,
+                        choices  = c(
+                            # What users see = # Internal input value.
+                            `1` = "figure1",
+                            `2` = "figure2",
+                            `3` = "figure3",
+                            `4` = "figure4")),
 
-                    html$div(
-                        class = "inline-b",
-                        shiny::radioButtons(
-                            inputId = "varianteFracDep",
-                            label   = NULL,
-                            inline  = TRUE,
-                            choices = c(
-                                "1" = "figure1",
-                                "2" = "figure2",
-                                "3" = "figure3",
-                                "4" = "figure4"))
-                    ),
+                    shiny::actionButton(
+                        style   = "margin-bottom: 15px;",
+                        inputId = "btn_customize",
+                        label   = translate("Customize Colors"),
+                        icon    = static$icons$bottom),
 
-                    # See file www/js/exceedance-plot.js for further UI logic.
-                    html$fieldset(
-                        id = "exceedance-plot-customize",
-                        html$legend(
-                            id    = "exceedance-plot-customize-legend",
-                            class = "toggle-personnalisation",
-                            html$span(gett("frac.graph.13.2")),
-                            html$span(class = "glyphicon glyphicon-plus")
-                        ),
-                        html$div(
-                            class = "fieldset-body",
-                            html$div(
-                                class = "colour-inp inline-b",
-                                html$div(html$label(gett("frac.graph.13.3.1"))),
-                                colourpicker::colourInput(
-                                    inputId    = "couleurRisque",
-                                    label      = NULL,
-                                    value      = "red",
-                                    returnName = TRUE,
-                                    palette    = "limited")
-                            ),
-                            html$div(
-                                class = "colour-inp inline-b",
-                                html$div(html$label(gett("frac.graph.13.3.2"))),
-                                colourpicker::colourInput(
-                                    inputId    = "couleurAucunRisque",
-                                    label      = NULL,
-                                    value      = "gray50",
-                                    returnName = TRUE,
-                                    palette    = "limited")
-                            ),
-                            html$div(
-                                class = "colour-inp inline-b",
-                                html$div(html$label(gett("frac.graph.13.3.3"))),
-                                colourpicker::colourInput(
-                                    inputId    = "couleurFond",
-                                    label      = NULL,
-                                    value      = "gray70",
-                                    returnName = TRUE,
-                                    palette    = "limited")
-                            ),
-                            html$div(
-                                class = "colour-inp inline-b",
-                                html$div(html$label(gett("frac.graph.13.3.4"))),
-                                colourpicker::colourInput(
-                                    inputId    = "couleurSeuil",
-                                    label      = NULL,
-                                    value      = "gray40",
-                                    returnName = TRUE,
-                                    palette    = "limited")
-                            )
-                        )
-                    ),
+                    # The <fieldset> is initially hidden, and is
+                    # either shown, or hidden whenever the user
+                    # clicks on the action button above.
+                    add_input_field_set(
+                        inputId     = "plot-exceedance-custom",
+                        containerId = "plot-exceedance-custom-container",
+                        label       = translate("Colors:"),
+                        style       = "display: none;",
+                        inputs      = list(
+                            colourpicker::colourInput(
+                                inputId    = "couleurRisque",
+                                label      = translate("Flask Color (Exceedance):"),
+                                value      = "red",
+                                returnName = TRUE,
+                                palette    = "limited"),
+                            colourpicker::colourInput(
+                                inputId    = "couleurAucunRisque",
+                                label      = translate("Flask Color (No Exceedance):"),
+                                value      = "gray50",
+                                returnName = TRUE,
+                                palette    = "limited"),
+                            colourpicker::colourInput(
+                                inputId    = "couleurFond",
+                                label      = translate("Background Color (Default):"),
+                                value      = "gray70",
+                                returnName = TRUE,
+                                palette    = "limited"),
+                            colourpicker::colourInput(
+                                inputId    = "couleurSeuil",
+                                label      = translate("Background Color (Threshold):"),
+                                value      = "gray40",
+                                returnName = TRUE,
+                                palette    = "limited"))),
 
-                    html$br(),
-                    html$div(
-                        class = "fig-var-desc",
-                        shiny::textOutput("fracDepVarianteDesc")
-                    ),
+                    # FIXME: (JMP) This currently does not scale like
+                    # it used to when compared to the previous version.
+                    shiny::plotOutput(
+                        outputId = "fracDepVariantes",
+                        height   = plot_height) |>
+                        # This color is extracted from
+                        # the chosen shiny theme (flatly).
+                        shinycssloaders::withSpinner(
+                            type  = 8L,
+                            color = "#212529"),
 
-                    shinycssloaders::withSpinner(
-                        shiny::plotOutput("fracDepVariantes")),
-
+                    shiny::textOutput("fracDepVarianteDesc", container = html$p),
 
                     ###### Sequential Plot -------------------------------------
 
+                    html$h2(
+                        class = "app-panel-title",
+                        translate("Sequential Plot")),
 
-                    html$p(html$strong(gett("frac.graph.4"))),
-                    html$p(gett("frac.graph.5")),
-                    shiny::plotOutput("seqplot.frac"),
+                    shiny::plotOutput("seqplot.frac", height = plot_height),
 
+                    # TODO: (JMP) Standardize margins and remove style.
+                    html$p(style = "margin: 10.5px 0 0 0;", translate("
+                        This plot shows the estimated exposure distribution when
+                        assuming 250 exposure measurements have been collected.
+                        If the measurements represent 8-hour TWA (Time-Weighted
+                        Average) values, this approximately represents a full
+                        year of exposure. The OEL is shown as a red line.")),
 
                     ###### Density Plot ----------------------------------------
 
+                    html$h2(
+                        class = "app-panel-title",
+                        translate("Density Plot")),
 
-                    html$br(),
-                    html$p(html$strong(gett("frac.graph.7"))),
-                    html$p(gett("frac.graph.8")),
-                    shiny::plotOutput("distplot.frac"),
-                    html$br(),
+                    shiny::plotOutput("distplot.frac", height = plot_height),
 
+                    html$p(translate("
+                        This plot shows the probability density function of the
+                        estimated distribution of exposures. The OEL is shown as
+                        a red line. The exceedance fraction is the area under
+                        the curve beyond the OEL value.")),
 
                     ###### Risk Band Plot --------------------------------------
 
+                    html$h2(
+                        class = "app-panel-title",
+                        translate("Risk Band Plot")),
 
-                    html$p(html$strong(gett("frac.graph.11"))),
-                    html$p(
-                        gett("frac.graph.12.1"),
+                    shiny::plotOutput("riskband.frac", height = plot_height),
+
+                    html$p(sprintf_html(translate("
+                        This plot shows the probability distribution of the
+                        uncertainty around the exceedance fraction. It shows
+                        the probability that the true exceedance fraction is
+                        below %s, between %s and %s, and greater than %s. The
+                        red column represents the probability of an
+                        overexposure. The latter should be lower than the %s
+                        threshold shown by the black dashed line."),
                         shiny::textOutput("frac.acceptableExpoDiv1", inline = TRUE),
-                        gett("frac.graph.12.2"),
                         shiny::textOutput("frac.acceptableExpoDiv2", inline = TRUE),
-                        gett("frac.graph.12.3"),
                         shiny::textOutput("acceptableExpo2", inline = TRUE),
-                        gett("frac.graph.12.4"),
                         shiny::textOutput("acceptableExpo3", inline = TRUE),
-                        gett("frac.graph.12.5")
-                    ),
-
-                    shiny::plotOutput("riskband.frac"),
-                    html$br()
+                        shiny::textOutput("frac.probSituUnacceptable2", inline = TRUE)))
                 ),
 
-
-                ##### Panel: 95th Percentile -----------------------------------
-
+                ##### Panel: Percentiles ---------------------------------------
 
                 shiny::tabPanel(
-                    # NOTE: (JMP) The title depends on the output passed to
-                    # input target_perc. I think we can simplify this to a
-                    # static name such as 'Percentiles'. We clearly see that
-                    # the percentile is an input.
-                    title = shiny::textOutput("perc.percentile.title", inline = TRUE),
-                    html$h3(
-                        gett("perc.title"),
-                        shiny::textOutput("perc.percentile.h3",inline = TRUE)
-                    ),
-
-
-                    ###### Input: Percentile -----------------------------------
-
-
-                    # NOTE: (JMP) I removed custom width = input_width value
-                    # from all sidebar's inputs. I believe we should let Shiny
-                    # handle containers' sizes. Setting absolute values can
-                    # induce unintended consequences.
-                    # TODO: (JMP) Move this input to the sidebar and hide it
-                    # unless the underlying panel is active/visible.
-                    shiny::numericInput(
-                        inputId = "target_perc",
-                        label   = translate("perc.1"),
-                        value   = 95),
-
-                    add_tooltip("target_perc" , translate("perc.1.tooltip")),
-
+                    value = "percentiles",
+                    title = translate("Percentiles"),
 
                     ###### Risk Decision ---------------------------------------
 
+                    html$h2(
+                        class = "app-panel-title",
+                        translate("Risk Analysis Based on Percentiles")),
 
-                    html$br(),
-                    html$div(
-                        style = "block",
-                        class = "plot-with-text",
-                        html$div(
-                            style = "display: inline-block;width:55%",
-                            class = "text",
-                            html$h4(html$strong(gett("frac.7"))),
-                            html$p("\u25B9", gett("frac.8")),
-                            html$p(
-                                "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0",
-                                html$strong(shiny::textOutput("perc.percentile.risk.decision", inline = TRUE),
-                                "\u2265 ",
-                                gett("OEL"))
+                    shiny::fluidRow(
+                        shiny::column(width = 6L,
+
+                            html$h3(
+                                class = "app-panel-subtitle",
+                                translate("Risk Decision")),
+
+                            html$ul(
+                                class = "app-ul",
+
+                                html$li(sprintf_html(translate("
+                                    Overexposure is defined as the %s percentile
+                                    being greater than or equal to the OEL."),
+                                    add_bold_text_output("perc.percentile.risk.decision"))),
+
+                                html$li(sprintf_html(translate("
+                                    The probability that this criterion is met
+                                    is equal to %s."),
+                                    add_bold_text_output("probrisk.perc"))),
+
+                                html$li(sprintf_html(translate("
+                                    The probability that this criterion is met
+                                    should be lower than %s."),
+                                    add_bold_text_output("perc.probSituUnacceptable1"))),
+
+                                html$li(sprintf_html(translate("
+                                    Consequently, the current situation is
+                                    declared to be %s."),
+                                    add_bold_text_output("finalrisk.perc")))
                             ),
-                            html$p("\u25B9", gett("frac.10")),
-                            html$p(
-                                "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0",
-                                html$strong(shiny::textOutput("probrisk.perc", inline = TRUE))
-                            ),
-                            html$p("\u25B9", gett("frac.11")),
-                            html$p(
-                                "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0",
-                                html$strong(
-                                    "<",
-                                    shiny::textOutput("perc.probSituUnacceptable", inline = TRUE))
-                            ),
-                            html$p("\u25B9", gett("frac.12")),
-                            html$p(
-                                "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0",
-                                html$strong(shiny::textOutput("finalrisk.perc", inline = TRUE))
-                            )
+
+                            html$p(translate("
+                                This risk meter shows the probability of the
+                                exposure being too high when compared to the
+                                occupational exposure limit. The red zone
+                                indicates a poorly controlled exposure."))
                         ),
-                        html$div(
-                            style = "display: inline-block;width:44%;vertical-align:top",
-                            class = "plot",
-                            shiny::plotOutput("risquemetre2")
+
+                        shiny::column(width = 6L,
+                            # Add a top margin to the plot <img> to match the
+                            # margin of top <h3> above (see other column. This
+                            # aligns both elements horizontally.
+                            htmltools::tagAppendAttributes(
+                                style = "margin-top: 21px",
+                                shiny::plotOutput(
+                                    outputId = "risquemetre2",
+                                    height   = plot_risk_meter_height))
                         )
                     ),
 
-                    html$h4(html$strong(gett("frac.4"))),
+                    ###### Parameter Estimates ---------------------------------
 
+                    html$h2(
+                        class = "app-panel-title",
+                        translate("Parameters Estimates")),
 
-                    ###### Parameter Estimates: Distribution -------------------
+                    shiny::fluidRow(
+                        shiny::column(width = 6L,
+                            html$h3(
+                                class = "app-panel-subtitle",
+                                translate("Distribution Parameters")),
 
+                            html$ul(
+                                class = "app-ul",
 
-                    html$p(
-                        shiny::textOutput("gm1.perc", inline = TRUE),
-                        html$strong(shiny::textOutput("gm2", inline = TRUE))),
-                    html$p(
-                        shiny::htmlOutput("gsd1.perc", inline = TRUE),
-                        html$strong(shiny::textOutput("gsd2", inline = TRUE))),
-                    html$br(),
+                                html$li(sprintf_html(translate("
+                                    The geometric mean point estimate is equal
+                                    to %s."),
+                                    add_bold_text_output("gm2"))),
 
+                                html$li(sprintf_html(translate("
+                                    The geometric standard deviation point
+                                    estimate is equal to %s."),
+                                    add_bold_text_output("gsd2")))
+                            ),
 
-                    ###### Parameter Estimates: 95th percentile ----------------
+                            html$p(translate("
+                                Square brackets indicate the underlying
+                                credible intervals."))
+                        ),
+                        shiny::column(width = 6L,
+                            html$h3(
+                                class = "app-panel-subtitle",
+                                sprintf_html(
+                                    translate("%s Percentile Estimate"),
+                                    shiny::textOutput(
+                                        outputId = "perc.percentile.param.estimates",
+                                        inline   = TRUE))),
 
+                            html$ul(
+                                class = "app-ul",
 
-                    html$h4(
-                        html$strong(gett("perc.5"),
-                        shiny::textOutput("perc.percentile.param.estimates", inline = TRUE))),
-                    html$p(
-                        gett("frac.6"),
-                        html$strong(shiny::textOutput("Perc", inline = TRUE))),
-                    html$p(
-                        gett("frac.6.1"),
-                        html$strong(shiny::textOutput("Perc.ci", inline = TRUE))),
-                    html$br(),
-
+                                html$li(sprintf_html(translate("
+                                    The point estimate is equal to %s."),
+                                    add_bold_text_output("Perc")))
+                            )
+                        )
+                    ),
 
                     ###### Sequential Plot -------------------------------------
 
+                    html$h2(
+                        class = "app-panel-title",
+                        translate("Sequential Plot")),
 
-                    html$h4(html$strong(gett("frac.graph.1"))),
-                    html$p(html$strong(gett("frac.graph.4"))),
-                    html$p(gett("perc.graph.5")),
-                    shiny::plotOutput("seqplot.perc"),
-                    html$br(),
+                    shiny::plotOutput("seqplot.perc", height = plot_height),
 
+                    html$p(translate("
+                        This plot shows the estimated exposure distribution when
+                        assuming 250 exposure measurements have been collected.
+                        If the measurements represent 8-hour TWA (Time-Weighted
+                        Average) values, this approximately represents a full
+                        year of exposure. The OEL is shown as a red dotted
+                        line and the point estimate of the selected percentile
+                        as a continuous blue line.")),
 
                     ###### Density Plot ----------------------------------------
 
+                    html$h2(
+                        class = "app-panel-title",
+                        translate("Density Plot")),
 
-                    html$p(html$strong(gett("frac.graph.7"))),
-                    html$p(gett("perc.graph.8")),
-                    shiny::plotOutput("distplot.perc"),
-                    html$br(),
+                    shiny::plotOutput("distplot.perc", height = plot_height),
 
+                    html$p(translate("
+                        This plot shows the probability density function of the
+                        estimated distribution of exposures. The OEL is shown as
+                        a red dotted line and the point estimate of the selected
+                        percentile as a continuous blue line.")),
 
                     ###### Risk Band Plot --------------------------------------
 
+                    html$h2(
+                        class = "app-panel-title",
+                        translate("Risk Band Plot")),
 
-                    html$p(html$strong(gett("frac.graph.11"))),
+                    shiny::plotOutput("riskband.perc", height = plot_height),
+
+                    # TODO: (JMP) Standardize margins and remove style.
                     html$p(
-                        gett("perc.graph.12.1"),
+                        style = "margin: 10.5px 0 0 0;",
+                        sprintf_html(translate("
+                            This plot shows the probability distribution of the
+                            uncertainty around the selected percentile. It shows
+                            the probability that the true %s percentile is (1)
+                            below 1%% of the OEL, (2) between 1%% and 10%% of
+                            the OEL, (3) between 10%% and 50%% of the OEL, (4)
+                            between 50%% and 100%% of the OEL, and (5) greater
+                            than the OEL. This is based on the classification
+                            adopted by %s. The red column represents the
+                            probability of an overexposure. The latter should
+                            be lower than the %s threshold shown by the black
+                            dashed line."),
                         shiny::textOutput("perc.percentile.risk.band", inline = TRUE),
-                        shiny::htmlOutput("perc.graph.12.2", inline = TRUE)),
-                    shiny::plotOutput("riskband.perc"),
-                    html$br()
+                        a_strs[["aiha"]],
+                        shiny::textOutput("perc.probSituUnacceptable2", inline = TRUE)))
                 ),
-
 
                 ##### Panel: Arithmetic Mean -----------------------------------
 
-
                 shiny::tabPanel(
-                    title = gett("am.tab.name"),
-                    html$h3(gett("am.title")),
-                    html$br(),
-
-
-                    ###### Quick Glance ----------------------------------------
-
-
-                    html$h4(html$strong(gett("frac.2"))),
-                    html$p(gett("frac.3")),
-
+                    value = "arithmetic_mean",
+                    title = translate("Arithmetic Mean"),
 
                     ###### Risk Decision ---------------------------------------
 
+                    html$h2(
+                        class = "app-panel-title",
+                        translate("Risk Analysis Based on the Arithmetic Mean")),
 
-                    html$br(),
-                    html$div(
-                        style = "block",
-                        class = "plot-with-text",
-                        html$div(
-                            style = "display: inline-block;width:55%",
-                            class = "text",
-                            html$h4(html$strong(gett("frac.7"))),
-                            html$p("\u25B9", gett("frac.8")),
-                            html$p(
-                                "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0",
-                                html$strong(gett("AM"),
-                                "\u2265 ",
-                                gett("OEL"))
+                    shiny::fluidRow(
+                        shiny::column(width = 6L,
+                            html$h3(
+                                class = "app-panel-subtitle",
+                                translate("Risk Decision")),
+
+                            html$ul(
+                                class = "app-ul",
+
+                                html$li(translate("
+                                    Overexposure is defined as the arithmetic
+                                    mean being greater than or equal to the OEL.")),
+
+                                html$li(sprintf_html(translate("
+                                    The probability that this criterion is met
+                                    is equal to %s."),
+                                    add_bold_text_output("probrisk.AM"))),
+
+                                html$li(sprintf_html(translate("
+                                    The probability that this criterion is met
+                                    should be lower than %s."),
+                                    add_bold_text_output("am.probSituUnacceptable1"))),
+
+                                html$li(sprintf_html(translate("
+                                    Consequently, the current situation is
+                                    declared to be %s."),
+                                    add_bold_text_output("finalrisk.AM")))
                             ),
-                            html$p("\u25B9", gett("frac.10")),
-                            html$p(
-                                "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0",
-                                html$strong(
-                                    shiny::textOutput("probrisk.AM", inline = TRUE)
-                                )
+
+                            html$p(translate("
+                                This risk meter shows the probability of the
+                                exposure being too high when compared to the
+                                occupational exposure limit. The red zone
+                                indicates a poorly controlled exposure.")),
+
+                            add_bs_alert_warning(html$p(translate("
+                                The risk assessment based on AM relies on the
+                                availability of a long-term averaged OEL
+                                (LTA-OEL in the AIHA terminology), representing
+                                a cumulative burden threshold. Most current OELs
+                                are not created as LTA-OEL. Despite an annoying
+                                lack of precise definition by most organizations,
+                                they should be most often viewed as thresholds
+                                to be exceeded as few times as possible. Some
+                                authors have suggested using one-tenth of the
+                                OEL as a practical LTA-OEL when assessing risk
+                                using the arithmetic mean.")))
+                        ),
+
+                        shiny::column(width = 6L,
+                            # Add a top margin to the plot <img> to match the
+                            # margin of top <h3> above (see other column. This
+                            # aligns both elements horizontally.
+                            htmltools::tagAppendAttributes(
+                                style = "margin-top: 21px",
+                                shiny::plotOutput(
+                                    outputId = "risquemetre.am",
+                                    height   = plot_risk_meter_height))
+                        )
+                    ),
+
+                    ###### Parameter Estimates ---------------------------------
+
+                    html$h2(
+                        class = "app-panel-title",
+                        translate("Parameters Estimates")),
+
+                    shiny::fluidRow(
+                        shiny::column(width = 6L,
+                            html$h3(
+                                class = "app-panel-subtitle",
+                                translate("Distribution Parameters")),
+
+                            html$ul(
+                                class = "app-ul",
+
+                                html$li(sprintf_html(translate("
+                                    The geometric mean point estimate is equal
+                                    to %s."),
+                                    add_bold_text_output("gm3"))),
+
+                                html$li(sprintf_html(translate("
+                                    The geometric standard deviation point
+                                    estimate is equal to %s."),
+                                    add_bold_text_output("gsd3")))
                             ),
-                            html$p("\u25B9", gett("frac.11")),
-                            html$p(
-                                "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0",
-                                html$strong(
-                                    "<",
-                                    shiny::textOutput("am.probSituUnacceptable", inline = TRUE)
-                                )
-                            ),
-                            html$p("\u25B9", gett("frac.12")),
-                            html$p(
-                                "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0",
-                                html$strong(shiny::textOutput("finalrisk.AM", inline = TRUE))
+
+                            html$p(translate("
+                                Square brackets indicate the underlying
+                                credible intervals."))
+                        ),
+                        shiny::column(width = 6L,
+                            html$h3(
+                                class = "app-panel-subtitle",
+                                translate("Arithmetic Mean")),
+
+                            html$ul(
+                                class = "app-ul",
+
+                                html$li(sprintf_html(translate("
+                                    The point estimate is equal to %s."),
+                                    add_bold_text_output("AM")))
                             )
-                        ),
-                        html$div(
-                            style = "display: inline-block;width:44%;vertical-align:top",
-                            class = "plot",
-                            shiny::plotOutput("risquemetre.am")
-                        ),
-                        html$p(
-                            style = "font-size: 13px",
-                            html$strong(gett("am.13")),
-                            gett("am.13.1")
-                        ),
-                        html$br()
+                        )
                     ),
-
-
-                    ###### Parameter Estimates: Distribution -------------------
-
-
-                    html$h4(html$strong(gett("frac.4"))),
-                    html$p(
-                        shiny::textOutput("gm1.AM", inline = TRUE),
-                        html$strong(shiny::textOutput("gm3", inline = TRUE))
-                    ),
-                    html$p(
-                        shiny::textOutput("gsd1.AM", inline = TRUE),
-                        html$strong(shiny::textOutput("gsd3",inline = TRUE))
-                    ),
-                    html$br(),
-
-
-                    ###### Parameter Estimates: Arithmetic Mean ----------------
-
-
-                    html$h4(html$strong(gett("am.5"))),
-                    html$p(
-                        gett("frac.6"),
-                        html$strong(shiny::textOutput("AM", inline = TRUE))
-                    ),
-                    html$p(
-                        gett("frac.6.1"),
-                        html$strong(shiny::textOutput("AM.ci", inline = TRUE))
-                    ),
-                    html$br(),
-                    html$h4(html$strong(gett("frac.graph.1"))),
-
 
                     ###### Sequential Plot -------------------------------------
 
+                    html$h2(
+                        class = "app-panel-title",
+                        translate("Sequential Plot")),
 
-                    html$p(html$strong(gett("frac.graph.4"))),
-                    html$p(gett("am.graph.5")),
-                    shiny::plotOutput("seqplot.AM"),
+                    shiny::plotOutput("seqplot.AM", height = plot_height),
 
+                    html$p(translate("
+                        This plot shows the estimated exposure distribution when
+                        assuming 250 exposure measurements have been collected.
+                        If the measurements represent 8-hour TWA (Time-Weighted
+                        Average) values, this approximately represents a full
+                        year of exposure. The OEL is shown as a red dotted
+                        line and the point estimate of the arithmetic mean
+                        as a continuous green line.")),
 
                     ###### Density Plot ----------------------------------------
 
+                    html$h2(
+                        class = "app-panel-title",
+                        translate("Density Plot")),
 
-                    html$br(),
-                    html$p(html$strong(gett("frac.graph.7"))),
-                    html$p(gett("am.graph.8")),
-                    shiny::plotOutput("distplot.AM"),
-                    html$br(),
+                    shiny::plotOutput("distplot.AM", height = plot_height),
 
+                    html$p(translate("
+                        This plot shows the probability density function of the
+                        estimated distribution of exposures. The OEL is shown as
+                        a red dotted line and the point estimate of the
+                        arithmetic mean as a continuous green line.")),
 
                     ###### Risk Band Plot --------------------------------------
 
+                    html$h2(
+                        class = "app-panel-title",
+                        translate("Risk Band Plot")),
 
-                    html$p(html$strong(gett("frac.graph.11"))),
-                    html$p(shiny::htmlOutput("am.graph.12")),
-                    shiny::plotOutput("riskband.am"),
-                    html$br()
+                    shiny::plotOutput("riskband.am", height = plot_height),
+
+                    # TODO: (JMP) Standardize margins and remove style.
+                    html$p(
+                        style = "margin: 10.5px 0 0 0;",
+                        sprintf_html(translate("
+                            This plot shows the probability distribution of the
+                            uncertainty around the arithmetic mean. It shows
+                            the probability that its true value is (1) below
+                            1%% of the OEL, (2) between 1%% and 10%% of
+                            the OEL, (3) between 10%% and 50%% of the OEL, (4)
+                            between 50%% and 100%% of the OEL, and (5) greater
+                            than the OEL. This is based on the classification
+                            adopted by %s. The red column represents the
+                            probability of an overexposure. The latter should
+                            be lower than the %s threshold shown by the black
+                            dashed line."),
+                        a_strs[["aiha"]],
+                        shiny::textOutput("am.probSituUnacceptable2", inline = TRUE)))
                 ),
-
-
-                ##### Panel: Instructions --------------------------------------
-
-
-                shiny::tabPanel(
-                    title = gett("inst.tab.name"),
-                    html$h3(gett("inst.title")),
-                    html$br(),
-                    html$p(gett("inst.1")),
-                    html$p(gett("inst.2")),
-                    html$p(gett("inst.3")),
-                    html$p(gett("inst.5"))
-                ),
-
 
                 ##### Panel: About ---------------------------------------------
 
-
                 shiny::tabPanel(
-                    title = gett("about.tab.name"),
-                    html$h3(gett("about.title")),
-                    html$br(),
-                    html$p(shiny::htmlOutput("about.1")),
-                    html$p(gett("about.2"))
-                ),
+                    value = "about",
+                    title = translate("About"),
 
+                    ###### About -----------------------------------------------
 
-                ##### Panel: Methodological Background -------------------------
+                    html$h2(
+                        class = "app-panel-title",
+                        translate("About")),
 
+                    html$p(sprintf_html(translate("
+                        This application (and related tools) are developped by
+                        the Industrial Hygiene team of the Department of
+                        Environmental and Occupational Health at the %s of the
+                        %s. The source code is available on %s."),
 
-                shiny::tabPanel(
-                    title = gett("back.tab.name"),
-                    html$h3(gett("back.title")),
-                    html$br(),
-                    html$p(shiny::htmlOutput("back.1.intro")),
-                    html$p(shiny::htmlOutput("back.2", inline = TRUE))
+                        # TODO: (JMP) This must depend on future input$lang.
+                        # It will likely move to server() because of that,
+                        # like all calls to translate().
+                        a_strs[[if (TRUE) "epsum_en" else "epsum_fr"]],
+                        a_strs[["udm"]],
+                        a_strs[["source"]])),
+
+                    html$p(sprintf_html(translate("
+                        %s (Jean-Mathieu Potvin) collaborated on the development
+                        efforts (partial refactoring of the source code) that
+                        led to version 4.0.0."),
+                        a_strs[["ununoctium"]])),
+
+                    ###### How To Use This Application -------------------------
+
+                    html$h2(
+                        class = "app-panel-title",
+                        translate("How to Use This Application")),
+
+                    html$p(translate("
+                        This application eases the interpretation of industrial
+                        hygiene measurements. Notably, it helps with checking
+                        compliance with respect to an occupational exposure
+                        limit (OEL). It is based on a risk assessment framework
+                        recognized by prominent institutions such as the American
+                        Industrial Hygiene Association, the British and Dutch
+                        Society for Occupational Health and Safety (BOHS/NVVA),
+                        the French Institut national de recherche et de sécurité
+                        (INRS), and the European Standards Organization.")),
+
+                    html$p(translate("
+                        It assumes that input measurements (measurements)
+                        represent a random sample stemming from the distribution
+                        of exposures that underlie the sampled context. In other
+                        words, the data is representative of the specific
+                        exposure regimen one wishes to assess.")),
+
+                    html$p(translate("
+                        The application is straightforward to use. Follow
+                        these three steps.")),
+
+                    html$ul(
+                        html$li(translate("
+                            Enter your measurements under Measurements in
+                            the left panel. There must be one value per line.
+                            Write them as you would in your favourite text
+                            editor. You may also copy and paste values stored
+                            in a spreadsheet's column. The initial dataset
+                            provided for illustration purposes can be deleted
+                            as you usually would in any text editor.")),
+
+                        html$li(translate("
+                            Enter other parameters (in the same panel above
+                            Measurements).")),
+
+                        html$li(translate("
+                            Wait for the calculations to be performed."))
+                    ),
+
+                    html$p(translate(
+                        "Results are updated whenever an input changes.")),
+
+                    html$p(translate("
+                        Censored values are written as <X (left censored),
+                        >X (right censored), or [X1-X2] (interval censored),
+                        where X is the censored value. It must have the same
+                        unit as other non-censored measurements.")),
+
+                    ###### Methodological Background ---------------------------
+
+                    html$h2(
+                        class = "app-panel-title",
+                        translate("Methodological Background")),
+
+                    html$p(translate("
+                        This application uses a Bayesian approach to estimate
+                        the parameters of the log-normal distribution.")),
+
+                    html$ul(
+                        html$li(translate("
+                            It yields a more intuitive rationale compared
+                            to traditional (frequentist) methods.")),
+
+                        html$li(translate("
+                            It naturally integrates the treatment of
+                            non-detects.")),
+
+                        html$li(translate("
+                            It allows the inclusion of external information
+                            in the measurements (not yet leveraged by the
+                            application)."))
+                    ),
+
+                    html$p(sprintf_html(translate("
+                        The Bayesian models and data interpretation procedures
+                        used by this application are derived from current best
+                        practices in industrial hygiene, which are described in
+                        the following scientific paper: Jérôme Lavoué, Lawrence
+                        Joseph, Peter Knott, Hugh Davies, France Labrèche,
+                        Frédéric Clerc, Gautier Mater, Tracy Kirkham,
+                        Expostats: A Bayesian Toolkit to Aid the Interpretation
+                        of Occupational Exposure Measurements, Annals of Work
+                        Exposures and Health, Volume 63, Issue 3, April 2019,
+                        Pages 267-279, %s."),
+                        a_strs[["expostats_paper"]])),
+
+                    html$p(sprintf_html(translate("
+                        Additional details and references are available on %s."),
+
+                        # TODO: (JMP) This must depend on future input$lang.
+                        # It will likely move to server() because of that,
+                        # like all calls to translate().
+                        a_strs[[if (TRUE) "expostats_info_en" else "expostats_info_fr"]]))
                 )
             )
         )
@@ -739,34 +1047,27 @@ ui <- shiny::fluidPage(
 # Server logic -----------------------------------------------------------------
 
 
-# FIXME: (JMP) It would be best to document all inputs and constants in ad
-# dedicated R script using roxygen2.
-
-# FIXME: (JMP) I would strongly consider enforcing a strict naming convention
-# for objects, inputs, and outputs. snake_case and camelCase work best with R.
-# Dots should be avoided as they can be confused with S3 methods. I chose
-# snake_case until further notice.
-
-# FIXME: (JMP) Some symbols (I/O names, function names, and variables)
-# are in French. English is mixed with French. This must be fixed, we
-# should really use a consistent source language.
-
-# FIXME: (JMP) Many numeric values are passed to signif() which yields a
-# variable number of (significant) digits. Is this truly needed? For UX
-# purposes, I suggest always keeping 2 digits?
-
-# FIXME: (JMP) The app heavily relies on functions defined in scripts. These
-# must be revamped (those containing plot functions being the top priority).
-# Theis contents should be split into a proper set of functions stored in
-# multiple R files in R/. Each function should be documented and manually
-# tested (at least).
-
-
 server <- function(input, output, session) {
-    # NOTE: (JMP) This reactive value is called by bayesian.analysis
-    # below. It has no other reference in the code. This could later
-    # be refactored by removing it, and passing 1L to fun.bayes.jags().
+
+    ## Sidebar -----------------------------------------------------------------
+
+    # This observer hides inputs frac_threshold and target_perc
+    # by default, and respectively shows either of them only when
+    # a specific panel is opened.
+    shiny::observeEvent(input$active_panel, {
+        shinyjs::hide("frac_threshold")
+        shinyjs::hide("target_perc")
+        switch(input$active_panel,
+            exceedance  = shinyjs::show("frac_threshold"),
+            percentiles = shinyjs::show("target_perc"))
+    })
+
+    # Values -------------------------------------------------------------------
+
     # TODO: (JMP) Ask JL what to do with this. This is a weird case.
+    # This reactive value is called by bayesian.analysis below. It has
+    # no other reference in the code. This could later be refactored by
+    # removing it, and passing 1L to fun.bayes.jags().
     uninformed.prior <- shiny::reactive({
         # FIXME: (JMP) Comments refer to input prior.sigma, which does
         # not exist. It could be an earlier UI artifact that was left
@@ -785,16 +1086,16 @@ server <- function(input, output, session) {
             list(
                 conf = input$conf,
                 psi  = input$psi,
-                # The following input is located in panel Exceedance.
+                # The following input is located in panel exceedance.
                 frac_threshold = input$frac_threshold,
-                # The following input is located in panel 95th Percentile.
+                # The following input is located in panel percentiles.
                 target_perc = input$target_perc))
     })
 
     formatted.sample <- shiny::reactive({
         return(
             data.formatting.SEG(
-                data.in  = input$Data,
+                data.in  = input$data,
                 oel      = input$oel,
                 oel.mult = input$al))
     })
@@ -804,7 +1105,7 @@ server <- function(input, output, session) {
         progress <- shiny::Progress$new()
         progress$set(
             value   = 0L,
-            message = gett("server.1"))
+            message = translate("Bayesian iterations:"))
 
         # FIXME: (JMP) This is really weird. All Bayesian functions
         # accept a function that updates a Progress object implicitly.
@@ -842,48 +1143,33 @@ server <- function(input, output, session) {
                 target_perc    = user_inputs$target_perc))
     })
 
-
     ## Shared Outputs ----------------------------------------------------------
 
-
-    output$frac.probSituUnacceptable <-
-    output$perc.probSituUnacceptable <-
-    output$am.probSituUnacceptable   <- shiny::renderText({
-        paste(input$psi, "%", sep = "")
-    })
-
-    output$gm1.dist <-
-    output$gm1.perc <-
-    output$gm1.AM   <- shiny::renderText({
-        return(gettt("frac.18", gett("gm.lwr"), paste0(input$conf, "%")))
+    output$frac.probSituUnacceptable1 <-
+    output$frac.probSituUnacceptable2 <-
+    output$perc.probSituUnacceptable1 <-
+    output$perc.probSituUnacceptable2 <-
+    output$am.probSituUnacceptable1   <-
+    output$am.probSituUnacceptable2   <- shiny::renderText({
+        return(paste0(input$psi, "%"))
     })
 
     output$gm1 <-
     output$gm2 <-
     output$gm3 <- shiny::renderText({
         gm <- lapply(num.res()$gm, \(x) as.character(signif(x, 2L)))
-        return(sprintf("%s [ %s - %s ]", gm$est, gm$lcl, gm$ucl))
-    })
-
-    output$gsd1.dist <-
-    output$gsd1.perc <-
-    output$gsd1.AM   <- shiny::renderText({
-        return(gettt("frac.18", gett("gsd.lwr"), paste0(input$conf, "%")))
+        return(sprintf("%s [%s - %s]", gm$est, gm$lcl, gm$ucl))
     })
 
     output$gsd1 <-
     output$gsd2 <-
     output$gsd3 <- shiny::renderText({
         gsd <- lapply(num.res()$gsd, \(x) as.character(signif(x, 2L)))
-        return(sprintf("%s [ %s - %s ]", gsd$est, gsd$lcl, gsd$ucl))
+        return(sprintf("%s [%s - %s]", gsd$est, gsd$lcl, gsd$ucl))
     })
 
+    ## Panel: Statistics -------------------------------------------------------
 
-    ## Panel: Descriptive ------------------------------------------------------
-
-
-    # NOTE: (JMP) this rective value was commented in one version,
-    # but it is called below, so I reactivated it (and formatted it).
     data.imputed <- reactive({
         user_sample <- formatted.sample()
         return(
@@ -895,72 +1181,60 @@ server <- function(input, output, session) {
                 intcensored            = user_sample$intcensored))
     })
 
+    ### Descriptive Statistics -------------------------------------------------
 
-    ### Descriptive statistics -------------------------------------------------
+    output$res.desc <- shiny::renderTable(
+        rownames = FALSE,
+        spacing  = "m",
+        hover    = TRUE,
+        expr     = {
+            stats_df <- fun.desc.stat(
+                data.simply.imputed = data.imputed(),
+                c.oel = formatted.sample()$c.oel)
 
+            stats_df$parameter <- c(
+                translate("Number of Obversations"),
+                translate("Proportion Censored"),
+                translate("Minimum"),
+                translate("25th Percentile"),
+                translate("Median"),
+                translate("75th Percentile"),
+                translate("Maximum"),
+                translate("Proportion > OEL"),
+                translate("Arithmetic Mean"),
+                translate("Arithmetic Standard Deviation"),
+                translate("Coefficient of Variation"),
+                translate("Geometric Mean"),
+                translate("Geometric Standard Deviation"))
 
-    output$res.desc <- shiny::renderTable(rownames = FALSE, {
-        result <- fun.desc.stat(
-            data.simply.imputed = data.imputed(),
-            c.oel = formatted.sample()$c.oel)
+            colnames(stats_df) <- c(
+                translate("Parameter"),
+                translate("Value"))
 
-        result$parameter <- c(
-            gett("n"),
-            gett("res.desc.2"),
-            gett("res.desc.3"),
-            gett("res.desc.4"),
-            gett("res.desc.5"),
-            gett("res.desc.6"),
-            gett("res.desc.7"),
-            gett("res.desc.8"),
-            gett("res.desc.9"),
-            gett("res.desc.10"),
-            gett("res.desc.11"),
-            gett("res.desc.12"),
-            gett("res.desc.13"))
-
-        return(result)
+            return(stats_df)
     })
-
-    # FIXME: (JMP) Better integration of <a> tags
-    # with source text once it is reintroduced.
-    output$descriptive.2 <- shiny::renderUI({
-        htmltools::HTML(
-            gettt("descriptive.2",
-                html$a("NDexpo",
-                  href   = "http://www.expostats.ca/site/app-local/NDExpo/",
-                  target = "_blank"),
-                html$a("Dennis Helsel",
-                  href   = "http://www.practicalstats.com/info2use/books.html",
-                  target = "_blank")))
-    })
-
 
     ### QQ Plot ----------------------------------------------------------------
 
-
-    # FIXME: (JMP) I would rename all arguments of this
-    # function and use shorter and more semantic names.
+    # FIXME: (JMP) Rename arguments of this
+    # function. Use shorter and semantic names.
     output$qqplot <- shiny::renderPlot({
         return(
             fun.qqplot(
                 data.simply.imputed = data.imputed(),
                 notcensored         = formatted.sample()$notcensored,
-                # FIXME: these formals args must be renamed. This is horrible.
-                qqplot.1            = gett("qqplot.1"),
-                qqplot.2            = gett("qqplot.2"),
-                qqplot.3            = gett("qqplot.3"),
-                qqplot.4            = gett("qqplot.4"),
-                qqplot.5            = gett("qqplot.5"),
-                qqplot.6            = gett("qqplot.6")))
+                qqplot.1            = translate("Quantile-Quantile Plot"),
+                qqplot.2            = translate("Quantiles (Lognormal Distribution)"),
+                qqplot.3            = translate("Quantiles (Standardized Measurements)"),
+                qqplot.4            = translate("Measurement Type"),
+                qqplot.5            = translate("Censored"),
+                qqplot.6            = translate("Detected")))
     })
-
 
     ### Box and Whiskers Plot --------------------------------------------------
 
-
-    # FIXME: (JMP) I would rename all arguments of this
-    # function and use shorter and more semantic names.
+    # FIXME: (JMP) Rename arguments of this
+    # function. Use shorter and semantic names.
     output$boxplot <- shiny::renderPlot({
         user_sample <- formatted.sample()
         return(
@@ -968,23 +1242,45 @@ server <- function(input, output, session) {
                 data.simply.imputed = data.imputed(),
                 notcensored         = user_sample$notcensored,
                 c.oel               = user_sample$c.oel,
-                # FIXME: these formals args must be renamed. This is horrible.
-                boxplot.1           = gett("d.boxplot.1"),
-                boxplot.2           = gett("d.boxplot.2"),
-                boxplot.3           = gett("d.boxplot.3"),
-                boxplot.4           = gett("d.boxplot.4"),
-                boxplot.5           = gett("d.boxplot.5")))
+                boxplot.1           = translate("Measurement Type"),
+                boxplot.2           = translate("Concentration"),
+                boxplot.3           = translate("Exposure Limit"),
+                boxplot.4           = translate("Censored"),
+                boxplot.5           = translate("Not Censored"),
+                boxplot.6           = translate("Measurements")))
     })
 
+    ## Panel: Exceedance Fraction ----------------------------------------------
 
-    ## Panel: Exceedance -------------------------------------------------------
+    ### UI ---------------------------------------------------------------------
 
+    # Each click on btn_customize triggers two actions:
+    #   1. the icon of the button is updated, and
+    #   2. plot-exceedance-custom-container is either shown
+    #      or hidden (based on the button's state).
+    # The button state's starts at 0 (hidden). Odd numbers
+    # correspond to a displayed container, and even numbers
+    # to a hidden container.
+    shiny::observeEvent(input$btn_customize, {
+        new_icon <- if (input$btn_customize %% 2L == 0L) {
+            static$icons$bottom
+        } else {
+            static$icons$top
+        }
 
+        shiny::updateActionButton(inputId = "btn_customize", icon = new_icon)
+        shinyjs::toggle("plot-exceedance-custom-container")
+    })
+
+    ### Values -----------------------------------------------------------------
+
+    # FIXME: (JMP) Rename arguments of this
+    # function. Use shorter English names.
     toutesVariantesFD <- shiny::reactive({
-        numerics       <- num.res()
-        fracDepasseEst <- ceiling(numerics$frac$est)
-        fracDepasseLim <- ceiling(numerics$frac$ucl)
-
+        seuil           <- input$frac_threshold
+        num_results     <- num.res()
+        fracDepasseEst  <- ceiling(num_results$frac$est)
+        fracDepasseLim  <- ceiling(num_results$frac$ucl)
         paramsVariantes <- paramsVariantesFracDep(
             images_dir,
             file.path(images_dir, "flask.png"),
@@ -994,84 +1290,68 @@ server <- function(input, output, session) {
             input$couleurSeuil,
             input$couleurFond)
 
-        seuil <- input$frac_threshold
-
-        # FIXME: (JMP) dalist? Find a better semantic name.
-        # Maybe 'out', 'plots'?
-        dalist <- list(
-            figure1 = list(
-                drawPlot(
-                    paramsVariantes,
-                    fracDepasseEst = seuil,
-                    titre = gett("frac.graph.13.4.soustitre1")),
-                drawPlot(
-                    paramsVariantes,
-                    fracDepasseEst = fracDepasseEst,
-                    titre = gett("frac.graph.13.4.soustitre2"))),
-            figure2 = list(
-                drawPlot(
-                    paramsVariantes,
-                    fracDepasseEst = seuil,
-                    titre = gett("frac.graph.13.4.soustitre1")),
-                drawPlot(
-                    paramsVariantes,
-                    fracDepasseEst = fracDepasseEst,
-                    fracDepasseLim = fracDepasseLim,
-                    titre = gett("frac.graph.13.4.soustitre2"))),
-            figure3 = list(
-                drawPlot(
-                    paramsVariantes,
-                    fracDepasseEst = fracDepasseEst,
-                    seuil = seuil)),
-            figure4 = list(
-                drawPlot(
-                    paramsVariantes,
-                    fracDepasseEst = fracDepasseEst,
-                    fracDepasseLim = fracDepasseLim,
-                    seuil = seuil)))
-
-        leng <- length(dalist[[input$varianteFracDep]])
-
-        # The JS handler function is defined in www/js/exceedance-plot.js.
-        session$sendCustomMessage("exceedance-plot-handler", leng);
-        return(dalist)
+        return(
+            list(
+                figure1 = list(
+                    drawPlot(
+                        paramsVariantes,
+                        fracDepasseEst = seuil,
+                        titre          = translate("Acceptable Sample")),
+                    drawPlot(
+                        paramsVariantes,
+                        fracDepasseEst = fracDepasseEst,
+                        titre          = translate("Current Sample"))),
+                figure2 = list(
+                    drawPlot(
+                        paramsVariantes,
+                        fracDepasseEst = seuil,
+                        titre          = translate("Acceptable Sample")),
+                    drawPlot(
+                        paramsVariantes,
+                        fracDepasseEst = fracDepasseEst,
+                        fracDepasseLim = fracDepasseLim,
+                        titre          = translate("Current Sample"))),
+                figure3 = list(
+                    drawPlot(
+                        paramsVariantes,
+                        fracDepasseEst = fracDepasseEst,
+                        seuil          = seuil)),
+                figure4 = list(
+                    drawPlot(
+                        paramsVariantes,
+                        fracDepasseEst = fracDepasseEst,
+                        fracDepasseLim = fracDepasseLim,
+                        seuil          = seuil))))
     })
 
-
     ### Shared Outputs ---------------------------------------------------------
-
 
     output$acceptableExpo1 <-
     output$acceptableExpo2 <-
     output$acceptableExpo3 <- shiny::renderText({
-        return(sprintf("%.2f%%", input$frac_threshold))
+        return(sprintf("%.1f%%", input$frac_threshold))
     })
-
 
     ### Risk Decision ----------------------------------------------------------
 
-
-    # See subsection Panel: Exceedance - Shared Outputs
-    # above for output$acceptableExpo1.
+    # See subsection Shared Outputs above for output$acceptableExpo1.
 
     # FIXME: (JMP) Use a dedicated formatting function.
     output$probrisk <- shiny::renderText({
         return(paste0(signif(num.res()$frac.risk, 3L), "%"))
     })
 
-    # See section Shared Outputs above for output$frac.probSituUnacceptable.
+    # See section Shared Outputs above for output$frac.probSituUnacceptable1.
 
     # FIXME: (JMP) output$finalrisk, output$finalrisk.perc, and
     # output$finalrisk.AM are almost identical calls. They could
     # be encapsulated into a single function with two inputs.
     output$finalrisk <- shiny::renderText({
-        msgid <- if (num.res()$frac.risk >= user.input()$psi) {
-            "server.2"
-        } else {
-            "server.3"
+        if (num.res()$frac.risk >= user.input()$psi) {
+            return(translate("poorly controlled"))
         }
 
-        return(gett(msgid))
+        return(translate("adequately controlled"))
     })
 
     # FIXME: (JMP): All risk meters (output$risquemetre, output$risquemetre2,
@@ -1087,37 +1367,14 @@ server <- function(input, output, session) {
                 colorProb2          = "#4863A0"))
     })
 
+    ### Parameter Estimates ----------------------------------------------------
 
-    ### Parameter Estimates: Distribution --------------------------------------
+    # See section Shared Outputs above for output$gm1, and output$gsd1.
 
-
-    # See section Shared Outputs above for
-    #  - output$gm1.dist,
-    #  - output$gm1,
-    #  - output$gsd1.dist, and
-    #  - output$gsd1.
-
-
-    ### Parameter Estimates: Exceedance Fraction -------------------------------
-
-
-    # TODO: (JMP) Outputs Frac, Perc, and AM share the same format.
-    # Only inputs vary. Encapsulate logic into a formatting function.
     output$Frac <- shiny::renderText({
-        return(paste0(signif(num.res()$frac$est, 3L), "%"))
+        frac <- lapply(num.res()$frac, \(x) as.character(signif(x, 3L)))
+        return(sprintf("%s%% [%s - %s]", frac$est, frac$lcl, frac$ucl))
     })
-
-    # TODO: (JMP) Outputs Frac.ci, Perc.ci, and AM.ci share the same format.
-    # Only inputs vary. Encapsulate logic into a formatting function.
-    output$Frac.ci <- shiny::renderText({
-        numerics <- num.res()
-        return(
-            sprintf(
-                "[ %.3f - %.3f ]",
-                signif(numerics$frac$lcl, 3L),
-                signif(numerics$frac$ucl, 3L)))
-    })
-
 
     ### Exceedance Plot --------------------------------------------------------
 
@@ -1134,30 +1391,68 @@ server <- function(input, output, session) {
         ptlist <- toutesVariantesFD()[[variant]]
         return(gridExtra::grid.arrange(grobs = ptlist, ncol = length(ptlist)))
     })
-    })
 
+    output$fracDepVarianteDesc <- shiny::renderText({
+        return(
+            switch(input$varianteFracDep,
+                figure1 = translate("
+                    The plot on the left shows an acceptable situation for the
+                    chosen exceedance threshold (traditionally 5% above the OEL).
+                    The plot on the right shows the situation estimated by the
+                    Bayesian model. It does not take into account estimation
+                    uncertainty."),
+                figure2 = translate("
+                    The plot on the left shows an acceptable situation for the
+                    chosen exceedance threshold (traditionally 5% above the
+                    OEL). The plot on the right shows the situation estimated
+                    by the Bayesian model. It takes into account estimation
+                    uncertainty with stripped symbols. The number of plain
+                    symbols represents the best estimate of the number of
+                    measurements above the OEL. The total number of symbols
+                    (either plain or stripped) represents the maximum plausible
+                    number of measurements above the OEL given estimation
+                    uncertainty (using the upper limit of the underlying
+                    credible interval)."),
+                figure3 = translate("
+                    This plot shows a shaded and darker region corresponding to
+                    the maximal acceptable exceedance. Red symbols outside of it
+                    are unacceptable exposures. It does not take into account
+                    estimation uncertainty."),
+                figure4 = translate("
+                    This plot shows a shaded and darker region corresponding to
+                    the maximal acceptable exceedance. Red symbols outside of
+                    it are unacceptable exposures. It takes into account
+                    estimation uncertainty with stripped symbols. The number of
+                    plain symbols represents the best estimate of the number of
+                    measurements above the OEL. The total number of symbols
+                    (either plain or stripped) represents the maximum plausible
+                    number of measurements above the OEL given estimation
+                    uncertainty (using the upper limit of the underlying
+                    credible interval).")
+        ))
+    })
 
     ### Sequential Plot --------------------------------------------------------
 
-
+    # FIXME: (JMP) Rename arguments of this
+    # function. Use shorter and semantic names.
     output$seqplot.frac <- shiny::renderPlot({
-        numerics <- num.res()
+        num_results <- num.res()
         return(
             sequential.plot.frac(
-                gm        = numerics$gm$est,
-                gsd       = numerics$gsd$est,
-                frac      = numerics$frac$est,
+                gm        = num_results$gm$est,
+                gsd       = num_results$gsd$est,
+                frac      = num_results$frac$est,
                 c.oel     = formatted.sample()$c.oel,
-                # FIXME: these formals args must be renamed. This is horrible.
-                seqplot.1 = gett("seqplot.1"),
-                seqplot.2 = gett("seqplot.2"),
-                seqplot.6 = gett("seqplot.7")))
+                seqplot.1 = translate("Concentration"),
+                seqplot.2 = translate("Exceedance Fraction"),
+                seqplot.6 = translate("Measurement Index")))
     })
-
 
     ### Density Plot -----------------------------------------------------------
 
-
+    # FIXME: (JMP) Rename arguments of this
+    # function. Use shorter and semantic names.
     output$distplot.frac <- shiny::renderPlot({
         bayesian_outputs <- bayesian.analysis()
         return(
@@ -1166,27 +1461,25 @@ server <- function(input, output, session) {
                 gsd        = exp(median(bayesian_outputs$sigma.chain)),
                 frac       = num.res()$frac$est ,
                 c.oel      = formatted.sample()$c.oel,
-                # FIXME: these formals args must be renamed. This is horrible.
-                distplot.1 = gett("distplot.1"),
-                distplot.2 = gett("distplot.2"),
-                distplot.3 = gett("distplot.3"),
-                distplot.4 = gett("distplot.4"),
-                distplot.5 = gett("distplot.5")))
+                distplot.1 = translate("Concentration"),
+                distplot.2 = translate("Density"),
+                distplot.3 = translate("Exceedance Fraction"),
+                distplot.4 = translate("OEL outside of graphical limits."),
+                distplot.5 = translate("OEL")))
     })
 
-
     ### Risk Band Plot ---------------------------------------------------------
-
 
     output$frac.acceptableExpoDiv1 <-
     output$frac.acceptableExpoDiv2 <- shiny::renderText({
         return(paste0(input$frac_threshold / 10, "%"))
     })
 
-    # See subsection Panel: Exceedance - Shared Outputs above for
-    #  - output$acceptableExpo2 and
-    #  - output$acceptableExpo3.
+    # See subsection Shared Outputs above for
+    # output$acceptableExpo2 and output$acceptableExpo3.
 
+    # FIXME: (JMP) Rename arguments of this
+    # function. Use shorter and semantic names.
     output$riskband.frac <- shiny::renderPlot({
         bayesian_outputs <- bayesian.analysis()
         user_inputs      <- user.input()
@@ -1197,52 +1490,40 @@ server <- function(input, output, session) {
                 c.oel          = formatted.sample()$c.oel,
                 frac_threshold = user_inputs$frac_threshold,
                 psi            = user_inputs$psi,
-                # FIXME: these formals args must be renamed. This is horrible.
-                riskplot.1     = gett("riskplot.1"),
-                riskplot.2     = gett("riskplot.2")))
+                riskplot.1     = translate("Exceedance Fraction Category"),
+                riskplot.2     = translate("Probability")))
     })
 
-
-    ## Panel: 95th Percentile --------------------------------------------------
-
+    ## Panel: Percentiles ------------------------------------------------------
 
     ### Shared Outputs ---------------------------------------------------------
 
-
-    output$perc.percentile.title           <-
-    output$perc.percentile.h3              <-
     output$perc.percentile.risk.decision   <-
     output$perc.percentile.param.estimates <-
     output$perc.percentile.risk.band       <- shiny::renderText({
-        return(percText(input$target_perc))
+        return(ordinal_number(input$target_perc))
     })
-
 
     ### Risk Decision ----------------------------------------------------------
 
-
-    # See subsection Panel: 95th Percentile - Shared Outputs above
-    # for output$perc.percentile.title, output$perc.percentile.h3,
-    # and perc.percentile.risk.decision.
+    # See section Shared Outputs above for output$perc.percentile.risk.decision.
 
     # FIXME: (JMP) Use a dedicated formatting function.
     output$probrisk.perc <- shiny::renderText({
         return(paste0(signif(num.res()$perc.risk, 3L), "%"))
     })
 
-    # See section Shared Outputs above for output$perc.probSituUnacceptable.
+    # See section Shared Outputs above for output$perc.probSituUnacceptable1.
 
     # FIXME: (JMP) output$finalrisk, output$finalrisk.perc, and
     # output$finalrisk.AM are almost identical calls. They could
     # be encapsulated into a single function with two inputs.
     output$finalrisk.perc <-shiny::renderText({
-        msgid <- if (num.res()$perc.risk >= user.input()$psi) {
-            "server.2"
-        } else {
-            "server.3"
+        if (num.res()$perc.risk >= user.input()$psi) {
+            return(translate("poorly controlled"))
         }
 
-        return(gett(msgid))
+        return(translate("adequately controlled"))
     })
 
     # FIXME: (JMP): All risk meters (output$risquemetre, output$risquemetre2,
@@ -1258,66 +1539,41 @@ server <- function(input, output, session) {
                 colorProb2          = "#4863A0"))
     })
 
+    ### Parameter Estimates ----------------------------------------------------
 
-    ### Parameter Estimates: Distribution --------------------------------------
+    # See section Shared Outputs above for output$gm2, and output$gsd2.
 
-
-    # See section Shared Outputs above for
-    #  - output$gm2.dist,
-    #  - output$gm2,
-    #  - output$gsd2.dist, and
-    #  - output$gsd2.
-
-
-    ### Parameter Estimates: 95th percentile -----------------------------------
-
-
-    # See subsection Panel: 95th Percentile - Shared Outputs
+    # See subsection Panel: Percentiles - Shared Outputs
     # above for output$perc.percentile.param.estimates.
 
-    # TODO: (JMP) Outputs Frac, Perc, and AM share the same format.
-    # Only inputs vary. Encapsulate logic into a formatting function.
     output$Perc <- shiny::renderText({
-        # FIXME: (JMP) Call to paste0 below is missing a second argument.
-        # Based on the context, it should likely be "%". Am I right? Ask JL.
-        return(paste0(signif(num.res()$perc$est, 3L)))
+        perc <- lapply(num.res()$perc, \(x) as.character(signif(x, 3L)))
+        return(sprintf("%s [%s - %s]", perc$est, perc$lcl, perc$ucl))
     })
-
-    # TODO: (JMP) Outputs Frac.ci, Perc.ci, and AM.ci share the same format.
-    # Only inputs vary. Encapsulate logic into a formatting function.
-    output$Perc.ci <- shiny::renderText({
-        numerics <- num.res()
-        return(
-            sprintf(
-                "[ %.3f - %.3f ]",
-                signif(numerics$perc$lcl, 3L),
-                signif(numerics$perc$ucl, 3L)))
-    })
-
 
     ### Sequential Plot --------------------------------------------------------
 
-
+    # FIXME: (JMP) Rename arguments of this
+    # function. Use shorter and semantic names.
     output$seqplot.perc <- shiny::renderPlot({
-        numerics <- num.res()
+        num_results <- num.res()
         return(
             sequential.plot.perc(
-                gm          = numerics$gm$est,
-                gsd         = numerics$gsd$est,
-                perc        = numerics$perc$est,
+                gm          = num_results$gm$est,
+                gsd         = num_results$gsd$est,
+                perc        = num_results$perc$est,
                 c.oel       = formatted.sample()$c.oel,
                 target_perc = user.input()$target_perc,
-                # FIXME: these formals args must be renamed. This is horrible.
-                seqplot.1   = gett("seqplot.1"),
-                seqplot.3   = gett("seqplot.3"),
-                seqplot.4   = gett("seqplot.4"),
-                seqplot.6   = gett("seqplot.7")))
+                seqplot.1   = translate("Concentration"),
+                seqplot.3   = translate("OEL"),
+                seqplot.4   = translate("Percentile"),
+                seqplot.6   = translate("Measurement Index")))
     })
-
 
     ### Density Plot -----------------------------------------------------------
 
-
+    # FIXME: (JMP) Rename arguments of this
+    # function. Use shorter and semantic names.
     output$distplot.perc <- shiny::renderPlot({
         bayesian_outputs <- bayesian.analysis()
         return(
@@ -1327,31 +1583,20 @@ server <- function(input, output, session) {
                 perc        = num.res()$perc$est,
                 target_perc = user.input()$target_perc,
                 c.oel       = formatted.sample()$c.oel,
-                # FIXME: these formals args must be renamed. This is horrible.
-                distplot.1  = gett("distplot.1"),
-                distplot.2  = gett("distplot.2"),
-                distplot.4  = gett("distplot.4"),
-                distplot.5  = gett("distplot.5"),
-                distplot.6  = gett("distplot.6")))
+                distplot.1  = translate("Concentration"),
+                distplot.2  = translate("Density"),
+                distplot.4  = translate("OEL outside of graphical limits."),
+                distplot.5  = translate("OEL"),
+                distplot.6  = translate("Percentile")))
     })
-
 
     ### Risk Band Plot ---------------------------------------------------------
 
-
-    # See subsection Panel: 95th Percentile - Shared Outputs
+    # See subsection Panel: Percentiles - Shared Outputs
     # above for output$perc.percentile.risk.band.
 
-    # FIXME: (JMP) Better integration of <a> tags
-    # with source text once it is reintroduced.
-    output$perc.graph.12.2 <- shiny::renderUI({
-        htmltools::HTML(
-            gettt("perc.graph.12.2",
-                html$a("AIHA",
-                    href   = "https://www.aiha.org",
-                    target = "_blank")))
-    })
-
+    # FIXME: (JMP) Rename arguments of this
+    # function. Use shorter and semantic names.
     output$riskband.perc <- shiny::renderPlot({
         bayesian_outputs <- bayesian.analysis()
         user_inputs      <- user.input()
@@ -1362,41 +1607,37 @@ server <- function(input, output, session) {
                 c.oel       = formatted.sample()$c.oel,
                 target_perc = user_inputs$target_perc,
                 psi         = user_inputs$psi,
-                # FIXME: these formals args must be renamed. This is horrible.
-                riskplot.2  = gett("riskplot.2"),
-                riskplot.3  = gett("riskplot.3"),
-                riskplot.4  = gett("riskplot.4"),
-                riskplot.5  = gett("riskplot.5"),
-                riskplot.6  = gett("riskplot.6"),
-                riskplot.7  = gett("riskplot.7"),
-                riskplot.8  = gett("riskplot.8")))
+                # ≤ may not render in all IDEs. This is Unicode
+                # character U+2264 (&leq;) (Less-Than or Equal To).
+                riskplot.2  = translate("Probability"),
+                riskplot.3  = translate("≤ 1% OEL"),
+                riskplot.4  = translate("1% < OEL ≤ 10%"),
+                riskplot.5  = translate("10% < OEL ≤ 50%"),
+                riskplot.6  = translate("50% < OEL ≤ 100%"),
+                riskplot.7  = translate("> OEL"),
+                riskplot.8  = translate("Critical Percentile Category")))
     })
-
 
     ## Panel: Arithmetic Mean --------------------------------------------------
 
-
     ### Risk Decision ----------------------------------------------------------
-
 
     # FIXME: (JMP) Use a dedicated formatting function.
     output$probrisk.AM <- shiny::renderText({
         return(paste0(signif(num.res()$am.risk, 3L), "%"))
     })
 
-    # See section Shared Outputs above for output$am.probSituUnacceptable.
+    # See section Shared Outputs above for output$am.probSituUnacceptable1.
 
     # FIXME: (JMP) output$finalrisk, output$finalrisk.perc, and
     # output$finalrisk.AM are almost identical calls. They could
     # be encapsulated into a single function with two inputs.
     output$finalrisk.AM <-shiny::renderText({
         msgid <- if (num.res()$am.risk >= user.input()$psi) {
-            "server.2"
-        } else {
-            "server.3"
+            return(translate("poorly controlled"))
         }
 
-        return(gett(msgid))
+        return(translate("adequately controlled"))
     })
 
     # FIXME: (JMP): All risk meters (output$risquemetre, output$risquemetre2,
@@ -1412,62 +1653,37 @@ server <- function(input, output, session) {
                 colorProb2          = "#4863A0"))
     })
 
+    ### Parameter Estimates ----------------------------------------------------
 
-    ### Parameter Estimates: Distribution --------------------------------------
+    # See section Shared Outputs above for output$gm3, and output$gsd3.
 
-
-    # See section Shared Outputs above for
-    #  - output$gm1.AM,
-    #  - output$gm3,
-    #  - output$gsd1.AM, and
-    #  - output$gsd3.
-
-
-    ### Parameter Estimates: Arithmetic Mean -----------------------------------
-
-
-    # TODO: (JMP) Outputs Frac, Perc, and AM share the same format.
-    # Only inputs vary. Encapsulate logic into a formatting function.
     output$AM <- shiny::renderText({
-        # FIXME: (JMP) Call to paste0 below is missing a second argument.
-        # Based on the context, it should likely be "%". Am I right? Ask JL.
-        return(paste0(signif(num.res()$am$est, 3L)))
+        am <- lapply(num.res()$am, \(x) as.character(signif(x, 3L)))
+        return(sprintf("%s [%s - %s]", am$est, am$lcl, am$ucl))
     })
-
-    # TODO: (JMP) Outputs Frac.ci, Perc.ci, and AM.ci share the same format.
-    # Only inputs vary. Encapsulate logic into a formatting function.
-    output$AM.ci <- shiny::renderText({
-        numerics <- num.res()
-        return(
-            sprintf(
-                "[ %.3f - %.3f ]",
-                signif(numerics$am$lcl, 3L),
-                signif(numerics$am$ucl, 3L)))
-    })
-
 
     ### Sequential Plot --------------------------------------------------------
 
-
+    # FIXME: (JMP) Rename arguments of this
+    # function. Use shorter and semantic names.
     output$seqplot.AM <- shiny::renderPlot({
-        numerics <- num.res()
+        num_results <- num.res()
         return(
             sequential.plot.am(
-                gm        = numerics$gm$est,
-                gsd       = numerics$gsd$est,
-                am        = numerics$am$est,
+                gm        = num_results$gm$est,
+                gsd       = num_results$gsd$est,
+                am        = num_results$am$est,
                 c.oel     = formatted.sample()$c.oel,
-                # FIXME: these formals args must be renamed. This is horrible.
-                seqplot.1 = gett("seqplot.1"),
-                seqplot.3 = gett("seqplot.3"),
-                seqplot.5 = gett("seqplot.5"),
-                seqplot.6 = gett("seqplot.7")))
+                seqplot.1 = translate("Concentration"),
+                seqplot.3 = translate("Exceedance Fraction"),
+                seqplot.5 = translate("Arithmetic Mean"),
+                seqplot.6 = translate("Measurement Index")))
     })
-
 
     ### Density Plot -----------------------------------------------------------
 
-
+    # FIXME: (JMP) Rename arguments of this
+    # function. Use shorter and semantic names.
     output$distplot.AM <- shiny::renderPlot({
         bayesian_outputs <- bayesian.analysis()
         return(
@@ -1476,28 +1692,17 @@ server <- function(input, output, session) {
                 gsd        = exp(median(bayesian_outputs$sigma.chain)),
                 am         = num.res()$am$est,
                 c.oel      = formatted.sample()$c.oel,
-                # FIXME: these formals args must be renamed. This is horrible.
-                distplot.1 = gett("distplot.1"),
-                distplot.2 = gett("distplot.2"),
-                distplot.4 = gett("distplot.4"),
-                distplot.5 = gett("distplot.5"),
-                distplot.7 = gett("distplot.7")))
+                distplot.1 = translate("Concentration"),
+                distplot.2 = translate("Density"),
+                distplot.4 = translate("OEL outside of graphical limits."),
+                distplot.5 = translate("OEL"),
+                distplot.7 = translate("Arithmetic Mean")))
     })
-
 
     ### Risk Band Plot ---------------------------------------------------------
 
-
-    # FIXME: (JMP) Better integration of <a> tags
-    # with source text once it is reintroduced.
-    output$am.graph.12 <- shiny::renderUI({
-        htmltools::HTML(
-            gettt("am.graph.12",
-                html$a("AIHA",
-                    href   = "https://www.aiha.org",
-                    target = "_blank")))
-    })
-
+    # FIXME: (JMP) Rename arguments of this
+    # function. Use shorter and semantic names.
     output$riskband.am <- shiny::renderPlot({
         bayesian_outputs <- bayesian.analysis()
         return(
@@ -1506,73 +1711,13 @@ server <- function(input, output, session) {
                 sigma.chain = bayesian_outputs$sigma.chain,
                 c.oel       = formatted.sample()$c.oel,
                 psi         = user.input()$psi,
-                # FIXME: these formals args must be renamed. This is horrible.
-                riskplot.2  = gett("riskplot.2"),
-                riskplot.3  = gett("riskplot.3"),
-                riskplot.4  = gett("riskplot.4"),
-                riskplot.5  = gett("riskplot.5"),
-                riskplot.6  = gett("riskplot.6"),
-                riskplot.7  = gett("riskplot.7"),
-                riskplot.9  = gett("riskplot.9")))
-    })
-
-
-    ## Panel: Instructions -----------------------------------------------------
-
-
-    # Static panel. It has no server logic.
-
-
-    ## Panel: About ------------------------------------------------------------
-
-
-    # FIXME: (JMP) Better integration of <a> tags
-    # with source text once it is reintroduced.
-    output$about.1 <- shiny::renderUI({
-        # FIXME: (JMP) This does not really work and should be replaced
-        # when source text is integrated back into the app.
-        htmltools::HTML(
-            gettt("about.1",
-                html$a(
-                    gett("ESPUM"),
-                    href   = "https://www.espum.umontreal.ca",
-                    target = "_blank"),
-                html$a(
-                    "Université de Montréal",
-                    href   = "https://www.umontreal.ca"),
-                    target = "_blank"))
-    })
-
-
-    ## Panel: Methodological Background ----------------------------------------
-
-
-    # FIXME: (JMP) Better integration of <a> tags
-    # with source text once it is reintroduced.
-    output$back.1.intro <- shiny::renderUI({
-        htmltools::HTML(
-            gettt("back.1",
-                html$a(
-                    gett("this"),
-                    target = "_blank",
-                    href   = "https://academic.oup.com/annweh/article/63/3/267/5248301")))
-    })
-
-    # FIXME: (JMP) Better integration of <a> tags
-    # with source text once it is reintroduced.
-    output$back.2 <- shiny::renderUI({
-        # FIXME: (JMP) This does not work and should be replaced
-        # when source text is integrated back into the app.
-        # TODO: (JMP) The ifelse() should check future input input$lang.
-        htmltools::HTML(
-            gettt("back.2",
-            html$a(
-                gett("here"),
-                target = "_blank",
-                href   = ifelse(
-                    test = TRUE,
-                    yes  = "http://www.expostats.ca/site/en/info.html",
-                    no   = "http://www.expostats.ca/site/info.html"))))
+                riskplot.2  = translate("Probability"),
+                riskplot.3  = translate("≤ 1% OEL"),
+                riskplot.4  = translate("1% < OEL ≤ 10%"),
+                riskplot.5  = translate("10% < OEL ≤ 50%"),
+                riskplot.6  = translate("50% < OEL ≤ 100%"),
+                riskplot.7  = translate("> OEL"),
+                riskplot.9  = translate("Arithmetic Mean Category")))
     })
 }
 

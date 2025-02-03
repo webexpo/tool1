@@ -1,22 +1,20 @@
-percText <- function(perc) {
-    rem <- as.integer(perc %% 10L)
-
-    if (rem == 1L) {
-        suff <- translate("st")
-    } else if (rem == 2L) {
-        suff <- translate("nd")
-    } else if (rem == 3L) {
-        suff <- translate("rd")
-    } else {
-        suff <- translate("th")
+ordinal_number <- function(value = numeric()) {
+    if (!is.numeric(value) || length(value) != 1L || is.na(value)) {
+        stop("'value' must a non-NA numeric value of length 1.")
     }
 
-    return(paste0(perc, suff, " ", translate("percentile")))
-}
-
+    suffix <- if (value > 10.0 & value < 14.0) {
+        translate("th")
     } else {
-        suff <- gett("th")
+        map <- c(
+            translate("th"),               # Reminder = 0.
+            translate("st"),               # Reminder = 1.
+            translate("nd"),               # Reminder = 2.
+            translate("rd"),               # Reminder = 3.
+            rep.int(translate("th"), 6L))  # Reminder = 4, 5, ..., 9.)
+
+        map[(value %% 10L) + 1L]
     }
 
-    return(paste0(perc, suff, " ", gett("percentile")))
+    return(paste0(value, suffix))
 }
