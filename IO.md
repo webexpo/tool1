@@ -42,72 +42,72 @@ There are 7 rules. They exist for consistency and readability.
 
 ## Inputs
 
-| Location            | Generator                     | `inputId` (v4)                    | `inputId` (v3)       | Description |
-| ------------------- | ----------------------------- | --------------------------------- | -------------------- | ----------- |
-| None                | `shiny::fluidPage()`          | `lang`                            | None                 | None        |
-| None                | `shiny::tabsetPanel()`        | `active_panel`                    | None                 | None        |
-| Sidebar             | `shiny::numericInput()`       | `sb_oel`                          | `oel`                | None        |
-| Sidebar             | `shiny::numericInput()`       | `sb_al`                           | `al`                 | None        |
-| Sidebar             | `shiny::numericInput()`       | `sb_conf`                         | `conf`               | None        |
-| Sidebar             | `shiny::numericInput()`       | `sb_psi`                          | `psi`                | None        |
-| Sidebar             | `add_input_text_area()`       | `sb_data`                         | `data`               | None        |
-| Sidebar             | `shiny::numericInput()`       | `sb_frac_threshold`               | `frac_threshold`     | None        |
-| Sidebar             | `shiny::numericInput()`       | `sb_target_perc`                  | `target_perc`        | None        |
-| Exceedance Fraction | `shiny::radioButtons()`       | `ef_exceed_plot_btn_variant`      | `varianteFracDep`    | None        |
-| Exceedance Fraction | `shiny::actionButton()`       | `ef_exceed_plot_btn_custom`       | None                 | None        |
-| Exceedance Fraction | `add_input_field_set()`       | `ef_exceed_plot_cols`             | None                 | None        |
-| Exceedance Fraction | `colourpicker::colourInput()` | `ef_exceed_plot_col_risk`         | `couleurRisque`      | None        |
-| Exceedance Fraction | `colourpicker::colourInput()` | `ef_exceed_plot_col_no_risk`      | `couleurAucunRisque` | None        |
-| Exceedance Fraction | `colourpicker::colourInput()` | `ef_exceed_plot_col_bg`           | `couleurFond`        | None        |
-| Exceedance Fraction | `colourpicker::colourInput()` | `ef_exceed_plot_col_bg_threshold` | `couleurSeuil`       | None        |
+| Location            | Generator                     | `inputId` (v4)                    | `inputId` (v3)                    | Description |
+| ------------------- | ----------------------------- | --------------------------------- | --------------------------------- | ----------- |
+| None                | `shiny::fluidPage()`          | `lang`                            | None                              | None        |
+| None                | `shiny::tabsetPanel()`        | `active_panel`                    | None                              | None        |
+| Sidebar             | `shiny::numericInput()`       | `sb_oel`                          | `oel`                             | None        |
+| Sidebar             | `shiny::numericInput()`       | `sb_al`                           | `al`                              | None        |
+| Sidebar             | `shiny::numericInput()`       | `sb_conf`                         | `conf`                            | None        |
+| Sidebar             | `shiny::numericInput()`       | `sb_psi`                          | `psi`                             | None        |
+| Sidebar             | `add_input_text_area()`       | `sb_data`                         | `data`                            | None        |
+| Sidebar             | `shiny::numericInput()`       | `sb_frac_threshold`               | `frac_threshold`                  | None        |
+| Sidebar             | `shiny::numericInput()`       | `sb_target_perc`                  | `target_perc`                     | None        |
+| Exceedance Fraction | `shiny::radioButtons()`       | `ef_exceed_plot_btn_variant`      | `varianteFracDep`                 | None        |
+| Exceedance Fraction | `shiny::actionButton()`       | `ef_exceed_plot_btn_custom`       | None                              | None        |
+| Exceedance Fraction | `add_input_field_set()`       | `ef_exceed_plot_cols`             | None                              | None        |
+| Exceedance Fraction | `colourpicker::colourInput()` | `ef_exceed_plot_col_risk`         | `couleurRisque`                   | None        |
+| Exceedance Fraction | `colourpicker::colourInput()` | `ef_exceed_plot_col_no_risk`      | `couleurAucunRisque`              | None        |
+| Exceedance Fraction | `colourpicker::colourInput()` | `ef_exceed_plot_col_bg`           | `couleurFond`                     | None        |
+| Exceedance Fraction | `colourpicker::colourInput()` | `ef_exceed_plot_col_bg_threshold` | `couleurSeuil`                    | None        |
 
 ## Outputs
 
-| Location            | Generator              | `outputId` (v4)               | `outputId` (v3)                   | Description |
-| ------------------- | ---------------------- | ----------------------------- | --------------------------------- | ----------- |
-| Statistics          | `shiny::tableOutput()` | `st_stats_tbl`                | `res.desc`                        | None        |
-| Statistics          | `shiny::plotOutput()`  | `st_qq_plot`                  | `qqplot`                          | None        |
-| Statistics          | `shiny::plotOutput()`  | `st_box_plot`                 | `boxplot`                         | None        |
-| Exceedance Fraction | `shiny::textOutput()`  | `ef_frac_threshold_percent_1` | `acceptableExpo1`                 | None        |
-| Exceedance Fraction | `shiny::textOutput()`  | `ef_frac_threshold_percent_2` | `acceptableExpo2`                 | None        |
-| Exceedance Fraction | `shiny::textOutput()`  | `ef_frac_threshold_percent_3` | `acceptableExpo3`                 | None        |
-| Exceedance Fraction | `shiny::textOutput()`  | `ef_risk_prob_criterion`      | `probrisk`                        | None        |
-| Exceedance Fraction | `shiny::textOutput()`  | `ef_risk_prob_limit_1`        | `frac.probSituUnacceptable1`      | None        |
-| Exceedance Fraction | `shiny::textOutput()`  | `ef_risk_prob_limit_2`        | `frac.probSituUnacceptable2`      | None        |
-| Exceedance Fraction | `shiny::textOutput()`  | `ef_risk_decision`            | `finalrisk`                       | None        |
-| Exceedance Fraction | `shiny::plotOutput()`  | `ef_risk_meter_plot`          | `risquemetre`                     | None        |
-| Exceedance Fraction | `shiny::textOutput()`  | `ef_estimate_geo_mean`        | `gm1`                             | None        |
-| Exceedance Fraction | `shiny::textOutput()`  | `ef_estimate_geo_sd`          | `gsd1`                            | None        |
-| Exceedance Fraction | `shiny::textOutput()`  | `ef_estimate`                 | `Frac`                            | None        |
-| Exceedance Fraction | `shiny::plotOutput()`  | `ef_exceed_plot`              | `fracDepVariantes`                | None        |
-| Exceedance Fraction | `shiny::textOutput()`  | `ef_exceed_plot_description`  | `fracDepVarianteDesc`             | None        |
-| Exceedance Fraction | `shiny::plotOutput()`  | `ef_seq_plot`                 | `seqplot.frac`                    | None        |
-| Exceedance Fraction | `shiny::plotOutput()`  | `ef_dist_plot`                | `distplot.frac`                   | None        |
-| Exceedance Fraction | `shiny::plotOutput()`  | `ef_risk_band_plot`           | `riskband.frac`                   | None        |
-| Exceedance Fraction | `shiny::textOutput()`  | `ef_good_exposure_percent_1`  | `frac.acceptableExpoDiv1`         | None        |
-| Exceedance Fraction | `shiny::textOutput()`  | `ef_good_exposure_percent_2`  | `frac.acceptableExpoDiv2`         | None        |
-| Percentiles         | `shiny::textOutput()`  | `pe_sb_target_perc_ordinal_1` | `perc.percentile.risk.decision`   | None        |
-| Percentiles         | `shiny::textOutput()`  | `pe_sb_target_perc_ordinal_2` | `perc.percentile.param.estimates` | None        |
-| Percentiles         | `shiny::textOutput()`  | `pe_sb_target_perc_ordinal_3` | `perc.percentile.risk.band`       | None        |
-| Percentiles         | `shiny::textOutput()`  | `pe_risk_prob_criterion`      | `probrisk.perc`                   | None        |
-| Percentiles         | `shiny::textOutput()`  | `pe_risk_prob_limit_1`        | `perc.probSituUnacceptable1`      | None        |
-| Percentiles         | `shiny::textOutput()`  | `pe_risk_prob_limit_2`        | `perc.probSituUnacceptable2`      | None        |
-| Percentiles         | `shiny::textOutput()`  | `pe_risk_decision`            | `finalrisk.perc`                  | None        |
-| Percentiles         | `shiny::plotOutput()`  | `pe_risk_meter_plot`          | `risquemetre2`                    | None        |
-| Percentiles         | `shiny::textOutput()`  | `pe_estimate_geo_mean`        | `gm2`                             | None        |
-| Percentiles         | `shiny::textOutput()`  | `pe_estimate_geo_sd`          | `gsd2`                            | None        |
-| Percentiles         | `shiny::textOutput()`  | `pe_estimate`                 | `Perc`                            | None        |
-| Percentiles         | `shiny::plotOutput()`  | `pe_seq_plot`                 | `seqplot.perc`                    | None        |
-| Percentiles         | `shiny::plotOutput()`  | `pe_dist_plot`                | `distplot.perc`                   | None        |
-| Percentiles         | `shiny::plotOutput()`  | `pe_risk_band_plot`           | `riskband.perc`                   | None        |
-| Arithmetic Mean     | `shiny::textOutput()`  | `am_risk_prob_criterion`      | `probrisk.AM`                     | None        |
-| Arithmetic Mean     | `shiny::textOutput()`  | `am_risk_prob_limit_1`        | `am.probSituUnacceptable1`        | None        |
-| Arithmetic Mean     | `shiny::textOutput()`  | `am_risk_prob_limit_2`        | `am.probSituUnacceptable2`        | None        |
-| Arithmetic Mean     | `shiny::textOutput()`  | `am_risk_decision`            | `finalrisk.AM`                    | None        |
-| Arithmetic Mean     | `shiny::plotOutput()`  | `am_risk_meter_plot`          | `risquemetre.am`                  | None        |
-| Arithmetic Mean     | `shiny::textOutput()`  | `am_estimate_geo_mean`        | `gm3`                             | None        |
-| Arithmetic Mean     | `shiny::textOutput()`  | `am_estimate_geo_sd`          | `gsd3`                            | None        |
-| Arithmetic Mean     | `shiny::textOutput()`  | `am_estimate`                 | `AM`                              | None        |
-| Arithmetic Mean     | `shiny::plotOutput()`  | `am_seq_plot`                 | `seqplot.AM`                      | None        |
-| Arithmetic Mean     | `shiny::plotOutput()`  | `am_dist_plot`                | `distplot.AM`                     | None        |
-| Arithmetic Mean     | `shiny::plotOutput()`  | `am_risk_band_plot`           | `riskband.am`                     | None        |
+| Location            | Generator                     | `outputId` (v4)                   | `outputId` (v3)                   | Description |
+| ------------------- | ----------------------------- | --------------------------------- | --------------------------------- | ----------- |
+| Statistics          | `shiny::tableOutput()`        | `st_stats_tbl`                    | `res.desc`                        | None        |
+| Statistics          | `shiny::plotOutput()`         | `st_qq_plot`                      | `qqplot`                          | None        |
+| Statistics          | `shiny::plotOutput()`         | `st_box_plot`                     | `boxplot`                         | None        |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_sb_frac_threshold_percent_1`  | `acceptableExpo1`                 | None        |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_sb_frac_threshold_percent_2`  | `acceptableExpo2`                 | None        |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_sb_frac_threshold_percent_3`  | `acceptableExpo3`                 | None        |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_risk_prob_criterion`          | `probrisk`                        | None        |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_risk_prob_limit_1`            | `frac.probSituUnacceptable1`      | None        |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_risk_prob_limit_2`            | `frac.probSituUnacceptable2`      | None        |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_risk_decision`                | `finalrisk`                       | None        |
+| Exceedance Fraction | `shiny::plotOutput()`         | `ef_risk_meter_plot`              | `risquemetre`                     | None        |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_estimate_geo_mean`            | `gm1`                             | None        |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_estimate_geo_sd`              | `gsd1`                            | None        |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_estimate`                     | `Frac`                            | None        |
+| Exceedance Fraction | `shiny::plotOutput()`         | `ef_exceed_plot`                  | `fracDepVariantes`                | None        |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_exceed_plot_description`      | `fracDepVarianteDesc`             | None        |
+| Exceedance Fraction | `shiny::plotOutput()`         | `ef_seq_plot`                     | `seqplot.frac`                    | None        |
+| Exceedance Fraction | `shiny::plotOutput()`         | `ef_dist_plot`                    | `distplot.frac`                   | None        |
+| Exceedance Fraction | `shiny::plotOutput()`         | `ef_risk_band_plot`               | `riskband.frac`                   | None        |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_good_exposure_percent_1`      | `frac.acceptableExpoDiv1`         | None        |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_good_exposure_percent_2`      | `frac.acceptableExpoDiv2`         | None        |
+| Percentiles         | `shiny::textOutput()`         | `pe_sb_target_perc_ordinal_1`     | `perc.percentile.risk.decision`   | None        |
+| Percentiles         | `shiny::textOutput()`         | `pe_sb_target_perc_ordinal_2`     | `perc.percentile.param.estimates` | None        |
+| Percentiles         | `shiny::textOutput()`         | `pe_sb_target_perc_ordinal_3`     | `perc.percentile.risk.band`       | None        |
+| Percentiles         | `shiny::textOutput()`         | `pe_risk_prob_criterion`          | `probrisk.perc`                   | None        |
+| Percentiles         | `shiny::textOutput()`         | `pe_risk_prob_limit_1`            | `perc.probSituUnacceptable1`      | None        |
+| Percentiles         | `shiny::textOutput()`         | `pe_risk_prob_limit_2`            | `perc.probSituUnacceptable2`      | None        |
+| Percentiles         | `shiny::textOutput()`         | `pe_risk_decision`                | `finalrisk.perc`                  | None        |
+| Percentiles         | `shiny::plotOutput()`         | `pe_risk_meter_plot`              | `risquemetre2`                    | None        |
+| Percentiles         | `shiny::textOutput()`         | `pe_estimate_geo_mean`            | `gm2`                             | None        |
+| Percentiles         | `shiny::textOutput()`         | `pe_estimate_geo_sd`              | `gsd2`                            | None        |
+| Percentiles         | `shiny::textOutput()`         | `pe_estimate`                     | `Perc`                            | None        |
+| Percentiles         | `shiny::plotOutput()`         | `pe_seq_plot`                     | `seqplot.perc`                    | None        |
+| Percentiles         | `shiny::plotOutput()`         | `pe_dist_plot`                    | `distplot.perc`                   | None        |
+| Percentiles         | `shiny::plotOutput()`         | `pe_risk_band_plot`               | `riskband.perc`                   | None        |
+| Arithmetic Mean     | `shiny::textOutput()`         | `am_risk_prob_criterion`          | `probrisk.AM`                     | None        |
+| Arithmetic Mean     | `shiny::textOutput()`         | `am_risk_prob_limit_1`            | `am.probSituUnacceptable1`        | None        |
+| Arithmetic Mean     | `shiny::textOutput()`         | `am_risk_prob_limit_2`            | `am.probSituUnacceptable2`        | None        |
+| Arithmetic Mean     | `shiny::textOutput()`         | `am_risk_decision`                | `finalrisk.AM`                    | None        |
+| Arithmetic Mean     | `shiny::plotOutput()`         | `am_risk_meter_plot`              | `risquemetre.am`                  | None        |
+| Arithmetic Mean     | `shiny::textOutput()`         | `am_estimate_geo_mean`            | `gm3`                             | None        |
+| Arithmetic Mean     | `shiny::textOutput()`         | `am_estimate_geo_sd`              | `gsd3`                            | None        |
+| Arithmetic Mean     | `shiny::textOutput()`         | `am_estimate`                     | `AM`                              | None        |
+| Arithmetic Mean     | `shiny::plotOutput()`         | `am_seq_plot`                     | `seqplot.AM`                      | None        |
+| Arithmetic Mean     | `shiny::plotOutput()`         | `am_dist_plot`                    | `distplot.AM`                     | None        |
+| Arithmetic Mean     | `shiny::plotOutput()`         | `am_risk_band_plot`               | `riskband.am`                     | None        |

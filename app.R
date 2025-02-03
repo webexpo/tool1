@@ -112,7 +112,7 @@ ui <- shiny::fluidPage(
             #### Inputs --------------------------------------------------------
 
             shiny::numericInput(
-                inputId = "oel",
+                inputId = "sb_oel",
                 label   = translate("Exposure Limit:"),
                 value   = 100) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
@@ -122,7 +122,7 @@ ui <- shiny::fluidPage(
                         must have the same unit as the measurement data."))),
 
             shiny::numericInput(
-                inputId = "al",
+                inputId = "sb_al",
                 label   = translate("Exposure Limit Multiplier:"),
                 value   = 1) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
@@ -132,7 +132,7 @@ ui <- shiny::fluidPage(
                     limit value for calculation purposes."))),
 
             shiny::numericInput(
-                inputId = "conf",
+                inputId = "sb_conf",
                 label   = translate("Credible Interval Probability:"),
                 value   = 90) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
@@ -143,7 +143,7 @@ ui <- shiny::fluidPage(
                     is the Bayesian equivalent of the confidence interval."))),
 
             shiny::numericInput(
-                inputId = "psi",
+                inputId = "sb_psi",
                 label   = translate("Overexposure Risk Threshold:"),
                 value   = 30) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
@@ -155,7 +155,7 @@ ui <- shiny::fluidPage(
                     suggest using 5% and 30%, respectively."))),
 
             add_input_text_area(
-                inputId = "data",
+                inputId = "sb_data",
                 label   = translate("Measurements:"),
                 value   = c(
                     "28.9",
@@ -173,7 +173,7 @@ ui <- shiny::fluidPage(
             # This output is only shown when the active panel is
             # exceedance. See observer in section Sidebar of server().
             shiny::numericInput(
-                inputId = "frac_threshold",
+                inputId = "sb_frac_threshold",
                 label   = translate("Exceedance Fraction Threshold:"),
                 value   = 5) |>
                 htmltools::tagAppendAttributes(
@@ -187,7 +187,7 @@ ui <- shiny::fluidPage(
             # This output is only shown when the active panel is
             # percentiles. See observer in section Sidebar of server().
             shiny::numericInput(
-                inputId = "target_perc",
+                inputId = "sb_target_perc",
                 label   = translate("Critical Percentile:"),
                 value   = 95) |>
                 htmltools::tagAppendAttributes(
@@ -256,7 +256,7 @@ ui <- shiny::fluidPage(
                                 class = "app-panel-subtitle",
                                 translate("Summary")),
 
-                            shiny::tableOutput("res.desc"),
+                            shiny::tableOutput("st_stats_tbl"),
                         ),
                         shiny::column(width = 6L,
                             add_bs_alert_info(
@@ -298,7 +298,7 @@ ui <- shiny::fluidPage(
                     # Width is restricted to 50%, and margin are set
                     # by the browser to center the underlying image.
                     # plotOutput() rerturns a <div> tag by default.
-                    shiny::plotOutput("qqplot",
+                    shiny::plotOutput("st_qq_plot",
                         width  = "50%",
                         height = plot_height) |>
                         htmltools::tagAppendAttributes(style = "margin: auto;"),
@@ -317,7 +317,7 @@ ui <- shiny::fluidPage(
                         class = "app-panel-title",
                         translate("Box and Whiskers Plot")),
 
-                    shiny::plotOutput("boxplot", height = plot_height),
+                    shiny::plotOutput("st_box_plot", height = plot_height),
 
                     html$p(sprintf_html(translate("
                         The measurements are scattered around the x-axis middle
@@ -352,22 +352,22 @@ ui <- shiny::fluidPage(
                                 html$li(sprintf_html(translate("
                                     Overexposure is defined as the exceedance
                                     fraction being greater than or equal to %s."),
-                                    add_bold_text_output("acceptableExpo1"))),
+                                    add_bold_text_output("ef_sb_frac_threshold_percent_1"))),
 
                                 html$li(sprintf_html(translate("
                                     The probability that this criterion is met
                                     is equal to %s."),
-                                    add_bold_text_output("probrisk"))),
+                                    add_bold_text_output("ef_risk_prob_criterion"))),
 
                                 html$li(sprintf_html(translate("
                                     The probability that this criterion is met
                                     should be lower than %s."),
-                                    add_bold_text_output("frac.probSituUnacceptable1"))),
+                                    add_bold_text_output("ef_risk_prob_limit_1"))),
 
                                 html$li(sprintf_html(translate("
                                     Consequently, the current situation is
                                     declared to be %s."),
-                                    add_bold_text_output("finalrisk")))
+                                    add_bold_text_output("ef_risk_decision")))
                             ),
 
                             html$p(translate("
@@ -384,7 +384,7 @@ ui <- shiny::fluidPage(
                             htmltools::tagAppendAttributes(
                                 style = "margin-top: 21px",
                                 shiny::plotOutput(
-                                    outputId = "risquemetre",
+                                    outputId = "ef_risk_meter_plot",
                                     height   = plot_risk_meter_height))
                         )
                     ),
@@ -407,12 +407,12 @@ ui <- shiny::fluidPage(
                                 html$li(sprintf_html(translate("
                                     The geometric mean point estimate is equal
                                     to %s."),
-                                    add_bold_text_output("gm1"))),
+                                    add_bold_text_output("ef_estimate_geo_mean"))),
 
                                 html$li(sprintf_html(translate("
                                     The geometric standard deviation point
                                     estimate is equal to %s."),
-                                    add_bold_text_output("gsd1")))
+                                    add_bold_text_output("ef_estimate_geo_sd")))
                             ),
 
                             html$p(translate("
@@ -429,7 +429,7 @@ ui <- shiny::fluidPage(
 
                                 html$li(sprintf_html(translate("
                                     The point estimate is equal to %s."),
-                                    add_bold_text_output("Frac")))
+                                    add_bold_text_output("ef_estimate")))
                             )
                         )
                     ),
@@ -451,11 +451,11 @@ ui <- shiny::fluidPage(
                         optionally, customize colors.")),
 
                     shiny::radioButtons(
-                        inputId  = "varianteFracDep",
+                        inputId  = "ef_exceed_plot_btn_variant",
                         label    = translate("Variants:"),
                         inline   = TRUE,
                         choices  = c(
-                            # What users see = # Internal input value.
+                            # What users see = Internal input value.
                             `1` = "figure1",
                             `2` = "figure2",
                             `3` = "figure3",
@@ -463,7 +463,7 @@ ui <- shiny::fluidPage(
 
                     shiny::actionButton(
                         style   = "margin-bottom: 15px;",
-                        inputId = "btn_customize",
+                        inputId = "ef_exceed_plot_btn_custom",
                         label   = translate("Customize Colors"),
                         icon    = static$icons$bottom),
 
@@ -471,31 +471,31 @@ ui <- shiny::fluidPage(
                     # either shown, or hidden whenever the user
                     # clicks on the action button above.
                     add_input_field_set(
-                        inputId     = "plot-exceedance-custom",
-                        containerId = "plot-exceedance-custom-container",
-                        label       = translate("Colors:"),
-                        style       = "display: none;",
-                        inputs      = list(
+                        inputId      = "ef_exceed_plot_cols",
+                        container_id = "ef_exceed_plot_cols_container",
+                        label        = translate("Colors:"),
+                        style        = "display: none;",
+                        inputs       = list(
                             colourpicker::colourInput(
-                                inputId    = "couleurRisque",
+                                inputId    = "ef_exceed_plot_col_risk",
                                 label      = translate("Flask Color (Exceedance):"),
                                 value      = "red",
                                 returnName = TRUE,
                                 palette    = "limited"),
                             colourpicker::colourInput(
-                                inputId    = "couleurAucunRisque",
+                                inputId    = "ef_exceed_plot_col_no_risk",
                                 label      = translate("Flask Color (No Exceedance):"),
                                 value      = "gray50",
                                 returnName = TRUE,
                                 palette    = "limited"),
                             colourpicker::colourInput(
-                                inputId    = "couleurFond",
+                                inputId    = "ef_exceed_plot_col_bg",
                                 label      = translate("Background Color (Default):"),
                                 value      = "gray70",
                                 returnName = TRUE,
                                 palette    = "limited"),
                             colourpicker::colourInput(
-                                inputId    = "couleurSeuil",
+                                inputId    = "ef_exceed_plot_col_bg_threshold",
                                 label      = translate("Background Color (Threshold):"),
                                 value      = "gray40",
                                 returnName = TRUE,
@@ -503,7 +503,7 @@ ui <- shiny::fluidPage(
 
                     # Width is set by a function passed to renderPlot().
                     shiny::plotOutput(
-                        outputId = "fracDepVariantes",
+                        outputId = "ef_exceed_plot",
                         width    = "auto",
                         height   = plot_height) |>
                         # This class is used to center
@@ -515,7 +515,9 @@ ui <- shiny::fluidPage(
                             type  = 8L,
                             color = "#212529"),
 
-                    shiny::textOutput("fracDepVarianteDesc", container = html$p),
+                    shiny::textOutput(
+                        outputId  = "ef_exceed_plot_description",
+                        container = html$p),
 
                     ###### Sequential Plot -------------------------------------
 
@@ -523,7 +525,7 @@ ui <- shiny::fluidPage(
                         class = "app-panel-title",
                         translate("Sequential Plot")),
 
-                    shiny::plotOutput("seqplot.frac", height = plot_height),
+                    shiny::plotOutput("ef_seq_plot", height = plot_height),
 
                     # TODO: (JMP) Standardize margins and remove style.
                     html$p(style = "margin: 10.5px 0 0 0;", translate("
@@ -539,7 +541,7 @@ ui <- shiny::fluidPage(
                         class = "app-panel-title",
                         translate("Density Plot")),
 
-                    shiny::plotOutput("distplot.frac", height = plot_height),
+                    shiny::plotOutput("ef_dist_plot", height = plot_height),
 
                     html$p(translate("
                         This plot shows the probability density function of the
@@ -553,7 +555,7 @@ ui <- shiny::fluidPage(
                         class = "app-panel-title",
                         translate("Risk Band Plot")),
 
-                    shiny::plotOutput("riskband.frac", height = plot_height),
+                    shiny::plotOutput("ef_risk_band_plot", height = plot_height),
 
                     html$p(sprintf_html(translate("
                         This plot shows the probability distribution of the
@@ -563,11 +565,11 @@ ui <- shiny::fluidPage(
                         red column represents the probability of an
                         overexposure. The latter should be lower than the %s
                         threshold shown by the black dashed line."),
-                        shiny::textOutput("frac.acceptableExpoDiv1", inline = TRUE),
-                        shiny::textOutput("frac.acceptableExpoDiv2", inline = TRUE),
-                        shiny::textOutput("acceptableExpo2", inline = TRUE),
-                        shiny::textOutput("acceptableExpo3", inline = TRUE),
-                        shiny::textOutput("frac.probSituUnacceptable2", inline = TRUE)))
+                        shiny::textOutput("ef_good_exposure_percent_1", inline = TRUE),
+                        shiny::textOutput("ef_good_exposure_percent_2", inline = TRUE),
+                        shiny::textOutput("ef_sb_frac_threshold_percent_2", inline = TRUE),
+                        shiny::textOutput("ef_sb_frac_threshold_percent_3", inline = TRUE),
+                        shiny::textOutput("ef_risk_prob_limit_2", inline = TRUE)))
                 ),
 
                 ##### Panel: Percentiles ---------------------------------------
@@ -595,22 +597,22 @@ ui <- shiny::fluidPage(
                                 html$li(sprintf_html(translate("
                                     Overexposure is defined as the %s percentile
                                     being greater than or equal to the OEL."),
-                                    add_bold_html_output("perc.percentile.risk.decision"))),
+                                    add_bold_html_output("pe_sb_target_perc_ordinal_1"))),
 
                                 html$li(sprintf_html(translate("
                                     The probability that this criterion is met
                                     is equal to %s."),
-                                    add_bold_text_output("probrisk.perc"))),
+                                    add_bold_text_output("pe_risk_prob_criterion"))),
 
                                 html$li(sprintf_html(translate("
                                     The probability that this criterion is met
                                     should be lower than %s."),
-                                    add_bold_text_output("perc.probSituUnacceptable1"))),
+                                    add_bold_text_output("pe_risk_prob_limit_1"))),
 
                                 html$li(sprintf_html(translate("
                                     Consequently, the current situation is
                                     declared to be %s."),
-                                    add_bold_text_output("finalrisk.perc")))
+                                    add_bold_text_output("pe_risk_decision")))
                             ),
 
                             html$p(translate("
@@ -627,7 +629,7 @@ ui <- shiny::fluidPage(
                             htmltools::tagAppendAttributes(
                                 style = "margin-top: 21px",
                                 shiny::plotOutput(
-                                    outputId = "risquemetre2",
+                                    outputId = "pe_risk_meter_plot",
                                     height   = plot_risk_meter_height))
                         )
                     ),
@@ -650,12 +652,12 @@ ui <- shiny::fluidPage(
                                 html$li(sprintf_html(translate("
                                     The geometric mean point estimate is equal
                                     to %s."),
-                                    add_bold_text_output("gm2"))),
+                                    add_bold_text_output("pe_estimate_geo_mean"))),
 
                                 html$li(sprintf_html(translate("
                                     The geometric standard deviation point
                                     estimate is equal to %s."),
-                                    add_bold_text_output("gsd2")))
+                                    add_bold_text_output("pe_estimate_geo_sd")))
                             ),
 
                             html$p(translate("
@@ -665,18 +667,17 @@ ui <- shiny::fluidPage(
                         shiny::column(width = 6L,
                             html$h3(
                                 class = "app-panel-subtitle",
-                                sprintf_html(
-                                    translate("%s Percentile Estimate"),
-                                    shiny::htmlOutput(
-                                        outputId = "perc.percentile.param.estimates",
-                                        inline   = TRUE))),
+                                shiny::htmlOutput(
+                                    outputId = "pe_sb_target_perc_ordinal_2",
+                                    inline   = TRUE),
+                                    translate("Percentile Estimate")),
 
                             html$ul(
                                 class = "app-ul",
 
                                 html$li(sprintf_html(translate("
                                     The point estimate is equal to %s."),
-                                    add_bold_text_output("Perc")))
+                                    add_bold_text_output("pe_estimate")))
                             )
                         )
                     ),
@@ -687,7 +688,7 @@ ui <- shiny::fluidPage(
                         class = "app-panel-title",
                         translate("Sequential Plot")),
 
-                    shiny::plotOutput("seqplot.perc", height = plot_height),
+                    shiny::plotOutput("pe_seq_plot", height = plot_height),
 
                     html$p(translate("
                         This plot shows the estimated exposure distribution when
@@ -704,7 +705,7 @@ ui <- shiny::fluidPage(
                         class = "app-panel-title",
                         translate("Density Plot")),
 
-                    shiny::plotOutput("distplot.perc", height = plot_height),
+                    shiny::plotOutput("pe_dist_plot", height = plot_height),
 
                     html$p(translate("
                         This plot shows the probability density function of the
@@ -718,7 +719,7 @@ ui <- shiny::fluidPage(
                         class = "app-panel-title",
                         translate("Risk Band Plot")),
 
-                    shiny::plotOutput("riskband.perc", height = plot_height),
+                    shiny::plotOutput("pe_risk_band_plot", height = plot_height),
 
                     # TODO: (JMP) Standardize margins and remove style.
                     html$p(
@@ -735,9 +736,9 @@ ui <- shiny::fluidPage(
                             probability of an overexposure. The latter should
                             be lower than the %s threshold shown by the black
                             dashed line."),
-                        shiny::htmlOutput("perc.percentile.risk.band", inline = TRUE),
+                        shiny::htmlOutput("pe_sb_target_perc_ordinal_3", inline = TRUE),
                         a_strs[["aiha"]],
-                        shiny::textOutput("perc.probSituUnacceptable2", inline = TRUE)))
+                        shiny::textOutput("pe_risk_prob_limit_2", inline = TRUE)))
                 ),
 
                 ##### Panel: Arithmetic Mean -----------------------------------
@@ -768,17 +769,17 @@ ui <- shiny::fluidPage(
                                 html$li(sprintf_html(translate("
                                     The probability that this criterion is met
                                     is equal to %s."),
-                                    add_bold_text_output("probrisk.AM"))),
+                                    add_bold_text_output("am_risk_prob_criterion"))),
 
                                 html$li(sprintf_html(translate("
                                     The probability that this criterion is met
                                     should be lower than %s."),
-                                    add_bold_text_output("am.probSituUnacceptable1"))),
+                                    add_bold_text_output("am_risk_prob_limit_1"))),
 
                                 html$li(sprintf_html(translate("
                                     Consequently, the current situation is
                                     declared to be %s."),
-                                    add_bold_text_output("finalrisk.AM")))
+                                    add_bold_text_output("am_risk_decision")))
                             ),
 
                             html$p(translate("
@@ -808,7 +809,7 @@ ui <- shiny::fluidPage(
                             htmltools::tagAppendAttributes(
                                 style = "margin-top: 21px",
                                 shiny::plotOutput(
-                                    outputId = "risquemetre.am",
+                                    outputId = "am_risk_meter_plot",
                                     height   = plot_risk_meter_height))
                         )
                     ),
@@ -831,12 +832,12 @@ ui <- shiny::fluidPage(
                                 html$li(sprintf_html(translate("
                                     The geometric mean point estimate is equal
                                     to %s."),
-                                    add_bold_text_output("gm3"))),
+                                    add_bold_text_output("am_estimate_geo_mean"))),
 
                                 html$li(sprintf_html(translate("
                                     The geometric standard deviation point
                                     estimate is equal to %s."),
-                                    add_bold_text_output("gsd3")))
+                                    add_bold_text_output("am_estimate_geo_sd")))
                             ),
 
                             html$p(translate("
@@ -853,7 +854,7 @@ ui <- shiny::fluidPage(
 
                                 html$li(sprintf_html(translate("
                                     The point estimate is equal to %s."),
-                                    add_bold_text_output("AM")))
+                                    add_bold_text_output("am_estimate")))
                             )
                         )
                     ),
@@ -864,7 +865,7 @@ ui <- shiny::fluidPage(
                         class = "app-panel-title",
                         translate("Sequential Plot")),
 
-                    shiny::plotOutput("seqplot.AM", height = plot_height),
+                    shiny::plotOutput("am_seq_plot", height = plot_height),
 
                     html$p(translate("
                         This plot shows the estimated exposure distribution when
@@ -881,7 +882,7 @@ ui <- shiny::fluidPage(
                         class = "app-panel-title",
                         translate("Density Plot")),
 
-                    shiny::plotOutput("distplot.AM", height = plot_height),
+                    shiny::plotOutput("am_dist_plot", height = plot_height),
 
                     html$p(translate("
                         This plot shows the probability density function of the
@@ -895,7 +896,7 @@ ui <- shiny::fluidPage(
                         class = "app-panel-title",
                         translate("Risk Band Plot")),
 
-                    shiny::plotOutput("riskband.am", height = plot_height),
+                    shiny::plotOutput("am_risk_band_plot", height = plot_height),
 
                     # TODO: (JMP) Standardize margins and remove style.
                     html$p(
@@ -913,7 +914,7 @@ ui <- shiny::fluidPage(
                             be lower than the %s threshold shown by the black
                             dashed line."),
                         a_strs[["aiha"]],
-                        shiny::textOutput("am.probSituUnacceptable2", inline = TRUE)))
+                        shiny::textOutput("am_risk_prob_limit_2", inline = TRUE)))
                 ),
 
                 ##### Panel: About ---------------------------------------------
@@ -1061,24 +1062,24 @@ server <- function(input, output, session) {
 
     ## Sidebar -----------------------------------------------------------------
 
-    # This observer hides inputs frac_threshold and target_perc
+    # This observer hides inputs sb_frac_threshold and sb_target_perc
     # by default, and respectively shows either of them only when
     # a specific panel is opened.
     shiny::observeEvent(input$active_panel, {
-        shinyjs::hide("frac_threshold")
-        shinyjs::hide("target_perc")
+        shinyjs::hide("sb_frac_threshold")
+        shinyjs::hide("sb_target_perc")
         switch(input$active_panel,
-            exceedance  = shinyjs::show("frac_threshold"),
-            percentiles = shinyjs::show("target_perc"))
+            exceedance  = shinyjs::show("sb_frac_threshold"),
+            percentiles = shinyjs::show("sb_target_perc"))
     })
 
     # Values -------------------------------------------------------------------
 
     # TODO: (JMP) Ask JL what to do with this. This is a weird case.
-    # This reactive value is called by bayesian.analysis below. It has
+    # This reactive value is called by bayesian_analysis below. It has
     # no other reference in the code. This could later be refactored by
     # removing it, and passing 1L to fun.bayes.jags().
-    uninformed.prior <- shiny::reactive({
+    uninformed_prior <- shiny::reactive({
         # FIXME: (JMP) Comments refer to input prior.sigma, which does
         # not exist. It could be an earlier UI artifact that was left
         # over as a comment and later removed by JMP. Commenting code
@@ -1091,26 +1092,26 @@ server <- function(input, output, session) {
         return(!strtoi(prior))
     })
 
-    user.input <- shiny::reactive({
+    user_inputs <- shiny::reactive({
         return(
             list(
-                conf = input$conf,
-                psi  = input$psi,
+                conf = input$sb_conf,
+                psi  = input$sb_psi,
                 # The following input is located in panel exceedance.
-                frac_threshold = input$frac_threshold,
+                frac_threshold = input$sb_frac_threshold,
                 # The following input is located in panel percentiles.
-                target_perc = input$target_perc))
+                target_perc = input$sb_target_perc))
     })
 
-    formatted.sample <- shiny::reactive({
+    user_formatted_sample <- shiny::reactive({
         return(
             data.formatting.SEG(
-                data.in  = input$data,
-                oel      = input$oel,
-                oel.mult = input$al))
+                data.in  = input$sb_data,
+                oel      = input$sb_oel,
+                oel.mult = input$sb_al))
     })
 
-    bayesian.analysis <- shiny::reactive({
+    bayesian_analysis <- shiny::reactive({
         on.exit(progress$close())
         progress <- shiny::Progress$new()
         progress$set(
@@ -1125,10 +1126,10 @@ server <- function(input, output, session) {
             progress$inc(amount = 1/50, detail = detail)
         }
 
-        user_sample <- formatted.sample()
+        user_sample <- user_formatted_sample()
         return(
             fun.bayes.jags(
-                observations     = user_sample$data ,
+                observations     = user_sample$data,
                 notcensored      = user_sample$notcensored,
                 leftcensored     = user_sample$leftcensored,
                 rightcensored    = user_sample$rightcensored,
@@ -1136,52 +1137,52 @@ server <- function(input, output, session) {
                 seed             = user_sample$seed,
                 c.oel            = user_sample$c.oel,
                 n.iter           = 25000L,
-                uninformed.prior = uninformed.prior(),
+                uninformed.prior = uninformed_prior(),
                 updateProgress   = updateProgress))
     })
 
-    num.res <- shiny::reactive({
-        bayesian_outputs <- bayesian.analysis()
-        user_inputs      <- user.input()
+    num_results <- shiny::reactive({
+        bayesian_outputs <- bayesian_analysis()
+        inputs           <- user_inputs()
         return(
             all.numeric(
                 mu.chain       = bayesian_outputs$mu.chain,
                 sigma.chain    = bayesian_outputs$sigma.chain,
-                c.oel          = formatted.sample()$c.oel,
-                conf           = user_inputs$conf,
-                frac_threshold = user_inputs$frac_threshold,
-                target_perc    = user_inputs$target_perc))
+                c.oel          = user_formatted_sample()$c.oel,
+                conf           = inputs$conf,
+                frac_threshold = inputs$sb_frac_threshold,
+                target_perc    = inputs$sb_target_perc))
     })
 
     ## Shared Outputs ----------------------------------------------------------
 
-    output$frac.probSituUnacceptable1 <-
-    output$frac.probSituUnacceptable2 <-
-    output$perc.probSituUnacceptable1 <-
-    output$perc.probSituUnacceptable2 <-
-    output$am.probSituUnacceptable1   <-
-    output$am.probSituUnacceptable2   <- shiny::renderText({
-        return(paste0(input$psi, "%"))
+    output$ef_risk_prob_limit_1 <-
+    output$ef_risk_prob_limit_2 <-
+    output$pe_risk_prob_limit_1 <-
+    output$pe_risk_prob_limit_2 <-
+    output$am_risk_prob_limit_1 <-
+    output$am_risk_prob_limit_2 <- shiny::renderText({
+        return(paste0(input$sb_psi, "%"))
     })
 
-    output$gm1 <-
-    output$gm2 <-
-    output$gm3 <- shiny::renderText({
-        gm <- lapply(num.res()$gm, \(x) as.character(signif(x, 2L)))
+    output$ef_estimate_geo_mean <-
+    output$pe_estimate_geo_mean <-
+    output$am_estimate_geo_mean <- shiny::renderText({
+        gm <- lapply(num_results()$gm, \(x) as.character(signif(x, 2L)))
         return(sprintf("%s [%s - %s]", gm$est, gm$lcl, gm$ucl))
     })
 
-    output$gsd1 <-
-    output$gsd2 <-
-    output$gsd3 <- shiny::renderText({
-        gsd <- lapply(num.res()$gsd, \(x) as.character(signif(x, 2L)))
+    output$ef_estimate_geo_sd <-
+    output$pe_estimate_geo_sd <-
+    output$am_estimate_geo_sd <- shiny::renderText({
+        gsd <- lapply(num_results()$gsd, \(x) as.character(signif(x, 2L)))
         return(sprintf("%s [%s - %s]", gsd$est, gsd$lcl, gsd$ucl))
     })
 
     ## Panel: Statistics -------------------------------------------------------
 
-    data.imputed <- reactive({
-        user_sample <- formatted.sample()
+    user_formatted_sample_imputed <- reactive({
+        user_sample <- user_formatted_sample()
         return(
             simple.censored.treatment(
                 observations.formatted = user_sample$data,
@@ -1193,14 +1194,14 @@ server <- function(input, output, session) {
 
     ### Descriptive Statistics -------------------------------------------------
 
-    output$res.desc <- shiny::renderTable(
+    output$st_stats_tbl <- shiny::renderTable(
         rownames = FALSE,
         spacing  = "m",
         hover    = TRUE,
         expr     = {
             stats_df <- fun.desc.stat(
-                data.simply.imputed = data.imputed(),
-                c.oel = formatted.sample()$c.oel)
+                data.simply.imputed = user_formatted_sample_imputed(),
+                c.oel = user_formatted_sample()$c.oel)
 
             # <sup> tag cannot be used in a renderTable()
             # call. Instead, we use superscripts ᵗʰ. These
@@ -1233,11 +1234,11 @@ server <- function(input, output, session) {
 
     # FIXME: (JMP) Rename arguments of this
     # function. Use shorter and semantic names.
-    output$qqplot <- shiny::renderPlot({
+    output$st_qq_plot <- shiny::renderPlot({
         return(
             fun.qqplot(
-                data.simply.imputed = data.imputed(),
-                notcensored         = formatted.sample()$notcensored,
+                data.simply.imputed = user_formatted_sample_imputed(),
+                notcensored         = user_formatted_sample()$notcensored,
                 qqplot.1            = translate("Quantile-Quantile Plot"),
                 qqplot.2            = translate("Quantiles (Lognormal Distribution)"),
                 qqplot.3            = translate("Quantiles (Standardized Measurements)"),
@@ -1250,11 +1251,11 @@ server <- function(input, output, session) {
 
     # FIXME: (JMP) Rename arguments of this
     # function. Use shorter and semantic names.
-    output$boxplot <- shiny::renderPlot({
-        user_sample <- formatted.sample()
+    output$st_box_plot <- shiny::renderPlot({
+        user_sample <- user_formatted_sample()
         return(
             fun.boxplot(
-                data.simply.imputed = data.imputed(),
+                data.simply.imputed = user_formatted_sample_imputed(),
                 notcensored         = user_sample$notcensored,
                 c.oel               = user_sample$c.oel,
                 boxplot.1           = translate("Measurement Type"),
@@ -1269,114 +1270,117 @@ server <- function(input, output, session) {
 
     ### UI ---------------------------------------------------------------------
 
-    # Each click on btn_customize triggers two actions:
+    # Each click on ef_exceed_plot_btn_custom triggers two actions:
     #   1. the icon of the button is updated, and
-    #   2. plot-exceedance-custom-container is either shown
+    #   2. ef_exceed_plot_cols_container is either shown
     #      or hidden (based on the button's state).
     # The button state's starts at 0 (hidden). Odd numbers
     # correspond to a displayed container, and even numbers
     # to a hidden container.
-    shiny::observeEvent(input$btn_customize, {
-        new_icon <- if (input$btn_customize %% 2L == 0L) {
+    shiny::observeEvent(input$ef_exceed_plot_btn_custom, {
+        new_icon <- if (input$ef_exceed_plot_btn_custom %% 2L == 0L) {
             static$icons$bottom
         } else {
             static$icons$top
         }
 
-        shiny::updateActionButton(inputId = "btn_customize", icon = new_icon)
-        shinyjs::toggle("plot-exceedance-custom-container")
+        shiny::updateActionButton(
+            inputId = "ef_exceed_plot_btn_custom",
+            icon    = new_icon)
+        shinyjs::toggle("ef_exceed_plot_cols_container")
     })
 
     ### Values -----------------------------------------------------------------
 
     # FIXME: (JMP) Rename arguments of this
     # function. Use shorter English names.
-    toutesVariantesFD <- shiny::reactive({
-        seuil           <- input$frac_threshold
-        num_results     <- num.res()
-        fracDepasseEst  <- ceiling(num_results$frac$est)
-        fracDepasseLim  <- ceiling(num_results$frac$ucl)
-        paramsVariantes <- paramsVariantesFracDep(
+    ef_exceed_plots <- shiny::reactive({
+        seuil    <- input$sb_frac_threshold
+        results  <- num_results()
+        frac_est <- ceiling(results$frac$est)
+        frac_ucl <- ceiling(results$frac$ucl)
+
+        params_plots <- paramsVariantesFracDep(
             images_dir,
             file.path(images_dir, "flask.png"),
             file.path(images_dir, "flask-lines.png"),
-            input$couleurRisque,
-            input$couleurAucunRisque,
-            input$couleurSeuil,
-            input$couleurFond)
+            input$ef_exceed_plot_col_risk,
+            input$ef_exceed_plot_col_no_risk,
+            input$ef_exceed_plot_col_bg_threshold,
+            input$ef_exceed_plot_col_bg)
 
         return(
             list(
                 figure1 = list(
                     drawPlot(
-                        paramsVariantes,
+                        params_plots,
                         fracDepasseEst = seuil,
                         titre          = translate("Acceptable Sample")),
                     drawPlot(
-                        paramsVariantes,
-                        fracDepasseEst = fracDepasseEst,
+                        params_plots,
+                        fracDepasseEst = frac_est,
                         titre          = translate("Current Sample"))),
                 figure2 = list(
                     drawPlot(
-                        paramsVariantes,
+                        params_plots,
                         fracDepasseEst = seuil,
                         titre          = translate("Acceptable Sample")),
                     drawPlot(
-                        paramsVariantes,
-                        fracDepasseEst = fracDepasseEst,
-                        fracDepasseLim = fracDepasseLim,
+                        params_plots,
+                        fracDepasseEst = frac_est,
+                        fracDepasseLim = frac_ucl,
                         titre          = translate("Current Sample"))),
                 figure3 = list(
                     drawPlot(
-                        paramsVariantes,
-                        fracDepasseEst = fracDepasseEst,
+                        params_plots,
+                        fracDepasseEst = frac_est,
                         seuil          = seuil)),
                 figure4 = list(
                     drawPlot(
-                        paramsVariantes,
-                        fracDepasseEst = fracDepasseEst,
-                        fracDepasseLim = fracDepasseLim,
+                        params_plots,
+                        fracDepasseEst = frac_est,
+                        fracDepasseLim = frac_ucl,
                         seuil          = seuil))))
     })
 
     ### Shared Outputs ---------------------------------------------------------
 
-    output$acceptableExpo1 <-
-    output$acceptableExpo2 <-
-    output$acceptableExpo3 <- shiny::renderText({
+    output$ef_sb_frac_threshold_percent_1 <-
+    output$ef_sb_frac_threshold_percent_2 <-
+    output$ef_sb_frac_threshold_percent_3 <- shiny::renderText({
         return(sprintf("%.1f%%", input$frac_threshold))
     })
 
     ### Risk Decision ----------------------------------------------------------
 
-    # See subsection Shared Outputs above for output$acceptableExpo1.
+    # See subsection Shared Outputs above for output$ef_sb_frac_threshold_percent_1.
 
     # FIXME: (JMP) Use a dedicated formatting function.
-    output$probrisk <- shiny::renderText({
-        return(paste0(signif(num.res()$frac.risk, 3L), "%"))
+    output$ef_risk_prob_criterion <- shiny::renderText({
+        return(paste0(signif(num_results()$frac.risk, 3L), "%"))
     })
 
-    # See section Shared Outputs above for output$frac.probSituUnacceptable1.
+    # See section Shared Outputs above for output$ef_risk_prob_limit_1.
 
-    # FIXME: (JMP) output$finalrisk, output$finalrisk.perc, and
-    # output$finalrisk.AM are almost identical calls. They could
+    # FIXME: (JMP) output$ef_risk_decision, output$pe_risk_decision, and
+    # output$am_risk_decision are almost identical calls. They could
     # be encapsulated into a single function with two inputs.
-    output$finalrisk <- shiny::renderText({
-        if (num.res()$frac.risk >= user.input()$psi) {
+    output$ef_risk_decision <- shiny::renderText({
+        if (num_results()$frac.risk >= user_inputs()$psi) {
             return(translate("poorly controlled"))
         }
 
         return(translate("adequately controlled"))
     })
 
-    # FIXME: (JMP): All risk meters (output$risquemetre, output$risquemetre2,
+    # FIXME: (JMP): All risk meters (output$ef_risk_meter_plot, output$pe_risk_meter_plot,
     # and output$riskmetre.am) are generated using the exact same inputs.
     # Code can be further reduced by setting these inputs as default ones.
-    output$risquemetre <- shiny::renderPlot({
+    output$ef_risk_meter_plot <- shiny::renderPlot({
         return(
             dessinerRisqueMetre(
-                actualProb          = num.res()$frac.risk,
-                minProbUnacceptable = user.input()$psi,
+                actualProb          = num_results()$frac.risk,
+                minProbUnacceptable = user_inputs()$psi,
                 colorProb           = "darkblue",
                 actualProb2         = NULL,
                 colorProb2          = "#4863A0"))
@@ -1384,17 +1388,18 @@ server <- function(input, output, session) {
 
     ### Parameter Estimates ----------------------------------------------------
 
-    # See section Shared Outputs above for output$gm1, and output$gsd1.
+    # See section Shared Outputs above for output$ef_estimate_geo_mean,
+    # and output$ef_estimate_geo_sd.
 
-    output$Frac <- shiny::renderText({
-        frac <- lapply(num.res()$frac, \(x) as.character(signif(x, 3L)))
+    output$ef_estimate <- shiny::renderText({
+        frac <- lapply(num_results()$frac, \(x) as.character(signif(x, 3L)))
         return(sprintf("%s%% [%s - %s]", frac$est, frac$lcl, frac$ucl))
     })
 
     ### Exceedance Plot --------------------------------------------------------
 
-    output$fracDepVariantes <- shiny::renderPlot({
-        ptlist <- toutesVariantesFD()[[input$varianteFracDep]]
+    output$ef_exceed_plot <- shiny::renderPlot({
+        ptlist <- ef_exceed_plots()[[input$ef_exceed_plot_btn_variant]]
         return(gridExtra::grid.arrange(grobs = ptlist, ncol = length(ptlist)))
     },
     # Variant 3 and 4 are just one plot. They are centered
@@ -1402,16 +1407,16 @@ server <- function(input, output, session) {
     # CSS classes, see plotOutput() above).
     width = \() {
         return(
-            switch(input$varianteFracDep,
+            switch(input$ef_exceed_plot_btn_variant,
                 figure1 = "auto",
                 figure2 = "auto",
                 figure3 = 700L,
                 figure4 = 700L))
     })
 
-    output$fracDepVarianteDesc <- shiny::renderText({
+    output$ef_exceed_plot_description <- shiny::renderText({
         return(
-            switch(input$varianteFracDep,
+            switch(input$ef_exceed_plot_btn_variant,
                 figure1 = translate("
                     The plot on the left shows an acceptable situation for the
                     chosen exceedance threshold (traditionally 5% above the OEL).
@@ -1453,14 +1458,14 @@ server <- function(input, output, session) {
 
     # FIXME: (JMP) Rename arguments of this
     # function. Use shorter and semantic names.
-    output$seqplot.frac <- shiny::renderPlot({
-        num_results <- num.res()
+    output$ef_seq_plot <- shiny::renderPlot({
+        results <- num_results()
         return(
             sequential.plot.frac(
-                gm        = num_results$gm$est,
-                gsd       = num_results$gsd$est,
-                frac      = num_results$frac$est,
-                c.oel     = formatted.sample()$c.oel,
+                gm        = results$gm$est,
+                gsd       = results$gsd$est,
+                frac      = results$frac$est,
+                c.oel     = user_formatted_sample()$c.oel,
                 seqplot.1 = translate("Concentration"),
                 seqplot.2 = translate("Exceedance Fraction"),
                 seqplot.6 = translate("Measurement Index")))
@@ -1470,14 +1475,14 @@ server <- function(input, output, session) {
 
     # FIXME: (JMP) Rename arguments of this
     # function. Use shorter and semantic names.
-    output$distplot.frac <- shiny::renderPlot({
-        bayesian_outputs <- bayesian.analysis()
+    output$ef_dist_plot <- shiny::renderPlot({
+        bayesian_outputs <- bayesian_analysis()
         return(
             distribution.plot.frac(
                 gm         = exp(median(bayesian_outputs$mu.chain)),
                 gsd        = exp(median(bayesian_outputs$sigma.chain)),
-                frac       = num.res()$frac$est ,
-                c.oel      = formatted.sample()$c.oel,
+                frac       = num_results()$frac$est ,
+                c.oel      = user_formatted_sample()$c.oel,
                 distplot.1 = translate("Concentration"),
                 distplot.2 = translate("Density"),
                 distplot.3 = translate("Exceedance Fraction"),
@@ -1487,26 +1492,26 @@ server <- function(input, output, session) {
 
     ### Risk Band Plot ---------------------------------------------------------
 
-    output$frac.acceptableExpoDiv1 <-
-    output$frac.acceptableExpoDiv2 <- shiny::renderText({
-        return(paste0(input$frac_threshold / 10, "%"))
+    output$ef_good_exposure_percent_1 <-
+    output$ef_good_exposure_percent_2 <- shiny::renderText({
+        return(paste0(input$sb_frac_threshold / 10, "%"))
     })
 
     # See subsection Shared Outputs above for
-    # output$acceptableExpo2 and output$acceptableExpo3.
+    # output$ef_sb_frac_threshold_percent_2 and output$ef_sb_frac_threshold_percent_3.
 
     # FIXME: (JMP) Rename arguments of this
     # function. Use shorter and semantic names.
-    output$riskband.frac <- shiny::renderPlot({
-        bayesian_outputs <- bayesian.analysis()
-        user_inputs      <- user.input()
+    output$ef_risk_band_plot <- shiny::renderPlot({
+        bayesian_outputs <- bayesian_analysis()
+        inputs           <- user_inputs()
         return(
             riskband.plot.frac(
                 mu.chain       = bayesian_outputs$mu.chain,
                 sigma.chain    = bayesian_outputs$sigma.chain,
-                c.oel          = formatted.sample()$c.oel,
-                frac_threshold = user_inputs$frac_threshold,
-                psi            = user_inputs$psi,
+                c.oel          = user_formatted_sample()$c.oel,
+                frac_threshold = inputs$sb_frac_threshold,
+                psi            = inputs$sb_psi,
                 riskplot.1     = translate("Exceedance Fraction Category"),
                 riskplot.2     = translate("Probability")))
     })
@@ -1515,10 +1520,10 @@ server <- function(input, output, session) {
 
     ### Shared Outputs ---------------------------------------------------------
 
-    output$perc.percentile.risk.decision   <-
-    output$perc.percentile.param.estimates <-
-    output$perc.percentile.risk.band       <- shiny::renderUI({
-        value <- input$target_perc
+    output$pe_sb_target_perc_ordinal_1 <-
+    output$pe_sb_target_perc_ordinal_2 <-
+    output$pe_sb_target_perc_ordinal_3 <- shiny::renderUI({
+        value <- input$sb_target_perc
         return(
             sprintf_html(
                 "%.0f<sup>%s</sup>",
@@ -1528,34 +1533,33 @@ server <- function(input, output, session) {
 
     ### Risk Decision ----------------------------------------------------------
 
-    # See section Shared Outputs above for output$perc.percentile.risk.decision.
+    # See section Shared Outputs above for output$pe_sb_target_perc_ordinal_1.
 
     # FIXME: (JMP) Use a dedicated formatting function.
-    output$probrisk.perc <- shiny::renderText({
-        return(paste0(signif(num.res()$perc.risk, 3L), "%"))
+    output$pe_risk_prob_criterion <- shiny::renderText({
+        return(paste0(signif(num_results()$perc.risk, 3L), "%"))
     })
 
-    # See section Shared Outputs above for output$perc.probSituUnacceptable1.
+    # See section Shared Outputs above for output$pe_risk_prob_limit_1.
 
-    # FIXME: (JMP) output$finalrisk, output$finalrisk.perc, and
-    # output$finalrisk.AM are almost identical calls. They could
+    # FIXME: (JMP) output$ef_risk_decision, output$pe_risk_decision, and
+    # output$am_risk_decision are almost identical calls. They could
     # be encapsulated into a single function with two inputs.
-    output$finalrisk.perc <-shiny::renderText({
-        if (num.res()$perc.risk >= user.input()$psi) {
+    output$pe_risk_decision <-shiny::renderText({
+        if (num_results()$perc.risk >= user_inputs()$psi) {
             return(translate("poorly controlled"))
         }
 
         return(translate("adequately controlled"))
     })
 
-    # FIXME: (JMP): All risk meters (output$risquemetre, output$risquemetre2,
-    # and output$riskmetre.am) are generated using the exact same inputs.
+    # FIXME: (JMP): All risk meters are generated using the same inputs.
     # Code can be further reduced by setting these inputs as default ones.
-    output$risquemetre2 <- shiny::renderPlot({
+    output$pe_risk_meter_plot <- shiny::renderPlot({
         return(
             dessinerRisqueMetre(
-                actualProb          = num.res()$perc.risk,
-                minProbUnacceptable = user.input()$psi,
+                actualProb          = num_results()$perc.risk,
+                minProbUnacceptable = user_inputs()$psi,
                 colorProb           = "darkblue",
                 actualProb2         = NULL,
                 colorProb2          = "#4863A0"))
@@ -1563,13 +1567,14 @@ server <- function(input, output, session) {
 
     ### Parameter Estimates ----------------------------------------------------
 
-    # See section Shared Outputs above for output$gm2, and output$gsd2.
+    # See section Shared Outputs above for output$pe_estimate_geo_mean,
+    # and output$pe_estimate_geo_sd.
 
     # See subsection Panel: Percentiles - Shared Outputs
-    # above for output$perc.percentile.param.estimates.
+    # above for output$pe_sb_target_perc_ordinal_2.
 
-    output$Perc <- shiny::renderText({
-        perc <- lapply(num.res()$perc, \(x) as.character(signif(x, 3L)))
+    output$pe_estimate <- shiny::renderText({
+        perc <- lapply(num_results()$perc, \(x) as.character(signif(x, 3L)))
         return(sprintf("%s [%s - %s]", perc$est, perc$lcl, perc$ucl))
     })
 
@@ -1577,16 +1582,16 @@ server <- function(input, output, session) {
 
     # FIXME: (JMP) Rename arguments of this
     # function. Use shorter and semantic names.
-    output$seqplot.perc <- shiny::renderPlot({
-        num_results <- num.res()
-        target_perc <- user.input()$target_perc
+    output$pe_seq_plot <- shiny::renderPlot({
+        results     <- num_results()
+        target_perc <- user_inputs()$target_perc
         return(
             sequential.plot.perc(
-                gm                 = num_results$gm$est,
-                gsd                = num_results$gsd$est,
-                perc               = num_results$perc$est,
-                c.oel              = formatted.sample()$c.oel,
-                target_perc        = user.input()$target_perc,
+                gm                 = results$gm$est,
+                gsd                = results$gsd$est,
+                perc               = results$perc$est,
+                c.oel              = user_formatted_sample()$c.oel,
+                target_perc        = target_perc,
                 target_perc_suffix = ordinal_number_suffix(target_perc),
                 seqplot.1          = translate("Concentration"),
                 seqplot.3          = translate("OEL"),
@@ -1598,17 +1603,17 @@ server <- function(input, output, session) {
 
     # FIXME: (JMP) Rename arguments of this
     # function. Use shorter and semantic names.
-    output$distplot.perc <- shiny::renderPlot({
-        bayesian_outputs <- bayesian.analysis()
-        target_perc      <- user.input()$target_perc
+    output$pe_dist_plot <- shiny::renderPlot({
+        bayesian_outputs <- bayesian_analysis()
+        target_perc      <- user_inputs()$target_perc
         return(
             distribution.plot.perc(
                 gm                 = exp(median(bayesian_outputs$mu.chain)),
                 gsd                = exp(median(bayesian_outputs$sigma.chain)),
-                perc               = num.res()$perc$est,
+                perc               = num_results()$perc$est,
                 target_perc        = target_perc,
                 target_perc_suffix = ordinal_number_suffix(target_perc),
-                c.oel              = formatted.sample()$c.oel,
+                c.oel              = user_formatted_sample()$c.oel,
                 distplot.1         = translate("Concentration"),
                 distplot.2         = translate("Density"),
                 distplot.4         = translate("OEL outside of graphical limits."),
@@ -1619,20 +1624,20 @@ server <- function(input, output, session) {
     ### Risk Band Plot ---------------------------------------------------------
 
     # See subsection Panel: Percentiles - Shared Outputs
-    # above for output$perc.percentile.risk.band.
+    # above for output$pe_sb_target_perc_ordinal_3.
 
     # FIXME: (JMP) Rename arguments of this
     # function. Use shorter and semantic names.
-    output$riskband.perc <- shiny::renderPlot({
-        bayesian_outputs <- bayesian.analysis()
-        user_inputs      <- user.input()
+    output$pe_risk_band_plot <- shiny::renderPlot({
+        bayesian_outputs <- bayesian_analysis()
+        inputs           <- user_inputs()
         return(
             riskband.plot.perc(
                 mu.chain    = bayesian_outputs$mu.chain,
                 sigma.chain = bayesian_outputs$sigma.chain,
-                c.oel       = formatted.sample()$c.oel,
-                target_perc = user_inputs$target_perc,
-                psi         = user_inputs$psi,
+                c.oel       = user_formatted_sample()$c.oel,
+                target_perc = inputs$target_perc,
+                psi         = inputs$psi,
                 # ≤ may not render in all IDEs. This is Unicode
                 # character U+2264 (&leq;) (Less-Than or Equal To).
                 riskplot.2  = translate("Probability"),
@@ -1649,31 +1654,30 @@ server <- function(input, output, session) {
     ### Risk Decision ----------------------------------------------------------
 
     # FIXME: (JMP) Use a dedicated formatting function.
-    output$probrisk.AM <- shiny::renderText({
-        return(paste0(signif(num.res()$am.risk, 3L), "%"))
+    output$am_risk_prob_criterion <- shiny::renderText({
+        return(paste0(signif(num_results()$am.risk, 3L), "%"))
     })
 
-    # See section Shared Outputs above for output$am.probSituUnacceptable1.
+    # See section Shared Outputs above for output$am_risk_prob_limit_1.
 
-    # FIXME: (JMP) output$finalrisk, output$finalrisk.perc, and
-    # output$finalrisk.AM are almost identical calls. They could
+    # FIXME: (JMP) output$ef_risk_decision, output$pe_risk_decision, and
+    # output$am_risk_decision are almost identical calls. They could
     # be encapsulated into a single function with two inputs.
-    output$finalrisk.AM <-shiny::renderText({
-        msgid <- if (num.res()$am.risk >= user.input()$psi) {
+    output$am_risk_decision <-shiny::renderText({
+        msgid <- if (num_results()$am.risk >= user_inputs()$psi) {
             return(translate("poorly controlled"))
         }
 
         return(translate("adequately controlled"))
     })
 
-    # FIXME: (JMP): All risk meters (output$risquemetre, output$risquemetre2,
-    # and output$riskmetre.am) are generated using the exact same inputs.
+    # FIXME: (JMP): All risk meters are generated using the exact same inputs.
     # Code can be further reduced by setting these inputs as default ones.
-    output$risquemetre.am <- renderPlot({
+    output$am_risk_meter_plot <- renderPlot({
         return(
             dessinerRisqueMetre(
-                actualProb          = num.res()$am.risk,
-                minProbUnacceptable = user.input()$psi,
+                actualProb          = num_results()$am.risk,
+                minProbUnacceptable = user_inputs()$psi,
                 colorProb           = "darkblue",
                 actualProb2         = NULL,
                 colorProb2          = "#4863A0"))
@@ -1681,10 +1685,11 @@ server <- function(input, output, session) {
 
     ### Parameter Estimates ----------------------------------------------------
 
-    # See section Shared Outputs above for output$gm3, and output$gsd3.
+    # See section Shared Outputs above for
+    # output$am_estimate_geo_mean, and output$am_estimate_geo_sd.
 
-    output$AM <- shiny::renderText({
-        am <- lapply(num.res()$am, \(x) as.character(signif(x, 3L)))
+    output$am_estimate <- shiny::renderText({
+        am <- lapply(num_results()$am, \(x) as.character(signif(x, 3L)))
         return(sprintf("%s [%s - %s]", am$est, am$lcl, am$ucl))
     })
 
@@ -1692,14 +1697,14 @@ server <- function(input, output, session) {
 
     # FIXME: (JMP) Rename arguments of this
     # function. Use shorter and semantic names.
-    output$seqplot.AM <- shiny::renderPlot({
-        num_results <- num.res()
+    output$am_seq_plot <- shiny::renderPlot({
+        results <- num_results()
         return(
             sequential.plot.am(
-                gm        = num_results$gm$est,
-                gsd       = num_results$gsd$est,
-                am        = num_results$am$est,
-                c.oel     = formatted.sample()$c.oel,
+                gm        = results$gm$est,
+                gsd       = results$gsd$est,
+                am        = results$am$est,
+                c.oel     = user_formatted_sample()$c.oel,
                 seqplot.1 = translate("Concentration"),
                 seqplot.3 = translate("Exceedance Fraction"),
                 seqplot.5 = translate("Arithmetic Mean"),
@@ -1710,14 +1715,14 @@ server <- function(input, output, session) {
 
     # FIXME: (JMP) Rename arguments of this
     # function. Use shorter and semantic names.
-    output$distplot.AM <- shiny::renderPlot({
-        bayesian_outputs <- bayesian.analysis()
+    output$am_dist_plot <- shiny::renderPlot({
+        bayesian_outputs <- bayesian_analysis()
         return(
             distribution.plot.am(
                 gm         = exp(median(bayesian_outputs$mu.chain)),
                 gsd        = exp(median(bayesian_outputs$sigma.chain)),
-                am         = num.res()$am$est,
-                c.oel      = formatted.sample()$c.oel,
+                am         = num_results()$am$est,
+                c.oel      = user_formatted_sample()$c.oel,
                 distplot.1 = translate("Concentration"),
                 distplot.2 = translate("Density"),
                 distplot.4 = translate("OEL outside of graphical limits."),
@@ -1729,14 +1734,14 @@ server <- function(input, output, session) {
 
     # FIXME: (JMP) Rename arguments of this
     # function. Use shorter and semantic names.
-    output$riskband.am <- shiny::renderPlot({
-        bayesian_outputs <- bayesian.analysis()
+    output$am_risk_band_plot <- shiny::renderPlot({
+        bayesian_outputs <- bayesian_analysis()
         return(
             riskband.plot.am(
                 mu.chain    = bayesian_outputs$mu.chain,
                 sigma.chain = bayesian_outputs$sigma.chain,
-                c.oel       = formatted.sample()$c.oel,
-                psi         = user.input()$psi,
+                c.oel       = user_formatted_sample()$c.oel,
+                psi         = user_inputs()$psi,
                 riskplot.2  = translate("Probability"),
                 riskplot.3  = translate("≤ 1% OEL"),
                 riskplot.4  = translate("1% < OEL ≤ 10%"),
