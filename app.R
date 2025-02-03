@@ -494,11 +494,14 @@ ui <- shiny::fluidPage(
                                 returnName = TRUE,
                                 palette    = "limited"))),
 
-                    # FIXME: (JMP) This currently does not scale like
-                    # it used to when compared to the previous version.
+                    # Width is set by a function passed to renderPlot().
                     shiny::plotOutput(
                         outputId = "fracDepVariantes",
+                        width    = "auto",
                         height   = plot_height) |>
+                        # This class is used to center
+                        # variants that only shows 1 plot.
+                        htmltools::tagAppendAttributes(class = "app-center-plot") |>
                         # This color is extracted from
                         # the chosen shiny theme (flatly).
                         shinycssloaders::withSpinner(
@@ -1383,18 +1386,20 @@ server <- function(input, output, session) {
 
     ### Exceedance Plot --------------------------------------------------------
 
-    # FIXME: (JMP) This does not scale accordingly on
-    # first clicks on varianteFracDep.
     output$fracDepVariantes <- shiny::renderPlot({
-        variant <- input$varianteFracDep
-
-        shinyjs::removeClass("fracDepVariantes", "app-half-width")
-        switch(variant,
-            figure3 = shinyjs::addClass("fracDepVariantes", "app-half-width"),
-            figure4 = shinyjs::addClass("fracDepVariantes", "app-half-width"))
-
-        ptlist <- toutesVariantesFD()[[variant]]
+        ptlist <- toutesVariantesFD()[[input$varianteFracDep]]
         return(gridExtra::grid.arrange(grobs = ptlist, ncol = length(ptlist)))
+    },
+    # Variant 3 and 4 are just one plot. They are centered
+    # by limiting their width (and by setting apppropriate
+    # CSS classes, see plotOutput() above).
+    width = \() {
+        return(
+            switch(input$varianteFracDep,
+                figure1 = "auto",
+                figure2 = "auto",
+                figure3 = 700L,
+                figure4 = 700L))
     })
 
     output$fracDepVarianteDesc <- shiny::renderText({

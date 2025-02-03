@@ -58,9 +58,12 @@
     margin: 0;
 }
 
-.app-half-width {
-    width: 50% !important;
-    margin: auto;
+/* renderPlot() returns PNG images, which are rendered
+   as <img> tags by browsers. These tags are inline by
+   default, so they can be centered in their container
+   as text would be. */
+.app-center-plot {
+  text-align: center;
 }
 
 /* Justify all paragraphs by adding spaces between words. */
