@@ -37,6 +37,16 @@ source(file.path("scripts", "Common", "Main graph functions.R"))
 # Where to store images.
 images_dir <- file.path("www", "images")
 
+# Current year.
+current_year <- format(Sys.time(), tz = "EST", format = "%Y")
+
+# Default height of plots.
+plot_height <- "600px"
+
+# Default height of risk meters.
+# Using a lower height for these specific plots is preferable.
+plot_risk_meter_height <- "500px"
+
 # Alias to shiny' list of functions used to create HTML tags.
 html <- shiny::tags
 
