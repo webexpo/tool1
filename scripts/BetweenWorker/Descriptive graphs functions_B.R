@@ -31,23 +31,23 @@ fun.qqplot.group <-function(data.simply.imputed , notcensored , workers ,
                             qqplot.4="Measurement type",
                             qqplot.5="Censored",
                             qqplot.6="Detected") {
-  
+
   res2 <-fun.graph.NDexpo(data.simply.imputed$imputed$data)
-  
-  
+
+
   data.f <-data.frame(x=res2$x,
                       y=res2$y,
                       is.censored=notcensored[res2$reorder],
                       worker=workers[res2$reorder],
                       x.prime=res2$x.prime,
                       stringsAsFactors=F)
-  
+
   if (length(data.f[data.f$is.censored==0,1])==0) {
-    
+
     p<-ggplot(data.f,aes(x=x,y=y),main=qqplot.1)
     p<-p+ suppressWarnings(geom_point(size=4,aes(colour=worker)))
-    p<-p+geom_abline(intercept=0, slope=1)+ 
-      
+    p<-p+geom_abline(intercept=0, slope=1)+
+
       xlab(qqplot.2)+ylab(qqplot.3)+
       theme(axis.title.x=element_text(size=14,vjust=0))+
       theme(axis.text.x=element_text(size=14))+
@@ -56,11 +56,11 @@ fun.qqplot.group <-function(data.simply.imputed , notcensored , workers ,
       theme(legend.position='top',
             legend.title=element_text(size=14),
             legend.text=element_text(size=14) )
-    
+
   }
-  
+
   if (length(data.f[data.f$is.censored==0,1])!=0) {
-    
+
     p<-ggplot(data.f,aes(x=x,y=y,colour=worker),main=qqplot.1)
     p<-p+ suppressWarnings(geom_point(size=4,aes(pch=is.censored)))+
       scale_shape_manual(values=c(1,16),
@@ -75,12 +75,12 @@ fun.qqplot.group <-function(data.simply.imputed , notcensored , workers ,
       theme(legend.position='top',
             legend.title=element_text(size=14),
             legend.text=element_text(size=14) )
-    
-    
+
+
   }
-  
+
   print(p)
-  
+
 }
 
 

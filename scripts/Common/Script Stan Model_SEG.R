@@ -8,7 +8,7 @@
 
 #library(rstan)
 
-########STAN censored model multiply censored 
+########STAN censored model multiply censored
 
 
 modelString = "
@@ -70,6 +70,6 @@ target += log_diff_exp(normal_lcdf(intcensored_right_values[n] | mu, sigma),norm
 " # close quote for modelString
 
 
-stanmodel.seg <- stan_model( model_code=modelString )   
+stanmodel.seg <- stan_model( model_code=modelString )
 
 saveRDS(stanmodel.seg,"C:/jerome/Dropbox/bureau/RStudio/expostats/shinyapps/expostats functions 2018/Common functions/stanmodel.seg.RDS")

@@ -1,4 +1,7 @@
-# Ignore local and temporary files.
+# Ignore environment variables. See README.
+.Renviron
+
+# Ignore local files.
 .local
 
 # Ignore by-products and temporary files.

@@ -20,40 +20,40 @@ data.formatting.D <-function(data.in , oel , oel.mult, VarOfInterest ) {
 
 
         #data.in <-data.sample
-        
+
         #oel <-0.6
-        
+
         #oel.mult <-1
-        
+
        # VarOfInterest <-"job"
-  
-  
-######  Part B :  Information about censorship for further analysis 
+
+
+######  Part B :  Information about censorship for further analysis
 
       #preparing the result object
-          
+
         result <-list()
-          
+
         result$data <-unlist(data.in[,1])
-        
+
         dataforseed <-paste(data.in,collapse = "")
-        
+
         ## corrected OEL
         result$c.oel <-oel*oel.mult
-        
-        result$leftcensored <-grepl('<' , result$data, fixed = TRUE) 
+
+        result$leftcensored <-grepl('<' , result$data, fixed = TRUE)
         result$rightcensored <-grepl('>' , result$data , fixed = TRUE)
         result$intcensored <-grepl('[' , result$data , fixed = TRUE)
         result$notcensored <-!(result$leftcensored | result$rightcensored | result$intcensored)
         result$seed <-genererHash(dataforseed)
         result$var <-unlist(data.in[,VarOfInterest])
 
-##### pat C : unique seed to obtain invariant bayesian results        
-                  
+##### pat C : unique seed to obtain invariant bayesian results
+
 
 return(result)
-        
-        
+
+
 }
 
 
@@ -78,24 +78,24 @@ genererHash <- function(measures) {
 ##### modifying a formatted list for selection of a group
 
 select.cat.formatted <-function(data.formatted , cat) {
-  
+
   result <- data.formatted
-  
+
   restrict <- data.formatted$var==cat
-  
+
   result$data <- result$data[ restrict ]
-  
+
   result$notcensored <- result$notcensored[restrict]
-  
+
   result$leftcensored <- result$leftcensored[restrict]
-  
+
   result$rightcensored <- result$rightcensored[restrict]
-  
-  result$intcensored <- result$intcensored[restrict] 
-  
-  result$var <- result$var[restrict] 
-  
+
+  result$intcensored <- result$intcensored[restrict]
+
+  result$var <- result$var[restrict]
+
   return(result)
-  
-  
+
+
 }

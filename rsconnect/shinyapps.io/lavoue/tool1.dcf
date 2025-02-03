@@ -1,0 +1,11 @@
+name: tool1
+title: Tool1: Data Interpretation for One Similarly Exposed Group
+username: lavoue
+account: lavoue
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 13889847
+bundleId: 9742056
+url: https://lavoue.shinyapps.io/tool1/
+version: 1
+current_version: 4.0.0-RC1

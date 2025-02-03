@@ -89,8 +89,8 @@ calendar.plot <-function(frac.est,
 sequential.plot.frac <-function( gm , gsd , frac , c.oel ,
                                  pal_col = TRUE,
                                  seqplot.1="Concentration",
-                                 seqplot.2="Exceedance fraction",
-                                 seqplot.6="") {
+                                 seqplot.2="Exceedance Fraction",
+                                 seqplot.6="Measurement Index") {
 
   mu <-log(gm)
 
@@ -143,12 +143,13 @@ sequential.plot.frac <-function( gm , gsd , frac , c.oel ,
 
 ##### PERC
 
-sequential.plot.perc <-function(gm , gsd , perc , target_perc , c.oel ,
+sequential.plot.perc <-function(gm , gsd , perc , target_perc, target_perc_suffix,
+                                c.oel ,
                                 pal_col = TRUE,
                                 seqplot.1="Concentration",
                                 seqplot.3="OEL",
                                 seqplot.4="Percentile",
-                                seqplot.6 = "Months") {
+                                seqplot.6="Measurement Index") {
 
   mu <-log(gm)
 
@@ -190,7 +191,7 @@ sequential.plot.perc <-function(gm , gsd , perc , target_perc , c.oel ,
              label = seqplot.3,
              size=6,hjust=0.5,color=vec_color[2]) +
     annotate("text", x = 120, y = (perc*1.1),
-             label = paste(seqplot.4,target_perc ,sep=" "),
+             label = paste0(target_perc, target_perc_suffix, " ", seqplot.4),
              size=6,hjust=0.5,color=vec_color[1]) +
 
 
@@ -213,7 +214,7 @@ sequential.plot.am <-function(gm , gsd , am , c.oel ,
                               seqplot.1="Concentration",
                               seqplot.3="OEL",
                               seqplot.5="Arithmetic mean",
-                              seqplot.6 = "Months") {
+                              seqplot.6="Measurement Index") {
 
   mu <-log(gm)
 
@@ -272,8 +273,8 @@ sequential.plot.am <-function(gm , gsd , am , c.oel ,
 
                                                  distplot.1="Concentration",
                                                  distplot.2="Density",
-                                                 distplot.3="Exceedance\nfraction",
-                                                 distplot.4="OEL outside of graphical limits",
+                                                 distplot.3="Exceedance Fraction",
+                                                 distplot.4="OEL outside of graphical limits.",
                                                  distplot.5="OEL") {
 
               mu <-log(gm)
@@ -305,7 +306,7 @@ sequential.plot.am <-function(gm , gsd , am , c.oel ,
                if (c.oel>max) {
 
                  graph3 <-graph3+ annotate("text", x = (max-min)/2, y = (max(mydata$y)/1.5),
-                                           label = paste(distplot.3,signif(frac.dep,3),"%",sep=""),
+                                           label = paste0(distplot.3, ": ", signif(frac.dep,3), "%"),
                                            size=6,hjust=0.5)+
 
                    annotate("text", x = (max-min)/2, y = (max(mydata$y)/2.5),
@@ -319,7 +320,7 @@ sequential.plot.am <-function(gm , gsd , am , c.oel ,
                                                   yend = dlnorm(c.oel,mu,sigma)),size=1.3,color="red")+
                    geom_area(aes(x=pmax(x,c.oel),y=y),fill='red',alpha=I(1/3))+
                    annotate("text", x = (max-min)/2, y = (max(mydata$y)/1.5),
-                            label = paste(distplot.3,signif(frac.dep,3),"%",sep=""),
+                            label =  paste0(distplot.3, ": ", signif(frac.dep,3), "%"),
                             size=6,hjust=0.5)+
                    annotate("text", x = c.oel*1.05, y = dlnorm(c.oel,mu,sigma)*1.3,
                             label = distplot.5,
@@ -333,10 +334,10 @@ sequential.plot.am <-function(gm , gsd , am , c.oel ,
 
 ####### PERC
 
-  distribution.plot.perc <-function( gm , gsd , perc , target_perc , c.oel ,
+  distribution.plot.perc <-function( gm , gsd , perc , target_perc , target_perc_suffix, c.oel ,
                                      distplot.1="Concentration",
                                      distplot.2="Density",
-                                     distplot.4="OEL outside of graphical limits",
+                                     distplot.4="OEL outside of graphical limits.",
                                      distplot.5="OEL",
                                      distplot.6="Percentile") {
 
@@ -366,7 +367,7 @@ sequential.plot.am <-function(gm , gsd , am , c.oel ,
                          yend = (max(mydata$y)/2.5)),size=1.3,color="blue")+
           geom_area(aes(x=pmin(x,perc),y=y),fill='blue',alpha=I(1/3))+
           annotate("text", x = perc, y = (max(mydata$y)/2.05),
-                   label = paste(distplot.6,target_perc,sep=" "),
+                   label = paste0(target_perc, target_perc_suffix, " ", distplot.6),
                    size=6,color="blue")
 
         if(c.oel>0.75*max) xannot <-(c.oel/2)
@@ -397,7 +398,7 @@ sequential.plot.am <-function(gm , gsd , am , c.oel ,
   distribution.plot.am <-function( gm , gsd , am , c.oel ,
                                    distplot.1="Concentration",
                                    distplot.2="Density",
-                                   distplot.4="OEL outside of graphical limits",
+                                   distplot.4="OEL outside of graphical limits.",
                                    distplot.5="OEL",
                                    distplot.7="Arithmetic mean") {
 
@@ -470,7 +471,7 @@ sequential.plot.am <-function(gm , gsd , am , c.oel ,
 
 riskband.plot.frac <-function(mu.chain , sigma.chain , c.oel , frac_threshold , psi=30,
 
-                              riskplot.1="Exceedance category",
+                              riskplot.1="Exceedance Category",
                               riskplot.2="Probability"
                               ) {
 
@@ -488,7 +489,7 @@ riskband.plot.frac <-function(mu.chain , sigma.chain , c.oel , frac_threshold , 
     C2 <-100*length(frac.chain[frac.chain>=bande1 & frac.chain<frac_threshold])/length(frac.chain)
     C3 <-100*length(frac.chain[frac.chain>=frac_threshold ])/length(frac.chain)
 
-    cats <- factor(c('C1','C2','C3'),labels=c(paste0('<', bande1, '%'),paste0(bande1, '-', frac_threshold, '%'),paste0('>', frac_threshold, '%')))
+    cats <- factor(c('C1','C2','C3'),labels=c(paste0('EF < ', bande1, '%'),paste0(bande1, '≤ EF ≤ ', frac_threshold, '%'),paste0('EF > ', frac_threshold, '%')))
 
     data <-data.frame(perc=c(C1,C2,C3),cat=cats)
 
@@ -519,13 +520,15 @@ riskband.plot.frac <-function(mu.chain , sigma.chain , c.oel , frac_threshold , 
 #### PERC
 
   riskband.plot.perc <-function(mu.chain , sigma.chain , c.oel , target_perc, psi=30,
-                                riskplot.2="Probability",
-                                riskplot.3="<1%\nOEL",
-                                riskplot.4="1-10%\nOEL",
-                                riskplot.5="10-50%\nOEL",
-                                riskplot.6="50-100%\nOEL",
-                                riskplot.7=">OEL",
-                                riskplot.8="Critical percentile category") {
+                                # ≤ may not render in all IDEs. This is Unicode
+                                # character U+2264 (&leq;) (Less-Than or Equal To).
+                                riskplot.2  = "Probability",
+                                riskplot.3  = "≤ 1% OEL",
+                                riskplot.4  = "1% < OEL ≤ 10%",
+                                riskplot.5  = "10% < OEL ≤ 50%",
+                                riskplot.6  = "50% < OEL ≤ 100%",
+                                riskplot.7  = "> OEL",
+                                riskplot.8  = "Critical Percentile Category") {
 
     mu <-mu.chain
 
@@ -571,14 +574,13 @@ riskband.plot.frac <-function(mu.chain , sigma.chain , c.oel , frac_threshold , 
 ###### AM
 
   riskband.plot.am <-function(mu.chain , sigma.chain , c.oel , psi=30,
-
-                              riskplot.2="Probability",
-                              riskplot.3="<1%\nOEL",
-                              riskplot.4="1-10%\nOEL",
-                              riskplot.5="10-50%\nOEL",
-                              riskplot.6="50-100%\nOEL",
-                              riskplot.7=">OEL",
-                              riskplot.9="Arithmetic mean category") {
+                              riskplot.2  = "Probability",
+                              riskplot.3  = "≤ 1% OEL",
+                              riskplot.4  = "1% < OEL ≤ 10%",
+                              riskplot.5  = "10% < OEL ≤ 50%",
+                              riskplot.6  = "50% < OEL ≤ 100%",
+                              riskplot.7  = "> OEL",
+                              riskplot.9  = "Arithmetic Mean Category") {
 
     mu <-mu.chain
 

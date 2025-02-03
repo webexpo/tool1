@@ -20,13 +20,12 @@ library(ggplot2)
 ############# for individual workers or data with no stratification but censorship
 
 fun.qqplot <-function( data.simply.imputed , notcensored ,
-
-                       qqplot.1="Quantile-quantile plot",
-                       qqplot.2="Quantile (lognormal dist)",
-                       qqplot.3="Quantile (standardized obs)",
-                       qqplot.4="Measurement type",
-                       qqplot.5="Censored",
-                       qqplot.6="Detected") {
+                qqplot.1 = "Quantile-Quantile Plot",
+                qqplot.2 = "Quantiles (Lognormal Distribution)",
+                qqplot.3 = "Quantiles (Standardized Observations)",
+                qqplot.4 = "Measurement Type",
+                qqplot.5 = "Censored",
+                qqplot.6 = "Detected") {
 
 
   res2 <-fun.graph.NDexpo(data.simply.imputed$imputed$data)
@@ -76,7 +75,7 @@ fun.qqplot <-function( data.simply.imputed , notcensored ,
 
   }
 
-  print(p)
+  return(p)
 
 }
 
@@ -84,11 +83,12 @@ fun.qqplot <-function( data.simply.imputed , notcensored ,
 
 
 fun.boxplot <-function( data.simply.imputed , notcensored , c.oel,
-                        boxplot.1="Measurement type",
-                        boxplot.2="Concentration",
-                        boxplot.3="OEL",
-                        boxplot.4="Censored",
-                        boxplot.5="Detected") {
+                        boxplot.1 = "Measurement Type",
+                        boxplot.2 = "Concentration",
+                        boxplot.3 = "Exposure Limit",
+                        boxplot.4 = "Censored",
+                        boxplot.5 = "Not Censored",
+                        boxplot.6 = "Measurements") {
 
   #data.simply.imputed <- data.sample.imputed
 
@@ -108,7 +108,7 @@ fun.boxplot <-function( data.simply.imputed , notcensored , c.oel,
 
   if (length(notcensored[!notcensored])==0) {
 
-  p1 <-ggplot(data.f, aes(x="Data", y=x),ylim=c(min.val,max.val))
+  p1 <-ggplot(data.f, aes(x=boxplot.6, y=x),ylim=c(min.val,max.val))
   p1 <-p1+geom_point(position=position_jitter(width=0.3), alpha=0.9, size=3 , color="blue1")
   p1<-p1+stat_summary(fun.data = f, geom="boxplot",size=1.0,alpha=0, outlier.size=0)
   p1<-p1+stat_summary(fun.data = f, geom="boxplot",size=1.0,alpha=0, outlier.size=0,color=alpha("black",0.3))
@@ -120,7 +120,7 @@ fun.boxplot <-function( data.simply.imputed , notcensored , c.oel,
 
   if (length(notcensored[!notcensored])!=0) {
 
-    p1 <-ggplot(data.f, aes(x=gett("Data"), y=x),ylim=c(min.val,max.val))
+    p1 <-ggplot(data.f, aes(x=boxplot.6, y=x),ylim=c(min.val,max.val))
     p1 <-p1+geom_point(position=position_jitter(width=0.3), alpha=0.9, aes(color=notcensored), size=3)
     p1<-p1+stat_summary(fun.data = f, geom="boxplot",size=1.0,alpha=0, outlier.size=0)
     p1<-p1+stat_summary(fun.data = f, geom="boxplot",size=1.0,alpha=0, outlier.size=0,color=alpha("black",0.3))
@@ -139,9 +139,7 @@ fun.boxplot <-function( data.simply.imputed , notcensored , c.oel,
     theme(axis.title.y=element_text(size=16,angle=90))+
     theme(axis.text.y=element_text(size=13,angle=90))
 
-    print(p1)
-
-
+    return(p1)
 }
 
 #
