@@ -115,6 +115,7 @@ ui <- shiny::fluidPage(
                 inputId = "oel",
                 label   = translate("Exposure Limit:"),
                 value   = 100) |>
+                htmltools::tagAppendAttributes(class = "app-input") |>
                 bslib::tooltip(
                     html$p(translate("
                         Use the exposure limit to assess overexposure. It
@@ -124,6 +125,7 @@ ui <- shiny::fluidPage(
                 inputId = "al",
                 label   = translate("Exposure Limit Multiplier:"),
                 value   = 1) |>
+                htmltools::tagAppendAttributes(class = "app-input") |>
                 bslib::tooltip(html$p(translate("
                     Use this multiplier to modify the exposure limit. The
                     product of the former and the latter is the actual exposure
@@ -133,6 +135,7 @@ ui <- shiny::fluidPage(
                 inputId = "conf",
                 label   = translate("Credible Interval Probability:"),
                 value   = 90) |>
+                htmltools::tagAppendAttributes(class = "app-input") |>
                 bslib::tooltip(html$p(translate("
                     Use this value as a probability for the credible intervals
                     around parameter estimates. It must be between 0% and 100%.
@@ -143,6 +146,7 @@ ui <- shiny::fluidPage(
                 inputId = "psi",
                 label   = translate("Overexposure Risk Threshold:"),
                 value   = 30) |>
+                htmltools::tagAppendAttributes(class = "app-input") |>
                 bslib::tooltip(html$p(translate("
                     Use this value as the maximal overexposure risk. It must be
                     between 0% and 100%. It represents the maximal probability
@@ -160,6 +164,7 @@ ui <- shiny::fluidPage(
                     "149.9",
                     "26.42",
                     "56.1")) |>
+                htmltools::tagAppendAttributes(class = "app-input") |>
                 bslib::tooltip(html$p(translate("
                     The measurement dataset. There must be one value per line.
                     Values can be censored to the left (<), to the right (>),
@@ -171,7 +176,9 @@ ui <- shiny::fluidPage(
                 inputId = "frac_threshold",
                 label   = translate("Exceedance Fraction Threshold:"),
                 value   = 5) |>
-                htmltools::tagAppendAttributes(style = "display: none;") |>
+                htmltools::tagAppendAttributes(
+                    class = "app-input",
+                    style = "display: none;") |>
                 bslib::tooltip(html$p(translate("
                     Use this value as an acceptable proportion of exposures
                     above the exposure limit (OEL). It must be between 0%
@@ -183,7 +190,9 @@ ui <- shiny::fluidPage(
                 inputId = "target_perc",
                 label   = translate("Critical Percentile:"),
                 value   = 95) |>
-                htmltools::tagAppendAttributes(style = "display: none;") |>
+                htmltools::tagAppendAttributes(
+                    class = "app-input",
+                    style = "display: none;") |>
                 bslib::tooltip(html$p(translate("
                     Use this value to set the percentile of the exposure
                     distribution that will be compared to the OEL. It must
