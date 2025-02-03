@@ -89,7 +89,7 @@ ui <- shiny::fluidPage(
 
     html$head(
         html$title(translate("Expostats | Tool 1")),
-        html$link(rel = "stylesheet", media = "all", href = "/css/main.css"),
+        html$link(rel = "stylesheet", media = "all", href = "css/main.css"),
         shinyjs::useShinyjs()
     ),
 
