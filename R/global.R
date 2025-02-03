@@ -10,10 +10,11 @@
 #' Packages below must still be attached to the search path with [library()]
 #' until all scripts stored in `scripts/` are revamped.
 #'
-#' @author Jérôme Lavoué (<jerome.lavoue@@umontreal.ca>)
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
 
+# Some libraries must be loaded because namespaces are not
+# explicit in R scripts stored in subdirectory scripts/.
 library(rjags)
 library(ggplot2)
 library(ggimage)
