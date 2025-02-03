@@ -410,11 +410,7 @@ ui <- shiny::fluidPage(
                                     The geometric standard deviation point
                                     estimate is equal to %s."),
                                     add_bold_text_output("ef_estimate_geo_sd")))
-                            ),
-
-                            html$p(translate("
-                                Square brackets indicate the underlying
-                                credible intervals."))
+                            )
                         ),
                         shiny::column(width = 6L,
                             html$h3(
@@ -423,13 +419,16 @@ ui <- shiny::fluidPage(
 
                             html$ul(
                                 class = "app-ul",
-
                                 html$li(sprintf_html(translate("
                                     The point estimate is equal to %s."),
                                     add_bold_text_output("ef_estimate")))
                             )
                         )
                     ),
+
+                    html$p(translate("
+                        Square brackets indicate the underlying
+                        credible intervals.")),
 
                     ###### Exceedance Plot -------------------------------------
 
@@ -655,11 +654,7 @@ ui <- shiny::fluidPage(
                                     The geometric standard deviation point
                                     estimate is equal to %s."),
                                     add_bold_text_output("pe_estimate_geo_sd")))
-                            ),
-
-                            html$p(translate("
-                                Square brackets indicate the underlying
-                                credible intervals."))
+                            )
                         ),
                         shiny::column(width = 6L,
                             html$h3(
@@ -671,13 +666,16 @@ ui <- shiny::fluidPage(
 
                             html$ul(
                                 class = "app-ul",
-
                                 html$li(sprintf_html(translate("
                                     The point estimate is equal to %s."),
                                     add_bold_text_output("pe_estimate")))
                             )
                         )
                     ),
+
+                    html$p(translate("
+                        Square brackets indicate the underlying
+                        credible intervals.")),
 
                     ###### Sequential Plot -------------------------------------
 
@@ -835,11 +833,7 @@ ui <- shiny::fluidPage(
                                     The geometric standard deviation point
                                     estimate is equal to %s."),
                                     add_bold_text_output("am_estimate_geo_sd")))
-                            ),
-
-                            html$p(translate("
-                                Square brackets indicate the underlying
-                                credible intervals."))
+                            )
                         ),
                         shiny::column(width = 6L,
                             html$h3(
@@ -848,13 +842,16 @@ ui <- shiny::fluidPage(
 
                             html$ul(
                                 class = "app-ul",
-
                                 html$li(sprintf_html(translate("
                                     The point estimate is equal to %s."),
                                     add_bold_text_output("am_estimate")))
                             )
                         )
                     ),
+
+                    html$p(translate("
+                        Square brackets indicate the underlying
+                        credible intervals.")),
 
                     ###### Sequential Plot -------------------------------------
 
