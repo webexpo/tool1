@@ -20,13 +20,12 @@ library(ggplot2)
 ############# for individual workers or data with no stratification but censorship
 
 fun.qqplot <-function( data.simply.imputed , notcensored ,
-
-                       qqplot.1="Quantile-quantile plot",
-                       qqplot.2="Quantile (lognormal dist)",
-                       qqplot.3="Quantile (standardized obs)",
-                       qqplot.4="Measurement type",
-                       qqplot.5="Censored",
-                       qqplot.6="Detected") {
+                qqplot.1 = "Quantile-Quantile Plot",
+                qqplot.2 = "Quantiles (Lognormal Distribution)",
+                qqplot.3 = "Quantiles (Standardized Observations)",
+                qqplot.4 = "Measurement Type",
+                qqplot.5 = "Censored",
+                qqplot.6 = "Detected") {
 
 
   res2 <-fun.graph.NDexpo(data.simply.imputed$imputed$data)
@@ -84,12 +83,12 @@ fun.qqplot <-function( data.simply.imputed , notcensored ,
 
 
 fun.boxplot <-function( data.simply.imputed , notcensored , c.oel,
-                        boxplot.1="Measurement type",
-                        boxplot.2="Concentration",
-                        boxplot.3="OEL",
-                        boxplot.4="Censored",
-                        boxplot.5="Detected",
-                        boxplot.6="Data") {
+                        boxplot.1 = "Measurement Type",
+                        boxplot.2 = "Concentration",
+                        boxplot.3 = "Exposure Limit",
+                        boxplot.4 = "Censored",
+                        boxplot.5 = "Not Censored",
+                        boxplot.6 = "Measurements") {
 
   #data.simply.imputed <- data.sample.imputed
 
