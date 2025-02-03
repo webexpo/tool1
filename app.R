@@ -58,9 +58,6 @@
 # NOTE: (JMP) I would strongly consider breaking the app into Shiny modules
 # or functions that returns each tabPanel().
 
-# FIXME: (JMP) It would be best to document all inputs and constants in a
-# dedicated R script using roxygen2 syntax.
-
 # FIXME: (JMP) Many numeric values are passed to signif() which yields a
 # variable number of (significant) digits. Is this truly needed? For UX
 # purposes, I suggest always showing 1 or 2 digits?
@@ -1095,12 +1092,10 @@ server <- function(input, output, session) {
     user_inputs <- shiny::reactive({
         return(
             list(
-                conf = input$sb_conf,
-                psi  = input$sb_psi,
-                # The following input is located in panel exceedance.
+                conf           = input$sb_conf,
+                psi            = input$sb_psi,
                 frac_threshold = input$sb_frac_threshold,
-                # The following input is located in panel percentiles.
-                target_perc = input$sb_target_perc))
+                target_perc    = input$sb_target_perc))
     })
 
     user_formatted_sample <- shiny::reactive({
@@ -1118,10 +1113,10 @@ server <- function(input, output, session) {
             value   = 0L,
             message = translate("Bayesian iterations:"))
 
-        # FIXME: (JMP) This is really weird. All Bayesian functions
-        # accept a function that updates a Progress object implicitly.
-        # This is error-prone and requires a fix. Binding 'progress'
-        # may not exist, or could be out of scope in some cases.
+        # FIXME: (JMP) This is really weird. All Bayesian functions accept a
+        # function that updates a Progress object implicitly. This is error-
+        # prone and requires a fix. Binding 'progress' may not exist, or could
+        # be out of scope in some cases.
         updateProgress <- function(detail = NULL) {
             progress$inc(amount = 1/50, detail = detail)
         }
@@ -1355,7 +1350,6 @@ server <- function(input, output, session) {
 
     # See subsection Shared Outputs above for output$ef_sb_frac_threshold_percent_1.
 
-    # FIXME: (JMP) Use a dedicated formatting function.
     output$ef_risk_prob_criterion <- shiny::renderText({
         return(paste0(signif(num_results()$frac.risk, 3L), "%"))
     })
@@ -1363,8 +1357,8 @@ server <- function(input, output, session) {
     # See section Shared Outputs above for output$ef_risk_prob_limit_1.
 
     # FIXME: (JMP) output$ef_risk_decision, output$pe_risk_decision, and
-    # output$am_risk_decision are almost identical calls. They could
-    # be encapsulated into a single function with two inputs.
+    # output$am_risk_decision are almost identical calls. They could be
+    # encapsulated into a single function with two inputs.
     output$ef_risk_decision <- shiny::renderText({
         if (num_results()$frac.risk >= user_inputs()$psi) {
             return(translate("poorly controlled"))
@@ -1373,8 +1367,7 @@ server <- function(input, output, session) {
         return(translate("adequately controlled"))
     })
 
-    # FIXME: (JMP): All risk meters (output$ef_risk_meter_plot, output$pe_risk_meter_plot,
-    # and output$riskmetre.am) are generated using the exact same inputs.
+    # FIXME: (JMP): All risk meters are generated using the exact same inputs.
     # Code can be further reduced by setting these inputs as default ones.
     output$ef_risk_meter_plot <- shiny::renderPlot({
         return(
