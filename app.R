@@ -777,7 +777,7 @@ ui <- shiny::fluidPage(
                                 occupational exposure limit. The red zone
                                 indicates a poorly controlled exposure.")),
 
-                            add_bs_alert_warning(html$p(translate("
+                            add_bs_alert_warn(html$p(translate("
                                 The risk assessment based on AM relies on the
                                 availability of a long-term averaged OEL
                                 (LTA-OEL in the AIHA terminology), representing

@@ -31,18 +31,8 @@ add_bs_alert <- function(
     return(ui)
 }
 
-add_bs_alert_warning <- function(...) {
-    return(
-        add_bs_alert(
-            ...,
-            which = "warning",
-            title = "Warning",
-            icon  = shiny::icon(
-                lib   = "glyphicon",
-                name  = "warning-sign",
-                style = "padding-right: 10px;")))
-}
-
+#' @rdname add-ui
+#' @external
 add_bs_alert_info <- function(...) {
     return(
         add_bs_alert(
@@ -52,5 +42,19 @@ add_bs_alert_info <- function(...) {
             icon  = shiny::icon(
                 lib   = "glyphicon",
                 name  = "info-sign",
+                style = "padding-right: 10px;")))
+}
+
+#' @rdname add-ui
+#' @external
+add_bs_alert_warn <- function(...) {
+    return(
+        add_bs_alert(
+            ...,
+            which = "warning",
+            title = "Warning",
+            icon  = shiny::icon(
+                lib   = "glyphicon",
+                name  = "warning-sign",
                 style = "padding-right: 10px;")))
 }
