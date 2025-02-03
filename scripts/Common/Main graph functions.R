@@ -143,7 +143,8 @@ sequential.plot.frac <-function( gm , gsd , frac , c.oel ,
 
 ##### PERC
 
-sequential.plot.perc <-function(gm , gsd , perc , target_perc , c.oel ,
+sequential.plot.perc <-function(gm , gsd , perc , target_perc, target_perc_suffix,
+                                c.oel ,
                                 pal_col = TRUE,
                                 seqplot.1="Concentration",
                                 seqplot.3="OEL",
@@ -190,7 +191,7 @@ sequential.plot.perc <-function(gm , gsd , perc , target_perc , c.oel ,
              label = seqplot.3,
              size=6,hjust=0.5,color=vec_color[2]) +
     annotate("text", x = 120, y = (perc*1.1),
-             label = paste(seqplot.4,target_perc ,sep=" "),
+             label = paste0(target_perc, target_perc_suffix, " ", seqplot.4),
              size=6,hjust=0.5,color=vec_color[1]) +
 
 
@@ -333,7 +334,7 @@ sequential.plot.am <-function(gm , gsd , am , c.oel ,
 
 ####### PERC
 
-  distribution.plot.perc <-function( gm , gsd , perc , target_perc , c.oel ,
+  distribution.plot.perc <-function( gm , gsd , perc , target_perc , target_perc_suffix, c.oel ,
                                      distplot.1="Concentration",
                                      distplot.2="Density",
                                      distplot.4="OEL outside of graphical limits.",
@@ -366,7 +367,7 @@ sequential.plot.am <-function(gm , gsd , am , c.oel ,
                          yend = (max(mydata$y)/2.5)),size=1.3,color="blue")+
           geom_area(aes(x=pmin(x,perc),y=y),fill='blue',alpha=I(1/3))+
           annotate("text", x = perc, y = (max(mydata$y)/2.05),
-                   label = paste(distplot.6,target_perc,sep=" "),
+                   label = paste0(target_perc, target_perc_suffix, " ", distplot.6),
                    size=6,color="blue")
 
         if(c.oel>0.75*max) xannot <-(c.oel/2)

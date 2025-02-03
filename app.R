@@ -315,10 +315,10 @@ ui <- shiny::fluidPage(
                     html$p(sprintf_html(translate("
                         The measurements are scattered around the x-axis middle
                         point. The box (outer horizontal lines) represents the
-                        spread between the 25th and 75th percentiles. The
-                        whiskers (vertical lines) represent the spread between
-                        the 10th and 90th percentiles. The inner horizontal
-                        line is the median."))),
+                        spread between the 25<sup>th</sup> and 75<sup>th</sup>
+                        percentiles. The whiskers (vertical lines) represent the
+                        spread between the 10<sup>th</sup> and 90<sup>th</sup>
+                        percentiles. The inner horizontal line is the median."))),
                 ),
 
                 ##### Panel: Exceedance Fraction -------------------------------
@@ -585,7 +585,7 @@ ui <- shiny::fluidPage(
                                 html$li(sprintf_html(translate("
                                     Overexposure is defined as the %s percentile
                                     being greater than or equal to the OEL."),
-                                    add_bold_text_output("perc.percentile.risk.decision"))),
+                                    add_bold_html_output("perc.percentile.risk.decision"))),
 
                                 html$li(sprintf_html(translate("
                                     The probability that this criterion is met
@@ -657,7 +657,7 @@ ui <- shiny::fluidPage(
                                 class = "app-panel-subtitle",
                                 sprintf_html(
                                     translate("%s Percentile Estimate"),
-                                    shiny::textOutput(
+                                    shiny::htmlOutput(
                                         outputId = "perc.percentile.param.estimates",
                                         inline   = TRUE))),
 
@@ -725,7 +725,7 @@ ui <- shiny::fluidPage(
                             probability of an overexposure. The latter should
                             be lower than the %s threshold shown by the black
                             dashed line."),
-                        shiny::textOutput("perc.percentile.risk.band", inline = TRUE),
+                        shiny::htmlOutput("perc.percentile.risk.band", inline = TRUE),
                         a_strs[["aiha"]],
                         shiny::textOutput("perc.probSituUnacceptable2", inline = TRUE)))
                 ),
@@ -1192,13 +1192,18 @@ server <- function(input, output, session) {
                 data.simply.imputed = data.imputed(),
                 c.oel = formatted.sample()$c.oel)
 
+            # <sup> tag cannot be used in a renderTable()
+            # call. Instead, we use superscripts ᵗʰ. These
+            # are valid UTF characters that can be rendered
+            # by browsers. This is not optimal, but better
+            # than nothing.
             stats_df$parameter <- c(
                 translate("Number of Obversations"),
                 translate("Proportion Censored"),
                 translate("Minimum"),
-                translate("25th Percentile"),
+                sprintf("25ᵗʰ %s", translate("Percentile")),
                 translate("Median"),
-                translate("75th Percentile"),
+                sprintf("75ᵗʰ %s", translate("Percentile")),
                 translate("Maximum"),
                 translate("Proportion > OEL"),
                 translate("Arithmetic Mean"),
@@ -1500,8 +1505,13 @@ server <- function(input, output, session) {
 
     output$perc.percentile.risk.decision   <-
     output$perc.percentile.param.estimates <-
-    output$perc.percentile.risk.band       <- shiny::renderText({
-        return(ordinal_number(input$target_perc))
+    output$perc.percentile.risk.band       <- shiny::renderUI({
+        value <- input$target_perc
+        return(
+            sprintf_html(
+                "%.0f<sup>%s</sup>",
+                value,
+                ordinal_number_suffix(value)))
     })
 
     ### Risk Decision ----------------------------------------------------------
@@ -1557,17 +1567,19 @@ server <- function(input, output, session) {
     # function. Use shorter and semantic names.
     output$seqplot.perc <- shiny::renderPlot({
         num_results <- num.res()
+        target_perc <- user.input()$target_perc
         return(
             sequential.plot.perc(
-                gm          = num_results$gm$est,
-                gsd         = num_results$gsd$est,
-                perc        = num_results$perc$est,
-                c.oel       = formatted.sample()$c.oel,
-                target_perc = user.input()$target_perc,
-                seqplot.1   = translate("Concentration"),
-                seqplot.3   = translate("OEL"),
-                seqplot.4   = translate("Percentile"),
-                seqplot.6   = translate("Measurement Index")))
+                gm                 = num_results$gm$est,
+                gsd                = num_results$gsd$est,
+                perc               = num_results$perc$est,
+                c.oel              = formatted.sample()$c.oel,
+                target_perc        = user.input()$target_perc,
+                target_perc_suffix = ordinal_number_suffix(target_perc),
+                seqplot.1          = translate("Concentration"),
+                seqplot.3          = translate("OEL"),
+                seqplot.4          = translate("Percentile"),
+                seqplot.6          = translate("Measurement Index")))
     })
 
     ### Density Plot -----------------------------------------------------------
@@ -1576,18 +1588,20 @@ server <- function(input, output, session) {
     # function. Use shorter and semantic names.
     output$distplot.perc <- shiny::renderPlot({
         bayesian_outputs <- bayesian.analysis()
+        target_perc      <- user.input()$target_perc
         return(
             distribution.plot.perc(
-                gm          = exp(median(bayesian_outputs$mu.chain)),
-                gsd         = exp(median(bayesian_outputs$sigma.chain)),
-                perc        = num.res()$perc$est,
-                target_perc = user.input()$target_perc,
-                c.oel       = formatted.sample()$c.oel,
-                distplot.1  = translate("Concentration"),
-                distplot.2  = translate("Density"),
-                distplot.4  = translate("OEL outside of graphical limits."),
-                distplot.5  = translate("OEL"),
-                distplot.6  = translate("Percentile")))
+                gm                 = exp(median(bayesian_outputs$mu.chain)),
+                gsd                = exp(median(bayesian_outputs$sigma.chain)),
+                perc               = num.res()$perc$est,
+                target_perc        = target_perc,
+                target_perc_suffix = ordinal_number_suffix(target_perc),
+                c.oel              = formatted.sample()$c.oel,
+                distplot.1         = translate("Concentration"),
+                distplot.2         = translate("Density"),
+                distplot.4         = translate("OEL outside of graphical limits."),
+                distplot.5         = translate("OEL"),
+                distplot.6         = translate("Percentile")))
     })
 
     ### Risk Band Plot ---------------------------------------------------------
