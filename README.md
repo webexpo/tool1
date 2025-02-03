@@ -1,12 +1,12 @@
 # Tool1: Data Interpretation for One Similarly Exposed Group
 
 <!-- badges: start -->
-[![Version](https://img.shields.io/badge/version-1.0.0-blue)](https://github.com/webexpo/app-tool1/releases/tag/v1.0.0)
+[![Version](https://img.shields.io/badge/version-4.0.0-blue)](https://github.com/webexpo/app-tool1/releases/tag/v4.0.0)
 [![Lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Location](https://img.shields.io/badge/live-shinyapps.io-5b90bf)](https://lavoue.shinyapps.io/Tool1v3En/)
 <!-- badges: end -->
 
-A Shiny application developed by the Industrial Hygiene team from the
+A Shiny application developed by the Industrial Hygiene team of the
 Department of Environmental and Occupational Health at the
 [School of Public Health](https://espum.umontreal.ca/english/home/) of the
 [Université de Montréal](https://www.umontreal.ca/en/).
@@ -77,39 +77,6 @@ to automatically upload a new version.
 ```r
 # To be determined.
 ```
-
-## Environment variables
-
-The application requires the following environment variables. They must be
-stored in a top-level `.Renviron` file.
-
-* **Include** this file in bundles published to
-  [shinyapps.io](https://www.shinyapps.io).
-* **Ignore** this file for versioning purposes.
-
-### `INCLUDE_SHINYBS_FILES`: `true`, or `false`.
-
-When serving the application locally, assets required by the `shinyBS` R
-package at runtime are not included. Users get back a `404 Not Found` HTTP
-error for the required JS and CSS files. This seems to be a bug related to
-`shiny` itself.
-
-The current workaround is to set `INCLUDE_SHINYBS_FILES` equal to `true`.
-This allows the application to copy `shinyBS` external files over to `www/sbs`
-so that they can be served as expected by `shiny` under URL `/sbs/<file>.<ext>`.
-
-The subdirectory `www/sbs` is created if it does not exist. It is also deleted
-automatically when the R process exits (gracefully, via `q()`). See `.Rprofile`
-for details.
-
-Ignore related warnings thrown by `shiny`. They are misleading.
-
-```
-Warning: Found subdirectories of your app's www/ directory that conflict with
-other resource URL prefixes. Consider renaming these directories: 'www/sbs'.
-```
-
-This is intended.
 
 ## Bugs and Feedback
 

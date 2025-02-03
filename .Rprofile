@@ -47,38 +47,4 @@ if (interactive()) {
         # (to attach it to the search path).
         environment()
     }))
-
-    # shinyBS package requires external CSS and JS files
-    # at runtime. Shiny expects these files to be stored
-    # in www/sbs, and serves them as static assests under
-    # /sbs.
-    if (identical(Sys.getenv("INCLUDE_SHINYBS_FILES"), "true")) {
-        require(shinyBS)
-
-        # Create a temporary subdirectory.
-        shinybs_dir <- file.path("www", "sbs")
-        dir.create(shinybs_dir, FALSE, TRUE)
-
-        # Register a callback function that removes the subdirectory
-        # when the R process exits gracefully (with q()). Since it is
-        # ignored by Git, it does not matter (much) if this function
-        # fails to remove it.
-        reg.finalizer(onexit = TRUE, e = globalenv(), f = \(e) {
-            return(
-                unlink(shinybs_dir,
-                    recursive = TRUE,
-                    force     = TRUE))
-        })
-
-        # Get absolute paths to required files.
-        shinybs_files <- c(
-            system.file(file.path("www", "shinyBS.js"),  package = "shinyBS"),
-            system.file(file.path("www", "shinyBS.css"), package = "shinyBS"))
-
-        # Copy required files in the temporary subdirectory.
-        file.copy(
-            from      = shinybs_files,
-            to        = file.path(shinybs_dir, basename(shinybs_files)),
-            overwrite = TRUE)
-    }
 }
