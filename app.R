@@ -936,7 +936,7 @@ ui <- shiny::fluidPage(
                         # It will likely move to server() because of that,
                         # like all calls to translate().
                         a_strs[[if (TRUE) "epsum_en" else "epsum_fr"]],
-                        a_strs[["udm"]],
+                        a_strs[[if (TRUE) "udm_en"   else "udm_fr"]],
                         a_strs[["source"]])),
 
                     html$p(sprintf_html(translate("

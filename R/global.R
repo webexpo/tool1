@@ -108,7 +108,11 @@ static <- list(
             "École de santé publique",
             href   = "https://espum.umontreal.ca/accueil",
             target = "_blank"),
-        udm = shiny::tags$a(
+        udm_en = shiny::tags$a(
+            "Université de Montréal",
+            href   = "https://www.umontreal.ca/en",
+            target = "_blank"),
+        udm_fr = shiny::tags$a(
             "Université de Montréal",
             href   = "https://www.umontreal.ca",
             target = "_blank"),
