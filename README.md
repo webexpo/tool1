@@ -1,31 +1,15 @@
 # Tool1: Data Interpretation for One Similarly Exposed Group
 
 <!-- badges: start -->
-[![Version](https://img.shields.io/badge/version-4.0.0-blue)](https://github.com/webexpo/app-tool1/releases/tag/v4.0.0)
+[![Version](https://img.shields.io/badge/version-4.0.0%20(RC1)-blue)](https://github.com/webexpo/app-tool1/releases/tag/v4.0.0)
 [![Lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-[![Location](https://img.shields.io/badge/live-shinyapps.io-5b90bf)](https://lavoue.shinyapps.io/Tool1v3En/)
+[![Location](https://img.shields.io/badge/live-shinyapps.io-5b90bf)](https://lavoue.shinyapps.io/tool1/)
 <!-- badges: end -->
 
 A Shiny application developed by the Industrial Hygiene team of the
 Department of Environmental and Occupational Health at the
 [School of Public Health](https://espum.umontreal.ca/english/home/) of the
 [Université de Montréal](https://www.umontreal.ca/en/).
-
-## Disclaimer
-
-[Jean-Mathieu Potvin](https://github.com/jeanmathieupotvin)
-([Ununoctium, coding simplified](https://ununoctium.dev/en)) is currently
-working on (partially) refactoring this project. The objective is threefold:
-
-1. Integrate package [transltr](https://cran.r-project.org/package=transltr)
-   and use it as its internationalization engine.
-2. Restructure code and make it easier to maintain (including translations).
-3. Fix bugs, inconsistencies and enforce R best practices, including
-   [Google's R Style Guide](https://google.github.io/styleguide/Rguide.html)
-   (whenever possible).
-
-The scripts stored in `scripts/` are **out of scope** of this refactoring
-effort.
 
 ## Introduction
 
@@ -43,7 +27,7 @@ Calculations are performed using a Bayesian model fit using a Monte Carlo
 Markov Chain (MCMC) engine. It assumes that the underlying exposure distribution
 is lognormal.
 
-## Scientific Basis
+## Methodological Background
 
 The underlying Bayesian models and data interpretation procedures are derived
 from best practices in industrial hygiene data interpretation techniques. They
@@ -57,26 +41,13 @@ Further references are available on
 
 ## Usage
 
-To serve this application locally, run the following lines of code in a fresh
-R session.
-
-```r
-# Further arguments may be passed to runApp().
-shiny::runApp(port = 3090L, launch.browser = FALSE)
-```
-
-You may use any other `port` value (aside from standard unsafe ports `3659`,
-`4045`, `5060`, `5061`, `6000`, `6566`, and `6665:6669`).
+To serve this application locally, see file `.scripts/publish-to-shinyapps.R`.
 
 ## Deploying to shinyapps.io
 
 This application is deployed to and runs on
-[shinyapps.io](https://lavoue.shinyapps.io/Tool1v3En/). Use this code snippet
-to automatically upload a new version.
-
-```r
-# To be determined.
-```
+[shinyapps.io](https://lavoue.shinyapps.io/tool1). See file
+`.scripts/publish-to-shinyapps.R` for more information.
 
 ## Bugs and Feedback
 
