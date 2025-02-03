@@ -1145,8 +1145,8 @@ server <- function(input, output, session) {
                 sigma.chain    = bayesian_outputs$sigma.chain,
                 c.oel          = user_formatted_sample()$c.oel,
                 conf           = inputs$conf,
-                frac_threshold = inputs$sb_frac_threshold,
-                target_perc    = inputs$sb_target_perc))
+                frac_threshold = inputs$frac_threshold,
+                target_perc    = inputs$target_perc))
     })
 
     ## Shared Outputs ----------------------------------------------------------
@@ -1343,7 +1343,7 @@ server <- function(input, output, session) {
     output$ef_sb_frac_threshold_percent_1 <-
     output$ef_sb_frac_threshold_percent_2 <-
     output$ef_sb_frac_threshold_percent_3 <- shiny::renderText({
-        return(sprintf("%.1f%%", input$frac_threshold))
+        return(sprintf("%.1f%%", input$sb_frac_threshold))
     })
 
     ### Risk Decision ----------------------------------------------------------
@@ -1494,8 +1494,8 @@ server <- function(input, output, session) {
                 mu.chain       = bayesian_outputs$mu.chain,
                 sigma.chain    = bayesian_outputs$sigma.chain,
                 c.oel          = user_formatted_sample()$c.oel,
-                frac_threshold = inputs$sb_frac_threshold,
-                psi            = inputs$sb_psi,
+                frac_threshold = inputs$frac_threshold,
+                psi            = inputs$psi,
                 riskplot.1     = translate("Exceedance Fraction Category"),
                 riskplot.2     = translate("Probability")))
     })
