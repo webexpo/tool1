@@ -1348,17 +1348,13 @@ server <- function(input, output, session) {
 
     ### Risk Decision ----------------------------------------------------------
 
-    # See subsection Shared Outputs above for output$ef_sb_frac_threshold_percent_1.
+    # See sections Shared Outputs above for
+    # output$ef_sb_frac_threshold_percent_1 and output$ef_risk_prob_limit_1.
 
     output$ef_risk_prob_criterion <- shiny::renderText({
         return(paste0(signif(num_results()$frac.risk, 3L), "%"))
     })
 
-    # See section Shared Outputs above for output$ef_risk_prob_limit_1.
-
-    # FIXME: (JMP) output$ef_risk_decision, output$pe_risk_decision, and
-    # output$am_risk_decision are almost identical calls. They could be
-    # encapsulated into a single function with two inputs.
     output$ef_risk_decision <- shiny::renderText({
         if (num_results()$frac.risk >= user_inputs()$psi) {
             return(translate("poorly controlled"))
@@ -1367,16 +1363,11 @@ server <- function(input, output, session) {
         return(translate("adequately controlled"))
     })
 
-    # FIXME: (JMP): All risk meters are generated using the exact same inputs.
-    # Code can be further reduced by setting these inputs as default ones.
     output$ef_risk_meter_plot <- shiny::renderPlot({
         return(
             dessinerRisqueMetre(
                 actualProb          = num_results()$frac.risk,
-                minProbUnacceptable = user_inputs()$psi,
-                colorProb           = "darkblue",
-                actualProb2         = NULL,
-                colorProb2          = "#4863A0"))
+                minProbUnacceptable = user_inputs()$psi))
     })
 
     ### Parameter Estimates ----------------------------------------------------
@@ -1528,16 +1519,12 @@ server <- function(input, output, session) {
 
     # See section Shared Outputs above for output$pe_sb_target_perc_ordinal_1.
 
-    # FIXME: (JMP) Use a dedicated formatting function.
     output$pe_risk_prob_criterion <- shiny::renderText({
         return(paste0(signif(num_results()$perc.risk, 3L), "%"))
     })
 
     # See section Shared Outputs above for output$pe_risk_prob_limit_1.
 
-    # FIXME: (JMP) output$ef_risk_decision, output$pe_risk_decision, and
-    # output$am_risk_decision are almost identical calls. They could
-    # be encapsulated into a single function with two inputs.
     output$pe_risk_decision <-shiny::renderText({
         if (num_results()$perc.risk >= user_inputs()$psi) {
             return(translate("poorly controlled"))
@@ -1546,16 +1533,11 @@ server <- function(input, output, session) {
         return(translate("adequately controlled"))
     })
 
-    # FIXME: (JMP): All risk meters are generated using the same inputs.
-    # Code can be further reduced by setting these inputs as default ones.
     output$pe_risk_meter_plot <- shiny::renderPlot({
         return(
             dessinerRisqueMetre(
                 actualProb          = num_results()$perc.risk,
-                minProbUnacceptable = user_inputs()$psi,
-                colorProb           = "darkblue",
-                actualProb2         = NULL,
-                colorProb2          = "#4863A0"))
+                minProbUnacceptable = user_inputs()$psi))
     })
 
     ### Parameter Estimates ----------------------------------------------------
@@ -1646,16 +1628,12 @@ server <- function(input, output, session) {
 
     ### Risk Decision ----------------------------------------------------------
 
-    # FIXME: (JMP) Use a dedicated formatting function.
+    # See section Shared Outputs above for output$am_risk_prob_limit_1.
+
     output$am_risk_prob_criterion <- shiny::renderText({
         return(paste0(signif(num_results()$am.risk, 3L), "%"))
     })
 
-    # See section Shared Outputs above for output$am_risk_prob_limit_1.
-
-    # FIXME: (JMP) output$ef_risk_decision, output$pe_risk_decision, and
-    # output$am_risk_decision are almost identical calls. They could
-    # be encapsulated into a single function with two inputs.
     output$am_risk_decision <-shiny::renderText({
         msgid <- if (num_results()$am.risk >= user_inputs()$psi) {
             return(translate("poorly controlled"))
@@ -1664,16 +1642,11 @@ server <- function(input, output, session) {
         return(translate("adequately controlled"))
     })
 
-    # FIXME: (JMP): All risk meters are generated using the exact same inputs.
-    # Code can be further reduced by setting these inputs as default ones.
     output$am_risk_meter_plot <- renderPlot({
         return(
             dessinerRisqueMetre(
                 actualProb          = num_results()$am.risk,
-                minProbUnacceptable = user_inputs()$psi,
-                colorProb           = "darkblue",
-                actualProb2         = NULL,
-                colorProb2          = "#4863A0"))
+                minProbUnacceptable = user_inputs()$psi))
     })
 
     ### Parameter Estimates ----------------------------------------------------
