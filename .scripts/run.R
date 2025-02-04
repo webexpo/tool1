@@ -5,7 +5,6 @@
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
-
 shiny::runApp(
     # You may use any other port value (aside from standard unsafe ports).
     port           = 3001L,

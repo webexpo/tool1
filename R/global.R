@@ -19,9 +19,7 @@ library(rjags)
 library(ggplot2)
 library(ggimage)
 
-
 # External Scripts -------------------------------------------------------------
-
 
 source(file.path("scripts", "SEG",    "Data formatting functions_SEG.R"))
 source(file.path("scripts", "Common", "Simple censored imputation functions.R"))
@@ -31,9 +29,7 @@ source(file.path("scripts", "Common", "Bayesian engine functions.R"))
 source(file.path("scripts", "Common", "Numerical output functions.R"))
 source(file.path("scripts", "Common", "Main graph functions.R"))
 
-
 # Constants --------------------------------------------------------------------
-
 
 # Where to store images.
 images_dir <- file.path("www", "images")
@@ -54,18 +50,12 @@ plot_risk_meter_height <- "500px"
 # Alias to shiny' list of functions used to create HTML tags.
 html <- shiny::tags
 
-
-# Internationalization ---------------------------------------------------------
-
-
-# NOTE: (JMP) Temporary alias to be able to launch the application while
-# integrating source text back into it.
-# TODO: (JMP) Remove alias and replace calls by transltr::translate().
-translate <- \(str) transltr:::normalize(str)
-
+# Read translations.
+# The wrapper function R/translate.R
+# expect this object to be named 'tr'.
+tr <- transltr::translator_read()
 
 # Static UI elements -----------------------------------------------------------
-
 
 static <- list(
     # <i> tags representing icons stored as shiny.tag objects.

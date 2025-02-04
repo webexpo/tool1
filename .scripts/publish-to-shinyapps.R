@@ -8,7 +8,6 @@
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
-
 rsconnect::setAccountInfo(
     server = "shinyapps.io",
     name   = Sys.getenv("RSCONNECT_ACCOUNT_NAME"),

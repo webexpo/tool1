@@ -12,17 +12,15 @@
 #' [Startup process](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html)
 
 
-# Global options ---------------------------------------------------------------
-
+transltr::language_source_set("en")
 
 options(
-    warnPartialMatchArgs     = TRUE,
-    warnPartialMatchDollar   = TRUE,
-    warnPartialMatchAttr     = TRUE)
+    transltr.default.path  = file.path("intl", "transltr", "_translator.yml"),
+    warnPartialMatchArgs   = TRUE,
+    warnPartialMatchDollar = TRUE,
+    warnPartialMatchAttr   = TRUE)
 
-
-# Development tools and utility functions --------------------------------------
-
+# Development Tools and Utility Functions --------------------------------------
 
 if (interactive()) {
     # Attach development packages.
