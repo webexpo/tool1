@@ -50,6 +50,21 @@ This application is deployed to and runs on
 [shinyapps.io](https://lavoue.shinyapps.io/tool1). See file
 `.scripts/publish-to-shinyapps.R` for more information.
 
+4 environments variables are required to push new releases. These must be
+stored in a `.Renviron` file as shown below. This file is ignored by Git
+and `rsconnect`.
+
+```
+# .Renviron
+RSCONNECT_ACCOUNT_NAME=lavoue
+RSCONNECT_ACCOUNT_TOKEN=<token>
+RSCONNECT_ACCOUNT_SECRET=<secret>
+APP_VISIBILITY_ON_SHINYAPPS=public
+```
+
+[Jérôme Lavoué](https://orcid.org/0000-0003-4950-5475) distributes required
+credentials to authors.
+
 ## Bugs and Feedback
 
 You may submit bugs, request features, and provide feedback by creating an

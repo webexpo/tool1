@@ -5,7 +5,12 @@ account: lavoue
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 13889847
-bundleId: 9742056
+bundleId: 9746178
 url: https://lavoue.shinyapps.io/tool1/
 version: 1
-current_version: 4.0.0-RC1
+appVersion: 4.0.0-RC1
+authors: Jérôme Lavoué <jerome.lavoue@umontreal.ca> [cre, aut, cph, fnd] (<https://orcid.org/0000-0003-4950-5475>), Jean-Mathieu Potvin <jeanmathieupotvin@ununoctium.dev> [aut, rev]
+license: MIT + file LICENSE
+bugReports: https://github.com/webexpo/app-tool1/issues
+encoding: UTF-8
+language: en

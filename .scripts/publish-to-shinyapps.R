@@ -3,6 +3,9 @@
 #' Use this script to bundle the application and deploy it to
 #' <https://shinyapps.io>.
 #'
+#' This script expect 4 environment variables (see below). Store them in a
+#' top-level .Renviron file. Git is configured to ignore such files.
+#'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
 
@@ -21,5 +24,21 @@ rsconnect::deployApp(
     launch.browser = FALSE,
     logLevel       = "verbose",
     lint           = FALSE,
-    metadata       = list(current_version = current_version),
-    forceUpdate    = FALSE)
+    forceUpdate    = FALSE,
+    metadata       = list(
+        appVersion = current_version,
+        authors         = c(
+            utils::person("Jérôme", "Lavoué",
+                role    = c("cre", "aut", "cph", "fnd"),
+                email   = "jerome.lavoue@umontreal.ca",
+                comment = c(ORCID = "0000-0003-4950-5475")),
+            utils::person("Jean-Mathieu", "Potvin",
+                role  = c("aut", "rev"),
+                email = "jeanmathieupotvin@ununoctium.dev")
+        ),
+        license    = "MIT + file LICENSE",
+        bugReports = "https://github.com/webexpo/app-tool1/issues",
+        encoding   = "UTF-8",
+        language   = "en"
+    )
+)
