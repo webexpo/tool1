@@ -79,7 +79,7 @@ fun.boxplot( data.simply.imputed = data.sample.imputed,
                         boxplot.2="Concentration",
                         boxplot.3="OEL",
                         boxplot.4="Censored",
-                        boxplot.5="Detected"
+                        boxplot.5="Detected",
                         boxplot.6="Data")
 ################## bayesian output - jags
 
