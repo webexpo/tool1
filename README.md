@@ -47,7 +47,7 @@ Further references are available on
 
 ## Usage
 
-To serve this application locally, see file `.scripts/publish-to-shinyapps.R`.
+To serve this application locally, see file `.scripts/run.R`.
 
 ## Deploying to shinyapps.io
 
