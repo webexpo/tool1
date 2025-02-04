@@ -4,6 +4,7 @@
 [![Version](https://img.shields.io/badge/version-4.0.0%20(RC1)-blue)](https://github.com/webexpo/app-tool1/releases/tag/v4.0.0)
 [![Lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Location](https://img.shields.io/badge/live-shinyapps.io-5b90bf)](https://lavoue.shinyapps.io/tool1/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](https://github.com/webexpo/app-tool1/blob/main/LICENSE.md)
 <!-- badges: end -->
 
 A Shiny application developed by the Industrial Hygiene team of the
