@@ -104,7 +104,7 @@ ui <- shiny::fluidPage(
         ### Sidebar ------------------------------------------------------------
 
         shiny::sidebarPanel(
-            width = 2L,
+            width = 3L,
 
             #### Inputs --------------------------------------------------------
 
@@ -113,8 +113,9 @@ ui <- shiny::fluidPage(
                 label   = translate("Exposure Limit:"),
                 value   = 100) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
-                bslib::tooltip(
-                    html$p(translate("
+                bslib::tooltip(html$p(
+                    class = "app-input-tooltip",
+                    translate("
                         Use the exposure limit to assess overexposure. It
                         must have the same unit as the measurement data."))),
 
@@ -123,33 +124,41 @@ ui <- shiny::fluidPage(
                 label   = translate("Exposure Limit Multiplier:"),
                 value   = 1) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
-                bslib::tooltip(html$p(translate("
-                    Use this multiplier to modify the exposure limit. The
-                    product of the former and the latter is the actual exposure
-                    limit value for calculation purposes."))),
+                bslib::tooltip(html$p(
+                    class = "app-input-tooltip",
+                    translate("
+                        Use this multiplier to modify the exposure limit. The
+                        product of the former and the latter is the actual
+                        exposure limit value for calculation purposes."))),
 
             shiny::numericInput(
                 inputId = "sb_conf",
                 label   = translate("Credible Interval Probability:"),
                 value   = 90) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
-                bslib::tooltip(html$p(translate("
-                    Use this value as a probability for the credible intervals
-                    around parameter estimates. It must be between 0% and 100%.
-                    The default value is set equal to 90%. The credible interval
-                    is the Bayesian equivalent of the confidence interval."))),
+                bslib::tooltip(html$p(
+                    class = "app-input-tooltip",
+                    translate("
+                        Use this value as a probability for the credible
+                        intervals around parameter estimates. It must be
+                        between 0% and 100%. The default value is set equal
+                        to 90%. The credible interval is the Bayesian
+                        equivalent of the confidence interval."))),
 
             shiny::numericInput(
                 inputId = "sb_psi",
                 label   = translate("Overexposure Risk Threshold:"),
                 value   = 30) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
-                bslib::tooltip(html$p(translate("
-                    Use this value as the maximal overexposure risk. It must be
-                    between 0% and 100%. It represents the maximal probability
-                    that the overexposure limit is met. Above this value, the
-                    situation should trigger remedial action. INRS and BOHS
-                    suggest using 5% and 30%, respectively."))),
+                bslib::tooltip(html$p(
+                    class = "app-input-tooltip",
+                    translate("
+                        Use this value as the maximal overexposure risk. It
+                        must be between 0% and 100%. It represents the maximal
+                        probability that the overexposure limit is met. Above
+                        this value, the situation should trigger remedial
+                        action. INRS and BOHS suggest using 5% and 30%,
+                        respectively."))),
 
             add_input_text_area(
                 inputId = "sb_data",
@@ -162,10 +171,12 @@ ui <- shiny::fluidPage(
                     "26.42",
                     "56.1")) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
-                bslib::tooltip(html$p(translate("
-                    The measurement dataset. There must be one value per line.
-                    Values can be censored to the left (<), to the right (>),
-                    or interval censored ([X-Y])."))),
+                bslib::tooltip(html$p(
+                    class = "app-input-tooltip",
+                    translate("
+                        The measurement dataset. There must be one value per
+                        line. Values can be censored to the left (<), to the
+                        right (>), or interval censored ([X-Y])."))),
 
             # This output is only shown when the active panel is
             # exceedance. See observer in section Sidebar of server().
@@ -176,10 +187,12 @@ ui <- shiny::fluidPage(
                 htmltools::tagAppendAttributes(
                     class = "app-input",
                     style = "display: none;") |>
-                bslib::tooltip(html$p(translate("
-                    Use this value as an acceptable proportion of exposures
-                    above the exposure limit (OEL). It must be between 0%
-                    and 100%. The traditional default value is 5%."))),
+                bslib::tooltip(html$p(
+                    class = "app-input-tooltip",
+                    translate("
+                        Use this value as an acceptable proportion of exposures
+                        above the exposure limit (OEL). It must be between 0%
+                        and 100%. The traditional default value is 5%."))),
 
             # This output is only shown when the active panel is
             # percentiles. See observer in section Sidebar of server().
@@ -190,11 +203,13 @@ ui <- shiny::fluidPage(
                 htmltools::tagAppendAttributes(
                     class = "app-input",
                     style = "display: none;") |>
-                bslib::tooltip(html$p(translate("
-                    Use this value to set the percentile of the exposure
-                    distribution that will be compared to the OEL. It must
-                    be between 0% and 100%. The traditional default value
-                    is 95%."))),
+                bslib::tooltip(html$p(
+                    class = "app-input-tooltip",
+                    translate("
+                        Use this value to set the percentile of the exposure
+                        distribution that will be compared to the OEL. It must
+                        be between 0% and 100%. The traditional default value
+                        is 95%."))),
 
             #### Footer --------------------------------------------------------
 
