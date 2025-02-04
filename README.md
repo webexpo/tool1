@@ -7,10 +7,15 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](https://github.com/webexpo/app-tool1/blob/main/LICENSE.md)
 <!-- badges: end -->
 
-A Shiny application developed by the Industrial Hygiene team of the
-Department of Environmental and Occupational Health at the
+A Shiny application developed by [Jérôme Lavoué](https://orcid.org/0000-0003-4950-5475)
+on behalf of the Industrial Hygiene team of the Department of Environmental and
+Occupational Health at the
 [School of Public Health](https://espum.umontreal.ca/english/home/) of the
 [Université de Montréal](https://www.umontreal.ca/en/).
+
+[Ununoctium](https://ununoctium.dev) (Jean-Mathieu Potvin) collaborated on the
+development efforts (partial refactoring of the source code) that led to version
+4.0.0.
 
 ## Introduction
 
