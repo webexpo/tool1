@@ -108,6 +108,25 @@ ui <- shiny::fluidPage(
 
             #### Inputs --------------------------------------------------------
 
+            shiny::selectInput(
+                inputId   = "lang",
+                label     = translate("Language:"),
+                selected  = "en",
+                # Names and values of tr$native_languages
+                # must be inverted to work with arg choices.
+                # TODO: (JMP) Remove c() calls after tests.
+                choices   = structure(
+                    c(names(tr$native_languages), "fr"),
+                    names = c(tr$native_languages, "French")),
+                selectize = FALSE,
+                multiple  = FALSE) |>
+                htmltools::tagAppendAttributes(class = "app-input") |>
+                bslib::tooltip(html$p(
+                    class = "app-input-tooltip",
+                    translate("Choose your preferred language."))),
+
+            html$hr(),
+
             shiny::numericInput(
                 inputId = "sb_oel",
                 label   = translate("Exposure Limit:"),
@@ -1068,6 +1087,13 @@ ui <- shiny::fluidPage(
 
 
 server <- function(input, output, session) {
+
+    ## Internationalization ----------------------------------------------------
+
+    shiny::observeEvent(input$lang, {
+        shiny::updateQueryString(sprintf("?lang=%s", input$lang))
+        # TODO: (JMP) Update UI elements here.
+    })
 
     ## Sidebar -----------------------------------------------------------------
 

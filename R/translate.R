@@ -20,8 +20,11 @@
 #'   makes it much easier to use compared to other alternatives.")
 #'
 #' @export
+# translate <- function(...) {
+#     return(tr$translate(..., lang = input$lang, concat = " "))
+# }
+
+# FIXME: (JMP) Temporary workaround for the bugs in transltr.
 translate <- function(...) {
-    # FIXME: (JMP) Temporary workaround for the bugs in transltr.
-    trans <- tr$translate(..., lang = "en", concat = " ")
-    return(if (is.null(trans)) transltr:::normalize(trans) else trans)
+    return(transltr:::normalize(..., concat = " "))
 }
