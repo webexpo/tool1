@@ -95,9 +95,7 @@ ui <- shiny::fluidPage(
 
     ## Body --------------------------------------------------------------------
 
-    html$h1(
-        class = "app-title",
-        translate("Tool 1: Data Interpretation for One Similarly Exposed Group")),
+    shiny::uiOutput("title", container = html$h1, class = "app-title"),
 
     shiny::sidebarLayout(
 
@@ -909,6 +907,31 @@ ui <- shiny::fluidPage(
         )
     )
 )
+
+
+# Server logic -----------------------------------------------------------------
+
+
+server <- function(input, output, session) {
+
+    ## Internationalization ----------------------------------------------------
+
+    # Define a wrapper function that avoids having to explicitly pass
+    # tr and input$lang to each transltr::Translator$translate() call.
+    # The parent environment of translate must be the environment of
+    # server() for lexical scoping purposes.
+    translate <- \(...) tr$translate(..., lang = input$lang)
+
+    shiny::observeEvent(input$lang, {
+        lang <- input$lang
+
+        shiny::updateQueryString(sprintf("?lang=%s", input$lang))
+
+        ### Body ---------------------------------------------------------------
+
+        output$title <- shiny::renderUI(translate("
+            Tool 1: Data Interpretation for One Similarly Exposed Group
+        "))
 
         ### Panel: Arithmetic Mean ---------------------------------------------
 
