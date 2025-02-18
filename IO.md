@@ -99,6 +99,35 @@ There are 6 rules. They exist for consistency and readability.
 | Percentiles         | `shiny::plotOutput()`         | `pe_seq_plot`                     | `seqplot.perc`                    |
 | Percentiles         | `shiny::plotOutput()`         | `pe_dist_plot`                    | `distplot.perc`                   |
 | Percentiles         | `shiny::plotOutput()`         | `pe_risk_band_plot`               | `riskband.perc`                   |
+| Arithmetic Mean     | `shiny::uiOutput()`           | `am_tab_name`                     | None                              |
+| Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_decision_title`          | None                              |
+| Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_decision_subtitle`       | None                              |
+| Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_decision`                | None                              |
+| Arithmetic Mean     | `shiny::textOutput()`         | `am_risk_decision_criterion`      | `probrisk.AM`                     |
+| Arithmetic Mean     | `shiny::textOutput()`         | `am_risk_decision_limit`          | `am.probSituUnacceptable1`        |
+| Arithmetic Mean     | `shiny::textOutput()`         | `am_risk_decision_conclusion`     | `finalrisk.AM`                    |
+| Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_decision_alert`          | None                              |
+| Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_meter_desc`              | None                              |
+| Arithmetic Mean     | `shiny::plotOutput()`         | `am_risk_meter_plot`              | `risquemetre.am`                  |
+| Arithmetic Mean     | `shiny::uiOutput()`           | `am_estim_title`                  | None                              |
+| Arithmetic Mean     | `shiny::uiOutput()`           | `am_estim`                        | None                              |
+| Arithmetic Mean     | `shiny::uiOutput()`           | `am_estim_dist_title`             | None                              |
+| Arithmetic Mean     | `shiny::uiOutput()`           | `am_estim_dist`                   | None                              |
+| Arithmetic Mean     | `shiny::textOutput()`         | `am_estim_dist_geo_mean`          | `gm3`                             |
+| Arithmetic Mean     | `shiny::textOutput()`         | `am_estim_dist_geo_sd`            | `gsd3`                            |
+| Arithmetic Mean     | `shiny::uiOutput()`           | `am_estim_am_title`               | None                              |
+| Arithmetic Mean     | `shiny::uiOutput()`           | `am_estim_am`                     | None                              |
+| Arithmetic Mean     | `shiny::textOutput()`         | `am_estim_am_mean`                | `AM`                              |
+| Arithmetic Mean     | `shiny::uiOutput()`           | `am_seq_title`                    | None                              |
+| Arithmetic Mean     | `shiny::plotOutput()`         | `am_seq_plot`                     | `seqplot.AM`                      |
+| Arithmetic Mean     | `shiny::uiOutput()`           | `am_seq_desc`                     | None                              |
+| Arithmetic Mean     | `shiny::uiOutput()`           | `am_dist_title`                   | None                              |
+| Arithmetic Mean     | `shiny::plotOutput()`         | `am_dist_plot`                    | `distplot.AM`                     |
+| Arithmetic Mean     | `shiny::uiOutput()`           | `am_dist_desc`                    | None                              |
+| Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_band_title`              | None                              |
+| Arithmetic Mean     | `shiny::plotOutput()`         | `am_risk_band_plot`               | `riskband.am`                     |
+| Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_band_desc`               | None                              |
+| Arithmetic Mean     | `shiny::textOutput()`         | *Removed*                         | `am.probSituUnacceptable2`        |
 | About               | `shiny::uiOutput()`           | `ab_tab_name`                     | None                              |
 | About               | `shiny::uiOutput()`           | `ab_about_title`                  | None                              |
 | About               | `shiny::uiOutput()`           | `ab_about`                        | None                              |
