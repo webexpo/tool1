@@ -948,134 +948,32 @@ ui <- shiny::fluidPage(
                 ##### Panel: About ---------------------------------------------
 
                 shiny::tabPanel(
-                    value = "about",
-                    title = translate("About"),
+                    value = "ab",
+                    title = shiny::uiOutput("ab_tab_name", TRUE),
 
                     ###### About -----------------------------------------------
 
-                    html$h2(
-                        class = "app-panel-title",
-                        translate("About")),
+                    shiny::uiOutput("ab_about_title",
+                        container = html$h2,
+                        class     = "app-panel-title"),
 
-                    html$p(sprintf_html(translate("
-                        This application (and related tools) are developped by
-                        the Industrial Hygiene team of the Department of
-                        Environmental and Occupational Health at the %s of the
-                        %s. The source code is available on %s."),
-
-                        # TODO: (JMP) This must depend on future input$lang.
-                        # It will likely move to server() because of that,
-                        # like all calls to translate().
-                        a_strs[[if (TRUE) "epsum_en" else "epsum_fr"]],
-                        a_strs[[if (TRUE) "udm_en"   else "udm_fr"]],
-                        a_strs[["source"]])),
-
-                    html$p(sprintf_html(translate("
-                        %s (Jean-Mathieu Potvin) collaborated on the development
-                        efforts (partial refactoring of the source code) that
-                        led to version 4.0.0."),
-                        a_strs[["ununoctium"]])),
+                    shiny::uiOutput("ab_about", container = html$p),
 
                     ###### How To Use This Application -------------------------
 
-                    html$h2(
-                        class = "app-panel-title",
-                        translate("How to Use This Application")),
+                    shiny::uiOutput("ab_how_to_use_title",
+                        container = html$h2,
+                        class     = "app-panel-title"),
 
-                    html$p(translate("
-                        This application eases the interpretation of industrial
-                        hygiene measurements. Notably, it helps with checking
-                        compliance with respect to an occupational exposure
-                        limit (OEL). It is based on a risk assessment framework
-                        recognized by prominent institutions such as the American
-                        Industrial Hygiene Association, the British and Dutch
-                        Society for Occupational Health and Safety (BOHS/NVVA),
-                        the French Institut national de recherche et de sécurité
-                        (INRS), and the European Standards Organization.")),
-
-                    html$p(translate("
-                        It assumes that input measurements (measurements)
-                        represent a random sample stemming from the distribution
-                        of exposures that underlie the sampled context. In other
-                        words, the data is representative of the specific
-                        exposure regimen one wishes to assess.")),
-
-                    html$p(translate("
-                        The application is straightforward to use. Follow
-                        these three steps.")),
-
-                    html$ul(
-                        html$li(translate("
-                            Enter your measurements under Measurements in
-                            the left panel. There must be one value per line.
-                            Write them as you would in your favourite text
-                            editor. You may also copy and paste values stored
-                            in a spreadsheet's column. The initial dataset
-                            provided for illustration purposes can be deleted
-                            as you usually would in any text editor.")),
-
-                        html$li(translate("
-                            Enter other parameters (in the same panel above
-                            Measurements).")),
-
-                        html$li(translate("
-                            Wait for the calculations to be performed."))
-                    ),
-
-                    html$p(translate(
-                        "Results are updated whenever an input changes.")),
-
-                    html$p(translate("
-                        Censored values are written as <X (left censored),
-                        >X (right censored), or [X1-X2] (interval censored),
-                        where X is the censored value. It must have the same
-                        unit as other non-censored measurements.")),
+                    shiny::uiOutput("ab_how_to_use"),
 
                     ###### Methodological Background ---------------------------
 
-                    html$h2(
-                        class = "app-panel-title",
-                        translate("Methodological Background")),
+                    shiny::uiOutput("ab_metho_bg_title",
+                        container = html$h2,
+                        class     = "app-panel-title"),
 
-                    html$p(translate("
-                        This application uses a Bayesian approach to estimate
-                        the parameters of the log-normal distribution.")),
-
-                    html$ul(
-                        html$li(translate("
-                            It yields a more intuitive rationale compared
-                            to traditional (frequentist) methods.")),
-
-                        html$li(translate("
-                            It naturally integrates the treatment of
-                            non-detects.")),
-
-                        html$li(translate("
-                            It allows the inclusion of external information
-                            in the measurements (not yet leveraged by the
-                            application)."))
-                    ),
-
-                    html$p(sprintf_html(translate("
-                        The Bayesian models and data interpretation procedures
-                        used by this application are derived from current best
-                        practices in industrial hygiene, which are described in
-                        the following scientific paper: Jérôme Lavoué, Lawrence
-                        Joseph, Peter Knott, Hugh Davies, France Labrèche,
-                        Frédéric Clerc, Gautier Mater, Tracy Kirkham,
-                        Expostats: A Bayesian Toolkit to Aid the Interpretation
-                        of Occupational Exposure Measurements, Annals of Work
-                        Exposures and Health, Volume 63, Issue 3, April 2019,
-                        Pages 267-279, %s."),
-                        a_strs[["expostats_paper"]])),
-
-                    html$p(sprintf_html(translate("
-                        Additional details and references are available on %s."),
-
-                        # TODO: (JMP) This must depend on future input$lang.
-                        # It will likely move to server() because of that,
-                        # like all calls to translate().
-                        a_strs[[if (TRUE) "expostats_info_en" else "expostats_info_fr"]]))
+                    shiny::uiOutput("ab_metho_bg")
                 )
             )
         )
@@ -1083,16 +981,108 @@ ui <- shiny::fluidPage(
 )
 
 
-# Server logic -----------------------------------------------------------------
+        ### Panel: About -------------------------------------------------------
 
-
-server <- function(input, output, session) {
-
-    ## Internationalization ----------------------------------------------------
-
-    shiny::observeEvent(input$lang, {
-        shiny::updateQueryString(sprintf("?lang=%s", input$lang))
-        # TODO: (JMP) Update UI elements here.
+        output$ab_tab_name    <- shiny::renderUI(translate("About"))
+        output$ab_about_title <- shiny::renderUI(translate("About"))
+        output$ab_about       <- shiny::renderUI(sprintf_html(
+            translate("
+                This application (and related tools) are developped by the
+                Industrial Hygiene team of the Department of Environmental
+                and Occupational Health at the %s of the %s. The source
+                code is available on %s.
+            "),
+            urls$epsum(lang, translate("School of Public Health")),
+            urls$udm(lang, translate("Université de Montréal")),
+            urls$source_code(lang, translate("GitHub"))
+        ))
+        output$ab_how_to_use_title <- shiny::renderUI(
+            translate("How to Use This Application")
+        )
+        output$ab_how_to_use <- shiny::renderUI(shiny::tagList(
+            html$p(translate("
+                This application eases the interpretation of industrial hygiene
+                measurements. Notably, it helps with checking compliance with
+                respect to an occupational exposure limit (OEL). It is based on
+                a risk assessment framework recognized by prominent institutions
+                such as the American Industrial Hygiene Association, the British
+                and Dutch Society for Occupational Health and Safety (BOHS/NVVA),
+                the French Institut national de recherche et de sécurité (INRS),
+                and the European Standards Organization.
+            ")),
+            html$p(translate("
+                It assumes that input measurements (measurements) represent a
+                random sample stemming from the distribution of exposures that
+                underlie the sampled context. In other words, the data is
+                representative of the specific exposure regimen one wishes to
+                assess.
+            ")),
+            html$p(translate("
+                The application is straightforward to use. Follow these three
+                steps.
+            ")),
+            html$ul(
+                html$li(translate("
+                    Enter your measurements under Measurements in the left panel.
+                    There must be one value per line. Write them as you would in
+                    your favourite text editor. You may also copy and paste
+                    values stored in a spreadsheet's column. The initial dataset
+                    provided for illustration purposes can be deleted as you
+                    usually would in any text editor.
+                ")),
+                html$li(translate("
+                    Enter other parameters (see the left sidebar to do do).
+                ")),
+                html$li(translate("Wait for the calculations to be performed."))
+            ),
+            html$p(translate("Results are updated whenever an input changes.")),
+            html$p(translate("
+                Censored values are written as <X (left censored), >X (right
+                censored), or [X1-X2] (interval censored), where X is the
+                censored value. It must have the same unit as other non-censored
+                measurements.
+            "))
+        ))
+        output$ab_metho_bg_title <- shiny::renderUI(
+            translate("Methodological Background")
+        )
+        output$ab_metho_bg <- shiny::renderUI(shiny::tagList(
+            html$p(translate("
+                This application uses a Bayesian approach to estimate the
+                parameters of the log-normal distribution.
+            ")),
+            html$ul(
+                html$li(translate("
+                    It yields a more intuitive rationale compared
+                    to traditional (frequentist) methods.
+                ")),
+                html$li(translate("
+                    It naturally integrates the treatment of non-detects.
+                ")),
+                html$li(translate("
+                    It allows the inclusion of external information in the
+                    measurements (not yet leveraged by the application).
+                "))
+            ),
+            html$p(sprintf_html(
+                translate("
+                    The Bayesian models and data interpretation procedures used
+                    by this application are derived from current best practices
+                    in industrial hygiene, which are described in the following
+                    scientific paper: Jérôme Lavoué, Lawrence Joseph, Peter
+                    Knott, Hugh Davies, France Labrèche, Frédéric Clerc, Gautier
+                    Mater, Tracy Kirkham, Expostats: A Bayesian Toolkit to Aid
+                    the Interpretation of Occupational Exposure Measurements,
+                    Annals of Work Exposures and Health, Volume 63, Issue 3,
+                    April 2019, Pages 267-279 (%s).
+                "),
+                urls$expostats_paper(lang, "DOI")
+            )),
+            html$p(sprintf_html(
+                translate("Additional details and references are available on %s."),
+                urls$expostats(lang, translate("expostats.ca"))
+            ))
+        ))
     })
 
     ## Sidebar -----------------------------------------------------------------
