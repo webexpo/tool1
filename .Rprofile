@@ -37,6 +37,8 @@ if (interactive()) {
     attach(name = "tools:dev", what = local({
         # Shorter aliases.
         .mb <- microbenchmark::microbenchmark
+        # Start the application locally.
+        .run <- \() invisible(source(file.path(".scripts", "run.R")))
 
         # Clear global environment.
         .rm <- \() rm(list = ls(name = globalenv()), pos = globalenv())

@@ -1,4 +1,4 @@
-#' Run the Application Locally and Programmatically
+#' Run the Application Locally
 #'
 #' Use this script to launch the application locally for development
 #' purposes.
