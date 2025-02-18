@@ -608,50 +608,26 @@ ui <- shiny::fluidPage(
 
                 shiny::tabPanel(
                     value = "pe",
-                    title = translate("Percentiles"),
+                    title = shiny::uiOutput("pe_tab_name", TRUE),
 
                     ###### Risk Decision ---------------------------------------
 
-                    html$h2(
-                        class = "app-panel-title",
-                        translate("Risk Analysis Based on Percentiles")),
+                    shiny::uiOutput("pe_risk_decision_title",
+                        container = html$h2,
+                        class     = "app-panel-title"),
 
                     shiny::fluidRow(
                         shiny::column(width = 6L,
+                            shiny::uiOutput("pe_risk_decision_subtitle",
+                            container = html$h3,
+                            class     = "app-panel-subtitle"),
 
-                            html$h3(
-                                class = "app-panel-subtitle",
-                                translate("Risk Decision")),
+                            shiny::uiOutput("pe_risk_decision",
+                                container = html$ul,
+                                class     = "app-ul"),
 
-                            html$ul(
-                                class = "app-ul",
-
-                                html$li(sprintf_html(translate("
-                                    Overexposure is defined as the %s percentile
-                                    being greater than or equal to the OEL."),
-                                    add_bold_html_output("pe_sb_target_perc_ordinal_1"))),
-
-                                html$li(sprintf_html(translate("
-                                    The probability that this criterion is met
-                                    is equal to %s."),
-                                    add_bold_text_output("pe_risk_prob_criterion"))),
-
-                                html$li(sprintf_html(translate("
-                                    The probability that this criterion is met
-                                    should be lower than %s."),
-                                    add_bold_text_output("pe_risk_prob_limit_1"))),
-
-                                html$li(sprintf_html(translate("
-                                    Consequently, the current situation is
-                                    declared to be %s."),
-                                    add_bold_text_output("pe_risk_decision")))
-                            ),
-
-                            html$p(translate("
-                                This risk meter shows the probability of the
-                                exposure being too high when compared to the
-                                occupational exposure limit. The red zone
-                                indicates a poorly controlled exposure."))
+                            shiny::uiOutput("pe_risk_meter_desc",
+                                container = html$p)
                         ),
 
                         shiny::column(width = 6L,
@@ -668,108 +644,65 @@ ui <- shiny::fluidPage(
 
                     ###### Parameter Estimates ---------------------------------
 
-                    html$h2(
-                        class = "app-panel-title",
-                        translate("Parameters Estimates")),
+                    shiny::uiOutput("pe_estim_title",
+                        container = html$h2,
+                        class     = "app-panel-title"),
+
+                    shiny::uiOutput("pe_estim", container = html$p),
 
                     shiny::fluidRow(
                         shiny::column(width = 6L,
-                            html$h3(
-                                class = "app-panel-subtitle",
-                                translate("Distribution Parameters")),
+                            shiny::uiOutput("pe_estim_dist_title",
+                                container = html$h3,
+                                class     = "app-panel-subtitle"),
 
-                            html$ul(
-                                class = "app-ul",
-
-                                html$li(sprintf_html(translate("
-                                    The geometric mean point estimate is equal
-                                    to %s."),
-                                    add_bold_text_output("pe_estimate_geo_mean"))),
-
-                                html$li(sprintf_html(translate("
-                                    The geometric standard deviation point
-                                    estimate is equal to %s."),
-                                    add_bold_text_output("pe_estimate_geo_sd")))
-                            )
+                            shiny::uiOutput("pe_estim_dist",
+                                container = html$ul,
+                                class     = "app-ul")
                         ),
                         shiny::column(width = 6L,
-                            html$h3(
-                                class = "app-panel-subtitle",
-                                shiny::htmlOutput(
-                                    outputId = "pe_sb_target_perc_ordinal_2",
-                                    inline   = TRUE),
-                                    translate("Percentile Estimate")),
+                            shiny::uiOutput("pe_estim_pe_title",
+                                container = html$h3,
+                                class     = "app-panel-subtitle"),
 
-                            html$ul(
-                                class = "app-ul",
-                                html$li(sprintf_html(translate("
-                                    The point estimate is equal to %s."),
-                                    add_bold_text_output("pe_estimate")))
-                            )
+                            shiny::uiOutput("pe_estim_pe",
+                                container = html$ul,
+                                class     = "app-ul")
                         )
                     ),
 
-                    html$p(translate("
-                        Square brackets indicate the underlying
-                        credible intervals.")),
-
                     ###### Sequential Plot -------------------------------------
 
-                    html$h2(
-                        class = "app-panel-title",
-                        translate("Sequential Plot")),
+                    shiny::uiOutput("pe_seq_title",
+                        container = html$h2,
+                        class     = "app-panel-title"),
 
                     shiny::plotOutput("pe_seq_plot", height = plot_height),
 
-                    html$p(translate("
-                        This plot shows the estimated exposure distribution when
-                        assuming 250 exposure measurements have been collected.
-                        If the measurements represent 8-hour TWA (Time-Weighted
-                        Average) values, this approximately represents a full
-                        year of exposure. The OEL is shown as a red dotted
-                        line and the point estimate of the selected percentile
-                        as a continuous blue line.")),
+                    shiny::uiOutput("pe_seq_desc", container = html$p),
 
                     ###### Density Plot ----------------------------------------
 
-                    html$h2(
-                        class = "app-panel-title",
-                        translate("Density Plot")),
+                    shiny::uiOutput("pe_dist_title",
+                        container = html$h2,
+                        class     = "app-panel-title"),
 
                     shiny::plotOutput("pe_dist_plot", height = plot_height),
 
-                    html$p(translate("
-                        This plot shows the probability density function of the
-                        estimated distribution of exposures. The OEL is shown as
-                        a red dotted line and the point estimate of the selected
-                        percentile as a continuous blue line.")),
+                    shiny::uiOutput("pe_dist_desc", container = html$p),
 
                     ###### Risk Band Plot --------------------------------------
 
-                    html$h2(
-                        class = "app-panel-title",
-                        translate("Risk Band Plot")),
+                    shiny::uiOutput("pe_risk_band_title",
+                        container = html$h2,
+                        class     = "app-panel-title"),
 
                     shiny::plotOutput("pe_risk_band_plot", height = plot_height),
 
                     # TODO: (JMP) Standardize margins and remove style.
-                    html$p(
-                        style = "margin: 10.5px 0 0 0;",
-                        sprintf_html(translate("
-                            This plot shows the probability distribution of the
-                            uncertainty around the selected percentile. It shows
-                            the probability that the true %s percentile is (1)
-                            below 1%% of the OEL, (2) between 1%% and 10%% of
-                            the OEL, (3) between 10%% and 50%% of the OEL, (4)
-                            between 50%% and 100%% of the OEL, and (5) greater
-                            than the OEL. This is based on the classification
-                            adopted by %s. The red column represents the
-                            probability of an overexposure. The latter should
-                            be lower than the %s threshold shown by the black
-                            dashed line."),
-                        shiny::htmlOutput("pe_sb_target_perc_ordinal_3", inline = TRUE),
-                        a_strs[["aiha"]],
-                        shiny::textOutput("pe_risk_prob_limit_2", inline = TRUE)))
+                    shiny::uiOutput("pe_risk_band_desc",
+                        container = html$p,
+                        style     = "margin: 10.5px 0 0 0;")
                 ),
 
                 ##### Panel: Arithmetic Mean -----------------------------------
@@ -832,6 +765,7 @@ ui <- shiny::fluidPage(
                                 container = html$ul,
                                 class     = "app-ul")
                         ),
+
                         shiny::column(width = 6L,
                             shiny::uiOutput("am_estim_am_title",
                                 container = html$h3,
@@ -918,7 +852,7 @@ ui <- shiny::fluidPage(
 
 server <- function(input, output, session) {
 
-    ## Internationalization ----------------------------------------------------
+    ## UI Internationalization -------------------------------------------------
 
     # Define a wrapper function that avoids having to explicitly pass
     # tr and input$lang to each transltr::Translator$translate() call.
@@ -937,6 +871,109 @@ server <- function(input, output, session) {
             Tool 1: Data Interpretation for One Similarly Exposed Group
         "))
 
+        ### Panel: Percentiles -------------------------------------------------
+
+        output$pe_tab_name <- shiny::renderUI(translate("Percentiles"))
+        output$pe_risk_decision_title <- shiny::renderUI(
+            translate("Risk Analysis Based on Percentiles")
+        )
+        output$pe_risk_decision_subtitle <- shiny::renderUI(
+            translate("Risk Decision")
+        )
+        output$pe_risk_decision <- shiny::renderUI(shiny::tagList(
+            html$li(sprintf_html(
+                translate("
+                    Overexposure is defined as the %s percentile
+                    being greater than or equal to the OEL.
+                "),
+                add_bold_html_output("pe_risk_decision_perc"))),
+            html$li(sprintf_html(
+                translate("
+                    The probability that this criterion is met is equal to %s.
+                "),
+                add_bold_text_output("pe_risk_decision_criterion"))),
+            html$li(sprintf_html(
+                translate("
+                    The probability that this criterion is met should be lower
+                    than %s.
+                "),
+                add_bold_text_output("pe_risk_decision_limit"))),
+            html$li(sprintf_html(
+                translate("
+                    Consequently, the current situation is declared to be %s.
+                "),
+                add_bold_text_output("pe_risk_decision_conclusion")))
+        ))
+        output$pe_risk_meter_desc <- shiny::renderUI(translate("
+            This risk meter shows the probability of the exposure being too
+            high when compared to the occupational exposure limit. The red
+            zone indicates a poorly controlled exposure.
+        "))
+        output$pe_estim_title <- shiny::renderUI(
+            translate("Parameters Estimates")
+        )
+        output$pe_estim <- shiny::renderUI(
+            translate("Square brackets give the underlying credible intervals.")
+        )
+        output$pe_estim_dist_title <- shiny::renderUI(
+            translate("Distribution Parameters")
+        )
+        output$pe_estim_dist <- shiny::renderUI(shiny::tagList(
+            html$li(sprintf_html(
+                translate("The geometric mean point estimate is equal to %s."),
+                as.character(add_bold_text_output("pe_estim_dist_geo_mean")))),
+
+            html$li(sprintf_html(
+                translate("The geometric standard deviation point estimate is equal to %s."),
+                as.character(add_bold_text_output("pe_estim_dist_geo_sd"))))
+        ))
+        # FIXME: (JMP) Decimals are not shown properly.
+        output$pe_estim_pe_title <- shiny::renderUI({
+            sprintf_html(
+            "%.0f%s %s",
+            input$sb_target_perc,
+            as.character(html$sup(ordinal_number_suffix(input$sb_target_perc))),
+            translate("Percentile Estimate"))
+        })
+        output$pe_estim_pe <- shiny::renderUI(html$li(sprintf_html(
+            translate("The point estimate is equal to %s."),
+            as.character(add_bold_text_output("pe_estim_pe_perc"))
+        )))
+        output$pe_seq_title <- shiny::renderUI(translate("Sequential Plot"))
+        output$pe_seq_desc  <- shiny::renderUI(translate("
+            This plot shows the estimated exposure distribution when assuming
+            250 exposure measurements have been collected. If the measurements
+            represent 8-hour TWA (Time-Weighted Average) values, this
+            approximately represents a full year of exposure. The OEL is shown
+            as a red dotted line and the point estimate of the selected
+            percentile as a continuous blue line.
+        "))
+        output$pe_dist_title <- shiny::renderUI(translate("Density Plot"))
+        output$pe_dist_desc  <- shiny::renderUI(translate("
+            This plot shows the probability density function of the estimated
+            distribution of exposures. The OEL is shown as a red dotted line
+            and the point estimate of the selected percentile as a continuous
+            blue line.
+        "))
+        output$pe_risk_band_title <- shiny::renderUI(translate("Risk Band Plot"))
+        output$pe_risk_band_desc  <- shiny::renderUI(sprintf_html(
+            translate("
+                This plot shows the probability distribution of the uncertainty
+                around the selected percentile. It shows the probability that
+                its true value is
+                (1) below 1%% of the OEL,
+                (2) between 1%% and 10%% of the OEL,
+                (3) between 10%% and 50%% of the OEL,
+                (4) between 50%% and 100%% of the OEL, and
+                (5) greater than the OEL.
+                This is based on the classification adopted by %s. The red
+                column represents the probability of an overexposure. The
+                latter should be lower than the threshold shown by the black
+                dashed line."
+            ),
+            urls$aiha(lang, "AIHA")
+        ))
+
         ### Panel: Arithmetic Mean ---------------------------------------------
 
         output$am_tab_name <- shiny::renderUI(translate("Arithmetic Mean"))
@@ -950,20 +987,17 @@ server <- function(input, output, session) {
             html$li(translate("
                 Overexposure is defined as the arithmetic
                 mean being greater than or equal to the OEL.")),
-
             html$li(sprintf_html(
                 translate("
                     The probability that this criterion is met is equal to %s.
                 "),
                 add_bold_text_output("am_risk_decision_criterion"))),
-
             html$li(sprintf_html(
                 translate("
                     The probability that this criterion is met should be lower
                     than %s.
                 "),
                 add_bold_text_output("am_risk_decision_limit"))),
-
             html$li(sprintf_html(
                 translate("
                     Consequently, the current situation is declared to be %s.
@@ -989,7 +1023,7 @@ server <- function(input, output, session) {
             translate("Parameters Estimates")
         )
         output$am_estim <- shiny::renderUI(
-            translate("Square brackets are the underlying credible intervals.")
+            translate("Square brackets give the underlying credible intervals.")
         )
         output$am_estim_dist_title <- shiny::renderUI(
             translate("Distribution Parameters")
@@ -1000,24 +1034,16 @@ server <- function(input, output, session) {
                 as.character(add_bold_text_output("am_estim_dist_geo_mean")))),
 
             html$li(sprintf_html(
-                translate("
-                    The geometric standard deviation point estimate is equal
-                    to %s.
-                "),
+                translate("The geometric standard deviation point estimate is equal to %s."),
                 as.character(add_bold_text_output("am_estim_dist_geo_sd"))))
         ))
-        output$am_estim_am_title <- shiny::renderUI(
-            translate("Arithmetic Mean")
-        )
-        output$am_estim_am <- shiny::renderUI(
-            html$li(sprintf_html(
-                translate("The point estimate is equal to %s."),
-                as.character(add_bold_text_output("am_estim_am_mean"))))
-        )
-        output$am_seq_title <- shiny::renderUI(
-            translate("Sequential Plot")
-        )
-        output$am_seq_desc <- shiny::renderUI(translate("
+        output$am_estim_am_title <- shiny::renderUI(translate("Arithmetic Mean"))
+        output$am_estim_am       <- shiny::renderUI(html$li(sprintf_html(
+            translate("The point estimate is equal to %s."),
+            as.character(add_bold_text_output("am_estim_am_mean"))
+        )))
+        output$am_seq_title <- shiny::renderUI(translate("Sequential Plot"))
+        output$am_seq_desc  <- shiny::renderUI(translate("
             This plot shows the estimated exposure distribution when assuming
             250 exposure measurements have been collected. If the measurements
             represent 8-hour TWA (Time-Weighted Average) values, this
@@ -1025,35 +1051,30 @@ server <- function(input, output, session) {
             as a red dotted line and the point estimate of the arithmetic mean
             as a continuous green line.
         "))
-        output$am_dist_title <- shiny::renderUI(
-            translate("Risk Band Plot")
-        )
-        output$am_dist_desc <- shiny::renderUI(translate("
+        output$am_dist_title <- shiny::renderUI(translate("Density Plot"))
+        output$am_dist_desc  <- shiny::renderUI(translate("
             This plot shows the probability density function of the estimated
             distribution of exposures. The OEL is shown as a red dotted line
             and the point estimate of the arithmetic mean as a continuous green
             line.
         "))
-        output$am_risk_band_title <- shiny::renderUI(
-            translate("Risk Band Plot")
-        )
-        output$am_risk_band_desc <- shiny::renderUI(
-            sprintf_html(
-                translate("
-                    This plot shows the probability distribution of the
-                    uncertainty around the arithmetic mean. It shows the
-                    probability that its true value is
-                    (1) below 1%% of the OEL,
-                    (2) between 1%% and 10%% of the OEL,
-                    (3) between 10%% and 50%% of the OEL,
-                    (4) between 50%% and 100%% of the OEL, and
-                    (5) greater than the OEL.
-                    This is based on the classification adopted by %s. The red
-                    column represents the probability of an overexposure. The
-                    latter should be lower than the threshold (black dashed line)."
-                ),
-                urls$aiha(lang, "AIHA"))
-        )
+        output$am_risk_band_title <- shiny::renderUI(translate("Risk Band Plot"))
+        output$am_risk_band_desc  <- shiny::renderUI(sprintf_html(
+            translate("
+                This plot shows the probability distribution of the uncertainty
+                around the arithmetic mean. It shows the probability that its
+                true value is
+                (1) below 1%% of the OEL,
+                (2) between 1%% and 10%% of the OEL,
+                (3) between 10%% and 50%% of the OEL,
+                (4) between 50%% and 100%% of the OEL, and
+                (5) greater than the OEL.
+                This is based on the classification adopted by %s. The red
+                column represents the probability of an overexposure. The
+                latter should be lower than the threshold (black dashed line)."
+            ),
+            urls$aiha(lang, "AIHA")
+        ))
 
         ### Panel: About -------------------------------------------------------
 
@@ -1255,21 +1276,20 @@ server <- function(input, output, session) {
 
     output$ef_risk_prob_limit_1   <-
     output$ef_risk_prob_limit_2   <-
-    output$pe_risk_prob_limit_1   <-
-    output$pe_risk_prob_limit_2   <-
+    output$pe_risk_decision_limit <-
     output$am_risk_decision_limit <- shiny::renderText({
         return(paste0(input$sb_psi, "%"))
     })
 
-    output$ef_estimate_geo_mean <-
-    output$pe_estimate_geo_mean <-
+    output$ef_estimate_geo_mean   <-
+    output$pe_estim_dist_geo_mean <-
     output$am_estim_dist_geo_mean <- shiny::renderText({
         gm <- lapply(num_results()$gm, \(x) as.character(signif(x, 2L)))
         return(sprintf("%s [%s - %s]", gm$est, gm$lcl, gm$ucl))
     })
 
-    output$ef_estimate_geo_sd <-
-    output$pe_estimate_geo_sd <-
+    output$ef_estimate_geo_sd   <-
+    output$pe_estim_dist_geo_sd <-
     output$am_estim_dist_geo_sd <- shiny::renderText({
         gsd <- lapply(num_results()$gsd, \(x) as.character(signif(x, 2L)))
         return(sprintf("%s [%s - %s]", gsd$est, gsd$lcl, gsd$ucl))
@@ -1593,11 +1613,10 @@ server <- function(input, output, session) {
 
     ## Panel: Percentiles ------------------------------------------------------
 
-    ### Shared Outputs ---------------------------------------------------------
+    ### Risk Decision ----------------------------------------------------------
 
-    output$pe_sb_target_perc_ordinal_1 <-
-    output$pe_sb_target_perc_ordinal_2 <-
-    output$pe_sb_target_perc_ordinal_3 <- shiny::renderUI({
+    # FIXME: (JMP) Decimals are not shown properly.
+    output$pe_risk_decision_perc <- shiny::renderUI({
         value <- input$sb_target_perc
         return(
             sprintf_html(
@@ -1606,17 +1625,13 @@ server <- function(input, output, session) {
                 ordinal_number_suffix(value)))
     })
 
-    ### Risk Decision ----------------------------------------------------------
-
-    # See section Shared Outputs above for output$pe_sb_target_perc_ordinal_1.
-
-    output$pe_risk_prob_criterion <- shiny::renderText({
+    output$pe_risk_decision_criterion <- shiny::renderText({
         return(paste0(signif(num_results()$perc.risk, 3L), "%"))
     })
 
-    # See section Shared Outputs above for output$pe_risk_prob_limit_1.
+    # See section Shared Outputs above for output$pe_risk_decision_limit.
 
-    output$pe_risk_decision <-shiny::renderText({
+    output$pe_risk_decision_conclusion <-shiny::renderText({
         if (num_results()$perc.risk >= user_inputs()$psi) {
             return(translate("poorly controlled"))
         }
@@ -1633,13 +1648,10 @@ server <- function(input, output, session) {
 
     ### Parameter Estimates ----------------------------------------------------
 
-    # See section Shared Outputs above for output$pe_estimate_geo_mean,
-    # and output$pe_estimate_geo_sd.
+    # See section Shared Outputs above for output$pe_estim_dist_geo_mean,
+    # and output$pe_estim_dist_geo_sd.
 
-    # See subsection Panel: Percentiles - Shared Outputs
-    # above for output$pe_sb_target_perc_ordinal_2.
-
-    output$pe_estimate <- shiny::renderText({
+    output$pe_estim_pe_perc <- shiny::renderText({
         perc <- lapply(num_results()$perc, \(x) as.character(signif(x, 3L)))
         return(sprintf("%s [%s - %s]", perc$est, perc$lcl, perc$ucl))
     })
@@ -1684,9 +1696,6 @@ server <- function(input, output, session) {
     })
 
     ### Risk Band Plot ---------------------------------------------------------
-
-    # See subsection Panel: Percentiles - Shared Outputs
-    # above for output$pe_sb_target_perc_ordinal_3.
 
     output$pe_risk_band_plot <- shiny::renderPlot({
         bayesian_outputs <- bayesian_analysis()

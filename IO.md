@@ -85,20 +85,37 @@ There are 6 rules. They exist for consistency and readability.
 | Exceedance Fraction | `shiny::plotOutput()`         | `ef_risk_band_plot`               | `riskband.frac`                   |
 | Exceedance Fraction | `shiny::textOutput()`         | `ef_good_exposure_percent_1`      | `frac.acceptableExpoDiv1`         |
 | Exceedance Fraction | `shiny::textOutput()`         | `ef_good_exposure_percent_2`      | `frac.acceptableExpoDiv2`         |
-| Percentiles         | `shiny::textOutput()`         | `pe_sb_target_perc_ordinal_1`     | `perc.percentile.risk.decision`   |
-| Percentiles         | `shiny::textOutput()`         | `pe_sb_target_perc_ordinal_2`     | `perc.percentile.param.estimates` |
-| Percentiles         | `shiny::textOutput()`         | `pe_sb_target_perc_ordinal_3`     | `perc.percentile.risk.band`       |
-| Percentiles         | `shiny::textOutput()`         | `pe_risk_prob_criterion`          | `probrisk.perc`                   |
-| Percentiles         | `shiny::textOutput()`         | `pe_risk_prob_limit_1`            | `perc.probSituUnacceptable1`      |
-| Percentiles         | `shiny::textOutput()`         | `pe_risk_prob_limit_2`            | `perc.probSituUnacceptable2`      |
-| Percentiles         | `shiny::textOutput()`         | `pe_risk_decision`                | `finalrisk.perc`                  |
+| Percentiles         | `shiny::uiOutput()`           | `pe_tab_name`                     | None                              |
+| Percentiles         | `shiny::uiOutput()`           | `pe_risk_decision_title`          | None                              |
+| Percentiles         | `shiny::uiOutput()`           | `pe_risk_decision_subtitle`       | None                              |
+| Percentiles         | `shiny::uiOutput()`           | `pe_risk_decision`                | None                              |
+| Percentiles         | `shiny::textOutput()`         | `pe_risk_decision_perc`           | `perc.percentile.risk.decision`   |
+| Percentiles         | `shiny::textOutput()`         | `pe_risk_decision_criterion`      | `probrisk.perc`                   |
+| Percentiles         | `shiny::textOutput()`         | `pe_risk_decision_limit`          | `perc.probSituUnacceptable1`      |
+| Percentiles         | `shiny::textOutput()`         | `pe_risk_decision_conclusion`     | `finalrisk.perc`                  |
+| Percentiles         | `shiny::uiOutput()`           | `pe_risk_meter_desc`              | None                              |
 | Percentiles         | `shiny::plotOutput()`         | `pe_risk_meter_plot`              | `risquemetre2`                    |
-| Percentiles         | `shiny::textOutput()`         | `pe_estimate_geo_mean`            | `gm2`                             |
-| Percentiles         | `shiny::textOutput()`         | `pe_estimate_geo_sd`              | `gsd2`                            |
-| Percentiles         | `shiny::textOutput()`         | `pe_estimate`                     | `Perc`                            |
+| Percentiles         | `shiny::uiOutput()`           | `pe_estim_title`                  | None                              |
+| Percentiles         | `shiny::uiOutput()`           | `pe_estim`                        | None                              |
+| Percentiles         | `shiny::uiOutput()`           | `pe_estim_dist_title`             | None                              |
+| Percentiles         | `shiny::uiOutput()`           | `pe_estim_dist`                   | None                              |
+| Percentiles         | `shiny::textOutput()`         | `pe_estim_dist_geo_mean`          | `gm2`                             |
+| Percentiles         | `shiny::textOutput()`         | `pe_estim_dist_geo_sd`            | `gsd2`                            |
+| Percentiles         | `shiny::uiOutput()`           | `pe_estim_pe_title`               | None                              |
+| Percentiles         | `shiny::uiOutput()`           | `pe_estim_pe`                     | None                              |
+| Percentiles         | `shiny::textOutput()`         | `pe_estim_pe_perc`                | `Perc`                            |
+| Percentiles         | `shiny::uiOutput()`           | `pe_seq_title`                    | None                              |
 | Percentiles         | `shiny::plotOutput()`         | `pe_seq_plot`                     | `seqplot.perc`                    |
+| Percentiles         | `shiny::uiOutput()`           | `pe_seq_desc`                     | None                              |
+| Percentiles         | `shiny::uiOutput()`           | `pe_dist_title`                   | None                              |
 | Percentiles         | `shiny::plotOutput()`         | `pe_dist_plot`                    | `distplot.perc`                   |
+| Percentiles         | `shiny::uiOutput()`           | `pe_dist_desc`                    | None                              |
+| Percentiles         | `shiny::uiOutput()`           | `pe_risk_band_title`              | None                              |
 | Percentiles         | `shiny::plotOutput()`         | `pe_risk_band_plot`               | `riskband.perc`                   |
+| Percentiles         | `shiny::uiOutput()`           | `pe_risk_band_desc`               | None                              |
+| Percentiles         | `shiny::textOutput()`         | *Removed*                         | `perc.percentile.risk.band`       |
+| Percentiles         | `shiny::textOutput()`         | *Removed*                         | `perc.percentile.param.estimates` |
+| Percentiles         | `shiny::textOutput()`         | *Removed*                         | `perc.probSituUnacceptable2`      |
 | Arithmetic Mean     | `shiny::uiOutput()`           | `am_tab_name`                     | None                              |
 | Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_decision_title`          | None                              |
 | Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_decision_subtitle`       | None                              |
