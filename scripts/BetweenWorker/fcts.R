@@ -514,7 +514,7 @@ dens.gen.icdf <- function(o, A=o$A, range=numeric(0), u=runif(1), start=mean(ran
         # modif_0.21 Line below was replaced with the next two
         # y <- o$log.f(start, A)
         y <- rep(NA, length(start))
-        for (i in seq(along=start)) y[i] <- o$log.f(start[i], A)
+        for (i in seq(along.width=start)) y[i] <- o$log.f(start[i], A)
 
         sup <- start[y>target]
         inf <- start[y<target]
@@ -559,14 +559,14 @@ dens.gen.icdf <- function(o, A=o$A, range=numeric(0), u=runif(1), start=mean(ran
           # modif_0.21 Line below was replaced by the next two
           #slope <- o$log.f.prime(x, A)
           slope <- rep(NA, length(x))
-          for (i in seq(along=x)) slope[i] <- o$log.f.prime(x[i], A)
+          for (i in seq(along.width=x)) slope[i] <- o$log.f.prime(x[i], A)
 
           angle <- atan(slope)
 
           # modif_0.21 Line below was replaced by the next two
           #y <- o$log.f(x, A)
           y <- rep(NA, length(x))
-          for (i in seq(along=x)) y[i] <- o$log.f(x[i], A)
+          for (i in seq(along.width=x)) y[i] <- o$log.f(x[i], A)
 
           secant.slope <- diff(y)/diff(x)
           secant.angle <- atan(secant.slope)
