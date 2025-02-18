@@ -270,7 +270,7 @@ ui <- shiny::fluidPage(
                 ##### Panel: Statistics ----------------------------------------
 
                 shiny::tabPanel(
-                    value = "statistics",
+                    value = "st",
                     title = translate("Statistics"),
 
                     ##### Descriptive Statistics -------------------------------
@@ -360,7 +360,7 @@ ui <- shiny::fluidPage(
                 ##### Panel: Exceedance Fraction -------------------------------
 
                 shiny::tabPanel(
-                    value = "exceedance",
+                    value = "ef",
                     title = translate("Exceedance Fraction"),
 
                     ###### Risk Decision ---------------------------------------
@@ -603,7 +603,7 @@ ui <- shiny::fluidPage(
                 ##### Panel: Percentiles ---------------------------------------
 
                 shiny::tabPanel(
-                    value = "percentiles",
+                    value = "pe",
                     title = translate("Percentiles"),
 
                     ###### Risk Decision ---------------------------------------
@@ -1164,8 +1164,8 @@ server <- function(input, output, session) {
         shinyjs::hide("sb_frac_threshold")
         shinyjs::hide("sb_target_perc")
         switch(input$active_panel,
-            exceedance  = shinyjs::show("sb_frac_threshold"),
-            percentiles = shinyjs::show("sb_target_perc"))
+            ef = shinyjs::show("sb_frac_threshold"),
+            pe = shinyjs::show("sb_target_perc"))
     })
 
     # Values -------------------------------------------------------------------
