@@ -6,7 +6,7 @@ easier maintenance. A mapping between old and new names is also provided.
 
 Descriptions are included only when relevant.
 
-## Naming conventions for I/O
+## Naming Conventions
 
 There are 6 rules. They exist for consistency and readability.
 
@@ -89,9 +89,9 @@ There are 6 rules. They exist for consistency and readability.
 | Percentiles         | `shiny::uiOutput()`           | `pe_risk_decision_title`          | None                              |
 | Percentiles         | `shiny::uiOutput()`           | `pe_risk_decision_subtitle`       | None                              |
 | Percentiles         | `shiny::uiOutput()`           | `pe_risk_decision`                | None                              |
-| Percentiles         | `shiny::textOutput()`         | `pe_risk_decision_perc`           | `perc.percentile.risk.decision`   |
+| Percentiles         | `shiny::textOutput()`         | `pe_risk_decision_perc`           | `percentile5`                     |
 | Percentiles         | `shiny::textOutput()`         | `pe_risk_decision_criterion`      | `probrisk.perc`                   |
-| Percentiles         | `shiny::textOutput()`         | `pe_risk_decision_limit`          | `perc.probSituUnacceptable1`      |
+| Percentiles         | `shiny::textOutput()`         | `pe_risk_decision_limit`          | `probSituUnacceptable1`           |
 | Percentiles         | `shiny::textOutput()`         | `pe_risk_decision_conclusion`     | `finalrisk.perc`                  |
 | Percentiles         | `shiny::uiOutput()`           | `pe_risk_meter_desc`              | None                              |
 | Percentiles         | `shiny::plotOutput()`         | `pe_risk_meter_plot`              | `risquemetre2`                    |
@@ -113,15 +113,12 @@ There are 6 rules. They exist for consistency and readability.
 | Percentiles         | `shiny::uiOutput()`           | `pe_risk_band_title`              | None                              |
 | Percentiles         | `shiny::plotOutput()`         | `pe_risk_band_plot`               | `riskband.perc`                   |
 | Percentiles         | `shiny::uiOutput()`           | `pe_risk_band_desc`               | None                              |
-| Percentiles         | `shiny::textOutput()`         | *Removed*                         | `perc.percentile.risk.band`       |
-| Percentiles         | `shiny::textOutput()`         | *Removed*                         | `perc.percentile.param.estimates` |
-| Percentiles         | `shiny::textOutput()`         | *Removed*                         | `perc.probSituUnacceptable2`      |
 | Arithmetic Mean     | `shiny::uiOutput()`           | `am_tab_name`                     | None                              |
 | Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_decision_title`          | None                              |
 | Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_decision_subtitle`       | None                              |
 | Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_decision`                | None                              |
 | Arithmetic Mean     | `shiny::textOutput()`         | `am_risk_decision_criterion`      | `probrisk.AM`                     |
-| Arithmetic Mean     | `shiny::textOutput()`         | `am_risk_decision_limit`          | `am.probSituUnacceptable1`        |
+| Arithmetic Mean     | `shiny::textOutput()`         | `am_risk_decision_limit`          | `probSituUnacceptable2`           |
 | Arithmetic Mean     | `shiny::textOutput()`         | `am_risk_decision_conclusion`     | `finalrisk.AM`                    |
 | Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_decision_alert`          | None                              |
 | Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_meter_desc`              | None                              |
@@ -144,7 +141,6 @@ There are 6 rules. They exist for consistency and readability.
 | Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_band_title`              | None                              |
 | Arithmetic Mean     | `shiny::plotOutput()`         | `am_risk_band_plot`               | `riskband.am`                     |
 | Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_band_desc`               | None                              |
-| Arithmetic Mean     | `shiny::textOutput()`         | *Removed*                         | `am.probSituUnacceptable2`        |
 | About               | `shiny::uiOutput()`           | `ab_tab_name`                     | None                              |
 | About               | `shiny::uiOutput()`           | `ab_about_title`                  | None                              |
 | About               | `shiny::uiOutput()`           | `ab_about`                        | None                              |
@@ -153,11 +149,12 @@ There are 6 rules. They exist for consistency and readability.
 | About               | `shiny::uiOutput()`           | `ab_metho_bg_title`               | None                              |
 | About               | `shiny::uiOutput()`           | `ab_metho_bg`                     | None                              |
 
-### `am_estim_am_mean`
+### Identifiers Following the `*_estim_*_*` Pattern
 
-The naming of this output is a bit odd. Interpret it backwards. This is the
+The names of outputs like `am_estim_am`, `am_estim_am_mean`, `pe_estim_pe`,
+`pe_estim_pe_perc` and many others is odd at first glance.
+
+Interpret them backwards. For example, `am_estim_am_mean` is the
 point estimate of the arithmetic mean (`mean`) located in the subsubsection
 *Arithmetic Mean* (`am`) of the *Parameter Estimates* subsection (`estim`)
 of the *Arithmetic Mean* (`am`) panel.
-
-This also holds for output `am_estim_am`.
