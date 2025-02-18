@@ -71,6 +71,10 @@
 # FIXME: (JMP) Plots are not generated with the same margins. They must be
 # standardized. For some plots, this is a bigger problem and I left a TODO.
 
+# FIXME: (JMP) All functions that generate plots should use semantic argument
+# names. Using numbered arguments such as riskplot.1, riskplot.2 is a disaster
+# for readability and long-term maintenance.
+
 # FIXME: (JMP) OEL (Occupational Exposure Limit) and EL (Exposure Limit)
 # are both used interchangeably. Choose one and stick to it. Below, I
 # chose the latter until further notice. All other inputs have slightly
@@ -1324,8 +1328,6 @@ server <- function(input, output, session) {
 
     ### QQ Plot ----------------------------------------------------------------
 
-    # FIXME: (JMP) Rename arguments of this
-    # function. Use shorter and semantic names.
     output$st_qq_plot <- shiny::renderPlot({
         return(
             fun.qqplot(
@@ -1341,8 +1343,6 @@ server <- function(input, output, session) {
 
     ### Box and Whiskers Plot --------------------------------------------------
 
-    # FIXME: (JMP) Rename arguments of this
-    # function. Use shorter and semantic names.
     output$st_box_plot <- shiny::renderPlot({
         user_sample <- user_formatted_sample()
         return(
@@ -1384,8 +1384,6 @@ server <- function(input, output, session) {
 
     ### Values -----------------------------------------------------------------
 
-    # FIXME: (JMP) Rename arguments of this
-    # function. Use shorter English names.
     ef_exceed_plots <- shiny::reactive({
         seuil    <- input$sb_frac_threshold
         results  <- num_results()
@@ -1486,6 +1484,7 @@ server <- function(input, output, session) {
     # Variant 3 and 4 are just one plot. They are centered
     # by limiting their width (and by setting apppropriate
     # CSS classes, see plotOutput() above).
+    # FIXME: (JMP) This does not work on smaller screens.
     width = \() {
         return(
             switch(input$ef_exceed_plot_btn_variant,
@@ -1537,8 +1536,6 @@ server <- function(input, output, session) {
 
     ### Sequential Plot --------------------------------------------------------
 
-    # FIXME: (JMP) Rename arguments of this
-    # function. Use shorter and semantic names.
     output$ef_seq_plot <- shiny::renderPlot({
         results <- num_results()
         return(
@@ -1554,8 +1551,6 @@ server <- function(input, output, session) {
 
     ### Density Plot -----------------------------------------------------------
 
-    # FIXME: (JMP) Rename arguments of this
-    # function. Use shorter and semantic names.
     output$ef_dist_plot <- shiny::renderPlot({
         bayesian_outputs <- bayesian_analysis()
         return(
@@ -1579,10 +1574,9 @@ server <- function(input, output, session) {
     })
 
     # See subsection Shared Outputs above for
-    # output$ef_sb_frac_threshold_percent_2 and output$ef_sb_frac_threshold_percent_3.
+    # output$ef_sb_frac_threshold_percent_2 and
+    # output$ef_sb_frac_threshold_percent_3.
 
-    # FIXME: (JMP) Rename arguments of this
-    # function. Use shorter and semantic names.
     output$ef_risk_band_plot <- shiny::renderPlot({
         bayesian_outputs <- bayesian_analysis()
         inputs           <- user_inputs()
@@ -1652,8 +1646,6 @@ server <- function(input, output, session) {
 
     ### Sequential Plot --------------------------------------------------------
 
-    # FIXME: (JMP) Rename arguments of this
-    # function. Use shorter and semantic names.
     output$pe_seq_plot <- shiny::renderPlot({
         results     <- num_results()
         target_perc <- user_inputs()$target_perc
@@ -1673,8 +1665,6 @@ server <- function(input, output, session) {
 
     ### Density Plot -----------------------------------------------------------
 
-    # FIXME: (JMP) Rename arguments of this
-    # function. Use shorter and semantic names.
     output$pe_dist_plot <- shiny::renderPlot({
         bayesian_outputs <- bayesian_analysis()
         target_perc      <- user_inputs()$target_perc
@@ -1698,8 +1688,6 @@ server <- function(input, output, session) {
     # See subsection Panel: Percentiles - Shared Outputs
     # above for output$pe_sb_target_perc_ordinal_3.
 
-    # FIXME: (JMP) Rename arguments of this
-    # function. Use shorter and semantic names.
     output$pe_risk_band_plot <- shiny::renderPlot({
         bayesian_outputs <- bayesian_analysis()
         inputs           <- user_inputs()
@@ -1758,8 +1746,6 @@ server <- function(input, output, session) {
 
     ### Sequential Plot --------------------------------------------------------
 
-    # FIXME: (JMP) Rename arguments of this
-    # function. Use shorter and semantic names.
     output$am_seq_plot <- shiny::renderPlot({
         results <- num_results()
         return(
@@ -1776,8 +1762,6 @@ server <- function(input, output, session) {
 
     ### Density Plot -----------------------------------------------------------
 
-    # FIXME: (JMP) Rename arguments of this
-    # function. Use shorter and semantic names.
     output$am_dist_plot <- shiny::renderPlot({
         bayesian_outputs <- bayesian_analysis()
         return(
@@ -1795,8 +1779,6 @@ server <- function(input, output, session) {
 
     ### Risk Band Plot ---------------------------------------------------------
 
-    # FIXME: (JMP) Rename arguments of this
-    # function. Use shorter and semantic names.
     output$am_risk_band_plot <- shiny::renderPlot({
         bayesian_outputs <- bayesian_analysis()
         return(
