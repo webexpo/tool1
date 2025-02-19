@@ -85,7 +85,7 @@
 
 
 ui <- shiny::fluidPage(
-    # TODO: (JMP) Integrate this value with transltr in a near future.
+    # TODO: (JMP) Integrate this value with transltr.
     lang  = "en",
     theme = bslib::bs_theme(version = 5L, preset = "flatly"),
 
@@ -275,56 +275,33 @@ ui <- shiny::fluidPage(
 
                 shiny::tabPanel(
                     value = "st",
-                    title = translate("Statistics"),
+                    title = shiny::uiOutput("st_tab_name", TRUE),
 
                     ##### Descriptive Statistics -------------------------------
 
-                    html$h2(
-                        class = "app-panel-title",
-                        translate("Descriptive Statistics")),
+                    shiny::uiOutput("st_desc_stats_title",
+                        container = html$h2,
+                        class     = "app-panel-title"),
 
                     shiny::fluidRow(
                         shiny::column(width = 6L,
-                            html$h3(
-                                class = "app-panel-subtitle",
-                                translate("Summary")),
+                            shiny::uiOutput("st_desc_stats_subtitle",
+                                container = html$h3,
+                                class     = "app-panel-subtitle"),
 
-                            shiny::tableOutput("st_stats_tbl"),
+                            shiny::tableOutput("st_desc_stats_tbl"),
                         ),
+
                         shiny::column(width = 6L,
-                            add_bs_alert_info(
-                                html$p(translate("
-                                    Censored measurements are subject to one
-                                    of the following procedure.")),
-
-                                html$ul(
-                                    html$li(translate("
-                                        Interval censored measurements are
-                                        imputed as the mid-range.")),
-
-                                    html$li(translate("
-                                        Measurements censored to the right are
-                                        imputed as 9/4 of the censoring point.")),
-
-                                    html$li(sprintf_html(translate("
-                                        Measurements censored to the left are
-                                        treated using robust regression on order
-                                        statistics, or a Log-probit regression.
-                                        The algorithm used is derived from %s
-                                        (itself derived from previous work of
-                                        %s)."),
-                                        a_strs[["expostats_ndexpo"]],
-                                        a_strs[["dennis_helsel"]]))
-                                )
-                            )
+                            shiny::uiOutput("st_desc_stats_alert_info")
                         )
                     ),
 
                     ##### QQ Plot ----------------------------------------------
 
-                    html$h2(
-                        class = "app-panel-title",
-                        translate("Quantile-Quantile Plot")),
+                    shiny::uiOutput("st_qq_title",
+                        container = html$h2,
+                        class     = "app-panel-title"),
 
                     # This plot is ugly if it is rendered using the
                     # full available width of its parent container.
@@ -337,28 +314,19 @@ ui <- shiny::fluidPage(
                         htmltools::tagAppendAttributes(style = "margin: auto;"),
 
                     # TODO: (JMP) Standardize margins and remove style.
-                    html$p(style = "margin: 10.5px 0 0 0;", translate("
-                        The points above should follow a straight line. Random
-                        deviations from it are expected. However, significant
-                        deviations suggest that the data may have to be split
-                        into distinct subsets, or that some outliers must be
-                        investigated.")),
+                    shiny::uiOutput("st_qq_desc",
+                        container = html$p,
+                        style     = "margin: 10.5px 0 0 0;"),
 
                     ##### Box and Whiskers Plot --------------------------------
 
-                    html$h2(
-                        class = "app-panel-title",
-                        translate("Box and Whiskers Plot")),
+                    shiny::uiOutput("st_box_title",
+                        container = html$h2,
+                        class     = "app-panel-title"),
 
                     shiny::plotOutput("st_box_plot", height = plot_height),
 
-                    html$p(sprintf_html(translate("
-                        The measurements are scattered around the x-axis middle
-                        point. The box (outer horizontal lines) represents the
-                        spread between the 25<sup>th</sup> and 75<sup>th</sup>
-                        percentiles. The whiskers (vertical lines) represent the
-                        spread between the 10<sup>th</sup> and 90<sup>th</sup>
-                        percentiles. The inner horizontal line is the median."))),
+                    shiny::uiOutput("st_box_desc", container = html$p)
                 ),
 
                 ##### Panel: Exceedance Fraction -------------------------------
@@ -730,9 +698,7 @@ ui <- shiny::fluidPage(
                             shiny::uiOutput("am_risk_meter_desc",
                                 container = html$p),
 
-                            shiny::uiOutput("am_risk_decision_alert",
-                                container = html$p) |>
-                                add_bs_alert_warn()
+                            shiny::uiOutput("am_risk_decision_alert_warn")
                         ),
 
                         shiny::column(width = 6L,
@@ -850,6 +816,7 @@ ui <- shiny::fluidPage(
 # Server logic -----------------------------------------------------------------
 
 
+# FIXME: (JMP) Use |> whenever appropriate below to reduce nesting.
 server <- function(input, output, session) {
 
     ## UI Internationalization -------------------------------------------------
@@ -863,6 +830,8 @@ server <- function(input, output, session) {
     shiny::observeEvent(input$lang, {
         lang <- input$lang
 
+        # TODO: (JMP) We also need an updateInputSomething() when query
+        # has a parameter.
         shiny::updateQueryString(sprintf("?lang=%s", input$lang))
 
         ### Body ---------------------------------------------------------------
@@ -870,6 +839,57 @@ server <- function(input, output, session) {
         output$title <- shiny::renderUI(translate("
             Tool 1: Data Interpretation for One Similarly Exposed Group
         "))
+
+        ## Panel: Statistics ---------------------------------------------------
+
+        output$st_tab_name <- shiny::renderUI(translate("Statistics"))
+        output$st_desc_stats_title <- shiny::renderUI(
+            translate("Descriptive Statistics")
+        )
+        output$st_desc_stats_subtitle <- shiny::renderUI(translate("Summary"))
+        output$st_desc_stats_alert_info <- shiny::renderUI(add_bs_alert_info(
+            html$p(translate("
+                Censored measurements are subject to one of the following
+                procedure.")),
+            html$ul(
+                html$li(translate("
+                    Interval censored measurements are imputed as the
+                    mid-range.
+                ")),
+                html$li(translate("
+                    Measurements censored to the right are imputed as 9/4 of
+                    the censoring point.
+                ")),
+                html$li(sprintf_html(
+                    translate("
+                        Measurements censored to the left are treated using
+                        robust Log-probit regression on order statistics. The
+                        algorithm used is derived from %s (itself derived from
+                        previous work of %s).
+                    "),
+                    urls$expostats_ndexpo(lang, "NDExpo"),
+                    urls$dennis_helsel(lang, "Dennis Helsel")
+                ))
+            )
+        ))
+        output$st_qq_title <- shiny::renderUI(translate("Quantile-Quantile Plot"))
+        output$st_qq_desc  <- shiny::renderUI(translate("
+            The points above should follow a straight line. Random deviations
+            from it are expected. However, significant deviations suggest that
+            the data may have to be split into distinct subsets, or that some
+            outliers must be investigated.
+        "))
+        output$st_box_title <- shiny::renderUI(translate("Box and Whiskers Plot"))
+        output$st_box_desc  <- shiny::renderUI(sprintf_html(
+            translate("
+                The measurements are scattered around the x-axis middle point.
+                The box (outer horizontal lines) represents the distance between
+                the 25%1$s and 75%1$s percentiles. The whiskers (vertical lines)
+                represent the distance between the 10%1$s and 90%1$s percentiles.
+                The inner black horizontal line is the median.
+            "),
+            as.character(html$sup(translate("th")))
+        ))
 
         ### Panel: Percentiles -------------------------------------------------
 
@@ -1009,16 +1029,20 @@ server <- function(input, output, session) {
             high when compared to the occupational exposure limit. The red
             zone indicates a poorly controlled exposure.")
         )
-        output$am_risk_decision_alert <- shiny::renderUI(translate("
-            The risk assessment based on AM relies on the availability of a
-            long-term averaged OEL (LTA-OEL in the AIHA terminology),
-            representing a cumulative burden threshold. Most current OELs are
-            not created as LTA-OEL. Despite an annoying lack of precise
-            definition by most organizations, they should be most often viewed
-            as thresholds to be exceeded as few times as possible. Some authors
-            have suggested using one-tenth of the OEL as a practical LTA-OEL
-            when assessing risk using the arithmetic mean.
-        "))
+        output$am_risk_decision_alert_warn <- shiny::renderUI(
+            translate("
+                The risk assessment based on AM relies on the availability of
+                a long-term averaged OEL (LTA-OEL in the AIHA terminology),
+                representing a cumulative burden threshold. Most current OELs
+                are not created as LTA-OEL. Despite an annoying lack of precise
+                definition by most organizations, they should be most often
+                viewed as thresholds to be exceeded as few times as possible.
+                Some authors have suggested using one-tenth of the OEL as a
+                practical LTA-OEL when assessing risk using the arithmetic mean.
+            ") |>
+            html$p() |>
+            add_bs_alert_warn()
+        )
         output$am_estim_title <- shiny::renderUI(
             translate("Parameters Estimates")
         )
@@ -1310,7 +1334,7 @@ server <- function(input, output, session) {
 
     ### Descriptive Statistics -------------------------------------------------
 
-    output$st_stats_tbl <- shiny::renderTable(
+    output$st_desc_stats_tbl <- shiny::renderTable(
         rownames = FALSE,
         spacing  = "m",
         hover    = TRUE,
@@ -1319,11 +1343,10 @@ server <- function(input, output, session) {
                 data.simply.imputed = user_formatted_sample_imputed(),
                 c.oel = user_formatted_sample()$c.oel)
 
-            # <sup> tag cannot be used in a renderTable()
-            # call. Instead, we use superscripts ᵗʰ. These
-            # are valid UTF characters that can be rendered
-            # by browsers. This is not optimal, but better
-            # than nothing.
+            # <sup> tag cannot be used in a renderTable() call,
+            # even with shiny::HTML(). As a workaround, UTF-8
+            # superscript characters ᵗ and ʰ are used. This is
+            # not optimal, but it is better than nothing.
             stats_df$parameter <- c(
                 translate("Number of Obversations"),
                 translate("Proportion Censored"),

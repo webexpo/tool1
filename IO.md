@@ -64,9 +64,17 @@ There are 6 rules. They exist for consistency and readability.
 
 | Location            | Generator                     | `outputId` (v4)                   | `outputId` (v3)                   |
 | ------------------- | ----------------------------- | --------------------------------- | --------------------------------- |
-| Statistics          | `shiny::tableOutput()`        | `st_stats_tbl`                    | `res.desc`                        |
+| Statistics          | `shiny::uiOutput()`           | `st_tab_name`                     | None                              |
+| Statistics          | `shiny::uiOutput()`           | `st_desc_stats_title`             | None                              |
+| Statistics          | `shiny::uiOutput()`           | `st_desc_stats_subtitle`          | None                              |
+| Statistics          | `shiny::tableOutput()`        | `st_desc_stats_tbl`               | `res.desc`                        |
+| Statistics          | `shiny::uiOutput()`           | `st_desc_stats_alert_info`        | None                              |
+| Statistics          | `shiny::uiOutput()`           | `st_qq_title`                     | None                              |
 | Statistics          | `shiny::plotOutput()`         | `st_qq_plot`                      | `qqplot`                          |
+| Statistics          | `shiny::uiOutput()`           | `st_qq_desc`                      | None                              |
+| Statistics          | `shiny::uiOutput()`           | `st_box_title`                    | None                              |
 | Statistics          | `shiny::plotOutput()`         | `st_box_plot`                     | `boxplot`                         |
+| Statistics          | `shiny::uiOutput()`           | `st_box_desc`                     | None                              |
 | Exceedance Fraction | `shiny::textOutput()`         | `ef_sb_frac_threshold_percent_1`  | `acceptableExpo1`                 |
 | Exceedance Fraction | `shiny::textOutput()`         | `ef_sb_frac_threshold_percent_2`  | `acceptableExpo2`                 |
 | Exceedance Fraction | `shiny::textOutput()`         | `ef_sb_frac_threshold_percent_3`  | `acceptableExpo3`                 |
@@ -120,7 +128,7 @@ There are 6 rules. They exist for consistency and readability.
 | Arithmetic Mean     | `shiny::textOutput()`         | `am_risk_decision_criterion`      | `probrisk.AM`                     |
 | Arithmetic Mean     | `shiny::textOutput()`         | `am_risk_decision_limit`          | `probSituUnacceptable2`           |
 | Arithmetic Mean     | `shiny::textOutput()`         | `am_risk_decision_conclusion`     | `finalrisk.AM`                    |
-| Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_decision_alert`          | None                              |
+| Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_decision_alert_warn`     | None                              |
 | Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_meter_desc`              | None                              |
 | Arithmetic Mean     | `shiny::plotOutput()`         | `am_risk_meter_plot`              | `risquemetre.am`                  |
 | Arithmetic Mean     | `shiny::uiOutput()`           | `am_estim_title`                  | None                              |
