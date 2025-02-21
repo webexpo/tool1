@@ -1114,8 +1114,8 @@ server <- function(input, output, session) {
         output$pe_estim_pe_title <- shiny::renderUI({
             sprintf_html(
             "%.0f%s %s",
-            input$sb_target_perc,
-            as.character(html$sup(ordinal_number_suffix(input$sb_target_perc))),
+            input$target_perc,
+            as.character(html$sup(ordinal_number_suffix(input$target_perc))),
             translate("Percentile Estimate"))
         })
         output$pe_estim_pe <- shiny::renderUI(html$li(sprintf_html(
@@ -1373,11 +1373,11 @@ server <- function(input, output, session) {
     # by default, and respectively shows either of them only when
     # a specific panel is opened.
     shiny::observeEvent(input$active_panel, {
-        shinyjs::hide("sb_frac_threshold")
-        shinyjs::hide("sb_target_perc")
+        shinyjs::hide("frac_threshold")
+        shinyjs::hide("target_perc")
         switch(input$active_panel,
-            ef = shinyjs::show("sb_frac_threshold"),
-            pe = shinyjs::show("sb_target_perc"))
+            ef = shinyjs::show("frac_threshold"),
+            pe = shinyjs::show("target_perc"))
     })
 
     # Each click on ef_exceed_btn_customize triggers two actions:
@@ -1420,6 +1420,12 @@ server <- function(input, output, session) {
     })
 
     user_inputs <- shiny::reactive(
+        list(
+            conf           = input$conf,
+            psi            = input$psi,
+            frac_threshold = input$frac_threshold,
+            target_perc    = input$target_perc)
+    )
 
     user_formatted_sample <- shiny::reactive(
         data.formatting.SEG(
@@ -1485,7 +1491,7 @@ server <- function(input, output, session) {
     output$ef_risk_decision_limit <-
     output$pe_risk_decision_limit <-
     output$am_risk_decision_limit <- shiny::renderText({
-        return(paste0(input$sb_psi, "%"))
+        return(paste0(input$psi, "%"))
     })
 
     output$ef_estim_dist_geo_mean <-
@@ -1610,7 +1616,7 @@ server <- function(input, output, session) {
     ## Exceedance Plot ---------------------------------------------------------
 
     output$ef_exceed_plot <- shiny::renderPlot({
-        seuil    <- input$sb_frac_threshold
+        seuil    <- input$frac_threshold
         results  <- num_results()
         frac_est <- ceiling(results$frac$est)
         frac_ucl <- ceiling(results$frac$ucl)
@@ -1700,7 +1706,7 @@ server <- function(input, output, session) {
 
     output$ef_risk_band_desc_low_val_1 <-
     output$ef_risk_band_desc_low_val_2 <- shiny::renderText(
-        paste0(signif(input$sb_frac_threshold / 10L, 3L), "%")
+        paste0(signif(input$frac_threshold / 10L, 3L), "%")
     )
 
     output$ef_risk_band_plot <- shiny::renderPlot({
