@@ -219,7 +219,9 @@ ui <- shiny::fluidPage(
 
             ### Panels ---------------------------------------------------------
 
-            shiny::tabsetPanel(id = "active_panel",
+            shiny::tabsetPanel(
+                id   = "active_panel",
+                type = "pills",
 
                 #### Panel: Statistics -----------------------------------------
 
