@@ -1,9 +1,10 @@
-/* --bs- variables are exposed by Bootstrap v5.3.1. and used below. */
+/* --bs- variables are exposed by Bootstrap v5 and used below. */
 
 .app-title {
   margin-top: 16px;
   margin-bottom: 16px;
   padding-bottom: 8px;
+  font-size: 2.5rem;
 }
 
 .app-panel-title {
@@ -47,24 +48,20 @@
   z-index: 105;
 }
 
-.app-footer {
-  margin: 0;
-  padding-top: 10px;
-  color: var(--bs-gray-500);
-  border-top: 1px solid var(--bs-gray-500);
-}
-
-.app-footer > p {
-  margin: 0;
-}
-
 .app-input > label {
   font-weight: bold;
 }
 
-.app-input-tooltip {
-    text-align: center;
-    margin: 0;
+.app-sidebar-hr {
+  color: var(--bs-gray-500);
+}
+
+.app-sidebar-footer {
+  color: var(--bs-gray-500);
+}
+
+.app-sidebar-footer > * {
+  margin: 0 auto;
 }
 
 /* renderPlot() returns PNG images, which are rendered
