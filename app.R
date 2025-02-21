@@ -370,8 +370,11 @@ ui <- shiny::fluidPage(
                     shiny::actionButton(
                         inputId = "ef_exceed_btn_customize",
                         label   = "",
-                        icon    = static$icons$bottom,
-                        style   = "margin-bottom: 15px;"),
+                        icon    = shiny::icon(
+                            name  = "triangle-bottom",
+                            lib   = "glyphicon",
+                            style = "padding-right: 10px;"),
+                        style = "margin-bottom: 15px;"),
 
                     # The <fieldset> is initially hidden, and is either shown,
                     # or hidden whenever the user clicks on the action button
