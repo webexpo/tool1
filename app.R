@@ -845,6 +845,7 @@ server <- function(input, output, session) {
         )
         output$st_desc_stats_subtitle <- shiny::renderUI(translate("Summary"))
         output$st_desc_stats_alert_info <- shiny::renderUI(add_bs_alert_info(
+            title = translate("Information"),
             html$p(translate("
                 Censored measurements are subject to one of the following
                 procedure.")),
@@ -1211,7 +1212,7 @@ server <- function(input, output, session) {
                 practical LTA-OEL when assessing risk using the arithmetic mean.
             ") |>
             html$p() |>
-            add_bs_alert_warn()
+            add_bs_alert_warn(title = translate("Warning"))
         )
         output$am_estim_title <- shiny::renderUI(
             translate("Parameters Estimates")
