@@ -52,9 +52,8 @@ There are 6 rules. They exist for consistency and readability.
 | Sidebar             | `add_input_text_area()`       | `sb_data`                         | `data`                            |
 | Sidebar             | `shiny::numericInput()`       | `sb_frac_threshold`               | `frac_threshold`                  |
 | Sidebar             | `shiny::numericInput()`       | `sb_target_perc`                  | `target_perc`                     |
-| Exceedance Fraction | `shiny::radioButtons()`       | `ef_exceed_plot_btn_variant`      | `varianteFracDep`                 |
-| Exceedance Fraction | `shiny::actionButton()`       | `ef_exceed_plot_btn_custom`       | None                              |
-| Exceedance Fraction | `add_input_field_set()`       | `ef_exceed_plot_cols`             | None                              |
+| Exceedance Fraction | `shiny::radioButtons()`       | `ef_exceed_plot_btn_choose`       | `varianteFracDep`                 |
+| Exceedance Fraction | `shiny::actionButton()`       | `ef_exceed_plot_btn_customize`    | None                              |
 | Exceedance Fraction | `colourpicker::colourInput()` | `ef_exceed_plot_col_risk`         | `couleurRisque`                   |
 | Exceedance Fraction | `colourpicker::colourInput()` | `ef_exceed_plot_col_no_risk`      | `couleurAucunRisque`              |
 | Exceedance Fraction | `colourpicker::colourInput()` | `ef_exceed_plot_col_bg`           | `couleurFond`                     |
@@ -75,24 +74,43 @@ There are 6 rules. They exist for consistency and readability.
 | Statistics          | `shiny::uiOutput()`           | `st_box_title`                    | None                              |
 | Statistics          | `shiny::plotOutput()`         | `st_box_plot`                     | `boxplot`                         |
 | Statistics          | `shiny::uiOutput()`           | `st_box_desc`                     | None                              |
-| Exceedance Fraction | `shiny::textOutput()`         | `ef_sb_frac_threshold_percent_1`  | `acceptableExpo1`                 |
-| Exceedance Fraction | `shiny::textOutput()`         | `ef_sb_frac_threshold_percent_2`  | `acceptableExpo2`                 |
-| Exceedance Fraction | `shiny::textOutput()`         | `ef_sb_frac_threshold_percent_3`  | `acceptableExpo3`                 |
-| Exceedance Fraction | `shiny::textOutput()`         | `ef_risk_prob_criterion`          | `probrisk`                        |
-| Exceedance Fraction | `shiny::textOutput()`         | `ef_risk_prob_limit_1`            | `frac.probSituUnacceptable1`      |
-| Exceedance Fraction | `shiny::textOutput()`         | `ef_risk_prob_limit_2`            | `frac.probSituUnacceptable2`      |
-| Exceedance Fraction | `shiny::textOutput()`         | `ef_risk_decision`                | `finalrisk`                       |
+| Exceedance Fraction | `shiny::uiOutput()`           | `ef_tab_name`                     | None                              |
+| Exceedance Fraction | `shiny::uiOutput()`           | `ef_risk_decision_title`          | None                              |
+| Exceedance Fraction | `shiny::uiOutput()`           | `ef_risk_decision_subtitle`       | None                              |
+| Exceedance Fraction | `shiny::uiOutput()`           | `ef_risk_decision`                | None                              |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_risk_decision_frac`           | `acceptableExpo1`                 |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_risk_decision_criterion`      | `probrisk`                        |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_risk_decision_limit`          | `frac.probSituUnacceptable1`      |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_risk_decision_conclusion`     | `finalrisk`                       |
+| Exceedance Fraction | `shiny::uiOutput()`           | `ef_risk_meter_desc`              | None                              |
 | Exceedance Fraction | `shiny::plotOutput()`         | `ef_risk_meter_plot`              | `risquemetre`                     |
-| Exceedance Fraction | `shiny::textOutput()`         | `ef_estimate_geo_mean`            | `gm1`                             |
-| Exceedance Fraction | `shiny::textOutput()`         | `ef_estimate_geo_sd`              | `gsd1`                            |
-| Exceedance Fraction | `shiny::textOutput()`         | `ef_estimate`                     | `Frac`                            |
+| Exceedance Fraction | `shiny::uiOutput()`           | `ef_estim_title`                  | None                              |
+| Exceedance Fraction | `shiny::uiOutput()`           | `ef_estim`                        | None                              |
+| Exceedance Fraction | `shiny::uiOutput()`           | `ef_estim_dist_title`             | None                              |
+| Exceedance Fraction | `shiny::uiOutput()`           | `ef_estim_dist`                   | None                              |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_estim_dist_geo_mean`          | `gm1`                             |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_estim_dist_geo_sd`            | `gsd1`                            |
+| Exceedance Fraction | `shiny::uiOutput()`           | `ef_estim_ef_title`               | None                              |
+| Exceedance Fraction | `shiny::uiOutput()`           | `ef_estim_ef`                     | None                              |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_estim_ef_frac`                | `Frac`                            |
+| Exceedance Fraction | `shiny::uiOutput()`           | `ef_exceed_title`                 | None                              |
+| Exceedance Fraction | `shiny::uiOutput()`           | `ef_exceed`                       | None                              |
+| Exceedance Fraction | `shiny::uiOutput()`           | `ef_exceed_cols_label`            | None                              |
 | Exceedance Fraction | `shiny::plotOutput()`         | `ef_exceed_plot`                  | `fracDepVariantes`                |
-| Exceedance Fraction | `shiny::textOutput()`         | `ef_exceed_plot_description`      | `fracDepVarianteDesc`             |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_exceed_desc_sub_plot`         | `fracDepVarianteDesc`             |
+| Exceedance Fraction | `shiny::uiOutput()`           | `ef_seq_title`                    | None                              |
 | Exceedance Fraction | `shiny::plotOutput()`         | `ef_seq_plot`                     | `seqplot.frac`                    |
+| Exceedance Fraction | `shiny::uiOutput()`           | `ef_seq_desc`                     | None                              |
+| Exceedance Fraction | `shiny::uiOutput()`           | `ef_dist_title`                   | None                              |
 | Exceedance Fraction | `shiny::plotOutput()`         | `ef_dist_plot`                    | `distplot.frac`                   |
+| Exceedance Fraction | `shiny::uiOutput()`           | `ef_dist_desc`                    | None                              |
+| Exceedance Fraction | `shiny::uiOutput()`           | `ef_risk_band_title`              | None                              |
 | Exceedance Fraction | `shiny::plotOutput()`         | `ef_risk_band_plot`               | `riskband.frac`                   |
-| Exceedance Fraction | `shiny::textOutput()`         | `ef_good_exposure_percent_1`      | `frac.acceptableExpoDiv1`         |
-| Exceedance Fraction | `shiny::textOutput()`         | `ef_good_exposure_percent_2`      | `frac.acceptableExpoDiv2`         |
+| Exceedance Fraction | `shiny::uiOutput()`           | `ef_risk_band_desc`               | None                              |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_risk_band_desc_low_val_1`     | `frac.acceptableExpoDiv1`         |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_risk_band_desc_low_val_2`     | `frac.acceptableExpoDiv2`         |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_risk_band_desc_high_val_1`    | `acceptableExpo2`                 |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_risk_band_desc_high_val_2`    | `acceptableExpo3`                 |
 | Percentiles         | `shiny::uiOutput()`           | `pe_tab_name`                     | None                              |
 | Percentiles         | `shiny::uiOutput()`           | `pe_risk_decision_title`          | None                              |
 | Percentiles         | `shiny::uiOutput()`           | `pe_risk_decision_subtitle`       | None                              |

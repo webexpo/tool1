@@ -333,49 +333,26 @@ ui <- shiny::fluidPage(
 
                 shiny::tabPanel(
                     value = "ef",
-                    title = translate("Exceedance Fraction"),
+                    title = shiny::uiOutput("ef_tab_name", TRUE),
 
                     ###### Risk Decision ---------------------------------------
 
-                    html$h2(
-                        class = "app-panel-title",
-                        translate("Risk Analysis Based on the Exceedance Fraction")),
+                    shiny::uiOutput("ef_risk_decision_title",
+                        container = html$h2,
+                        class     = "app-panel-title"),
 
                     shiny::fluidRow(
                         shiny::column(width = 6L,
-                            html$h3(
-                                class = "app-panel-subtitle",
-                                translate("Risk Decision")),
+                            shiny::uiOutput("ef_risk_decision_subtitle",
+                                container = html$h3,
+                                class     = "app-panel-subtitle"),
 
-                            html$ul(
-                                class = "app-ul",
+                            shiny::uiOutput("ef_risk_decision",
+                                container = html$ul,
+                                class     = "app-ul"),
 
-                                html$li(sprintf_html(translate("
-                                    Overexposure is defined as the exceedance
-                                    fraction being greater than or equal to %s."),
-                                    add_bold_text_output("ef_sb_frac_threshold_percent_1"))),
-
-                                html$li(sprintf_html(translate("
-                                    The probability that this criterion is met
-                                    is equal to %s."),
-                                    add_bold_text_output("ef_risk_prob_criterion"))),
-
-                                html$li(sprintf_html(translate("
-                                    The probability that this criterion is met
-                                    should be lower than %s."),
-                                    add_bold_text_output("ef_risk_prob_limit_1"))),
-
-                                html$li(sprintf_html(translate("
-                                    Consequently, the current situation is
-                                    declared to be %s."),
-                                    add_bold_text_output("ef_risk_decision")))
-                            ),
-
-                            html$p(translate("
-                                This risk meter shows the probability of the
-                                exposure being too high when compared to the
-                                occupational exposure limit. The red zone
-                                indicates a poorly controlled exposure."))
+                            shiny::uiOutput("ef_risk_meter_desc",
+                                container = html$p)
                         ),
 
                         shiny::column(width = 6L,
@@ -392,184 +369,156 @@ ui <- shiny::fluidPage(
 
                     ###### Parameter Estimates ---------------------------------
 
-                    html$h2(
-                        class = "app-panel-title",
-                        translate("Parameters Estimates")),
+                    shiny::uiOutput("ef_estim_title",
+                        container = html$h2,
+                        class     = "app-panel-title"),
+
+                    shiny::uiOutput("ef_estim", container = html$p),
 
                     shiny::fluidRow(
                         shiny::column(width = 6L,
-                            html$h3(
-                                class = "app-panel-subtitle",
-                                translate("Distribution Parameters")),
+                            shiny::uiOutput("ef_estim_dist_title",
+                                container = html$h3,
+                                class     = "app-panel-subtitle"),
 
-                            html$ul(
-                                class = "app-ul",
-
-                                html$li(sprintf_html(translate("
-                                    The geometric mean point estimate is equal
-                                    to %s."),
-                                    add_bold_text_output("ef_estimate_geo_mean"))),
-
-                                html$li(sprintf_html(translate("
-                                    The geometric standard deviation point
-                                    estimate is equal to %s."),
-                                    add_bold_text_output("ef_estimate_geo_sd")))
-                            )
+                            shiny::uiOutput("ef_estim_dist",
+                                container = html$ul,
+                                class     = "app-ul")
                         ),
-                        shiny::column(width = 6L,
-                            html$h3(
-                                class = "app-panel-subtitle",
-                                translate("Exceedance Fraction")),
 
-                            html$ul(
-                                class = "app-ul",
-                                html$li(sprintf_html(translate("
-                                    The point estimate is equal to %s."),
-                                    add_bold_text_output("ef_estimate")))
-                            )
+                        shiny::column(width = 6L,
+                            shiny::uiOutput("ef_estim_ef_title",
+                                    container = html$h3,
+                                    class     = "app-panel-subtitle"),
+
+                            shiny::uiOutput("ef_estim_ef",
+                                container = html$ul,
+                                class     = "app-ul")
                         )
                     ),
 
-                    html$p(translate("
-                        Square brackets indicate the underlying
-                        credible intervals.")),
-
                     ###### Exceedance Plot -------------------------------------
 
-                    html$h2(
-                        class = "app-panel-title",
-                        translate("Exceedance Plot")),
+                    shiny::uiOutput("ef_exceed_title",
+                        container = html$h2,
+                        class     = "app-panel-title"),
 
-                    html$p(translate("
-                        The following plot illustrates the proportion of exposures
-                        that would be above the OEL in a fictional sample of one
-                        hundred measurements. Each flask represents an exposure.
-                        Red flasks correspond to exposures that are above the
-                        exposure limit. The plot can be shown in one of four
-                        variations. You may choose any variant (an alternative
-                        way of displaying the same information) below and,
-                        optionally, customize colors.")),
+                    shiny::uiOutput("ef_exceed", container = html$p),
 
                     shiny::radioButtons(
-                        inputId  = "ef_exceed_plot_btn_variant",
-                        label    = translate("Variants:"),
+                        inputId  = "ef_exceed_btn_choose",
+                        label    = "",
                         inline   = TRUE,
                         choices  = c(
-                            # What users see = Internal input value.
-                            `1` = "figure1",
-                            `2` = "figure2",
-                            `3` = "figure3",
-                            `4` = "figure4")),
+                            # The format is
+                            # What users see = Internal value of the input.
+                            `1` = "plot1",
+                            `2` = "plot2",
+                            `3` = "plot3",
+                            `4` = "plot4")) |>
+                        htmltools::tagAppendAttributes(class = "app-input"),
 
                     shiny::actionButton(
-                        style   = "margin-bottom: 15px;",
-                        inputId = "ef_exceed_plot_btn_custom",
-                        label   = translate("Customize Colors"),
-                        icon    = static$icons$bottom),
+                        inputId = "ef_exceed_btn_customize",
+                        label   = "",
+                        icon    = static$icons$bottom,
+                        style   = "margin-bottom: 15px;"),
 
-                    # The <fieldset> is initially hidden, and is
-                    # either shown, or hidden whenever the user
-                    # clicks on the action button above.
-                    add_input_field_set(
-                        inputId      = "ef_exceed_plot_cols",
-                        container_id = "ef_exceed_plot_cols_container",
-                        label        = translate("Colors:"),
-                        style        = "display: none;",
-                        inputs       = list(
+                    # The <fieldset> is initially hidden, and is either shown,
+                    # or hidden whenever the user clicks on the action button
+                    # above. This is not an input (just a static container)
+                    # that does not require an inputId. It has a standard HTML
+                    # id attribute used by observers below.
+                    html$fieldset(
+                        id    = "ef_exceed_cols",
+                        style = "display: none;",
+                        class = "form-group shiny-input-container-inline app-input",
+                        shiny::uiOutput(
+                            outputId  = "ef_exceed_cols_label",
+                            container = html$label,
+                            class     = "control-label",
+                            `for`     = "ef_exceed_cols"),
+                        html$div(
+                            class = "app-flex-row",
                             colourpicker::colourInput(
-                                inputId    = "ef_exceed_plot_col_risk",
-                                label      = translate("Flask Color (Exceedance):"),
+                                inputId    = "ef_exceed_col_risk",
+                                label      = "",
                                 value      = "red",
                                 returnName = TRUE,
-                                palette    = "limited"),
+                                palette    = "limited") |>
+                            htmltools::tagAppendAttributes(class = "app-input"),
                             colourpicker::colourInput(
-                                inputId    = "ef_exceed_plot_col_no_risk",
-                                label      = translate("Flask Color (No Exceedance):"),
+                                inputId    = "ef_exceed_col_no_risk",
+                                label      = "",
                                 value      = "gray50",
                                 returnName = TRUE,
-                                palette    = "limited"),
+                                palette    = "limited") |>
+                            htmltools::tagAppendAttributes(class = "app-input"),
                             colourpicker::colourInput(
-                                inputId    = "ef_exceed_plot_col_bg",
-                                label      = translate("Background Color (Default):"),
+                                inputId    = "ef_exceed_col_bg",
+                                label      = "",
                                 value      = "gray70",
                                 returnName = TRUE,
-                                palette    = "limited"),
+                                palette    = "limited") |>
+                            htmltools::tagAppendAttributes(class = "app-input"),
                             colourpicker::colourInput(
-                                inputId    = "ef_exceed_plot_col_bg_threshold",
-                                label      = translate("Background Color (Threshold):"),
+                                inputId    = "ef_exceed_col_bg_threshold",
+                                label      = "",
                                 value      = "gray40",
                                 returnName = TRUE,
-                                palette    = "limited"))),
+                                palette    = "limited") |>
+                            htmltools::tagAppendAttributes(class = "app-input")
+                        )
+                    ),
 
-                    # Width is set by a function passed to renderPlot().
-                    shiny::plotOutput(
-                        outputId = "ef_exceed_plot",
-                        width    = "auto",
-                        height   = plot_height) |>
-                        # This class is used to center
-                        # variants that only shows 1 plot.
-                        htmltools::tagAppendAttributes(class = "app-center-plot") |>
+                    # Class is used to center variants that only shows 1 plot.
+                    htmltools::tagAppendAttributes(
+                        class = "app-center-plot",
+                        shiny::plotOutput(
+                            outputId = "ef_exceed_plot",
+                            height   = plot_height)) |>
                         # This color is extracted from
                         # the chosen shiny theme (flatly).
                         shinycssloaders::withSpinner(
                             type  = 8L,
                             color = "#212529"),
 
-                    shiny::textOutput(
-                        outputId  = "ef_exceed_plot_description",
-                        container = html$p),
+                    shiny::uiOutput("ef_exceed_desc_sub_plot", container = html$p),
 
                     ###### Sequential Plot -------------------------------------
 
-                    html$h2(
-                        class = "app-panel-title",
-                        translate("Sequential Plot")),
+                    shiny::uiOutput("ef_seq_title",
+                        container = html$h2,
+                        class     = "app-panel-title"),
 
                     shiny::plotOutput("ef_seq_plot", height = plot_height),
 
-                    # TODO: (JMP) Standardize margins and remove style.
-                    html$p(style = "margin: 10.5px 0 0 0;", translate("
-                        This plot shows the estimated exposure distribution when
-                        assuming 250 exposure measurements have been collected.
-                        If the measurements represent 8-hour TWA (Time-Weighted
-                        Average) values, this approximately represents a full
-                        year of exposure. The OEL is shown as a red line.")),
+                    shiny::uiOutput("ef_seq_desc", container = html$p),
 
                     ###### Density Plot ----------------------------------------
 
-                    html$h2(
-                        class = "app-panel-title",
-                        translate("Density Plot")),
+                    shiny::uiOutput("ef_dist_title",
+                        container = html$h2,
+                        class     = "app-panel-title"),
 
                     shiny::plotOutput("ef_dist_plot", height = plot_height),
 
-                    html$p(translate("
-                        This plot shows the probability density function of the
-                        estimated distribution of exposures. The OEL is shown as
-                        a red line. The exceedance fraction is the area under
-                        the curve beyond the OEL value.")),
+                    shiny::uiOutput("ef_dist_desc", container = html$p),
 
                     ###### Risk Band Plot --------------------------------------
 
-                    html$h2(
-                        class = "app-panel-title",
-                        translate("Risk Band Plot")),
+                    shiny::uiOutput("ef_risk_band_title",
+                        container = html$h2,
+                        class     = "app-panel-title"),
 
-                    shiny::plotOutput("ef_risk_band_plot", height = plot_height),
+                    # FIXME: (JMP) Standardize margins and remove styling.
+                    htmltools::tagAppendAttributes(
+                        style = "margin-bottom: 10.5px;",
+                        shiny::plotOutput(
+                            outputId = "ef_risk_band_plot",
+                            height   = plot_height)),
 
-                    html$p(sprintf_html(translate("
-                        This plot shows the probability distribution of the
-                        uncertainty around the exceedance fraction. It shows
-                        the probability that the true exceedance fraction is
-                        below %s, between %s and %s, and greater than %s. The
-                        red column represents the probability of an
-                        overexposure. The latter should be lower than the %s
-                        threshold shown by the black dashed line."),
-                        shiny::textOutput("ef_good_exposure_percent_1", inline = TRUE),
-                        shiny::textOutput("ef_good_exposure_percent_2", inline = TRUE),
-                        shiny::textOutput("ef_sb_frac_threshold_percent_2", inline = TRUE),
-                        shiny::textOutput("ef_sb_frac_threshold_percent_3", inline = TRUE),
-                        shiny::textOutput("ef_risk_prob_limit_2", inline = TRUE)))
+                    shiny::uiOutput("ef_risk_band_desc", container = html$p)
                 ),
 
                 ##### Panel: Percentiles ---------------------------------------
@@ -891,6 +840,179 @@ server <- function(input, output, session) {
             as.character(html$sup(translate("th")))
         ))
 
+        ### Panel: Exceedance Fraction -----------------------------------------
+
+        shiny::updateRadioButtons(
+            inputId = "ef_exceed_btn_choose",
+            label   = translate("Variants:"))
+        shiny::updateActionButton(
+            inputId = "ef_exceed_btn_customize",
+            label   = translate("Customize Colors"))
+        colourpicker::updateColourInput(
+            session = session,
+            inputId = "ef_exceed_col_risk",
+            label   = translate("Flask Color (Exceedance):"))
+        colourpicker::updateColourInput(
+            session = session,
+            inputId = "ef_exceed_col_no_risk",
+            label   = translate("Flask Color (No Exceedance):"))
+        colourpicker::updateColourInput(
+            session = session,
+            inputId = "ef_exceed_col_bg",
+            label   = translate("Background Color (Default):"))
+        colourpicker::updateColourInput(
+            session = session,
+            inputId = "ef_exceed_col_bg_threshold",
+            label   = translate("Background Color (Threshold):"))
+
+        output$ef_tab_name <- shiny::renderUI(translate("Exceedance Fraction"))
+        output$ef_risk_decision_title <- shiny::renderUI(
+            translate("Risk Analysis Based on the Exceedance Fraction")
+        )
+        output$ef_risk_decision_subtitle <- shiny::renderUI(
+            translate("Risk Decision")
+        )
+        output$ef_risk_decision <- shiny::renderUI(shiny::tagList(
+            html$li(sprintf_html(
+                translate("
+                    Overexposure is defined as the exceedance fraction being
+                    greater than or equal to %s.
+                "),
+                as.character(add_bold_text_output("ef_risk_decision_frac")))),
+            html$li(sprintf_html(
+                translate("
+                    The probability that this criterion is met is equal to %s.
+                "),
+                as.character(add_bold_text_output("ef_risk_decision_criterion")))),
+            html$li(sprintf_html(
+                translate("
+                    The probability that this criterion is met should be lower
+                    than %s.
+                "),
+                as.character(add_bold_text_output("ef_risk_decision_limit")))),
+            html$li(sprintf_html(
+                translate("
+                    Consequently, the current situation is declared to be %s.
+                "),
+                as.character(add_bold_text_output("ef_risk_decision_conclusion"))))
+        ))
+        output$ef_risk_meter_desc <- shiny::renderUI(translate("
+            This risk meter shows the probability of the exposure being too
+            high when compared to the occupational exposure limit. The red
+            zone indicates a poorly controlled exposure.
+        "))
+        output$ef_estim_title <- shiny::renderUI(
+            translate("Parameters Estimates")
+        )
+        output$ef_estim <- shiny::renderUI(
+            translate("Square brackets give the underlying credible intervals.")
+        )
+        output$ef_estim_dist_title <- shiny::renderUI(
+            translate("Distribution Parameters")
+        )
+        output$ef_estim_dist <- shiny::renderUI(shiny::tagList(
+            html$li(sprintf_html(
+                translate("The geometric mean point estimate is equal to %s."),
+                as.character(add_bold_text_output("ef_estim_dist_geo_mean")))),
+
+            html$li(sprintf_html(
+                translate("The geometric standard deviation point estimate is equal to %s."),
+                as.character(add_bold_text_output("ef_estim_dist_geo_sd"))))
+        ))
+        output$ef_estim_ef_title <- shiny::renderUI(
+            translate("Exceedance Fraction")
+        )
+        output$ef_estim_ef <- shiny::renderUI(html$li(sprintf_html(
+            translate("The point estimate is equal to %s."),
+            as.character(add_bold_text_output("ef_estim_ef_frac")))
+        ))
+        output$ef_exceed_title <- shiny::renderUI(translate("Exceedance Plot"))
+        output$ef_exceed <- shiny::renderUI(translate("
+            The following plot illustrates the proportion of exposures that
+            would be above the OEL in a fictional sample of one hundred
+            measurements. Each flask represents an exposure. Red flasks
+            correspond to exposures that are above the exposure limit. The plot
+            can be shown in one of four variations. You may choose any variant
+            (an alternative way of displaying the same information) below and,
+            optionally, customize colors.
+        "))
+        output$ef_exceed_cols_label <- shiny::renderUI(translate("Colors:"))
+        output$ef_exceed_desc_sub_plot <- shiny::renderUI(
+            switch(input$ef_exceed_btn_choose,
+                plot1 = translate("
+                    The plot on the left shows an acceptable situation for the
+                    chosen exceedance threshold (traditionally 5% above the OEL).
+                    The plot on the right shows the situation estimated by the
+                    Bayesian model. It does not take into account estimation
+                    uncertainty.
+                "),
+                plot2 = translate("
+                    The plot on the left shows an acceptable situation for the
+                    chosen exceedance threshold (traditionally 5% above the
+                    OEL). The plot on the right shows the situation estimated
+                    by the Bayesian model. It takes into account estimation
+                    uncertainty with stripped symbols. The number of plain
+                    symbols represents the best estimate of the number of
+                    measurements above the OEL. The total number of symbols
+                    (either plain or stripped) represents the maximum plausible
+                    number of measurements above the OEL given estimation
+                    uncertainty (using the upper limit of the underlying
+                    credible interval).
+                "),
+                plot3 = translate("
+                    This plot shows a shaded and darker region corresponding to
+                    the maximal acceptable exceedance. Red symbols outside of it
+                    are unacceptable exposures. It does not take into account
+                    estimation uncertainty.
+                "),
+                plot4 = translate("
+                    This plot shows a shaded and darker region corresponding to
+                    the maximal acceptable exceedance. Red symbols outside of it
+                    are unacceptable exposures. It takes into account estimation
+                    uncertainty with stripped symbols. The number of plain
+                    symbols represents the best estimate of the number of
+                    measurements above the OEL. The total number of symbols
+                    (either plain or stripped) represents the maximum plausible
+                    number of measurements above the OEL given estimation
+                    uncertainty (using the upper limit of the underlying
+                    credible interval).
+                ")
+            )
+        )
+        output$ef_seq_title <- shiny::renderUI(translate("Sequential Plot"))
+        output$ef_seq_desc  <- shiny::renderUI(translate("
+            This plot shows the estimated exposure distribution when assuming
+            250 exposure measurements have been collected. If the measurements
+            represent 8-hour TWA (Time-Weighted Average) values, this
+            approximately represents a full year of exposure. The OEL is shown
+            as a red line.
+        "))
+        output$ef_dist_title <- shiny::renderUI(translate("Density Plot"))
+        output$ef_dist_desc  <- shiny::renderUI(translate("
+            This plot shows the probability density function of the estimated
+            distribution of exposures. The OEL is shown as a red line. The
+            exceedance fraction is the area under the curve beyond the OEL
+            value.
+        "))
+        output$ef_risk_band_title <- shiny::renderUI(translate("Risk Band Plot"))
+        output$ef_risk_band_desc  <- shiny::renderUI(sprintf_html(
+            translate("
+                This plot shows the probability distribution of the uncertainty
+                around the exceedance fraction. It shows the probability that
+                its true value is
+                (1) below %s,
+                (2) between %s and %s, and
+                (3) greater than %s.
+                The red column represents the probability of an overexposure.
+                The latter should be lower than the threshold shown by the
+                black dashed line.
+            "),
+            shiny::textOutput("ef_risk_band_desc_low_val_1",  inline = TRUE),
+            shiny::textOutput("ef_risk_band_desc_low_val_2",  inline = TRUE),
+            shiny::textOutput("ef_risk_band_desc_high_val_1", inline = TRUE),
+            shiny::textOutput("ef_risk_band_desc_high_val_2", inline = TRUE)
+        ))
+
         ### Panel: Percentiles -------------------------------------------------
 
         output$pe_tab_name <- shiny::renderUI(translate("Percentiles"))
@@ -1204,7 +1326,7 @@ server <- function(input, output, session) {
         ))
     })
 
-    ## Sidebar -----------------------------------------------------------------
+    ## Reactive Values and Other Observers -------------------------------------
 
     # This observer hides inputs sb_frac_threshold and sb_target_perc
     # by default, and respectively shows either of them only when
@@ -1217,7 +1339,27 @@ server <- function(input, output, session) {
             pe = shinyjs::show("sb_target_perc"))
     })
 
-    # Values -------------------------------------------------------------------
+    # Each click on ef_exceed_btn_customize triggers two actions:
+    #   1. the icon of the button is updated, and
+    #   2. ef_exceed_cols is either shown or hidden
+    #      (based on the button's state).
+    # The button state's starts at 0 (hidden). Odd numbers
+    # correspond to a displayed container, and even numbers
+    # to a hidden container.
+    shiny::observeEvent(input$ef_exceed_btn_customize, {
+        icon_name <- if (input$ef_exceed_btn_customize %% 2L == 0L) {
+            "triangle-bottom"
+        } else {
+            "triangle-top"
+        }
+
+        shiny::updateActionButton(
+            inputId = "ef_exceed_btn_customize",
+            icon    = shiny::icon(icon_name,
+                lib   = "glyphicon",
+                style = "padding-right: 10px;"))
+        shinyjs::toggle("ef_exceed_cols")
+    })
 
     # TODO: (JMP) Ask JL what to do with this. This is a weird case.
     # This reactive value is called by bayesian_analysis below. It has
@@ -1298,21 +1440,20 @@ server <- function(input, output, session) {
 
     ## Shared Outputs ----------------------------------------------------------
 
-    output$ef_risk_prob_limit_1   <-
-    output$ef_risk_prob_limit_2   <-
+    output$ef_risk_decision_limit <-
     output$pe_risk_decision_limit <-
     output$am_risk_decision_limit <- shiny::renderText({
         return(paste0(input$sb_psi, "%"))
     })
 
-    output$ef_estimate_geo_mean   <-
+    output$ef_estim_dist_geo_mean <-
     output$pe_estim_dist_geo_mean <-
     output$am_estim_dist_geo_mean <- shiny::renderText({
         gm <- lapply(num_results()$gm, \(x) as.character(signif(x, 2L)))
         return(sprintf("%s [%s - %s]", gm$est, gm$lcl, gm$ucl))
     })
 
-    output$ef_estimate_geo_sd   <-
+    output$ef_estim_dist_geo_sd <-
     output$pe_estim_dist_geo_sd <-
     output$am_estim_dist_geo_sd <- shiny::renderText({
         gsd <- lapply(num_results()$gsd, \(x) as.character(signif(x, 2L)))
@@ -1403,31 +1544,48 @@ server <- function(input, output, session) {
 
     ## Panel: Exceedance Fraction ----------------------------------------------
 
-    ### UI ---------------------------------------------------------------------
+    ### Shared Outputs ---------------------------------------------------------
 
-    # Each click on ef_exceed_plot_btn_custom triggers two actions:
-    #   1. the icon of the button is updated, and
-    #   2. ef_exceed_plot_cols_container is either shown
-    #      or hidden (based on the button's state).
-    # The button state's starts at 0 (hidden). Odd numbers
-    # correspond to a displayed container, and even numbers
-    # to a hidden container.
-    shiny::observeEvent(input$ef_exceed_plot_btn_custom, {
-        new_icon <- if (input$ef_exceed_plot_btn_custom %% 2L == 0L) {
-            static$icons$bottom
-        } else {
-            static$icons$top
-        }
+    output$ef_risk_decision_frac        <-
+    output$ef_risk_band_desc_high_val_1 <-
+    output$ef_risk_band_desc_high_val_2 <- shiny::renderText(
+        paste0(signif(input$sb_frac_threshold, 3L), "%")
+    )
 
-        shiny::updateActionButton(
-            inputId = "ef_exceed_plot_btn_custom",
-            icon    = new_icon)
-        shinyjs::toggle("ef_exceed_plot_cols_container")
+    ### Risk Decision ----------------------------------------------------------
+
+    # See sections Shared Outputs above for
+    # output$ef_risk_decision_frac, and
+    # output$ef_risk_decision_limit.
+
+    output$ef_risk_decision_criterion <- shiny::renderText({
+        paste0(signif(num_results()$frac.risk, 3L), "%")
     })
 
-    ### Values -----------------------------------------------------------------
+    output$ef_risk_decision_conclusion <- shiny::renderText({
+        if (num_results()$frac.risk >= user_inputs()$psi) {
+            return(translate("poorly controlled"))
+        }
 
-    ef_exceed_plots <- shiny::reactive({
+        return(translate("adequately controlled"))
+    })
+
+    output$ef_risk_meter_plot <- shiny::renderPlot(
+        dessinerRisqueMetre(
+            actualProb          = num_results()$frac.risk,
+            minProbUnacceptable = user_inputs()$psi)
+    )
+
+    ### Parameter Estimates ----------------------------------------------------
+
+    output$ef_estim_ef_frac <- shiny::renderText({
+        frac <- lapply(num_results()$frac, \(x) as.character(signif(x, 3L)))
+        return(sprintf("%s%% [%s - %s]", frac$est, frac$lcl, frac$ucl))
+    })
+
+    ### Exceedance Plot --------------------------------------------------------
+
+    output$ef_exceed_plot <- shiny::renderPlot({
         seuil    <- input$sb_frac_threshold
         results  <- num_results()
         frac_est <- ceiling(results$frac$est)
@@ -1437,144 +1595,49 @@ server <- function(input, output, session) {
             images_dir,
             file.path(images_dir, "flask.png"),
             file.path(images_dir, "flask-lines.png"),
-            input$ef_exceed_plot_col_risk,
-            input$ef_exceed_plot_col_no_risk,
-            input$ef_exceed_plot_col_bg_threshold,
-            input$ef_exceed_plot_col_bg)
+            input$ef_exceed_col_risk,
+            input$ef_exceed_col_no_risk,
+            input$ef_exceed_col_bg_threshold,
+            input$ef_exceed_col_bg)
 
-        return(
-            list(
-                figure1 = list(
-                    drawPlot(
-                        params_plots,
-                        fracDepasseEst = seuil,
-                        titre          = translate("Acceptable Sample")),
-                    drawPlot(
-                        params_plots,
-                        fracDepasseEst = frac_est,
-                        titre          = translate("Current Sample"))),
-                figure2 = list(
-                    drawPlot(
-                        params_plots,
-                        fracDepasseEst = seuil,
-                        titre          = translate("Acceptable Sample")),
-                    drawPlot(
-                        params_plots,
-                        fracDepasseEst = frac_est,
-                        fracDepasseLim = frac_ucl,
-                        titre          = translate("Current Sample"))),
-                figure3 = list(
-                    drawPlot(
-                        params_plots,
-                        fracDepasseEst = frac_est,
-                        seuil          = seuil)),
-                figure4 = list(
-                    drawPlot(
-                        params_plots,
-                        fracDepasseEst = frac_est,
-                        fracDepasseLim = frac_ucl,
-                        seuil          = seuil))))
-    })
+        plots <- switch(input$ef_exceed_btn_choose,
+            plot1 = list(
+                drawPlot(
+                    params_plots,
+                    fracDepasseEst = seuil,
+                    titre          = translate("Acceptable Sample")),
+                drawPlot(
+                    params_plots,
+                    fracDepasseEst = frac_est,
+                    titre          = translate("Current Sample"))
+            ),
+            plot2 = list(
+                drawPlot(
+                    params_plots,
+                    fracDepasseEst = seuil,
+                    titre          = translate("Acceptable Sample")),
+                drawPlot(
+                    params_plots,
+                    fracDepasseEst = frac_est,
+                    fracDepasseLim = frac_ucl,
+                    titre          = translate("Current Sample"))
+            ),
+            plot3 = list(
+                drawPlot(
+                    params_plots,
+                    fracDepasseEst = frac_est,
+                    seuil          = seuil)
+            ),
+            plot4 = list(
+                drawPlot(
+                    params_plots,
+                    fracDepasseEst = frac_est,
+                    fracDepasseLim = frac_ucl,
+                    seuil          = seuil)
+            )
+        )
 
-    ### Shared Outputs ---------------------------------------------------------
-
-    output$ef_sb_frac_threshold_percent_1 <-
-    output$ef_sb_frac_threshold_percent_2 <-
-    output$ef_sb_frac_threshold_percent_3 <- shiny::renderText({
-        return(sprintf("%.1f%%", input$sb_frac_threshold))
-    })
-
-    ### Risk Decision ----------------------------------------------------------
-
-    # See sections Shared Outputs above for
-    # output$ef_sb_frac_threshold_percent_1 and output$ef_risk_prob_limit_1.
-
-    output$ef_risk_prob_criterion <- shiny::renderText({
-        return(paste0(signif(num_results()$frac.risk, 3L), "%"))
-    })
-
-    output$ef_risk_decision <- shiny::renderText({
-        if (num_results()$frac.risk >= user_inputs()$psi) {
-            return(translate("poorly controlled"))
-        }
-
-        return(translate("adequately controlled"))
-    })
-
-    output$ef_risk_meter_plot <- shiny::renderPlot({
-        return(
-            dessinerRisqueMetre(
-                actualProb          = num_results()$frac.risk,
-                minProbUnacceptable = user_inputs()$psi))
-    })
-
-    ### Parameter Estimates ----------------------------------------------------
-
-    # See section Shared Outputs above for output$ef_estimate_geo_mean,
-    # and output$ef_estimate_geo_sd.
-
-    output$ef_estimate <- shiny::renderText({
-        frac <- lapply(num_results()$frac, \(x) as.character(signif(x, 3L)))
-        return(sprintf("%s%% [%s - %s]", frac$est, frac$lcl, frac$ucl))
-    })
-
-    ### Exceedance Plot --------------------------------------------------------
-
-    output$ef_exceed_plot <- shiny::renderPlot({
-        ptlist <- ef_exceed_plots()[[input$ef_exceed_plot_btn_variant]]
-        return(gridExtra::grid.arrange(grobs = ptlist, ncol = length(ptlist)))
-    },
-    # Variant 3 and 4 are just one plot. They are centered
-    # by limiting their width (and by setting apppropriate
-    # CSS classes, see plotOutput() above).
-    # FIXME: (JMP) This does not work on smaller screens.
-    width = \() {
-        return(
-            switch(input$ef_exceed_plot_btn_variant,
-                figure1 = "auto",
-                figure2 = "auto",
-                figure3 = 700L,
-                figure4 = 700L))
-    })
-
-    output$ef_exceed_plot_description <- shiny::renderText({
-        return(
-            switch(input$ef_exceed_plot_btn_variant,
-                figure1 = translate("
-                    The plot on the left shows an acceptable situation for the
-                    chosen exceedance threshold (traditionally 5% above the OEL).
-                    The plot on the right shows the situation estimated by the
-                    Bayesian model. It does not take into account estimation
-                    uncertainty."),
-                figure2 = translate("
-                    The plot on the left shows an acceptable situation for the
-                    chosen exceedance threshold (traditionally 5% above the
-                    OEL). The plot on the right shows the situation estimated
-                    by the Bayesian model. It takes into account estimation
-                    uncertainty with stripped symbols. The number of plain
-                    symbols represents the best estimate of the number of
-                    measurements above the OEL. The total number of symbols
-                    (either plain or stripped) represents the maximum plausible
-                    number of measurements above the OEL given estimation
-                    uncertainty (using the upper limit of the underlying
-                    credible interval)."),
-                figure3 = translate("
-                    This plot shows a shaded and darker region corresponding to
-                    the maximal acceptable exceedance. Red symbols outside of it
-                    are unacceptable exposures. It does not take into account
-                    estimation uncertainty."),
-                figure4 = translate("
-                    This plot shows a shaded and darker region corresponding to
-                    the maximal acceptable exceedance. Red symbols outside of
-                    it are unacceptable exposures. It takes into account
-                    estimation uncertainty with stripped symbols. The number of
-                    plain symbols represents the best estimate of the number of
-                    measurements above the OEL. The total number of symbols
-                    (either plain or stripped) represents the maximum plausible
-                    number of measurements above the OEL given estimation
-                    uncertainty (using the upper limit of the underlying
-                    credible interval).")
-        ))
+        return(gridExtra::grid.arrange(grobs = plots, ncol = length(plots)))
     })
 
     ### Sequential Plot --------------------------------------------------------
@@ -1611,14 +1674,10 @@ server <- function(input, output, session) {
 
     ### Risk Band Plot ---------------------------------------------------------
 
-    output$ef_good_exposure_percent_1 <-
-    output$ef_good_exposure_percent_2 <- shiny::renderText({
-        return(paste0(input$sb_frac_threshold / 10, "%"))
-    })
-
-    # See subsection Shared Outputs above for
-    # output$ef_sb_frac_threshold_percent_2 and
-    # output$ef_sb_frac_threshold_percent_3.
+    output$ef_risk_band_desc_low_val_1 <-
+    output$ef_risk_band_desc_low_val_2 <- shiny::renderText(
+        paste0(signif(input$sb_frac_threshold / 10L, 3L), "%")
+    )
 
     output$ef_risk_band_plot <- shiny::renderPlot({
         bayesian_outputs <- bayesian_analysis()
