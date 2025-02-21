@@ -1,7 +1,10 @@
-#' Run the Application Locally
+#' Application's Entry Point
 #'
-#' Use this script to launch the application locally for development
-#' purposes.
+#' Use this script to launch the application locally for development purposes.
+#'
+#' @usage
+#' ## In interactive sessions
+#' .src()
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
