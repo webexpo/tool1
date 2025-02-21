@@ -1456,16 +1456,6 @@ server <- function(input, output, session) {
     })
 
     bayesian_analysis <- shiny::reactive({
-        on.exit(progress$close())
-        progress <- shiny::Progress$new()
-        progress$set(
-            value   = 0L,
-            message = translate("Bayesian iterations:"))
-
-        updateProgress <- function(detail = NULL) {
-            progress$inc(amount = 1 / 50, detail = detail)
-        }
-
         user_sample <- user_formatted_sample()
         return(
             fun.bayes.jags(
@@ -1477,12 +1467,9 @@ server <- function(input, output, session) {
                 seed             = user_sample$seed,
                 c.oel            = user_sample$c.oel,
                 n.iter           = 25000L,
-                uninformed.prior = uninformed_prior(),
-                updateProgress   = updateProgress))
+                uninformed.prior = uninformed_prior()))
     })
 
-    # TODO:(JMP) We would likely require more values to be returned
-    # for confidence intervals.
     num_results <- shiny::reactive({
         bayesian_outputs <- bayesian_analysis()
         inputs           <- user_inputs()
