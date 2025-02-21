@@ -4,7 +4,9 @@ Tables below list all `shiny` identifiers (`inputId` and `outputId`) defined in
 the application. Identifiers were revamped in version `4` for consistency and
 easier maintenance. A mapping between old and new names is also provided.
 
-Descriptions are included only when relevant.
+Further components such as HTML tags and `bslib` components may require an `id`.
+These are not `inputId` or `outputId` *per se*, but the same naving conventions
+are used for them too. They are listed below.
 
 ## Naming Conventions
 
@@ -24,8 +26,8 @@ There are 6 rules. They exist for consistency and readability.
     * `ab_`: panel About.
 
    Some inputs and outputs may not be located in these *areas*. In that case,
-   the prefix can be omitted. A good example is `title`, the maint title of
-   the application.
+   the prefix can be omitted. Good examples of this are `title` and `top_title`,
+   the window's title and the application's main title, respectively.
 
 3. Identifiers should be intuitive and not use (too) many abbreviations.
 
@@ -43,15 +45,15 @@ There are 6 rules. They exist for consistency and readability.
 
 | Location            | Generator                     | `inputId` (v4)                    | `inputId` (v3)                    |
 | ------------------- | ----------------------------- | --------------------------------- | --------------------------------- |
-| None                | `shiny::fluidPage()`          | `lang`                            | None                              |
-| None                | `shiny::tabsetPanel()`        | `active_panel`                    | None                              |
-| Sidebar             | `shiny::numericInput()`       | `sb_oel`                          | `oel`                             |
-| Sidebar             | `shiny::numericInput()`       | `sb_al`                           | `al`                              |
-| Sidebar             | `shiny::numericInput()`       | `sb_conf`                         | `conf`                            |
-| Sidebar             | `shiny::numericInput()`       | `sb_psi`                          | `psi`                             |
-| Sidebar             | `add_input_text_area()`       | `sb_data`                         | `data`                            |
-| Sidebar             | `shiny::numericInput()`       | `sb_frac_threshold`               | `frac_threshold`                  |
-| Sidebar             | `shiny::numericInput()`       | `sb_target_perc`                  | `target_perc`                     |
+| *Body*              | `shiny::tabsetPanel()`        | `active_panel`                    | None                              |
+| Sidebar             | `shiny::selectInput()`        | `lang`                            | None                              |
+| Sidebar             | `shiny::numericInput()`       | `oel`                             | `oel`                             |
+| Sidebar             | `shiny::numericInput()`       | `al`                              | `al`                              |
+| Sidebar             | `shiny::numericInput()`       | `conf`                            | `conf`                            |
+| Sidebar             | `shiny::numericInput()`       | `psi`                             | `psi`                             |
+| Sidebar             | `shiny::textAreaInput()`      | `data`                            | `data`                            |
+| Sidebar             | `shiny::numericInput()`       | `frac_threshold`                  | `frac_threshold`                  |
+| Sidebar             | `shiny::numericInput()`       | `target_perc`                     | `target_perc`                     |
 | Exceedance Fraction | `shiny::radioButtons()`       | `ef_exceed_plot_btn_choose`       | `varianteFracDep`                 |
 | Exceedance Fraction | `shiny::actionButton()`       | `ef_exceed_plot_btn_customize`    | None                              |
 | Exceedance Fraction | `colourpicker::colourInput()` | `ef_exceed_plot_col_risk`         | `couleurRisque`                   |
@@ -59,10 +61,29 @@ There are 6 rules. They exist for consistency and readability.
 | Exceedance Fraction | `colourpicker::colourInput()` | `ef_exceed_plot_col_bg`           | `couleurFond`                     |
 | Exceedance Fraction | `colourpicker::colourInput()` | `ef_exceed_plot_col_bg_threshold` | `couleurSeuil`                    |
 
+### Sidebar's inputs
+
+Since these inputs are used everywhere in the application, the usual `sb_`
+prefix is omitted. Other specific inputs always have a prefix.
+
 ## Outputs
 
 | Location            | Generator                     | `outputId` (v4)                   | `outputId` (v3)                   |
 | ------------------- | ----------------------------- | --------------------------------- | --------------------------------- |
+| *None*              | `shiny::fluidPage()`          | `lang`                            | None                              |
+| *None*              | `shiny::fluidPage()`          | `title`                           | None                              |
+| *Body*              | `shiny::uiOutput()`           | `top_title`                       | None                              |
+| *Body*              | `shiny::uiOutput()`           | `top_banner`                      | None                              |
+| Sidebar             | `bslib::tooltip()`            | `lang_tooltip`                    | None                              |
+| Sidebar             | `bslib::tooltip()`            | `oel_tooltip`                     | None                              |
+| Sidebar             | `bslib::tooltip()`            | `al_tooltip`                      | None                              |
+| Sidebar             | `bslib::tooltip()`            | `conf_tooltip`                    | None                              |
+| Sidebar             | `bslib::tooltip()`            | `psi_tooltip`                     | None                              |
+| Sidebar             | `bslib::tooltip()`            | `data_tooltip`                    | None                              |
+| Sidebar             | `bslib::tooltip()`            | `frac_threshold_tooltip`          | None                              |
+| Sidebar             | `bslib::tooltip()`            | `target_perc_tooltip`             | None                              |
+| Sidebar             | `shiny::uiOutput()`           | `sb_footer_app_version`           | None                              |
+| Sidebar             | `shiny::uiOutput()`           | `sb_footer_copyright`             | None                              |
 | Statistics          | `shiny::uiOutput()`           | `st_tab_name`                     | None                              |
 | Statistics          | `shiny::uiOutput()`           | `st_desc_stats_title`             | None                              |
 | Statistics          | `shiny::uiOutput()`           | `st_desc_stats_subtitle`          | None                              |
@@ -95,6 +116,7 @@ There are 6 rules. They exist for consistency and readability.
 | Exceedance Fraction | `shiny::textOutput()`         | `ef_estim_ef_frac`                | `Frac`                            |
 | Exceedance Fraction | `shiny::uiOutput()`           | `ef_exceed_title`                 | None                              |
 | Exceedance Fraction | `shiny::uiOutput()`           | `ef_exceed`                       | None                              |
+| Exceedance Fraction | `htmltools::fieldset()`       | `ef_exceed_cols`                  | None                              |
 | Exceedance Fraction | `shiny::uiOutput()`           | `ef_exceed_cols_label`            | None                              |
 | Exceedance Fraction | `shiny::plotOutput()`         | `ef_exceed_plot`                  | `fracDepVariantes`                |
 | Exceedance Fraction | `shiny::textOutput()`         | `ef_exceed_desc_sub_plot`         | `fracDepVarianteDesc`             |
@@ -175,7 +197,34 @@ There are 6 rules. They exist for consistency and readability.
 | About               | `shiny::uiOutput()`           | `ab_metho_bg_title`               | None                              |
 | About               | `shiny::uiOutput()`           | `ab_metho_bg`                     | None                              |
 
-### Identifiers Following the `*_estim_*_*` Pattern
+### `title` and `lang`
+
+These two outputs are special because they are attributes of the web page
+created by `shiny::fluidPage()`. They are initialized as `NULL` values in
+the R object `ui` and later updated via Shiny custom messages whenever
+**input** `lang` changes.
+
+```r
+# This code block is extracted from server() defined in app.R.
+shiny::observeEvent(input$lang, {
+    lang  <- input$lang
+    title <- sprintf("Expostats: %s", translate("Tool 1"))
+
+    # ...
+
+    # See www/main.js for more information.
+    session$sendCustomMessage("update_page_lang", lang)
+    session$sendCustomMessage("update_window_title", title)
+
+    # ...
+})
+```
+
+Related JS custom handler functions for these two messages are defined in
+script `www/main.js`. Sadly, JS must be used to update these values from the
+server's side.
+
+### Identifiers Following the `*_estim_*_*` Naming Pattern
 
 The names of outputs like `am_estim_am`, `am_estim_am_mean`, `pe_estim_pe`,
 `pe_estim_pe_perc` and many others is odd at first glance.

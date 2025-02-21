@@ -85,187 +85,135 @@
 
 
 ui <- shiny::fluidPage(
-    # TODO: (JMP) Integrate this value with transltr.
-    lang  = "en",
+    # lang and title must be updated using custom Shiny messages
+    # sent with session$sendCustomMessage(). See www/main.js for
+    # more information.
+    lang  = NULL,
+    title = NULL,
     theme = bslib::bs_theme(version = 5L, preset = "flatly"),
 
     ## Head --------------------------------------------------------------------
 
     html$head(
-        html$title(translate("Expostats | Tool 1")),
-        html$link(rel = "stylesheet", media = "all", href = "css/main.css"),
+        html$link(rel = "stylesheet", media = "all", href = "main.css"),
+        html$script(src = "main.js"),
         shinyjs::useShinyjs()
     ),
 
     ## Body --------------------------------------------------------------------
 
-    shiny::uiOutput("title", container = html$h1, class = "app-title"),
+    shiny::uiOutput("top_title", container = html$h1, class = "app-title"),
+
+    # It is shown whenever the Shiny engine is blocked.
+    shiny::conditionalPanel(
+        condition = r"{$("html").hasClass("shiny-busy")}",
+        shiny::uiOutput(
+            outputId  = "top_banner",
+            container = html$p,
+            class     = "app-banner-wait")
+    ),
 
     shiny::sidebarLayout(
 
         ### Sidebar ------------------------------------------------------------
 
-        shiny::sidebarPanel(
-            width = 3L,
+        shiny::sidebarPanel(width = 3L,
 
             #### Inputs --------------------------------------------------------
 
             shiny::selectInput(
                 inputId   = "lang",
-                label     = translate("Language:"),
-                selected  = "en",
-                # Names and values of tr$native_languages
-                # must be inverted to work with arg choices.
-                # TODO: (JMP) Remove c() calls after tests.
-                choices   = structure(
-                    c(names(tr$native_languages), "fr"),
-                    names = c(tr$native_languages, "French")),
+                label     = "",
+                selected  = default_lang,
+                choices   = langs,
                 selectize = FALSE,
                 multiple  = FALSE) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
-                bslib::tooltip(html$p(
-                    class = "app-input-tooltip",
-                    translate("Choose your preferred language."))),
+                bslib::tooltip(id = "lang_tooltip", ""),
 
-            html$hr(),
+            html$hr(class = "app-sidebar-hr"),
 
             shiny::numericInput(
-                inputId = "sb_oel",
-                label   = translate("Exposure Limit:"),
+                inputId = "oel",
+                label   = "",
                 value   = 100) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
-                bslib::tooltip(html$p(
-                    class = "app-input-tooltip",
-                    translate("
-                        Use the exposure limit to assess overexposure. It
-                        must have the same unit as the measurement data."))),
+                bslib::tooltip(id = "oel_tooltip", ""),
 
             shiny::numericInput(
-                inputId = "sb_al",
-                label   = translate("Exposure Limit Multiplier:"),
+                inputId = "al",
+                label   = "",
                 value   = 1) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
-                bslib::tooltip(html$p(
-                    class = "app-input-tooltip",
-                    translate("
-                        Use this multiplier to modify the exposure limit. The
-                        product of the former and the latter is the actual
-                        exposure limit value for calculation purposes."))),
+                bslib::tooltip(id = "al_tooltip", ""),
 
             shiny::numericInput(
-                inputId = "sb_conf",
-                label   = translate("Credible Interval Probability:"),
+                inputId = "conf",
+                label   = "",
                 value   = 90) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
-                bslib::tooltip(html$p(
-                    class = "app-input-tooltip",
-                    translate("
-                        Use this value as a probability for the credible
-                        intervals around parameter estimates. It must be
-                        between 0% and 100%. The default value is set equal
-                        to 90%. The credible interval is the Bayesian
-                        equivalent of the confidence interval."))),
+                bslib::tooltip(id = "conf_tooltip", ""),
 
             shiny::numericInput(
-                inputId = "sb_psi",
-                label   = translate("Overexposure Risk Threshold:"),
+                inputId = "psi",
+                label   = "",
                 value   = 30) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
-                bslib::tooltip(html$p(
-                    class = "app-input-tooltip",
-                    translate("
-                        Use this value as the maximal overexposure risk. It
-                        must be between 0% and 100%. It represents the maximal
-                        probability that the overexposure limit is met. Above
-                        this value, the situation should trigger remedial
-                        action. INRS and BOHS suggest using 5% and 30%,
-                        respectively."))),
+                bslib::tooltip(id = "psi_tooltip", ""),
 
-            add_input_text_area(
-                inputId = "sb_data",
-                label   = translate("Measurements:"),
-                value   = c(
+            shiny::textAreaInput(
+                inputId = "data",
+                label   = "",
+                rows    = 10L,
+                resize  = "vertical",
+                value   = paste0(collapse = "\n", c(
                     "28.9",
                     "19.4",
                     "<5.5",
                     "149.9",
                     "26.42",
-                    "56.1")) |>
+                    "56.1"))) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
-                bslib::tooltip(html$p(
-                    class = "app-input-tooltip",
-                    translate("
-                        The measurement dataset. There must be one value per
-                        line. Values can be censored to the left (<), to the
-                        right (>), or interval censored ([X-Y])."))),
+                bslib::tooltip(id = "data_tooltip", ""),
 
             # This output is only shown when the active panel is
             # exceedance. See observer in section Sidebar of server().
             shiny::numericInput(
-                inputId = "sb_frac_threshold",
-                label   = translate("Exceedance Fraction Threshold:"),
+                inputId = "frac_threshold",
+                label   = "",
                 value   = 5) |>
                 htmltools::tagAppendAttributes(
                     class = "app-input",
                     style = "display: none;") |>
-                bslib::tooltip(html$p(
-                    class = "app-input-tooltip",
-                    translate("
-                        Use this value as an acceptable proportion of exposures
-                        above the exposure limit (OEL). It must be between 0%
-                        and 100%. The traditional default value is 5%."))),
+                bslib::tooltip(id = "frac_threshold_tooltip", ""),
 
             # This output is only shown when the active panel is
             # percentiles. See observer in section Sidebar of server().
             shiny::numericInput(
-                inputId = "sb_target_perc",
-                label   = translate("Critical Percentile:"),
+                inputId = "target_perc",
+                label   = "",
                 value   = 95) |>
                 htmltools::tagAppendAttributes(
                     class = "app-input",
                     style = "display: none;") |>
-                bslib::tooltip(html$p(
-                    class = "app-input-tooltip",
-                    translate("
-                        Use this value to set the percentile of the exposure
-                        distribution that will be compared to the OEL. It must
-                        be between 0% and 100%. The traditional default value
-                        is 95%."))),
+                bslib::tooltip(id = "target_perc_tooltip", ""),
+
+            html$hr(class = "app-sidebar-hr"),
 
             #### Footer --------------------------------------------------------
 
-            # A footer can be passed to shiny::tabsetPanel(), but it
-            # is placed here to maximize visibility on all screens.
+            # It is placed here to maximize visibility.
             html$footer(
-                class = "app-footer",
-                html$p(translate("Tool 1"), "version", current_version),
+                class = "app-sidebar-footer",
+                shiny::uiOutput("sb_footer_app_version", container = html$p),
 
-                html$p(sprintf_html(translate(
-                    "Source code available on %s."),
-                    a_strs[["source"]])),
-
-                # This produces a <p> containing a single line of text:
-                # <a>Jérôme Lavoué</a> (YYYY). All rights reserved.
-                html$p(
-                    static$a$jerome_lavoue,
-                    sprintf("(%s)", current_year),
-                    translate("All rights reserved"))
+                shiny::uiOutput("sb_footer_copyright", container = html$p)
             )
         ),
 
         ### Main ---------------------------------------------------------------
 
         shiny::mainPanel(width = 8L,
-
-            #### Top Banner for Calculations -----------------------------------
-
-            # It is shown whenever the Shiny engine is blocked.
-            shiny::conditionalPanel(
-                html$p(
-                    class = "app-banner-wait",
-                    translate("Calculating... Please wait.")),
-                condition = r"{$("html").hasClass("shiny-busy")}"
-            ),
 
             #### Panels --------------------------------------------------------
 
@@ -777,19 +725,105 @@ server <- function(input, output, session) {
     translate <- \(...) tr$translate(..., lang = input$lang)
 
     shiny::observeEvent(input$lang, {
-        lang <- input$lang
+        lang  <- input$lang
+        title <- sprintf("Expostats: %s", translate("Tool 1"))
 
-        # TODO: (JMP) We also need an updateInputSomething() when query
-        # has a parameter.
-        shiny::updateQueryString(sprintf("?lang=%s", input$lang))
+        shiny::updateQueryString(sprintf("?lang=%s", lang))
+
+        # See www/main.js for more information.
+        session$sendCustomMessage("update_page_lang", lang)
+        session$sendCustomMessage("update_window_title", title)
 
         ### Body ---------------------------------------------------------------
 
-        output$title <- shiny::renderUI(translate("
+        output$top_title <- shiny::renderUI(translate("
             Tool 1: Data Interpretation for One Similarly Exposed Group
         "))
+        output$top_banner <- shiny::renderUI(
+            translate("Calculating... Please wait.")
+        )
 
-        ## Panel: Statistics ---------------------------------------------------
+        ### Sidebar -----------------------------------------------------------
+
+        shiny::updateSelectInput(
+            inputId = "lang",
+            label   = translate("Language:"))
+        shiny::updateNumericInput(
+            inputId = "oel",
+            label   = translate("Exposure Limit:"))
+        shiny::updateNumericInput(
+            inputId = "al",
+            label   = translate("Exposure Limit Multiplier:"))
+        shiny::updateNumericInput(
+            inputId = "conf",
+            label   = translate("Credible Interval Probability:"))
+        shiny::updateNumericInput(
+            inputId = "psi",
+            label   = translate("Overexposure Risk Threshold:"))
+        shiny::updateTextAreaInput(
+            inputId = "data",
+            label   = translate("Measurements:"))
+        shiny::updateNumericInput(
+            inputId = "frac_threshold",
+            label   = translate("Exceedance Fraction Threshold:"))
+        shiny::updateNumericInput(
+            inputId = "target_perc",
+            label   = translate("Critical Percentile:"))
+
+        bslib::update_tooltip("lang_tooltip", translate("
+            Choose your preferred language.
+        "))
+        bslib::update_tooltip("oel_tooltip", translate("
+            Use the exposure limit to assess overexposure. It must have the
+            same unit as the measurement data.
+        "))
+        bslib::update_tooltip("al_tooltip", translate("
+            Use this multiplier to modify the exposure limit. The product of
+            the former and the latter is the actual exposure limit value for
+            calculation purposes.
+        "))
+        bslib::update_tooltip("conf_tooltip", translate("
+            Use this value as a probability for the credible intervals around
+            parameter estimates. It must be between 0% and 100%. The default
+            value is set equal to 90%. The credible interval is the Bayesian
+            equivalent of the confidence interval.
+        "))
+        bslib::update_tooltip("psi_tooltip", translate("
+            Use this value as the maximal overexposure risk. It must be
+            between 0% and 100%. It represents the maximal probability that
+            the overexposure limit is met. Above this value, the situation
+            should trigger remedial action. INRS and BOHS suggest using 5%
+            and 30%, respectively.
+        "))
+        bslib::update_tooltip("data_tooltip", translate("
+            The measurement dataset. There must be one value per line. Values
+            can be censored to the left (<), to the right (>), or interval
+            censored ([X-Y]).
+        "))
+        bslib::update_tooltip("frac_threshold_tooltip", translate("
+            Use this value as an acceptable proportion of exposures above
+            the exposure limit (OEL). It must be between 0% and 100%. The
+            traditional default value is 5%.
+        "))
+        bslib::update_tooltip("target_perc_tooltip", translate("
+            Use this value to set the percentile of the exposure distribution
+            that will be compared to the OEL. It must be between 0% and 100%.
+            The traditional default value is 95%.
+        "))
+        output$sb_footer_app_version <- shiny::renderUI(
+            shiny::tagList(
+                translate("Tool 1"), "version", version,
+                sprintf_html("(%s).", as.character(urls$code(lang, "GitHub"))))
+        )
+        output$sb_footer_copyright <- shiny::renderUI(
+            shiny::tagList(
+                shiny::icon("copyright-mark", lib = "glyphicon"),
+                urls$jerome_lavoue(lang, "Jérôme Lavoué"),
+                year,
+                translate("All rights reserved."))
+        )
+
+        ### Panel: Statistics --------------------------------------------------
 
         output$st_tab_name <- shiny::renderUI(translate("Statistics"))
         output$st_desc_stats_title <- shiny::renderUI(
