@@ -13,9 +13,9 @@
 #
 ######################################################
 
-library(ggplot2)
-library(colorspace)
-library(colorRamps)
+#library(ggplot2)
+#library(colorspace)
+#library(colorRamps)
 
 ##
 #
@@ -489,7 +489,10 @@ riskband.plot.frac <-function(mu.chain , sigma.chain , c.oel , frac_threshold , 
     C2 <-100*length(frac.chain[frac.chain>=bande1 & frac.chain<frac_threshold])/length(frac.chain)
     C3 <-100*length(frac.chain[frac.chain>=frac_threshold ])/length(frac.chain)
 
-    cats <- factor(c('C1','C2','C3'),labels=c(paste0('EF < ', bande1, '%'),paste0(bande1, '≤ EF ≤ ', frac_threshold, '%'),paste0('EF > ', frac_threshold, '%')))
+    # ≤ and ≥ may not render in all IDEs. These are Unicode
+    # characters U+2264 (&leq;) (Less-Than or Equal To) and
+    # U+2265 (&geq;) (Greater-Than Or Equal To).
+    cats <- factor(c('C1','C2','C3'),labels=c(paste0('EF ≤ ', bande1, '%'),paste0(bande1, '% < EF ≤ ', frac_threshold, '%'),paste0('EF ≥ ', frac_threshold, '%')))
 
     data <-data.frame(perc=c(C1,C2,C3),cat=cats)
 

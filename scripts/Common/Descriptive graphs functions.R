@@ -15,7 +15,7 @@
 #
 ##
 
-library(ggplot2)
+#library(ggplot2)
 
 ############# for individual workers or data with no stratification but censorship
 

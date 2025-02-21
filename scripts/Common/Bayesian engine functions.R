@@ -30,10 +30,9 @@
 # for STAN path to model object, for Webexpo path to McGill functions
 ##
 
-library(rjags)
+#library(rjags)
 #library(rstan)
-library("randtoolbox", character.only = TRUE)
-
+#library(randtoolbox)
 
 #
 #

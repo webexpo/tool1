@@ -25,8 +25,8 @@ rsconnect::deployApp(
     lint           = FALSE,
     forceUpdate    = FALSE,
     metadata       = list(
-        appVersion = current_version,
-        authors         = c(
+        appVersion = VERSION,
+        authors    = list(
             utils::person("Jérôme", "Lavoué",
                 role    = c("cre", "aut", "cph", "fnd"),
                 email   = "jerome.lavoue@umontreal.ca",
