@@ -1,12 +1,9 @@
 #' Find Text That Requires Translations
 #'
-#' Prepare translations files and manage translations. This project uses
-#' package [transltr] for internationalization purposes.
-#'
-#' This script should be ran whenever the source text changes.
+#' Prepare translations files and manage translations.
 #'
 #' @note
-#' [transltr] does not yet have a robust mechanism to easily update existing
+#' transltr does not yet have a robust mechanism to easily update existing
 #' translations. This should be done by Jean-Mathieu Potvin until further
 #' notice. Argument `overwrite` below is explicitly set to `FALSE` to avoid
 #' unintended consequences.

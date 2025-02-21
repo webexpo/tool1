@@ -1,10 +1,9 @@
 #' Deploy to shinyapps.io Programmatically
 #'
-#' Use this script to bundle the application and deploy it to
-#' <https://shinyapps.io>.
+#' Bundle the application and deploy it to <https://shinyapps.io>.
 #'
-#' This script expect 4 environment variables (see below). Store them in a
-#' top-level .Renviron file. Git is configured to ignore such files.
+#' Four environment variables are required. Store them in an untracked
+#' top-level .Renviron file.
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
