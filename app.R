@@ -54,13 +54,10 @@
 #' @author Jérôme Lavoué (<jerome.lavoue@@umontreal.ca>)
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
-
-# NOTE: (JMP) I would strongly consider breaking the app into Shiny modules
-# or functions that returns each tabPanel().
-
 # FIXME: (JMP) Many numeric values are passed to signif() which yields a
 # variable number of (significant) digits. Is this truly needed? For UX
-# purposes, I suggest always showing 1 or 2 digits?
+# purposes, I suggest always showing 1 to 3 digits? Create new global option
+# signif_digits and set it equal to 3.
 
 # FIXME: (JMP) The app heavily relies on functions defined in scripts. These
 # must be revamped (those containing plot functions being the top priority).
@@ -80,9 +77,14 @@
 # chose the latter until further notice. All other inputs have slightly
 # different names (sometimes) in the app. More consistency is required.
 
+# FIXME: (JMP) Use |> whenever appropriate below to reduce nesting.
 
-# User Interface ---------------------------------------------------------------
+# FIXME: (JMP) Check usage of add_bold_*_output() functions. They should be
+# wrapped by as.character() in most cases to avoid undefined behavior.
 
+# FIXME: (JMP) Convert uiOutput() / renderUI() pairs into
+# textOutput() / renderText() whenever appropriate. The latter is slightly
+# faster and reduce code.
 
 ui <- shiny::fluidPage(
     # lang and title must be updated using custom Shiny messages
@@ -92,7 +94,7 @@ ui <- shiny::fluidPage(
     title = NULL,
     theme = bslib::bs_theme(version = 5L, preset = "flatly"),
 
-    ## Head --------------------------------------------------------------------
+    # Head ---------------------------------------------------------------------
 
     html$head(
         html$link(rel = "stylesheet", media = "all", href = "main.css"),
@@ -100,7 +102,7 @@ ui <- shiny::fluidPage(
         shinyjs::useShinyjs()
     ),
 
-    ## Body --------------------------------------------------------------------
+    # Body ---------------------------------------------------------------------
 
     shiny::uiOutput("top_title", container = html$h1, class = "app-title"),
 
@@ -115,11 +117,11 @@ ui <- shiny::fluidPage(
 
     shiny::sidebarLayout(
 
-        ### Sidebar ------------------------------------------------------------
+        ## Sidebar -------------------------------------------------------------
 
         shiny::sidebarPanel(width = 3L,
 
-            #### Inputs --------------------------------------------------------
+            ### Inputs ---------------------------------------------------------
 
             shiny::selectInput(
                 inputId   = "lang",
@@ -200,7 +202,7 @@ ui <- shiny::fluidPage(
 
             html$hr(class = "app-sidebar-hr"),
 
-            #### Footer --------------------------------------------------------
+            ### Footer ---------------------------------------------------------
 
             # It is placed here to maximize visibility.
             html$footer(
@@ -211,15 +213,15 @@ ui <- shiny::fluidPage(
             )
         ),
 
-        ### Main ---------------------------------------------------------------
+        ## Main ----------------------------------------------------------------
 
         shiny::mainPanel(width = 8L,
 
-            #### Panels --------------------------------------------------------
+            ### Panels ---------------------------------------------------------
 
             shiny::tabsetPanel(id = "active_panel",
 
-                ##### Panel: Statistics ----------------------------------------
+                #### Panel: Statistics -----------------------------------------
 
                 shiny::tabPanel(
                     value = "st",
@@ -256,15 +258,14 @@ ui <- shiny::fluidPage(
                     # Width is restricted to 50%, and margin are set
                     # by the browser to center the underlying image.
                     # plotOutput() rerturns a <div> tag by default.
+                    # FIXME: (JMP) Standardize bottom margin and remove styling.
                     shiny::plotOutput("st_qq_plot",
                         width  = "50%",
                         height = plot_height) |>
-                        htmltools::tagAppendAttributes(style = "margin: auto;"),
+                        htmltools::tagAppendAttributes(
+                            style = "margin: auto; margin-bottom: 10.5px;"),
 
-                    # TODO: (JMP) Standardize margins and remove style.
-                    shiny::uiOutput("st_qq_desc",
-                        container = html$p,
-                        style     = "margin: 10.5px 0 0 0;"),
+                    shiny::uiOutput("st_qq_desc", container = html$p),
 
                     ##### Box and Whiskers Plot --------------------------------
 
@@ -277,13 +278,13 @@ ui <- shiny::fluidPage(
                     shiny::uiOutput("st_box_desc", container = html$p)
                 ),
 
-                ##### Panel: Exceedance Fraction -------------------------------
+                #### Panel: Exceedance Fraction --------------------------------
 
                 shiny::tabPanel(
                     value = "ef",
                     title = shiny::uiOutput("ef_tab_name", TRUE),
 
-                    ###### Risk Decision ---------------------------------------
+                    ##### Risk Decision ----------------------------------------
 
                     shiny::uiOutput("ef_risk_decision_title",
                         container = html$h2,
@@ -315,7 +316,7 @@ ui <- shiny::fluidPage(
                         )
                     ),
 
-                    ###### Parameter Estimates ---------------------------------
+                    ##### Parameter Estimates ----------------------------------
 
                     shiny::uiOutput("ef_estim_title",
                         container = html$h2,
@@ -345,7 +346,7 @@ ui <- shiny::fluidPage(
                         )
                     ),
 
-                    ###### Exceedance Plot -------------------------------------
+                    ##### Exceedance Plot --------------------------------------
 
                     shiny::uiOutput("ef_exceed_title",
                         container = html$h2,
@@ -433,7 +434,7 @@ ui <- shiny::fluidPage(
 
                     shiny::uiOutput("ef_exceed_desc_sub_plot", container = html$p),
 
-                    ###### Sequential Plot -------------------------------------
+                    ##### Sequential Plot --------------------------------------
 
                     shiny::uiOutput("ef_seq_title",
                         container = html$h2,
@@ -443,7 +444,7 @@ ui <- shiny::fluidPage(
 
                     shiny::uiOutput("ef_seq_desc", container = html$p),
 
-                    ###### Density Plot ----------------------------------------
+                    ##### Density Plot -----------------------------------------
 
                     shiny::uiOutput("ef_dist_title",
                         container = html$h2,
@@ -453,7 +454,7 @@ ui <- shiny::fluidPage(
 
                     shiny::uiOutput("ef_dist_desc", container = html$p),
 
-                    ###### Risk Band Plot --------------------------------------
+                    ##### Risk Band Plot ---------------------------------------
 
                     shiny::uiOutput("ef_risk_band_title",
                         container = html$h2,
@@ -475,7 +476,7 @@ ui <- shiny::fluidPage(
                     value = "pe",
                     title = shiny::uiOutput("pe_tab_name", TRUE),
 
-                    ###### Risk Decision ---------------------------------------
+                    ##### Risk Decision ----------------------------------------
 
                     shiny::uiOutput("pe_risk_decision_title",
                         container = html$h2,
@@ -484,8 +485,8 @@ ui <- shiny::fluidPage(
                     shiny::fluidRow(
                         shiny::column(width = 6L,
                             shiny::uiOutput("pe_risk_decision_subtitle",
-                            container = html$h3,
-                            class     = "app-panel-subtitle"),
+                                container = html$h3,
+                                class     = "app-panel-subtitle"),
 
                             shiny::uiOutput("pe_risk_decision",
                                 container = html$ul,
@@ -507,7 +508,7 @@ ui <- shiny::fluidPage(
                         )
                     ),
 
-                    ###### Parameter Estimates ---------------------------------
+                    ##### Parameter Estimates ----------------------------------
 
                     shiny::uiOutput("pe_estim_title",
                         container = html$h2,
@@ -525,6 +526,7 @@ ui <- shiny::fluidPage(
                                 container = html$ul,
                                 class     = "app-ul")
                         ),
+
                         shiny::column(width = 6L,
                             shiny::uiOutput("pe_estim_pe_title",
                                 container = html$h3,
@@ -536,7 +538,7 @@ ui <- shiny::fluidPage(
                         )
                     ),
 
-                    ###### Sequential Plot -------------------------------------
+                    ##### Sequential Plot --------------------------------------
 
                     shiny::uiOutput("pe_seq_title",
                         container = html$h2,
@@ -546,7 +548,7 @@ ui <- shiny::fluidPage(
 
                     shiny::uiOutput("pe_seq_desc", container = html$p),
 
-                    ###### Density Plot ----------------------------------------
+                    ##### Density Plot -----------------------------------------
 
                     shiny::uiOutput("pe_dist_title",
                         container = html$h2,
@@ -556,7 +558,7 @@ ui <- shiny::fluidPage(
 
                     shiny::uiOutput("pe_dist_desc", container = html$p),
 
-                    ###### Risk Band Plot --------------------------------------
+                    ##### Risk Band Plot ---------------------------------------
 
                     shiny::uiOutput("pe_risk_band_title",
                         container = html$h2,
@@ -570,13 +572,13 @@ ui <- shiny::fluidPage(
                         style     = "margin: 10.5px 0 0 0;")
                 ),
 
-                ##### Panel: Arithmetic Mean -----------------------------------
+                #### Panel: Arithmetic Mean ------------------------------------
 
                 shiny::tabPanel(
                     value = "am",
                     title = shiny::uiOutput("am_tab_name", TRUE),
 
-                    ###### Risk Decision ---------------------------------------
+                    ##### Risk Decision ----------------------------------------
 
                     shiny::uiOutput("am_risk_decision_title",
                         container = html$h2,
@@ -585,8 +587,8 @@ ui <- shiny::fluidPage(
                     shiny::fluidRow(
                         shiny::column(width = 6L,
                             shiny::uiOutput("am_risk_decision_subtitle",
-                            container = html$h3,
-                            class     = "app-panel-subtitle"),
+                                container = html$h3,
+                                class     = "app-panel-subtitle"),
 
                             shiny::uiOutput("am_risk_decision",
                                 container = html$ul,
@@ -610,7 +612,7 @@ ui <- shiny::fluidPage(
                         )
                     ),
 
-                    ###### Parameter Estimates ---------------------------------
+                    ##### Parameter Estimates ----------------------------------
 
                     shiny::uiOutput("am_estim_title",
                         container = html$h2,
@@ -640,7 +642,7 @@ ui <- shiny::fluidPage(
                         )
                     ),
 
-                    ###### Sequential Plot -------------------------------------
+                    ##### Sequential Plot --------------------------------------
 
                     shiny::uiOutput("am_seq_title",
                         container = html$h2,
@@ -650,7 +652,7 @@ ui <- shiny::fluidPage(
 
                     shiny::uiOutput("am_seq_desc", container = html$p),
 
-                    ###### Density Plot ----------------------------------------
+                    ##### Density Plot -----------------------------------------
 
                     shiny::uiOutput("am_dist_title",
                         container = html$h2,
@@ -660,7 +662,7 @@ ui <- shiny::fluidPage(
 
                     shiny::uiOutput("am_dist_desc", container = html$p),
 
-                    ###### Risk Band Plot --------------------------------------
+                    ##### Risk Band Plot ---------------------------------------
 
                     shiny::uiOutput("am_risk_band_title",
                         container = html$h2,
@@ -674,13 +676,13 @@ ui <- shiny::fluidPage(
                         style     = "margin: 10.5px 0 0 0;")
                 ),
 
-                ##### Panel: About ---------------------------------------------
+                #### Panel: About ----------------------------------------------
 
                 shiny::tabPanel(
                     value = "ab",
                     title = shiny::uiOutput("ab_tab_name", TRUE),
 
-                    ###### About -----------------------------------------------
+                    ##### About ------------------------------------------------
 
                     shiny::uiOutput("ab_about_title",
                         container = html$h2,
@@ -688,7 +690,7 @@ ui <- shiny::fluidPage(
 
                     shiny::uiOutput("ab_about", container = html$p),
 
-                    ###### How To Use This Application -------------------------
+                    ##### How To Use This Application --------------------------
 
                     shiny::uiOutput("ab_how_to_use_title",
                         container = html$h2,
@@ -696,7 +698,7 @@ ui <- shiny::fluidPage(
 
                     shiny::uiOutput("ab_how_to_use"),
 
-                    ###### Methodological Background ---------------------------
+                    ##### Methodological Background ----------------------------
 
                     shiny::uiOutput("ab_metho_bg_title",
                         container = html$h2,
@@ -709,14 +711,9 @@ ui <- shiny::fluidPage(
     )
 )
 
-
-# Server logic -----------------------------------------------------------------
-
-
-# FIXME: (JMP) Use |> whenever appropriate below to reduce nesting.
 server <- function(input, output, session) {
 
-    ## UI Internationalization -------------------------------------------------
+    # Internationalization -----------------------------------------------------
 
     # Define a wrapper function that avoids having to explicitly pass
     # tr and input$lang to each transltr::Translator$translate() call.
@@ -728,13 +725,14 @@ server <- function(input, output, session) {
         lang  <- input$lang
         title <- sprintf("Expostats: %s", translate("Tool 1"))
 
-        shiny::updateQueryString(sprintf("?lang=%s", lang))
+        # lang is percent-encoded to ensure it is future-proof.
+        shiny::updateQueryString(sprintf("?lang=%s", htmltools::urlEncodePath(lang)))
 
         # See www/main.js for more information.
         session$sendCustomMessage("update_page_lang", lang)
         session$sendCustomMessage("update_window_title", title)
 
-        ### Body ---------------------------------------------------------------
+        ## Body ----------------------------------------------------------------
 
         output$top_title <- shiny::renderUI(translate("
             Tool 1: Data Interpretation for One Similarly Exposed Group
@@ -743,7 +741,7 @@ server <- function(input, output, session) {
             translate("Calculating... Please wait.")
         )
 
-        ### Sidebar -----------------------------------------------------------
+        ## Sidebar -------------------------------------------------------------
 
         shiny::updateSelectInput(
             inputId = "lang",
@@ -823,7 +821,7 @@ server <- function(input, output, session) {
                 translate("All rights reserved."))
         )
 
-        ### Panel: Statistics --------------------------------------------------
+        ## Panel: Statistics ---------------------------------------------------
 
         output$st_tab_name <- shiny::renderUI(translate("Statistics"))
         output$st_desc_stats_title <- shiny::renderUI(
@@ -874,7 +872,7 @@ server <- function(input, output, session) {
             as.character(html$sup(translate("th")))
         ))
 
-        ### Panel: Exceedance Fraction -----------------------------------------
+        ## Panel: Exceedance Fraction ------------------------------------------
 
         shiny::updateRadioButtons(
             inputId = "ef_exceed_btn_choose",
@@ -1047,7 +1045,7 @@ server <- function(input, output, session) {
             shiny::textOutput("ef_risk_band_desc_high_val_2", inline = TRUE)
         ))
 
-        ### Panel: Percentiles -------------------------------------------------
+        ## Panel: Percentiles --------------------------------------------------
 
         output$pe_tab_name <- shiny::renderUI(translate("Percentiles"))
         output$pe_risk_decision_title <- shiny::renderUI(
@@ -1150,7 +1148,7 @@ server <- function(input, output, session) {
             urls$aiha(lang, "AIHA")
         ))
 
-        ### Panel: Arithmetic Mean ---------------------------------------------
+        ## Panel: Arithmetic Mean ----------------------------------------------
 
         output$am_tab_name <- shiny::renderUI(translate("Arithmetic Mean"))
         output$am_risk_decision_title <- shiny::renderUI(
@@ -1256,7 +1254,7 @@ server <- function(input, output, session) {
             urls$aiha(lang, "AIHA")
         ))
 
-        ### Panel: About -------------------------------------------------------
+        ## Panel: About --------------------------------------------------------
 
         output$ab_tab_name    <- shiny::renderUI(translate("About"))
         output$ab_about_title <- shiny::renderUI(translate("About"))
@@ -1360,9 +1358,9 @@ server <- function(input, output, session) {
         ))
     })
 
-    ## Reactive Values and Other Observers -------------------------------------
+    # Reactives and Observers --------------------------------------------------
 
-    # This observer hides inputs sb_frac_threshold and sb_target_perc
+    # This observer hides inputs frac_threshold and target_perc
     # by default, and respectively shows either of them only when
     # a specific panel is opened.
     shiny::observeEvent(input$active_panel, {
@@ -1412,21 +1410,24 @@ server <- function(input, output, session) {
         return(!strtoi(prior))
     })
 
-    user_inputs <- shiny::reactive({
-        return(
-            list(
-                conf           = input$sb_conf,
-                psi            = input$sb_psi,
-                frac_threshold = input$sb_frac_threshold,
-                target_perc    = input$sb_target_perc))
-    })
+    user_inputs <- shiny::reactive(
 
-    user_formatted_sample <- shiny::reactive({
+    user_formatted_sample <- shiny::reactive(
+        data.formatting.SEG(
+            data.in  = input$data,
+            oel      = input$oel,
+            oel.mult = input$al)
+    )
+
+    user_formatted_sample_imputed <- reactive({
+        user_sample <- user_formatted_sample()
         return(
-            data.formatting.SEG(
-                data.in  = input$sb_data,
-                oel      = input$sb_oel,
-                oel.mult = input$sb_al))
+            simple.censored.treatment(
+                observations.formatted = user_sample$data,
+                notcensored            = user_sample$notcensored,
+                leftcensored           = user_sample$leftcensored,
+                rightcensored          = user_sample$rightcensored,
+                intcensored            = user_sample$intcensored))
     })
 
     bayesian_analysis <- shiny::reactive({
@@ -1436,12 +1437,8 @@ server <- function(input, output, session) {
             value   = 0L,
             message = translate("Bayesian iterations:"))
 
-        # FIXME: (JMP) This is really weird. All Bayesian functions accept a
-        # function that updates a Progress object implicitly. This is error-
-        # prone and requires a fix. Binding 'progress' may not exist, or could
-        # be out of scope in some cases.
         updateProgress <- function(detail = NULL) {
-            progress$inc(amount = 1/50, detail = detail)
+            progress$inc(amount = 1 / 50, detail = detail)
         }
 
         user_sample <- user_formatted_sample()
@@ -1459,6 +1456,8 @@ server <- function(input, output, session) {
                 updateProgress   = updateProgress))
     })
 
+    # TODO:(JMP) We would likely require more values to be returned
+    # for confidence intervals.
     num_results <- shiny::reactive({
         bayesian_outputs <- bayesian_analysis()
         inputs           <- user_inputs()
@@ -1472,7 +1471,7 @@ server <- function(input, output, session) {
                 target_perc    = inputs$target_perc))
     })
 
-    ## Shared Outputs ----------------------------------------------------------
+    # Outputs Shared By Panels -------------------------------------------------
 
     output$ef_risk_decision_limit <-
     output$pe_risk_decision_limit <-
@@ -1494,20 +1493,9 @@ server <- function(input, output, session) {
         return(sprintf("%s [%s - %s]", gsd$est, gsd$lcl, gsd$ucl))
     })
 
-    ## Panel: Statistics -------------------------------------------------------
+    # Panel: Statistics --------------------------------------------------------
 
-    user_formatted_sample_imputed <- reactive({
-        user_sample <- user_formatted_sample()
-        return(
-            simple.censored.treatment(
-                observations.formatted = user_sample$data,
-                notcensored            = user_sample$notcensored,
-                leftcensored           = user_sample$leftcensored,
-                rightcensored          = user_sample$rightcensored,
-                intcensored            = user_sample$intcensored))
-    })
-
-    ### Descriptive Statistics -------------------------------------------------
+    ## Descriptive Statistics --------------------------------------------------
 
     output$st_desc_stats_tbl <- shiny::renderTable(
         rownames = FALSE,
@@ -1544,22 +1532,21 @@ server <- function(input, output, session) {
             return(stats_df)
     })
 
-    ### QQ Plot ----------------------------------------------------------------
+    ## QQ Plot -----------------------------------------------------------------
 
-    output$st_qq_plot <- shiny::renderPlot({
-        return(
-            fun.qqplot(
-                data.simply.imputed = user_formatted_sample_imputed(),
-                notcensored         = user_formatted_sample()$notcensored,
-                qqplot.1            = translate("Quantile-Quantile Plot"),
-                qqplot.2            = translate("Quantiles (Lognormal Distribution)"),
-                qqplot.3            = translate("Quantiles (Standardized Measurements)"),
-                qqplot.4            = translate("Measurement Type"),
-                qqplot.5            = translate("Censored"),
-                qqplot.6            = translate("Detected")))
-    })
+    output$st_qq_plot <- shiny::renderPlot(
+        fun.qqplot(
+            data.simply.imputed = user_formatted_sample_imputed(),
+            notcensored         = user_formatted_sample()$notcensored,
+            qqplot.1            = translate("Quantile-Quantile Plot"),
+            qqplot.2            = translate("Quantiles (Lognormal Distribution)"),
+            qqplot.3            = translate("Quantiles (Standardized Measurements)"),
+            qqplot.4            = translate("Measurement Type"),
+            qqplot.5            = translate("Censored"),
+            qqplot.6            = translate("Detected"))
+    )
 
-    ### Box and Whiskers Plot --------------------------------------------------
+    ## Box and Whiskers Plot ---------------------------------------------------
 
     output$st_box_plot <- shiny::renderPlot({
         user_sample <- user_formatted_sample()
@@ -1576,21 +1563,15 @@ server <- function(input, output, session) {
                 boxplot.6           = translate("Measurements")))
     })
 
-    ## Panel: Exceedance Fraction ----------------------------------------------
+    # Panel: Exceedance Fraction -----------------------------------------------
 
-    ### Shared Outputs ---------------------------------------------------------
+    ## Risk Decision -----------------------------------------------------------
 
     output$ef_risk_decision_frac        <-
     output$ef_risk_band_desc_high_val_1 <-
     output$ef_risk_band_desc_high_val_2 <- shiny::renderText(
-        paste0(signif(input$sb_frac_threshold, 3L), "%")
+        paste0(signif(input$frac_threshold, 3L), "%")
     )
-
-    ### Risk Decision ----------------------------------------------------------
-
-    # See sections Shared Outputs above for
-    # output$ef_risk_decision_frac, and
-    # output$ef_risk_decision_limit.
 
     output$ef_risk_decision_criterion <- shiny::renderText({
         paste0(signif(num_results()$frac.risk, 3L), "%")
@@ -1610,14 +1591,14 @@ server <- function(input, output, session) {
             minProbUnacceptable = user_inputs()$psi)
     )
 
-    ### Parameter Estimates ----------------------------------------------------
+    ## Parameter Estimates -----------------------------------------------------
 
     output$ef_estim_ef_frac <- shiny::renderText({
         frac <- lapply(num_results()$frac, \(x) as.character(signif(x, 3L)))
         return(sprintf("%s%% [%s - %s]", frac$est, frac$lcl, frac$ucl))
     })
 
-    ### Exceedance Plot --------------------------------------------------------
+    ## Exceedance Plot ---------------------------------------------------------
 
     output$ef_exceed_plot <- shiny::renderPlot({
         seuil    <- input$sb_frac_threshold
@@ -1674,7 +1655,7 @@ server <- function(input, output, session) {
         return(gridExtra::grid.arrange(grobs = plots, ncol = length(plots)))
     })
 
-    ### Sequential Plot --------------------------------------------------------
+    ## Sequential Plot ---------------------------------------------------------
 
     output$ef_seq_plot <- shiny::renderPlot({
         results <- num_results()
@@ -1689,7 +1670,7 @@ server <- function(input, output, session) {
                 seqplot.6 = translate("Measurement Index")))
     })
 
-    ### Density Plot -----------------------------------------------------------
+    ## Density Plot ------------------------------------------------------------
 
     output$ef_dist_plot <- shiny::renderPlot({
         bayesian_outputs <- bayesian_analysis()
@@ -1706,7 +1687,7 @@ server <- function(input, output, session) {
                 distplot.5 = translate("OEL")))
     })
 
-    ### Risk Band Plot ---------------------------------------------------------
+    ## Risk Band Plot ----------------------------------------------------------
 
     output$ef_risk_band_desc_low_val_1 <-
     output$ef_risk_band_desc_low_val_2 <- shiny::renderText(
@@ -1727,13 +1708,13 @@ server <- function(input, output, session) {
                 riskplot.2     = translate("Probability")))
     })
 
-    ## Panel: Percentiles ------------------------------------------------------
+    # Panel: Percentiles -------------------------------------------------------
 
-    ### Risk Decision ----------------------------------------------------------
+    ## Risk Decision -----------------------------------------------------------
 
     # FIXME: (JMP) Decimals are not shown properly.
     output$pe_risk_decision_perc <- shiny::renderUI({
-        value <- input$sb_target_perc
+        value <- input$target_perc
         return(
             sprintf_html(
                 "%.0f<sup>%s</sup>",
@@ -1741,11 +1722,9 @@ server <- function(input, output, session) {
                 ordinal_number_suffix(value)))
     })
 
-    output$pe_risk_decision_criterion <- shiny::renderText({
-        return(paste0(signif(num_results()$perc.risk, 3L), "%"))
-    })
-
-    # See section Shared Outputs above for output$pe_risk_decision_limit.
+    output$pe_risk_decision_criterion <- shiny::renderText(
+        paste0(signif(num_results()$perc.risk, 3L), "%")
+    )
 
     output$pe_risk_decision_conclusion <-shiny::renderText({
         if (num_results()$perc.risk >= user_inputs()$psi) {
@@ -1755,24 +1734,20 @@ server <- function(input, output, session) {
         return(translate("adequately controlled"))
     })
 
-    output$pe_risk_meter_plot <- shiny::renderPlot({
-        return(
-            dessinerRisqueMetre(
-                actualProb          = num_results()$perc.risk,
-                minProbUnacceptable = user_inputs()$psi))
-    })
+    output$pe_risk_meter_plot <- shiny::renderPlot(
+        dessinerRisqueMetre(
+            actualProb          = num_results()$perc.risk,
+            minProbUnacceptable = user_inputs()$psi)
+    )
 
-    ### Parameter Estimates ----------------------------------------------------
-
-    # See section Shared Outputs above for output$pe_estim_dist_geo_mean,
-    # and output$pe_estim_dist_geo_sd.
+    ## Parameter Estimates -----------------------------------------------------
 
     output$pe_estim_pe_perc <- shiny::renderText({
         perc <- lapply(num_results()$perc, \(x) as.character(signif(x, 3L)))
         return(sprintf("%s [%s - %s]", perc$est, perc$lcl, perc$ucl))
     })
 
-    ### Sequential Plot --------------------------------------------------------
+    ## Sequential Plot ---------------------------------------------------------
 
     output$pe_seq_plot <- shiny::renderPlot({
         results     <- num_results()
@@ -1791,7 +1766,7 @@ server <- function(input, output, session) {
                 seqplot.6          = translate("Measurement Index")))
     })
 
-    ### Density Plot -----------------------------------------------------------
+    ## Density Plot ------------------------------------------------------------
 
     output$pe_dist_plot <- shiny::renderPlot({
         bayesian_outputs <- bayesian_analysis()
@@ -1811,7 +1786,7 @@ server <- function(input, output, session) {
                 distplot.6         = translate("Percentile")))
     })
 
-    ### Risk Band Plot ---------------------------------------------------------
+    ## Risk Band Plot ----------------------------------------------------------
 
     output$pe_risk_band_plot <- shiny::renderPlot({
         bayesian_outputs <- bayesian_analysis()
@@ -1834,15 +1809,13 @@ server <- function(input, output, session) {
                 riskplot.8  = translate("Critical Percentile Category")))
     })
 
-    ## Panel: Arithmetic Mean --------------------------------------------------
+    # Panel: Arithmetic Mean ---------------------------------------------------
 
-    ### Risk Decision ----------------------------------------------------------
+    ## Risk Decision -----------------------------------------------------------
 
-    # See section Shared Outputs above for output$am_risk_decision_limit.
-
-    output$am_risk_decision_criterion <- shiny::renderText({
-        return(paste0(signif(num_results()$am.risk, 3L), "%"))
-    })
+    output$am_risk_decision_criterion <- shiny::renderText(
+        paste0(signif(num_results()$am.risk, 3L), "%")
+    )
 
     output$am_risk_decision_conclusion <-shiny::renderText({
         msgid <- if (num_results()$am.risk >= user_inputs()$psi) {
@@ -1852,24 +1825,20 @@ server <- function(input, output, session) {
         return(translate("adequately controlled"))
     })
 
-    output$am_risk_meter_plot <- renderPlot({
-        return(
-            dessinerRisqueMetre(
-                actualProb          = num_results()$am.risk,
-                minProbUnacceptable = user_inputs()$psi))
-    })
+    output$am_risk_meter_plot <- renderPlot(
+        dessinerRisqueMetre(
+            actualProb          = num_results()$am.risk,
+            minProbUnacceptable = user_inputs()$psi)
+    )
 
-    ### Parameter Estimates ----------------------------------------------------
-
-    # See section Shared Outputs above for
-    # output$am_estim_dist_geo_mean, and output$am_estim_dist_geo_sd.
+    ## Parameter Estimates -----------------------------------------------------
 
     output$am_estim_am_mean <- shiny::renderText({
         am <- lapply(num_results()$am, \(x) as.character(signif(x, 3L)))
         return(sprintf("%s [%s - %s]", am$est, am$lcl, am$ucl))
     })
 
-    ### Sequential Plot --------------------------------------------------------
+    ## Sequential Plot ---------------------------------------------------------
 
     output$am_seq_plot <- shiny::renderPlot({
         results <- num_results()
@@ -1885,7 +1854,7 @@ server <- function(input, output, session) {
                 seqplot.6 = translate("Measurement Index")))
     })
 
-    ### Density Plot -----------------------------------------------------------
+    ## Density Plot ------------------------------------------------------------
 
     output$am_dist_plot <- shiny::renderPlot({
         bayesian_outputs <- bayesian_analysis()
@@ -1902,7 +1871,7 @@ server <- function(input, output, session) {
                 distplot.7 = translate("Arithmetic Mean")))
     })
 
-    ### Risk Band Plot ---------------------------------------------------------
+    ## Risk Band Plot ----------------------------------------------------------
 
     output$am_risk_band_plot <- shiny::renderPlot({
         bayesian_outputs <- bayesian_analysis()
@@ -1922,8 +1891,6 @@ server <- function(input, output, session) {
     })
 }
 
-
 # Instantiation ----------------------------------------------------------------
-
 
 app <- shiny::shinyApp(ui, server)
