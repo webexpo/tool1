@@ -567,12 +567,14 @@ ui <- shiny::fluidPage(
                         container = html$h2,
                         class     = "app-panel-title"),
 
-                    shiny::plotOutput("pe_risk_band_plot", height = plot_height),
+                    # FIXME: (JMP) Standardize margins and remove styling.
+                    htmltools::tagAppendAttributes(
+                        style = "margin-bottom: 10.5px;",
+                        shiny::plotOutput(
+                            outputId = "pe_risk_band_plot",
+                            height   = plot_height)),
 
-                    # TODO: (JMP) Standardize margins and remove style.
-                    shiny::uiOutput("pe_risk_band_desc",
-                        container = html$p,
-                        style     = "margin: 10.5px 0 0 0;")
+                    shiny::uiOutput("pe_risk_band_desc", container = html$p)
                 ),
 
                 #### Panel: Arithmetic Mean ------------------------------------
@@ -671,12 +673,14 @@ ui <- shiny::fluidPage(
                         container = html$h2,
                         class     = "app-panel-title"),
 
-                    shiny::plotOutput("am_risk_band_plot", height = plot_height),
+                    # FIXME: (JMP) Standardize margins and remove styling.
+                    htmltools::tagAppendAttributes(
+                        style = "margin-bottom: 10.5px;",
+                        shiny::plotOutput(
+                            outputId = "am_risk_band_plot",
+                            height   = plot_height)),
 
-                    # TODO: (JMP) Standardize margins and remove style.
-                    shiny::uiOutput("am_risk_band_desc",
-                        container = html$p,
-                        style     = "margin: 10.5px 0 0 0;")
+                    shiny::uiOutput("am_risk_band_desc", container = html$p)
                 ),
 
                 #### Panel: About ----------------------------------------------
