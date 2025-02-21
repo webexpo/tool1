@@ -721,6 +721,15 @@ server <- function(input, output, session) {
     # server() for lexical scoping purposes.
     translate <- \(...) tr$translate(..., lang = input$lang)
 
+    # Update input$lang based on (optional) URL's search parameter ?lang.
+    shiny::observeEvent(session$clientData$url_search, {
+        lang <- shiny::parseQueryString(session$clientData$url_search)$lang
+
+        if (!is.null(lang) && match(lang, langs, 0L)) {
+            shiny::updateSelectInput(inputId = "lang", selected = lang)
+        }
+    })
+
     shiny::observeEvent(input$lang, {
         lang  <- input$lang
         title <- sprintf("Expostats: %s", translate("Tool 1"))
