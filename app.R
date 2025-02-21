@@ -35,18 +35,20 @@
 #' CSS Classes uses `dash-case`. Each class must use the prefix `app-` to
 #' avoid collisions.
 #'
+#' Global constants defined in `R/global.R` are capitalized.
+#'
 #' @section Google Analytics:
 #' Google Analytics has been deactivated until further notice. We are required
 #' by law (Quebec's Loi 25, effective since September 2023) to inform users we
 #' collect usage data from them. We further require a formal Terms of Service,
 #' and a Privacy Policy.
 #'
-#' Here how it used to be in `html$head()` below.
+#' Here how it used to be in `TAGS$head()` below.
 #'
 #' ```r
-#' html$script(src = file.path("www", "js", "ga-id.js"))
-#' html$script(src = file.path("www", "js", "ga.js"))
-#' html$noscript(src = file.path("www", "js", "ga-tm.js"))
+#' TAGS$script(src = file.path("www", "js", "ga-id.js"))
+#' TAGS$script(src = file.path("www", "js", "ga.js"))
+#' TAGS$noscript(src = file.path("www", "js", "ga-tm.js"))
 #' ```
 #'
 #' Google Analytics changed its API recently. This may require further tweaks.
@@ -96,22 +98,22 @@ ui <- shiny::fluidPage(
 
     # Head ---------------------------------------------------------------------
 
-    html$head(
-        html$link(rel = "stylesheet", media = "all", href = "main.css"),
-        html$script(src = "main.js"),
+    TAGS$head(
+        TAGS$link(rel = "stylesheet", media = "all", href = "main.css"),
+        TAGS$script(src = "main.js"),
         shinyjs::useShinyjs()
     ),
 
     # Body ---------------------------------------------------------------------
 
-    shiny::uiOutput("top_title", container = html$h1, class = "app-title"),
+    shiny::uiOutput("top_title", container = TAGS$h1, class = "app-title"),
 
     # It is shown whenever the Shiny engine is blocked.
     shiny::conditionalPanel(
         condition = r"{$("html").hasClass("shiny-busy")}",
         shiny::uiOutput(
             outputId  = "top_banner",
-            container = html$p,
+            container = TAGS$p,
             class     = "app-banner-wait")
     ),
 
@@ -126,14 +128,14 @@ ui <- shiny::fluidPage(
             shiny::selectInput(
                 inputId   = "lang",
                 label     = "",
-                selected  = default_lang,
-                choices   = langs,
+                selected  = DEFAULT_LANG,
+                choices   = SUPPORTED_LANGS,
                 selectize = FALSE,
                 multiple  = FALSE) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
                 bslib::tooltip(id = "lang_tooltip", ""),
 
-            html$hr(class = "app-sidebar-hr"),
+            TAGS$hr(class = "app-sidebar-hr"),
 
             shiny::numericInput(
                 inputId = "oel",
@@ -200,16 +202,16 @@ ui <- shiny::fluidPage(
                     style = "display: none;") |>
                 bslib::tooltip(id = "target_perc_tooltip", ""),
 
-            html$hr(class = "app-sidebar-hr"),
+            TAGS$hr(class = "app-sidebar-hr"),
 
             ### Footer ---------------------------------------------------------
 
             # It is placed here to maximize visibility.
-            html$footer(
+            TAGS$footer(
                 class = "app-sidebar-footer",
-                shiny::uiOutput("sb_footer_app_version", container = html$p),
+                shiny::uiOutput("sb_footer_app_version", container = TAGS$p),
 
-                shiny::uiOutput("sb_footer_copyright", container = html$p)
+                shiny::uiOutput("sb_footer_copyright", container = TAGS$p)
             )
         ),
 
@@ -232,13 +234,13 @@ ui <- shiny::fluidPage(
                     ##### Descriptive Statistics -------------------------------
 
                     shiny::uiOutput("st_desc_stats_title",
-                        container = html$h2,
+                        container = TAGS$h2,
                         class     = "app-panel-title"),
 
                     shiny::fluidRow(
                         shiny::column(width = 6L,
                             shiny::uiOutput("st_desc_stats_subtitle",
-                                container = html$h3,
+                                container = TAGS$h3,
                                 class     = "app-panel-subtitle"),
 
                             shiny::tableOutput("st_desc_stats_tbl"),
@@ -252,7 +254,7 @@ ui <- shiny::fluidPage(
                     ##### QQ Plot ----------------------------------------------
 
                     shiny::uiOutput("st_qq_title",
-                        container = html$h2,
+                        container = TAGS$h2,
                         class     = "app-panel-title"),
 
                     # This plot is ugly if it is rendered using the
@@ -263,21 +265,21 @@ ui <- shiny::fluidPage(
                     # FIXME: (JMP) Standardize bottom margin and remove styling.
                     shiny::plotOutput("st_qq_plot",
                         width  = "50%",
-                        height = plot_height) |>
+                        height = PLOT_DEFAULT_HEIGHT) |>
                         htmltools::tagAppendAttributes(
                             style = "margin: auto; margin-bottom: 10.5px;"),
 
-                    shiny::uiOutput("st_qq_desc", container = html$p),
+                    shiny::uiOutput("st_qq_desc", container = TAGS$p),
 
                     ##### Box and Whiskers Plot --------------------------------
 
                     shiny::uiOutput("st_box_title",
-                        container = html$h2,
+                        container = TAGS$h2,
                         class     = "app-panel-title"),
 
-                    shiny::plotOutput("st_box_plot", height = plot_height),
+                    shiny::plotOutput("st_box_plot", height = PLOT_DEFAULT_HEIGHT),
 
-                    shiny::uiOutput("st_box_desc", container = html$p)
+                    shiny::uiOutput("st_box_desc", container = TAGS$p)
                 ),
 
                 #### Panel: Exceedance Fraction --------------------------------
@@ -289,21 +291,21 @@ ui <- shiny::fluidPage(
                     ##### Risk Decision ----------------------------------------
 
                     shiny::uiOutput("ef_risk_decision_title",
-                        container = html$h2,
+                        container = TAGS$h2,
                         class     = "app-panel-title"),
 
                     shiny::fluidRow(
                         shiny::column(width = 6L,
                             shiny::uiOutput("ef_risk_decision_subtitle",
-                                container = html$h3,
+                                container = TAGS$h3,
                                 class     = "app-panel-subtitle"),
 
                             shiny::uiOutput("ef_risk_decision",
-                                container = html$ul,
+                                container = TAGS$ul,
                                 class     = "app-ul"),
 
                             shiny::uiOutput("ef_risk_meter_desc",
-                                container = html$p)
+                                container = TAGS$p)
                         ),
 
                         shiny::column(width = 6L,
@@ -314,36 +316,36 @@ ui <- shiny::fluidPage(
                                 style = "margin-top: 21px",
                                 shiny::plotOutput(
                                     outputId = "ef_risk_meter_plot",
-                                    height   = plot_risk_meter_height))
+                                    height   = PLOT_RISK_METER_DEFAULT_HEIGHT))
                         )
                     ),
 
                     ##### Parameter Estimates ----------------------------------
 
                     shiny::uiOutput("ef_estim_title",
-                        container = html$h2,
+                        container = TAGS$h2,
                         class     = "app-panel-title"),
 
-                    shiny::uiOutput("ef_estim", container = html$p),
+                    shiny::uiOutput("ef_estim", container = TAGS$p),
 
                     shiny::fluidRow(
                         shiny::column(width = 6L,
                             shiny::uiOutput("ef_estim_dist_title",
-                                container = html$h3,
+                                container = TAGS$h3,
                                 class     = "app-panel-subtitle"),
 
                             shiny::uiOutput("ef_estim_dist",
-                                container = html$ul,
+                                container = TAGS$ul,
                                 class     = "app-ul")
                         ),
 
                         shiny::column(width = 6L,
                             shiny::uiOutput("ef_estim_ef_title",
-                                    container = html$h3,
+                                    container = TAGS$h3,
                                     class     = "app-panel-subtitle"),
 
                             shiny::uiOutput("ef_estim_ef",
-                                container = html$ul,
+                                container = TAGS$ul,
                                 class     = "app-ul")
                         )
                     ),
@@ -351,10 +353,10 @@ ui <- shiny::fluidPage(
                     ##### Exceedance Plot --------------------------------------
 
                     shiny::uiOutput("ef_exceed_title",
-                        container = html$h2,
+                        container = TAGS$h2,
                         class     = "app-panel-title"),
 
-                    shiny::uiOutput("ef_exceed", container = html$p),
+                    shiny::uiOutput("ef_exceed", container = TAGS$p),
 
                     shiny::radioButtons(
                         inputId  = "ef_exceed_btn_choose",
@@ -383,16 +385,16 @@ ui <- shiny::fluidPage(
                     # above. This is not an input (just a static container)
                     # that does not require an inputId. It has a standard HTML
                     # id attribute used by observers below.
-                    html$fieldset(
+                    TAGS$fieldset(
                         id    = "ef_exceed_cols",
                         style = "display: none;",
                         class = "form-group shiny-input-container-inline app-input",
                         shiny::uiOutput(
                             outputId  = "ef_exceed_cols_label",
-                            container = html$label,
+                            container = TAGS$label,
                             class     = "control-label",
                             `for`     = "ef_exceed_cols"),
-                        html$div(
+                        TAGS$div(
                             class = "app-flex-row",
                             colourpicker::colourInput(
                                 inputId    = "ef_exceed_col_risk",
@@ -430,39 +432,39 @@ ui <- shiny::fluidPage(
                         class = "app-center-plot",
                         shiny::plotOutput(
                             outputId = "ef_exceed_plot",
-                            height   = plot_height)) |>
+                            height   = PLOT_DEFAULT_HEIGHT)) |>
                         # This color is extracted from
                         # the chosen shiny theme (flatly).
                         shinycssloaders::withSpinner(
                             type  = 8L,
                             color = "#212529"),
 
-                    shiny::uiOutput("ef_exceed_desc_sub_plot", container = html$p),
+                    shiny::uiOutput("ef_exceed_desc_sub_plot", container = TAGS$p),
 
                     ##### Sequential Plot --------------------------------------
 
                     shiny::uiOutput("ef_seq_title",
-                        container = html$h2,
+                        container = TAGS$h2,
                         class     = "app-panel-title"),
 
-                    shiny::plotOutput("ef_seq_plot", height = plot_height),
+                    shiny::plotOutput("ef_seq_plot", height = PLOT_DEFAULT_HEIGHT),
 
-                    shiny::uiOutput("ef_seq_desc", container = html$p),
+                    shiny::uiOutput("ef_seq_desc", container = TAGS$p),
 
                     ##### Density Plot -----------------------------------------
 
                     shiny::uiOutput("ef_dist_title",
-                        container = html$h2,
+                        container = TAGS$h2,
                         class     = "app-panel-title"),
 
-                    shiny::plotOutput("ef_dist_plot", height = plot_height),
+                    shiny::plotOutput("ef_dist_plot", height = PLOT_DEFAULT_HEIGHT),
 
-                    shiny::uiOutput("ef_dist_desc", container = html$p),
+                    shiny::uiOutput("ef_dist_desc", container = TAGS$p),
 
                     ##### Risk Band Plot ---------------------------------------
 
                     shiny::uiOutput("ef_risk_band_title",
-                        container = html$h2,
+                        container = TAGS$h2,
                         class     = "app-panel-title"),
 
                     # FIXME: (JMP) Standardize margins and remove styling.
@@ -470,9 +472,9 @@ ui <- shiny::fluidPage(
                         style = "margin-bottom: 10.5px;",
                         shiny::plotOutput(
                             outputId = "ef_risk_band_plot",
-                            height   = plot_height)),
+                            height   = PLOT_DEFAULT_HEIGHT)),
 
-                    shiny::uiOutput("ef_risk_band_desc", container = html$p)
+                    shiny::uiOutput("ef_risk_band_desc", container = TAGS$p)
                 ),
 
                 ##### Panel: Percentiles ---------------------------------------
@@ -484,21 +486,21 @@ ui <- shiny::fluidPage(
                     ##### Risk Decision ----------------------------------------
 
                     shiny::uiOutput("pe_risk_decision_title",
-                        container = html$h2,
+                        container = TAGS$h2,
                         class     = "app-panel-title"),
 
                     shiny::fluidRow(
                         shiny::column(width = 6L,
                             shiny::uiOutput("pe_risk_decision_subtitle",
-                                container = html$h3,
+                                container = TAGS$h3,
                                 class     = "app-panel-subtitle"),
 
                             shiny::uiOutput("pe_risk_decision",
-                                container = html$ul,
+                                container = TAGS$ul,
                                 class     = "app-ul"),
 
                             shiny::uiOutput("pe_risk_meter_desc",
-                                container = html$p)
+                                container = TAGS$p)
                         ),
 
                         shiny::column(width = 6L,
@@ -509,36 +511,36 @@ ui <- shiny::fluidPage(
                                 style = "margin-top: 21px",
                                 shiny::plotOutput(
                                     outputId = "pe_risk_meter_plot",
-                                    height   = plot_risk_meter_height))
+                                    height   = PLOT_RISK_METER_DEFAULT_HEIGHT))
                         )
                     ),
 
                     ##### Parameter Estimates ----------------------------------
 
                     shiny::uiOutput("pe_estim_title",
-                        container = html$h2,
+                        container = TAGS$h2,
                         class     = "app-panel-title"),
 
-                    shiny::uiOutput("pe_estim", container = html$p),
+                    shiny::uiOutput("pe_estim", container = TAGS$p),
 
                     shiny::fluidRow(
                         shiny::column(width = 6L,
                             shiny::uiOutput("pe_estim_dist_title",
-                                container = html$h3,
+                                container = TAGS$h3,
                                 class     = "app-panel-subtitle"),
 
                             shiny::uiOutput("pe_estim_dist",
-                                container = html$ul,
+                                container = TAGS$ul,
                                 class     = "app-ul")
                         ),
 
                         shiny::column(width = 6L,
                             shiny::uiOutput("pe_estim_pe_title",
-                                container = html$h3,
+                                container = TAGS$h3,
                                 class     = "app-panel-subtitle"),
 
                             shiny::uiOutput("pe_estim_pe",
-                                container = html$ul,
+                                container = TAGS$ul,
                                 class     = "app-ul")
                         )
                     ),
@@ -546,27 +548,27 @@ ui <- shiny::fluidPage(
                     ##### Sequential Plot --------------------------------------
 
                     shiny::uiOutput("pe_seq_title",
-                        container = html$h2,
+                        container = TAGS$h2,
                         class     = "app-panel-title"),
 
-                    shiny::plotOutput("pe_seq_plot", height = plot_height),
+                    shiny::plotOutput("pe_seq_plot", height = PLOT_DEFAULT_HEIGHT),
 
-                    shiny::uiOutput("pe_seq_desc", container = html$p),
+                    shiny::uiOutput("pe_seq_desc", container = TAGS$p),
 
                     ##### Density Plot -----------------------------------------
 
                     shiny::uiOutput("pe_dist_title",
-                        container = html$h2,
+                        container = TAGS$h2,
                         class     = "app-panel-title"),
 
-                    shiny::plotOutput("pe_dist_plot", height = plot_height),
+                    shiny::plotOutput("pe_dist_plot", height = PLOT_DEFAULT_HEIGHT),
 
-                    shiny::uiOutput("pe_dist_desc", container = html$p),
+                    shiny::uiOutput("pe_dist_desc", container = TAGS$p),
 
                     ##### Risk Band Plot ---------------------------------------
 
                     shiny::uiOutput("pe_risk_band_title",
-                        container = html$h2,
+                        container = TAGS$h2,
                         class     = "app-panel-title"),
 
                     # FIXME: (JMP) Standardize margins and remove styling.
@@ -574,9 +576,9 @@ ui <- shiny::fluidPage(
                         style = "margin-bottom: 10.5px;",
                         shiny::plotOutput(
                             outputId = "pe_risk_band_plot",
-                            height   = plot_height)),
+                            height   = PLOT_DEFAULT_HEIGHT)),
 
-                    shiny::uiOutput("pe_risk_band_desc", container = html$p)
+                    shiny::uiOutput("pe_risk_band_desc", container = TAGS$p)
                 ),
 
                 #### Panel: Arithmetic Mean ------------------------------------
@@ -588,21 +590,21 @@ ui <- shiny::fluidPage(
                     ##### Risk Decision ----------------------------------------
 
                     shiny::uiOutput("am_risk_decision_title",
-                        container = html$h2,
+                        container = TAGS$h2,
                         class     = "app-panel-title"),
 
                     shiny::fluidRow(
                         shiny::column(width = 6L,
                             shiny::uiOutput("am_risk_decision_subtitle",
-                                container = html$h3,
+                                container = TAGS$h3,
                                 class     = "app-panel-subtitle"),
 
                             shiny::uiOutput("am_risk_decision",
-                                container = html$ul,
+                                container = TAGS$ul,
                                 class     = "app-ul"),
 
                             shiny::uiOutput("am_risk_meter_desc",
-                                container = html$p),
+                                container = TAGS$p),
 
                             shiny::uiOutput("am_risk_decision_alert_warn")
                         ),
@@ -615,36 +617,36 @@ ui <- shiny::fluidPage(
                                 style = "margin-top: 21px",
                                 shiny::plotOutput(
                                     outputId = "am_risk_meter_plot",
-                                    height   = plot_risk_meter_height))
+                                    height   = PLOT_RISK_METER_DEFAULT_HEIGHT))
                         )
                     ),
 
                     ##### Parameter Estimates ----------------------------------
 
                     shiny::uiOutput("am_estim_title",
-                        container = html$h2,
+                        container = TAGS$h2,
                         class     = "app-panel-title"),
 
-                    shiny::uiOutput("am_estim", container = html$p),
+                    shiny::uiOutput("am_estim", container = TAGS$p),
 
                     shiny::fluidRow(
                         shiny::column(width = 6L,
                             shiny::uiOutput("am_estim_dist_title",
-                                container = html$h3,
+                                container = TAGS$h3,
                                 class     = "app-panel-subtitle"),
 
                             shiny::uiOutput("am_estim_dist",
-                                container = html$ul,
+                                container = TAGS$ul,
                                 class     = "app-ul")
                         ),
 
                         shiny::column(width = 6L,
                             shiny::uiOutput("am_estim_am_title",
-                                container = html$h3,
+                                container = TAGS$h3,
                                 class     = "app-panel-subtitle"),
 
                             shiny::uiOutput("am_estim_am",
-                                container = html$ul,
+                                container = TAGS$ul,
                                 class     = "app-ul")
                         )
                     ),
@@ -652,27 +654,27 @@ ui <- shiny::fluidPage(
                     ##### Sequential Plot --------------------------------------
 
                     shiny::uiOutput("am_seq_title",
-                        container = html$h2,
+                        container = TAGS$h2,
                         class     = "app-panel-title"),
 
-                    shiny::plotOutput("am_seq_plot", height = plot_height),
+                    shiny::plotOutput("am_seq_plot", height = PLOT_DEFAULT_HEIGHT),
 
-                    shiny::uiOutput("am_seq_desc", container = html$p),
+                    shiny::uiOutput("am_seq_desc", container = TAGS$p),
 
                     ##### Density Plot -----------------------------------------
 
                     shiny::uiOutput("am_dist_title",
-                        container = html$h2,
+                        container = TAGS$h2,
                         class     = "app-panel-title"),
 
-                    shiny::plotOutput("am_dist_plot", height = plot_height),
+                    shiny::plotOutput("am_dist_plot", height = PLOT_DEFAULT_HEIGHT),
 
-                    shiny::uiOutput("am_dist_desc", container = html$p),
+                    shiny::uiOutput("am_dist_desc", container = TAGS$p),
 
                     ##### Risk Band Plot ---------------------------------------
 
                     shiny::uiOutput("am_risk_band_title",
-                        container = html$h2,
+                        container = TAGS$h2,
                         class     = "app-panel-title"),
 
                     # FIXME: (JMP) Standardize margins and remove styling.
@@ -680,9 +682,9 @@ ui <- shiny::fluidPage(
                         style = "margin-bottom: 10.5px;",
                         shiny::plotOutput(
                             outputId = "am_risk_band_plot",
-                            height   = plot_height)),
+                            height   = PLOT_DEFAULT_HEIGHT)),
 
-                    shiny::uiOutput("am_risk_band_desc", container = html$p)
+                    shiny::uiOutput("am_risk_band_desc", container = TAGS$p)
                 ),
 
                 #### Panel: About ----------------------------------------------
@@ -694,15 +696,15 @@ ui <- shiny::fluidPage(
                     ##### About ------------------------------------------------
 
                     shiny::uiOutput("ab_about_title",
-                        container = html$h2,
+                        container = TAGS$h2,
                         class     = "app-panel-title"),
 
-                    shiny::uiOutput("ab_about", container = html$p),
+                    shiny::uiOutput("ab_about", container = TAGS$p),
 
                     ##### How To Use This Application --------------------------
 
                     shiny::uiOutput("ab_how_to_use_title",
-                        container = html$h2,
+                        container = TAGS$h2,
                         class     = "app-panel-title"),
 
                     shiny::uiOutput("ab_how_to_use"),
@@ -710,7 +712,7 @@ ui <- shiny::fluidPage(
                     ##### Methodological Background ----------------------------
 
                     shiny::uiOutput("ab_metho_bg_title",
-                        container = html$h2,
+                        container = TAGS$h2,
                         class     = "app-panel-title"),
 
                     shiny::uiOutput("ab_metho_bg")
@@ -728,13 +730,13 @@ server <- function(input, output, session) {
     # tr and input$lang to each transltr::Translator$translate() call.
     # The parent environment of translate must be the environment of
     # server() for lexical scoping purposes.
-    translate <- \(...) tr$translate(..., lang = input$lang)
+    translate <- \(...) TR$translate(..., lang = input$lang)
 
     # Update input$lang based on (optional) URL's search parameter ?lang.
     shiny::observeEvent(session$clientData$url_search, {
         lang <- shiny::parseQueryString(session$clientData$url_search)$lang
 
-        if (!is.null(lang) && match(lang, langs, 0L)) {
+        if (!is.null(lang) && match(lang, SUPPORTED_LANGS, 0L)) {
             shiny::updateSelectInput(inputId = "lang", selected = lang)
         }
     })
@@ -828,14 +830,14 @@ server <- function(input, output, session) {
         "))
         output$sb_footer_app_version <- shiny::renderUI(
             shiny::tagList(
-                translate("Tool 1"), "version", version,
+                translate("Tool 1"), "version", VERSION,
                 sprintf_html("(%s).", as.character(urls$code(lang, "GitHub"))))
         )
         output$sb_footer_copyright <- shiny::renderUI(
             shiny::tagList(
                 shiny::icon("copyright-mark", lib = "glyphicon"),
                 urls$jerome_lavoue(lang, "Jérôme Lavoué"),
-                year,
+                YEAR,
                 translate("All rights reserved."))
         )
 
@@ -848,19 +850,19 @@ server <- function(input, output, session) {
         output$st_desc_stats_subtitle <- shiny::renderUI(translate("Summary"))
         output$st_desc_stats_alert_info <- shiny::renderUI(add_bs_alert_info(
             title = translate("Information"),
-            html$p(translate("
+            TAGS$p(translate("
                 Censored measurements are subject to one of the following
                 procedure.")),
-            html$ul(
-                html$li(translate("
+            TAGS$ul(
+                TAGS$li(translate("
                     Interval censored measurements are imputed as the
                     mid-range.
                 ")),
-                html$li(translate("
+                TAGS$li(translate("
                     Measurements censored to the right are imputed as 9/4 of
                     the censoring point.
                 ")),
-                html$li(sprintf_html(
+                TAGS$li(sprintf_html(
                     translate("
                         Measurements censored to the left are treated using
                         robust Log-probit regression on order statistics. The
@@ -888,7 +890,7 @@ server <- function(input, output, session) {
                 represent the distance between the 10%1$s and 90%1$s percentiles.
                 The inner black horizontal line is the median.
             "),
-            as.character(html$sup(translate("th")))
+            as.character(TAGS$sup(translate("th")))
         ))
 
         ## Panel: Exceedance Fraction ------------------------------------------
@@ -924,24 +926,24 @@ server <- function(input, output, session) {
             translate("Risk Decision")
         )
         output$ef_risk_decision <- shiny::renderUI(shiny::tagList(
-            html$li(sprintf_html(
+            TAGS$li(
                 translate("
                     Overexposure is defined as the exceedance fraction being
                     greater than or equal to %s.
                 "),
-                as.character(add_bold_text_output("ef_risk_decision_frac")))),
-            html$li(sprintf_html(
+            ),
+            TAGS$li(sprintf_html(
                 translate("
                     The probability that this criterion is met is equal to %s.
                 "),
-                as.character(add_bold_text_output("ef_risk_decision_criterion")))),
-            html$li(sprintf_html(
+            )),
+            TAGS$li(sprintf_html(
                 translate("
                     The probability that this criterion is met should be lower
                     than %s.
                 "),
-                as.character(add_bold_text_output("ef_risk_decision_limit")))),
-            html$li(sprintf_html(
+            )),
+            TAGS$li(sprintf_html(
                 translate("
                     Consequently, the current situation is declared to be %s.
                 "),
@@ -962,18 +964,20 @@ server <- function(input, output, session) {
             translate("Distribution Parameters")
         )
         output$ef_estim_dist <- shiny::renderUI(shiny::tagList(
-            html$li(sprintf_html(
+            TAGS$li(sprintf_html(
                 translate("The geometric mean point estimate is equal to %s."),
-                as.character(add_bold_text_output("ef_estim_dist_geo_mean")))),
+                add_bold_text_output("ef_estim_dist_geo_mean")
+            )),
 
-            html$li(sprintf_html(
+            TAGS$li(sprintf_html(
                 translate("The geometric standard deviation point estimate is equal to %s."),
-                as.character(add_bold_text_output("ef_estim_dist_geo_sd"))))
+                add_bold_text_output("ef_estim_dist_geo_sd")
+            ))
         ))
         output$ef_estim_ef_title <- shiny::renderUI(
             translate("Exceedance Fraction")
         )
-        output$ef_estim_ef <- shiny::renderUI(html$li(sprintf_html(
+        output$ef_estim_ef <- shiny::renderUI(TAGS$li(sprintf_html(
             translate("The point estimate is equal to %s."),
             as.character(add_bold_text_output("ef_estim_ef_frac")))
         ))
@@ -1074,24 +1078,24 @@ server <- function(input, output, session) {
             translate("Risk Decision")
         )
         output$pe_risk_decision <- shiny::renderUI(shiny::tagList(
-            html$li(sprintf_html(
+            TAGS$li(sprintf_html(
                 translate("
                     Overexposure is defined as the %s percentile
                     being greater than or equal to the OEL.
                 "),
-                add_bold_html_output("pe_risk_decision_perc"))),
-            html$li(sprintf_html(
+            )),
+            TAGS$li(sprintf_html(
                 translate("
                     The probability that this criterion is met is equal to %s.
                 "),
-                add_bold_text_output("pe_risk_decision_criterion"))),
-            html$li(sprintf_html(
+            )),
+            TAGS$li(sprintf_html(
                 translate("
                     The probability that this criterion is met should be lower
                     than %s.
                 "),
-                add_bold_text_output("pe_risk_decision_limit"))),
-            html$li(sprintf_html(
+            )),
+            TAGS$li(sprintf_html(
                 translate("
                     Consequently, the current situation is declared to be %s.
                 "),
@@ -1112,11 +1116,11 @@ server <- function(input, output, session) {
             translate("Distribution Parameters")
         )
         output$pe_estim_dist <- shiny::renderUI(shiny::tagList(
-            html$li(sprintf_html(
+            TAGS$li(sprintf_html(
                 translate("The geometric mean point estimate is equal to %s."),
-                as.character(add_bold_text_output("pe_estim_dist_geo_mean")))),
+            )),
 
-            html$li(sprintf_html(
+            HTML$li(sprintf_html(
                 translate("The geometric standard deviation point estimate is equal to %s."),
                 as.character(add_bold_text_output("pe_estim_dist_geo_sd"))))
         ))
@@ -1125,10 +1129,10 @@ server <- function(input, output, session) {
             sprintf_html(
             "%.0f%s %s",
             input$target_perc,
-            as.character(html$sup(ordinal_number_suffix(input$target_perc))),
+            as.character(TAGS$sup(ordinal_number_suffix(input$target_perc))),
             translate("Percentile Estimate"))
         })
-        output$pe_estim_pe <- shiny::renderUI(html$li(sprintf_html(
+        output$pe_estim_pe <- shiny::renderUI(TAGS$li(sprintf_html(
             translate("The point estimate is equal to %s."),
             as.character(add_bold_text_output("pe_estim_pe_perc"))
         )))
@@ -1177,21 +1181,19 @@ server <- function(input, output, session) {
             translate("Risk Decision")
         )
         output$am_risk_decision <- shiny::renderUI(shiny::tagList(
-            html$li(translate("
+            TAGS$li(translate("
                 Overexposure is defined as the arithmetic
                 mean being greater than or equal to the OEL.")),
-            html$li(sprintf_html(
+            TAGS$li(sprintf_html(
                 translate("
                     The probability that this criterion is met is equal to %s.
                 "),
-                add_bold_text_output("am_risk_decision_criterion"))),
-            html$li(sprintf_html(
+            TAGS$li(sprintf_html(
                 translate("
                     The probability that this criterion is met should be lower
                     than %s.
                 "),
-                add_bold_text_output("am_risk_decision_limit"))),
-            html$li(sprintf_html(
+            TAGS$li(sprintf_html(
                 translate("
                     Consequently, the current situation is declared to be %s.
                 "),
@@ -1213,7 +1215,7 @@ server <- function(input, output, session) {
                 Some authors have suggested using one-tenth of the OEL as a
                 practical LTA-OEL when assessing risk using the arithmetic mean.
             ") |>
-            html$p() |>
+            TAGS$p() |>
             add_bs_alert_warn(title = translate("Warning"))
         )
         output$am_estim_title <- shiny::renderUI(
@@ -1226,16 +1228,18 @@ server <- function(input, output, session) {
             translate("Distribution Parameters")
         )
         output$am_estim_dist <- shiny::renderUI(shiny::tagList(
-            html$li(sprintf_html(
+            TAGS$li(sprintf_html(
                 translate("The geometric mean point estimate is equal to %s."),
-                as.character(add_bold_text_output("am_estim_dist_geo_mean")))),
+                add_bold_text_output("am_estim_dist_geo_mean")
+            )),
 
-            html$li(sprintf_html(
+            TAGS$li(sprintf_html(
                 translate("The geometric standard deviation point estimate is equal to %s."),
-                as.character(add_bold_text_output("am_estim_dist_geo_sd"))))
+                add_bold_text_output("am_estim_dist_geo_sd")
+            ))
         ))
         output$am_estim_am_title <- shiny::renderUI(translate("Arithmetic Mean"))
-        output$am_estim_am       <- shiny::renderUI(html$li(sprintf_html(
+        output$am_estim_am       <- shiny::renderUI(TAGS$li(sprintf_html(
             translate("The point estimate is equal to %s."),
             as.character(add_bold_text_output("am_estim_am_mean"))
         )))
@@ -1292,7 +1296,7 @@ server <- function(input, output, session) {
             translate("How to Use This Application")
         )
         output$ab_how_to_use <- shiny::renderUI(shiny::tagList(
-            html$p(translate("
+            TAGS$p(translate("
                 This application eases the interpretation of industrial hygiene
                 measurements. Notably, it helps with checking compliance with
                 respect to an occupational exposure limit (OEL). It is based on
@@ -1302,19 +1306,19 @@ server <- function(input, output, session) {
                 the French Institut national de recherche et de sécurité (INRS),
                 and the European Standards Organization.
             ")),
-            html$p(translate("
+            TAGS$p(translate("
                 It assumes that input measurements (measurements) represent a
                 random sample stemming from the distribution of exposures that
                 underlie the sampled context. In other words, the data is
                 representative of the specific exposure regimen one wishes to
                 assess.
             ")),
-            html$p(translate("
+            TAGS$p(translate("
                 The application is straightforward to use. Follow these three
                 steps.
             ")),
-            html$ul(
-                html$li(translate("
+            TAGS$ul(
+                TAGS$li(translate("
                     Enter your measurements under Measurements in the left panel.
                     There must be one value per line. Write them as you would in
                     your favourite text editor. You may also copy and paste
@@ -1322,13 +1326,13 @@ server <- function(input, output, session) {
                     provided for illustration purposes can be deleted as you
                     usually would in any text editor.
                 ")),
-                html$li(translate("
+                TAGS$li(translate("
                     Enter other parameters (see the left sidebar to do do).
                 ")),
-                html$li(translate("Wait for the calculations to be performed."))
+                TAGS$li(translate("Wait for the calculations to be performed."))
             ),
-            html$p(translate("Results are updated whenever an input changes.")),
-            html$p(translate("
+            TAGS$p(translate("Results are updated whenever an input changes.")),
+            TAGS$p(translate("
                 Censored values are written as <X (left censored), >X (right
                 censored), or [X1-X2] (interval censored), where X is the
                 censored value. It must have the same unit as other non-censored
@@ -1339,24 +1343,24 @@ server <- function(input, output, session) {
             translate("Methodological Background")
         )
         output$ab_metho_bg <- shiny::renderUI(shiny::tagList(
-            html$p(translate("
+            TAGS$p(translate("
                 This application uses a Bayesian approach to estimate the
                 parameters of the log-normal distribution.
             ")),
-            html$ul(
-                html$li(translate("
+            TAGS$ul(
+                TAGS$li(translate("
                     It yields a more intuitive rationale compared
                     to traditional (frequentist) methods.
                 ")),
-                html$li(translate("
+                TAGS$li(translate("
                     It naturally integrates the treatment of non-detects.
                 ")),
-                html$li(translate("
+                TAGS$li(translate("
                     It allows the inclusion of external information in the
                     measurements (not yet leveraged by the application).
                 "))
             ),
-            html$p(sprintf_html(
+            TAGS$p(sprintf_html(
                 translate("
                     The Bayesian models and data interpretation procedures used
                     by this application are derived from current best practices
@@ -1370,7 +1374,7 @@ server <- function(input, output, session) {
                 "),
                 urls$expostats_paper(lang, "DOI")
             )),
-            html$p(sprintf_html(
+            TAGS$p(sprintf_html(
                 translate("Additional details and references are available on %s."),
                 urls$expostats(lang, translate("expostats.ca"))
             ))
@@ -1619,9 +1623,9 @@ server <- function(input, output, session) {
         frac_ucl <- ceiling(results$frac$ucl)
 
         params_plots <- paramsVariantesFracDep(
-            images_dir,
-            file.path(images_dir, "flask.png"),
-            file.path(images_dir, "flask-lines.png"),
+            IMAGES_DIR_REL_PATH,
+            file.path(IMAGES_DIR_REL_PATH, "flask.png"),
+            file.path(IMAGES_DIR_REL_PATH, "flask-lines.png"),
             input$ef_exceed_col_risk,
             input$ef_exceed_col_no_risk,
             input$ef_exceed_col_bg_threshold,
@@ -1725,7 +1729,7 @@ server <- function(input, output, session) {
     ## Risk Decision -----------------------------------------------------------
 
     # FIXME: (JMP) Decimals are not shown properly.
-    output$pe_risk_decision_perc <- shiny::renderUI({
+    output$pe_risk_decision_perc <- shiny::renderText({
         value <- input$target_perc
         return(
             sprintf_html(
