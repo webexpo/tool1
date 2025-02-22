@@ -40,12 +40,12 @@
   top: 0px;
   left: 0px;
   width: 100%;
-  padding: 5px 0px 5px 0px;
+  padding: 5px 0px;
   text-align: center;
   font-weight: bold;
-  color: #444939;
-  background-color: #ccff66;
-  z-index: 105;
+  color: #fff;
+  background-color: #2c3e50;
+  z-index: 1;
 }
 
 .app-input > label {
@@ -62,6 +62,10 @@
 
 .app-sidebar-footer > * {
   margin: 0 auto;
+}
+
+.app-output-inline {
+  font-weight: bold;
 }
 
 /* renderPlot() returns PNG images, which are rendered

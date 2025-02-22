@@ -758,7 +758,7 @@ server <- function(input, output, session) {
             Tool 1: Data Interpretation for One Similarly Exposed Group
         "))
         output$top_banner <- shiny::renderUI(
-            translate("Calculating... Please wait.")
+            translate("Calculating. Please wait.")
         )
 
         ## Sidebar -------------------------------------------------------------
@@ -928,28 +928,40 @@ server <- function(input, output, session) {
             translate("Risk Decision")
         )
         output$ef_risk_decision <- shiny::renderUI(shiny::tagList(
-            TAGS$li(
+            TAGS$li(sprintf_html(
                 translate("
                     Overexposure is defined as the exceedance fraction being
                     greater than or equal to %s.
                 "),
-            ),
+                htmltools::tagAppendAttributes(
+                    class = "app-output-inline",
+                    shiny::textOutput("ef_risk_decision_frac", inline = TRUE))
+            )),
             TAGS$li(sprintf_html(
                 translate("
                     The probability that this criterion is met is equal to %s.
                 "),
+                htmltools::tagAppendAttributes(
+                    class = "app-output-inline",
+                    shiny::textOutput("ef_risk_decision_criterion", inline = TRUE))
             )),
             TAGS$li(sprintf_html(
                 translate("
                     The probability that this criterion is met should be lower
                     than %s.
                 "),
+                htmltools::tagAppendAttributes(
+                    class = "app-output-inline",
+                    shiny::textOutput("ef_risk_decision_limit", inline = TRUE))
             )),
             TAGS$li(sprintf_html(
                 translate("
                     Consequently, the current situation is declared to be %s.
                 "),
-                as.character(add_bold_text_output("ef_risk_decision_conclusion"))))
+                htmltools::tagAppendAttributes(
+                    class = "app-output-inline",
+                    shiny::textOutput("ef_risk_decision_conclusion", inline = TRUE))
+            ))
         ))
         output$ef_risk_meter_desc <- shiny::renderUI(translate("
             This risk meter shows the probability of the exposure being too
@@ -968,12 +980,16 @@ server <- function(input, output, session) {
         output$ef_estim_dist <- shiny::renderUI(shiny::tagList(
             TAGS$li(sprintf_html(
                 translate("The geometric mean point estimate is equal to %s."),
-                add_bold_text_output("ef_estim_dist_geo_mean")
+                htmltools::tagAppendAttributes(
+                    class = "app-output-inline",
+                    shiny::textOutput("ef_estim_dist_geo_mean", inline = TRUE))
             )),
 
             TAGS$li(sprintf_html(
                 translate("The geometric standard deviation point estimate is equal to %s."),
-                add_bold_text_output("ef_estim_dist_geo_sd")
+                htmltools::tagAppendAttributes(
+                    class = "app-output-inline",
+                    shiny::textOutput("ef_estim_dist_geo_sd", inline = TRUE))
             ))
         ))
         output$ef_estim_ef_title <- shiny::renderUI(
@@ -981,8 +997,10 @@ server <- function(input, output, session) {
         )
         output$ef_estim_ef <- shiny::renderUI(TAGS$li(sprintf_html(
             translate("The point estimate is equal to %s."),
-            as.character(add_bold_text_output("ef_estim_ef_frac")))
-        ))
+            htmltools::tagAppendAttributes(
+                class = "app-output-inline",
+                shiny::textOutput("ef_estim_ef_frac", inline = TRUE))
+        )))
         output$ef_exceed_title <- shiny::renderUI(translate("Exceedance Plot"))
         output$ef_exceed <- shiny::renderUI(translate("
             The following plot illustrates the proportion of exposures that
@@ -1085,23 +1103,35 @@ server <- function(input, output, session) {
                     Overexposure is defined as the %s percentile
                     being greater than or equal to the OEL.
                 "),
+                htmltools::tagAppendAttributes(
+                    class = "app-output-inline",
+                    shiny::textOutput("pe_risk_decision_perc", inline = TRUE))
             )),
             TAGS$li(sprintf_html(
                 translate("
                     The probability that this criterion is met is equal to %s.
                 "),
+                htmltools::tagAppendAttributes(
+                    class = "app-output-inline",
+                    shiny::textOutput("pe_risk_decision_criterion", inline = TRUE))
             )),
             TAGS$li(sprintf_html(
                 translate("
                     The probability that this criterion is met should be lower
                     than %s.
                 "),
+                htmltools::tagAppendAttributes(
+                    class = "app-output-inline",
+                    shiny::textOutput("pe_risk_decision_limit", inline = TRUE))
             )),
             TAGS$li(sprintf_html(
                 translate("
                     Consequently, the current situation is declared to be %s.
                 "),
-                add_bold_text_output("pe_risk_decision_conclusion")))
+                htmltools::tagAppendAttributes(
+                    class = "app-output-inline",
+                    shiny::textOutput("pe_risk_decision_conclusion", inline = TRUE))
+            ))
         ))
         output$pe_risk_meter_desc <- shiny::renderUI(translate("
             This risk meter shows the probability of the exposure being too
@@ -1120,11 +1150,16 @@ server <- function(input, output, session) {
         output$pe_estim_dist <- shiny::renderUI(shiny::tagList(
             TAGS$li(sprintf_html(
                 translate("The geometric mean point estimate is equal to %s."),
+                htmltools::tagAppendAttributes(
+                    class = "app-output-inline",
+                    shiny::textOutput("pe_estim_dist_geo_mean", inline = TRUE))
             )),
 
             TAGS$li(sprintf_html(
                 translate("The geometric standard deviation point estimate is equal to %s."),
-                add_bold_text_output("pe_estim_dist_geo_sd")
+                htmltools::tagAppendAttributes(
+                    class = "app-output-inline",
+                    shiny::textOutput("pe_estim_dist_geo_sd", inline = TRUE))
             ))
         ))
         # FIXME: (JMP) Decimals are not shown properly.
@@ -1137,7 +1172,9 @@ server <- function(input, output, session) {
         })
         output$pe_estim_pe <- shiny::renderUI(TAGS$li(sprintf_html(
             translate("The point estimate is equal to %s."),
-            as.character(add_bold_text_output("pe_estim_pe_perc"))
+            htmltools::tagAppendAttributes(
+                class = "app-output-inline",
+                shiny::textOutput("pe_estim_pe_perc", inline = TRUE))
         )))
         output$pe_seq_title <- shiny::renderUI(translate("Sequential Plot"))
         output$pe_seq_desc  <- shiny::renderUI(translate("
@@ -1191,16 +1228,27 @@ server <- function(input, output, session) {
                 translate("
                     The probability that this criterion is met is equal to %s.
                 "),
+                htmltools::tagAppendAttributes(
+                    class = "app-output-inline",
+                    shiny::textOutput("am_risk_decision_criterion", inline = TRUE))
+            )),
             TAGS$li(sprintf_html(
                 translate("
                     The probability that this criterion is met should be lower
                     than %s.
                 "),
+                htmltools::tagAppendAttributes(
+                    class = "app-output-inline",
+                    shiny::textOutput("am_risk_decision_limit", inline = TRUE))
+            )),
             TAGS$li(sprintf_html(
                 translate("
                     Consequently, the current situation is declared to be %s.
                 "),
-                add_bold_text_output("am_risk_decision_conclusion")))
+                htmltools::tagAppendAttributes(
+                    class = "app-output-inline",
+                    shiny::textOutput("am_risk_decision_conclusion", inline = TRUE))
+            ))
         ))
         output$am_risk_meter_desc <- shiny::renderUI(translate("
             This risk meter shows the probability of the exposure being too
@@ -1233,18 +1281,24 @@ server <- function(input, output, session) {
         output$am_estim_dist <- shiny::renderUI(shiny::tagList(
             TAGS$li(sprintf_html(
                 translate("The geometric mean point estimate is equal to %s."),
-                add_bold_text_output("am_estim_dist_geo_mean")
+                htmltools::tagAppendAttributes(
+                    class = "app-output-inline",
+                    shiny::textOutput("am_estim_dist_geo_mean", inline = TRUE))
             )),
 
             TAGS$li(sprintf_html(
                 translate("The geometric standard deviation point estimate is equal to %s."),
-                add_bold_text_output("am_estim_dist_geo_sd")
+                htmltools::tagAppendAttributes(
+                    class = "app-output-inline",
+                    shiny::textOutput("am_estim_dist_geo_sd", inline = TRUE))
             ))
         ))
         output$am_estim_am_title <- shiny::renderUI(translate("Arithmetic Mean"))
         output$am_estim_am       <- shiny::renderUI(TAGS$li(sprintf_html(
             translate("The point estimate is equal to %s."),
-            as.character(add_bold_text_output("am_estim_am_mean"))
+            htmltools::tagAppendAttributes(
+                class = "app-output-inline",
+                shiny::textOutput("am_estim_am_mean", inline = TRUE))
         )))
         output$am_seq_title <- shiny::renderUI(translate("Sequential Plot"))
         output$am_seq_desc  <- shiny::renderUI(translate("
