@@ -1,10 +1,9 @@
-# Tool1: Data Interpretation for One Similarly Exposed Group
+# Tool 1: Data Interpretation for One Similarly Exposed Group
 
 <!-- badges: start -->
-[![Version](https://img.shields.io/badge/version-4.0.0%20(RC1)-blue)](https://github.com/webexpo/app-tool1/releases/tag/v4.0.0)
+[![Version](https://img.shields.io/badge/version-4.0.0-blue)](https://github.com/webexpo/app-tool1/releases/tag/v4.0.0)
 [![Lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Location](https://img.shields.io/badge/live-shinyapps.io-5b90bf)](https://lavoue.shinyapps.io/tool1/)
-[![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](https://github.com/webexpo/app-tool1/blob/main/LICENSE.md)
 <!-- badges: end -->
 
 A Shiny application developed by [Jérôme Lavoué](https://orcid.org/0000-0003-4950-5475)
@@ -42,12 +41,15 @@ are thoroughly described in
 (Annals of Work Exposures and Health, Volume 63, Issue 3, April 2019, Pages
 267–279).
 
-Further references are available on
-[expostats.ca](https://www.expostats.ca/site/en/info.html).
-
 ## Usage
 
-To serve this application locally, see file `.scripts/run.R`.
+To serve this application locally, call
+
+```r
+.run()
+```
+
+This is a shortcut to source file `.scripts/entrypoint.R`.
 
 ## Deploying to shinyapps.io
 
@@ -55,8 +57,8 @@ This application is deployed to and runs on
 [shinyapps.io](https://lavoue.shinyapps.io/tool1). See file
 `.scripts/publish-to-shinyapps.R` for more information.
 
-4 environments variables are required to push new releases. These must be
-stored in a `.Renviron` file as shown below. This file is ignored by Git
+4 environments variables are required to push new releases. They must be stored
+in a top-level `.Renviron` file as shown below. This file is ignored by Git
 and `rsconnect`.
 
 ```
@@ -66,9 +68,6 @@ RSCONNECT_ACCOUNT_TOKEN=<token>
 RSCONNECT_ACCOUNT_SECRET=<secret>
 APP_VISIBILITY_ON_SHINYAPPS=public
 ```
-
-[Jérôme Lavoué](https://orcid.org/0000-0003-4950-5475) distributes required
-credentials to authors.
 
 ## Bugs and Feedback
 
