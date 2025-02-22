@@ -1435,23 +1435,6 @@ server <- function(input, output, session) {
         shinyjs::toggle("ef_exceed_cols")
     })
 
-    # TODO: (JMP) Ask JL what to do with this. This is a weird case.
-    # This reactive value is called by bayesian_analysis below. It has
-    # no other reference in the code. This could later be refactored by
-    # removing it, and passing 1L to fun.bayes.jags().
-    uninformed_prior <- shiny::reactive({
-        # FIXME: (JMP) Comments refer to input prior.sigma, which does
-        # not exist. It could be an earlier UI artifact that was left
-        # over as a comment and later removed by JMP. Commenting code
-        # is a bad idea. Use Git instead.
-        prior <- "1" # input$prior.sigma
-
-        # FIXME: (JMP) !strtoi("1") yields FALSE, which is most likely
-        # implicitly coerced to 0L below. I don't know what this does,
-        # and as.integer() should always be used outside of if().
-        return(!strtoi(prior))
-    })
-
     user_inputs <- shiny::reactive(
         list(
             conf           = input$conf,
@@ -1489,8 +1472,7 @@ server <- function(input, output, session) {
                 intcensored      = user_sample$intcensored,
                 seed             = user_sample$seed,
                 c.oel            = user_sample$c.oel,
-                n.iter           = 25000L,
-                uninformed.prior = uninformed_prior()))
+                n.iter           = 25000L))
     })
 
     num_results <- shiny::reactive({
