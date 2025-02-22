@@ -70,3 +70,27 @@ SUPPORTED_LANGS <- structure(
 # Default language.
 # $source_langs returns a single element here.
 DEFAULT_LANG <- TR$source_langs
+
+# Uniform Resource Locators ----------------------------------------------------
+
+# Language codes used below must match SUPPORTED_LANGS.
+URLS <- list(
+    code             = "https://github.com/webexpo/tool1",
+    aiha             = "https://www.aiha.org",
+    dennis_helsel    = "https://www.practicalstats.com/info2use/books.html",
+    jerome_lavoue    = "https://orcid.org/0000-0003-4950-5475",
+    expostats_ndexpo = "https://www.expostats.ca/site/app-local/NDExpo",
+    expostats_paper  = "https://doi.org/10.1093/annweh/wxy100",
+    expostats = c(
+        en = "http://www.expostats.ca/site/en/info.html",
+        fr = "https://www.expostats.ca/site/info.html"
+    ),
+    epsum = c(
+        en = "https://espum.umontreal.ca/english/home",
+        fr = "https://espum.umontreal.ca/accueil"
+    ),
+    udm = c(
+        en = "https://www.umontreal.ca/en",
+        fr = "https://www.umontreal.ca"
+    )
+)
