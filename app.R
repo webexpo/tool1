@@ -429,7 +429,7 @@ ui <- shiny::fluidPage(
                     shiny::uiOutput("ef_risk_band_desc", container = tags$p)
                 ),
 
-                ##### Panel: Percentiles ---------------------------------------
+                #### Panel: Percentiles ----------------------------------------
 
                 shiny::tabPanel(
                     value = "pe",
