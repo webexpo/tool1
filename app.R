@@ -831,12 +831,14 @@ server <- function(input, output, session) {
         output$sb_footer_app_version <- shiny::renderUI(
             shiny::tagList(
                 translate("Tool 1"), "version", VERSION,
-                sprintf_html("(%s).", as.character(urls$code(lang, "GitHub"))))
+                TAGS$a("GitHub", href = URLS$code, target = "_blank") |>
+                    as.character() |>
+                    sprintf_html(fmt = "(%s)."))
         )
         output$sb_footer_copyright <- shiny::renderUI(
             shiny::tagList(
                 shiny::icon("copyright-mark", lib = "glyphicon"),
-                urls$jerome_lavoue(lang, "Jérôme Lavoué"),
+                TAGS$a("Jérôme Lavoué", href = URLS$jerome_lavoue, target = "_blank"),
                 YEAR,
                 translate("All rights reserved."))
         )
@@ -869,8 +871,8 @@ server <- function(input, output, session) {
                         algorithm used is derived from %s (itself derived from
                         previous work of %s).
                     "),
-                    urls$expostats_ndexpo(lang, "NDExpo"),
-                    urls$dennis_helsel(lang, "Dennis Helsel")
+                    TAGS$a("NDExpo", href = URLS$jerome_lavoue, target = "_blank"),
+                    TAGS$a("Dennis Helsel", href = URLS$dennis_helsel, target = "_blank")
                 ))
             )
         ))
@@ -1120,9 +1122,10 @@ server <- function(input, output, session) {
                 translate("The geometric mean point estimate is equal to %s."),
             )),
 
-            HTML$li(sprintf_html(
+            TAGS$li(sprintf_html(
                 translate("The geometric standard deviation point estimate is equal to %s."),
-                as.character(add_bold_text_output("pe_estim_dist_geo_sd"))))
+                add_bold_text_output("pe_estim_dist_geo_sd")
+            ))
         ))
         # FIXME: (JMP) Decimals are not shown properly.
         output$pe_estim_pe_title <- shiny::renderUI({
@@ -1168,7 +1171,7 @@ server <- function(input, output, session) {
                 latter should be lower than the threshold shown by the black
                 dashed line."
             ),
-            urls$aiha(lang, "AIHA")
+            TAGS$a("AIHA", href = URLS$aiha, target = "_blank")
         ))
 
         ## Panel: Arithmetic Mean ----------------------------------------------
@@ -1274,24 +1277,36 @@ server <- function(input, output, session) {
                 column represents the probability of an overexposure. The
                 latter should be lower than the threshold (black dashed line)."
             ),
-            urls$aiha(lang, "AIHA")
+            TAGS$a("AIHA", href = URLS$aiha, target = "_blank")
         ))
 
         ## Panel: About --------------------------------------------------------
 
         output$ab_tab_name    <- shiny::renderUI(translate("About"))
         output$ab_about_title <- shiny::renderUI(translate("About"))
-        output$ab_about       <- shiny::renderUI(sprintf_html(
-            translate("
-                This application (and related tools) are developped by the
-                Industrial Hygiene team of the Department of Environmental
-                and Occupational Health at the %s of the %s. The source
-                code is available on %s.
-            "),
-            urls$epsum(lang, translate("School of Public Health")),
-            urls$udm(lang, translate("Université de Montréal")),
-            urls$source_code(lang, translate("GitHub"))
-        ))
+        output$ab_about       <- shiny::renderUI({
+            a_epsum <- TAGS$a(translate("School of Public Health"),
+                href   = URLS$epsum[[lang]],
+                target = "_blank")
+            a_udm <- TAGS$a(translate("Université de Montréal"),
+                href   = URLS$udm[[lang]],
+                target = "_blank")
+            a_code <- TAGS$a(translate("GitHub"),
+                href   = URLS$code,
+                target = "_blank")
+
+            sprintf_html(
+                translate("
+                    This application (and related tools) are developped by the
+                    Industrial Hygiene team of the Department of Environmental
+                    and Occupational Health at the %s of the %s. The source
+                    code is available on %s.
+                "),
+                a_epsum,
+                a_udm,
+                a_code
+            )
+        })
         output$ab_how_to_use_title <- shiny::renderUI(
             translate("How to Use This Application")
         )
@@ -1372,11 +1387,15 @@ server <- function(input, output, session) {
                     Annals of Work Exposures and Health, Volume 63, Issue 3,
                     April 2019, Pages 267-279 (%s).
                 "),
-                urls$expostats_paper(lang, "DOI")
+                TAGS$a(URLS$expostats_paper,
+                    href   = URLS$expostats_paper,
+                    target = "_blank")
             )),
             TAGS$p(sprintf_html(
                 translate("Additional details and references are available on %s."),
-                urls$expostats(lang, translate("expostats.ca"))
+                TAGS$a("expostats.ca",
+                    href   = URLS$expostats[[lang]],
+                    target = "_blank")
             ))
         ))
     })
