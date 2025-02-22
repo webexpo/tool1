@@ -24,7 +24,7 @@ rsconnect::deployApp(
     lint           = FALSE,
     forceUpdate    = FALSE,
     metadata       = list(
-        appVersion = VERSION,
+        appVersion = version,
         authors    = list(
             utils::person("Jérôme", "Lavoué",
                 role    = c("cre", "aut", "cph", "fnd"),

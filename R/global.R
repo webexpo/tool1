@@ -34,47 +34,47 @@ source(file.path("scripts", "Common", "Main graph functions.R"))
 
 # Constants --------------------------------------------------------------------
 
-TAGS <- shiny::tags
+tags <- shiny::tags
 
 # Current version in production (release). Shown in footer.
-VERSION <- "4.0.0"
+version <- "4.0.0"
 
 # Current year. Shown in footer.
-YEAR <- format(Sys.time(), tz = "EST", format = "(%Y)")
+year <- format(Sys.time(), tz = "EST", format = "(%Y)")
 
 # Where to store images.
-IMAGES_DIR_REL_PATH <- file.path("www", "images")
+images_dir_rel_path <- file.path("www", "images")
 
 # Default height of plots.
-PLOT_DEFAULT_HEIGHT <- "600px"
+plot_default_height <- "600px"
 
 # Default height of risk meters.
 # Using a lower height for these specific plots is preferable.
-PLOT_RISK_METER_DEFAULT_HEIGHT <- "500px"
+plot_risk_meter_default_height <- "500px"
 
 # Internationalization ---------------------------------------------------------
 
-TR <- transltr::translator_read()
+tr <- transltr::translator_read()
 
 # Default value when a translation is not available.
-TR$set_default_value("{no translation}")
+tr$set_default_value("{no translation}")
 
 # List available languages.
 # Names are language codes and values are native language names.
 # This matches what shiny::selectInput() expects (langs can be
 # passed as is to argument choices).
-SUPPORTED_LANGS <- structure(
-    names(TR$native_languages),
-    names = TR$native_languages)
+supported_langs <- structure(
+    names(tr$native_languages),
+    names = tr$native_languages)
 
 # Default language.
 # $source_langs returns a single element here.
-DEFAULT_LANG <- TR$source_langs
+default_lang <- tr$source_langs
 
 # Uniform Resource Locators ----------------------------------------------------
 
 # Language codes used below must match SUPPORTED_LANGS.
-URLS <- list(
+urls <- list(
     code             = "https://github.com/webexpo/tool1",
     aiha             = "https://www.aiha.org",
     dennis_helsel    = "https://www.practicalstats.com/info2use/books.html",
