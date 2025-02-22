@@ -68,6 +68,13 @@
   font-weight: bold;
 }
 
+/* A top margin is added to risk meter <img> containers
+   for better alignment with the subsection <h3> title
+   (Risk Decision subtitle). */
+.app-risk-meter {
+  margin-top: 21px;
+}
+
 /* renderPlot() returns PNG images, which are rendered
    as <img> tags by browsers. These tags are inline by
    default, so they can be centered in their container

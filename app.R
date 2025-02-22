@@ -137,8 +137,7 @@ ui <- shiny::fluidPage(
                 htmltools::tagAppendAttributes(class = "app-input") |>
                 bslib::tooltip(id = "data_tooltip", ""),
 
-            # This output is only shown when the active panel is
-            # exceedance. See observer in section Sidebar of server().
+            # This output is only shown when the active panel is exceedance.
             shiny::numericInput(
                 inputId = "frac_threshold",
                 label   = "",
@@ -148,8 +147,7 @@ ui <- shiny::fluidPage(
                     style = "display: none;") |>
                 bslib::tooltip(id = "frac_threshold_tooltip", ""),
 
-            # This output is only shown when the active panel is
-            # percentiles. See observer in section Sidebar of server().
+            # This output is only shown when the active panel is percentiles.
             shiny::numericInput(
                 inputId = "target_perc",
                 label   = "",
@@ -266,11 +264,8 @@ ui <- shiny::fluidPage(
                         ),
 
                         shiny::column(width = 6L,
-                            # Add a top margin to the plot <img> to match the
-                            # margin of top <h3> above (see other column. This
-                            # aligns both elements horizontally.
                             htmltools::tagAppendAttributes(
-                                style = "margin-top: 21px",
+                                class = "app-risk-meter",
                                 shiny::plotOutput(
                                     outputId = "ef_risk_meter_plot",
                                     height   = plot_risk_meter_default_height))
@@ -461,11 +456,8 @@ ui <- shiny::fluidPage(
                         ),
 
                         shiny::column(width = 6L,
-                            # Add a top margin to the plot <img> to match the
-                            # margin of top <h3> above (see other column. This
-                            # aligns both elements horizontally.
                             htmltools::tagAppendAttributes(
-                                style = "margin-top: 21px",
+                                class = "app-risk-meter",
                                 shiny::plotOutput(
                                     outputId = "pe_risk_meter_plot",
                                     height   = plot_risk_meter_default_height))
@@ -567,11 +559,8 @@ ui <- shiny::fluidPage(
                         ),
 
                         shiny::column(width = 6L,
-                            # Add a top margin to the plot <img> to match the
-                            # margin of top <h3> above (see other column. This
-                            # aligns both elements horizontally.
                             htmltools::tagAppendAttributes(
-                                style = "margin-top: 21px",
+                                class = "app-risk-meter",
                                 shiny::plotOutput(
                                     outputId = "am_risk_meter_plot",
                                     height   = plot_risk_meter_default_height))
