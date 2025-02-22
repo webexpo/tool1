@@ -1,74 +1,49 @@
 #' Tool1: Data Interpretation for One Similarly Exposed Group
 #'
-#' Define the user interface (`ui`) and [server()] logic.
+#' User interface and server-side logic.
 #'
 #' @usage
-#' # Further arguments may be required.
-#' shiny::runApp()
+#' .run()
 #'
-#' @details
-#' Static assets are stored in `www/` and are served under `/` at runtime by
-#' the application. For example, file `www/css/main.css` has the following
-#' URL: `http<s>://<domain>.<tld>/css/main.css`.
+#' @section Structure:
+#' Static assets are stored in `www/` and served under the root path at runtime.
 #'
-#' Required objects and functions are stored in `R/` and loaded automatically
-#' when the application is launch with [shiny::runApp()]. All scripts stored
-#' in this directory are sourced.
+#' Objects and helper functions are stored in `R/` and loaded  automatically by
+#' [shiny::runApp()] or `.run()`.
 #'
-#' ## `scripts/`
+#' Development scripts are stored in `.scripts/`.
 #'
-#' For historical reasons, the application further depends on a set of scripts
-#' stored in `scripts/`. These must be explicitly loaded at runtime. See script
-#' `R/global.R`. It is worthwhile noting they were **not** refactored.
+#' Scripts required at runtime are stored in `scripts/` for historical reasons.
+#' Tool 1 depends on a large set of functions stemming from other projects that
+#' is not structured in a standard or usual way. They are sourced at runtime
+#' by `R/global.R`.
 #'
 #' @section Naming Conventions:
-#  All R custom functions, [shiny] reactive values, and identifiers (`inputId`
-#' and `outputId`) use `snake_case`.
+#' Three patterns are used.
 #'
-#'   * Custom functions are easily identifiable as such.
-#'   * Reactive values are functions and are treated like other custom
-#'     functions.
-#'   * Identifiers written in `snake_case` yield syntactic names.
-#'
-#' See file IO.md for more information.
-#'
-#' CSS Classes uses `dash-case`. Each class must use the prefix `app-` to
-#' avoid collisions.
+#'   - R Objects and functions, reactive values, and identifiers are named
+#'     according to the `snake_case_with_lowercases` naming pattern.
+#'   - Further rules for identifiers are explicited in file `IO.md`.
+#'   - CSS Classes uses `dash-case`. Each class must use the prefix `app-` to
+#'     avoid collisions.
 #'
 #' @author Jérôme Lavoué (<jerome.lavoue@@umontreal.ca>)
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
-# FIXME: (JMP) Many numeric values are passed to signif() which yields a
-# variable number of (significant) digits. Is this truly needed? For UX
-# purposes, I suggest always showing 1 to 3 digits? Create new global option
-# signif_digits and set it equal to 3.
+# TODO: Standardize significant digits to keep. Create a global variable
+# n_max_digits, assign a value to it, and use it whenever possible.
 
-# FIXME: (JMP) The app heavily relies on functions defined in scripts. These
-# must be revamped (those containing plot functions being the top priority).
-# Theis contents should be split into a proper set of functions stored in
-# multiple R files in R/. Each function should be documented and manually
-# tested (at least).
+# TODO: Use semantic names for function arguments to improve readability and
+# ease of maintenance. Names such as arg.1 and arg.2 should always be avoided.
 
-# FIXME: (JMP) Plots are not generated with the same margins. They must be
-# standardized. For some plots, this is a bigger problem and I left a TODO.
+# FIXME: Standardize margins of all plots. They should always be the same.
+# A specific FIXME tag was left below whenever it is a bigger problem for
+# the UI.
 
-# FIXME: (JMP) All functions that generate plots should use semantic argument
-# names. Using numbered arguments such as riskplot.1, riskplot.2 is a disaster
-# for readability and long-term maintenance.
-
-# FIXME: (JMP) OEL (Occupational Exposure Limit) and EL (Exposure Limit)
-# are both used interchangeably. Choose one and stick to it. Below, I
-# chose the latter until further notice. All other inputs have slightly
-# different names (sometimes) in the app. More consistency is required.
-
-# FIXME: (JMP) Use |> whenever appropriate below to reduce nesting.
-
-# FIXME: (JMP) Check usage of add_bold_*_output() functions. They should be
-# wrapped by as.character() in most cases to avoid undefined behavior.
-
-# FIXME: (JMP) Convert uiOutput() / renderUI() pairs into
-# textOutput() / renderText() whenever appropriate. The latter is slightly
-# faster and reduce code.
+# FIXME: In the source text, many inputs have multiple slightly different
+# names. For example, OEL (Occupational Exposure Limit) is sometimes named
+# EL (Exposure Limit). Each input should have one name (Do Repeat Yourself
+# is a good thing here for a better user experience).
 
 ui <- shiny::fluidPage(
     # lang and title must be updated using custom Shiny messages
