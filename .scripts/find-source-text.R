@@ -8,6 +8,9 @@
 #' notice. Argument `overwrite` below is explicitly set to `FALSE` to avoid
 #' unintended consequences.
 #'
+#' @seealso
+#' [The transltr package](https://cran.r-project.org/web/packages/transltr/index.html)
+#'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
 transltr::language_source_set("en")
