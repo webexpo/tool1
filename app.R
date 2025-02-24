@@ -1739,15 +1739,13 @@ server <- function(input, output, session) {
 
     ## Risk Decision -----------------------------------------------------------
 
-    # FIXME: (JMP) Decimals are not shown properly.
-    output$pe_risk_decision_perc <- shiny::renderText({
-        value <- input$target_perc
-        return(
-            sprintf_html(
-                "%.0f<sup>%s</sup>",
-                value,
-                ordinal_number_suffix(value)))
-    })
+    output$pe_risk_decision_perc <- shiny::renderUI(
+        shiny::tagList(
+            signif(input$target_perc, 3L),
+            tags$sup(
+                ordinal_abbr(input$target_perc, input$lang),
+                .noWS = "before"))
+    )
 
     output$pe_risk_decision_criterion <- shiny::renderText(
         paste0(signif(num_results()$perc.risk, 3L), "%")
@@ -1787,7 +1785,7 @@ server <- function(input, output, session) {
                 perc               = results$perc$est,
                 c.oel              = user_formatted_sample()$c.oel,
                 target_perc        = target_perc,
-                target_perc_suffix = ordinal_number_suffix(target_perc),
+                target_perc_suffix = ordinal_abbr(target_perc, input$lang),
                 seqplot.1          = intl("Concentration"),
                 seqplot.3          = intl("OEL"),
                 seqplot.4          = intl("Percentile"),
@@ -1806,7 +1804,7 @@ server <- function(input, output, session) {
                 gsd                = exp(median(bayesian_outputs$sigma.chain)),
                 perc               = num_results()$perc$est,
                 target_perc        = target_perc,
-                target_perc_suffix = ordinal_number_suffix(target_perc),
+                target_perc_suffix = ordinal_abbr(target_perc, input$lang),
                 c.oel              = user_formatted_sample()$c.oel,
                 distplot.1         = intl("Concentration"),
                 distplot.2         = intl("Density"),
