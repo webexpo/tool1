@@ -115,14 +115,18 @@ ui <- shiny::fluidPage(
             shiny::numericInput(
                 inputId = "conf",
                 label   = "",
-                value   = 90) |>
+                value   = 90,
+                min     = 0,
+                max     = 100) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
                 bslib::tooltip(id = "conf_tooltip", ""),
 
             shiny::numericInput(
                 inputId = "psi",
                 label   = "",
-                value   = 30) |>
+                value   = 30,
+                min     = 0,
+                max     = 100) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
                 bslib::tooltip(id = "psi_tooltip", ""),
 
@@ -145,7 +149,9 @@ ui <- shiny::fluidPage(
             shiny::numericInput(
                 inputId = "frac_threshold",
                 label   = "",
-                value   = 5) |>
+                value   = 5,
+                min     = 0,
+                max     = 100) |>
                 htmltools::tagAppendAttributes(
                     class = "app-input",
                     style = "display: none;") |>
@@ -155,7 +161,9 @@ ui <- shiny::fluidPage(
             shiny::numericInput(
                 inputId = "target_perc",
                 label   = "",
-                value   = 95) |>
+                value   = 95,
+                min     = 0,
+                max     = 100) |>
                 htmltools::tagAppendAttributes(
                     class = "app-input",
                     style = "display: none;") |>
