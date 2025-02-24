@@ -17,14 +17,14 @@
 #' [add_bs_alert_info()] and
 #' [add_bs_alert_warn()] returns a [`shiny.tag`][htmltools::tag] object.
 #'
+#' @examples
+#' add_bs_alert_info(shiny::p("This informs the user about something."))
+#' add_bs_alert_warn(shiny::p("This warns the user about something."))
+#'
 #' @seealso
 #' <https://getbootstrap.com/docs/5.3/components/alerts/>
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
-#'
-#' @examples
-#' add_bs_alert_info(shiny::p("This informs the user about something."))
-#' add_bs_alert_warn(shiny::p("This warns the user about something."))
 #'
 #' @export
 add_bs_alert <- function(
