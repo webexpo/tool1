@@ -88,9 +88,11 @@ numbers) are defined in `R/helpers.R`.
 
 ### Placeholders
 
-Tool 1 uses placeholders to dynamically insert text into other text. Tokens
-such as `%s`, `%i`, and `%%` in the source text **must be left as is** in
-all related translations.
+Tool 1 uses placeholders to dynamically insert text into another text. Tokens
+such as `%s`, `%i`, and `%%` in the source text **must be left as is** in all
+related translations. See the documentation of
+[`sprintf()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sprintf.html)
+for more information.
 
 ## Bugs and Feedback
 
