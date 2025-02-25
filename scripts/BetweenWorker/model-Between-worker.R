@@ -267,7 +267,7 @@ Between.worker <- function(y=numeric(0), worker=numeric(0),
       O <- order(A$muk, decreasing=T)
 
 
-      for (i in seq(along=O))
+      for (i in seq(along.width=O))
       {
         w <- O[seq(i)]
 
@@ -287,7 +287,7 @@ Between.worker <- function(y=numeric(0), worker=numeric(0),
       O <- order(A$muk)
 
 
-      for (i in seq(along=O))
+      for (i in seq(along.width=O))
       {
         w <- O[seq(i)]
 

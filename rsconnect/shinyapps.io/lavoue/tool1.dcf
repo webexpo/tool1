@@ -5,7 +5,11 @@ account: lavoue
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 13889847
-bundleId: 9742056
+bundleId: 9853923
 url: https://lavoue.shinyapps.io/tool1/
 version: 1
-current_version: 4.0.0-RC1
+appVersion: 4.0.0-rc1
+license: MIT + file LICENSE
+bugReports: https://github.com/webexpo/app-tool1/issues
+encoding: UTF-8
+language: en

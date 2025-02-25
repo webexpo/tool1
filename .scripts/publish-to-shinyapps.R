@@ -1,10 +1,11 @@
 #' Deploy to shinyapps.io Programmatically
 #'
-#' Use this script to bundle the application and deploy it to
-#' <https://shinyapps.io>.
+#' Bundle the application and deploy it to <https://shinyapps.io>.
+#'
+#' Four environment variables are required. Store them in an untracked
+#' top-level .Renviron file.
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
-
 
 rsconnect::setAccountInfo(
     server = "shinyapps.io",
@@ -21,5 +22,12 @@ rsconnect::deployApp(
     launch.browser = FALSE,
     logLevel       = "verbose",
     lint           = FALSE,
-    metadata       = list(current_version = current_version),
-    forceUpdate    = FALSE)
+    forceUpdate    = FALSE,
+    metadata       = list(
+        appVersion = version,
+        license    = "MIT + file LICENSE",
+        bugReports = "https://github.com/webexpo/app-tool1/issues",
+        encoding   = "UTF-8",
+        language   = "en"
+    )
+)

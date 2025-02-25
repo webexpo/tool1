@@ -1,35 +1,30 @@
-#' Define Custom Shiny UI Static Elements
+#' Static UI Elements
 #'
-#' Generate static UI elements. Functions below return miscellaneous
-#' [`shiny.tag`][htmltools::tag] objects.
+#' Generate elements that does not require to be rendered at runtime.
 #'
 #' @details
-#' The application uses Bootstrap (version `>= 5.3`) to create UI components.
-#' Since it relies on R package [bslib], it simply reuses Bootstrap (version
-#' 5) external files exposed by this package.
-#'
-#' In practice, these means that functions below use Bootstrap-specific CSS
-#' classes.
+#' The application uses Bootstrap version `>= 5.3` to create UI components.
+#' Required CSS files are automatically included by package bslib.
 #'
 #' ## Alerts
 #'
-#' [add_bs_alert()] is a low-level constructor of Bootstrap (version 5) Alerts.
-#' Alerts provide contextual feedback messages for typical user actions. Other
-#' related functions wrap [add_bs_alert()].
+#' [add_bs_alert()] is a low-level constructor of Bootstrap 5 Alerts. These
+#' are colored boxes providing contextual feedback messages. Other related
+#' functions such as [add_bs_alert_info()] wrap [add_bs_alert()].
 #'
 #' @returns
-#' [add_bs_alert()], [add_bs_alert_info()], and [add_bs_alert_warn()] returns
-#' a [`shiny.tag`][htmltools::tag] object representing a Bootstrap 4 Alert
-#' component.
-#'
-#' @seealso
-#' [Bootstrap 5.3 documentation for alerts](https://getbootstrap.com/docs/5.3/components/alerts/)
-#'
-#' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
+#' [add_bs_alert()],
+#' [add_bs_alert_info()] and
+#' [add_bs_alert_warn()] returns a [`shiny.tag`][htmltools::tag] object.
 #'
 #' @examples
-#' add_bs_alert_info("This blue box informs the user about something.")
-#' add_bs_alert_warn("This orange-ish box warns the user about something.")
+#' add_bs_alert_info(shiny::p("This informs the user about something."))
+#' add_bs_alert_warn(shiny::p("This warns the user about something."))
+#'
+#' @seealso
+#' <https://getbootstrap.com/docs/5.3/components/alerts/>
+#'
+#' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
 #' @export
 add_bs_alert <- function(
@@ -67,12 +62,12 @@ add_bs_alert <- function(
 
 #' @rdname add-ui
 #' @external
-add_bs_alert_info <- function(...) {
+add_bs_alert_info <- function(..., title = "Information") {
     return(
         add_bs_alert(
             ...,
             which = "info",
-            title = "Information",
+            title = title,
             icon  = shiny::icon(
                 lib   = "glyphicon",
                 name  = "info-sign",
@@ -81,12 +76,12 @@ add_bs_alert_info <- function(...) {
 
 #' @rdname add-ui
 #' @external
-add_bs_alert_warn <- function(...) {
+add_bs_alert_warn <- function(..., title = "Warning") {
     return(
         add_bs_alert(
             ...,
             which = "warning",
-            title = "Warning",
+            title = title,
             icon  = shiny::icon(
                 lib   = "glyphicon",
                 name  = "warning-sign",

@@ -1,0 +1,1948 @@
+# Translator
+#
+# - You may edit fields Identifier and Languages.
+# - Do not edit other fields by hand. Edit source scripts instead.
+%YAML 1.1
+---
+!<Translator>
+Identifier: expostats:tool1
+Algorithm: sha1
+Languages:
+  en: English
+  fr: Français
+Texts:
+  - !<Text>
+    Identifier: b5ee972
+    Algorithm: sha1
+    Hash: b5ee972bdf2b1566f439ef14fe3792f140ecd5d4
+    Source Language: en
+    Source Text: Customize Colors
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: b5ee972:l1
+        Path: ./app.R
+        Ranges: Ln 1042, Col 23 @ Ln 1042, Col 46
+  - !<Text>
+    Identifier: 32e58e3
+    Algorithm: sha1
+    Hash: 32e58e38ebe8f14cd77593af9bd01b5d2affa128
+    Source Language: en
+    Source Text: |-
+      The following plot illustrates the proportion of exposures that would be
+      above the OEL in a fictional sample of one hundred measurements. Each
+      flask represents an exposure. Red flasks correspond to exposures that are
+      above the exposure limit. The plot can be shown in one of four
+      variations. You may choose any variant (an alternative way of displaying
+      the same information) below and, optionally, customize colors.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 32e58e3:l1
+        Path: ./app.R
+        Ranges: Ln 1026, Col 45 @ Ln 1034, Col 10
+  - !<Text>
+    Identifier: ea57967
+    Algorithm: sha1
+    Hash: ea579679572bdde2ad6c12b9e22922a256482b37
+    Source Language: en
+    Source Text: 'Exceedance Fraction Threshold:'
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: ea57967:l1
+        Path: ./app.R
+        Ranges: Ln 767, Col 23 @ Ln 767, Col 60
+  - !<Text>
+    Identifier: e2fb245
+    Algorithm: sha1
+    Hash: e2fb245927d72f4ed78d81fe0649df4f4081dab0
+    Source Language: en
+    Source Text: The geometric mean point estimate is equal to %s.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: e2fb245:l1
+        Path: ./app.R
+        Ranges:
+          - Ln  988, Col 21 @ Ln  988, Col 77
+          - Ln 1236, Col 21 @ Ln 1236, Col 77
+          - Ln 1411, Col 21 @ Ln 1411, Col 77
+  - !<Text>
+    Identifier: b7b4f0b
+    Algorithm: sha1
+    Hash: b7b4f0bd5f3d0cd911e84c45210a118c51fb8073
+    Source Language: en
+    Source Text: Measurement Type
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: b7b4f0b:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 1813, Col 35 @ Ln 1813, Col 58
+          - Ln 1828, Col 39 @ Ln 1828, Col 62
+  - !<Text>
+    Identifier: 2ba1dad
+    Algorithm: sha1
+    Hash: 2ba1dad240df37e38655d7761bb8428203e265ff
+    Source Language: en
+    Source Text: Additional details and references are available on %s.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 2ba1dad:l1
+        Path: ./app.R
+        Ranges: Ln 1643, Col 21 @ Ln 1645, Col 22
+  - !<Text>
+    Identifier: f10baab
+    Algorithm: sha1
+    Hash: f10baab36d8f5cfb7d8f75170700e9e60d39c247
+    Source Language: en
+    Source Text: Probability
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: f10baab:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 1981, Col 34 @ Ln 1981, Col 52
+          - Ln 2075, Col 31 @ Ln 2075, Col 49
+          - Ln 2159, Col 31 @ Ln 2159, Col 49
+  - !<Text>
+    Identifier: 8eee96b
+    Algorithm: sha1
+    Hash: 8eee96bf891f93fb26109e858640ee98821b57c2
+    Source Language: en
+    Source Text: Risk Decision
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 8eee96b:l1
+        Path: ./app.R
+        Ranges:
+          - Ln  917, Col 61 @ Ln  917, Col 81
+          - Ln 1166, Col 61 @ Ln 1166, Col 81
+          - Ln 1328, Col 61 @ Ln 1328, Col 81
+  - !<Text>
+    Identifier: 0a7c415
+    Algorithm: sha1
+    Hash: 0a7c41563ec23204d027ab57a1713a78385eaf2c
+    Source Language: en
+    Source Text: |-
+      This application (and related tools) are developped by the Industrial
+      Hygiene team of the Department of Environmental and Occupational Health
+      at the %s of the %s. The source code is available on %s.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 0a7c415:l1
+        Path: ./app.R
+        Ranges: Ln 1502, Col 17 @ Ln 1507, Col 18
+  - !<Text>
+    Identifier: a5a2911
+    Algorithm: sha1
+    Hash: a5a2911150fbe91ea0a05516122e02a320c1223a
+    Source Language: en
+    Source Text: Exceedance Fraction
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: a5a2911:l1
+        Path: ./app.R
+        Ranges:
+          - Ln  909, Col 49 @ Ln  909, Col 75
+          - Ln 1009, Col 53 @ Ln 1011, Col 10
+          - Ln 1940, Col 29 @ Ln 1940, Col 55
+          - Ln 1957, Col 30 @ Ln 1957, Col 56
+          - Ln 2125, Col 29 @ Ln 2125, Col 55
+  - !<Text>
+    Identifier: 532bf12
+    Algorithm: sha1
+    Hash: 532bf12642057d3e702ae43cb2e5037098120d6c
+    Source Language: en
+    Source Text: '> OEL'
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 532bf12:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 2080, Col 31 @ Ln 2080, Col 43
+          - Ln 2164, Col 31 @ Ln 2164, Col 43
+  - !<Text>
+    Identifier: ba6c7a6
+    Algorithm: sha1
+    Hash: ba6c7a68fd0287b3688eff2f28ad66d8a69eaf5d
+    Source Language: en
+    Source Text: |-
+      Use this value as the maximal overexposure risk. It must be between 0%
+      and 100%. It represents the maximal probability that the overexposure
+      limit is met. Above this value, the situation should trigger remedial
+      action. INRS and BOHS suggest using 5% and 30%, respectively.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: ba6c7a6:l1
+        Path: ./app.R
+        Ranges: Ln 795, Col 49 @ Ln 801, Col 10
+  - !<Text>
+    Identifier: 1166fce
+    Algorithm: sha1
+    Hash: 1166fce264d16cb2e27718d730e322c77a881096
+    Source Language: en
+    Source Text: About
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 1166fce:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 1494, Col 49 @ Ln 1494, Col 61
+          - Ln 1498, Col 50 @ Ln 1498, Col 62
+  - !<Text>
+    Identifier: ffb2d53
+    Algorithm: sha1
+    Hash: ffb2d53200345c9bfc6e6791d7f95a5620814729
+    Source Language: en
+    Source Text: Box and Whiskers Plot
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: ffb2d53:l1
+        Path: ./app.R
+        Ranges: Ln 888, Col 48 @ Ln 888, Col 76
+  - !<Text>
+    Identifier: 400ee3e
+    Algorithm: sha1
+    Hash: 400ee3e9b7537317fac8b22773f10c023a8de49c
+    Source Language: en
+    Source Text: 'Flask Color (Exceedance):'
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 400ee3e:l1
+        Path: ./app.R
+        Ranges: Ln 1047, Col 23 @ Ln 1047, Col 55
+  - !<Text>
+    Identifier: 24a1b71
+    Algorithm: sha1
+    Hash: 24a1b71c7ca5daf2df9059f6117565c8bd09d12c
+    Source Language: en
+    Source Text: Median
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 24a1b71:l1
+        Path: ./app.R
+        Ranges: Ln 1787, Col 17 @ Ln 1787, Col 30
+  - !<Text>
+    Identifier: '8785301'
+    Algorithm: sha1
+    Hash: 87853011eb6770017e243dbf27ed33fb48fb6b7d
+    Source Language: en
+    Source Text: 'Critical Percentile:'
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 8785301:l1
+        Path: ./app.R
+        Ranges: Ln 771, Col 23 @ Ln 771, Col 50
+  - !<Text>
+    Identifier: aab3349
+    Algorithm: sha1
+    Hash: aab33490194bbea66411c692b5342fd2800b562a
+    Source Language: en
+    Source Text: |-
+      Values can be censored. Add a %s sign before each measurement censored to
+      the left (e.g. <30.0) and a %s sign before each measurement censored to
+      the right (e.g. >30.0). Use %s to denote interval censored values (e.g.
+      [20-30]).
+
+      Censored values must have the same unit as other non-censored
+      measurements.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: aab3349:l1
+        Path: ./app.R
+        Ranges: Ln 1573, Col 21 @ Ln 1582, Col 22
+  - !<Text>
+    Identifier: 093a5dc
+    Algorithm: sha1
+    Hash: 093a5dc8d4e2b76504f36805f603e33b49dab166
+    Source Language: en
+    Source Text: The geometric standard deviation point estimate is equal to %s.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 093a5dc:l1
+        Path: ./app.R
+        Ranges:
+          - Ln  996, Col 21 @ Ln  999, Col 22
+          - Ln 1244, Col 21 @ Ln 1247, Col 22
+          - Ln 1419, Col 21 @ Ln 1422, Col 22
+  - !<Text>
+    Identifier: 6db5beb
+    Algorithm: sha1
+    Hash: 6db5bebfe4c7544dd90cc5a17e979ae2dc0d7306
+    Source Language: en
+    Source Text: 50% < OEL ≤ 100%
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 6db5beb:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 2079, Col 31 @ Ln 2079, Col 54
+          - Ln 2163, Col 31 @ Ln 2163, Col 54
+  - !<Text>
+    Identifier: 18638ba
+    Algorithm: sha1
+    Hash: 18638baf516934f6311ffb3c24bcd8e53db695a5
+    Source Language: en
+    Source Text: |-
+      This plot shows the probability distribution of the uncertainty around
+      the exceedance fraction. It shows the probability that its true value is
+      (1) below %s, (2) between %s and %s, and (3) greater than %s. The red
+      column represents the probability of an overexposure. The latter should
+      be lower than the threshold shown by the black dashed line.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 18638ba:l1
+        Path: ./app.R
+        Ranges: Ln 1138, Col 17 @ Ln 1148, Col 18
+  - !<Text>
+    Identifier: 4e2a12c
+    Algorithm: sha1
+    Hash: 4e2a12cfce690f2fbf0bbef498d80bb11a229025
+    Source Language: en
+    Source Text: The probability that this criterion is met is equal to %s.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 4e2a12c:l1
+        Path: ./app.R
+        Ranges:
+          - Ln  933, Col 21 @ Ln  936, Col 22
+          - Ln 1181, Col 21 @ Ln 1184, Col 22
+          - Ln 1338, Col 21 @ Ln 1341, Col 22
+  - !<Text>
+    Identifier: 4fecb88
+    Algorithm: sha1
+    Hash: 4fecb88dfc63ff82a63116bd0e343c72a7e7ed7b
+    Source Language: en
+    Source Text: |-
+      The Bayesian models and data interpretation procedures used by this
+      application are derived from current best practices in industrial
+      hygiene, which are described in the following scientific paper:
+
+      Jérôme Lavoué, Lawrence Joseph, Peter Knott, Hugh Davies, France
+      Labrèche, Frédéric Clerc, Gautier Mater, Tracy Kirkham, %s, Annals of
+      Work Exposures and Health, Volume 63, Issue 3, April 2019, Pages 267-279
+      (%s).
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 4fecb88:l1
+        Path: ./app.R
+        Ranges: Ln 1622, Col 21 @ Ln 1632, Col 22
+  - !<Text>
+    Identifier: e2d8fab
+    Algorithm: sha1
+    Hash: e2d8fab7db7fabadcb0052ee68da86ab8cde6ca5
+    Source Language: en
+    Source Text: |-
+      Use the exposure limit to assess overexposure. It must have the same unit
+      as the measurement data.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: e2d8fab:l1
+        Path: ./app.R
+        Ranges: Ln 777, Col 49 @ Ln 780, Col 10
+  - !<Text>
+    Identifier: 798b335
+    Algorithm: sha1
+    Hash: 798b3350d78e7f55ab1b84ef4d4fa144aaab6759
+    Source Language: en
+    Source Text: 'Credible Interval Probability:'
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 798b335:l1
+        Path: ./app.R
+        Ranges: Ln 755, Col 23 @ Ln 755, Col 60
+  - !<Text>
+    Identifier: 2e95d0e
+    Algorithm: sha1
+    Hash: 2e95d0e16a782ff5c49e270d5a9a47b12da26109
+    Source Language: en
+    Source Text: |-
+      Use this multiplier to modify the exposure limit. The product of the
+      former and the latter is the actual exposure limit value for calculation
+      purposes.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 2e95d0e:l1
+        Path: ./app.R
+        Ranges: Ln 782, Col 48 @ Ln 786, Col 10
+  - !<Text>
+    Identifier: 9bdd102
+    Algorithm: sha1
+    Hash: 9bdd1022d4b2806b6314e4d6dc795e5938b5a8e9
+    Source Language: en
+    Source Text: 'Measurements:'
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 9bdd102:l1
+        Path: ./app.R
+        Ranges: Ln 763, Col 23 @ Ln 763, Col 43
+  - !<Text>
+    Identifier: 5f52075
+    Algorithm: sha1
+    Hash: 5f5207524bf80b47830643f0ee139110a5c33008
+    Source Language: en
+    Source Text: 10% < OEL ≤ 50%
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 5f52075:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 2078, Col 31 @ Ln 2078, Col 53
+          - Ln 2162, Col 31 @ Ln 2162, Col 53
+  - !<Text>
+    Identifier: 6918de6
+    Algorithm: sha1
+    Hash: 6918de6e784b4bb2f4b8a13fdf109e2989b72c63
+    Source Language: en
+    Source Text: Proportion Censored
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 6918de6:l1
+        Path: ./app.R
+        Ranges: Ln 1784, Col 17 @ Ln 1784, Col 43
+  - !<Text>
+    Identifier: 80d1a60
+    Algorithm: sha1
+    Hash: 80d1a6055e5c488ea2689bb56651d9094893b7bf
+    Source Language: en
+    Source Text: Exceedance Fraction Category
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 80d1a60:l1
+        Path: ./app.R
+        Ranges: Ln 1980, Col 34 @ Ln 1980, Col 69
+  - !<Text>
+    Identifier: cebe5c4
+    Algorithm: sha1
+    Hash: cebe5c4f2bcaa65fe29c2a54f198aee1c8393340
+    Source Language: en
+    Source Text: Measurement Index
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: cebe5c4:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 1941, Col 29 @ Ln 1941, Col 53
+          - Ln 2036, Col 38 @ Ln 2036, Col 62
+          - Ln 2127, Col 29 @ Ln 2127, Col 53
+  - !<Text>
+    Identifier: e87c846
+    Algorithm: sha1
+    Hash: e87c8469ab07e58c845c9798c9a697c5e8f7611a
+    Source Language: en
+    Source Text: Warning
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: e87c846:l1
+        Path: ./app.R
+        Ranges: Ln 1378, Col 25 @ Ln 1378, Col 39
+  - !<Text>
+    Identifier: a632e97
+    Algorithm: sha1
+    Hash: a632e9778a3cafc4d7e686304ec4516fdf064dc0
+    Source Language: en
+    Source Text: Number of Obversations
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: a632e97:l1
+        Path: ./app.R
+        Ranges: Ln 1783, Col 17 @ Ln 1783, Col 46
+  - !<Text>
+    Identifier: 3e0b7d6
+    Algorithm: sha1
+    Hash: 3e0b7d6472b61b3a965005f3114a04857dbbca75
+    Source Language: en
+    Source Text: Minimum
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 3e0b7d6:l1
+        Path: ./app.R
+        Ranges: Ln 1785, Col 17 @ Ln 1785, Col 31
+  - !<Text>
+    Identifier: 96d547d
+    Algorithm: sha1
+    Hash: 96d547d0e3bca2bc7ac01b58d7d97ebbc83e3411
+    Source Language: en
+    Source Text: Maximum
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 96d547d:l1
+        Path: ./app.R
+        Ranges: Ln 1789, Col 17 @ Ln 1789, Col 31
+  - !<Text>
+    Identifier: '9578728'
+    Algorithm: sha1
+    Hash: 95787289fa8630faac2146b1b3d9d6b144a57a10
+    Source Language: en
+    Source Text: All rights reserved.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 9578728:l1
+        Path: ./app.R
+        Ranges: Ln 827, Col 57 @ Ln 829, Col 10
+  - !<Text>
+    Identifier: 22eb3b2
+    Algorithm: sha1
+    Hash: 22eb3b24991e80d55432e1b92bee83cf4932d94e
+    Source Language: en
+    Source Text: |-
+      Risk assessment based on the arithmetic mean relies on the availability
+      of a long-term averaged OEL (LTA-OEL in the AIHA terminology)
+      representing a cumulative burden threshold. Most current OELs are not
+      created as LTA-OEL.
+
+      Despite an annoying lack of precise definition by most organizations,
+      they should be most often viewed as thresholds to be exceeded as few
+      times as possible. Some authors have suggested using one-tenth of the OEL
+      as a practical LTA-OEL when assessing risk using the arithmetic mean.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 22eb3b2:l1
+        Path: ./app.R
+        Ranges: Ln 1379, Col 24 @ Ln 1390, Col 18
+  - !<Text>
+    Identifier: f533761
+    Algorithm: sha1
+    Hash: f533761196a169ac755fd9288c4eaa5ef4dab445
+    Source Language: en
+    Source Text: Exceedance Plot
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: f533761:l1
+        Path: ./app.R
+        Ranges: Ln 1024, Col 51 @ Ln 1024, Col 73
+  - !<Text>
+    Identifier: '1117964'
+    Algorithm: sha1
+    Hash: 1117964bde55a34210407e577781849b80f51de3
+    Source Language: en
+    Source Text: |-
+      This plot shows the probability density function of the estimated
+      distribution of exposures. The OEL is shown as a red dotted line and the
+      point estimate of the selected percentile as a continuous blue line.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 1117964:l1
+        Path: ./app.R
+        Ranges: Ln 1287, Col 48 @ Ln 1292, Col 10
+  - !<Text>
+    Identifier: af71ace
+    Algorithm: sha1
+    Hash: af71ace7e370aca84da82c5a92040731dcdda1b9
+    Source Language: en
+    Source Text: Interval censored measurements are imputed as the mid-range.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: af71ace:l1
+        Path: ./app.R
+        Ranges: Ln 849, Col 29 @ Ln 852, Col 22
+  - !<Text>
+    Identifier: e0d44f8
+    Algorithm: sha1
+    Hash: e0d44f8f718816dc8f7715628f4a28847a40b2e4
+    Source Language: en
+    Source Text: Calculating. Please wait.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: e0d44f8:l1
+        Path: ./app.R
+        Ranges: Ln 731, Col 46 @ Ln 733, Col 10
+  - !<Text>
+    Identifier: 1a0644e
+    Algorithm: sha1
+    Hash: 1a0644e854a9bfed54e5a48e00c27b0a6612b0e7
+    Source Language: en
+    Source Text: |-
+      Measurements censored to the right are imputed as 9/4 of the censoring
+      point.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 1a0644e:l1
+        Path: ./app.R
+        Ranges: Ln 853, Col 29 @ Ln 856, Col 22
+  - !<Text>
+    Identifier: 3dbfac5
+    Algorithm: sha1
+    Hash: 3dbfac5640926f2556c49e5b82479e1685e5b757
+    Source Language: en
+    Source Text: The point estimate is equal to %s.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 3dbfac5:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 1015, Col 17 @ Ln 1015, Col 58
+          - Ln 1263, Col 17 @ Ln 1263, Col 58
+          - Ln 1438, Col 17 @ Ln 1438, Col 58
+  - !<Text>
+    Identifier: 5bbca33
+    Algorithm: sha1
+    Hash: 5bbca332c8d3ec4f7146d4982224dae9d0a168cb
+    Source Language: en
+    Source Text: Geometric Standard Deviation
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 5bbca33:l1
+        Path: ./app.R
+        Ranges: Ln 1795, Col 17 @ Ln 1795, Col 52
+  - !<Text>
+    Identifier: 1d671e4
+    Algorithm: sha1
+    Hash: 1d671e42826a178dc20e736082c7a19f655c23e2
+    Source Language: en
+    Source Text: |-
+      Overexposure is defined as the %s percentile being greater than or equal
+      to the OEL.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 1d671e4:l1
+        Path: ./app.R
+        Ranges: Ln 1171, Col 21 @ Ln 1174, Col 22
+  - !<Text>
+    Identifier: 23eb033
+    Algorithm: sha1
+    Hash: 23eb0339d85a7a0389030058b737d65ce5f83c5a
+    Source Language: en
+    Source Text: Critical Percentile Category
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 23eb033:l1
+        Path: ./app.R
+        Ranges: Ln 2081, Col 31 @ Ln 2081, Col 66
+  - !<Text>
+    Identifier: c165d34
+    Algorithm: sha1
+    Hash: c165d3455a7f9ecab8a6715b01dc7485b54a9af2
+    Source Language: en
+    Source Text: 1% < OEL ≤ 10%
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: c165d34:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 2077, Col 31 @ Ln 2077, Col 52
+          - Ln 2161, Col 31 @ Ln 2161, Col 52
+  - !<Text>
+    Identifier: ee91f19
+    Algorithm: sha1
+    Hash: ee91f199a23e9b7b8aa0484e94b097f4a72aa0b3
+    Source Language: en
+    Source Text: Not Censored
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: ee91f19:l1
+        Path: ./app.R
+        Ranges: Ln 1832, Col 39 @ Ln 1832, Col 58
+  - !<Text>
+    Identifier: ab8e870
+    Algorithm: sha1
+    Hash: ab8e87092ef948784835f8055dd60c8cca7bfdac
+    Source Language: en
+    Source Text: |-
+      Enter your measurements under Measurements in the left panel. There must
+      be one value per line. Write them as you would in your favourite text
+      editor. You may also copy and paste values stored in a spreadsheet's
+      column.
+
+      The initial dataset provided for illustration purposes can be deleted as
+      you usually would in any text editor.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: ab8e870:l1
+        Path: ./app.R
+        Ranges: Ln 1553, Col 29 @ Ln 1561, Col 22
+  - !<Text>
+    Identifier: '5542666'
+    Algorithm: sha1
+    Hash: 5542666db962c01d21dbc2e9a1b2ad52f991d19b
+    Source Language: en
+    Source Text: 'Variants:'
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 5542666:l1
+        Path: ./app.R
+        Ranges: Ln 1038, Col 23 @ Ln 1038, Col 39
+  - !<Text>
+    Identifier: f7a0860
+    Algorithm: sha1
+    Hash: f7a0860ba38e771f38b704a0332a25abad5c257d
+    Source Language: en
+    Source Text: Tool 1
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: f7a0860:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 723, Col 38 @ Ln 723, Col 51
+          - Ln 824, Col 38 @ Ln 824, Col 51
+  - !<Text>
+    Identifier: 7e9d895
+    Algorithm: sha1
+    Hash: 7e9d8951a9226d6061714c4c8db89a1be304b4fd
+    Source Language: en
+    Source Text: poorly controlled
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 7e9d895:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 1852, Col 20 @ Ln 1852, Col 44
+          - Ln 2000, Col 20 @ Ln 2000, Col 44
+          - Ln 2094, Col 20 @ Ln 2094, Col 44
+  - !<Text>
+    Identifier: ceefbab
+    Algorithm: sha1
+    Hash: ceefbabe35ef2b9d410270fa7aed0edaa9cb6dff
+    Source Language: en
+    Source Text: Density
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: ceefbab:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 1956, Col 30 @ Ln 1956, Col 44
+          - Ln 2054, Col 38 @ Ln 2054, Col 52
+          - Ln 2142, Col 30 @ Ln 2142, Col 44
+  - !<Text>
+    Identifier: eb0ce59
+    Algorithm: sha1
+    Hash: eb0ce59ba56cd2044149c75b8ae5eb3e8f8de558
+    Source Language: en
+    Source Text: Statistics
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: eb0ce59:l1
+        Path: ./app.R
+        Ranges: Ln 833, Col 49 @ Ln 833, Col 66
+  - !<Text>
+    Identifier: 836003a
+    Algorithm: sha1
+    Hash: 836003ac7c5aa8188964487b4904bea45fa6d4af
+    Source Language: en
+    Source Text: |-
+      This application uses a Bayesian approach to estimate the parameters of
+      the log-normal distribution.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 836003a:l1
+        Path: ./app.R
+        Ranges: Ln 1604, Col 24 @ Ln 1607, Col 18
+  - !<Text>
+    Identifier: be6fb8b
+    Algorithm: sha1
+    Hash: be6fb8bedcb8f0bb770b67c63a8c85a74b198327
+    Source Language: en
+    Source Text: |-
+      This plot shows a shaded and darker region corresponding to the maximal
+      acceptable exceedance. Red symbols outside of it are unacceptable
+      exposures. It takes into account estimation uncertainty with stripped
+      symbols. The number of plain symbols represents the best estimate of the
+      number of measurements above the OEL. The total number of symbols (either
+      plain or stripped) represents the maximum plausible number of
+      measurements above the OEL given estimation uncertainty (using the upper
+      limit of the underlying credible interval).
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: be6fb8b:l1
+        Path: ./app.R
+        Ranges: Ln 1094, Col 25 @ Ln 1105, Col 18
+  - !<Text>
+    Identifier: 1ad7b08
+    Algorithm: sha1
+    Hash: 1ad7b0832c844ca63f14d17a82c4152dceecfda9
+    Source Language: en
+    Source Text: 'Exposure Limit:'
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 1ad7b08:l1
+        Path: ./app.R
+        Ranges: Ln 747, Col 23 @ Ln 747, Col 45
+  - !<Text>
+    Identifier: 677f437
+    Algorithm: sha1
+    Hash: 677f4376b8e8c7b9d2d31dbb5393cee678cd9990
+    Source Language: en
+    Source Text: |-
+      The plot on the left shows an acceptable situation for the chosen
+      exceedance threshold (traditionally 5% above the OEL). The plot on the
+      right shows the situation estimated by the Bayesian model. It takes into
+      account estimation uncertainty with stripped symbols. The number of plain
+      symbols represents the best estimate of the number of measurements above
+      the OEL. The total number of symbols (either plain or stripped)
+      represents the maximum plausible number of measurements above the OEL
+      given estimation uncertainty (using the upper limit of the underlying
+      credible interval).
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 677f437:l1
+        Path: ./app.R
+        Ranges: Ln 1075, Col 25 @ Ln 1087, Col 18
+  - !<Text>
+    Identifier: 62fc968
+    Algorithm: sha1
+    Hash: 62fc9685270adbdef9827a232c7be96063f019dd
+    Source Language: en
+    Source Text: Percentile
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 62fc968:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 1786, Col 36 @ Ln 1786, Col 53
+          - Ln 1788, Col 36 @ Ln 1788, Col 53
+          - Ln 2035, Col 38 @ Ln 2035, Col 55
+          - Ln 2057, Col 38 @ Ln 2057, Col 55
+  - !<Text>
+    Identifier: ad1e98e
+    Algorithm: sha1
+    Hash: ad1e98eb9783b8c861ae474e189a1531b4290bbe
+    Source Language: en
+    Source Text: OEL
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: ad1e98e:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 1959, Col 30 @ Ln 1959, Col 40
+          - Ln 2034, Col 38 @ Ln 2034, Col 48
+          - Ln 2056, Col 38 @ Ln 2056, Col 48
+          - Ln 2144, Col 30 @ Ln 2144, Col 40
+  - !<Text>
+    Identifier: 3d4f8d5
+    Algorithm: sha1
+    Hash: 3d4f8d542e6d9d42c708ff83d7e9bda1e8865dd6
+    Source Language: en
+    Source Text: Arithmetic Standard Deviation
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 3d4f8d5:l1
+        Path: ./app.R
+        Ranges: Ln 1792, Col 17 @ Ln 1792, Col 53
+  - !<Text>
+    Identifier: 3ec9556
+    Algorithm: sha1
+    Hash: 3ec9556b2abf5c7508ae2385d204f1c43943c504
+    Source Language: en
+    Source Text: Percentile Estimate
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 3ec9556:l1
+        Path: ./app.R
+        Ranges: Ln 1257, Col 53 @ Ln 1259, Col 10
+  - !<Text>
+    Identifier: da5e3d2
+    Algorithm: sha1
+    Hash: da5e3d2a1fae7953aabf26b6c52535ca78336737
+    Source Language: en
+    Source Text: |-
+      Overexposure is defined as the arithmetic mean being greater than or
+      equal to the OEL.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: da5e3d2:l1
+        Path: ./app.R
+        Ranges: Ln 1333, Col 21 @ Ln 1335, Col 70
+  - !<Text>
+    Identifier: c4a0bd5
+    Algorithm: sha1
+    Hash: c4a0bd54c17e605eab2e1892f14c9adb1b82fc32
+    Source Language: en
+    Source Text: Risk Analysis Based on the Exceedance Fraction
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: c4a0bd5:l1
+        Path: ./app.R
+        Ranges: Ln 913, Col 58 @ Ln 915, Col 10
+  - !<Text>
+    Identifier: 8f7f102
+    Algorithm: sha1
+    Hash: 8f7f102f413293c8e1f3e50aee23fc1ad452d409
+    Source Language: en
+    Source Text: Quantile-Quantile Plot
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 8f7f102:l1
+        Path: ./app.R
+        Ranges:
+          - Ln  877, Col 47 @ Ln  877, Col 76
+          - Ln 1810, Col 35 @ Ln 1810, Col 64
+  - !<Text>
+    Identifier: 603143d
+    Algorithm: sha1
+    Hash: 603143dd3768027942ce510b30ffb57c12f4c64d
+    Source Language: en
+    Source Text: The probability that this criterion is met should be lower than %s.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 603143d:l1
+        Path: ./app.R
+        Ranges:
+          - Ln  944, Col 21 @ Ln  947, Col 22
+          - Ln 1192, Col 21 @ Ln 1195, Col 22
+          - Ln 1349, Col 21 @ Ln 1352, Col 22
+  - !<Text>
+    Identifier: 5464daa
+    Algorithm: sha1
+    Hash: 5464daa426ab7e5f8ebc39d6744962db47e7e91b
+    Source Language: en
+    Source Text: Information
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 5464daa:l1
+        Path: ./app.R
+        Ranges: Ln 843, Col 25 @ Ln 843, Col 43
+  - !<Text>
+    Identifier: 81fb05e
+    Algorithm: sha1
+    Hash: 81fb05ec082138a494c0b2575b405853f65717a0
+    Source Language: en
+    Source Text: Value
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 81fb05e:l1
+        Path: ./app.R
+        Ranges: Ln 1799, Col 17 @ Ln 1799, Col 29
+  - !<Text>
+    Identifier: da34e30
+    Algorithm: sha1
+    Hash: da34e30782cf8b6ca6e850952a486560f80849ca
+    Source Language: en
+    Source Text: Geometric Mean
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: da34e30:l1
+        Path: ./app.R
+        Ranges: Ln 1794, Col 17 @ Ln 1794, Col 38
+  - !<Text>
+    Identifier: 501a2ee
+    Algorithm: sha1
+    Hash: 501a2ee848e130acd176df28dd2c500ac0c30c6c
+    Source Language: en
+    Source Text: Exposure Limit
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 501a2ee:l1
+        Path: ./app.R
+        Ranges: Ln 1830, Col 39 @ Ln 1830, Col 60
+  - !<Text>
+    Identifier: fffde19
+    Algorithm: sha1
+    Hash: fffde1937cf043bc809046b2ba09789db86f6431
+    Source Language: en
+    Source Text: |-
+      Use this value as an acceptable proportion of exposures above the
+      exposure limit (OEL). It must be between 0% and 100%. The traditional
+      default value is 5%.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: fffde19:l1
+        Path: ./app.R
+        Ranges: Ln 809, Col 60 @ Ln 813, Col 10
+  - !<Text>
+    Identifier: 6e6300f
+    Algorithm: sha1
+    Hash: 6e6300fa9a3e5f8935cd4627e056889f9034c9e2
+    Source Language: en
+    Source Text: 'Colors:'
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 6e6300f:l1
+        Path: ./app.R
+        Ranges: Ln 1064, Col 56 @ Ln 1064, Col 70
+  - !<Text>
+    Identifier: 99db36b
+    Algorithm: sha1
+    Hash: 99db36bef3b74d9063868074f093f8f3bcdeadb5
+    Source Language: en
+    Source Text: adequately controlled
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 99db36b:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 1855, Col 16 @ Ln 1855, Col 44
+          - Ln 2003, Col 16 @ Ln 2003, Col 44
+          - Ln 2097, Col 16 @ Ln 2097, Col 44
+  - !<Text>
+    Identifier: f590590
+    Algorithm: sha1
+    Hash: f590590c629ff2a28c666256d87c0f353862cb4b
+    Source Language: en
+    Source Text: |-
+      It allows the inclusion of external information in the measurements (not
+      yet leveraged by the application).
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: f590590:l1
+        Path: ./app.R
+        Ranges: Ln 1616, Col 29 @ Ln 1619, Col 22
+  - !<Text>
+    Identifier: ac24260
+    Algorithm: sha1
+    Hash: ac2426047ce035bcc17717d4ff6128e10589e079
+    Source Language: en
+    Source Text: |-
+      Overexposure is defined as the exceedance fraction being greater than or
+      equal to %s.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: ac24260:l1
+        Path: ./app.R
+        Ranges: Ln 922, Col 21 @ Ln 925, Col 22
+  - !<Text>
+    Identifier: 654b124
+    Algorithm: sha1
+    Hash: 654b12423c49e8036cfa2b311bf773d55b88d55d
+    Source Language: en
+    Source Text: Wait for the calculations to be performed.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 654b124:l1
+        Path: ./app.R
+        Ranges: Ln 1565, Col 29 @ Ln 1567, Col 22
+  - !<Text>
+    Identifier: f436237
+    Algorithm: sha1
+    Hash: f436237c5c26cd3a377fe192e7c0f0cef2e615f9
+    Source Language: en
+    Source Text: Risk Analysis Based on Percentiles
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: f436237:l1
+        Path: ./app.R
+        Ranges: Ln 1162, Col 58 @ Ln 1164, Col 10
+  - !<Text>
+    Identifier: 0e99366
+    Algorithm: sha1
+    Hash: 0e99366b07fd2bd84dabc571e2747136cc9f5eed
+    Source Language: en
+    Source Text: Arithmetic Mean Category
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 0e99366:l1
+        Path: ./app.R
+        Ranges: Ln 2165, Col 31 @ Ln 2165, Col 62
+  - !<Text>
+    Identifier: 64ba6dd
+    Algorithm: sha1
+    Hash: 64ba6dddf18e8fff63200fd7edd160b296e0fb10
+    Source Language: en
+    Source Text: Enter other parameters (see the left sidebar to do do).
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 64ba6dd:l1
+        Path: ./app.R
+        Ranges: Ln 1562, Col 29 @ Ln 1564, Col 22
+  - !<Text>
+    Identifier: 3b426c5
+    Algorithm: sha1
+    Hash: 3b426c53ade56f2c22f9b8e725a9e288d5288497
+    Source Language: en
+    Source Text: Risk Analysis Based on the Arithmetic Mean
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 3b426c5:l1
+        Path: ./app.R
+        Ranges: Ln 1324, Col 58 @ Ln 1326, Col 10
+  - !<Text>
+    Identifier: 466a65e
+    Algorithm: sha1
+    Hash: 466a65e2c39c66ef9fde8dc9f996942d26c5d843
+    Source Language: en
+    Source Text: 'Overexposure Risk Threshold:'
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 466a65e:l1
+        Path: ./app.R
+        Ranges: Ln 759, Col 23 @ Ln 759, Col 58
+  - !<Text>
+    Identifier: 7da06cc
+    Algorithm: sha1
+    Hash: 7da06cc06ee4e0342066282f1d07e2b2c2681304
+    Source Language: en
+    Source Text: Parameter
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 7da06cc:l1
+        Path: ./app.R
+        Ranges: Ln 1798, Col 17 @ Ln 1798, Col 33
+  - !<Text>
+    Identifier: f717683
+    Algorithm: sha1
+    Hash: f7176839db5093e7476bb41734a0eeec92041829
+    Source Language: en
+    Source Text: Consequently, the current situation is %s.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: f717683:l1
+        Path: ./app.R
+        Ranges:
+          - Ln  955, Col 21 @ Ln  955, Col 70
+          - Ln 1203, Col 21 @ Ln 1203, Col 70
+          - Ln 1360, Col 21 @ Ln 1360, Col 70
+  - !<Text>
+    Identifier: 8153e10
+    Algorithm: sha1
+    Hash: 8153e10a3900b257b666ebd976bcb8169446e689
+    Source Language: en
+    Source Text: Square brackets give the underlying credible intervals.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 8153e10:l1
+        Path: ./app.R
+        Ranges:
+          - Ln  977, Col 44 @ Ln  979, Col 10
+          - Ln 1225, Col 44 @ Ln 1227, Col 10
+          - Ln 1400, Col 44 @ Ln 1402, Col 10
+  - !<Text>
+    Identifier: '6489309'
+    Algorithm: sha1
+    Hash: 6489309b25dc86de04d483dfb8d23706ae6995f0
+    Source Language: en
+    Source Text: |-
+      Use this value to set the percentile of the exposure distribution that
+      will be compared to the OEL. It must be between 0% and 100%. The
+      traditional default value is 95%.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 6489309:l1
+        Path: ./app.R
+        Ranges: Ln 815, Col 57 @ Ln 819, Col 10
+  - !<Text>
+    Identifier: 10ef3a6
+    Algorithm: sha1
+    Hash: 10ef3a66cb5a63c95fd85b8fb942af5bb1b00c83
+    Source Language: en
+    Source Text: Quantiles (Lognormal Distribution)
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 10ef3a6:l1
+        Path: ./app.R
+        Ranges: Ln 1811, Col 35 @ Ln 1811, Col 76
+  - !<Text>
+    Identifier: a32a1f9
+    Algorithm: sha1
+    Hash: a32a1f93cfb06f99bddcebbdb63bab9d3cd802f9
+    Source Language: en
+    Source Text: |-
+      This plot shows the estimated exposure distribution when assuming 250
+      exposure measurements have been collected. If the measurements represent
+      8-hour TWA (Time-Weighted Average) values, this approximately represents
+      a full year of exposure. The OEL is shown as a red dotted line and the
+      point estimate of the arithmetic mean as a continuous green line.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: a32a1f9:l1
+        Path: ./app.R
+        Ranges: Ln 1449, Col 47 @ Ln 1456, Col 10
+  - !<Text>
+    Identifier: 897e74a
+    Algorithm: sha1
+    Hash: 897e74a0116b8965d0dab51eda827c07c8f652ce
+    Source Language: en
+    Source Text: Current Sample
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 897e74a:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 1897, Col 38 @ Ln 1897, Col 59
+          - Ln 1908, Col 38 @ Ln 1908, Col 59
+  - !<Text>
+    Identifier: d257a4e
+    Algorithm: sha1
+    Hash: d257a4e6645f4dc5240b86db354f00a9dde4d62d
+    Source Language: en
+    Source Text: ≤ 1% OEL
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: d257a4e:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 2076, Col 31 @ Ln 2076, Col 46
+          - Ln 2160, Col 31 @ Ln 2160, Col 46
+  - !<Text>
+    Identifier: 826d25d
+    Algorithm: sha1
+    Hash: 826d25d590a78c35576b601a8d8e17a5f0f50c09
+    Source Language: en
+    Source Text: 'Flask Color (No Exceedance):'
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 826d25d:l1
+        Path: ./app.R
+        Ranges: Ln 1052, Col 23 @ Ln 1052, Col 58
+  - !<Text>
+    Identifier: e80025a
+    Algorithm: sha1
+    Hash: e80025a5c4677aac3a973f1ffd5e100c09df24dd
+    Source Language: en
+    Source Text: Sequential Plot
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: e80025a:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 1111, Col 48 @ Ln 1111, Col 70
+          - Ln 1272, Col 48 @ Ln 1272, Col 70
+          - Ln 1447, Col 48 @ Ln 1447, Col 70
+  - !<Text>
+    Identifier: 7d71177
+    Algorithm: sha1
+    Hash: 7d711778629bc6fc27a80ef342f4b9519bffd0b0
+    Source Language: en
+    Source Text: |-
+      It assumes that input measurements (measurements) represent a random
+      sample stemming from the distribution of exposures that underlie the
+      sampled context. In other words, the data is representative of the
+      specific exposure regimen one wishes to assess.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 7d71177:l1
+        Path: ./app.R
+        Ranges: Ln 1541, Col 24 @ Ln 1547, Col 18
+  - !<Text>
+    Identifier: da9cc89
+    Algorithm: sha1
+    Hash: da9cc8918f7bdcb5e75ab5ecd35ee0b8d941aac8
+    Source Language: en
+    Source Text: Risk Band Plot
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: da9cc89:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 1134, Col 54 @ Ln 1134, Col 75
+          - Ln 1296, Col 54 @ Ln 1296, Col 75
+          - Ln 1471, Col 54 @ Ln 1471, Col 75
+  - !<Text>
+    Identifier: b66eca7
+    Algorithm: sha1
+    Hash: b66eca7368af9cba9fd1d7353bf543a1c8629af9
+    Source Language: en
+    Source Text: |-
+      The points above should follow a straight line. Random deviations from it
+      are expected. However, significant deviations suggest that the data may
+      have to be split into distinct subsets, or that some outliers must be
+      investigated.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: b66eca7:l1
+        Path: ./app.R
+        Ranges: Ln 879, Col 46 @ Ln 884, Col 10
+  - !<Text>
+    Identifier: b372419
+    Algorithm: sha1
+    Hash: b372419e4d70d2084aaf03b12f50719d609524da
+    Source Language: en
+    Source Text: How to Use This Application
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: b372419:l1
+        Path: ./app.R
+        Ranges: Ln 1522, Col 55 @ Ln 1524, Col 10
+  - !<Text>
+    Identifier: 463c845
+    Algorithm: sha1
+    Hash: 463c845e78d41d9aef3830e79679af8f10025a11
+    Source Language: en
+    Source Text: |-
+      This plot shows the probability density function of the estimated
+      distribution of exposures. The OEL is shown as a red line. The exceedance
+      fraction is the area under the curve beyond the OEL value.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 463c845:l1
+        Path: ./app.R
+        Ranges: Ln 1125, Col 48 @ Ln 1130, Col 10
+  - !<Text>
+    Identifier: df83adb
+    Algorithm: sha1
+    Hash: df83adbedc11a908d720b8f2d8d7505312840f2d
+    Source Language: en
+    Source Text: Arithmetic Mean
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: df83adb:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 1320, Col 49 @ Ln 1320, Col 71
+          - Ln 1432, Col 53 @ Ln 1434, Col 10
+          - Ln 1791, Col 17 @ Ln 1791, Col 39
+          - Ln 2126, Col 29 @ Ln 2126, Col 51
+          - Ln 2145, Col 30 @ Ln 2145, Col 52
+  - !<Text>
+    Identifier: e6a9040
+    Algorithm: sha1
+    Hash: e6a904003b5c792e5efbb07c5ed935c1cc89f275
+    Source Language: en
+    Source Text: Choose your preferred language.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: e6a9040:l1
+        Path: ./app.R
+        Ranges: Ln 773, Col 50 @ Ln 775, Col 10
+  - !<Text>
+    Identifier: 97a777e
+    Algorithm: sha1
+    Hash: 97a777e6d1081e2518927b2b5d063c08238ff79d
+    Source Language: en
+    Source Text: Quantiles (Standardized Measurements)
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 97a777e:l1
+        Path: ./app.R
+        Ranges: Ln 1812, Col 35 @ Ln 1812, Col 79
+  - !<Text>
+    Identifier: 00b437c
+    Algorithm: sha1
+    Hash: 00b437cd948ff8f566546ee8c3f5aef247738cd3
+    Source Language: en
+    Source Text: |-
+      Use this value as a probability for the credible intervals around
+      parameter estimates. It must be between 0% and 100%. The default value is
+      set equal to 90%. The credible interval is the Bayesian equivalent of the
+      confidence interval.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 00b437c:l1
+        Path: ./app.R
+        Ranges: Ln 788, Col 50 @ Ln 793, Col 10
+  - !<Text>
+    Identifier: 55092d5
+    Algorithm: sha1
+    Hash: 55092d5f20cce000dad0818c92c226bc0144f485
+    Source Language: en
+    Source Text: 'Tool 1: Data Interpretation for One Similarly Exposed Group'
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 55092d5:l1
+        Path: ./app.R
+        Ranges: Ln 727, Col 45 @ Ln 729, Col 10
+  - !<Text>
+    Identifier: cc22e73
+    Algorithm: sha1
+    Hash: cc22e737b401a344764109330086f74dc9751fa6
+    Source Language: en
+    Source Text: 'Background Color (Default):'
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: cc22e73:l1
+        Path: ./app.R
+        Ranges: Ln 1057, Col 23 @ Ln 1057, Col 57
+  - !<Text>
+    Identifier: efeff5d
+    Algorithm: sha1
+    Hash: efeff5dcf0e56c94d2d9ff4ea18267903894f05f
+    Source Language: en
+    Source Text: 'Exposure Limit Multiplier:'
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: efeff5d:l1
+        Path: ./app.R
+        Ranges: Ln 751, Col 23 @ Ln 751, Col 56
+  - !<Text>
+    Identifier: c2bb46d
+    Algorithm: sha1
+    Hash: c2bb46decd9016c5cd85617c75deffeeacfe8f8c
+    Source Language: en
+    Source Text: It naturally integrates the treatment of non-detects.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: c2bb46d:l1
+        Path: ./app.R
+        Ranges: Ln 1613, Col 29 @ Ln 1615, Col 22
+  - !<Text>
+    Identifier: 5f32e41
+    Algorithm: sha1
+    Hash: 5f32e4163d2a9297eb158bc5edeac1ec6a81a3a1
+    Source Language: en
+    Source Text: |-
+      It yields a more intuitive rationale compared to traditional
+      (frequentist) methods.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 5f32e41:l1
+        Path: ./app.R
+        Ranges: Ln 1609, Col 29 @ Ln 1612, Col 22
+  - !<Text>
+    Identifier: 2b83cc5
+    Algorithm: sha1
+    Hash: 2b83cc525d940618609420a991a0f687a33b2fdc
+    Source Language: en
+    Source Text: |-
+      The measurement dataset. There must be one value per line. Values can be
+      censored to the left (<), to the right (>), or interval censored ([X-Y]).
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 2b83cc5:l1
+        Path: ./app.R
+        Ranges: Ln 803, Col 50 @ Ln 807, Col 10
+  - !<Text>
+    Identifier: fc5b077
+    Algorithm: sha1
+    Hash: fc5b077890b12c60d8af30afb830380d82b3dbce
+    Source Language: en
+    Source Text: OEL outside of graphical limits.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: fc5b077:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 1958, Col 30 @ Ln 1958, Col 69
+          - Ln 2055, Col 38 @ Ln 2055, Col 77
+          - Ln 2143, Col 30 @ Ln 2143, Col 69
+  - !<Text>
+    Identifier: 127b5d6
+    Algorithm: sha1
+    Hash: 127b5d668a765436b4bcfd8d5015362eba847c49
+    Source Language: en
+    Source Text: Censored measurements are subject to one of the following procedure.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 127b5d6:l1
+        Path: ./app.R
+        Ranges: Ln 844, Col 24 @ Ln 847, Col 18
+  - !<Text>
+    Identifier: '1583901'
+    Algorithm: sha1
+    Hash: 1583901b198346fb79822e4d2d1b04b4b2c2af15
+    Source Language: en
+    Source Text: |-
+      This plot shows a shaded and darker region corresponding to the maximal
+      acceptable exceedance. Red symbols outside of it are unacceptable
+      exposures. It does not take into account estimation uncertainty.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 1583901:l1
+        Path: ./app.R
+        Ranges: Ln 1088, Col 25 @ Ln 1093, Col 18
+  - !<Text>
+    Identifier: 1de8474
+    Algorithm: sha1
+    Hash: 1de8474e2d30b974a09bde5837601d39c3f1b9ab
+    Source Language: en
+    Source Text: Concentration
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 1de8474:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 1829, Col 39 @ Ln 1829, Col 59
+          - Ln 1939, Col 29 @ Ln 1939, Col 49
+          - Ln 1955, Col 30 @ Ln 1955, Col 50
+          - Ln 2033, Col 38 @ Ln 2033, Col 58
+          - Ln 2053, Col 38 @ Ln 2053, Col 58
+          - Ln 2124, Col 29 @ Ln 2124, Col 49
+          - Ln 2141, Col 30 @ Ln 2141, Col 50
+  - !<Text>
+    Identifier: 4a8e3cf
+    Algorithm: sha1
+    Hash: 4a8e3cf985e41de2b17e969e0ce992ba5bfa00fb
+    Source Language: en
+    Source Text: |-
+      The plot on the left shows an acceptable situation for the chosen
+      exceedance threshold (traditionally 5% above the OEL). The plot on the
+      right shows the situation estimated by the Bayesian model. It does not
+      take into account estimation uncertainty.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 4a8e3cf:l1
+        Path: ./app.R
+        Ranges: Ln 1068, Col 25 @ Ln 1074, Col 18
+  - !<Text>
+    Identifier: ef12e2b
+    Algorithm: sha1
+    Hash: ef12e2b7d4cdcd9bf3436f84f4666b2436cdf90d
+    Source Language: en
+    Source Text: |-
+      This plot shows the probability distribution of the uncertainty around
+      the arithmetic mean. It shows the probability that its true value is (1)
+      below 1%% of the OEL, (2) between 1%% and 10%% of the OEL, (3) between
+      10%% and 50%% of the OEL, (4) between 50%% and 100%% of the OEL, and (5)
+      greater than the OEL. This is based on the classification adopted by %s.
+      The red column represents the probability of an overexposure. The latter
+      should be lower than the threshold (black dashed line).
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: ef12e2b:l1
+        Path: ./app.R
+        Ranges: Ln 1475, Col 17 @ Ln 1487, Col 18
+  - !<Text>
+    Identifier: 21d66f8
+    Algorithm: sha1
+    Hash: 21d66f8aa43c10b709619b47f6d821ac05165fd3
+    Source Language: en
+    Source Text: Detected
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 21d66f8:l1
+        Path: ./app.R
+        Ranges: Ln 1815, Col 35 @ Ln 1815, Col 50
+  - !<Text>
+    Identifier: d8dfd19
+    Algorithm: sha1
+    Hash: d8dfd19bd212ca5d9e98df470687eb55ba4f4234
+    Source Language: en
+    Source Text: Parameters Estimates
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: d8dfd19:l1
+        Path: ./app.R
+        Ranges:
+          - Ln  973, Col 50 @ Ln  975, Col 10
+          - Ln 1221, Col 50 @ Ln 1223, Col 10
+          - Ln 1396, Col 50 @ Ln 1398, Col 10
+  - !<Text>
+    Identifier: '9725731'
+    Algorithm: sha1
+    Hash: 972573100c9b01d4825b98834f547d2c4b5c3726
+    Source Language: en
+    Source Text: Methodological Background
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 9725731:l1
+        Path: ./app.R
+        Ranges: Ln 1598, Col 53 @ Ln 1600, Col 10
+  - !<Text>
+    Identifier: bd0f576
+    Algorithm: sha1
+    Hash: bd0f5766636ed1580b42d7321ac1da8f21cdedb3
+    Source Language: en
+    Source Text: 'Language:'
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: bd0f576:l1
+        Path: ./app.R
+        Ranges: Ln 741, Col 23 @ Ln 741, Col 39
+  - !<Text>
+    Identifier: 7d94d60
+    Algorithm: sha1
+    Hash: 7d94d60a14221aced698a6b515b5e0b1e6920bfe
+    Source Language: en
+    Source Text: |-
+      This plot shows the estimated exposure distribution when assuming 250
+      exposure measurements have been collected. If the measurements represent
+      8-hour TWA (Time-Weighted Average) values, this approximately represents
+      a full year of exposure. The OEL is shown as a red dotted line and the
+      point estimate of the selected percentile as a continuous blue line.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 7d94d60:l1
+        Path: ./app.R
+        Ranges: Ln 1274, Col 47 @ Ln 1281, Col 10
+  - !<Text>
+    Identifier: f8e1168
+    Algorithm: sha1
+    Hash: f8e1168f4b6039fc86aff25859a85e78e608343f
+    Source Language: en
+    Source Text: |-
+      Measurements censored to the left are treated using robust Log-probit
+      regression on order statistics. The algorithm used is derived from %s
+      (itself derived from previous work of %s).
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: f8e1168:l1
+        Path: ./app.R
+        Ranges: Ln 858, Col 25 @ Ln 863, Col 26
+  - !<Text>
+    Identifier: fd52582
+    Algorithm: sha1
+    Hash: fd52582700c9652826bea20775334dc6f77d2b65
+    Source Language: en
+    Source Text: |-
+      The measurements are scattered around the x-axis middle point. The box
+      (outer horizontal lines) represents the distance between the 25%s and
+      75%s percentiles. The whiskers (vertical lines) represent the distance
+      between the 10%s and 90%s percentiles. The inner black horizontal line is
+      the median.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: fd52582:l1
+        Path: ./app.R
+        Ranges: Ln 892, Col 17 @ Ln 899, Col 18
+  - !<Text>
+    Identifier: 4c95939
+    Algorithm: sha1
+    Hash: 4c95939265fec450a63396c7a3417b43f8bfc0f1
+    Source Language: en
+    Source Text: |-
+      This application eases the interpretation of industrial hygiene
+      measurements. Notably, it helps with checking compliance with respect to
+      an occupational exposure limit (OEL).
+
+      It is based on a risk assessment framework recognized by prominent
+      institutions such as the American Industrial Hygiene Association, the
+      British and Dutch Society for Occupational Health and Safety (BOHS/NVVA),
+      the French Institut national de recherche et de sécurité (INRS), and the
+      European Standards Organization.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 4c95939:l1
+        Path: ./app.R
+        Ranges: Ln 1528, Col 24 @ Ln 1540, Col 18
+  - !<Text>
+    Identifier: 305b9f6
+    Algorithm: sha1
+    Hash: 305b9f687062af1fb9bf940c8dfdd976c72a2329
+    Source Language: en
+    Source Text: Coefficient of Variation
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 305b9f6:l1
+        Path: ./app.R
+        Ranges: Ln 1793, Col 17 @ Ln 1793, Col 48
+  - !<Text>
+    Identifier: a2622ac
+    Algorithm: sha1
+    Hash: a2622ac7008732bbe9eb3707b06b01f295f0b8f7
+    Source Language: en
+    Source Text: 'Background Color (Threshold):'
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: a2622ac:l1
+        Path: ./app.R
+        Ranges: Ln 1062, Col 23 @ Ln 1062, Col 59
+  - !<Text>
+    Identifier: 02a9a58
+    Algorithm: sha1
+    Hash: 02a9a5879af1645c3ae291865f188225a85f4a41
+    Source Language: en
+    Source Text: |-
+      This plot shows the probability distribution of the uncertainty around
+      the selected percentile. It shows the probability that its true value is
+      (1) below 1%% of the OEL, (2) between 1%% and 10%% of the OEL, (3)
+      between 10%% and 50%% of the OEL, (4) between 50%% and 100%% of the OEL,
+      and (5) greater than the OEL. This is based on the classification adopted
+      by %s. The red column represents the probability of an overexposure. The
+      latter should be lower than the threshold shown by the black dashed line.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 02a9a58:l1
+        Path: ./app.R
+        Ranges: Ln 1300, Col 17 @ Ln 1313, Col 18
+  - !<Text>
+    Identifier: 27c579f
+    Algorithm: sha1
+    Hash: 27c579f03fdc7f959ed9c0608ba92870e5002a53
+    Source Language: en
+    Source Text: |-
+      This plot shows the estimated exposure distribution when assuming 250
+      exposure measurements have been collected. If the measurements represent
+      8-hour TWA (Time-Weighted Average) values, this approximately represents
+      a full year of exposure. The OEL is shown as a red line.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 27c579f:l1
+        Path: ./app.R
+        Ranges: Ln 1113, Col 47 @ Ln 1119, Col 10
+  - !<Text>
+    Identifier: 4528da3
+    Algorithm: sha1
+    Hash: 4528da3727ab1483574a194ba603d96b7fa07b4c
+    Source Language: en
+    Source Text: Acceptable Sample
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 4528da3:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 1893, Col 38 @ Ln 1893, Col 62
+          - Ln 1903, Col 38 @ Ln 1903, Col 62
+  - !<Text>
+    Identifier: 7d963dd
+    Algorithm: sha1
+    Hash: 7d963dd3260751ea10523865080fea7199cddf70
+    Source Language: en
+    Source Text: The application is straightforward to use. Follow these three steps.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 7d963dd:l1
+        Path: ./app.R
+        Ranges: Ln 1548, Col 24 @ Ln 1551, Col 18
+  - !<Text>
+    Identifier: d111f1a
+    Algorithm: sha1
+    Hash: d111f1a61356a1da7fa12ed06ae736a5c04fd8e0
+    Source Language: en
+    Source Text: Density Plot
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: d111f1a:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 1123, Col 49 @ Ln 1123, Col 68
+          - Ln 1285, Col 49 @ Ln 1285, Col 68
+          - Ln 1460, Col 49 @ Ln 1460, Col 68
+  - !<Text>
+    Identifier: e3d5355
+    Algorithm: sha1
+    Hash: e3d5355b5d5fd9e190086f9ef4afd37d6f396b4d
+    Source Language: en
+    Source Text: Percentiles
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: e3d5355:l1
+        Path: ./app.R
+        Ranges: Ln 1158, Col 49 @ Ln 1158, Col 67
+  - !<Text>
+    Identifier: 7e85759
+    Algorithm: sha1
+    Hash: 7e85759a4426752ee6717bb539205bb63da58d06
+    Source Language: en
+    Source Text: Parameters
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 7e85759:l1
+        Path: ./app.R
+        Ranges: Ln 743, Col 51 @ Ln 743, Col 68
+  - !<Text>
+    Identifier: a3c6c52
+    Algorithm: sha1
+    Hash: a3c6c52fd3e1c04c2773707fce6bb3e0414b9979
+    Source Language: en
+    Source Text: Censored
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: a3c6c52:l1
+        Path: ./app.R
+        Ranges:
+          - Ln 1814, Col 35 @ Ln 1814, Col 50
+          - Ln 1831, Col 39 @ Ln 1831, Col 54
+  - !<Text>
+    Identifier: 0ff7e09
+    Algorithm: sha1
+    Hash: 0ff7e09d69b90ea03a6990c6e83b05b9d8569c39
+    Source Language: en
+    Source Text: Descriptive Statistics
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 0ff7e09:l1
+        Path: ./app.R
+        Ranges: Ln 837, Col 55 @ Ln 837, Col 84
+  - !<Text>
+    Identifier: '7034018'
+    Algorithm: sha1
+    Hash: 7034018f612122446d1f1e4928b1cd0f4aa8ce7a
+    Source Language: en
+    Source Text: Measurements
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 7034018:l1
+        Path: ./app.R
+        Ranges: Ln 1833, Col 39 @ Ln 1833, Col 58
+  - !<Text>
+    Identifier: 1dba349
+    Algorithm: sha1
+    Hash: 1dba3498a52f101d5add33915f5f651bc5f12245
+    Source Language: en
+    Source Text: |-
+      This risk meter shows the probability of the exposure being too high when
+      compared to the occupational exposure limit. The red zone indicates a
+      poorly controlled exposure.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 1dba349:l1
+        Path: ./app.R
+        Ranges:
+          - Ln  965, Col 54 @ Ln  969, Col 10
+          - Ln 1213, Col 54 @ Ln 1217, Col 10
+          - Ln 1370, Col 54 @ Ln 1374, Col 10
+  - !<Text>
+    Identifier: 036cb38
+    Algorithm: sha1
+    Hash: 036cb3884d14e56c40c99bc41c81d6216b590f5e
+    Source Language: en
+    Source Text: |-
+      This plot shows the probability density function of the estimated
+      distribution of exposures. The OEL is shown as a red dotted line and the
+      point estimate of the arithmetic mean as a continuous green line.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 036cb38:l1
+        Path: ./app.R
+        Ranges: Ln 1462, Col 48 @ Ln 1467, Col 10
+  - !<Text>
+    Identifier: 2fa88b0
+    Algorithm: sha1
+    Hash: 2fa88b0b4c50eeaaadcc0b93bef73b35bc0542fa
+    Source Language: en
+    Source Text: Summary
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 2fa88b0:l1
+        Path: ./app.R
+        Ranges: Ln 839, Col 58 @ Ln 839, Col 72
+  - !<Text>
+    Identifier: 79e5ee7
+    Algorithm: sha1
+    Hash: 79e5ee756a3dd1f66b8888e3b6a3a48d024d53d4
+    Source Language: en
+    Source Text: Distribution Parameters
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 79e5ee7:l1
+        Path: ./app.R
+        Ranges:
+          - Ln  981, Col 55 @ Ln  983, Col 10
+          - Ln 1229, Col 55 @ Ln 1231, Col 10
+          - Ln 1404, Col 55 @ Ln 1406, Col 10
+  - !<Text>
+    Identifier: ebe0383
+    Algorithm: sha1
+    Hash: ebe038389f10410f846268a4f9fd69c0fbfae802
+    Source Language: en
+    Source Text: Results are updated whenever an input changes.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: ebe0383:l1
+        Path: ./app.R
+        Ranges: Ln 1569, Col 24 @ Ln 1571, Col 18
+  - !<Text>
+    Identifier: 681bbc3
+    Algorithm: sha1
+    Hash: 681bbc387fb7928acf7e4f2139d1aedff417ecc6
+    Source Language: en
+    Source Text: Proportion > OEL
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 681bbc3:l1
+        Path: ./app.R
+        Ranges: Ln 1790, Col 17 @ Ln 1790, Col 40
+

@@ -1,4 +1,4 @@
-#' Developer's entry point
+#' R Session's Entry Point
 #'
 #' This script is automatically executed by R whenever a new session is started.
 #'
@@ -11,28 +11,24 @@
 #' [The .Rprofile file of package transltr](https://github.com/jeanmathieupotvin/transltr/blob/main/.Rprofile),
 #' [Startup process](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html)
 
-
-# Global options ---------------------------------------------------------------
-
+transltr::language_source_set("en")
 
 options(
-    warnPartialMatchArgs     = TRUE,
-    warnPartialMatchDollar   = TRUE,
-    warnPartialMatchAttr     = TRUE)
+    transltr.path          = file.path("intl", "_translator.yml"),
+    transltr.verbose       = TRUE,
+    warnPartialMatchArgs   = TRUE,
+    warnPartialMatchDollar = TRUE,
+    warnPartialMatchAttr   = TRUE)
 
-
-# Development tools and utility functions --------------------------------------
-
+# Development Tools and Utility Functions --------------------------------------
 
 if (interactive()) {
+    cat("R session is interactive. Loading development tools.", sep = "\n")
+
     # Attach development packages.
     suppressMessages({
         require(microbenchmark)
     })
-
-    # Load global constants.
-    # This can be useful for debugging purposes.
-    source(file.path("R", "global.R"))
 
     # Attach aliases and small dev tools.
     # Names are as small as possible by design.
@@ -40,7 +36,26 @@ if (interactive()) {
         # Shorter aliases.
         .mb <- microbenchmark::microbenchmark
 
-        # Clear global environment.
+        # Source everything in R/.
+        .src <- \() invisible(lapply(list.files("R", full.names = TRUE), source))
+        .src()
+
+        # Start the application locally.
+        .run <- \() invisible(source(file.path(".scripts", "entrypoint.R")))
+
+        # Activate/deactivate debug version of functions.
+        # Only intl() currently has one.
+        .debug <- \(on = TRUE) {
+            if (on) {
+                .src()
+                intl <<- tr$translate
+                return(invisible())
+            }
+
+            return(.src())
+        }
+
+        # Clear the global environment.
         .rm <- \() rm(list = ls(name = globalenv()), pos = globalenv())
 
         # Return this local environment
