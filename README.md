@@ -86,6 +86,12 @@ to support multiple languages. Mechanisms are split among two scripts.
 Further mechanisms not related to `transltr` (such as support for ordinal
 numbers) are defined in `R/helpers.R`.
 
+### Placeholders
+
+Tool 1 uses placeholders to dynamically insert text into other text. Tokens
+such as `%s`, `%i`, and `%%` in the source text **must be left as is** in
+all related translations.
+
 ## Bugs and Feedback
 
 You may submit bugs, request features, and provide feedback by creating an
