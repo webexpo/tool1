@@ -93,7 +93,7 @@ ui <- shiny::fluidPage(
                 selectize = FALSE,
                 multiple  = FALSE) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
-                bslib::tooltip(id = "lang_tooltip", ""),
+                bslib::tooltip(id = "sb_lang_tooltip", ""),
 
             tags$hr(class = "app-sidebar-hr"),
 
@@ -102,14 +102,14 @@ ui <- shiny::fluidPage(
                 label   = "",
                 value   = 100) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
-                bslib::tooltip(id = "oel_tooltip", ""),
+                bslib::tooltip(id = "sb_oel_tooltip", ""),
 
             shiny::numericInput(
                 inputId = "al",
                 label   = "",
                 value   = 1) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
-                bslib::tooltip(id = "al_tooltip", ""),
+                bslib::tooltip(id = "sb_al_tooltip", ""),
 
             shiny::numericInput(
                 inputId = "conf",
@@ -118,7 +118,7 @@ ui <- shiny::fluidPage(
                 min     = 0,
                 max     = 100) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
-                bslib::tooltip(id = "conf_tooltip", ""),
+                bslib::tooltip(id = "sb_conf_tooltip", ""),
 
             shiny::numericInput(
                 inputId = "psi",
@@ -127,7 +127,7 @@ ui <- shiny::fluidPage(
                 min     = 0,
                 max     = 100) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
-                bslib::tooltip(id = "psi_tooltip", ""),
+                bslib::tooltip(id = "sb_psi_tooltip", ""),
 
             shiny::textAreaInput(
                 inputId = "data",
@@ -142,7 +142,7 @@ ui <- shiny::fluidPage(
                     "26.42",
                     "56.1"))) |>
                 htmltools::tagAppendAttributes(class = "app-input") |>
-                bslib::tooltip(id = "data_tooltip", ""),
+                bslib::tooltip(id = "sb_data_tooltip", ""),
 
             # This output is only shown when the active panel is exceedance.
             shiny::numericInput(
@@ -154,7 +154,7 @@ ui <- shiny::fluidPage(
                 htmltools::tagAppendAttributes(
                     class = "app-input",
                     style = "display: none;") |>
-                bslib::tooltip(id = "frac_threshold_tooltip", ""),
+                bslib::tooltip(id = "sb_frac_threshold_tooltip", ""),
 
             # This output is only shown when the active panel is percentiles.
             shiny::numericInput(
@@ -166,7 +166,7 @@ ui <- shiny::fluidPage(
                 htmltools::tagAppendAttributes(
                     class = "app-input",
                     style = "display: none;") |>
-                bslib::tooltip(id = "target_perc_tooltip", ""),
+                bslib::tooltip(id = "sb_target_perc_tooltip", ""),
 
             tags$hr(class = "app-sidebar-hr"),
 
@@ -742,42 +742,49 @@ server <- function(input, output, session) {
             inputId = "target_perc",
             label   = intl("Critical Percentile:"))
 
-        bslib::update_tooltip("lang_tooltip", intl("
+        bslib::update_tooltip("sb_lang_tooltip", intl("
             Choose your preferred language.
         "))
-        bslib::update_tooltip("oel_tooltip", intl("
+
+        bslib::update_tooltip("sb_oel_tooltip", intl("
             Use the exposure limit to assess overexposure. It must have the
             same unit as the measurement data.
         "))
-        bslib::update_tooltip("al_tooltip", intl("
+
+        bslib::update_tooltip("sb_al_tooltip", intl("
             Use this multiplier to modify the exposure limit. The product of
             the former and the latter is the actual exposure limit value for
             calculation purposes.
         "))
-        bslib::update_tooltip("conf_tooltip", intl("
+
+        bslib::update_tooltip("sb_conf_tooltip", intl("
             Use this value as a probability for the credible intervals around
             parameter estimates. It must be between 0% and 100%. The default
             value is set equal to 90%. The credible interval is the Bayesian
             equivalent of the confidence interval.
         "))
-        bslib::update_tooltip("psi_tooltip", intl("
+
+        bslib::update_tooltip("sb_psi_tooltip", intl("
             Use this value as the maximal overexposure risk. It must be
             between 0% and 100%. It represents the maximal probability that
             the overexposure limit is met. Above this value, the situation
             should trigger remedial action. INRS and BOHS suggest using 5%
             and 30%, respectively.
         "))
-        bslib::update_tooltip("data_tooltip", intl("
+
+        bslib::update_tooltip("sb_data_tooltip", intl("
             The measurement dataset. There must be one value per line. Values
             can be censored to the left (<), to the right (>), or interval
             censored ([X-Y]).
         "))
-        bslib::update_tooltip("frac_threshold_tooltip", intl("
+
+        bslib::update_tooltip("sb_frac_threshold_tooltip", intl("
             Use this value as an acceptable proportion of exposures above
             the exposure limit (OEL). It must be between 0% and 100%. The
             traditional default value is 5%.
         "))
-        bslib::update_tooltip("target_perc_tooltip", intl("
+
+        bslib::update_tooltip("sb_target_perc_tooltip", intl("
             Use this value to set the percentile of the exposure distribution
             that will be compared to the OEL. It must be between 0% and 100%.
             The traditional default value is 95%.
