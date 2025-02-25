@@ -13,8 +13,6 @@
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
-transltr::language_source_set("en")
-
 # Create a new Translator object.
 # Source text is identifiable via SHA-1 hashes.
 tr <- transltr::translator(id = "expostats:tool1", algorithm = "sha1")
@@ -25,7 +23,7 @@ tr$set_native_languages(
     fr = "Français")
 
 # Extract source text to translate from source scripts.
-transltr::find_source(tr = tr, interface = quote(translate))
+transltr::find_source(tr = tr, interface = quote(intl))
 
 # Export translations.
 # They are imported whenever the application is launched. See R/global.R.

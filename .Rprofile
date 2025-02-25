@@ -11,6 +11,8 @@
 #' [The .Rprofile file of package transltr](https://github.com/jeanmathieupotvin/transltr/blob/main/.Rprofile),
 #' [Startup process](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html)
 
+transltr::language_source_set("en")
+
 options(
     transltr.path          = file.path("intl", "transltr", "_translator.yml"),
     transltr.verbose       = TRUE,

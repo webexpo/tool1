@@ -71,8 +71,7 @@ ui <- shiny::fluidPage(
     # It is shown whenever the Shiny engine is blocked.
     shiny::conditionalPanel(
         condition = r"{$("html").hasClass("shiny-busy")}",
-        shiny::uiOutput(
-            outputId  = "top_banner",
+        shiny::uiOutput("top_banner",
             container = tags$p,
             class     = "app-banner-wait")
     ),
@@ -685,7 +684,7 @@ server <- function(input, output, session) {
     # Internationalization -----------------------------------------------------
 
     # For lexical scoping purposes.
-    environment(translate) <- environment()
+    environment(intl) <- environment()
 
     # Update input$lang based on (optional) URL's search parameter ?lang.
     shiny::observeEvent(session$clientData$url_search, {
@@ -713,34 +712,45 @@ server <- function(input, output, session) {
         output$top_title <- shiny::renderUI(intl("
             Tool 1: Data Interpretation for One Similarly Exposed Group
         "))
-        output$top_banner <- shiny::renderUI(
-            intl("Calculating. Please wait.")
-        )
+
+        output$top_banner <- shiny::renderUI(intl("
+            Calculating. Please wait.
+        "))
 
         ## Sidebar -------------------------------------------------------------
+
+        ### Inputs -------------------------------------------------------------
 
         shiny::updateSelectInput(
             inputId = "lang",
             label   = intl("Language:"))
+
         output$sb_inputs_title <- shiny::renderUI(intl("Parameters"))
+
         shiny::updateNumericInput(
             inputId = "oel",
             label   = intl("Exposure Limit:"))
+
         shiny::updateNumericInput(
             inputId = "al",
             label   = intl("Exposure Limit Multiplier:"))
+
         shiny::updateNumericInput(
             inputId = "conf",
             label   = intl("Credible Interval Probability:"))
+
         shiny::updateNumericInput(
             inputId = "psi",
             label   = intl("Overexposure Risk Threshold:"))
+
         shiny::updateTextAreaInput(
             inputId = "data",
             label   = intl("Measurements:"))
+
         shiny::updateNumericInput(
             inputId = "frac_threshold",
             label   = intl("Exceedance Fraction Threshold:"))
+
         shiny::updateNumericInput(
             inputId = "target_perc",
             label   = intl("Critical Percentile:"))
@@ -792,122 +802,246 @@ server <- function(input, output, session) {
             that will be compared to the OEL. It must be between 0% and 100%.
             The traditional default value is 95%.
         "))
-        output$sb_footer_app_version <- shiny::renderUI(
-            shiny::tagList(
-                intl("Tool 1"), "version", version,
-                tags$a("GitHub", href = urls$code, target = "_blank") |>
-                    as.character() |>
-                    sprintf_html(fmt = "(%s)."))
-        )
-        output$sb_footer_copyright <- shiny::renderUI(
-            shiny::tagList(
-                shiny::icon("copyright-mark", lib = "glyphicon"),
-                tags$a("Jérôme Lavoué", href = urls$jerome_lavoue, target = "_blank"),
-                year,
-                intl("All rights reserved."))
-        )
+
+        ### Footer -------------------------------------------------------------
+
+        output$sb_footer_version <- shiny::renderText(
 
         ## Panel: Statistics ---------------------------------------------------
 
         output$st_tab_name <- shiny::renderText(intl("Statistics"))
+
+        ### Descriptive Statistics ---------------------------------------------
+
+        output$st_desc_stats_title <- shiny::renderUI(intl("Descriptive Statistics"))
+
         output$st_desc_stats_subtitle <- shiny::renderUI(intl("Summary"))
-        output$st_desc_stats_alert_info <- shiny::renderUI(add_bs_alert_info(
-            title = intl("Information"),
-            tags$p(intl("
-                Censored measurements are subject to one of the following
-                procedure.")),
-            tags$ul(
-                tags$li(intl("
-                    Interval censored measurements are imputed as the
-                    mid-range.
+
+        output$st_desc_stats_alert_info <- shiny::renderUI(
+            add_bs_alert_info(
+                title = intl("Information"),
+                tags$p(intl("
+                    Censored measurements are subject to one of the following
+                    procedure.
                 ")),
-                tags$li(intl("
-                    Measurements censored to the right are imputed as 9/4 of
-                    the censoring point.
-                ")),
-                tags$li(sprintf_html(
-                    intl("
-                        Measurements censored to the left are treated using
-                        robust Log-probit regression on order statistics. The
-                        algorithm used is derived from %s (itself derived from
-                        previous work of %s).
-                    "),
-                    tags$a("NDExpo", href = urls$jerome_lavoue, target = "_blank"),
-                    tags$a("Dennis Helsel", href = urls$dennis_helsel, target = "_blank")
-                ))
+                tags$ul(
+                    tags$li(intl("
+                        Interval censored measurements are imputed as the
+                        mid-range.
+                    ")),
+                    tags$li(intl("
+                        Measurements censored to the right are imputed as 9/4
+                        of the censoring point.
+                    ")),
+                    html(tags$li,
+                        intl("
+                            Measurements censored to the left are treated using
+                            robust Log-probit regression on order statistics.
+                            The algorithm used is derived from %s (itself
+                            derived from previous work of %s).
+                        "),
+                        tags$a("NDExpo",
+                            href   = urls$jerome_lavoue,
+                            target = "_blank"),
+                        tags$a("Dennis Helsel",
+                            href   = urls$dennis_helsel,
+                            target = "_blank")
+                    )
+                )
             )
-        ))
+        )
+
+        ### QQ Plot ------------------------------------------------------------
+
         output$st_qq_title <- shiny::renderUI(intl("Quantile-Quantile Plot"))
-        output$st_qq_desc  <- shiny::renderUI(intl("
+
+        output$st_qq_desc <- shiny::renderUI(intl("
             The points above should follow a straight line. Random deviations
             from it are expected. However, significant deviations suggest that
             the data may have to be split into distinct subsets, or that some
             outliers must be investigated.
         "))
+
+        ### Box and Whiskers Plot ----------------------------------------------
+
         output$st_box_title <- shiny::renderUI(intl("Box and Whiskers Plot"))
-        output$st_box_desc  <- shiny::renderUI(sprintf_html(
-            intl("
-                The measurements are scattered around the x-axis middle point.
-                The box (outer horizontal lines) represents the distance between
-                the 25%1$s and 75%1$s percentiles. The whiskers (vertical lines)
-                represent the distance between the 10%1$s and 90%1$s percentiles.
-                The inner black horizontal line is the median.
-            "),
-            as.character(tags$sup(intl("th")))
-        ))
+
+        output$st_box_desc <- shiny::renderUI(
+            html(NULL,
+                intl("
+                    The measurements are scattered around the x-axis middle
+                    point. The box (outer horizontal lines) represents the
+                    distance between the 25%s and 75%s percentiles. The
+                    whiskers (vertical lines) represent the distance between
+                    the 10%s and 90%s percentiles. The inner black horizontal
+                    line is the median.
+                "),
+                tags$sup(ordinal_abbr(25L, lang)),
+                tags$sup(ordinal_abbr(75L, lang)),
+                tags$sup(ordinal_abbr(10L, lang)),
+                tags$sup(ordinal_abbr(90L, lang))
+            )
+        )
 
         ## Panel: Exceedance Fraction ------------------------------------------
 
         output$ef_tab_name <- shiny::renderText(intl("Exceedance Fraction"))
+
+        ### Risk Decision ------------------------------------------------------
+
+        output$ef_risk_decision_title <- shiny::renderUI(intl("
+            Risk Analysis Based on the Exceedance Fraction
+        "))
+
+        output$ef_risk_decision_subtitle <- shiny::renderUI(intl("Risk Decision"))
+
+        output$ef_risk_decision <- shiny::renderUI(
+            list(
+                html(tags$li,
+                    intl("
+                        Overexposure is defined as the exceedance fraction
+                        being greater than or equal to %s.
+                    "),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput(
+                            outputId = "ef_risk_decision_frac",
+                            inline   = TRUE))
+                ),
+                html(tags$li,
+                    intl("
+                        The probability that this criterion is met is equal to
+                        %s.
+                    "),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput(
+                            outputId = "ef_risk_decision_criterion",
+                            inline   = TRUE))
+                ),
+                html(tags$li,
+                    intl("
+                        The probability that this criterion is met should be
+                        lower than %s.
+                    "),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput(
+                            outputId = "ef_risk_decision_limit",
+                            inline   = TRUE))
+                ),
+                html(tags$li,
+                    intl("Consequently, the current situation is %s."),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput(
+                            outputId = "ef_risk_decision_conclusion",
+                            inline   = TRUE))
+                )
+            )
+        )
+
         output$ef_risk_meter_desc <- shiny::renderUI(intl("
             This risk meter shows the probability of the exposure being too
             high when compared to the occupational exposure limit. The red
             zone indicates a poorly controlled exposure.
         "))
-        output$ef_estim_title <- shiny::renderUI(
-            intl("Parameters Estimates")
-        )
-        output$ef_estim <- shiny::renderUI(
-            intl("Square brackets give the underlying credible intervals.")
-        )
-        output$ef_estim_dist_title <- shiny::renderUI(
-            intl("Distribution Parameters")
-        )
-        output$ef_estim_dist <- shiny::renderUI(shiny::tagList(
-            tags$li(sprintf_html(
-                intl("The geometric mean point estimate is equal to %s."),
-                htmltools::tagAppendAttributes(
-                    class = "app-output-inline",
-                    shiny::textOutput("ef_estim_dist_geo_mean", inline = TRUE))
-            )),
 
-            tags$li(sprintf_html(
-                intl("The geometric standard deviation point estimate is equal to %s."),
+        ### Parameter Estimates ------------------------------------------------
+
+        output$ef_estim_title <- shiny::renderUI(intl("
+            Parameters Estimates
+        "))
+
+        output$ef_estim <- shiny::renderUI(intl("
+            Square brackets give the underlying credible intervals.
+        "))
+
+        output$ef_estim_dist_title <- shiny::renderUI(intl("
+            Distribution Parameters
+        "))
+
+        output$ef_estim_dist <- shiny::renderUI(
+            list(
+                html(tags$li,
+                    intl("The geometric mean point estimate is equal to %s."),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput(
+                            outputId = "ef_estim_dist_geo_mean",
+                            inline   = TRUE))
+                ),
+                html(tags$li,
+                    intl("
+                        The geometric standard deviation point estimate is
+                        equal to %s.
+                    "),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput(
+                            outputId = "ef_estim_dist_geo_sd",
+                            inline   = TRUE))
+                )
+            )
+        )
+
+        output$ef_estim_ef_title <- shiny::renderUI(intl("
+            Exceedance Fraction
+        "))
+
+        output$ef_estim_ef <- shiny::renderUI(
+            html(tags$li,
+                intl("The point estimate is equal to %s."),
                 htmltools::tagAppendAttributes(
                     class = "app-output-inline",
-                    shiny::textOutput("ef_estim_dist_geo_sd", inline = TRUE))
-            ))
-        ))
-        output$ef_estim_ef_title <- shiny::renderUI(
-            intl("Exceedance Fraction")
+                    shiny::textOutput("ef_estim_ef_frac", inline = TRUE))
+            )
         )
-        output$ef_estim_ef <- shiny::renderUI(tags$li(sprintf_html(
-            intl("The point estimate is equal to %s."),
-            htmltools::tagAppendAttributes(
-                class = "app-output-inline",
-                shiny::textOutput("ef_estim_ef_frac", inline = TRUE))
-        )))
+
+        ### Exceedance Plot ----------------------------------------------------
+
         output$ef_exceed_title <- shiny::renderUI(intl("Exceedance Plot"))
+
         output$ef_exceed <- shiny::renderUI(intl("
             The following plot illustrates the proportion of exposures that
             would be above the OEL in a fictional sample of one hundred
             measurements. Each flask represents an exposure. Red flasks
-            correspond to exposures that are above the exposure limit. The plot
-            can be shown in one of four variations. You may choose any variant
-            (an alternative way of displaying the same information) below and,
-            optionally, customize colors.
+            correspond to exposures that are above the exposure limit. The
+            plot can be shown in one of four variations. You may choose any
+            variant (an alternative way of displaying the same information)
+            below and, optionally, customize colors.
         "))
+
+        shiny::updateRadioButtons(
+            inputId = "ef_exceed_btn_choose",
+            label   = intl("Variants:"))
+
+        shiny::updateActionButton(
+            inputId = "ef_exceed_btn_customize",
+            label   = intl("Customize Colors"))
+
+        colourpicker::updateColourInput(
+            session = session,
+            inputId = "ef_exceed_col_risk",
+            label   = intl("Flask Color (Exceedance):"))
+
+        colourpicker::updateColourInput(
+            session = session,
+            inputId = "ef_exceed_col_no_risk",
+            label   = intl("Flask Color (No Exceedance):"))
+
+        colourpicker::updateColourInput(
+            session = session,
+            inputId = "ef_exceed_col_bg",
+            label   = intl("Background Color (Default):"))
+
+        colourpicker::updateColourInput(
+            session = session,
+            inputId = "ef_exceed_col_bg_threshold",
+            label   = intl("Background Color (Threshold):"))
+
         output$ef_exceed_cols_label <- shiny::renderUI(intl("Colors:"))
+
         output$ef_exceed_desc_sub_plot <- shiny::renderUI(
             switch(input$ef_exceed_btn_choose,
                 plot1 = intl("
@@ -950,113 +1084,175 @@ server <- function(input, output, session) {
                 ")
             )
         )
+
+        ### Sequential Plot ----------------------------------------------------
+
         output$ef_seq_title <- shiny::renderUI(intl("Sequential Plot"))
-        output$ef_seq_desc  <- shiny::renderUI(intl("
+
+        output$ef_seq_desc <- shiny::renderUI(intl("
             This plot shows the estimated exposure distribution when assuming
             250 exposure measurements have been collected. If the measurements
             represent 8-hour TWA (Time-Weighted Average) values, this
             approximately represents a full year of exposure. The OEL is shown
             as a red line.
         "))
+
+        ### Density Plot -------------------------------------------------------
+
         output$ef_dist_title <- shiny::renderUI(intl("Density Plot"))
-        output$ef_dist_desc  <- shiny::renderUI(intl("
+
+        output$ef_dist_desc <- shiny::renderUI(intl("
             This plot shows the probability density function of the estimated
             distribution of exposures. The OEL is shown as a red line. The
             exceedance fraction is the area under the curve beyond the OEL
             value.
         "))
+
+        ### Risk Band Plot -----------------------------------------------------
+
         output$ef_risk_band_title <- shiny::renderUI(intl("Risk Band Plot"))
-        output$ef_risk_band_desc  <- shiny::renderUI(sprintf_html(
-            intl("
-                This plot shows the probability distribution of the uncertainty
-                around the exceedance fraction. It shows the probability that
-                its true value is
-                (1) below %s,
-                (2) between %s and %s, and
-                (3) greater than %s.
-                The red column represents the probability of an overexposure.
-                The latter should be lower than the threshold shown by the
-                black dashed line.
-            "),
-            shiny::textOutput("ef_risk_band_desc_low_val_1",  inline = TRUE),
-            shiny::textOutput("ef_risk_band_desc_low_val_2",  inline = TRUE),
-            shiny::textOutput("ef_risk_band_desc_high_val_1", inline = TRUE),
-            shiny::textOutput("ef_risk_band_desc_high_val_2", inline = TRUE)
-        ))
+
+        output$ef_risk_band_desc <- shiny::renderUI(
+            html(NULL,
+                intl("
+                    This plot shows the probability distribution of the
+                    uncertainty around the exceedance fraction. It shows
+                    the probability that its true value is
+
+                    (1) below %s,
+                    (2) between %s and %s, and
+                    (3) greater than %s.
+
+                    The red column represents the probability of an
+                    overexposure. The latter should be lower than the
+                    threshold shown by the black dashed line.
+                "),
+                shiny::textOutput("ef_risk_band_desc_low_val_1",  inline = TRUE),
+                shiny::textOutput("ef_risk_band_desc_low_val_2",  inline = TRUE),
+                shiny::textOutput("ef_risk_band_desc_high_val_1", inline = TRUE),
+                shiny::textOutput("ef_risk_band_desc_high_val_2", inline = TRUE)
+            )
+        )
 
         ## Panel: Percentiles --------------------------------------------------
 
         output$pe_tab_name <- shiny::renderText(intl("Percentiles"))
+
+        ### Risk Decision ------------------------------------------------------
+
+        output$pe_risk_decision_title <- shiny::renderUI(intl("
+            Risk Analysis Based on Percentiles
+        "))
+
+        output$pe_risk_decision_subtitle <- shiny::renderUI(intl("Risk Decision"))
+
+        output$pe_risk_decision <- shiny::renderUI(
+            list(
+                html(tags$li,
+                    intl("
+                        Overexposure is defined as the %s percentile
+                        being greater than or equal to the OEL.
+                    "),
                     shiny::uiOutput(
-                        outputId  = "pe_risk_decision_perc",
-                        container = tags$span))
-            )),
-            tags$li(sprintf_html(
-                intl("
-                    The probability that this criterion is met is equal to %s.
-                "),
-                htmltools::tagAppendAttributes(
-                    class = "app-output-inline",
-                    shiny::textOutput("pe_risk_decision_criterion", inline = TRUE))
-            )),
-            tags$li(sprintf_html(
-                intl("
-                    The probability that this criterion is met should be lower
-                    than %s.
-                "),
-                htmltools::tagAppendAttributes(
-                    class = "app-output-inline",
-                    shiny::textOutput("pe_risk_decision_limit", inline = TRUE))
-            )),
-            tags$li(sprintf_html(
-                intl("
-                    Consequently, the current situation is declared to be %s.
-                "),
-                htmltools::tagAppendAttributes(
-                    class = "app-output-inline",
-                    shiny::textOutput("pe_risk_decision_conclusion", inline = TRUE))
-            ))
-        ))
+                        outputId = "pe_risk_decision_perc",
+                        inline   = TRUE,
+                        class    = "app-output-inline")
+                ),
+                html(tags$li,
+                    intl("
+                        The probability that this criterion is met is equal to
+                        %s.
+                    "),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput(
+                            outputId = "pe_risk_decision_criterion",
+                            inline   = TRUE))
+                ),
+                html(tags$li,
+                    intl("
+                        The probability that this criterion is met should be
+                        lower than %s.
+                    "),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput(
+                            outputId = "pe_risk_decision_limit",
+                            inline   = TRUE))
+                ),
+                html(tags$li,
+                    intl("Consequently, the current situation is %s."),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput(
+                            outputId = "pe_risk_decision_conclusion",
+                            inline   = TRUE))
+                )
+            )
+        )
+
         output$pe_risk_meter_desc <- shiny::renderUI(intl("
             This risk meter shows the probability of the exposure being too
             high when compared to the occupational exposure limit. The red
             zone indicates a poorly controlled exposure.
         "))
-        output$pe_estim_title <- shiny::renderUI(
-            intl("Parameters Estimates")
-        )
-        output$pe_estim <- shiny::renderUI(
-            intl("Square brackets give the underlying credible intervals.")
-        )
-        output$pe_estim_dist_title <- shiny::renderUI(
-            intl("Distribution Parameters")
-        )
-        output$pe_estim_dist <- shiny::renderUI(shiny::tagList(
-            tags$li(sprintf_html(
-                intl("The geometric mean point estimate is equal to %s."),
-                htmltools::tagAppendAttributes(
-                    class = "app-output-inline",
-                    shiny::textOutput("pe_estim_dist_geo_mean", inline = TRUE))
-            )),
 
-            tags$li(sprintf_html(
-                intl("The geometric standard deviation point estimate is equal to %s."),
+        ### Parameter Estimates ------------------------------------------------
+
+        output$pe_estim_title <- shiny::renderUI(intl("
+            Parameters Estimates
+        "))
+
+        output$pe_estim <- shiny::renderUI(intl("
+            Square brackets give the underlying credible intervals.
+        "))
+
+        output$pe_estim_dist_title <- shiny::renderUI(intl(
+            "Distribution Parameters
+        "))
+
+        output$pe_estim_dist <- shiny::renderUI(
+            list(
+                html(tags$li,
+                    intl("The geometric mean point estimate is equal to %s."),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput(
+                            outputId = "pe_estim_dist_geo_mean",
+                            inline   = TRUE))
+                ),
+                html(tags$li,
+                    intl("
+                        The geometric standard deviation point estimate is
+                        equal to %s.
+                    "),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput(
+                            outputId = "pe_estim_dist_geo_sd",
+                            inline   = TRUE))
+                )
+            )
+        )
+
+        output$pe_estim_pe_title <- shiny::renderUI(intl("
+            Percentile Estimate
+        "))
+
+        output$pe_estim_pe <- shiny::renderUI(
+            html(tags$li,
+                intl("The point estimate is equal to %s."),
                 htmltools::tagAppendAttributes(
                     class = "app-output-inline",
-                    shiny::textOutput("pe_estim_dist_geo_sd", inline = TRUE))
-            ))
-        ))
-        output$pe_estim_pe_title <- shiny::renderUI(
-            intl("Percentile Estimate")
+                    shiny::textOutput("pe_estim_pe_perc", inline = TRUE))
+            )
         )
-        output$pe_estim_pe <- shiny::renderUI(tags$li(sprintf_html(
-            intl("The point estimate is equal to %s."),
-            htmltools::tagAppendAttributes(
-                class = "app-output-inline",
-                shiny::textOutput("pe_estim_pe_perc", inline = TRUE))
-        )))
+
+        ### Sequential Plot ----------------------------------------------------
+
         output$pe_seq_title <- shiny::renderUI(intl("Sequential Plot"))
-        output$pe_seq_desc  <- shiny::renderUI(intl("
+
+        output$pe_seq_desc <- shiny::renderUI(intl("
             This plot shows the estimated exposure distribution when assuming
             250 exposure measurements have been collected. If the measurements
             represent 8-hour TWA (Time-Weighted Average) values, this
@@ -1064,87 +1260,176 @@ server <- function(input, output, session) {
             as a red dotted line and the point estimate of the selected
             percentile as a continuous blue line.
         "))
+
+        ### Density Plot -------------------------------------------------------
+
         output$pe_dist_title <- shiny::renderUI(intl("Density Plot"))
-        output$pe_dist_desc  <- shiny::renderUI(intl("
+
+        output$pe_dist_desc <- shiny::renderUI(intl("
             This plot shows the probability density function of the estimated
             distribution of exposures. The OEL is shown as a red dotted line
             and the point estimate of the selected percentile as a continuous
             blue line.
         "))
+
+        ### Risk Band Plot -----------------------------------------------------
+
         output$pe_risk_band_title <- shiny::renderUI(intl("Risk Band Plot"))
-        output$pe_risk_band_desc  <- shiny::renderUI(sprintf_html(
-            intl("
-                This plot shows the probability distribution of the uncertainty
-                around the selected percentile. It shows the probability that
-                its true value is
-                (1) below 1%% of the OEL,
-                (2) between 1%% and 10%% of the OEL,
-                (3) between 10%% and 50%% of the OEL,
-                (4) between 50%% and 100%% of the OEL, and
-                (5) greater than the OEL.
-                This is based on the classification adopted by %s. The red
-                column represents the probability of an overexposure. The
-                latter should be lower than the threshold shown by the black
-                dashed line."
-            ),
-            tags$a("AIHA", href = urls$aiha, target = "_blank")
-        ))
+
+        output$pe_risk_band_desc <- shiny::renderUI(
+            html(NULL,
+                intl("
+                    This plot shows the probability distribution of the
+                    uncertainty around the selected percentile. It shows
+                    the probability that its true value is
+
+                    (1) below 1%% of the OEL,
+                    (2) between 1%% and 10%% of the OEL,
+                    (3) between 10%% and 50%% of the OEL,
+                    (4) between 50%% and 100%% of the OEL, and
+                    (5) greater than the OEL.
+
+                    This is based on the classification adopted by %s. The red
+                    column represents the probability of an overexposure. The
+                    latter should be lower than the threshold shown by the black
+                    dashed line.
+                "),
+                tags$a("AIHA", href = urls$aiha, target = "_blank")
+            )
+        )
 
         ## Panel: Arithmetic Mean ----------------------------------------------
 
         output$am_tab_name <- shiny::renderText(intl("Arithmetic Mean"))
+
+        ### Risk Decision ------------------------------------------------------
+
+        output$am_risk_decision_title <- shiny::renderUI(intl("
+            Risk Analysis Based on the Arithmetic Mean
+        "))
+
+        output$am_risk_decision_subtitle <- shiny::renderUI(intl("Risk Decision"))
+
+        output$am_risk_decision <- shiny::renderUI(
+            list(
+                html(tags$li,
+                    intl("
+                        Overexposure is defined as the arithmetic
+                        mean being greater than or equal to the OEL.")
+                ),
+                html(tags$li,
+                    intl("
+                        The probability that this criterion is met is equal to
+                        %s.
+                    "),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput(
+                            outputId = "am_risk_decision_criterion",
+                            inline   = TRUE))
+                ),
+                html(tags$li,
+                    intl("
+                        The probability that this criterion is met should be
+                        lower than %s.
+                    "),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput(
+                            outputId = "am_risk_decision_limit",
+                            inline   = TRUE))
+                ),
+                html(tags$li,
+                    intl("Consequently, the current situation is %s."),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput(
+                            outputId = "am_risk_decision_conclusion",
+                            inline   = TRUE))
+                )
+            )
+        )
+
         output$am_risk_meter_desc <- shiny::renderUI(intl("
             This risk meter shows the probability of the exposure being too
             high when compared to the occupational exposure limit. The red
-            zone indicates a poorly controlled exposure.")
-        )
-        output$am_risk_decision_alert_warn <- shiny::renderUI(
-            intl("
-                The risk assessment based on AM relies on the availability of
-                a long-term averaged OEL (LTA-OEL in the AIHA terminology),
-                representing a cumulative burden threshold. Most current OELs
-                are not created as LTA-OEL. Despite an annoying lack of precise
-                definition by most organizations, they should be most often
-                viewed as thresholds to be exceeded as few times as possible.
-                Some authors have suggested using one-tenth of the OEL as a
-                practical LTA-OEL when assessing risk using the arithmetic mean.
-            ") |>
-            tags$p() |>
-            add_bs_alert_warn(title = intl("Warning"))
-        )
-        output$am_estim_title <- shiny::renderUI(
-            intl("Parameters Estimates")
-        )
-        output$am_estim <- shiny::renderUI(
-            intl("Square brackets give the underlying credible intervals.")
-        )
-        output$am_estim_dist_title <- shiny::renderUI(
-            intl("Distribution Parameters")
-        )
-        output$am_estim_dist <- shiny::renderUI(shiny::tagList(
-            tags$li(sprintf_html(
-                intl("The geometric mean point estimate is equal to %s."),
-                htmltools::tagAppendAttributes(
-                    class = "app-output-inline",
-                    shiny::textOutput("am_estim_dist_geo_mean", inline = TRUE))
-            )),
+            zone indicates a poorly controlled exposure.
+        "))
 
-            tags$li(sprintf_html(
-                intl("The geometric standard deviation point estimate is equal to %s."),
+        output$am_risk_decision_alert_warn <- shiny::renderUI(
+            add_bs_alert_warn(
+                title = intl("Warning"),
+                tags$p(intl("
+                    Risk assessment based on the arithmetic mean relies on the
+                    availability of a long-term averaged OEL (LTA-OEL in the
+                    AIHA terminology) representing a cumulative burden threshold.
+                    Most current OELs are not created as LTA-OEL.
+
+                    Despite an annoying lack of precise definition by most
+                    organizations, they should be most often viewed as thresholds
+                    to be exceeded as few times as possible. Some authors have
+                    suggested using one-tenth of the OEL as a practical LTA-OEL
+                    when assessing risk using the arithmetic mean.
+                "))
+            )
+        )
+
+        ### Parameter Estimates ------------------------------------------------
+
+        output$am_estim_title <- shiny::renderUI(intl("
+            Parameters Estimates
+        "))
+
+        output$am_estim <- shiny::renderUI(intl("
+            Square brackets give the underlying credible intervals.
+        "))
+
+        output$am_estim_dist_title <- shiny::renderUI(intl("
+            Distribution Parameters
+        "))
+
+        output$am_estim_dist <- shiny::renderUI(
+            list(
+                html(tags$li,
+                    intl("The geometric mean point estimate is equal to %s."),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput(
+                            outputId = "am_estim_dist_geo_mean",
+                            inline   = TRUE))
+                ),
+                html(tags$li,
+                    intl("
+                        The geometric standard deviation point estimate is
+                        equal to %s.
+                    "),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput(
+                            outputId = "am_estim_dist_geo_sd",
+                            inline   = TRUE))
+                )
+            )
+        )
+
+        output$am_estim_am_title <- shiny::renderUI(intl(
+            "Arithmetic Mean
+        "))
+
+        output$am_estim_am <- shiny::renderUI(
+            html(tags$li,
+                intl("The point estimate is equal to %s."),
                 htmltools::tagAppendAttributes(
                     class = "app-output-inline",
-                    shiny::textOutput("am_estim_dist_geo_sd", inline = TRUE))
-            ))
-        ))
-        output$am_estim_am_title <- shiny::renderUI(intl("Arithmetic Mean"))
-        output$am_estim_am       <- shiny::renderUI(tags$li(sprintf_html(
-            intl("The point estimate is equal to %s."),
-            htmltools::tagAppendAttributes(
-                class = "app-output-inline",
-                shiny::textOutput("am_estim_am_mean", inline = TRUE))
-        )))
+                    shiny::textOutput("am_estim_am_mean", inline = TRUE))
+            )
+        )
+
+        ### Sequential Plot ----------------------------------------------------
+
         output$am_seq_title <- shiny::renderUI(intl("Sequential Plot"))
-        output$am_seq_desc  <- shiny::renderUI(intl("
+
+        output$am_seq_desc <- shiny::renderUI(intl("
             This plot shows the estimated exposure distribution when assuming
             250 exposure measurements have been collected. If the measurements
             represent 8-hour TWA (Time-Weighted Average) values, this
@@ -1152,149 +1437,203 @@ server <- function(input, output, session) {
             as a red dotted line and the point estimate of the arithmetic mean
             as a continuous green line.
         "))
+
+        ### Density Plot -------------------------------------------------------
+
         output$am_dist_title <- shiny::renderUI(intl("Density Plot"))
-        output$am_dist_desc  <- shiny::renderUI(intl("
+
+        output$am_dist_desc <- shiny::renderUI(intl("
             This plot shows the probability density function of the estimated
             distribution of exposures. The OEL is shown as a red dotted line
             and the point estimate of the arithmetic mean as a continuous green
             line.
         "))
+
+        ### Risk Band Plot -----------------------------------------------------
+
         output$am_risk_band_title <- shiny::renderUI(intl("Risk Band Plot"))
-        output$am_risk_band_desc  <- shiny::renderUI(sprintf_html(
-            intl("
-                This plot shows the probability distribution of the uncertainty
-                around the arithmetic mean. It shows the probability that its
-                true value is
-                (1) below 1%% of the OEL,
-                (2) between 1%% and 10%% of the OEL,
-                (3) between 10%% and 50%% of the OEL,
-                (4) between 50%% and 100%% of the OEL, and
-                (5) greater than the OEL.
-                This is based on the classification adopted by %s. The red
-                column represents the probability of an overexposure. The
-                latter should be lower than the threshold (black dashed line)."
-            ),
-            tags$a("AIHA", href = urls$aiha, target = "_blank")
-        ))
+
+        output$am_risk_band_desc <- shiny::renderUI(
+            html(NULL,
+                intl("
+                    This plot shows the probability distribution of the
+                    uncertainty around the arithmetic mean. It shows the
+                    probability that its true value is
+
+                    (1) below 1%% of the OEL,
+                    (2) between 1%% and 10%% of the OEL,
+                    (3) between 10%% and 50%% of the OEL,
+                    (4) between 50%% and 100%% of the OEL, and
+                    (5) greater than the OEL.
+
+                    This is based on the classification adopted by %s. The red
+                    column represents the probability of an overexposure. The
+                    latter should be lower than the threshold (black dashed line).
+                "),
+                tags$a("AIHA", href = urls$aiha, target = "_blank")
+            )
+        )
 
         ## Panel: About --------------------------------------------------------
 
         output$ab_tab_name <- shiny::renderText(intl("About"))
-        output$ab_about_title <- shiny::renderUI(intl("About"))
-        output$ab_about       <- shiny::renderUI({
-            a_epsum <- tags$a(intl("School of Public Health"),
-                href   = urls$epsum[[lang]],
-                target = "_blank")
-            a_udm <- tags$a(intl("Université de Montréal"),
-                href   = urls$udm[[lang]],
-                target = "_blank")
-            a_code <- tags$a(intl("GitHub"),
-                href   = urls$code,
-                target = "_blank")
 
-            sprintf_html(
+        ### About --------------------------------------------------------------
+
+        output$ab_about_title <- shiny::renderUI(intl("About"))
+
+        output$ab_about <- shiny::renderUI(
+            html(NULL,
                 intl("
                     This application (and related tools) are developped by the
                     Industrial Hygiene team of the Department of Environmental
                     and Occupational Health at the %s of the %s. The source
                     code is available on %s.
                 "),
-                a_epsum,
-                a_udm,
-                a_code
+                tags$a("École de Santé Publique",
+                    href   = urls$epsum[[lang]],
+                    target = "_blank"),
+                tags$a("Université de Montréal",
+                    href   = urls$udm[[lang]],
+                    target = "_blank"),
+                tags$a("GitHub",
+                    href   = urls$code,
+                    target = "_blank")
             )
-        })
-        output$ab_how_to_use_title <- shiny::renderUI(
-            intl("How to Use This Application")
         )
-        output$ab_how_to_use <- shiny::renderUI(shiny::tagList(
-            tags$p(intl("
-                This application eases the interpretation of industrial hygiene
-                measurements. Notably, it helps with checking compliance with
-                respect to an occupational exposure limit (OEL). It is based on
-                a risk assessment framework recognized by prominent institutions
-                such as the American Industrial Hygiene Association, the British
-                and Dutch Society for Occupational Health and Safety (BOHS/NVVA),
-                the French Institut national de recherche et de sécurité (INRS),
-                and the European Standards Organization.
-            ")),
-            tags$p(intl("
-                It assumes that input measurements (measurements) represent a
-                random sample stemming from the distribution of exposures that
-                underlie the sampled context. In other words, the data is
-                representative of the specific exposure regimen one wishes to
-                assess.
-            ")),
-            tags$p(intl("
-                The application is straightforward to use. Follow these three
-                steps.
-            ")),
-            tags$ul(
-                tags$li(intl("
-                    Enter your measurements under Measurements in the left panel.
-                    There must be one value per line. Write them as you would in
-                    your favourite text editor. You may also copy and paste
-                    values stored in a spreadsheet's column. The initial dataset
-                    provided for illustration purposes can be deleted as you
-                    usually would in any text editor.
+
+        ### How To Use This Application ----------------------------------------
+
+        output$ab_how_to_use_title <- shiny::renderUI(intl("
+            How to Use This Application
+        "))
+
+        output$ab_how_to_use <- shiny::renderUI(
+            list(
+                tags$p(intl("
+                    This application eases the interpretation of industrial
+                    hygiene measurements. Notably, it helps with checking
+                    compliance with respect to an occupational exposure limit
+                    (OEL).
+
+                    It is based on a risk assessment framework recognized by
+                    prominent institutions such as the American Industrial
+                    Hygiene Association, the British and Dutch Society for
+                    Occupational Health and Safety (BOHS/NVVA), the French
+                    Institut national de recherche et de sécurité (INRS),
+                    and the European Standards Organization.
                 ")),
-                tags$li(intl("
-                    Enter other parameters (see the left sidebar to do do).
+                tags$p(intl("
+                    It assumes that input measurements (measurements) represent
+                    a random sample stemming from the distribution of exposures
+                    that underlie the sampled context. In other words, the data
+                    is representative of the specific exposure regimen one
+                    wishes to assess.
                 ")),
-                tags$li(intl("Wait for the calculations to be performed."))
-            ),
-            tags$p(intl("Results are updated whenever an input changes.")),
-            tags$p(intl("
-                Censored values are written as <X (left censored), >X (right
-                censored), or [X1-X2] (interval censored), where X is the
-                censored value. It must have the same unit as other non-censored
-                measurements.
-            "))
-        ))
-        output$ab_metho_bg_title <- shiny::renderUI(
-            intl("Methodological Background")
+                tags$p(intl("
+                    The application is straightforward to use. Follow these
+                    three steps.
+                ")),
+                tags$ul(
+                    tags$li(intl("
+                        Enter your measurements under Measurements in the left
+                        panel. There must be one value per line. Write them as
+                        you would in your favourite text editor. You may also
+                        copy and paste values stored in a spreadsheet's column.
+
+                        The initial dataset provided for illustration purposes
+                        can be deleted as you usually would in any text editor.
+                    ")),
+                    tags$li(intl("
+                        Enter other parameters (see the left sidebar to do do).
+                    ")),
+                    tags$li(intl("
+                        Wait for the calculations to be performed.
+                    "))
+                ),
+                tags$p(intl("
+                    Results are updated whenever an input changes.
+                ")),
+                html(tags$p,
+                    intl("
+                        Values can be censored. Add a %s sign before each
+                        measurement censored to the left (e.g. <30.0) and
+                        a %s sign before each measurement censored to the
+                        right (e.g. >30.0). Use %s to denote interval
+                        censored values (e.g. [20-30]).
+
+                        Censored values must have the same unit as other
+                        non-censored measurements.
+                    "),
+                    tags$span(
+                        style = "font-weight: bold;",
+                        "lower than or equal (<)"),
+                    tags$span(
+                        style = "font-weight: bold;",
+                        "greater than or equal (>)"),
+                    tags$span(
+                        style = "font-weight: bold;",
+                        "square brackets")
+                )
+            )
         )
-        output$ab_metho_bg <- shiny::renderUI(shiny::tagList(
-            tags$p(intl("
-                This application uses a Bayesian approach to estimate the
-                parameters of the log-normal distribution.
-            ")),
-            tags$ul(
-                tags$li(intl("
-                    It yields a more intuitive rationale compared
-                    to traditional (frequentist) methods.
+
+        ### Methodological Background ------------------------------------------
+
+        output$ab_metho_bg_title <- shiny::renderUI(intl("
+            Methodological Background
+        "))
+
+        output$ab_metho_bg <- shiny::renderUI(
+            list(
+                tags$p(intl("
+                    This application uses a Bayesian approach to estimate
+                    the parameters of the log-normal distribution.
                 ")),
-                tags$li(intl("
-                    It naturally integrates the treatment of non-detects.
-                ")),
-                tags$li(intl("
-                    It allows the inclusion of external information in the
-                    measurements (not yet leveraged by the application).
-                "))
-            ),
-            tags$p(sprintf_html(
-                intl("
-                    The Bayesian models and data interpretation procedures used
-                    by this application are derived from current best practices
-                    in industrial hygiene, which are described in the following
-                    scientific paper: Jérôme Lavoué, Lawrence Joseph, Peter
-                    Knott, Hugh Davies, France Labrèche, Frédéric Clerc, Gautier
-                    Mater, Tracy Kirkham, Expostats: A Bayesian Toolkit to Aid
-                    the Interpretation of Occupational Exposure Measurements,
-                    Annals of Work Exposures and Health, Volume 63, Issue 3,
-                    April 2019, Pages 267-279 (%s).
-                "),
-                tags$a(urls$expostats_paper,
-                    href   = urls$expostats_paper,
-                    target = "_blank")
-            )),
-            tags$p(sprintf_html(
-                intl("Additional details and references are available on %s."),
-                tags$a("expostats.ca",
-                    href   = urls$expostats[[lang]],
-                    target = "_blank")
-            ))
-        ))
+                tags$ul(
+                    tags$li(intl("
+                        It yields a more intuitive rationale compared
+                        to traditional (frequentist) methods.
+                    ")),
+                    tags$li(intl("
+                        It naturally integrates the treatment of non-detects.
+                    ")),
+                    tags$li(intl("
+                        It allows the inclusion of external information in the
+                        measurements (not yet leveraged by the application).
+                    "))
+                ),
+                html(tags$p,
+                    intl("
+                        The Bayesian models and data interpretation procedures
+                        used by this application are derived from current best
+                        practices in industrial hygiene, which are described in
+                        the following scientific paper:
+
+                        Jérôme Lavoué, Lawrence Joseph, Peter Knott, Hugh
+                        Davies, France Labrèche, Frédéric Clerc, Gautier Mater,
+                        Tracy Kirkham, %s, Annals of Work Exposures and Health,
+                        Volume 63, Issue 3, April 2019, Pages 267-279 (%s).
+                    "),
+                    tags$span(
+                        .noWS = "after",
+                        style = "font-style: italic",
+                        "Expostats: A Bayesian Toolkit to Aid the Interpretation of Occupational Exposure Measurements"
+                    ),
+                    tags$a(urls$expostats_paper,
+                        href   = urls$expostats_paper,
+                        target = "_blank")
+                ),
+                html(tags$p,
+                    intl("
+                        Additional details and references are available on %s.
+                    "),
+                    tags$a("expostats.ca",
+                        href   = urls$expostats[[lang]],
+                        target = "_blank")
+                )
+            )
+        )
     })
 
     # Reactives and Observers --------------------------------------------------
@@ -1415,6 +1754,7 @@ server <- function(input, output, session) {
         rownames = FALSE,
         spacing  = "m",
         hover    = TRUE,
+        stripped = TRUE,
         expr     = {
             stats_df <- fun.desc.stat(
                 data.simply.imputed = user_formatted_sample_imputed(),

@@ -1,3 +1,60 @@
+#' HTML Strings
+#'
+#' Create character strings containing HTML elements and itself having an
+#' HTML container (optionally).
+#'
+#' [html()] is a (much) lighter alternative to [htmltools::HTML()] built
+#' specifically for Tool 1.
+#'
+#' @param container A function that generates an HTML element to contain the
+#'   formatted text, or `NULL` for no container.
+#'
+#' @param text A character string possibly using [sprintf()] placeholders (so-
+#'   called *conversion specifications*).
+#'
+#' @param ... Further values to insert into `text` with respect to what
+#'   placeholders dictate.
+#'
+#' @param .ignore A character string. Any `text` identical to this value is
+#'   treated *as is* and further arguments passed to `...` are ignored. This
+#'   avoids warnings stemming from [intl()] when translations are unavailable.
+#'
+#' @param .noWS Character vector used to omit some of the whitespace that
+#'   would normally be written around this tag. Valid options include `before`,
+#'   `after`, `outside`, `after-begin`, and `before-end`. Any number of these
+#'   options can be specified. This is taken directly from the documentation
+#'   of package shiny.
+#'
+#' @returns
+#' A character vector of length 1 and of class `html`. It further has a `noWS`
+#' attribute set equal to argument `.noWS` and a second attribute `html` set
+#' equal to `TRUE`. It can be used as if it was a regular Shiny tag.
+#'
+#' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
+#'
+#' @export
+html <- function(
+    container = shiny::div,
+    text      = "",
+    ...,
+    .ignore = default_no_translation,
+    .noWS   = NULL)
+{
+    str <- if (identical(text, .ignore)) {
+        text
+    } else {
+        do.call(sprintf, c(fmt = text, lapply(list(...), as.character)))
+    }
+
+    html_text <- structure(
+        str,
+        html  = TRUE,
+        noWS  = .noWS,
+        class = c("html", "character"))
+
+    return(if (is.null(container)) html_text else container(html_text))
+}
+
 #' Ordinal Numbers (1st, 2nd, 3rd, 4th, etc.)
 #'
 #' Display values as ordinal numbers (e.g. 1st, 2nd, 3rd, 4th, etc.). Built-in
@@ -152,31 +209,4 @@ ordinal_rules_french <- function(
     }
 
     return(list(indicators = indicators, exceptions = exceptions))
-}
-
-#' Format raw HTML strings
-#'
-#' [sprintf_html()] is a wrapper function that formats a string using
-#' [sprintf()] and marks it as valid HTML (that should not be escaped
-#' later by package [`shiny`][shiny::shiny]).
-#'
-#' @param fmt,... Passed as is to [sprintf()].
-#'
-#' @returns
-#' A character vector of length 1 and of class `html`. It can be used as
-#' if it were a regular HTML tag inside other Shiny tags, or components.
-#'
-#' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
-#'
-#' @examples
-#' link <- shiny::tags$a(
-#'   "personal website",
-#'   href   = "https://ununoctium.dev",
-#'   target = "_blank")
-#'
-#' sprintf_html("This is my %s.", as.character(link))
-#'
-#' @export
-sprintf_html <- function(fmt, ...) {
-    return(htmltools::HTML(sprintf(fmt, ...)))
 }

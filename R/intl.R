@@ -19,11 +19,13 @@ tr <- transltr::translator_read()
 
 # Set default value when a translation is not available.
 # This is mostly useful for development and debugging purposes.
-tr$set_default_value("{no translation}")
+default_no_translation <- "{no translation}"
+tr$set_default_value(default_no_translation)
 
 # Get default language.
 # $source_langs returns a single element here.
 default_lang <- tr$source_langs
+transltr::language_set(default_lang)
 
 # List available languages.
 # To pass supported_langs as is to shiny::selectInput(),
@@ -33,8 +35,7 @@ supported_langs <- names(tr$native_languages)
 names(supported_langs) <- tr$native_languages
 
 # Define a wrapper function that calls tr$translate().
-# It avoids having to pass values such as input$lang to each
-# call to tr$translate().
+# Call .debug() to activate the debug version of intl().
 intl <- function(..., source_lang = default_lang) {
     return(tr$translate(..., lang = input$lang, source_lang = default_lang))
 }
