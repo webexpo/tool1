@@ -95,7 +95,9 @@ ui <- shiny::fluidPage(
                 htmltools::tagAppendAttributes(class = "app-input") |>
                 bslib::tooltip(id = "sb_lang_tooltip", ""),
 
-            tags$hr(class = "app-sidebar-hr"),
+            shiny::uiOutput("sb_inputs_title",
+                container = tags$h2,
+                class     = "app-panel-title"),
 
             shiny::numericInput(
                 inputId = "oel",
@@ -720,6 +722,7 @@ server <- function(input, output, session) {
         shiny::updateSelectInput(
             inputId = "lang",
             label   = intl("Language:"))
+        output$sb_inputs_title <- shiny::renderUI(intl("Parameters"))
         shiny::updateNumericInput(
             inputId = "oel",
             label   = intl("Exposure Limit:"))
