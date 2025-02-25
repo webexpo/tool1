@@ -176,9 +176,24 @@ ui <- shiny::fluidPage(
             # It is placed here to maximize visibility.
             tags$footer(
                 class = "app-sidebar-footer",
-                shiny::uiOutput("sb_footer_app_version", container = tags$p),
+                tags$p(
+                    shiny::textOutput("sb_footer_version", inline = TRUE),
+                    "(",
+                    tags$a("GitHub",
+                        href   = urls$code,
+                        target = "_blank",
+                        .noWS  = c("before", "after")),
+                    ")."
+                ),
 
-                shiny::uiOutput("sb_footer_copyright", container = tags$p)
+                tags$p(
+                    shiny::icon("copyright-mark", lib = "glyphicon"),
+                    tags$a("Jérôme Lavoué",
+                        href   = urls$jerome_lavoue,
+                        target = "_blank"),
+                    sprintf("(%s).", year),
+                    shiny::textOutput("sb_footer_copyright", inline = TRUE)
+                )
             )
         ),
 
@@ -806,6 +821,12 @@ server <- function(input, output, session) {
         ### Footer -------------------------------------------------------------
 
         output$sb_footer_version <- shiny::renderText(
+            sprintf("%s version %s", intl("Tool 1"), version)
+        )
+
+        output$sb_footer_copyright <- shiny::renderText(intl("
+            All rights reserved.
+        "))
 
         ## Panel: Statistics ---------------------------------------------------
 

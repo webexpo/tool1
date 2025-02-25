@@ -74,6 +74,7 @@ prefix is omitted. Other specific inputs always have a prefix.
 | *None*              | `shiny::fluidPage()`          | `title`                           | None                              |
 | *Body*              | `shiny::uiOutput()`           | `top_title`                       | None                              |
 | *Body*              | `shiny::uiOutput()`           | `top_banner`                      | None                              |
+| Sidebar             | `shiny::uiOutput()`           | `sb_inputs_title`                 | None                              |
 | Sidebar             | `bslib::tooltip()`            | `sb_lang_tooltip`                 | None                              |
 | Sidebar             | `bslib::tooltip()`            | `sb_oel_tooltip`                  | None                              |
 | Sidebar             | `bslib::tooltip()`            | `sb_al_tooltip`                   | None                              |
@@ -82,6 +83,8 @@ prefix is omitted. Other specific inputs always have a prefix.
 | Sidebar             | `bslib::tooltip()`            | `sb_data_tooltip`                 | None                              |
 | Sidebar             | `bslib::tooltip()`            | `sb_frac_threshold_tooltip`       | None                              |
 | Sidebar             | `bslib::tooltip()`            | `sb_target_perc_tooltip`          | None                              |
+| Sidebar             | `shiny::textOutput()`         | `sb_footer_version`               | None                              |
+| Sidebar             | `shiny::textOutput()`         | `sb_footer_copyright`             | None                              |
 | Statistics          | `shiny::textOutput()`         | `st_tab_name`                     | None                              |
 | Statistics          | `shiny::uiOutput()`           | `st_desc_stats_title`             | None                              |
 | Statistics          | `shiny::uiOutput()`           | `st_desc_stats_subtitle`          | None                              |
