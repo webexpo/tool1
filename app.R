@@ -197,7 +197,7 @@ ui <- shiny::fluidPage(
 
                 shiny::tabPanel(
                     value = "st",
-                    title = shiny::uiOutput("st_tab_name", TRUE),
+                    title = shiny::textOutput("st_tab_name", inline = TRUE),
 
                     ##### Descriptive Statistics -------------------------------
 
@@ -254,7 +254,7 @@ ui <- shiny::fluidPage(
 
                 shiny::tabPanel(
                     value = "ef",
-                    title = shiny::uiOutput("ef_tab_name", TRUE),
+                    title = shiny::textOutput("ef_tab_name", inline = TRUE),
 
                     ##### Risk Decision ----------------------------------------
 
@@ -446,7 +446,7 @@ ui <- shiny::fluidPage(
 
                 shiny::tabPanel(
                     value = "pe",
-                    title = shiny::uiOutput("pe_tab_name", TRUE),
+                    title = shiny::textOutput("pe_tab_name", inline = TRUE),
 
                     ##### Risk Decision ----------------------------------------
 
@@ -547,7 +547,7 @@ ui <- shiny::fluidPage(
 
                 shiny::tabPanel(
                     value = "am",
-                    title = shiny::uiOutput("am_tab_name", TRUE),
+                    title = shiny::textOutput("am_tab_name", inline = TRUE),
 
                     ##### Risk Decision ----------------------------------------
 
@@ -650,7 +650,7 @@ ui <- shiny::fluidPage(
 
                 shiny::tabPanel(
                     value = "ab",
-                    title = shiny::uiOutput("ab_tab_name", TRUE),
+                    title = shiny::textOutput("ab_tab_name", inline = TRUE),
 
                     ##### About ------------------------------------------------
 
@@ -809,10 +809,7 @@ server <- function(input, output, session) {
 
         ## Panel: Statistics ---------------------------------------------------
 
-        output$st_tab_name <- shiny::renderUI(intl("Statistics"))
-        output$st_desc_stats_title <- shiny::renderUI(
-            intl("Descriptive Statistics")
-        )
+        output$st_tab_name <- shiny::renderText(intl("Statistics"))
         output$st_desc_stats_subtitle <- shiny::renderUI(intl("Summary"))
         output$st_desc_stats_alert_info <- shiny::renderUI(add_bs_alert_info(
             title = intl("Information"),
@@ -861,72 +858,7 @@ server <- function(input, output, session) {
 
         ## Panel: Exceedance Fraction ------------------------------------------
 
-        shiny::updateRadioButtons(
-            inputId = "ef_exceed_btn_choose",
-            label   = intl("Variants:"))
-        shiny::updateActionButton(
-            inputId = "ef_exceed_btn_customize",
-            label   = intl("Customize Colors"))
-        colourpicker::updateColourInput(
-            session = session,
-            inputId = "ef_exceed_col_risk",
-            label   = intl("Flask Color (Exceedance):"))
-        colourpicker::updateColourInput(
-            session = session,
-            inputId = "ef_exceed_col_no_risk",
-            label   = intl("Flask Color (No Exceedance):"))
-        colourpicker::updateColourInput(
-            session = session,
-            inputId = "ef_exceed_col_bg",
-            label   = intl("Background Color (Default):"))
-        colourpicker::updateColourInput(
-            session = session,
-            inputId = "ef_exceed_col_bg_threshold",
-            label   = intl("Background Color (Threshold):"))
-
-        output$ef_tab_name <- shiny::renderUI(intl("Exceedance Fraction"))
-        output$ef_risk_decision_title <- shiny::renderUI(
-            intl("Risk Analysis Based on the Exceedance Fraction")
-        )
-        output$ef_risk_decision_subtitle <- shiny::renderUI(
-            intl("Risk Decision")
-        )
-        output$ef_risk_decision <- shiny::renderUI(shiny::tagList(
-            tags$li(sprintf_html(
-                intl("
-                    Overexposure is defined as the exceedance fraction being
-                    greater than or equal to %s.
-                "),
-                htmltools::tagAppendAttributes(
-                    class = "app-output-inline",
-                    shiny::textOutput("ef_risk_decision_frac", inline = TRUE))
-            )),
-            tags$li(sprintf_html(
-                intl("
-                    The probability that this criterion is met is equal to %s.
-                "),
-                htmltools::tagAppendAttributes(
-                    class = "app-output-inline",
-                    shiny::textOutput("ef_risk_decision_criterion", inline = TRUE))
-            )),
-            tags$li(sprintf_html(
-                intl("
-                    The probability that this criterion is met should be lower
-                    than %s.
-                "),
-                htmltools::tagAppendAttributes(
-                    class = "app-output-inline",
-                    shiny::textOutput("ef_risk_decision_limit", inline = TRUE))
-            )),
-            tags$li(sprintf_html(
-                intl("
-                    Consequently, the current situation is declared to be %s.
-                "),
-                htmltools::tagAppendAttributes(
-                    class = "app-output-inline",
-                    shiny::textOutput("ef_risk_decision_conclusion", inline = TRUE))
-            ))
-        ))
+        output$ef_tab_name <- shiny::renderText(intl("Exceedance Fraction"))
         output$ef_risk_meter_desc <- shiny::renderUI(intl("
             This risk meter shows the probability of the exposure being too
             high when compared to the occupational exposure limit. The red
@@ -1054,21 +986,7 @@ server <- function(input, output, session) {
 
         ## Panel: Percentiles --------------------------------------------------
 
-        output$pe_tab_name <- shiny::renderUI(intl("Percentiles"))
-        output$pe_risk_decision_title <- shiny::renderUI(
-            intl("Risk Analysis Based on Percentiles")
-        )
-        output$pe_risk_decision_subtitle <- shiny::renderUI(
-            intl("Risk Decision")
-        )
-        output$pe_risk_decision <- shiny::renderUI(shiny::tagList(
-            tags$li(sprintf_html(
-                intl("
-                    Overexposure is defined as the %s percentile
-                    being greater than or equal to the OEL.
-                "),
-                htmltools::tagAppendAttributes(
-                    class = "app-output-inline",
+        output$pe_tab_name <- shiny::renderText(intl("Percentiles"))
                     shiny::uiOutput(
                         outputId  = "pe_risk_decision_perc",
                         container = tags$span))
@@ -1174,43 +1092,7 @@ server <- function(input, output, session) {
 
         ## Panel: Arithmetic Mean ----------------------------------------------
 
-        output$am_tab_name <- shiny::renderUI(intl("Arithmetic Mean"))
-        output$am_risk_decision_title <- shiny::renderUI(
-            intl("Risk Analysis Based on the Arithmetic Mean")
-        )
-        output$am_risk_decision_subtitle <- shiny::renderUI(
-            intl("Risk Decision")
-        )
-        output$am_risk_decision <- shiny::renderUI(shiny::tagList(
-            tags$li(intl("
-                Overexposure is defined as the arithmetic
-                mean being greater than or equal to the OEL.")),
-            tags$li(sprintf_html(
-                intl("
-                    The probability that this criterion is met is equal to %s.
-                "),
-                htmltools::tagAppendAttributes(
-                    class = "app-output-inline",
-                    shiny::textOutput("am_risk_decision_criterion", inline = TRUE))
-            )),
-            tags$li(sprintf_html(
-                intl("
-                    The probability that this criterion is met should be lower
-                    than %s.
-                "),
-                htmltools::tagAppendAttributes(
-                    class = "app-output-inline",
-                    shiny::textOutput("am_risk_decision_limit", inline = TRUE))
-            )),
-            tags$li(sprintf_html(
-                intl("
-                    Consequently, the current situation is declared to be %s.
-                "),
-                htmltools::tagAppendAttributes(
-                    class = "app-output-inline",
-                    shiny::textOutput("am_risk_decision_conclusion", inline = TRUE))
-            ))
-        ))
+        output$am_tab_name <- shiny::renderText(intl("Arithmetic Mean"))
         output$am_risk_meter_desc <- shiny::renderUI(intl("
             This risk meter shows the probability of the exposure being too
             high when compared to the occupational exposure limit. The red
@@ -1297,7 +1179,7 @@ server <- function(input, output, session) {
 
         ## Panel: About --------------------------------------------------------
 
-        output$ab_tab_name    <- shiny::renderUI(intl("About"))
+        output$ab_tab_name <- shiny::renderText(intl("About"))
         output$ab_about_title <- shiny::renderUI(intl("About"))
         output$ab_about       <- shiny::renderUI({
             a_epsum <- tags$a(intl("School of Public Health"),

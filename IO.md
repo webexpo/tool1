@@ -82,6 +82,7 @@ prefix is omitted. Other specific inputs always have a prefix.
 | Sidebar             | `bslib::tooltip()`            | `sb_data_tooltip`                 | None                              |
 | Sidebar             | `bslib::tooltip()`            | `sb_frac_threshold_tooltip`       | None                              |
 | Sidebar             | `bslib::tooltip()`            | `sb_target_perc_tooltip`          | None                              |
+| Statistics          | `shiny::textOutput()`         | `st_tab_name`                     | None                              |
 | Statistics          | `shiny::uiOutput()`           | `st_desc_stats_title`             | None                              |
 | Statistics          | `shiny::uiOutput()`           | `st_desc_stats_subtitle`          | None                              |
 | Statistics          | `shiny::tableOutput()`        | `st_desc_stats_tbl`               | `res.desc`                        |
@@ -92,7 +93,7 @@ prefix is omitted. Other specific inputs always have a prefix.
 | Statistics          | `shiny::uiOutput()`           | `st_box_title`                    | None                              |
 | Statistics          | `shiny::plotOutput()`         | `st_box_plot`                     | `boxplot`                         |
 | Statistics          | `shiny::uiOutput()`           | `st_box_desc`                     | None                              |
-| Exceedance Fraction | `shiny::uiOutput()`           | `ef_tab_name`                     | None                              |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_tab_name`                     | None                              |
 | Exceedance Fraction | `shiny::uiOutput()`           | `ef_risk_decision_title`          | None                              |
 | Exceedance Fraction | `shiny::uiOutput()`           | `ef_risk_decision_subtitle`       | None                              |
 | Exceedance Fraction | `shiny::uiOutput()`           | `ef_risk_decision`                | None                              |
@@ -130,7 +131,7 @@ prefix is omitted. Other specific inputs always have a prefix.
 | Exceedance Fraction | `shiny::textOutput()`         | `ef_risk_band_desc_low_val_2`     | `frac.acceptableExpoDiv2`         |
 | Exceedance Fraction | `shiny::textOutput()`         | `ef_risk_band_desc_high_val_1`    | `acceptableExpo2`                 |
 | Exceedance Fraction | `shiny::textOutput()`         | `ef_risk_band_desc_high_val_2`    | `acceptableExpo3`                 |
-| Percentiles         | `shiny::uiOutput()`           | `pe_tab_name`                     | None                              |
+| Percentiles         | `shiny::textOutput()`         | `pe_tab_name`                     | None                              |
 | Percentiles         | `shiny::uiOutput()`           | `pe_risk_decision_title`          | None                              |
 | Percentiles         | `shiny::uiOutput()`           | `pe_risk_decision_subtitle`       | None                              |
 | Percentiles         | `shiny::uiOutput()`           | `pe_risk_decision`                | None                              |
@@ -158,7 +159,7 @@ prefix is omitted. Other specific inputs always have a prefix.
 | Percentiles         | `shiny::uiOutput()`           | `pe_risk_band_title`              | None                              |
 | Percentiles         | `shiny::plotOutput()`         | `pe_risk_band_plot`               | `riskband.perc`                   |
 | Percentiles         | `shiny::uiOutput()`           | `pe_risk_band_desc`               | None                              |
-| Arithmetic Mean     | `shiny::uiOutput()`           | `am_tab_name`                     | None                              |
+| Arithmetic Mean     | `shiny::textOutput()`         | `am_tab_name`                     | None                              |
 | Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_decision_title`          | None                              |
 | Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_decision_subtitle`       | None                              |
 | Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_decision`                | None                              |
@@ -186,7 +187,7 @@ prefix is omitted. Other specific inputs always have a prefix.
 | Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_band_title`              | None                              |
 | Arithmetic Mean     | `shiny::plotOutput()`         | `am_risk_band_plot`               | `riskband.am`                     |
 | Arithmetic Mean     | `shiny::uiOutput()`           | `am_risk_band_desc`               | None                              |
-| About               | `shiny::uiOutput()`           | `ab_tab_name`                     | None                              |
+| About               | `shiny::textOutput()`         | `ab_tab_name`                     | None                              |
 | About               | `shiny::uiOutput()`           | `ab_about_title`                  | None                              |
 | About               | `shiny::uiOutput()`           | `ab_about`                        | None                              |
 | About               | `shiny::uiOutput()`           | `ab_how_to_use_title`             | None                              |
