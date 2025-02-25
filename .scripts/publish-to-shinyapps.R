@@ -25,15 +25,6 @@ rsconnect::deployApp(
     forceUpdate    = FALSE,
     metadata       = list(
         appVersion = version,
-        authors    = list(
-            utils::person("Jérôme", "Lavoué",
-                role    = c("cre", "aut", "cph", "fnd"),
-                email   = "jerome.lavoue@umontreal.ca",
-                comment = c(ORCID = "0000-0003-4950-5475")),
-            utils::person("Jean-Mathieu", "Potvin",
-                role  = c("aut", "rev"),
-                email = "jeanmathieupotvin@ununoctium.dev")
-        ),
         license    = "MIT + file LICENSE",
         bugReports = "https://github.com/webexpo/app-tool1/issues",
         encoding   = "UTF-8",
