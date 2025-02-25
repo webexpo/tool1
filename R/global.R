@@ -11,9 +11,8 @@
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
-# Load libraries required by external scripts.
-# rjags returns annoying internal warnings over
-# which we have no control.
+# Load libraries required by external scripts stored in scripts/.
+# rjags returns internal warnings over which we have no control.
 suppressMessages({
     suppressWarnings(library(rjags))
     library(randtoolbox)
@@ -33,13 +32,14 @@ source(file.path("scripts", "Common", "Main graph functions.R"))
 
 # Constants --------------------------------------------------------------------
 
-tags <- shiny::tags
+# Shortcut to usual Shiny's list of HTML <tag> functions.
+tags <- htmltools::tags
 
 # Current version in production (release). Shown in footer.
-version <- "4.0.0"
+version <- "4.0.0-rc1"
 
 # Current year. Shown in footer.
-year <- format(Sys.time(), tz = "EST", format = "(%Y)")
+year <- format(Sys.time(), tz = "EST", format = "%Y")
 
 # Where to store images.
 images_dir_rel_path <- file.path("www", "images")
