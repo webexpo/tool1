@@ -43,6 +43,18 @@ if (interactive()) {
         # Start the application locally.
         .run <- \() invisible(source(file.path(".scripts", "entrypoint.R")))
 
+        # Activate/deactivate debug version of functions.
+        # Only intl() currently has one.
+        .debug <- \(on = TRUE) {
+            if (on) {
+                .src()
+                intl <<- tr$translate
+                return(invisible())
+            }
+
+            return(.src())
+        }
+
         # Clear the global environment.
         .rm <- \() rm(list = ls(name = globalenv()), pos = globalenv())
 
