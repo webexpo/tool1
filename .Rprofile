@@ -14,7 +14,7 @@
 transltr::language_source_set("en")
 
 options(
-    transltr.path          = file.path("intl", "transltr", "_translator.yml"),
+    transltr.path          = file.path("intl", "_translator.yml"),
     transltr.verbose       = TRUE,
     warnPartialMatchArgs   = TRUE,
     warnPartialMatchDollar = TRUE,

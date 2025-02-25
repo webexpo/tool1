@@ -11,7 +11,7 @@
 #' create all expected translations files.
 #'
 #' @seealso
-#' [The transltr package](https://cran.r-project.org/web/packages/transltr/index.html)
+#' [The transltr package](https://cran.r-project.org/package=transltr)
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 

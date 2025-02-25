@@ -1,7 +1,7 @@
 # Tool 1: Data Interpretation for One Similarly Exposed Group
 
 <!-- badges: start -->
-[![Version](https://img.shields.io/badge/version-4.0.0-blue)](https://github.com/webexpo/app-tool1/releases/tag/v4.0.0)
+[![Version](https://img.shields.io/badge/version-4.0.0--rc1-blue)](https://github.com/webexpo/app-tool1/releases/tag/v4.0.0-rc1)
 [![Lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Location](https://img.shields.io/badge/live-shinyapps.io-5b90bf)](https://lavoue.shinyapps.io/tool1/)
 <!-- badges: end -->
@@ -37,7 +37,7 @@ is lognormal.
 The underlying Bayesian models and data interpretation procedures are derived
 from best practices in industrial hygiene data interpretation techniques. They
 are thoroughly described in
-[Expostats: A Bayesian Toolkit to Aid the Interpretation of Occupational Exposure Measurements](https://doi.org/10.1093/annweh/wxy100)
+*[Expostats: A Bayesian Toolkit to Aid the Interpretation of Occupational Exposure Measurements](https://doi.org/10.1093/annweh/wxy100)*
 (Annals of Work Exposures and Health, Volume 63, Issue 3, April 2019, Pages
 267–279).
 
@@ -68,6 +68,23 @@ RSCONNECT_ACCOUNT_TOKEN=<token>
 RSCONNECT_ACCOUNT_SECRET=<secret>
 APP_VISIBILITY_ON_SHINYAPPS=public
 ```
+
+## Internationalization (`intl`)
+
+> We are actively looking for external collaborators who could help us with
+> supporting more languages. If you are interested, please send an e-mail
+> to <jerome.lavoue@umontreal.ca>.
+
+Tool 1 relies on package [transltr](https://cran.r-project.org/package=transltr)
+to support multiple languages. Mechanisms are split among two scripts.
+
+  * Actions that must be performed before runtime are in
+    `.scripts/find-source-text.R`. Notably, this script is in charge of
+    generating the contents of subdirectory `intl/`.
+  * Objects required at runtime are defined in `R/intl.R`.
+
+Further mechanisms not related to `transltr` (such as support for ordinal
+numbers) are defined in `R/helpers.R`.
 
 ## Bugs and Feedback
 
