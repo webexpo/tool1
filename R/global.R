@@ -51,6 +51,12 @@ plot_default_height <- "600px"
 # Using a lower height for these specific plots is preferable.
 plot_risk_meter_default_height <- "500px"
 
+# Default number of Bayesian iterations.
+n_bayes_iter <- 25000L
+
+# Default number of significant digits to keep.
+n_digits <- 3L
+
 # Language codes used below must match supported
 # languges. See script R/intl.R for more information.
 urls <- list(

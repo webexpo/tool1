@@ -25,13 +25,11 @@
 #'     according to the `snake_case_with_lowercases` naming pattern.
 #'   - Further rules for identifiers are explicited in file `IO.md`.
 #'   - CSS Classes uses `dash-case`. Each class must use the prefix `app-` to
-#'     avoid collisions.
+#'     to avoid collisions.
 #'
 #' @author Jérôme Lavoué (<jerome.lavoue@@umontreal.ca>)
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
-# TODO: Standardize significant digits to keep. Create a global variable
-# n_max_digits, assign a value to it, and use it whenever possible.
 
 # TODO: Use semantic names for function arguments to improve readability and
 # ease of maintenance. Names such as arg.1 and arg.2 should always be avoided.
@@ -48,6 +46,7 @@
 # names. For example, OEL (Occupational Exposure Limit) is sometimes named
 # EL (Exposure Limit). Each input should have one name (Do Repeat Yourself
 # is a good thing here for a better user experience).
+
 
 ui <- shiny::fluidPage(
     # lang and title must be updated using custom Shiny messages
@@ -1478,7 +1477,7 @@ server <- function(input, output, session) {
                 intcensored      = user_sample$intcensored,
                 seed             = user_sample$seed,
                 c.oel            = user_sample$c.oel,
-                n.iter           = 25000L))
+                n.iter           = n_bayes_iter))
     })
 
     num_results <- shiny::reactive({
@@ -1498,21 +1497,21 @@ server <- function(input, output, session) {
 
     output$ef_risk_decision_limit <-
     output$pe_risk_decision_limit <-
-    output$am_risk_decision_limit <- shiny::renderText({
-        return(paste0(input$psi, "%"))
-    })
+    output$am_risk_decision_limit <- shiny::renderText(
+        paste0(input$psi, "%")
+    )
 
     output$ef_estim_dist_geo_mean <-
     output$pe_estim_dist_geo_mean <-
     output$am_estim_dist_geo_mean <- shiny::renderText({
-        gm <- lapply(num_results()$gm, \(x) as.character(signif(x, 2L)))
+        gm <- lapply(num_results()$gm, \(x) signif(x, n_digits))
         return(sprintf("%s [%s - %s]", gm$est, gm$lcl, gm$ucl))
     })
 
     output$ef_estim_dist_geo_sd <-
     output$pe_estim_dist_geo_sd <-
     output$am_estim_dist_geo_sd <- shiny::renderText({
-        gsd <- lapply(num_results()$gsd, \(x) as.character(signif(x, 2L)))
+        gsd <- lapply(num_results()$gsd, \(x) signif(x, n_digits))
         return(sprintf("%s [%s - %s]", gsd$est, gsd$lcl, gsd$ucl))
     })
 
@@ -1594,12 +1593,12 @@ server <- function(input, output, session) {
     output$ef_risk_decision_frac        <-
     output$ef_risk_band_desc_high_val_1 <-
     output$ef_risk_band_desc_high_val_2 <- shiny::renderText(
-        paste0(signif(input$frac_threshold, 3L), "%")
+        paste0(signif(input$frac_threshold, n_digits), "%")
     )
 
-    output$ef_risk_decision_criterion <- shiny::renderText({
-        paste0(signif(num_results()$frac.risk, 3L), "%")
-    })
+    output$ef_risk_decision_criterion <- shiny::renderText(
+        paste0(signif(num_results()$frac.risk, n_digits), "%")
+    )
 
     output$ef_risk_decision_conclusion <- shiny::renderText({
         if (num_results()$frac.risk >= user_inputs()$psi) {
@@ -1618,7 +1617,7 @@ server <- function(input, output, session) {
     ## Parameter Estimates -----------------------------------------------------
 
     output$ef_estim_ef_frac <- shiny::renderText({
-        frac <- lapply(num_results()$frac, \(x) as.character(signif(x, 3L)))
+        frac <- lapply(num_results()$frac, \(x) signif(x, n_digits))
         return(sprintf("%s%% [%s - %s]", frac$est, frac$lcl, frac$ucl))
     })
 
@@ -1717,7 +1716,7 @@ server <- function(input, output, session) {
 
     output$ef_risk_band_desc_low_val_1 <-
     output$ef_risk_band_desc_low_val_2 <- shiny::renderText(
-        paste0(signif(input$frac_threshold / 10L, 3L), "%")
+        paste0(signif(input$frac_threshold / 10L, n_digits), "%")
     )
 
     output$ef_risk_band_plot <- shiny::renderPlot({
@@ -1740,15 +1739,13 @@ server <- function(input, output, session) {
     ## Risk Decision -----------------------------------------------------------
 
     output$pe_risk_decision_perc <- shiny::renderUI(
-        shiny::tagList(
-            signif(input$target_perc, 3L),
-            tags$sup(
-                ordinal_abbr(input$target_perc, input$lang),
-                .noWS = "before"))
+        html(NULL, "%s%s",
+            signif(input$target_perc, n_digits),
+            tags$sup(ordinal_abbr(input$target_perc, input$lang)))
     )
 
     output$pe_risk_decision_criterion <- shiny::renderText(
-        paste0(signif(num_results()$perc.risk, 3L), "%")
+        paste0(signif(num_results()$perc.risk, n_digits), "%")
     )
 
     output$pe_risk_decision_conclusion <-shiny::renderText({
@@ -1768,7 +1765,7 @@ server <- function(input, output, session) {
     ## Parameter Estimates -----------------------------------------------------
 
     output$pe_estim_pe_perc <- shiny::renderText({
-        perc <- lapply(num_results()$perc, \(x) as.character(signif(x, 3L)))
+        perc <- lapply(num_results()$perc, \(x) signif(x, n_digits))
         return(sprintf("%s [%s - %s]", perc$est, perc$lcl, perc$ucl))
     })
 
@@ -1842,7 +1839,7 @@ server <- function(input, output, session) {
     ## Risk Decision -----------------------------------------------------------
 
     output$am_risk_decision_criterion <- shiny::renderText(
-        paste0(signif(num_results()$am.risk, 3L), "%")
+        paste0(signif(num_results()$am.risk, n_digits), "%")
     )
 
     output$am_risk_decision_conclusion <-shiny::renderText({
@@ -1862,7 +1859,7 @@ server <- function(input, output, session) {
     ## Parameter Estimates -----------------------------------------------------
 
     output$am_estim_am_mean <- shiny::renderText({
-        am <- lapply(num_results()$am, \(x) as.character(signif(x, 3L)))
+        am <- lapply(num_results()$am, \(x) signif(x, n_digits))
         return(sprintf("%s [%s - %s]", am$est, am$lcl, am$ucl))
     })
 
