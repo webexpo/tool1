@@ -24,7 +24,7 @@
 #'   - R Objects and functions, reactive values, and identifiers are named
 #'     according to the `snake_case_with_lowercases` naming pattern.
 #'   - Further rules for identifiers are explicited in file `IO.md`.
-#'   - CSS Classes uses `dash-case`. Each class must use the prefix `app-` to
+#'   - CSS Classes uses `dash-case`. Each class must use the prefix `app-`
 #'     to avoid collisions.
 #'
 #' @author Jérôme Lavoué (<jerome.lavoue@@umontreal.ca>)
