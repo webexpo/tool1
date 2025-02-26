@@ -1758,14 +1758,6 @@ server <- function(input, output, session) {
         shinyjs::toggle("ef_exceed_cols")
     })
 
-    user_inputs <- shiny::reactive(
-        list(
-            conf           = input$conf,
-            psi            = input$psi,
-            frac_threshold = input$frac_threshold,
-            target_perc    = input$target_perc)
-    )
-
     user_formatted_sample <- shiny::reactive(
         # oel.mult is set equal to 1 until Webexpo scripts
         # are rewritten. In what follows c.oel is ignored
@@ -1800,15 +1792,14 @@ server <- function(input, output, session) {
 
     num_results <- shiny::reactive({
         bayesian_outputs <- bayesian_analysis()
-        inputs           <- user_inputs()
         return(
             all.numeric(
                 mu.chain       = bayesian_outputs$mu.chain,
                 sigma.chain    = bayesian_outputs$sigma.chain,
                 c.oel          = input$oel,
-                conf           = inputs$conf,
-                frac_threshold = inputs$frac_threshold,
-                target_perc    = inputs$target_perc))
+                conf           = input$conf,
+                frac_threshold = input$frac_threshold,
+                target_perc    = input$target_perc))
     })
 
     # Outputs Shared By Panels -------------------------------------------------
@@ -1918,7 +1909,7 @@ server <- function(input, output, session) {
     )
 
     output$ef_risk_decision_conclusion <- shiny::renderText({
-        if (num_results()$frac.risk >= user_inputs()$psi) {
+        if (num_results()$frac.risk >= input$psi) {
             return(intl("poorly controlled"))
         }
 
@@ -1928,7 +1919,7 @@ server <- function(input, output, session) {
     output$ef_risk_meter_plot <- shiny::renderPlot(
         dessinerRisqueMetre(
             actualProb          = num_results()$frac.risk,
-            minProbUnacceptable = user_inputs()$psi)
+            minProbUnacceptable = input$psi)
     )
 
     ## Parameter Estimates -----------------------------------------------------
@@ -2046,15 +2037,14 @@ server <- function(input, output, session) {
 
     output$ef_risk_band_plot <- shiny::renderPlot({
         bayesian_outputs <- bayesian_analysis()
-        inputs           <- user_inputs()
 
         return(
             riskband.plot.frac(
                 mu.chain       = bayesian_outputs$mu.chain,
                 sigma.chain    = bayesian_outputs$sigma.chain,
                 c.oel          = input$oel,
-                frac_threshold = inputs$frac_threshold,
-                psi            = inputs$psi,
+                frac_threshold = input$frac_threshold,
+                psi            = input$psi,
                 riskplot.1     = intl("Exceedance Fraction Category"),
                 riskplot.2     = intl("Probability")))
     })
@@ -2074,7 +2064,7 @@ server <- function(input, output, session) {
     )
 
     output$pe_risk_decision_conclusion <-shiny::renderText({
-        if (num_results()$perc.risk >= user_inputs()$psi) {
+        if (num_results()$perc.risk >= input$psi) {
             return(intl("poorly controlled"))
         }
 
@@ -2084,7 +2074,7 @@ server <- function(input, output, session) {
     output$pe_risk_meter_plot <- shiny::renderPlot(
         dessinerRisqueMetre(
             actualProb          = num_results()$perc.risk,
-            minProbUnacceptable = user_inputs()$psi)
+            minProbUnacceptable = input$psi)
     )
 
     ## Parameter Estimates -----------------------------------------------------
@@ -2105,8 +2095,7 @@ server <- function(input, output, session) {
     ## Sequential Plot ---------------------------------------------------------
 
     output$pe_seq_plot <- shiny::renderPlot({
-        results     <- num_results()
-        target_perc <- user_inputs()$target_perc
+        results <- num_results()
 
         return(
             sequential.plot.perc(
@@ -2114,8 +2103,8 @@ server <- function(input, output, session) {
                 gsd                = results$gsd$est,
                 perc               = results$perc$est,
                 c.oel              = input$oel,
-                target_perc        = target_perc,
-                target_perc_suffix = ordinal_abbr(target_perc, input$lang),
+                target_perc        = input$target_perc,
+                target_perc_suffix = ordinal_abbr(input$target_perc, input$lang),
                 seqplot.1          = intl("Concentration"),
                 seqplot.3          = intl("OEL"),
                 seqplot.4          = intl("Percentile"),
@@ -2126,7 +2115,7 @@ server <- function(input, output, session) {
 
     output$pe_dist_plot <- shiny::renderPlot({
         bayesian_outputs <- bayesian_analysis()
-        target_perc      <- user_inputs()$target_perc
+        target_perc      <- input$target_perc
 
         return(
             distribution.plot.perc(
@@ -2147,15 +2136,14 @@ server <- function(input, output, session) {
 
     output$pe_risk_band_plot <- shiny::renderPlot({
         bayesian_outputs <- bayesian_analysis()
-        inputs           <- user_inputs()
 
         return(
             riskband.plot.perc(
                 mu.chain    = bayesian_outputs$mu.chain,
                 sigma.chain = bayesian_outputs$sigma.chain,
                 c.oel       = input$oel,
-                target_perc = inputs$target_perc,
-                psi         = inputs$psi,
+                target_perc = input$target_perc,
+                psi         = input$psi,
                 # ≤ may not render in all IDEs. This is Unicode
                 # character U+2264 (&leq;) (Less-Than or Equal To).
                 riskplot.2  = intl("Probability"),
@@ -2176,7 +2164,7 @@ server <- function(input, output, session) {
     )
 
     output$am_risk_decision_conclusion <-shiny::renderText({
-        msgid <- if (num_results()$am.risk >= user_inputs()$psi) {
+        msgid <- if (num_results()$am.risk >= input$psi) {
             return(intl("poorly controlled"))
         }
 
@@ -2186,7 +2174,7 @@ server <- function(input, output, session) {
     output$am_risk_meter_plot <- renderPlot(
         dessinerRisqueMetre(
             actualProb          = num_results()$am.risk,
-            minProbUnacceptable = user_inputs()$psi)
+            minProbUnacceptable = input$psi)
     )
 
     ## Parameter Estimates -----------------------------------------------------
@@ -2249,7 +2237,7 @@ server <- function(input, output, session) {
                 mu.chain    = bayesian_outputs$mu.chain,
                 sigma.chain = bayesian_outputs$sigma.chain,
                 c.oel       = input$oel,
-                psi         = user_inputs()$psi,
+                psi         = input$psi,
                 riskplot.2  = intl("Probability"),
                 riskplot.3  = intl("≤ 1% OEL"),
                 riskplot.4  = intl("1% < OEL ≤ 10%"),
