@@ -3,20 +3,21 @@
 #' User interface and server-side logic.
 #'
 #' @usage
+#' ## In interactive sessions
 #' .run()
 #'
 #' @section Structure:
-#' Static assets are stored in `www/` and served under the root path at runtime.
+#' Static assets are stored in www/ and served under the root path at runtime.
 #'
-#' Objects and helper functions are stored in `R/` and loaded  automatically by
-#' [shiny::runApp()] or `.run()`.
+#' Objects and helper functions are stored in R/ and loaded  automatically by
+#' [shiny::runApp()] or [.run()].
 #'
 #' Development scripts are stored in `.scripts/`.
 #'
-#' Scripts required at runtime are stored in `scripts/` for historical reasons.
-#' Tool 1 depends on a large set of functions stemming from other projects that
-#' is not structured in a standard or usual way. They are sourced at runtime
-#' by `R/global.R`.
+#' Scripts required at runtime are stored in scripts/ for historical reasons.
+#' Tool 1 depends on a large set of functions stemming from other projects
+#' that is not structured in a standard or usual way. They are sourced at
+#' runtime by R/global.R.
 #'
 #' @section Naming Conventions:
 #' Three patterns are used.
