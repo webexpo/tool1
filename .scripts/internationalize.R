@@ -1,6 +1,11 @@
 #' Find Text That Requires Translations
 #'
-#' Prepare translations files and manage translations.
+#' Prepare translations files and manage translations. This script creates
+#' and updates the contents of directory intl/.
+#'
+#' @usage
+#' ## In interactive sessions
+#' .intl()
 #'
 #' @note
 #' transltr does not yet have a robust mechanism to easily update existing

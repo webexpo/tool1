@@ -2,8 +2,12 @@
 #'
 #' Bundle the application and deploy it to <https://shinyapps.io>.
 #'
-#' Four environment variables are required. Store them in an untracked
-#' top-level .Renviron file.
+#' @usage
+#' ## In interactive sessions
+#' .pub()
+#'
+#' Three environment variables are required (see below). Store them in an
+#' untracked top-level .Renviron file.
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
@@ -18,9 +22,9 @@ rsconnect::deployApp(
     appName        = "tool1",
     appTitle       = "Tool1: Data Interpretation for One Similarly Exposed Group",
     appMode        = "shiny",
-    appVisibility  = Sys.getenv("APP_VISIBILITY_ON_SHINYAPPS"),
-    launch.browser = FALSE,
+    appVisibility  = "public",
     logLevel       = "verbose",
+    launch.browser = FALSE,
     lint           = FALSE,
     forceUpdate    = FALSE,
     metadata       = list(

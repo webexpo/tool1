@@ -40,8 +40,10 @@ if (interactive()) {
         .src <- \() invisible(lapply(list.files("R", full.names = TRUE), source))
         .src()
 
-        # Start the application locally.
-        .run <- \() invisible(source(file.path(".scripts", "entrypoint.R")))
+        # Shortcuts to run development scripts.
+        .run  <- \() invisible(source(file.path(".scripts", "entrypoint.R")))
+        .pub  <- \() invisible(source(file.path(".scripts", "publish.R")))
+        .intl <- \() invisible(source(file.path(".scripts", "internationalize.R")))
 
         # Activate/deactivate debug version of functions.
         # Only intl() currently has one.
