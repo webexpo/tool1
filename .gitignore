@@ -3,7 +3,10 @@
 
 # Ignore local files.
 .local
+.RData
+.Rhistory
+.Rproj
+.Rproj.user
 
 # Ignore by-products and temporary files.
-.RData
 www/images/img*.png
