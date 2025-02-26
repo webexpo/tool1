@@ -55,14 +55,6 @@ Exceedance Fraction Threshold:
 
 # Insert a translation here.
 
-:: Translations: e2fb245: Source Text
-
-The geometric mean point estimate is equal to %s.
-
-:: Translations: e2fb245: Translation
-
-# Insert a translation here.
-
 :: Translations: b7b4f0b: Source Text
 
 Measurement Type
@@ -92,6 +84,14 @@ Probability
 Risk Decision
 
 :: Translations: 8eee96b: Translation
+
+# Insert a translation here.
+
+:: Translations: d0caca2: Source Text
+
+The point estimate of the 70%% upper confidence limit is equal to %s.
+
+:: Translations: d0caca2: Translation
 
 # Insert a translation here.
 
@@ -164,6 +164,14 @@ Median
 
 # Insert a translation here.
 
+:: Translations: 5b8a460: Source Text
+
+The point estimate of the geometric standard deviation is equal to %s.
+
+:: Translations: 5b8a460: Translation
+
+# Insert a translation here.
+
 :: Translations: 8785301: Source Text
 
 Critical Percentile:
@@ -181,14 +189,6 @@ left (e.g. <30.0) and a %s sign before each measurement censored to the right
 Censored values must have the same unit as other non-censored measurements.
 
 :: Translations: aab3349: Translation
-
-# Insert a translation here.
-
-:: Translations: 093a5dc: Source Text
-
-The geometric standard deviation point estimate is equal to %s.
-
-:: Translations: 093a5dc: Translation
 
 # Insert a translation here.
 
@@ -673,6 +673,14 @@ Colors:
 
 # Insert a translation here.
 
+:: Translations: ef7c259: Source Text
+
+The point estimate of the 95%% upper confidence limit is equal to %s.
+
+:: Translations: ef7c259: Translation
+
+# Insert a translation here.
+
 :: Translations: 99db36b: Source Text
 
 adequately controlled
@@ -704,6 +712,14 @@ to %s.
 Wait for the calculations to be performed.
 
 :: Translations: 654b124: Translation
+
+# Insert a translation here.
+
+:: Translations: e0147d1: Source Text
+
+The point estimate of the geometric mean is equal to %s.
+
+:: Translations: e0147d1: Translation
 
 # Insert a translation here.
 
@@ -1146,14 +1162,6 @@ exposure. The OEL is shown as a red line.
 
 # Insert a translation here.
 
-:: Translations: e3d5355: Source Text
-
-Percentiles
-
-:: Translations: e3d5355: Translation
-
-# Insert a translation here.
-
 :: Translations: 4528da3: Source Text
 
 Acceptable Sample
@@ -1175,6 +1183,14 @@ The application is straightforward to use. Follow these three steps.
 Density Plot
 
 :: Translations: d111f1a: Translation
+
+# Insert a translation here.
+
+:: Translations: e3d5355: Source Text
+
+Percentiles
+
+:: Translations: e3d5355: Translation
 
 # Insert a translation here.
 

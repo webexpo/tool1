@@ -115,6 +115,8 @@ prefix is omitted. Other specific inputs always have a prefix.
 | Exceedance Fraction | `shiny::uiOutput()`           | `ef_estim_ef_title`               | None                              |
 | Exceedance Fraction | `shiny::uiOutput()`           | `ef_estim_ef`                     | None                              |
 | Exceedance Fraction | `shiny::textOutput()`         | `ef_estim_ef_frac`                | `Frac`                            |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_estim_ef_frac_conf_limit_70`  | None                              |
+| Exceedance Fraction | `shiny::textOutput()`         | `ef_estim_ef_frac_conf_limit_95`  | None                              |
 | Exceedance Fraction | `shiny::uiOutput()`           | `ef_exceed_title`                 | None                              |
 | Exceedance Fraction | `shiny::uiOutput()`           | `ef_exceed`                       | None                              |
 | Exceedance Fraction | `htmltools::fieldset()`       | `ef_exceed_cols`                  | None                              |
@@ -153,6 +155,8 @@ prefix is omitted. Other specific inputs always have a prefix.
 | Percentiles         | `shiny::uiOutput()`           | `pe_estim_pe_title`               | None                              |
 | Percentiles         | `shiny::uiOutput()`           | `pe_estim_pe`                     | None                              |
 | Percentiles         | `shiny::textOutput()`         | `pe_estim_pe_perc`                | `Perc`                            |
+| Percentiles         | `shiny::textOutput()`         | `pe_estim_pe_perc_conf_limit_70`  | None                              |
+| Percentiles         | `shiny::textOutput()`         | `pe_estim_pe_perc_conf_limit_95`  | None                              |
 | Percentiles         | `shiny::uiOutput()`           | `pe_seq_title`                    | None                              |
 | Percentiles         | `shiny::plotOutput()`         | `pe_seq_plot`                     | `seqplot.perc`                    |
 | Percentiles         | `shiny::uiOutput()`           | `pe_seq_desc`                     | None                              |
@@ -181,6 +185,8 @@ prefix is omitted. Other specific inputs always have a prefix.
 | Arithmetic Mean     | `shiny::uiOutput()`           | `am_estim_am_title`               | None                              |
 | Arithmetic Mean     | `shiny::uiOutput()`           | `am_estim_am`                     | None                              |
 | Arithmetic Mean     | `shiny::textOutput()`         | `am_estim_am_mean`                | `AM`                              |
+| Arithmetic Mean     | `shiny::textOutput()`         | `am_estim_am_mean_conf_limit_70`  | None                              |
+| Arithmetic Mean     | `shiny::textOutput()`         | `am_estim_am_mean_conf_limit_95`  | None                              |
 | Arithmetic Mean     | `shiny::uiOutput()`           | `am_seq_title`                    | None                              |
 | Arithmetic Mean     | `shiny::plotOutput()`         | `am_seq_plot`                     | `seqplot.AM`                      |
 | Arithmetic Mean     | `shiny::uiOutput()`           | `am_seq_desc`                     | None                              |

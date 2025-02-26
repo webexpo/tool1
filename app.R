@@ -996,7 +996,9 @@ server <- function(input, output, session) {
         output$ef_estim_dist <- shiny::renderUI(
             list(
                 html(tags$li,
-                    intl("The geometric mean point estimate is equal to %s."),
+                    intl("
+                        The point estimate of the geometric mean is equal to %s.
+                    "),
                     htmltools::tagAppendAttributes(
                         class = "app-output-inline",
                         shiny::textOutput(
@@ -1005,8 +1007,8 @@ server <- function(input, output, session) {
                 ),
                 html(tags$li,
                     intl("
-                        The geometric standard deviation point estimate is
-                        equal to %s.
+                        The point estimate of the geometric standard deviation
+                        is equal to %s.
                     "),
                     htmltools::tagAppendAttributes(
                         class = "app-output-inline",
@@ -1022,11 +1024,35 @@ server <- function(input, output, session) {
         "))
 
         output$ef_estim_ef <- shiny::renderUI(
-            html(tags$li,
-                intl("The point estimate is equal to %s."),
-                htmltools::tagAppendAttributes(
-                    class = "app-output-inline",
-                    shiny::textOutput("ef_estim_ef_frac", inline = TRUE))
+            list(
+                html(tags$li,
+                    intl("The point estimate is equal to %s."),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput("ef_estim_ef_frac", inline = TRUE))
+                ),
+                html(tags$li,
+                    intl("
+                        The point estimate of the 70%% upper confidence limit
+                        is equal to %s.
+                    "),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput(
+                            outputId = "ef_estim_ef_frac_conf_limit_70",
+                            inline   = TRUE))
+                ),
+                html(tags$li,
+                    intl("
+                        The point estimate of the 95%% upper confidence limit
+                        is equal to %s.
+                    "),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput(
+                            outputId = "ef_estim_ef_frac_conf_limit_95",
+                            inline   = TRUE))
+                )
             )
         )
 
@@ -1244,7 +1270,9 @@ server <- function(input, output, session) {
         output$pe_estim_dist <- shiny::renderUI(
             list(
                 html(tags$li,
-                    intl("The geometric mean point estimate is equal to %s."),
+                    intl("
+                        The point estimate of the geometric mean is equal to %s.
+                    "),
                     htmltools::tagAppendAttributes(
                         class = "app-output-inline",
                         shiny::textOutput(
@@ -1253,8 +1281,8 @@ server <- function(input, output, session) {
                 ),
                 html(tags$li,
                     intl("
-                        The geometric standard deviation point estimate is
-                        equal to %s.
+                        The point estimate of the geometric standard deviation
+                        is equal to %s.
                     "),
                     htmltools::tagAppendAttributes(
                         class = "app-output-inline",
@@ -1270,11 +1298,35 @@ server <- function(input, output, session) {
         "))
 
         output$pe_estim_pe <- shiny::renderUI(
-            html(tags$li,
-                intl("The point estimate is equal to %s."),
-                htmltools::tagAppendAttributes(
-                    class = "app-output-inline",
-                    shiny::textOutput("pe_estim_pe_perc", inline = TRUE))
+            list(
+                html(tags$li,
+                    intl("The point estimate is equal to %s."),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput("pe_estim_pe_perc", inline = TRUE))
+                ),
+                html(tags$li,
+                    intl("
+                        The point estimate of the 70%% upper confidence limit
+                        is equal to %s.
+                    "),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput(
+                            outputId = "pe_estim_pe_perc_conf_limit_70",
+                            inline   = TRUE))
+                ),
+                html(tags$li,
+                    intl("
+                        The point estimate of the 95%% upper confidence limit
+                        is equal to %s.
+                    "),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput(
+                            outputId = "pe_estim_pe_perc_conf_limit_95",
+                            inline   = TRUE))
+                )
             )
         )
 
@@ -1419,7 +1471,9 @@ server <- function(input, output, session) {
         output$am_estim_dist <- shiny::renderUI(
             list(
                 html(tags$li,
-                    intl("The geometric mean point estimate is equal to %s."),
+                    intl("
+                        The point estimate of the geometric mean is equal to %s.
+                    "),
                     htmltools::tagAppendAttributes(
                         class = "app-output-inline",
                         shiny::textOutput(
@@ -1428,8 +1482,8 @@ server <- function(input, output, session) {
                 ),
                 html(tags$li,
                     intl("
-                        The geometric standard deviation point estimate is
-                        equal to %s.
+                        The point estimate of the geometric standard deviation
+                        is equal to %s.
                     "),
                     htmltools::tagAppendAttributes(
                         class = "app-output-inline",
@@ -1445,11 +1499,35 @@ server <- function(input, output, session) {
         "))
 
         output$am_estim_am <- shiny::renderUI(
-            html(tags$li,
-                intl("The point estimate is equal to %s."),
-                htmltools::tagAppendAttributes(
-                    class = "app-output-inline",
-                    shiny::textOutput("am_estim_am_mean", inline = TRUE))
+            list(
+                html(tags$li,
+                    intl("The point estimate is equal to %s."),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput("am_estim_am_mean", inline = TRUE))
+                ),
+                html(tags$li,
+                    intl("
+                        The point estimate of the 70%% upper confidence limit
+                        is equal to %s.
+                    "),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput(
+                            outputId = "am_estim_am_mean_conf_limit_70",
+                            inline   = TRUE))
+                ),
+                html(tags$li,
+                    intl("
+                        The point estimate of the 95%% upper confidence limit
+                        is equal to %s.
+                    "),
+                    htmltools::tagAppendAttributes(
+                        class = "app-output-inline",
+                        shiny::textOutput(
+                            outputId = "am_estim_am_mean_conf_limit_95",
+                            inline   = TRUE))
+                )
             )
         )
 
@@ -1879,6 +1957,14 @@ server <- function(input, output, session) {
         return(sprintf("%s%% [%s - %s]", frac$est, frac$lcl, frac$ucl))
     })
 
+    output$ef_estim_ef_frac_conf_limit_70 <- shiny::renderText(
+        paste0(signif(num_results()$frac.ucl70, n_digits), "%")
+    )
+
+    output$ef_estim_ef_frac_conf_limit_95 <- shiny::renderText(
+        paste0(signif(num_results()$frac.ucl95, n_digits), "%")
+    )
+
     ## Exceedance Plot ---------------------------------------------------------
 
     output$ef_exceed_plot <- shiny::renderPlot({
@@ -2027,6 +2113,14 @@ server <- function(input, output, session) {
         return(sprintf("%s [%s - %s]", perc$est, perc$lcl, perc$ucl))
     })
 
+    output$pe_estim_pe_perc_conf_limit_70 <- shiny::renderText(
+        signif(num_results()$perc.ucl70, n_digits)
+    )
+
+    output$pe_estim_pe_perc_conf_limit_95 <- shiny::renderText(
+        signif(num_results()$perc.ucl95, n_digits)
+    )
+
     ## Sequential Plot ---------------------------------------------------------
 
     output$pe_seq_plot <- shiny::renderPlot({
@@ -2120,6 +2214,14 @@ server <- function(input, output, session) {
         am <- lapply(num_results()$am, \(x) signif(x, n_digits))
         return(sprintf("%s [%s - %s]", am$est, am$lcl, am$ucl))
     })
+
+    output$am_estim_am_mean_conf_limit_70 <- shiny::renderText(
+        signif(num_results()$am.ucl70, n_digits)
+    )
+
+    output$am_estim_am_mean_conf_limit_95 <- shiny::renderText(
+        signif(num_results()$am.ucl95, n_digits)
+    )
 
     ## Sequential Plot ---------------------------------------------------------
 

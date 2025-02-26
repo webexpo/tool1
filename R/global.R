@@ -36,7 +36,7 @@ source(file.path("scripts", "Common", "Main graph functions.R"))
 tags <- htmltools::tags
 
 # Current version in production (release). Shown in footer.
-version <- "4.0.0-rc1"
+version <- "4.0.0-rc2"
 
 # Current year. Shown in footer.
 year <- format(Sys.time(), tz = "EST", format = "%Y")
