@@ -843,6 +843,16 @@ server <- function(input, output, session) {
             add_bs_alert_info(
                 title = intl("Information"),
                 tags$p(intl("
+                    The parameters shown here are a simple description of the
+                    measurements. They ensure that the data input and import
+                    process went well and that there are no obvious outliers.
+                    They should not be viewed as useful estimates of the
+                    underlying exposure distribution. For that purpose, use
+                    the other panels (Exceedance Fraction, Percentiles, or
+                    Arithmetic Mean above) where inference is based on
+                    Bayesian models.
+                ")),
+                tags$p(intl("
                     Censored measurements are subject to one of the following
                     procedure.
                 ")),

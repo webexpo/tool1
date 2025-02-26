@@ -508,6 +508,19 @@ log-normal distribution.
 
 # Insert a translation here.
 
+:: Translations: 8e9ba68: Source Text
+
+The parameters shown here are a simple description of the measurements. They
+ensure that the data input and import process went well and that there are no
+obvious outliers. They should not be viewed as useful estimates of the
+underlying exposure distribution. For that purpose, use the other panels
+(Exceedance Fraction, Percentiles, or Arithmetic Mean above) where inference is
+based on Bayesian models.
+
+:: Translations: 8e9ba68: Translation
+
+# Insert a translation here.
+
 :: Translations: be6fb8b: Source Text
 
 This plot shows a shaded and darker region corresponding to the maximal
@@ -1133,6 +1146,14 @@ exposure. The OEL is shown as a red line.
 
 # Insert a translation here.
 
+:: Translations: e3d5355: Source Text
+
+Percentiles
+
+:: Translations: e3d5355: Translation
+
+# Insert a translation here.
+
 :: Translations: 4528da3: Source Text
 
 Acceptable Sample
@@ -1154,14 +1175,6 @@ The application is straightforward to use. Follow these three steps.
 Density Plot
 
 :: Translations: d111f1a: Translation
-
-# Insert a translation here.
-
-:: Translations: e3d5355: Source Text
-
-Percentiles
-
-:: Translations: e3d5355: Translation
 
 # Insert a translation here.
 
