@@ -62,7 +62,7 @@ gsd <- function(sigma.chain,conf) {
 }
 
 
-frac <- function(mu.chain , sigma.chain , conf , c.oel) {  #exceedance fraction
+frac <- function(mu.chain, sigma.chain, conf, c.oel) {  #exceedance fraction
 
   chain <-100*(1-pnorm((log((c.oel))-mu.chain)/sigma.chain))
 
@@ -76,7 +76,7 @@ frac <- function(mu.chain , sigma.chain , conf , c.oel) {  #exceedance fraction
 
 }
 
-perc <- function(mu.chain, sigma.chain, target_perc , conf) { #percentile of interest
+perc <- function(mu.chain, sigma.chain, target_perc, conf) { #percentile of interest
 
   chain <-exp(mu.chain + qnorm(target_perc/100)*sigma.chain)
 
@@ -91,7 +91,7 @@ perc <- function(mu.chain, sigma.chain, target_perc , conf) { #percentile of int
 }
 
 
-am <- function(mu.chain, sigma.chain , conf) {  ## arithmetic mean
+am <- function(mu.chain, sigma.chain, conf) {  ## arithmetic mean
 
   chain <-exp(mu.chain + 0.5*sigma.chain^2)
 
@@ -109,7 +109,7 @@ am <- function(mu.chain, sigma.chain , conf) {  ## arithmetic mean
 #### parameter calculations - risk
 
 
-frac.risk <- function(mu.chain, sigma.chain , frac_threshold , c.oel) {  #exceedance fraction
+frac.risk <- function(mu.chain, sigma.chain, frac_threshold, c.oel) {  #exceedance fraction
 
   chain <-100*(1-pnorm((log((c.oel))-mu.chain)/sigma.chain))
 
@@ -119,7 +119,7 @@ frac.risk <- function(mu.chain, sigma.chain , frac_threshold , c.oel) {  #exceed
 
 }
 
-perc.risk <- function(mu.chain, sigma.chain , target_perc , c.oel) { #percentile of interest
+perc.risk <- function(mu.chain, sigma.chain, target_perc, c.oel) { #percentile of interest
 
   chain <-exp(mu.chain + qnorm(target_perc/100)*sigma.chain)
 
@@ -130,7 +130,7 @@ perc.risk <- function(mu.chain, sigma.chain , target_perc , c.oel) { #percentile
 }
 
 
-am.risk <- function(mu.chain, sigma.chain , c.oel) {  ## arithmetic mean
+am.risk <- function(mu.chain, sigma.chain, c.oel) {  ## arithmetic mean
 
   chain <-exp(mu.chain + 0.5*sigma.chain^2)
 
@@ -144,23 +144,31 @@ am.risk <- function(mu.chain, sigma.chain , c.oel) {  ## arithmetic mean
 
 ####### creating a list containing everything
 
-all.numeric <-function(mu.chain , sigma.chain , conf ,
-                       c.oel , frac_threshold , target_perc) {
-
-  return(list(
-
-    gm=gm(mu.chain,conf),
-    gsd=gsd(sigma.chain,conf),
-    frac=frac(mu.chain , sigma.chain , conf , c.oel),
-    perc=perc(mu.chain, sigma.chain, target_perc , conf),
-    am=am(mu.chain, sigma.chain , conf),
-    frac.risk=frac.risk(mu.chain, sigma.chain , frac_threshold , c.oel),
-    perc.risk=perc.risk(mu.chain, sigma.chain , target_perc , c.oel),
-    am.risk=am.risk(mu.chain, sigma.chain , c.oel),
-    c.oel=c.oel
-
-  ))
-
+all.numeric <- function(
+    mu.chain,
+    sigma.chain,
+    conf,
+    c.oel,
+    frac_threshold,
+    target_perc)
+{
+    return(
+        list(
+            gm         = gm(mu.chain,conf),
+            gsd        = gsd(sigma.chain,conf),
+            frac       = frac(mu.chain, sigma.chain, conf, c.oel),
+            frac.ucl95 = frac(mu.chain, sigma.chain, 90, c.oel)$ucl,
+            frac.ucl70 = frac(mu.chain, sigma.chain, 40, c.oel)$ucl,
+            perc       = perc(mu.chain, sigma.chain, target_perc, conf),
+            perc.ucl95 = perc(mu.chain, sigma.chain, target_perc, 90)$ucl,
+            perc.ucl70 = perc(mu.chain, sigma.chain, target_perc, 40)$ucl,
+            am         = am(mu.chain, sigma.chain, conf),
+            am.ucl95   = am(mu.chain, sigma.chain, 90)$ucl,
+            am.ucl70   = am(mu.chain, sigma.chain, 40)$ucl,
+            frac.risk  = frac.risk(mu.chain, sigma.chain, frac_threshold, c.oel),
+            perc.risk  = perc.risk(mu.chain, sigma.chain, target_perc, c.oel),
+            am.risk    = am.risk(mu.chain, sigma.chain, c.oel),
+            c.oel      = c.oel))
 }
 
 
