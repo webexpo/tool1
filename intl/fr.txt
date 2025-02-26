@@ -251,15 +251,6 @@ Credible Interval Probability:
 
 # Insert a translation here.
 
-:: Translations: 2e95d0e: Source Text
-
-Use this multiplier to modify the exposure limit. The product of the former and
-the latter is the actual exposure limit value for calculation purposes.
-
-:: Translations: 2e95d0e: Translation
-
-# Insert a translation here.
-
 :: Translations: 9bdd102: Source Text
 
 Measurements:
@@ -944,14 +935,6 @@ Tool 1: Data Interpretation for One Similarly Exposed Group
 Background Color (Default):
 
 :: Translations: cc22e73: Translation
-
-# Insert a translation here.
-
-:: Translations: efeff5d: Source Text
-
-Exposure Limit Multiplier:
-
-:: Translations: efeff5d: Translation
 
 # Insert a translation here.
 

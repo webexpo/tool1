@@ -22,7 +22,7 @@ Texts:
       - !<Location>
         Identifier: b5ee972:l1
         Path: ./app.R
-        Ranges: Ln 1079, Col 23 @ Ln 1079, Col 46
+        Ranges: Ln 1062, Col 23 @ Ln 1062, Col 46
   - !<Text>
     Identifier: 32e58e3
     Algorithm: sha1
@@ -40,7 +40,7 @@ Texts:
       - !<Location>
         Identifier: 32e58e3:l1
         Path: ./app.R
-        Ranges: Ln 1063, Col 45 @ Ln 1071, Col 10
+        Ranges: Ln 1046, Col 45 @ Ln 1054, Col 10
   - !<Text>
     Identifier: ea57967
     Algorithm: sha1
@@ -52,7 +52,7 @@ Texts:
       - !<Location>
         Identifier: ea57967:l1
         Path: ./app.R
-        Ranges: Ln 768, Col 23 @ Ln 768, Col 60
+        Ranges: Ln 757, Col 23 @ Ln 757, Col 60
   - !<Text>
     Identifier: b7b4f0b
     Algorithm: sha1
@@ -65,8 +65,8 @@ Texts:
         Identifier: b7b4f0b:l1
         Path: ./app.R
         Ranges:
-          - Ln 1902, Col 35 @ Ln 1902, Col 58
-          - Ln 1917, Col 39 @ Ln 1917, Col 62
+          - Ln 1876, Col 35 @ Ln 1876, Col 58
+          - Ln 1889, Col 39 @ Ln 1889, Col 62
   - !<Text>
     Identifier: 2ba1dad
     Algorithm: sha1
@@ -78,7 +78,7 @@ Texts:
       - !<Location>
         Identifier: 2ba1dad:l1
         Path: ./app.R
-        Ranges: Ln 1732, Col 21 @ Ln 1734, Col 22
+        Ranges: Ln 1715, Col 21 @ Ln 1717, Col 22
   - !<Text>
     Identifier: f10baab
     Algorithm: sha1
@@ -91,9 +91,9 @@ Texts:
         Identifier: f10baab:l1
         Path: ./app.R
         Ranges:
-          - Ln 2078, Col 34 @ Ln 2078, Col 52
-          - Ln 2180, Col 31 @ Ln 2180, Col 49
-          - Ln 2272, Col 31 @ Ln 2272, Col 49
+          - Ln 2049, Col 34 @ Ln 2049, Col 52
+          - Ln 2149, Col 31 @ Ln 2149, Col 49
+          - Ln 2241, Col 31 @ Ln 2241, Col 49
   - !<Text>
     Identifier: 8eee96b
     Algorithm: sha1
@@ -106,9 +106,9 @@ Texts:
         Identifier: 8eee96b:l1
         Path: ./app.R
         Ranges:
-          - Ln  928, Col 61 @ Ln  928, Col 81
-          - Ln 1203, Col 61 @ Ln 1203, Col 81
-          - Ln 1391, Col 61 @ Ln 1391, Col 81
+          - Ln  911, Col 61 @ Ln  911, Col 81
+          - Ln 1186, Col 61 @ Ln 1186, Col 81
+          - Ln 1374, Col 61 @ Ln 1374, Col 81
   - !<Text>
     Identifier: d0caca2
     Algorithm: sha1
@@ -122,9 +122,9 @@ Texts:
         Identifier: d0caca2:l1
         Path: ./app.R
         Ranges:
-          - Ln 1035, Col 21 @ Ln 1038, Col 22
-          - Ln 1309, Col 21 @ Ln 1312, Col 22
-          - Ln 1510, Col 21 @ Ln 1513, Col 22
+          - Ln 1018, Col 21 @ Ln 1021, Col 22
+          - Ln 1292, Col 21 @ Ln 1295, Col 22
+          - Ln 1493, Col 21 @ Ln 1496, Col 22
   - !<Text>
     Identifier: 0a7c415
     Algorithm: sha1
@@ -139,7 +139,7 @@ Texts:
       - !<Location>
         Identifier: 0a7c415:l1
         Path: ./app.R
-        Ranges: Ln 1591, Col 17 @ Ln 1596, Col 18
+        Ranges: Ln 1574, Col 17 @ Ln 1579, Col 18
   - !<Text>
     Identifier: a5a2911
     Algorithm: sha1
@@ -152,11 +152,10 @@ Texts:
         Identifier: a5a2911:l1
         Path: ./app.R
         Ranges:
-          - Ln  920, Col 49 @ Ln  920, Col 75
-          - Ln 1022, Col 53 @ Ln 1024, Col 10
-          - Ln 2037, Col 29 @ Ln 2037, Col 55
-          - Ln 2054, Col 30 @ Ln 2054, Col 56
-          - Ln 2238, Col 29 @ Ln 2238, Col 55
+          - Ln  903, Col 49 @ Ln  903, Col 75
+          - Ln 1005, Col 53 @ Ln 1007, Col 10
+          - Ln 2009, Col 29 @ Ln 2009, Col 55
+          - Ln 2026, Col 30 @ Ln 2026, Col 56
   - !<Text>
     Identifier: 532bf12
     Algorithm: sha1
@@ -169,8 +168,8 @@ Texts:
         Identifier: 532bf12:l1
         Path: ./app.R
         Ranges:
-          - Ln 2185, Col 31 @ Ln 2185, Col 43
-          - Ln 2277, Col 31 @ Ln 2277, Col 43
+          - Ln 2154, Col 31 @ Ln 2154, Col 43
+          - Ln 2246, Col 31 @ Ln 2246, Col 43
   - !<Text>
     Identifier: ba6c7a6
     Algorithm: sha1
@@ -186,7 +185,7 @@ Texts:
       - !<Location>
         Identifier: ba6c7a6:l1
         Path: ./app.R
-        Ranges: Ln 796, Col 49 @ Ln 802, Col 10
+        Ranges: Ln 779, Col 49 @ Ln 785, Col 10
   - !<Text>
     Identifier: 1166fce
     Algorithm: sha1
@@ -199,8 +198,8 @@ Texts:
         Identifier: 1166fce:l1
         Path: ./app.R
         Ranges:
-          - Ln 1583, Col 49 @ Ln 1583, Col 61
-          - Ln 1587, Col 50 @ Ln 1587, Col 62
+          - Ln 1566, Col 49 @ Ln 1566, Col 61
+          - Ln 1570, Col 50 @ Ln 1570, Col 62
   - !<Text>
     Identifier: ffb2d53
     Algorithm: sha1
@@ -212,7 +211,7 @@ Texts:
       - !<Location>
         Identifier: ffb2d53:l1
         Path: ./app.R
-        Ranges: Ln 899, Col 48 @ Ln 899, Col 76
+        Ranges: Ln 882, Col 48 @ Ln 882, Col 76
   - !<Text>
     Identifier: 400ee3e
     Algorithm: sha1
@@ -224,7 +223,7 @@ Texts:
       - !<Location>
         Identifier: 400ee3e:l1
         Path: ./app.R
-        Ranges: Ln 1084, Col 23 @ Ln 1084, Col 55
+        Ranges: Ln 1067, Col 23 @ Ln 1067, Col 55
   - !<Text>
     Identifier: 24a1b71
     Algorithm: sha1
@@ -236,7 +235,7 @@ Texts:
       - !<Location>
         Identifier: 24a1b71:l1
         Path: ./app.R
-        Ranges: Ln 1876, Col 17 @ Ln 1876, Col 30
+        Ranges: Ln 1850, Col 17 @ Ln 1850, Col 30
   - !<Text>
     Identifier: 5b8a460
     Algorithm: sha1
@@ -250,9 +249,9 @@ Texts:
         Identifier: 5b8a460:l1
         Path: ./app.R
         Ranges:
-          - Ln 1009, Col 21 @ Ln 1012, Col 22
-          - Ln 1283, Col 21 @ Ln 1286, Col 22
-          - Ln 1484, Col 21 @ Ln 1487, Col 22
+          - Ln  992, Col 21 @ Ln  995, Col 22
+          - Ln 1266, Col 21 @ Ln 1269, Col 22
+          - Ln 1467, Col 21 @ Ln 1470, Col 22
   - !<Text>
     Identifier: '8785301'
     Algorithm: sha1
@@ -264,7 +263,7 @@ Texts:
       - !<Location>
         Identifier: 8785301:l1
         Path: ./app.R
-        Ranges: Ln 772, Col 23 @ Ln 772, Col 50
+        Ranges: Ln 761, Col 23 @ Ln 761, Col 50
   - !<Text>
     Identifier: aab3349
     Algorithm: sha1
@@ -283,7 +282,7 @@ Texts:
       - !<Location>
         Identifier: aab3349:l1
         Path: ./app.R
-        Ranges: Ln 1662, Col 21 @ Ln 1671, Col 22
+        Ranges: Ln 1645, Col 21 @ Ln 1654, Col 22
   - !<Text>
     Identifier: 6db5beb
     Algorithm: sha1
@@ -296,8 +295,8 @@ Texts:
         Identifier: 6db5beb:l1
         Path: ./app.R
         Ranges:
-          - Ln 2184, Col 31 @ Ln 2184, Col 54
-          - Ln 2276, Col 31 @ Ln 2276, Col 54
+          - Ln 2153, Col 31 @ Ln 2153, Col 54
+          - Ln 2245, Col 31 @ Ln 2245, Col 54
   - !<Text>
     Identifier: 18638ba
     Algorithm: sha1
@@ -314,7 +313,7 @@ Texts:
       - !<Location>
         Identifier: 18638ba:l1
         Path: ./app.R
-        Ranges: Ln 1175, Col 17 @ Ln 1185, Col 18
+        Ranges: Ln 1158, Col 17 @ Ln 1168, Col 18
   - !<Text>
     Identifier: 4e2a12c
     Algorithm: sha1
@@ -327,9 +326,9 @@ Texts:
         Identifier: 4e2a12c:l1
         Path: ./app.R
         Ranges:
-          - Ln  944, Col 21 @ Ln  947, Col 22
-          - Ln 1218, Col 21 @ Ln 1221, Col 22
-          - Ln 1401, Col 21 @ Ln 1404, Col 22
+          - Ln  927, Col 21 @ Ln  930, Col 22
+          - Ln 1201, Col 21 @ Ln 1204, Col 22
+          - Ln 1384, Col 21 @ Ln 1387, Col 22
   - !<Text>
     Identifier: 4fecb88
     Algorithm: sha1
@@ -349,7 +348,7 @@ Texts:
       - !<Location>
         Identifier: 4fecb88:l1
         Path: ./app.R
-        Ranges: Ln 1711, Col 21 @ Ln 1721, Col 22
+        Ranges: Ln 1694, Col 21 @ Ln 1704, Col 22
   - !<Text>
     Identifier: e2d8fab
     Algorithm: sha1
@@ -363,7 +362,7 @@ Texts:
       - !<Location>
         Identifier: e2d8fab:l1
         Path: ./app.R
-        Ranges: Ln 778, Col 49 @ Ln 781, Col 10
+        Ranges: Ln 767, Col 49 @ Ln 770, Col 10
   - !<Text>
     Identifier: 798b335
     Algorithm: sha1
@@ -375,22 +374,7 @@ Texts:
       - !<Location>
         Identifier: 798b335:l1
         Path: ./app.R
-        Ranges: Ln 756, Col 23 @ Ln 756, Col 60
-  - !<Text>
-    Identifier: 2e95d0e
-    Algorithm: sha1
-    Hash: 2e95d0e16a782ff5c49e270d5a9a47b12da26109
-    Source Language: en
-    Source Text: |-
-      Use this multiplier to modify the exposure limit. The product of the
-      former and the latter is the actual exposure limit value for calculation
-      purposes.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 2e95d0e:l1
-        Path: ./app.R
-        Ranges: Ln 783, Col 48 @ Ln 787, Col 10
+        Ranges: Ln 745, Col 23 @ Ln 745, Col 60
   - !<Text>
     Identifier: 9bdd102
     Algorithm: sha1
@@ -402,7 +386,7 @@ Texts:
       - !<Location>
         Identifier: 9bdd102:l1
         Path: ./app.R
-        Ranges: Ln 764, Col 23 @ Ln 764, Col 43
+        Ranges: Ln 753, Col 23 @ Ln 753, Col 43
   - !<Text>
     Identifier: 5f52075
     Algorithm: sha1
@@ -415,8 +399,8 @@ Texts:
         Identifier: 5f52075:l1
         Path: ./app.R
         Ranges:
-          - Ln 2183, Col 31 @ Ln 2183, Col 53
-          - Ln 2275, Col 31 @ Ln 2275, Col 53
+          - Ln 2152, Col 31 @ Ln 2152, Col 53
+          - Ln 2244, Col 31 @ Ln 2244, Col 53
   - !<Text>
     Identifier: 6918de6
     Algorithm: sha1
@@ -428,7 +412,7 @@ Texts:
       - !<Location>
         Identifier: 6918de6:l1
         Path: ./app.R
-        Ranges: Ln 1873, Col 17 @ Ln 1873, Col 43
+        Ranges: Ln 1847, Col 17 @ Ln 1847, Col 43
   - !<Text>
     Identifier: 80d1a60
     Algorithm: sha1
@@ -440,7 +424,7 @@ Texts:
       - !<Location>
         Identifier: 80d1a60:l1
         Path: ./app.R
-        Ranges: Ln 2077, Col 34 @ Ln 2077, Col 69
+        Ranges: Ln 2048, Col 34 @ Ln 2048, Col 69
   - !<Text>
     Identifier: cebe5c4
     Algorithm: sha1
@@ -453,9 +437,9 @@ Texts:
         Identifier: cebe5c4:l1
         Path: ./app.R
         Ranges:
-          - Ln 2038, Col 29 @ Ln 2038, Col 53
-          - Ln 2141, Col 38 @ Ln 2141, Col 62
-          - Ln 2240, Col 29 @ Ln 2240, Col 53
+          - Ln 2010, Col 29 @ Ln 2010, Col 53
+          - Ln 2111, Col 38 @ Ln 2111, Col 62
+          - Ln 2209, Col 29 @ Ln 2209, Col 53
   - !<Text>
     Identifier: e87c846
     Algorithm: sha1
@@ -467,7 +451,7 @@ Texts:
       - !<Location>
         Identifier: e87c846:l1
         Path: ./app.R
-        Ranges: Ln 1441, Col 25 @ Ln 1441, Col 39
+        Ranges: Ln 1424, Col 25 @ Ln 1424, Col 39
   - !<Text>
     Identifier: a632e97
     Algorithm: sha1
@@ -479,7 +463,7 @@ Texts:
       - !<Location>
         Identifier: a632e97:l1
         Path: ./app.R
-        Ranges: Ln 1872, Col 17 @ Ln 1872, Col 46
+        Ranges: Ln 1846, Col 17 @ Ln 1846, Col 46
   - !<Text>
     Identifier: 3e0b7d6
     Algorithm: sha1
@@ -491,7 +475,7 @@ Texts:
       - !<Location>
         Identifier: 3e0b7d6:l1
         Path: ./app.R
-        Ranges: Ln 1874, Col 17 @ Ln 1874, Col 31
+        Ranges: Ln 1848, Col 17 @ Ln 1848, Col 31
   - !<Text>
     Identifier: 96d547d
     Algorithm: sha1
@@ -503,7 +487,7 @@ Texts:
       - !<Location>
         Identifier: 96d547d:l1
         Path: ./app.R
-        Ranges: Ln 1878, Col 17 @ Ln 1878, Col 31
+        Ranges: Ln 1852, Col 17 @ Ln 1852, Col 31
   - !<Text>
     Identifier: '9578728'
     Algorithm: sha1
@@ -515,7 +499,7 @@ Texts:
       - !<Location>
         Identifier: 9578728:l1
         Path: ./app.R
-        Ranges: Ln 828, Col 57 @ Ln 830, Col 10
+        Ranges: Ln 811, Col 57 @ Ln 813, Col 10
   - !<Text>
     Identifier: 22eb3b2
     Algorithm: sha1
@@ -536,7 +520,7 @@ Texts:
       - !<Location>
         Identifier: 22eb3b2:l1
         Path: ./app.R
-        Ranges: Ln 1442, Col 24 @ Ln 1453, Col 18
+        Ranges: Ln 1425, Col 24 @ Ln 1436, Col 18
   - !<Text>
     Identifier: f533761
     Algorithm: sha1
@@ -548,7 +532,7 @@ Texts:
       - !<Location>
         Identifier: f533761:l1
         Path: ./app.R
-        Ranges: Ln 1061, Col 51 @ Ln 1061, Col 73
+        Ranges: Ln 1044, Col 51 @ Ln 1044, Col 73
   - !<Text>
     Identifier: '1117964'
     Algorithm: sha1
@@ -563,7 +547,7 @@ Texts:
       - !<Location>
         Identifier: 1117964:l1
         Path: ./app.R
-        Ranges: Ln 1350, Col 48 @ Ln 1355, Col 10
+        Ranges: Ln 1333, Col 48 @ Ln 1338, Col 10
   - !<Text>
     Identifier: af71ace
     Algorithm: sha1
@@ -575,7 +559,7 @@ Texts:
       - !<Location>
         Identifier: af71ace:l1
         Path: ./app.R
-        Ranges: Ln 860, Col 29 @ Ln 863, Col 22
+        Ranges: Ln 843, Col 29 @ Ln 846, Col 22
   - !<Text>
     Identifier: e0d44f8
     Algorithm: sha1
@@ -587,7 +571,7 @@ Texts:
       - !<Location>
         Identifier: e0d44f8:l1
         Path: ./app.R
-        Ranges: Ln 732, Col 46 @ Ln 734, Col 10
+        Ranges: Ln 725, Col 46 @ Ln 727, Col 10
   - !<Text>
     Identifier: 1a0644e
     Algorithm: sha1
@@ -601,7 +585,7 @@ Texts:
       - !<Location>
         Identifier: 1a0644e:l1
         Path: ./app.R
-        Ranges: Ln 864, Col 29 @ Ln 867, Col 22
+        Ranges: Ln 847, Col 29 @ Ln 850, Col 22
   - !<Text>
     Identifier: 3dbfac5
     Algorithm: sha1
@@ -614,9 +598,9 @@ Texts:
         Identifier: 3dbfac5:l1
         Path: ./app.R
         Ranges:
-          - Ln 1029, Col 21 @ Ln 1029, Col 62
-          - Ln 1303, Col 21 @ Ln 1303, Col 62
-          - Ln 1504, Col 21 @ Ln 1504, Col 62
+          - Ln 1012, Col 21 @ Ln 1012, Col 62
+          - Ln 1286, Col 21 @ Ln 1286, Col 62
+          - Ln 1487, Col 21 @ Ln 1487, Col 62
   - !<Text>
     Identifier: 5bbca33
     Algorithm: sha1
@@ -628,7 +612,7 @@ Texts:
       - !<Location>
         Identifier: 5bbca33:l1
         Path: ./app.R
-        Ranges: Ln 1884, Col 17 @ Ln 1884, Col 52
+        Ranges: Ln 1858, Col 17 @ Ln 1858, Col 52
   - !<Text>
     Identifier: 1d671e4
     Algorithm: sha1
@@ -642,7 +626,7 @@ Texts:
       - !<Location>
         Identifier: 1d671e4:l1
         Path: ./app.R
-        Ranges: Ln 1208, Col 21 @ Ln 1211, Col 22
+        Ranges: Ln 1191, Col 21 @ Ln 1194, Col 22
   - !<Text>
     Identifier: 23eb033
     Algorithm: sha1
@@ -654,7 +638,7 @@ Texts:
       - !<Location>
         Identifier: 23eb033:l1
         Path: ./app.R
-        Ranges: Ln 2186, Col 31 @ Ln 2186, Col 66
+        Ranges: Ln 2155, Col 31 @ Ln 2155, Col 66
   - !<Text>
     Identifier: c165d34
     Algorithm: sha1
@@ -667,8 +651,8 @@ Texts:
         Identifier: c165d34:l1
         Path: ./app.R
         Ranges:
-          - Ln 2182, Col 31 @ Ln 2182, Col 52
-          - Ln 2274, Col 31 @ Ln 2274, Col 52
+          - Ln 2151, Col 31 @ Ln 2151, Col 52
+          - Ln 2243, Col 31 @ Ln 2243, Col 52
   - !<Text>
     Identifier: ee91f19
     Algorithm: sha1
@@ -680,7 +664,7 @@ Texts:
       - !<Location>
         Identifier: ee91f19:l1
         Path: ./app.R
-        Ranges: Ln 1921, Col 39 @ Ln 1921, Col 58
+        Ranges: Ln 1893, Col 39 @ Ln 1893, Col 58
   - !<Text>
     Identifier: ab8e870
     Algorithm: sha1
@@ -699,7 +683,7 @@ Texts:
       - !<Location>
         Identifier: ab8e870:l1
         Path: ./app.R
-        Ranges: Ln 1642, Col 29 @ Ln 1650, Col 22
+        Ranges: Ln 1625, Col 29 @ Ln 1633, Col 22
   - !<Text>
     Identifier: '5542666'
     Algorithm: sha1
@@ -711,7 +695,7 @@ Texts:
       - !<Location>
         Identifier: 5542666:l1
         Path: ./app.R
-        Ranges: Ln 1075, Col 23 @ Ln 1075, Col 39
+        Ranges: Ln 1058, Col 23 @ Ln 1058, Col 39
   - !<Text>
     Identifier: f7a0860
     Algorithm: sha1
@@ -724,8 +708,8 @@ Texts:
         Identifier: f7a0860:l1
         Path: ./app.R
         Ranges:
-          - Ln 724, Col 38 @ Ln 724, Col 51
-          - Ln 825, Col 38 @ Ln 825, Col 51
+          - Ln 717, Col 38 @ Ln 717, Col 51
+          - Ln 808, Col 38 @ Ln 808, Col 51
   - !<Text>
     Identifier: 7e9d895
     Algorithm: sha1
@@ -738,9 +722,9 @@ Texts:
         Identifier: 7e9d895:l1
         Path: ./app.R
         Ranges:
-          - Ln 1941, Col 20 @ Ln 1941, Col 44
-          - Ln 2097, Col 20 @ Ln 2097, Col 44
-          - Ln 2199, Col 20 @ Ln 2199, Col 44
+          - Ln 1913, Col 20 @ Ln 1913, Col 44
+          - Ln 2068, Col 20 @ Ln 2068, Col 44
+          - Ln 2168, Col 20 @ Ln 2168, Col 44
   - !<Text>
     Identifier: ceefbab
     Algorithm: sha1
@@ -753,9 +737,9 @@ Texts:
         Identifier: ceefbab:l1
         Path: ./app.R
         Ranges:
-          - Ln 2053, Col 30 @ Ln 2053, Col 44
-          - Ln 2159, Col 38 @ Ln 2159, Col 52
-          - Ln 2255, Col 30 @ Ln 2255, Col 44
+          - Ln 2025, Col 30 @ Ln 2025, Col 44
+          - Ln 2129, Col 38 @ Ln 2129, Col 52
+          - Ln 2224, Col 30 @ Ln 2224, Col 44
   - !<Text>
     Identifier: eb0ce59
     Algorithm: sha1
@@ -767,7 +751,7 @@ Texts:
       - !<Location>
         Identifier: eb0ce59:l1
         Path: ./app.R
-        Ranges: Ln 834, Col 49 @ Ln 834, Col 66
+        Ranges: Ln 817, Col 49 @ Ln 817, Col 66
   - !<Text>
     Identifier: 836003a
     Algorithm: sha1
@@ -781,7 +765,7 @@ Texts:
       - !<Location>
         Identifier: 836003a:l1
         Path: ./app.R
-        Ranges: Ln 1693, Col 24 @ Ln 1696, Col 18
+        Ranges: Ln 1676, Col 24 @ Ln 1679, Col 18
   - !<Text>
     Identifier: 8e9ba68
     Algorithm: sha1
@@ -799,7 +783,7 @@ Texts:
       - !<Location>
         Identifier: 8e9ba68:l1
         Path: ./app.R
-        Ranges: Ln 845, Col 24 @ Ln 854, Col 18
+        Ranges: Ln 828, Col 24 @ Ln 837, Col 18
   - !<Text>
     Identifier: be6fb8b
     Algorithm: sha1
@@ -819,7 +803,7 @@ Texts:
       - !<Location>
         Identifier: be6fb8b:l1
         Path: ./app.R
-        Ranges: Ln 1131, Col 25 @ Ln 1142, Col 18
+        Ranges: Ln 1114, Col 25 @ Ln 1125, Col 18
   - !<Text>
     Identifier: 1ad7b08
     Algorithm: sha1
@@ -831,7 +815,7 @@ Texts:
       - !<Location>
         Identifier: 1ad7b08:l1
         Path: ./app.R
-        Ranges: Ln 748, Col 23 @ Ln 748, Col 45
+        Ranges: Ln 741, Col 23 @ Ln 741, Col 45
   - !<Text>
     Identifier: 677f437
     Algorithm: sha1
@@ -852,7 +836,7 @@ Texts:
       - !<Location>
         Identifier: 677f437:l1
         Path: ./app.R
-        Ranges: Ln 1112, Col 25 @ Ln 1124, Col 18
+        Ranges: Ln 1095, Col 25 @ Ln 1107, Col 18
   - !<Text>
     Identifier: 62fc968
     Algorithm: sha1
@@ -865,10 +849,10 @@ Texts:
         Identifier: 62fc968:l1
         Path: ./app.R
         Ranges:
-          - Ln 1875, Col 36 @ Ln 1875, Col 53
-          - Ln 1877, Col 36 @ Ln 1877, Col 53
-          - Ln 2140, Col 38 @ Ln 2140, Col 55
-          - Ln 2162, Col 38 @ Ln 2162, Col 55
+          - Ln 1849, Col 36 @ Ln 1849, Col 53
+          - Ln 1851, Col 36 @ Ln 1851, Col 53
+          - Ln 2110, Col 38 @ Ln 2110, Col 55
+          - Ln 2132, Col 38 @ Ln 2132, Col 55
   - !<Text>
     Identifier: ad1e98e
     Algorithm: sha1
@@ -881,10 +865,11 @@ Texts:
         Identifier: ad1e98e:l1
         Path: ./app.R
         Ranges:
-          - Ln 2056, Col 30 @ Ln 2056, Col 40
-          - Ln 2139, Col 38 @ Ln 2139, Col 48
-          - Ln 2161, Col 38 @ Ln 2161, Col 48
-          - Ln 2257, Col 30 @ Ln 2257, Col 40
+          - Ln 2028, Col 30 @ Ln 2028, Col 40
+          - Ln 2109, Col 38 @ Ln 2109, Col 48
+          - Ln 2131, Col 38 @ Ln 2131, Col 48
+          - Ln 2207, Col 29 @ Ln 2207, Col 39
+          - Ln 2226, Col 30 @ Ln 2226, Col 40
   - !<Text>
     Identifier: 3d4f8d5
     Algorithm: sha1
@@ -896,7 +881,7 @@ Texts:
       - !<Location>
         Identifier: 3d4f8d5:l1
         Path: ./app.R
-        Ranges: Ln 1881, Col 17 @ Ln 1881, Col 53
+        Ranges: Ln 1855, Col 17 @ Ln 1855, Col 53
   - !<Text>
     Identifier: 3ec9556
     Algorithm: sha1
@@ -908,7 +893,7 @@ Texts:
       - !<Location>
         Identifier: 3ec9556:l1
         Path: ./app.R
-        Ranges: Ln 1296, Col 53 @ Ln 1298, Col 10
+        Ranges: Ln 1279, Col 53 @ Ln 1281, Col 10
   - !<Text>
     Identifier: da5e3d2
     Algorithm: sha1
@@ -922,7 +907,7 @@ Texts:
       - !<Location>
         Identifier: da5e3d2:l1
         Path: ./app.R
-        Ranges: Ln 1396, Col 21 @ Ln 1398, Col 70
+        Ranges: Ln 1379, Col 21 @ Ln 1381, Col 70
   - !<Text>
     Identifier: c4a0bd5
     Algorithm: sha1
@@ -934,7 +919,7 @@ Texts:
       - !<Location>
         Identifier: c4a0bd5:l1
         Path: ./app.R
-        Ranges: Ln 924, Col 58 @ Ln 926, Col 10
+        Ranges: Ln 907, Col 58 @ Ln 909, Col 10
   - !<Text>
     Identifier: 8f7f102
     Algorithm: sha1
@@ -947,8 +932,8 @@ Texts:
         Identifier: 8f7f102:l1
         Path: ./app.R
         Ranges:
-          - Ln  888, Col 47 @ Ln  888, Col 76
-          - Ln 1899, Col 35 @ Ln 1899, Col 64
+          - Ln  871, Col 47 @ Ln  871, Col 76
+          - Ln 1873, Col 35 @ Ln 1873, Col 64
   - !<Text>
     Identifier: 603143d
     Algorithm: sha1
@@ -961,9 +946,9 @@ Texts:
         Identifier: 603143d:l1
         Path: ./app.R
         Ranges:
-          - Ln  955, Col 21 @ Ln  958, Col 22
-          - Ln 1229, Col 21 @ Ln 1232, Col 22
-          - Ln 1412, Col 21 @ Ln 1415, Col 22
+          - Ln  938, Col 21 @ Ln  941, Col 22
+          - Ln 1212, Col 21 @ Ln 1215, Col 22
+          - Ln 1395, Col 21 @ Ln 1398, Col 22
   - !<Text>
     Identifier: 5464daa
     Algorithm: sha1
@@ -975,7 +960,7 @@ Texts:
       - !<Location>
         Identifier: 5464daa:l1
         Path: ./app.R
-        Ranges: Ln 844, Col 25 @ Ln 844, Col 43
+        Ranges: Ln 827, Col 25 @ Ln 827, Col 43
   - !<Text>
     Identifier: 81fb05e
     Algorithm: sha1
@@ -987,7 +972,7 @@ Texts:
       - !<Location>
         Identifier: 81fb05e:l1
         Path: ./app.R
-        Ranges: Ln 1888, Col 17 @ Ln 1888, Col 29
+        Ranges: Ln 1862, Col 17 @ Ln 1862, Col 29
   - !<Text>
     Identifier: da34e30
     Algorithm: sha1
@@ -999,7 +984,7 @@ Texts:
       - !<Location>
         Identifier: da34e30:l1
         Path: ./app.R
-        Ranges: Ln 1883, Col 17 @ Ln 1883, Col 38
+        Ranges: Ln 1857, Col 17 @ Ln 1857, Col 38
   - !<Text>
     Identifier: 501a2ee
     Algorithm: sha1
@@ -1011,7 +996,7 @@ Texts:
       - !<Location>
         Identifier: 501a2ee:l1
         Path: ./app.R
-        Ranges: Ln 1919, Col 39 @ Ln 1919, Col 60
+        Ranges: Ln 1891, Col 39 @ Ln 1891, Col 60
   - !<Text>
     Identifier: fffde19
     Algorithm: sha1
@@ -1026,7 +1011,7 @@ Texts:
       - !<Location>
         Identifier: fffde19:l1
         Path: ./app.R
-        Ranges: Ln 810, Col 60 @ Ln 814, Col 10
+        Ranges: Ln 793, Col 60 @ Ln 797, Col 10
   - !<Text>
     Identifier: 6e6300f
     Algorithm: sha1
@@ -1038,7 +1023,7 @@ Texts:
       - !<Location>
         Identifier: 6e6300f:l1
         Path: ./app.R
-        Ranges: Ln 1101, Col 56 @ Ln 1101, Col 70
+        Ranges: Ln 1084, Col 56 @ Ln 1084, Col 70
   - !<Text>
     Identifier: ef7c259
     Algorithm: sha1
@@ -1052,9 +1037,9 @@ Texts:
         Identifier: ef7c259:l1
         Path: ./app.R
         Ranges:
-          - Ln 1046, Col 21 @ Ln 1049, Col 22
-          - Ln 1320, Col 21 @ Ln 1323, Col 22
-          - Ln 1521, Col 21 @ Ln 1524, Col 22
+          - Ln 1029, Col 21 @ Ln 1032, Col 22
+          - Ln 1303, Col 21 @ Ln 1306, Col 22
+          - Ln 1504, Col 21 @ Ln 1507, Col 22
   - !<Text>
     Identifier: 99db36b
     Algorithm: sha1
@@ -1067,9 +1052,9 @@ Texts:
         Identifier: 99db36b:l1
         Path: ./app.R
         Ranges:
-          - Ln 1944, Col 16 @ Ln 1944, Col 44
-          - Ln 2100, Col 16 @ Ln 2100, Col 44
-          - Ln 2202, Col 16 @ Ln 2202, Col 44
+          - Ln 1916, Col 16 @ Ln 1916, Col 44
+          - Ln 2071, Col 16 @ Ln 2071, Col 44
+          - Ln 2171, Col 16 @ Ln 2171, Col 44
   - !<Text>
     Identifier: f590590
     Algorithm: sha1
@@ -1083,7 +1068,7 @@ Texts:
       - !<Location>
         Identifier: f590590:l1
         Path: ./app.R
-        Ranges: Ln 1705, Col 29 @ Ln 1708, Col 22
+        Ranges: Ln 1688, Col 29 @ Ln 1691, Col 22
   - !<Text>
     Identifier: ac24260
     Algorithm: sha1
@@ -1097,7 +1082,7 @@ Texts:
       - !<Location>
         Identifier: ac24260:l1
         Path: ./app.R
-        Ranges: Ln 933, Col 21 @ Ln 936, Col 22
+        Ranges: Ln 916, Col 21 @ Ln 919, Col 22
   - !<Text>
     Identifier: 654b124
     Algorithm: sha1
@@ -1109,7 +1094,7 @@ Texts:
       - !<Location>
         Identifier: 654b124:l1
         Path: ./app.R
-        Ranges: Ln 1654, Col 29 @ Ln 1656, Col 22
+        Ranges: Ln 1637, Col 29 @ Ln 1639, Col 22
   - !<Text>
     Identifier: e0147d1
     Algorithm: sha1
@@ -1122,9 +1107,9 @@ Texts:
         Identifier: e0147d1:l1
         Path: ./app.R
         Ranges:
-          - Ln  999, Col 21 @ Ln 1001, Col 22
-          - Ln 1273, Col 21 @ Ln 1275, Col 22
-          - Ln 1474, Col 21 @ Ln 1476, Col 22
+          - Ln  982, Col 21 @ Ln  984, Col 22
+          - Ln 1256, Col 21 @ Ln 1258, Col 22
+          - Ln 1457, Col 21 @ Ln 1459, Col 22
   - !<Text>
     Identifier: f436237
     Algorithm: sha1
@@ -1136,7 +1121,7 @@ Texts:
       - !<Location>
         Identifier: f436237:l1
         Path: ./app.R
-        Ranges: Ln 1199, Col 58 @ Ln 1201, Col 10
+        Ranges: Ln 1182, Col 58 @ Ln 1184, Col 10
   - !<Text>
     Identifier: 0e99366
     Algorithm: sha1
@@ -1148,7 +1133,7 @@ Texts:
       - !<Location>
         Identifier: 0e99366:l1
         Path: ./app.R
-        Ranges: Ln 2278, Col 31 @ Ln 2278, Col 62
+        Ranges: Ln 2247, Col 31 @ Ln 2247, Col 62
   - !<Text>
     Identifier: 64ba6dd
     Algorithm: sha1
@@ -1160,7 +1145,7 @@ Texts:
       - !<Location>
         Identifier: 64ba6dd:l1
         Path: ./app.R
-        Ranges: Ln 1651, Col 29 @ Ln 1653, Col 22
+        Ranges: Ln 1634, Col 29 @ Ln 1636, Col 22
   - !<Text>
     Identifier: 3b426c5
     Algorithm: sha1
@@ -1172,7 +1157,7 @@ Texts:
       - !<Location>
         Identifier: 3b426c5:l1
         Path: ./app.R
-        Ranges: Ln 1387, Col 58 @ Ln 1389, Col 10
+        Ranges: Ln 1370, Col 58 @ Ln 1372, Col 10
   - !<Text>
     Identifier: 466a65e
     Algorithm: sha1
@@ -1184,7 +1169,7 @@ Texts:
       - !<Location>
         Identifier: 466a65e:l1
         Path: ./app.R
-        Ranges: Ln 760, Col 23 @ Ln 760, Col 58
+        Ranges: Ln 749, Col 23 @ Ln 749, Col 58
   - !<Text>
     Identifier: 7da06cc
     Algorithm: sha1
@@ -1196,7 +1181,7 @@ Texts:
       - !<Location>
         Identifier: 7da06cc:l1
         Path: ./app.R
-        Ranges: Ln 1887, Col 17 @ Ln 1887, Col 33
+        Ranges: Ln 1861, Col 17 @ Ln 1861, Col 33
   - !<Text>
     Identifier: f717683
     Algorithm: sha1
@@ -1209,9 +1194,9 @@ Texts:
         Identifier: f717683:l1
         Path: ./app.R
         Ranges:
-          - Ln  966, Col 21 @ Ln  966, Col 70
-          - Ln 1240, Col 21 @ Ln 1240, Col 70
-          - Ln 1423, Col 21 @ Ln 1423, Col 70
+          - Ln  949, Col 21 @ Ln  949, Col 70
+          - Ln 1223, Col 21 @ Ln 1223, Col 70
+          - Ln 1406, Col 21 @ Ln 1406, Col 70
   - !<Text>
     Identifier: 8153e10
     Algorithm: sha1
@@ -1224,9 +1209,9 @@ Texts:
         Identifier: 8153e10:l1
         Path: ./app.R
         Ranges:
-          - Ln  988, Col 44 @ Ln  990, Col 10
-          - Ln 1262, Col 44 @ Ln 1264, Col 10
-          - Ln 1463, Col 44 @ Ln 1465, Col 10
+          - Ln  971, Col 44 @ Ln  973, Col 10
+          - Ln 1245, Col 44 @ Ln 1247, Col 10
+          - Ln 1446, Col 44 @ Ln 1448, Col 10
   - !<Text>
     Identifier: '6489309'
     Algorithm: sha1
@@ -1241,7 +1226,7 @@ Texts:
       - !<Location>
         Identifier: 6489309:l1
         Path: ./app.R
-        Ranges: Ln 816, Col 57 @ Ln 820, Col 10
+        Ranges: Ln 799, Col 57 @ Ln 803, Col 10
   - !<Text>
     Identifier: 10ef3a6
     Algorithm: sha1
@@ -1253,7 +1238,7 @@ Texts:
       - !<Location>
         Identifier: 10ef3a6:l1
         Path: ./app.R
-        Ranges: Ln 1900, Col 35 @ Ln 1900, Col 76
+        Ranges: Ln 1874, Col 35 @ Ln 1874, Col 76
   - !<Text>
     Identifier: a32a1f9
     Algorithm: sha1
@@ -1270,7 +1255,7 @@ Texts:
       - !<Location>
         Identifier: a32a1f9:l1
         Path: ./app.R
-        Ranges: Ln 1538, Col 47 @ Ln 1545, Col 10
+        Ranges: Ln 1521, Col 47 @ Ln 1528, Col 10
   - !<Text>
     Identifier: 897e74a
     Algorithm: sha1
@@ -1283,8 +1268,8 @@ Texts:
         Identifier: 897e74a:l1
         Path: ./app.R
         Ranges:
-          - Ln 1994, Col 38 @ Ln 1994, Col 59
-          - Ln 2005, Col 38 @ Ln 2005, Col 59
+          - Ln 1966, Col 38 @ Ln 1966, Col 59
+          - Ln 1977, Col 38 @ Ln 1977, Col 59
   - !<Text>
     Identifier: d257a4e
     Algorithm: sha1
@@ -1297,8 +1282,8 @@ Texts:
         Identifier: d257a4e:l1
         Path: ./app.R
         Ranges:
-          - Ln 2181, Col 31 @ Ln 2181, Col 46
-          - Ln 2273, Col 31 @ Ln 2273, Col 46
+          - Ln 2150, Col 31 @ Ln 2150, Col 46
+          - Ln 2242, Col 31 @ Ln 2242, Col 46
   - !<Text>
     Identifier: 826d25d
     Algorithm: sha1
@@ -1310,7 +1295,7 @@ Texts:
       - !<Location>
         Identifier: 826d25d:l1
         Path: ./app.R
-        Ranges: Ln 1089, Col 23 @ Ln 1089, Col 58
+        Ranges: Ln 1072, Col 23 @ Ln 1072, Col 58
   - !<Text>
     Identifier: e80025a
     Algorithm: sha1
@@ -1323,9 +1308,9 @@ Texts:
         Identifier: e80025a:l1
         Path: ./app.R
         Ranges:
-          - Ln 1148, Col 48 @ Ln 1148, Col 70
-          - Ln 1335, Col 48 @ Ln 1335, Col 70
-          - Ln 1536, Col 48 @ Ln 1536, Col 70
+          - Ln 1131, Col 48 @ Ln 1131, Col 70
+          - Ln 1318, Col 48 @ Ln 1318, Col 70
+          - Ln 1519, Col 48 @ Ln 1519, Col 70
   - !<Text>
     Identifier: 7d71177
     Algorithm: sha1
@@ -1341,7 +1326,7 @@ Texts:
       - !<Location>
         Identifier: 7d71177:l1
         Path: ./app.R
-        Ranges: Ln 1630, Col 24 @ Ln 1636, Col 18
+        Ranges: Ln 1613, Col 24 @ Ln 1619, Col 18
   - !<Text>
     Identifier: da9cc89
     Algorithm: sha1
@@ -1354,9 +1339,9 @@ Texts:
         Identifier: da9cc89:l1
         Path: ./app.R
         Ranges:
-          - Ln 1171, Col 54 @ Ln 1171, Col 75
-          - Ln 1359, Col 54 @ Ln 1359, Col 75
-          - Ln 1560, Col 54 @ Ln 1560, Col 75
+          - Ln 1154, Col 54 @ Ln 1154, Col 75
+          - Ln 1342, Col 54 @ Ln 1342, Col 75
+          - Ln 1543, Col 54 @ Ln 1543, Col 75
   - !<Text>
     Identifier: b66eca7
     Algorithm: sha1
@@ -1372,7 +1357,7 @@ Texts:
       - !<Location>
         Identifier: b66eca7:l1
         Path: ./app.R
-        Ranges: Ln 890, Col 46 @ Ln 895, Col 10
+        Ranges: Ln 873, Col 46 @ Ln 878, Col 10
   - !<Text>
     Identifier: b372419
     Algorithm: sha1
@@ -1384,7 +1369,7 @@ Texts:
       - !<Location>
         Identifier: b372419:l1
         Path: ./app.R
-        Ranges: Ln 1611, Col 55 @ Ln 1613, Col 10
+        Ranges: Ln 1594, Col 55 @ Ln 1596, Col 10
   - !<Text>
     Identifier: 463c845
     Algorithm: sha1
@@ -1399,7 +1384,7 @@ Texts:
       - !<Location>
         Identifier: 463c845:l1
         Path: ./app.R
-        Ranges: Ln 1162, Col 48 @ Ln 1167, Col 10
+        Ranges: Ln 1145, Col 48 @ Ln 1150, Col 10
   - !<Text>
     Identifier: df83adb
     Algorithm: sha1
@@ -1412,11 +1397,11 @@ Texts:
         Identifier: df83adb:l1
         Path: ./app.R
         Ranges:
-          - Ln 1383, Col 49 @ Ln 1383, Col 71
-          - Ln 1497, Col 53 @ Ln 1499, Col 10
-          - Ln 1880, Col 17 @ Ln 1880, Col 39
-          - Ln 2239, Col 29 @ Ln 2239, Col 51
-          - Ln 2258, Col 30 @ Ln 2258, Col 52
+          - Ln 1366, Col 49 @ Ln 1366, Col 71
+          - Ln 1480, Col 53 @ Ln 1482, Col 10
+          - Ln 1854, Col 17 @ Ln 1854, Col 39
+          - Ln 2208, Col 29 @ Ln 2208, Col 51
+          - Ln 2227, Col 30 @ Ln 2227, Col 52
   - !<Text>
     Identifier: e6a9040
     Algorithm: sha1
@@ -1428,7 +1413,7 @@ Texts:
       - !<Location>
         Identifier: e6a9040:l1
         Path: ./app.R
-        Ranges: Ln 774, Col 50 @ Ln 776, Col 10
+        Ranges: Ln 763, Col 50 @ Ln 765, Col 10
   - !<Text>
     Identifier: 97a777e
     Algorithm: sha1
@@ -1440,7 +1425,7 @@ Texts:
       - !<Location>
         Identifier: 97a777e:l1
         Path: ./app.R
-        Ranges: Ln 1901, Col 35 @ Ln 1901, Col 79
+        Ranges: Ln 1875, Col 35 @ Ln 1875, Col 79
   - !<Text>
     Identifier: 00b437c
     Algorithm: sha1
@@ -1456,7 +1441,7 @@ Texts:
       - !<Location>
         Identifier: 00b437c:l1
         Path: ./app.R
-        Ranges: Ln 789, Col 50 @ Ln 794, Col 10
+        Ranges: Ln 772, Col 50 @ Ln 777, Col 10
   - !<Text>
     Identifier: 55092d5
     Algorithm: sha1
@@ -1468,7 +1453,7 @@ Texts:
       - !<Location>
         Identifier: 55092d5:l1
         Path: ./app.R
-        Ranges: Ln 728, Col 45 @ Ln 730, Col 10
+        Ranges: Ln 721, Col 45 @ Ln 723, Col 10
   - !<Text>
     Identifier: cc22e73
     Algorithm: sha1
@@ -1480,19 +1465,7 @@ Texts:
       - !<Location>
         Identifier: cc22e73:l1
         Path: ./app.R
-        Ranges: Ln 1094, Col 23 @ Ln 1094, Col 57
-  - !<Text>
-    Identifier: efeff5d
-    Algorithm: sha1
-    Hash: efeff5dcf0e56c94d2d9ff4ea18267903894f05f
-    Source Language: en
-    Source Text: 'Exposure Limit Multiplier:'
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: efeff5d:l1
-        Path: ./app.R
-        Ranges: Ln 752, Col 23 @ Ln 752, Col 56
+        Ranges: Ln 1077, Col 23 @ Ln 1077, Col 57
   - !<Text>
     Identifier: c2bb46d
     Algorithm: sha1
@@ -1504,7 +1477,7 @@ Texts:
       - !<Location>
         Identifier: c2bb46d:l1
         Path: ./app.R
-        Ranges: Ln 1702, Col 29 @ Ln 1704, Col 22
+        Ranges: Ln 1685, Col 29 @ Ln 1687, Col 22
   - !<Text>
     Identifier: 5f32e41
     Algorithm: sha1
@@ -1518,7 +1491,7 @@ Texts:
       - !<Location>
         Identifier: 5f32e41:l1
         Path: ./app.R
-        Ranges: Ln 1698, Col 29 @ Ln 1701, Col 22
+        Ranges: Ln 1681, Col 29 @ Ln 1684, Col 22
   - !<Text>
     Identifier: 2b83cc5
     Algorithm: sha1
@@ -1532,7 +1505,7 @@ Texts:
       - !<Location>
         Identifier: 2b83cc5:l1
         Path: ./app.R
-        Ranges: Ln 804, Col 50 @ Ln 808, Col 10
+        Ranges: Ln 787, Col 50 @ Ln 791, Col 10
   - !<Text>
     Identifier: fc5b077
     Algorithm: sha1
@@ -1545,9 +1518,9 @@ Texts:
         Identifier: fc5b077:l1
         Path: ./app.R
         Ranges:
-          - Ln 2055, Col 30 @ Ln 2055, Col 69
-          - Ln 2160, Col 38 @ Ln 2160, Col 77
-          - Ln 2256, Col 30 @ Ln 2256, Col 69
+          - Ln 2027, Col 30 @ Ln 2027, Col 69
+          - Ln 2130, Col 38 @ Ln 2130, Col 77
+          - Ln 2225, Col 30 @ Ln 2225, Col 69
   - !<Text>
     Identifier: 127b5d6
     Algorithm: sha1
@@ -1559,7 +1532,7 @@ Texts:
       - !<Location>
         Identifier: 127b5d6:l1
         Path: ./app.R
-        Ranges: Ln 855, Col 24 @ Ln 858, Col 18
+        Ranges: Ln 838, Col 24 @ Ln 841, Col 18
   - !<Text>
     Identifier: '1583901'
     Algorithm: sha1
@@ -1574,7 +1547,7 @@ Texts:
       - !<Location>
         Identifier: 1583901:l1
         Path: ./app.R
-        Ranges: Ln 1125, Col 25 @ Ln 1130, Col 18
+        Ranges: Ln 1108, Col 25 @ Ln 1113, Col 18
   - !<Text>
     Identifier: 1de8474
     Algorithm: sha1
@@ -1587,13 +1560,13 @@ Texts:
         Identifier: 1de8474:l1
         Path: ./app.R
         Ranges:
-          - Ln 1918, Col 39 @ Ln 1918, Col 59
-          - Ln 2036, Col 29 @ Ln 2036, Col 49
-          - Ln 2052, Col 30 @ Ln 2052, Col 50
-          - Ln 2138, Col 38 @ Ln 2138, Col 58
-          - Ln 2158, Col 38 @ Ln 2158, Col 58
-          - Ln 2237, Col 29 @ Ln 2237, Col 49
-          - Ln 2254, Col 30 @ Ln 2254, Col 50
+          - Ln 1890, Col 39 @ Ln 1890, Col 59
+          - Ln 2008, Col 29 @ Ln 2008, Col 49
+          - Ln 2024, Col 30 @ Ln 2024, Col 50
+          - Ln 2108, Col 38 @ Ln 2108, Col 58
+          - Ln 2128, Col 38 @ Ln 2128, Col 58
+          - Ln 2206, Col 29 @ Ln 2206, Col 49
+          - Ln 2223, Col 30 @ Ln 2223, Col 50
   - !<Text>
     Identifier: 4a8e3cf
     Algorithm: sha1
@@ -1609,7 +1582,7 @@ Texts:
       - !<Location>
         Identifier: 4a8e3cf:l1
         Path: ./app.R
-        Ranges: Ln 1105, Col 25 @ Ln 1111, Col 18
+        Ranges: Ln 1088, Col 25 @ Ln 1094, Col 18
   - !<Text>
     Identifier: ef12e2b
     Algorithm: sha1
@@ -1628,7 +1601,7 @@ Texts:
       - !<Location>
         Identifier: ef12e2b:l1
         Path: ./app.R
-        Ranges: Ln 1564, Col 17 @ Ln 1576, Col 18
+        Ranges: Ln 1547, Col 17 @ Ln 1559, Col 18
   - !<Text>
     Identifier: 21d66f8
     Algorithm: sha1
@@ -1640,7 +1613,7 @@ Texts:
       - !<Location>
         Identifier: 21d66f8:l1
         Path: ./app.R
-        Ranges: Ln 1904, Col 35 @ Ln 1904, Col 50
+        Ranges: Ln 1878, Col 35 @ Ln 1878, Col 50
   - !<Text>
     Identifier: d8dfd19
     Algorithm: sha1
@@ -1653,9 +1626,9 @@ Texts:
         Identifier: d8dfd19:l1
         Path: ./app.R
         Ranges:
-          - Ln  984, Col 50 @ Ln  986, Col 10
-          - Ln 1258, Col 50 @ Ln 1260, Col 10
-          - Ln 1459, Col 50 @ Ln 1461, Col 10
+          - Ln  967, Col 50 @ Ln  969, Col 10
+          - Ln 1241, Col 50 @ Ln 1243, Col 10
+          - Ln 1442, Col 50 @ Ln 1444, Col 10
   - !<Text>
     Identifier: '9725731'
     Algorithm: sha1
@@ -1667,7 +1640,7 @@ Texts:
       - !<Location>
         Identifier: 9725731:l1
         Path: ./app.R
-        Ranges: Ln 1687, Col 53 @ Ln 1689, Col 10
+        Ranges: Ln 1670, Col 53 @ Ln 1672, Col 10
   - !<Text>
     Identifier: bd0f576
     Algorithm: sha1
@@ -1679,7 +1652,7 @@ Texts:
       - !<Location>
         Identifier: bd0f576:l1
         Path: ./app.R
-        Ranges: Ln 742, Col 23 @ Ln 742, Col 39
+        Ranges: Ln 735, Col 23 @ Ln 735, Col 39
   - !<Text>
     Identifier: 7d94d60
     Algorithm: sha1
@@ -1696,7 +1669,7 @@ Texts:
       - !<Location>
         Identifier: 7d94d60:l1
         Path: ./app.R
-        Ranges: Ln 1337, Col 47 @ Ln 1344, Col 10
+        Ranges: Ln 1320, Col 47 @ Ln 1327, Col 10
   - !<Text>
     Identifier: f8e1168
     Algorithm: sha1
@@ -1711,7 +1684,7 @@ Texts:
       - !<Location>
         Identifier: f8e1168:l1
         Path: ./app.R
-        Ranges: Ln 869, Col 25 @ Ln 874, Col 26
+        Ranges: Ln 852, Col 25 @ Ln 857, Col 26
   - !<Text>
     Identifier: fd52582
     Algorithm: sha1
@@ -1728,7 +1701,7 @@ Texts:
       - !<Location>
         Identifier: fd52582:l1
         Path: ./app.R
-        Ranges: Ln 903, Col 17 @ Ln 910, Col 18
+        Ranges: Ln 886, Col 17 @ Ln 893, Col 18
   - !<Text>
     Identifier: 4c95939
     Algorithm: sha1
@@ -1749,7 +1722,7 @@ Texts:
       - !<Location>
         Identifier: 4c95939:l1
         Path: ./app.R
-        Ranges: Ln 1617, Col 24 @ Ln 1629, Col 18
+        Ranges: Ln 1600, Col 24 @ Ln 1612, Col 18
   - !<Text>
     Identifier: 305b9f6
     Algorithm: sha1
@@ -1761,7 +1734,7 @@ Texts:
       - !<Location>
         Identifier: 305b9f6:l1
         Path: ./app.R
-        Ranges: Ln 1882, Col 17 @ Ln 1882, Col 48
+        Ranges: Ln 1856, Col 17 @ Ln 1856, Col 48
   - !<Text>
     Identifier: a2622ac
     Algorithm: sha1
@@ -1773,7 +1746,7 @@ Texts:
       - !<Location>
         Identifier: a2622ac:l1
         Path: ./app.R
-        Ranges: Ln 1099, Col 23 @ Ln 1099, Col 59
+        Ranges: Ln 1082, Col 23 @ Ln 1082, Col 59
   - !<Text>
     Identifier: 02a9a58
     Algorithm: sha1
@@ -1792,7 +1765,7 @@ Texts:
       - !<Location>
         Identifier: 02a9a58:l1
         Path: ./app.R
-        Ranges: Ln 1363, Col 17 @ Ln 1376, Col 18
+        Ranges: Ln 1346, Col 17 @ Ln 1359, Col 18
   - !<Text>
     Identifier: 27c579f
     Algorithm: sha1
@@ -1808,7 +1781,7 @@ Texts:
       - !<Location>
         Identifier: 27c579f:l1
         Path: ./app.R
-        Ranges: Ln 1150, Col 47 @ Ln 1156, Col 10
+        Ranges: Ln 1133, Col 47 @ Ln 1139, Col 10
   - !<Text>
     Identifier: 4528da3
     Algorithm: sha1
@@ -1821,8 +1794,8 @@ Texts:
         Identifier: 4528da3:l1
         Path: ./app.R
         Ranges:
-          - Ln 1990, Col 38 @ Ln 1990, Col 62
-          - Ln 2000, Col 38 @ Ln 2000, Col 62
+          - Ln 1962, Col 38 @ Ln 1962, Col 62
+          - Ln 1972, Col 38 @ Ln 1972, Col 62
   - !<Text>
     Identifier: 7d963dd
     Algorithm: sha1
@@ -1834,7 +1807,7 @@ Texts:
       - !<Location>
         Identifier: 7d963dd:l1
         Path: ./app.R
-        Ranges: Ln 1637, Col 24 @ Ln 1640, Col 18
+        Ranges: Ln 1620, Col 24 @ Ln 1623, Col 18
   - !<Text>
     Identifier: d111f1a
     Algorithm: sha1
@@ -1847,9 +1820,9 @@ Texts:
         Identifier: d111f1a:l1
         Path: ./app.R
         Ranges:
-          - Ln 1160, Col 49 @ Ln 1160, Col 68
-          - Ln 1348, Col 49 @ Ln 1348, Col 68
-          - Ln 1549, Col 49 @ Ln 1549, Col 68
+          - Ln 1143, Col 49 @ Ln 1143, Col 68
+          - Ln 1331, Col 49 @ Ln 1331, Col 68
+          - Ln 1532, Col 49 @ Ln 1532, Col 68
   - !<Text>
     Identifier: e3d5355
     Algorithm: sha1
@@ -1861,7 +1834,7 @@ Texts:
       - !<Location>
         Identifier: e3d5355:l1
         Path: ./app.R
-        Ranges: Ln 1195, Col 49 @ Ln 1195, Col 67
+        Ranges: Ln 1178, Col 49 @ Ln 1178, Col 67
   - !<Text>
     Identifier: 7e85759
     Algorithm: sha1
@@ -1873,7 +1846,7 @@ Texts:
       - !<Location>
         Identifier: 7e85759:l1
         Path: ./app.R
-        Ranges: Ln 744, Col 51 @ Ln 744, Col 68
+        Ranges: Ln 737, Col 51 @ Ln 737, Col 68
   - !<Text>
     Identifier: a3c6c52
     Algorithm: sha1
@@ -1886,8 +1859,8 @@ Texts:
         Identifier: a3c6c52:l1
         Path: ./app.R
         Ranges:
-          - Ln 1903, Col 35 @ Ln 1903, Col 50
-          - Ln 1920, Col 39 @ Ln 1920, Col 54
+          - Ln 1877, Col 35 @ Ln 1877, Col 50
+          - Ln 1892, Col 39 @ Ln 1892, Col 54
   - !<Text>
     Identifier: 0ff7e09
     Algorithm: sha1
@@ -1899,7 +1872,7 @@ Texts:
       - !<Location>
         Identifier: 0ff7e09:l1
         Path: ./app.R
-        Ranges: Ln 838, Col 55 @ Ln 838, Col 84
+        Ranges: Ln 821, Col 55 @ Ln 821, Col 84
   - !<Text>
     Identifier: '7034018'
     Algorithm: sha1
@@ -1911,7 +1884,7 @@ Texts:
       - !<Location>
         Identifier: 7034018:l1
         Path: ./app.R
-        Ranges: Ln 1922, Col 39 @ Ln 1922, Col 58
+        Ranges: Ln 1894, Col 39 @ Ln 1894, Col 58
   - !<Text>
     Identifier: 1dba349
     Algorithm: sha1
@@ -1927,9 +1900,9 @@ Texts:
         Identifier: 1dba349:l1
         Path: ./app.R
         Ranges:
-          - Ln  976, Col 54 @ Ln  980, Col 10
-          - Ln 1250, Col 54 @ Ln 1254, Col 10
-          - Ln 1433, Col 54 @ Ln 1437, Col 10
+          - Ln  959, Col 54 @ Ln  963, Col 10
+          - Ln 1233, Col 54 @ Ln 1237, Col 10
+          - Ln 1416, Col 54 @ Ln 1420, Col 10
   - !<Text>
     Identifier: 036cb38
     Algorithm: sha1
@@ -1944,7 +1917,7 @@ Texts:
       - !<Location>
         Identifier: 036cb38:l1
         Path: ./app.R
-        Ranges: Ln 1551, Col 48 @ Ln 1556, Col 10
+        Ranges: Ln 1534, Col 48 @ Ln 1539, Col 10
   - !<Text>
     Identifier: 2fa88b0
     Algorithm: sha1
@@ -1956,7 +1929,7 @@ Texts:
       - !<Location>
         Identifier: 2fa88b0:l1
         Path: ./app.R
-        Ranges: Ln 840, Col 58 @ Ln 840, Col 72
+        Ranges: Ln 823, Col 58 @ Ln 823, Col 72
   - !<Text>
     Identifier: 79e5ee7
     Algorithm: sha1
@@ -1969,9 +1942,9 @@ Texts:
         Identifier: 79e5ee7:l1
         Path: ./app.R
         Ranges:
-          - Ln  992, Col 55 @ Ln  994, Col 10
-          - Ln 1266, Col 55 @ Ln 1268, Col 10
-          - Ln 1467, Col 55 @ Ln 1469, Col 10
+          - Ln  975, Col 55 @ Ln  977, Col 10
+          - Ln 1249, Col 55 @ Ln 1251, Col 10
+          - Ln 1450, Col 55 @ Ln 1452, Col 10
   - !<Text>
     Identifier: ebe0383
     Algorithm: sha1
@@ -1983,7 +1956,7 @@ Texts:
       - !<Location>
         Identifier: ebe0383:l1
         Path: ./app.R
-        Ranges: Ln 1658, Col 24 @ Ln 1660, Col 18
+        Ranges: Ln 1641, Col 24 @ Ln 1643, Col 18
   - !<Text>
     Identifier: 681bbc3
     Algorithm: sha1
@@ -1995,5 +1968,5 @@ Texts:
       - !<Location>
         Identifier: 681bbc3:l1
         Path: ./app.R
-        Ranges: Ln 1879, Col 17 @ Ln 1879, Col 40
+        Ranges: Ln 1853, Col 17 @ Ln 1853, Col 40
 
