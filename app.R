@@ -107,13 +107,6 @@ ui <- shiny::fluidPage(
                 bslib::tooltip(id = "sb_oel_tooltip", ""),
 
             shiny::numericInput(
-                inputId = "al",
-                label   = "",
-                value   = 1) |>
-                htmltools::tagAppendAttributes(class = "app-input") |>
-                bslib::tooltip(id = "sb_al_tooltip", ""),
-
-            shiny::numericInput(
                 inputId = "conf",
                 label   = "",
                 value   = 90,
@@ -748,10 +741,6 @@ server <- function(input, output, session) {
             label   = intl("Exposure Limit:"))
 
         shiny::updateNumericInput(
-            inputId = "al",
-            label   = intl("Exposure Limit Multiplier:"))
-
-        shiny::updateNumericInput(
             inputId = "conf",
             label   = intl("Credible Interval Probability:"))
 
@@ -778,12 +767,6 @@ server <- function(input, output, session) {
         bslib::update_tooltip("sb_oel_tooltip", intl("
             Use the exposure limit to assess overexposure. It must have the
             same unit as the measurement data.
-        "))
-
-        bslib::update_tooltip("sb_al_tooltip", intl("
-            Use this multiplier to modify the exposure limit. The product of
-            the former and the latter is the actual exposure limit value for
-            calculation purposes.
         "))
 
         bslib::update_tooltip("sb_conf_tooltip", intl("
@@ -1784,10 +1767,10 @@ server <- function(input, output, session) {
     )
 
     user_formatted_sample <- shiny::reactive(
-        data.formatting.SEG(
-            data.in  = input$data,
-            oel      = input$oel,
-            oel.mult = input$al)
+        # oel.mult is set equal to 1 until Webexpo scripts
+        # are rewritten. In what follows c.oel is ignored
+        # and input$oel is used instead.
+        data.formatting.SEG(input$data, input$oel, 1L)
     )
 
     user_formatted_sample_imputed <- reactive({
@@ -1805,14 +1788,14 @@ server <- function(input, output, session) {
         user_sample <- user_formatted_sample()
         return(
             fun.bayes.jags(
-                observations     = user_sample$data,
-                notcensored      = user_sample$notcensored,
-                leftcensored     = user_sample$leftcensored,
-                rightcensored    = user_sample$rightcensored,
-                intcensored      = user_sample$intcensored,
-                seed             = user_sample$seed,
-                c.oel            = user_sample$c.oel,
-                n.iter           = n_bayes_iter))
+                observations  = user_sample$data,
+                notcensored   = user_sample$notcensored,
+                leftcensored  = user_sample$leftcensored,
+                rightcensored = user_sample$rightcensored,
+                intcensored   = user_sample$intcensored,
+                seed          = user_sample$seed,
+                c.oel         = input$oel,
+                n.iter        = n_bayes_iter))
     })
 
     num_results <- shiny::reactive({
@@ -1822,7 +1805,7 @@ server <- function(input, output, session) {
             all.numeric(
                 mu.chain       = bayesian_outputs$mu.chain,
                 sigma.chain    = bayesian_outputs$sigma.chain,
-                c.oel          = user_formatted_sample()$c.oel,
+                c.oel          = input$oel,
                 conf           = inputs$conf,
                 frac_threshold = inputs$frac_threshold,
                 target_perc    = inputs$target_perc))
@@ -1862,7 +1845,7 @@ server <- function(input, output, session) {
         expr     = {
             stats_df <- fun.desc.stat(
                 data.simply.imputed = user_formatted_sample_imputed(),
-                c.oel = user_formatted_sample()$c.oel)
+                c.oel = input$oel)
 
             # <sup> tag cannot be used in a renderTable() call,
             # even with shiny::HTML(). As a workaround, UTF-8
@@ -1906,21 +1889,19 @@ server <- function(input, output, session) {
 
     ## Box and Whiskers Plot ---------------------------------------------------
 
-    output$st_box_plot <- shiny::renderPlot({
-        user_sample <- user_formatted_sample()
-
+    output$st_box_plot <- shiny::renderPlot(
         return(
             fun.boxplot(
                 data.simply.imputed = user_formatted_sample_imputed(),
-                notcensored         = user_sample$notcensored,
-                c.oel               = user_sample$c.oel,
+                notcensored         = user_formatted_sample()$notcensored,
+                c.oel               = input$oel,
                 boxplot.1           = intl("Measurement Type"),
                 boxplot.2           = intl("Concentration"),
                 boxplot.3           = intl("Exposure Limit"),
                 boxplot.4           = intl("Censored"),
                 boxplot.5           = intl("Not Censored"),
                 boxplot.6           = intl("Measurements")))
-    })
+    )
 
     # Panel: Exceedance Fraction -----------------------------------------------
 
@@ -2032,7 +2013,7 @@ server <- function(input, output, session) {
                 gm        = results$gm$est,
                 gsd       = results$gsd$est,
                 frac      = results$frac$est,
-                c.oel     = user_formatted_sample()$c.oel,
+                c.oel     = input$oel,
                 seqplot.1 = intl("Concentration"),
                 seqplot.2 = intl("Exceedance Fraction"),
                 seqplot.6 = intl("Measurement Index")))
@@ -2048,7 +2029,7 @@ server <- function(input, output, session) {
                 gm         = exp(median(bayesian_outputs$mu.chain)),
                 gsd        = exp(median(bayesian_outputs$sigma.chain)),
                 frac       = num_results()$frac$est ,
-                c.oel      = user_formatted_sample()$c.oel,
+                c.oel      = input$oel,
                 distplot.1 = intl("Concentration"),
                 distplot.2 = intl("Density"),
                 distplot.3 = intl("Exceedance Fraction"),
@@ -2071,7 +2052,7 @@ server <- function(input, output, session) {
             riskband.plot.frac(
                 mu.chain       = bayesian_outputs$mu.chain,
                 sigma.chain    = bayesian_outputs$sigma.chain,
-                c.oel          = user_formatted_sample()$c.oel,
+                c.oel          = input$oel,
                 frac_threshold = inputs$frac_threshold,
                 psi            = inputs$psi,
                 riskplot.1     = intl("Exceedance Fraction Category"),
@@ -2132,7 +2113,7 @@ server <- function(input, output, session) {
                 gm                 = results$gm$est,
                 gsd                = results$gsd$est,
                 perc               = results$perc$est,
-                c.oel              = user_formatted_sample()$c.oel,
+                c.oel              = input$oel,
                 target_perc        = target_perc,
                 target_perc_suffix = ordinal_abbr(target_perc, input$lang),
                 seqplot.1          = intl("Concentration"),
@@ -2154,7 +2135,7 @@ server <- function(input, output, session) {
                 perc               = num_results()$perc$est,
                 target_perc        = target_perc,
                 target_perc_suffix = ordinal_abbr(target_perc, input$lang),
-                c.oel              = user_formatted_sample()$c.oel,
+                c.oel              = input$oel,
                 distplot.1         = intl("Concentration"),
                 distplot.2         = intl("Density"),
                 distplot.4         = intl("OEL outside of graphical limits."),
@@ -2172,7 +2153,7 @@ server <- function(input, output, session) {
             riskband.plot.perc(
                 mu.chain    = bayesian_outputs$mu.chain,
                 sigma.chain = bayesian_outputs$sigma.chain,
-                c.oel       = user_formatted_sample()$c.oel,
+                c.oel       = input$oel,
                 target_perc = inputs$target_perc,
                 psi         = inputs$psi,
                 # ≤ may not render in all IDEs. This is Unicode
@@ -2233,9 +2214,9 @@ server <- function(input, output, session) {
                 gm        = results$gm$est,
                 gsd       = results$gsd$est,
                 am        = results$am$est,
-                c.oel     = user_formatted_sample()$c.oel,
+                c.oel     = input$oel,
                 seqplot.1 = intl("Concentration"),
-                seqplot.3 = intl("Exceedance Fraction"),
+                seqplot.3 = intl("OEL"),
                 seqplot.5 = intl("Arithmetic Mean"),
                 seqplot.6 = intl("Measurement Index")))
     })
@@ -2250,7 +2231,7 @@ server <- function(input, output, session) {
                 gm         = exp(median(bayesian_outputs$mu.chain)),
                 gsd        = exp(median(bayesian_outputs$sigma.chain)),
                 am         = num_results()$am$est,
-                c.oel      = user_formatted_sample()$c.oel,
+                c.oel      = input$oel,
                 distplot.1 = intl("Concentration"),
                 distplot.2 = intl("Density"),
                 distplot.4 = intl("OEL outside of graphical limits."),
@@ -2267,7 +2248,7 @@ server <- function(input, output, session) {
             riskband.plot.am(
                 mu.chain    = bayesian_outputs$mu.chain,
                 sigma.chain = bayesian_outputs$sigma.chain,
-                c.oel       = user_formatted_sample()$c.oel,
+                c.oel       = input$oel,
                 psi         = user_inputs()$psi,
                 riskplot.2  = intl("Probability"),
                 riskplot.3  = intl("≤ 1% OEL"),

@@ -48,7 +48,6 @@ There are 6 rules. They exist for consistency and readability.
 | *Body*              | `shiny::tabsetPanel()`        | `active_panel`                    | None                              |
 | Sidebar             | `shiny::selectInput()`        | `lang`                            | None                              |
 | Sidebar             | `shiny::numericInput()`       | `oel`                             | `oel`                             |
-| Sidebar             | `shiny::numericInput()`       | `al`                              | `al`                              |
 | Sidebar             | `shiny::numericInput()`       | `conf`                            | `conf`                            |
 | Sidebar             | `shiny::numericInput()`       | `psi`                             | `psi`                             |
 | Sidebar             | `shiny::textAreaInput()`      | `data`                            | `data`                            |
@@ -77,7 +76,6 @@ prefix is omitted. Other specific inputs always have a prefix.
 | Sidebar             | `shiny::uiOutput()`           | `sb_inputs_title`                 | None                              |
 | Sidebar             | `bslib::tooltip()`            | `sb_lang_tooltip`                 | None                              |
 | Sidebar             | `bslib::tooltip()`            | `sb_oel_tooltip`                  | None                              |
-| Sidebar             | `bslib::tooltip()`            | `sb_al_tooltip`                   | None                              |
 | Sidebar             | `bslib::tooltip()`            | `sb_conf_tooltip`                 | None                              |
 | Sidebar             | `bslib::tooltip()`            | `sb_psi_tooltip`                  | None                              |
 | Sidebar             | `bslib::tooltip()`            | `sb_data_tooltip`                 | None                              |
