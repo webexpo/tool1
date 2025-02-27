@@ -27,8 +27,9 @@ tr$set_native_languages(
     en = "English",
     fr = "Français")
 
-# Extract source text to translate from source scripts.
-transltr::find_source(tr = tr, interface = quote(intl))
+# Extract source text to translate from source scripts and register them.
+transltr::find_source_in_files(paths = "app.R", interface = quote(intl)) |>
+do.call(what = tr$set_texts)
 
 # Export translations.
 # They are imported whenever the application is launched. See R/global.R.
