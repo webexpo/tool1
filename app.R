@@ -146,9 +146,8 @@ ui <- shiny::fluidPage(
                 value   = 5,
                 min     = 0,
                 max     = 100) |>
-                htmltools::tagAppendAttributes(
-                    class = "app-input",
-                    style = "display: none;") |>
+                htmltools::tagAppendAttributes(class = "app-input") |>
+                shinyjs::hidden() |>
                 bslib::tooltip(id = "sb_frac_threshold_tooltip", ""),
 
             # This output is only shown when the active panel is percentiles.
@@ -158,9 +157,8 @@ ui <- shiny::fluidPage(
                 value   = 95,
                 min     = 0,
                 max     = 100) |>
-                htmltools::tagAppendAttributes(
-                    class = "app-input",
-                    style = "display: none;") |>
+                htmltools::tagAppendAttributes(class = "app-input") |>
+                shinyjs::hidden() |>
                 bslib::tooltip(id = "sb_target_perc_tooltip", ""),
 
             shiny::actionButton(inputId = "sb_clear_btn",  label = ""),
@@ -1741,36 +1739,27 @@ server <- function(input, output, session) {
     # Hide panel-specific inputs by default and
     # show them when a specific panel is active.
     shiny::observe({
-        shinyjs::hide("frac_threshold")
-        shinyjs::hide("target_perc")
-        switch(input$active_panel,
-            ef = shinyjs::show("frac_threshold"),
-            pe = shinyjs::show("target_perc"))
-    }) |>
-    shiny::bindEvent(input$active_panel)
+        shinyjs::toggle("frac_threshold", condition = input$active_panel == "ef")
+        shinyjs::toggle("target_perc",    condition = input$active_panel == "pe")
+    })
 
     # Clear the main <textarea> of input$data.
-    shiny::observe(
-        shiny::updateTextAreaInput(inputId = "data", value = "")
-    ) |>
+    shiny::observe(shiny::updateTextAreaInput(inputId = "data", value = "")) |>
     shiny::bindEvent(input$sb_clear_btn)
 
     # Toggle the icon of button ef_exceed_btn_customize
     # (alternating between up and down arrows) and the
     # display state of ef_exceed_cols container.
     shiny::observe({
-        icon_name <- if (input$ef_exceed_btn_customize %% 2L == 0L) {
-            "triangle-bottom"
-        } else {
-            "triangle-top"
-        }
+        is_even <- input$ef_exceed_btn_customize %% 2L == 0L
 
+        shinyjs::toggle("ef_exceed_cols")
         shiny::updateActionButton(
             inputId = "ef_exceed_btn_customize",
-            icon    = shiny::icon(icon_name,
+            icon    = shiny::icon(
+                name  = if (is_even) "triangle-bottom" else "triangle-top",
                 lib   = "glyphicon",
                 style = "padding-right: 10px;"))
-        shinyjs::toggle("ef_exceed_cols")
     }) |>
     shiny::bindEvent(input$ef_exceed_btn_customize)
 
