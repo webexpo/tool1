@@ -278,7 +278,7 @@ ui <- shiny::fluidPage(
 
                             shiny::uiOutput("ef_risk_decision",
                                 container = tags$ul,
-                                class     = "app-ul"),
+                                class     = "app-list"),
 
                             shiny::uiOutput("ef_risk_meter_desc",
                                 container = tags$p)
@@ -309,7 +309,7 @@ ui <- shiny::fluidPage(
 
                             shiny::uiOutput("ef_estim_dist",
                                 container = tags$ul,
-                                class     = "app-ul")
+                                class     = "app-list")
                         ),
 
                         shiny::column(width = 6L,
@@ -319,7 +319,7 @@ ui <- shiny::fluidPage(
 
                             shiny::uiOutput("ef_estim_ef",
                                 container = tags$ul,
-                                class     = "app-ul")
+                                class     = "app-list")
                         )
                     ),
 
@@ -470,7 +470,7 @@ ui <- shiny::fluidPage(
 
                             shiny::uiOutput("pe_risk_decision",
                                 container = tags$ul,
-                                class     = "app-ul"),
+                                class     = "app-list"),
 
                             shiny::uiOutput("pe_risk_meter_desc",
                                 container = tags$p)
@@ -501,7 +501,7 @@ ui <- shiny::fluidPage(
 
                             shiny::uiOutput("pe_estim_dist",
                                 container = tags$ul,
-                                class     = "app-ul")
+                                class     = "app-list")
                         ),
 
                         shiny::column(width = 6L,
@@ -511,7 +511,7 @@ ui <- shiny::fluidPage(
 
                             shiny::uiOutput("pe_estim_pe",
                                 container = tags$ul,
-                                class     = "app-ul")
+                                class     = "app-list")
                         )
                     ),
 
@@ -571,7 +571,7 @@ ui <- shiny::fluidPage(
 
                             shiny::uiOutput("am_risk_decision",
                                 container = tags$ul,
-                                class     = "app-ul"),
+                                class     = "app-list"),
 
                             shiny::uiOutput("am_risk_meter_desc",
                                 container = tags$p),
@@ -604,7 +604,7 @@ ui <- shiny::fluidPage(
 
                             shiny::uiOutput("am_estim_dist",
                                 container = tags$ul,
-                                class     = "app-ul")
+                                class     = "app-list")
                         ),
 
                         shiny::column(width = 6L,
@@ -614,7 +614,7 @@ ui <- shiny::fluidPage(
 
                             shiny::uiOutput("am_estim_am",
                                 container = tags$ul,
-                                class     = "app-ul")
+                                class     = "app-list")
                         )
                     ),
 
@@ -850,6 +850,7 @@ server <- function(input, output, session) {
                     procedure.
                 ")),
                 tags$ul(
+                    class = "app-list",
                     tags$li(intl("
                         Interval censored measurements are imputed as the
                         mid-range.
@@ -1631,22 +1632,8 @@ server <- function(input, output, session) {
                     The application is straightforward to use. Follow these
                     three steps.
                 ")),
-                tags$ul(
-                    tags$li(intl("
-                        Enter your measurements under Measurements in the left
-                        panel. There must be one value per line. Write them as
-                        you would in your favourite text editor. You may also
-                        copy and paste values stored in a spreadsheet's column.
-
-                        The initial dataset provided for illustration purposes
-                        can be deleted as you usually would in any text editor.
-                    ")),
-                    tags$li(intl("
-                        Enter other parameters (see the left sidebar to do do).
-                    ")),
-                    tags$li(intl("
-                        Wait for the calculations to be performed.
-                    "))
+                tags$ol(
+                    class = "app-list",
                 ),
                 tags$p(intl("
                     Results are updated whenever an input changes.
@@ -1688,6 +1675,7 @@ server <- function(input, output, session) {
                     the parameters of the log-normal distribution.
                 ")),
                 tags$ul(
+                    class = "app-list",
                     tags$li(intl("
                         It yields a more intuitive rationale compared
                         to traditional (frequentist) methods.
