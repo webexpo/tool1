@@ -974,7 +974,7 @@ server <- function(input, output, session) {
         "))
 
         output$ef_estim <- shiny::renderUI(intl("
-            Square brackets give the underlying credible intervals.
+            Credible intervals are shown in square brackets.
         "))
 
         output$ef_estim_dist_title <- shiny::renderUI(intl("
@@ -1222,7 +1222,7 @@ server <- function(input, output, session) {
         "))
 
         output$pe_estim <- shiny::renderUI(intl("
-            Square brackets give the underlying credible intervals.
+            Credible intervals are shown in square brackets.
         "))
 
         output$pe_estim_dist_title <- shiny::renderUI(intl(
@@ -1383,7 +1383,7 @@ server <- function(input, output, session) {
 
                     Despite an annoying lack of precise definition by most
                     organizations, they should be most often viewed as thresholds
-                    to be exceeded as few times as possible. Some authors have
+                    to be exceeded as rarely as possible. Some authors have
                     suggested using one-tenth of the OEL as a practical LTA-OEL
                     when assessing risk using the arithmetic mean.
                 "))
@@ -1397,7 +1397,7 @@ server <- function(input, output, session) {
         "))
 
         output$am_estim <- shiny::renderUI(intl("
-            Square brackets give the underlying credible intervals.
+            Credible intervals are shown in square brackets.
         "))
 
         output$am_estim_dist_title <- shiny::renderUI(intl("
@@ -1525,24 +1525,12 @@ server <- function(input, output, session) {
         output$ab_how_to_use <- shiny::renderUI(
             list(
                 tags$p(intl("
-                    This application eases the interpretation of industrial
-                    hygiene measurements. Notably, it helps with checking
-                    compliance with respect to an occupational exposure limit
-                    (OEL).
+                    This application facilitates the interpretation of industrial hygiene measurements, particularly in assessing compliance with occupational exposure limits (OELs).
 
-                    It is based on a risk assessment framework recognized by
-                    prominent institutions such as the American Industrial
-                    Hygiene Association, the British and Dutch Society for
-                    Occupational Health and Safety (BOHS/NVVA), the French
-                    Institut national de recherche et de sécurité (INRS),
-                    and the European Standards Organization.
+                    It is built on a recognized risk assessment framework endorsed by leading institutions, including the American Industrial Hygiene Association (AIHA), the British Occupational Hygiene Society (BOHS), the Dutch Society for Occupational Hygiene (NVVA), the French Institut national de recherche et de sécurité (INRS), the National Institute for Occupational Safety and Health (NIOSH), and the European Standards Organization.
                 ")),
                 tags$p(intl("
-                    It assumes that input measurements (measurements) represent
-                    a random sample stemming from the distribution of exposures
-                    that underlie the sampled context. In other words, the data
-                    is representative of the specific exposure regimen one
-                    wishes to assess.
+                    The application assumes that the input measurements represent a random sample drawn from the underlying distribution of exposures within the sampled context. In other words, the data is considered representative of the specific exposure regimen being assessed.
                 ")),
                 tags$p(intl("
                     The application is straightforward to use. Follow these
@@ -1553,7 +1541,7 @@ server <- function(input, output, session) {
                         Enter your measurements under Measurements in the left
                         panel. There must be one value per line. Write them as
                         you would in your favourite text editor. You may also
-                        copy and paste values stored in a spreadsheet's column.
+                        copy and paste values stored in a spreadsheet column.
 
                         The initial dataset provided for illustration purposes
                         can be deleted as you usually would in any text editor.
@@ -1562,12 +1550,16 @@ server <- function(input, output, session) {
                         Enter other parameters (see the left sidebar to do do).
                     ")),
                     tags$li(intl("
-                        Wait for the calculations to be performed.
+                        Click on the calculate button to launch calculations.
                     "))
                 ),
                 tags$p(intl("
-                    Results are updated whenever an input changes.
+                    Results are updated whenever the calculate button is selected.
                 ")),
+                tags$p(intl("
+                    Note: Depending on your system settings and localization, Expostats may interpret the decimal separator as either a dot or a comma. Use the Descriptive Results tab to make sure all data has been read correctly.
+                ")),
+                
                 html(tags$p,
                     intl("
                         Values can be censored. Add a %s sign before each
@@ -1602,18 +1594,17 @@ server <- function(input, output, session) {
             list(
                 tags$p(intl("
                     This application uses a Bayesian approach to estimate
-                    the parameters of the log-normal distribution.
+                    the parameters of a lognormal distribution.
                 ")),
                 tags$ul(
                     tags$li(intl("
-                        It yields a more intuitive rationale compared
-                        to traditional (frequentist) methods.
+                        Compared to traditional (frequentist) methods, it allows to make probabilistic statements about exposures, easier to convey to stakeholders.
                     ")),
                     tags$li(intl("
-                        It naturally integrates the treatment of non-detects.
+                        It also naturally integrates the treatment of non-detects.
                     ")),
                     tags$li(intl("
-                        It allows the inclusion of external information in the
+                        It also allows the inclusion of external information in the
                         measurements (not yet leveraged by the application).
                     "))
                 ),
@@ -1621,7 +1612,7 @@ server <- function(input, output, session) {
                     intl("
                         The Bayesian models and data interpretation procedures
                         used by this application are derived from current best
-                        practices in industrial hygiene, which are described in
+                        practices in industrial hygiene as reviewed in
                         the following scientific paper:
 
                         Jérôme Lavoué, Lawrence Joseph, Peter Knott, Hugh
