@@ -54,6 +54,15 @@ Arithmetic Mean
 
 # Insert a translation here.
 
+:: Translations: 2c9a0bd: Source Text
+
+The application is straightforward to use. Locate the Parameters panel and
+follow these steps.
+
+:: Translations: 2c9a0bd: Translation
+
+# Insert a translation here.
+
 :: Translations: 463c845: Source Text
 
 This plot shows the probability density function of the estimated distribution
@@ -286,11 +295,11 @@ threshold shown by the black dashed line.
 
 # Insert a translation here.
 
-:: Translations: e0d44f8: Source Text
+:: Translations: 03c33e5: Source Text
 
-Calculating. Please wait.
+Updating. Please wait.
 
-:: Translations: e0d44f8: Translation
+:: Translations: 03c33e5: Translation
 
 # Insert a translation here.
 
@@ -302,14 +311,6 @@ Above this value, the situation should trigger remedial action. INRS and BOHS
 suggest using 5% and 30%, respectively.
 
 :: Translations: ba6c7a6: Translation
-
-# Insert a translation here.
-
-:: Translations: ebe0383: Source Text
-
-Results are updated whenever an input changes.
-
-:: Translations: ebe0383: Translation
 
 # Insert a translation here.
 
@@ -342,19 +343,6 @@ Descriptive Statistics
 Exposure Limit:
 
 :: Translations: 1ad7b08: Translation
-
-# Insert a translation here.
-
-:: Translations: ab8e870: Source Text
-
-Enter your measurements under Measurements in the left panel. There must be one
-value per line. Write them as you would in your favourite text editor. You may
-also copy and paste values stored in a spreadsheet's column.
-
-The initial dataset provided for illustration purposes can be deleted as you
-usually would in any text editor.
-
-:: Translations: ab8e870: Translation
 
 # Insert a translation here.
 
@@ -408,6 +396,14 @@ Censored measurements are subject to one of the following procedure.
 
 # Insert a translation here.
 
+:: Translations: 7b8f813: Source Text
+
+Choose you preferred language.
+
+:: Translations: 7b8f813: Translation
+
+# Insert a translation here.
+
 :: Translations: cc22e73: Source Text
 
 Background Color (Default):
@@ -421,14 +417,6 @@ Background Color (Default):
 > OEL
 
 :: Translations: 532bf12: Translation
-
-# Insert a translation here.
-
-:: Translations: 64ba6dd: Source Text
-
-Enter other parameters (see the left sidebar to do do).
-
-:: Translations: 64ba6dd: Translation
 
 # Insert a translation here.
 
@@ -619,6 +607,14 @@ Credible Interval Probability:
 
 # Insert a translation here.
 
+:: Translations: 6298302: Source Text
+
+Submit all parameters and start Bayesian calculations.
+
+:: Translations: 6298302: Translation
+
+# Insert a translation here.
+
 :: Translations: 4e2a12c: Source Text
 
 The probability that this criterion is met is equal to %s.
@@ -723,6 +719,14 @@ Tool 1
 
 # Insert a translation here.
 
+:: Translations: 38321d0: Source Text
+
+How to Use
+
+:: Translations: 38321d0: Translation
+
+# Insert a translation here.
+
 :: Translations: 96d547d: Source Text
 
 Maximum
@@ -773,19 +777,19 @@ Methodological Background
 
 # Insert a translation here.
 
-:: Translations: 6918de6: Source Text
-
-Proportion Censored
-
-:: Translations: 6918de6: Translation
-
-# Insert a translation here.
-
 :: Translations: ffb2d53: Source Text
 
 Box and Whiskers Plot
 
 :: Translations: ffb2d53: Translation
+
+# Insert a translation here.
+
+:: Translations: 6918de6: Source Text
+
+Proportion Censored
+
+:: Translations: 6918de6: Translation
 
 # Insert a translation here.
 
@@ -882,6 +886,14 @@ Customize Colors
 
 # Insert a translation here.
 
+:: Translations: 179eb27: Source Text
+
+There must be one value per line.
+
+:: Translations: 179eb27: Translation
+
+# Insert a translation here.
+
 :: Translations: 6e6300f: Source Text
 
 Colors:
@@ -939,6 +951,15 @@ the selected percentile as a continuous blue line.
 
 # Insert a translation here.
 
+:: Translations: bdd75ae: Source Text
+
+Clear the measurement dataset. Doing so does not automatically update the
+current results.
+
+:: Translations: bdd75ae: Translation
+
+# Insert a translation here.
+
 :: Translations: 81fb05e: Source Text
 
 Value
@@ -960,6 +981,14 @@ Arithmetic Standard Deviation
 Summary
 
 :: Translations: 2fa88b0: Translation
+
+# Insert a translation here.
+
+:: Translations: b1a2654: Source Text
+
+Click on the Submit button.
+
+:: Translations: b1a2654: Translation
 
 # Insert a translation here.
 
@@ -1020,14 +1049,6 @@ Overexposure is defined as the arithmetic mean being greater than or equal to
 the OEL.
 
 :: Translations: da5e3d2: Translation
-
-# Insert a translation here.
-
-:: Translations: 7d963dd: Source Text
-
-The application is straightforward to use. Follow these three steps.
-
-:: Translations: 7d963dd: Translation
 
 # Insert a translation here.
 
@@ -1136,14 +1157,6 @@ Choose your preferred language.
 
 # Insert a translation here.
 
-:: Translations: b372419: Source Text
-
-How to Use This Application
-
-:: Translations: b372419: Translation
-
-# Insert a translation here.
-
 :: Translations: 24a1b71: Source Text
 
 Median
@@ -1160,11 +1173,27 @@ Tool 1: Data Interpretation for One Similarly Exposed Group
 
 # Insert a translation here.
 
+:: Translations: 3dedfcc: Source Text
+
+Enter other parameters.
+
+:: Translations: 3dedfcc: Translation
+
+# Insert a translation here.
+
 :: Translations: d0caca2: Source Text
 
 The point estimate of the 70%% upper confidence limit is equal to %s.
 
 :: Translations: d0caca2: Translation
+
+# Insert a translation here.
+
+:: Translations: e85c8fa: Source Text
+
+You may paste values copied from a spreadsheet's column.
+
+:: Translations: e85c8fa: Translation
 
 # Insert a translation here.
 
@@ -1242,6 +1271,14 @@ acceptable exceedance. Red symbols outside of it are unacceptable exposures. It
 does not take into account estimation uncertainty.
 
 :: Translations: 1583901: Translation
+
+# Insert a translation here.
+
+:: Translations: 7bca113: Source Text
+
+Enter your measurements.
+
+:: Translations: 7bca113: Translation
 
 # Insert a translation here.
 

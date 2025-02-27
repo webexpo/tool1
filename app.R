@@ -176,7 +176,23 @@ ui <- shiny::fluidPage(
                 shinyjs::hidden() |>
                 bslib::tooltip(id = "sb_target_perc_tooltip", ""),
 
-            shiny::actionButton(inputId = "sb_clear_btn",  label = ""),
+            shiny::actionButton(
+                inputId = "sb_submit_btn",
+                label   = "",
+                icon    = shiny::icon(
+                    name  = "ok",
+                    lib   = "glyphicon",
+                    style = "padding-right: 5px;")) |>
+                bslib::tooltip(id = "sb_submit_btn_tooltip", ""),
+
+            shiny::actionButton(
+                inputId = "sb_clear_btn",
+                label   = "",
+                icon    = shiny::icon(
+                    name  = "remove",
+                    lib   = "glyphicon",
+                    style = "padding-right: 5px;")) |>
+                bslib::tooltip(id = "sb_clear_btn_tooltip", ""),
 
             tags$hr(class = "app-sidebar-hr"),
 
@@ -744,7 +760,7 @@ server <- function(input, output, session) {
         "))
 
         output$top_banner <- shiny::renderUI(intl("
-            Calculating. Please wait.
+            Updating. Please wait.
         "))
 
         ## Sidebar -------------------------------------------------------------
@@ -780,6 +796,10 @@ server <- function(input, output, session) {
         shiny::updateNumericInput(
             inputId = "target_perc",
             label   = intl("Critical Percentile:"))
+
+        shiny::updateActionButton(
+            inputId = "sb_submit_btn",
+            label   = intl("Submit"))
 
         shiny::updateActionButton(
             inputId = "sb_clear_btn",
@@ -825,6 +845,15 @@ server <- function(input, output, session) {
             Use this value to set the percentile of the exposure distribution
             that will be compared to the OEL. It must be between 0% and 100%.
             The traditional default value is 95%.
+        "))
+
+        bslib::update_tooltip("sb_submit_btn_tooltip", intl("
+            Submit all parameters and start Bayesian calculations.
+        "))
+
+        bslib::update_tooltip("sb_clear_btn_tooltip", intl("
+            Clear the measurement dataset. Doing so does not automatically
+            update the current results.
         "))
 
         ### Footer -------------------------------------------------------------
@@ -1615,11 +1644,9 @@ server <- function(input, output, session) {
             )
         )
 
-        ### How To Use This Application ----------------------------------------
+        ### How To Use ---------------------------------------------------------
 
-        output$ab_how_to_use_title <- shiny::renderUI(intl("
-            How to Use This Application
-        "))
+        output$ab_how_to_use_title <- shiny::renderUI(intl("How to Use"))
 
         output$ab_how_to_use <- shiny::renderUI(
             list(
@@ -1644,15 +1671,27 @@ server <- function(input, output, session) {
                     wishes to assess.
                 ")),
                 tags$p(intl("
-                    The application is straightforward to use. Follow these
-                    three steps.
+                    The application is straightforward to use. Locate the
+                    Parameters panel and follow these steps.
                 ")),
                 tags$ol(
                     class = "app-list",
+                    tags$li(intl("Choose you preferred language.")),
+                    tags$li(
+                        tags$p(intl("Enter your measurements.")),
+                        tags$ul(
+                            class = "app-list",
+                            tags$li(intl("There must be one value per line.")),
+                            tags$li(intl("
+                                You may paste values copied from a
+                                spreadsheet's column.
+                            "))
+                        )
+                    ),
+                    tags$li(intl("Enter other parameters.")),
+                    tags$li(intl("Click on the Submit button.")),
+                    tags$li(intl("Wait for the calculations to be performed."))
                 ),
-                tags$p(intl("
-                    Results are updated whenever an input changes.
-                ")),
                 html(tags$p,
                     intl("
                         Values can be censored. Add a %s sign before each
@@ -1771,7 +1810,8 @@ server <- function(input, output, session) {
     # and input$oel is used instead.
     user_formatted_sample <- shiny::reactive(
         data.formatting.SEG(input$data, input$oel, 1L)
-    )
+    ) |>
+    shiny::bindEvent(input$sb_submit_btn)
 
     user_formatted_sample_imputed <- reactive({
         user_sample <- user_formatted_sample()
