@@ -695,20 +695,26 @@ server <- function(input, output, session) {
     # For lexical scoping purposes.
     environment(intl) <- environment()
 
-    # Update input$lang based on (optional) URL's search parameter ?lang.
-    shiny::observeEvent(session$clientData$url_search, {
+    # Set input$lang equal to value passed to
+    # optional search parameter ?lang of the URL.
+    shiny::observe(priority = 1L, {
         lang <- shiny::parseQueryString(session$clientData$url_search)$lang
 
         if (!is.null(lang) && match(lang, supported_langs, 0L)) {
             shiny::updateSelectInput(inputId = "lang", selected = lang)
         }
-    })
+    }) |>
+    shiny::bindEvent(session$clientData$url_search)
 
-    shiny::observeEvent(input$lang, {
+    # Translate all UI elements using value of input$lang. Outputs
+    # are not translated within this observer. See sections below.
+    shiny::observe({
         lang <- input$lang
 
         # lang is percent-encoded to ensure it is future-proof.
-        shiny::updateQueryString(sprintf("?lang=%s", htmltools::urlEncodePath(lang)))
+        htmltools::urlEncodePath(lang) |>
+        sprintf(fmt = "?lang=%s") |>
+        shiny::updateQueryString()
 
         # See www/main.js for more information.
         session$sendCustomMessage("update_page_lang", lang)
@@ -1721,29 +1727,26 @@ server <- function(input, output, session) {
                 )
             )
         )
-    })
+    }) |>
+    shiny::bindEvent(input$lang)
 
     # Reactives and Observers --------------------------------------------------
 
-    # This observer hides inputs frac_threshold and target_perc
-    # by default, and respectively shows either of them only when
-    # a specific panel is opened.
-    shiny::observeEvent(input$active_panel, {
+    # Hide panel-specific inputs by default and
+    # show them when a specific panel is active.
+    shiny::observe({
         shinyjs::hide("frac_threshold")
         shinyjs::hide("target_perc")
         switch(input$active_panel,
             ef = shinyjs::show("frac_threshold"),
             pe = shinyjs::show("target_perc"))
-    })
+    }) |>
+    shiny::bindEvent(input$active_panel)
 
-    # Each click on ef_exceed_btn_customize triggers two actions:
-    #   1. the icon of the button is updated, and
-    #   2. ef_exceed_cols is either shown or hidden
-    #      (based on the button's state).
-    # The button state's starts at 0 (hidden). Odd numbers
-    # correspond to a displayed container, and even numbers
-    # to a hidden container.
-    shiny::observeEvent(input$ef_exceed_btn_customize, {
+    # Toggle the icon of button ef_exceed_btn_customize
+    # (alternating between up and down arrows) and the
+    # display state of ef_exceed_cols container.
+    shiny::observe({
         icon_name <- if (input$ef_exceed_btn_customize %% 2L == 0L) {
             "triangle-bottom"
         } else {
@@ -1756,12 +1759,13 @@ server <- function(input, output, session) {
                 lib   = "glyphicon",
                 style = "padding-right: 10px;"))
         shinyjs::toggle("ef_exceed_cols")
-    })
+    }) |>
+    shiny::bindEvent(input$ef_exceed_btn_customize)
 
+    # oel.mult is set equal to 1 until Webexpo scripts
+    # are rewritten. In what follows c.oel is ignored
+    # and input$oel is used instead.
     user_formatted_sample <- shiny::reactive(
-        # oel.mult is set equal to 1 until Webexpo scripts
-        # are rewritten. In what follows c.oel is ignored
-        # and input$oel is used instead.
         data.formatting.SEG(input$data, input$oel, 1L)
     )
 
