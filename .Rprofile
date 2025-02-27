@@ -25,6 +25,9 @@ options(
 if (interactive()) {
     cat("R session is interactive. Loading development tools.", sep = "\n")
 
+    # Activate Reproducible Environment (renv).
+    # source(file.path("renv", "activate.R"))
+
     # Attach development packages.
     suppressMessages({
         require(microbenchmark)
