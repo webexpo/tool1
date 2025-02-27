@@ -163,6 +163,8 @@ ui <- shiny::fluidPage(
                     style = "display: none;") |>
                 bslib::tooltip(id = "sb_target_perc_tooltip", ""),
 
+            shiny::actionButton(inputId = "sb_clear_btn",  label = ""),
+
             tags$hr(class = "app-sidebar-hr"),
 
             ### Footer ---------------------------------------------------------
@@ -765,6 +767,10 @@ server <- function(input, output, session) {
         shiny::updateNumericInput(
             inputId = "target_perc",
             label   = intl("Critical Percentile:"))
+
+        shiny::updateActionButton(
+            inputId = "sb_clear_btn",
+            label   = intl("Clear"))
 
         bslib::update_tooltip("sb_lang_tooltip", intl("
             Choose your preferred language.
@@ -1742,6 +1748,12 @@ server <- function(input, output, session) {
             pe = shinyjs::show("target_perc"))
     }) |>
     shiny::bindEvent(input$active_panel)
+
+    # Clear the main <textarea> of input$data.
+    shiny::observe(
+        shiny::updateTextAreaInput(inputId = "data", value = "")
+    ) |>
+    shiny::bindEvent(input$sb_clear_btn)
 
     # Toggle the icon of button ef_exceed_btn_customize
     # (alternating between up and down arrows) and the
