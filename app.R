@@ -360,7 +360,6 @@ ui <- shiny::fluidPage(
                     # id attribute used by observers below.
                     tags$fieldset(
                         id    = "ef_exceed_cols",
-                        style = "display: none;",
                         class = "form-group shiny-input-container-inline app-input",
                         shiny::uiOutput(
                             outputId  = "ef_exceed_cols_label",
@@ -398,7 +397,8 @@ ui <- shiny::fluidPage(
                                 palette    = "limited") |>
                             htmltools::tagAppendAttributes(class = "app-input")
                         )
-                    ),
+                    ) |>
+                    shinyjs::hidden(),
 
                     # Class is used to center variants that only shows 1 plot.
                     htmltools::tagAppendAttributes(
