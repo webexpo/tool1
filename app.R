@@ -725,7 +725,7 @@ server <- function(input, output, session) {
         ## Body ----------------------------------------------------------------
 
         output$top_title <- shiny::renderUI(intl("
-            Tool 1: Data Interpretation for One Similarly Exposed Group
+            Tool 1: Data Interpretation for one Similar Exposure Group (SEG)
         "))
 
         output$top_banner <- shiny::renderUI(intl("
@@ -795,9 +795,8 @@ server <- function(input, output, session) {
         bslib::update_tooltip("sb_psi_tooltip", intl("
             Use this value as the maximal overexposure risk. It must be
             between 0% and 100%. It represents the maximal probability that
-            the overexposure limit is met. Above this value, the situation
-            should trigger remedial action. INRS and BOHS suggest using 5%
-            and 30%, respectively.
+            the overexposure criterion is met. Above this value, the situation
+            should trigger remedial action. While 5% is traditionnal, recent guidelines suggest using 30%.
         "))
 
         bslib::update_tooltip("sb_data_tooltip", intl("
@@ -1026,7 +1025,7 @@ server <- function(input, output, session) {
         output$ef_exceed <- shiny::renderUI(intl("
             The following plot illustrates the proportion of exposures that
             would be above the OEL in a fictional sample of one hundred
-            measurements. Each flask represents an exposure. Red flasks
+            measurements. Each flask represents an exposure value. Red flasks
             correspond to exposures that are above the exposure limit. The
             plot can be shown in one of four variations. You may choose any
             variant (an alternative way of displaying the same information)
