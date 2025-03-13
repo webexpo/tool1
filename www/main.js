@@ -14,3 +14,8 @@ Shiny.addCustomMessageHandler(
   "update_page_lang",
   (x) => (document.documentElement.lang = x)
 );
+
+// Update the value of attribute named "attr" of element identified by "id".
+Shiny.addCustomMessageHandler("update_attribute", ({ id, attr, value }) => {
+  document.getElementById(id).setAttribute(attr, value);
+});
