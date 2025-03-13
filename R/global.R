@@ -2,12 +2,10 @@
 #'
 #' Load libraries, scripts and global constants.
 #'
-#' This script is sourced automatically by [shiny::runApp()].
-#'
 #' @note
-#' Packages below must be attached to the search path with [library()] until
-#' all scripts stored in `scripts/` are revamped (they do not include reference
-#' to namespaces).
+#' Since scripts stored in `scripts/` do not include namespace references,
+#' packages below must be (explicitly) attached to the search path until
+#' they are all revamped.
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
@@ -30,13 +28,25 @@ source(file.path("scripts", "Common", "Bayesian engine functions.R"))
 source(file.path("scripts", "Common", "Numerical output functions.R"))
 source(file.path("scripts", "Common", "Main graph functions.R"))
 
+# Internationalization ---------------------------------------------------------
+
+intl_tr <- transltr::translator_read()
+
+# Default language.
+intl_default_lang <- transltr::language_source_get()
+
+# Message to show when there is no available translation.
+intl_missing_msg <- "{no translation}"
+intl_tr$set_default_value(intl_missing_msg)
+
 # Constants --------------------------------------------------------------------
 
 # Shortcut to usual Shiny's list of HTML <tag> functions.
 tags <- htmltools::tags
 
 # Current version in production (release). Shown in footer.
-version <- "4.0.0-rc2"
+version_number <- "4.0.0-rc2"
+version_date <- "2025-02-28"
 
 # Current year. Shown in footer.
 year <- format(Sys.time(), tz = "EST", format = "%Y")
@@ -57,8 +67,8 @@ n_bayes_iter <- 25000L
 # Default number of significant digits to keep.
 n_digits <- 3L
 
-# Language codes used below must match supported
-# languges. See script R/intl.R for more information.
+# Default URLs to various resources.
+# Language codes used below must match entries of tr$native_languages.
 urls <- list(
     code             = "https://github.com/webexpo/tool1",
     aiha             = "https://www.aiha.org",

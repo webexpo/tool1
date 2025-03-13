@@ -25,10 +25,18 @@ tr <- transltr::translator(id = "expostats:tool1", algorithm = "sha1")
 # Register languages that must be supported (including the source language).
 tr$set_native_languages(
     en = "English",
-    fr = "Français")
+    fr = "Français"
+)
 
 # Extract source text to translate from source scripts and register them.
-transltr::find_source_in_files(paths = "app.R", interface = quote(intl)) |>
+transltr::find_source_in_files(
+    interface = quote(intl),
+    paths     = c(
+    "app.R",
+    file.path("R", "ui-sidebar.R"),
+    file.path("R", "ui-theme.R"),
+    file.path("R", "ui-title.R")
+)) |>
 do.call(what = tr$set_texts)
 
 # Export translations.
