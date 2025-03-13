@@ -61,29 +61,29 @@ add_bs_alert <- function(
 }
 
 #' @rdname add-ui
-#' @external
+#' @export
 add_bs_alert_info <- function(..., title = "Information") {
     return(
         add_bs_alert(
             ...,
             which = "info",
             title = title,
-            icon  = shiny::icon(
-                lib   = "glyphicon",
-                name  = "info-sign",
+            icon  = bsicons::bs_icon(
+                name  = "info-circle",
+                a11y  = "deco",
                 style = "padding-right: 10px;")))
 }
 
 #' @rdname add-ui
-#' @external
+#' @export
 add_bs_alert_warn <- function(..., title = "Warning") {
     return(
         add_bs_alert(
             ...,
             which = "warning",
             title = title,
-            icon  = shiny::icon(
-                lib   = "glyphicon",
-                name  = "warning-sign",
+            icon  = bsicons::bs_icon(
+                name  = "exclamation-triangle",
+                a11y  = "deco",
                 style = "padding-right: 10px;")))
 }
