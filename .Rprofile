@@ -11,6 +11,8 @@
 #' [The .Rprofile file of package transltr](https://github.com/jeanmathieupotvin/transltr/blob/main/.Rprofile),
 #' [Startup process](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html)
 
+# Set default language.
+# This also sets the default language at runtime.
 transltr::language_source_set("en")
 
 options(
@@ -24,9 +26,6 @@ options(
 
 if (interactive()) {
     cat("R session is interactive. Loading development tools.", sep = "\n")
-
-    # Activate Reproducible Environment (renv).
-    # source(file.path("renv", "activate.R"))
 
     # Attach development packages.
     suppressMessages({
@@ -47,18 +46,6 @@ if (interactive()) {
         .run  <- \() invisible(source(file.path(".scripts", "entrypoint.R")))
         .pub  <- \() invisible(source(file.path(".scripts", "publish.R")))
         .intl <- \() invisible(source(file.path(".scripts", "internationalize.R")))
-
-        # Activate/deactivate debug version of functions.
-        # Only intl() currently has one.
-        .debug <- \(on = TRUE) {
-            if (on) {
-                .src()
-                intl <<- tr$translate
-                return(invisible())
-            }
-
-            return(.src())
-        }
 
         # Clear the global environment.
         .rm <- \() rm(list = ls(name = globalenv()), pos = globalenv())
