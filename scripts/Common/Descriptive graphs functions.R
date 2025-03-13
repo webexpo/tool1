@@ -50,7 +50,8 @@ fun.qqplot <-function( data.simply.imputed , notcensored ,
       theme(axis.text.y=element_text(size=13,angle=90))+
       theme(legend.position='top',
             legend.title=element_text(size=14),
-            legend.text=element_text(size=14) )
+            legend.text=element_text(size=14) ) +
+      theme(aspect.ratio= 0.7)
 
   }
 
@@ -63,7 +64,8 @@ fun.qqplot <-function( data.simply.imputed , notcensored ,
                           labels=c(qqplot.5,qqplot.6))
     p<-p+geom_abline(intercept=0, slope=1) +
 
-      xlab(qqplot.2)+ylab(qqplot.3)+
+      xlab(qqplot.2)+ylab(qqplot.3) +
+      theme(aspect.ratio= 0.7)
       theme(axis.title.x=element_text(size=14,vjust=0))+
       theme(axis.text.x=element_text(size=14))+
       theme(axis.title.y=element_text(size=16,angle=90))+
