@@ -109,7 +109,7 @@ ui_title <- function(id = "") {
         # Buttons are shown on larger screens only.
         # Otherwise, they are shown in the sidebar.
         tags$div(
-            class = "app-large-screen-only",
+            class = "d-flex app-large-screen-only",
 
             # This implements a Bootstrap dropdown via a single button
             # (https://getbootstrap.com/docs/5.3/components/dropdowns).
@@ -158,7 +158,7 @@ ui_title <- function(id = "") {
 
             tags$a(
                 id     = ns("btn_expostats"),
-                href   = urls$expostats[[default_lang]],
+                href   = "",
                 target = "_blank",
                 class  = "btn btn-outline-secondary mx-2 app-btn",
                 ui_icons$globe
