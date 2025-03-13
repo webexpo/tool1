@@ -37,7 +37,7 @@ html <- function(
     container = shiny::div,
     text      = "",
     ...,
-    .ignore = default_no_translation,
+    .ignore = missing_translation_msg,
     .noWS   = NULL)
 {
     str <- if (identical(text, .ignore)) {
@@ -209,4 +209,23 @@ ordinal_rules_french <- function(
     }
 
     return(list(indicators = indicators, exceptions = exceptions))
+}
+
+intl <- function(lang, ...) {
+    return(tr$translate(..., lang = lang, source_lang = default_lang))
+}
+
+is_chr1 <- function(x) {
+    return(is.character(x) && length(x) == 1L && nzchar(x) && !is.na(x))
+}
+
+update_attribute <- function(id = "", attr = "", value) {
+    stopifnot(
+        is_chr1(id),
+        is_chr1(attr)
+    )
+
+    session <- shiny::getDefaultReactiveDomain()
+    msg_obj <- list(id = id, attr = attr, value = value)
+    return(session$sendCustomMessage("update_attribute", msg_obj))
 }
