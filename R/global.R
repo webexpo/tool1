@@ -3,13 +3,25 @@
 #' Load libraries, scripts and global constants.
 #'
 #' @note
-#' Since scripts stored in `scripts/` do not include namespace references,
-#' packages below must be (explicitly) attached to the search path until
-#' they are all revamped.
+#' For historical reasons, scripts stored in `scripts/` do not reference the
+#' namespaces of the functions they call, and the packages they use must be
+#' attached to the search path.
+#'
+#' This is considered to be a bad practice. The intent should always be clear
+#' and consistent.
+#'
+#' ```
+#' # Good
+#' transltr::language_source_get()
+#'
+#' # Bad
+#' language_source_get()
+#' ```
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
-# Load libraries required by external scripts stored in scripts/.
+# Libraries --------------------------------------------------------------------
+
 # rjags returns internal warnings over which we have no control.
 suppressMessages({
     suppressWarnings(library(rjags))
@@ -28,60 +40,65 @@ source(file.path("scripts", "Common", "Bayesian engine functions.R"))
 source(file.path("scripts", "Common", "Numerical output functions.R"))
 source(file.path("scripts", "Common", "Main graph functions.R"))
 
-# Internationalization ---------------------------------------------------------
+# Translations -----------------------------------------------------------------
 
-intl_tr <- transltr::translator_read()
-
-# Default language.
-intl_default_lang <- transltr::language_source_get()
-
-# Message to show when there is no available translation.
-intl_missing_msg <- "{no translation}"
-intl_tr$set_default_value(intl_missing_msg)
+tr <- transltr::translator_read()
 
 # Constants --------------------------------------------------------------------
 
-# Shortcut to usual Shiny's list of HTML <tag> functions.
-tags <- htmltools::tags
+# Default version/release to display in footers.
+default_version <- c(number = "4.0.0", release_date = "2025-03-28")
 
-# Current version in production (release). Shown in footer.
-version_number <- "4.0.0-rc2"
-version_date <- "2025-02-28"
+# Default language.
+default_lang <- transltr::language_source_get()
 
-# Current year. Shown in footer.
-year <- format(Sys.time(), tz = "EST", format = "%Y")
-
-# Where to store images.
-images_dir_rel_path <- file.path("www", "images")
-
-# Default height of plots.
-plot_default_height <- "600px"
-
-# Default height of risk meters.
-# Using a lower height for these specific plots is preferable.
-plot_risk_meter_default_height <- "500px"
+# Default heights.
+default_text_card_height <- "445px"
+default_plot_card_height <- "600px"
 
 # Default number of Bayesian iterations.
-n_bayes_iter <- 25000L
+default_n_bayes_iter <- 25000L
 
 # Default number of significant digits to keep.
-n_digits <- 3L
+default_n_digits <- 3L
+
+# Default relative path to images' directory.
+default_images_dir <- file.path("www", "images")
+
+# Default message to show when there is no available translation.
+tr$set_default_value(default_missing_translation_msg <- "{no translation}")
 
 # Default URLs to various resources.
-# Language codes used below must match entries of tr$native_languages.
-urls <- list(
-    code             = "https://github.com/webexpo/tool1",
-    aiha             = "https://www.aiha.org",
-    dennis_helsel    = "https://www.practicalstats.com/info2use/books.html",
-    jerome_lavoue    = "https://orcid.org/0000-0003-4950-5475",
-    expostats_ndexpo = "https://www.expostats.ca/site/app-local/NDExpo",
-    expostats_paper  = "https://doi.org/10.1093/annweh/wxy100",
+default_urls <- list(
+    code            = "https://github.com/webexpo/tool1",
+    aiha            = "https://www.aiha.org",
+    ununoctium      = "https://ununoctium.dev",
+    dennis_helsel   = "https://www.practicalstats.com/info2use/books.html",
+    jerome_lavoue   = "https://orcid.org/0000-0003-4950-5475",
+    ndexpo          = "https://www.expostats.ca/site/app-local/NDExpo",
+    expostats_paper = "https://doi.org/10.1093/annweh/wxy100",
     expostats = c(
         en = "http://www.expostats.ca/site/en/info.html",
-        fr = "https://www.expostats.ca/site/info.html"),
+        fr = "https://www.expostats.ca/site/info.html"
+    ),
+    tool1_simplified = c(
+        en = "https://lavoue.shinyapps.io/Tool1Expv3En/",
+        fr = "https://lavoue.shinyapps.io/Tool1Expv3Fr/"
+    ),
+    tool2 = c(
+        en = "https://lavoue.shinyapps.io/Tool2v3En/",
+        fr = "https://lavoue.shinyapps.io/Tool2v3Fr/"
+    ),
+    tool3 = c(
+        en = "https://lavoue.shinyapps.io/Tool3v3En/",
+        fr = "https://lavoue.shinyapps.io/Tool3v3Fr/"
+    ),
     epsum = c(
         en = "https://espum.umontreal.ca/english/home",
-        fr = "https://espum.umontreal.ca/accueil"),
+        fr = "https://espum.umontreal.ca/accueil"
+    ),
     udm = c(
         en = "https://www.umontreal.ca/en",
-        fr = "https://www.umontreal.ca"))
+        fr = "https://www.umontreal.ca"
+    )
+)
