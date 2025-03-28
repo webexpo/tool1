@@ -131,6 +131,19 @@ ui_modal_about <- function(id) {
 
                 shiny::uiOutput(ns("usage")),
 
+                # Embedded card for warning.
+                bslib::card(
+                    fill  = FALSE,
+                    class = "w-75 mx-auto bg-warning-subtle border-warning",
+
+                    bslib::card_body(
+                        htmltools::tagAppendAttributes(
+                            class = "text-center",
+                            shiny::textOutput(ns("warning"), tags$p)
+                        )
+                    )
+                ),
+
                 htmltools::tagAppendAttributes(
                     shiny::textOutput(ns("censoring_title"), tags$h3),
                     class = "fs-6 fw-bold"
@@ -217,38 +230,35 @@ server_modal_about <- function(id, lang) {
         server_footer("footer", lang)
 
         output$title <- shiny::renderText({
-            lang <- lang()
-            paste(
-                translate(lang = lang, "About"),
-                translate(lang = lang, "Tool 1")
-            )
+            translate(lang = lang(), "About")
         })
 
         output$objectives <- shiny::renderUI({
             lang <- lang()
             list(
                 tags$p(translate(lang = lang, "
-                    This application eases the interpretation of industrial
-                    hygiene measurements. Notably, it helps with checking
-                    compliance with respect to an occupational exposure
-                    limit (OEL).
+                    This application facilitates the interpretation of
+                    industrial hygiene measurements, particularly in assessing
+                    compliance with occupational exposure limits (OELs).
                 ")),
 
                 tags$p(translate(lang = lang, "
-                    It is based on a risk assessment framework recognized by
-                    prominent institutions such as the American Industrial
-                    Hygiene Association, the British and Dutch Society for
-                    Occupational Health and Safety (BOHS/NVVA), the French
-                    Institut national de recherche et de sécurité (INRS),
-                    and the European Standards Organization.
+                    It builds on a recognized risk assessment framework endorsed
+                    by leading institutions, including the American Industrial
+                    Hygiene Association (AIHA), the British Occupational Hygiene
+                    Society (BOHS), the Dutch Society for Occupational Hygiene
+                    (NVVA), the French Institut national de recherche et de
+                    sécurité (INRS), the National Institute for Occupational
+                    Safety and Health (NIOSH), and the European Standards
+                    Organization.
                 ")),
 
                 tags$p(translate(lang = lang, "
-                    It assumes that input measurements represent a random
-                    sample stemming from the distribution of exposures that
-                    underlie the sampled context. In other words, the data
-                    is representative of the specific exposure regimen one
-                    wishes to assess.
+                    The application assumes that the input measurements
+                    represent a random sample drawn from the underlying
+                    distribution of exposures within the sampled context.
+                    In other words, the data is considered representative
+                    of the specific exposure regimen being assessed.
                 "))
             )
         })
@@ -267,7 +277,7 @@ server_modal_about <- function(id, lang) {
                 tags$ol(
                     tags$li(translate(lang = lang, "
                         Enter your measurements. There must be one value per
-                        line. You may paste values copied from a spreadsheet's
+                        line. You may paste values copied from a spreadsheet
                         column.
                     ")),
 
@@ -276,11 +286,8 @@ server_modal_about <- function(id, lang) {
                     ")),
 
                     tags$li(translate(lang = lang, "
-                        Click on the Submit button.
-                    ")),
-
-                    tags$li(translate(lang = lang, "
-                        Wait for the calculations to be performed.
+                        Submit inputs by clicking on the Submit button
+                        and wait for the calculations to be performed.
                     "))
                 ),
 
@@ -293,6 +300,15 @@ server_modal_about <- function(id, lang) {
                     it and click on the Expand button on the bottom right.
                 "))
             )
+        })
+
+        output$warning <- shiny::renderText({
+            translate(lang = lang(), "
+                Depending on your system settings and locale, Tool 1 may
+                interpret the decimal separator as either a dot or a comma.
+                Use the Statistics panel to ensure all data has been read
+                correctly.
+            ")
         })
 
         output$censoring_title <- shiny::renderText({
@@ -315,21 +331,23 @@ server_modal_about <- function(id, lang) {
             list(
                 tags$p(translate(lang = lang, "
                     This application uses a Bayesian approach to estimate
-                    the parameters of the log-normal distribution.
+                    the parameters of the lognormal distribution.
                 ")),
 
                 tags$ul(
                     tags$li(translate(lang = lang, "
-                        It yields a more intuitive rationale compared
-                        to traditional (frequentist) methods.
+                        Compared to traditional (frequentist) methods, it allows
+                        making probabilistic statements about exposures that are
+                        easier to convey to stakeholders.
                     ")),
 
                     tags$li(translate(lang = lang, "
-                        It naturally integrates the treatment of non-detects.
+                        It also naturally integrates the treatment of
+                        non-detects.
                     ")),
 
                     tags$li(translate(lang = lang, "
-                        It allows the inclusion of external information in
+                        It also allows the inclusion of external information in
                         the measurements (not yet leveraged).
                     "))
                 )
@@ -348,9 +366,9 @@ server_modal_about <- function(id, lang) {
                         translate(lang = lang, "
                             The Bayesian models and data interpretation procedures
                             used by this application are derived from current best
-                            practices in industrial hygiene, which are described
-                            in the following scientific paper. Further details and
-                            references are available on %s.
+                            practices in industrial hygiene, as reviewed in the
+                            following scientific paper. Further details and
+                            references are also available on %s.
                         "),
 
                         tags$a(

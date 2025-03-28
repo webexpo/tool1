@@ -437,7 +437,7 @@ server_panel_arithmetic_mean <- function(
 
                 Despite an annoying lack of precise definition by most
                 organizations, they should be most often viewed as thresholds
-                to be exceeded as few times as possible. Some authors have
+                to be exceeded as rarely as possible. Some authors have
                 suggested using one-tenth of the OEL as a practical LTA-OEL
                 when assessing risk using the arithmetic mean.
             ")
@@ -553,7 +553,7 @@ server_panel_arithmetic_mean <- function(
 
         output$estimates_desc <- shiny::renderText({
             translate(lang = lang(), "
-                Square brackets give the underlying credible intervals.
+                Credible intervals are shown in square brackets.
             ")
         })
 

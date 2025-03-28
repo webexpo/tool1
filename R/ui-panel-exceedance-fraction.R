@@ -548,7 +548,7 @@ server_panel_exceedance_fraction <- function(
 
         output$estimates_desc <- shiny::renderText({
             translate(lang = lang(), "
-                Square brackets give the underlying credible intervals.
+                Credible intervals are shown in square brackets.
             ")
         })
 

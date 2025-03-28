@@ -1,4 +1,4 @@
-#' Tool1: Data Interpretation for One Similarly Exposed Group
+#' Tool1: Data Interpretation for One Similar Exposure Group (SEG)
 #'
 #' @description
 #' User interface and server-side logic.

@@ -122,9 +122,17 @@ ui_title <- function(id) {
                 # screens of >=1500 pixels.
                 tags$span(
                     class = "app-large-screen-only text-muted",
+
                     ":",
-                    shiny::textOutput(ns("title"), tags$span)
-                )
+
+                    shiny::textOutput(ns("title"), tags$span),
+
+                    # This can be combined with the textOutput()
+                    # above if it ever requires translation.
+                    tags$span(class = "ms-1", "(SEG)")
+                ),
+
+
             )
         ),
 
@@ -239,7 +247,7 @@ server_title <- function(id, lang) {
 
         output$title <- shiny::renderText({
             translate(lang = lang(), "
-                Data Interpretation for One Similarly Exposed Group
+                Data Interpretation for One Similar Exposure Group
             ")
         })
 

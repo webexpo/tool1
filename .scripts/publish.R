@@ -20,7 +20,7 @@ rsconnect::setAccountInfo(
 rsconnect::deployApp(
     appId          = 13889847L,
     appName        = "tool1",
-    appTitle       = "Tool1: Data Interpretation for One Similarly Exposed Group",
+    appTitle       = "Tool1: Data Interpretation for One Similar Exposure Group (SEG)",
     appMode        = "shiny",
     appVisibility  = "public",
     logLevel       = "verbose",

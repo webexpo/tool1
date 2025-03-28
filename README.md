@@ -3,7 +3,7 @@
 <!-- Expostats' logo -->
 <img src="www/android-chrome-192x192.png" alt="Expostats's logo" height="192" width="192" />
 
-# Tool 1: Data Interpretation for One Similarly Exposed Group
+# Tool 1: Data Interpretation for One Similar Exposure Group (SEG)
 
 <!-- badges: start -->
 [![Version](https://img.shields.io/badge/version-4.0.0-blue)](https://github.com/webexpo/app-tool1/releases/tag/v4.0.0)

@@ -36,16 +36,6 @@ derived from previous work of %s).
 
 # Insert a translation here.
 
-:: Translations: 13c831a: Source Text
-
-This application eases the interpretation of industrial hygiene measurements.
-Notably, it helps with checking compliance with respect to an occupational
-exposure limit (OEL).
-
-:: Translations: 13c831a: Translation
-
-# Insert a translation here.
-
 :: Translations: 036cb38: Source Text
 
 This plot shows the probability density function of the estimated distribution
@@ -99,15 +89,6 @@ exposure. The OEL is shown as a red dotted line and the point estimate of the
 arithmetic mean as a continuous green line.
 
 :: Translations: a32a1f9: Translation
-
-# Insert a translation here.
-
-:: Translations: 0d592d3: Source Text
-
-It allows the inclusion of external information in the measurements (not yet
-leveraged).
-
-:: Translations: 0d592d3: Translation
 
 # Insert a translation here.
 
@@ -183,6 +164,15 @@ Tool 2
 
 # Insert a translation here.
 
+:: Translations: cea3b6c: Source Text
+
+This application uses a Bayesian approach to estimate the parameters of the
+lognormal distribution.
+
+:: Translations: cea3b6c: Translation
+
+# Insert a translation here.
+
 :: Translations: d257a4e: Source Text
 
 ≤ 1% OEL
@@ -253,33 +243,6 @@ Geometric Mean
 
 # Insert a translation here.
 
-:: Translations: 22eb3b2: Source Text
-
-Risk assessment based on the arithmetic mean relies on the availability of a
-long-term averaged OEL (LTA-OEL in the AIHA terminology) representing a
-cumulative burden threshold. Most current OELs are not created as LTA-OEL.
-
-Despite an annoying lack of precise definition by most organizations, they
-should be most often viewed as thresholds to be exceeded as few times as
-possible. Some authors have suggested using one-tenth of the OEL as a practical
-LTA-OEL when assessing risk using the arithmetic mean.
-
-:: Translations: 22eb3b2: Translation
-
-# Insert a translation here.
-
-:: Translations: 6d1e4ed: Source Text
-
-This plot illustrates the proportion of exposures that would be above the OEL
-in a fictional sample of one hundred measurements. Each flask represents an
-exposure. Those that are above the exposure limit are colored in red. This can
-be changed according to your needs using the sidebar on the right. Four
-variants of the Exceedance Plot are available.
-
-:: Translations: 6d1e4ed: Translation
-
-# Insert a translation here.
-
 :: Translations: 59715a2: Source Text
 
 The point estimate of its 70%% upper confidence limit is equal to %s.
@@ -332,22 +295,21 @@ Variant:
 
 # Insert a translation here.
 
-:: Translations: ba6c7a6: Source Text
-
-Use this value as the maximal overexposure risk. It must be between 0% and
-100%. It represents the maximal probability that the overexposure limit is met.
-Above this value, the situation should trigger remedial action. INRS and BOHS
-suggest using 5% and 30%, respectively.
-
-:: Translations: ba6c7a6: Translation
-
-# Insert a translation here.
-
 :: Translations: 2348472: Source Text
 
 Single plot (no uncertainty)
 
 :: Translations: 2348472: Translation
+
+# Insert a translation here.
+
+:: Translations: 95feb13: Source Text
+
+Depending on your system settings and locale, Tool 1 may interpret the decimal
+separator as either a dot or a comma. Use the Statistics panel to ensure all
+data has been read correctly.
+
+:: Translations: 95feb13: Translation
 
 # Insert a translation here.
 
@@ -489,6 +451,18 @@ OEL outside of graphical limits.
 
 # Insert a translation here.
 
+:: Translations: f0d17dd: Source Text
+
+This plot illustrates the proportion of exposures that would be above the OEL
+in a fictional sample of one hundred measurements. Each flask represents an
+exposure value. Those that are above the exposure limit are colored in red.
+This can be changed according to your needs using the sidebar on the right.
+Four variants of the Exceedance Plot are available.
+
+:: Translations: f0d17dd: Translation
+
+# Insert a translation here.
+
 :: Translations: b66eca7: Source Text
 
 The points above should follow a straight line. Random deviations from it are
@@ -562,11 +536,28 @@ Critical Percentile:
 
 # Insert a translation here.
 
+:: Translations: 8fc2a6a: Source Text
+
+Data Interpretation for One Similar Exposure Group
+
+:: Translations: 8fc2a6a: Translation
+
+# Insert a translation here.
+
 :: Translations: f3c096c: Source Text
 
 No results are shown in the right panels until inputs are submitted.
 
 :: Translations: f3c096c: Translation
+
+# Insert a translation here.
+
+:: Translations: ca187e6: Source Text
+
+Enter your measurements. There must be one value per line. You may paste values
+copied from a spreadsheet column.
+
+:: Translations: ca187e6: Translation
 
 # Insert a translation here.
 
@@ -658,15 +649,6 @@ Credible Interval Probability:
 
 # Insert a translation here.
 
-:: Translations: e6b6dc4: Source Text
-
-Enter your measurements. There must be one value per line. You may paste values
-copied from a spreadsheet's column.
-
-:: Translations: e6b6dc4: Translation
-
-# Insert a translation here.
-
 :: Translations: 6298302: Source Text
 
 Submit all parameters and start Bayesian calculations.
@@ -691,20 +673,25 @@ The probability that this criterion is met is equal to %s.
 
 # Insert a translation here.
 
+:: Translations: ff8d5e3: Source Text
+
+It builds on a recognized risk assessment framework endorsed by leading
+institutions, including the American Industrial Hygiene Association (AIHA), the
+British Occupational Hygiene Society (BOHS), the Dutch Society for Occupational
+Hygiene (NVVA), the French Institut national de recherche et de sécurité
+(INRS), the National Institute for Occupational Safety and Health (NIOSH), and
+the European Standards Organization.
+
+:: Translations: ff8d5e3: Translation
+
+# Insert a translation here.
+
 :: Translations: ddd9ef3: Source Text
 
 Use this value to change the color of exposures that are above the exposure
 limit.
 
 :: Translations: ddd9ef3: Translation
-
-# Insert a translation here.
-
-:: Translations: c2bb46d: Source Text
-
-It naturally integrates the treatment of non-detects.
-
-:: Translations: c2bb46d: Translation
 
 # Insert a translation here.
 
@@ -870,15 +857,6 @@ Arithmetic Mean Category
 
 # Insert a translation here.
 
-:: Translations: 836003a: Source Text
-
-This application uses a Bayesian approach to estimate the parameters of the
-log-normal distribution.
-
-:: Translations: 836003a: Translation
-
-# Insert a translation here.
-
 :: Translations: 99db36b: Source Text
 
 adequately controlled
@@ -892,34 +870,6 @@ adequately controlled
 Measurement Type
 
 :: Translations: b7b4f0b: Translation
-
-# Insert a translation here.
-
-:: Translations: e617759: Source Text
-
-It assumes that input measurements represent a random sample stemming from the
-distribution of exposures that underlie the sampled context. In other words,
-the data is representative of the specific exposure regimen one wishes to
-assess.
-
-:: Translations: e617759: Translation
-
-# Insert a translation here.
-
-:: Translations: 5f32e41: Source Text
-
-It yields a more intuitive rationale compared to traditional (frequentist)
-methods.
-
-:: Translations: 5f32e41: Translation
-
-# Insert a translation here.
-
-:: Translations: 8153e10: Source Text
-
-Square brackets give the underlying credible intervals.
-
-:: Translations: 8153e10: Translation
 
 # Insert a translation here.
 
@@ -945,6 +895,34 @@ Use this value to change how the information is displayed. See the footer below
 for additional details on the chosen variant.
 
 :: Translations: 865ddc6: Translation
+
+# Insert a translation here.
+
+:: Translations: c73ed1b: Source Text
+
+Credible intervals are shown in square brackets.
+
+:: Translations: c73ed1b: Translation
+
+# Insert a translation here.
+
+:: Translations: f4e38b8: Source Text
+
+Compared to traditional (frequentist) methods, it allows making probabilistic
+statements about exposures that are easier to convey to stakeholders.
+
+:: Translations: f4e38b8: Translation
+
+# Insert a translation here.
+
+:: Translations: 4db1f10: Source Text
+
+The application assumes that the input measurements represent a random sample
+drawn from the underlying distribution of exposures within the sampled context.
+In other words, the data is considered representative of the specific exposure
+regimen being assessed.
+
+:: Translations: 4db1f10: Translation
 
 # Insert a translation here.
 
@@ -1045,11 +1023,22 @@ Arithmetic Standard Deviation
 
 # Insert a translation here.
 
-:: Translations: b1a2654: Source Text
+:: Translations: 2a1f655: Source Text
 
-Click on the Submit button.
+It also naturally integrates the treatment of non-detects.
 
-:: Translations: b1a2654: Translation
+:: Translations: 2a1f655: Translation
+
+# Insert a translation here.
+
+:: Translations: f08555d: Source Text
+
+The Bayesian models and data interpretation procedures used by this application
+are derived from current best practices in industrial hygiene, as reviewed in
+the following scientific paper. Further details and references are also
+available on %s.
+
+:: Translations: f08555d: Translation
 
 # Insert a translation here.
 
@@ -1098,11 +1087,36 @@ Estimates
 
 # Insert a translation here.
 
+:: Translations: d851760: Source Text
+
+This application facilitates the interpretation of industrial hygiene
+measurements, particularly in assessing compliance with occupational exposure
+limits (OELs).
+
+:: Translations: d851760: Translation
+
+# Insert a translation here.
+
 :: Translations: 10ef3a6: Source Text
 
 Quantiles (Lognormal Distribution)
 
 :: Translations: 10ef3a6: Translation
+
+# Insert a translation here.
+
+:: Translations: 426cfe3: Source Text
+
+Risk assessment based on the arithmetic mean relies on the availability of a
+long-term averaged OEL (LTA-OEL in the AIHA terminology) representing a
+cumulative burden threshold. Most current OELs are not created as LTA-OEL.
+
+Despite an annoying lack of precise definition by most organizations, they
+should be most often viewed as thresholds to be exceeded as rarely as possible.
+Some authors have suggested using one-tenth of the OEL as a practical LTA-OEL
+when assessing risk using the arithmetic mean.
+
+:: Translations: 426cfe3: Translation
 
 # Insert a translation here.
 
@@ -1143,6 +1157,17 @@ the OEL.
 
 # Insert a translation here.
 
+:: Translations: 4dd1267: Source Text
+
+Use this value as the maximal overexposure risk. It must be between 0% and
+100%. It represents the maximal probability that the overexposure criterion is
+met. Above this value, the situation should trigger remedial action. While 5%
+is the traditional chosen value, recent guidelines suggest using 30% instead.
+
+:: Translations: 4dd1267: Translation
+
+# Insert a translation here.
+
 :: Translations: 7d94d60: Source Text
 
 This plot shows the estimated exposure distribution when assuming 250 exposure
@@ -1168,6 +1193,15 @@ Single plot (with uncertainty)
 Information
 
 :: Translations: 5464daa: Translation
+
+# Insert a translation here.
+
+:: Translations: cdb58e3: Source Text
+
+It also allows the inclusion of external information in the measurements (not
+yet leveraged).
+
+:: Translations: cdb58e3: Translation
 
 # Insert a translation here.
 
@@ -1279,14 +1313,6 @@ Choose your preferred language.
 
 # Insert a translation here.
 
-:: Translations: 7778904: Source Text
-
-Data Interpretation for One Similarly Exposed Group
-
-:: Translations: 7778904: Translation
-
-# Insert a translation here.
-
 :: Translations: 24a1b71: Source Text
 
 Median
@@ -1300,17 +1326,6 @@ Median
 Enter other parameters.
 
 :: Translations: 3dedfcc: Translation
-
-# Insert a translation here.
-
-:: Translations: 5266185: Source Text
-
-The Bayesian models and data interpretation procedures used by this application
-are derived from current best practices in industrial hygiene, which are
-described in the following scientific paper. Further details and references are
-available on %s.
-
-:: Translations: 5266185: Translation
 
 # Insert a translation here.
 
@@ -1345,19 +1360,20 @@ All rights reserved.
 
 # Insert a translation here.
 
-:: Translations: 654b124: Source Text
-
-Wait for the calculations to be performed.
-
-:: Translations: 654b124: Translation
-
-# Insert a translation here.
-
 :: Translations: 62fc968: Source Text
 
 Percentile
 
 :: Translations: 62fc968: Translation
+
+# Insert a translation here.
+
+:: Translations: aeb3077: Source Text
+
+Submit inputs by clicking on the Submit button and wait for the calculations to
+be performed.
+
+:: Translations: aeb3077: Translation
 
 # Insert a translation here.
 
@@ -1392,18 +1408,6 @@ The point estimate of the exceedance fraction is equal to %s.
 The point estimate of the %s percentile is equal to %s.
 
 :: Translations: e510a31: Translation
-
-# Insert a translation here.
-
-:: Translations: e01beba: Source Text
-
-It is based on a risk assessment framework recognized by prominent institutions
-such as the American Industrial Hygiene Association, the British and Dutch
-Society for Occupational Health and Safety (BOHS/NVVA), the French Institut
-national de recherche et de sécurité (INRS), and the European Standards
-Organization.
-
-:: Translations: e01beba: Translation
 
 # Insert a translation here.
 

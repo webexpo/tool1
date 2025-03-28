@@ -157,10 +157,10 @@ server_exceedance_plot <- function(id, lang, parameters, num_results) {
             translate(lang = lang(), "
                 This plot illustrates the proportion of exposures that
                 would be above the OEL in a fictional sample of one hundred
-                measurements. Each flask represents an exposure. Those that
-                are above the exposure limit are colored in red. This can be
-                changed according to your needs using the sidebar on the right.
-                Four variants of the Exceedance Plot are available.
+                measurements. Each flask represents an exposure value. Those
+                that are above the exposure limit are colored in red. This can
+                be changed according to your needs using the sidebar on the
+                right. Four variants of the Exceedance Plot are available.
             ")
         })
 

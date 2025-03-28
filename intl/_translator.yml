@@ -27,21 +27,6 @@ Texts:
         Path: ./R/ui-panel-statistics.R
         Ranges: Ln 311, Col 29 @ Ln 316, Col 30
   - !<Text>
-    Identifier: 13c831a
-    Algorithm: sha1
-    Hash: 13c831a8260096580ee570716ec38396ce6cf080
-    Source Language: en
-    Source Text: |-
-      This application eases the interpretation of industrial hygiene
-      measurements. Notably, it helps with checking compliance with respect to
-      an occupational exposure limit (OEL).
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 13c831a:l1
-        Path: ./R/ui-modal-about.R
-        Ranges: Ln 230, Col 24 @ Ln 235, Col 18
-  - !<Text>
     Identifier: 036cb38
     Algorithm: sha1
     Hash: 036cb3884d14e56c40c99bc41c81d6216b590f5e
@@ -67,7 +52,7 @@ Texts:
       - !<Location>
         Identifier: 12184e9:l1
         Path: ./R/ui-modal-about.R
-        Ranges: Ln 428, Col 26 @ Ln 428, Col 77
+        Ranges: Ln 446, Col 26 @ Ln 446, Col 77
   - !<Text>
     Identifier: df83adb
     Algorithm: sha1
@@ -132,20 +117,6 @@ Texts:
         Identifier: a32a1f9:l1
         Path: ./R/ui-panel-arithmetic-mean.R
         Ranges: Ln 577, Col 13 @ Ln 584, Col 14
-  - !<Text>
-    Identifier: 0d592d3
-    Algorithm: sha1
-    Hash: 0d592d3ea0df270d663fd23dee00194ec8475dee
-    Source Language: en
-    Source Text: |-
-      It allows the inclusion of external information in the measurements (not
-      yet leveraged).
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 0d592d3:l1
-        Path: ./R/ui-modal-about.R
-        Ranges: Ln 331, Col 29 @ Ln 334, Col 22
   - !<Text>
     Identifier: 7be717b
     Algorithm: sha1
@@ -271,7 +242,21 @@ Texts:
       - !<Location>
         Identifier: 5e2c2fa:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 255, Col 21 @ Ln 255, Col 52
+        Ranges: Ln 263, Col 21 @ Ln 263, Col 52
+  - !<Text>
+    Identifier: cea3b6c
+    Algorithm: sha1
+    Hash: cea3b6cbf23611a2b7bc4133097b75ee4e28f9ea
+    Source Language: en
+    Source Text: |-
+      This application uses a Bayesian approach to estimate the parameters of
+      the lognormal distribution.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: cea3b6c:l1
+        Path: ./R/ui-modal-about.R
+        Ranges: Ln 332, Col 24 @ Ln 335, Col 18
   - !<Text>
     Identifier: d257a4e
     Algorithm: sha1
@@ -299,7 +284,7 @@ Texts:
       - !<Location>
         Identifier: 2118b6c:l1
         Path: ./R/ui-modal-about.R
-        Ranges: Ln 263, Col 24 @ Ln 265, Col 18
+        Ranges: Ln 273, Col 24 @ Ln 275, Col 18
   - !<Text>
     Identifier: 897e74a
     Algorithm: sha1
@@ -349,7 +334,7 @@ Texts:
       - !<Location>
         Identifier: 1166fce:l1
         Path: ./R/ui-modal-about.R
-        Ranges: Ln 222, Col 17 @ Ln 222, Col 47
+        Ranges: Ln 233, Col 13 @ Ln 233, Col 45
   - !<Text>
     Identifier: 02a9a58
     Algorithm: sha1
@@ -381,44 +366,6 @@ Texts:
         Identifier: da34e30:l1
         Path: ./R/ui-panel-statistics.R
         Ranges: Ln 260, Col 21 @ Ln 260, Col 60
-  - !<Text>
-    Identifier: 22eb3b2
-    Algorithm: sha1
-    Hash: 22eb3b24991e80d55432e1b92bee83cf4932d94e
-    Source Language: en
-    Source Text: |-
-      Risk assessment based on the arithmetic mean relies on the availability
-      of a long-term averaged OEL (LTA-OEL in the AIHA terminology)
-      representing a cumulative burden threshold. Most current OELs are not
-      created as LTA-OEL.
-
-      Despite an annoying lack of precise definition by most organizations,
-      they should be most often viewed as thresholds to be exceeded as few
-      times as possible. Some authors have suggested using one-tenth of the OEL
-      as a practical LTA-OEL when assessing risk using the arithmetic mean.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 22eb3b2:l1
-        Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 432, Col 13 @ Ln 443, Col 14
-  - !<Text>
-    Identifier: 6d1e4ed
-    Algorithm: sha1
-    Hash: 6d1e4edf14d50dd9c5681d4c6f42724d836a8154
-    Source Language: en
-    Source Text: |-
-      This plot illustrates the proportion of exposures that would be above the
-      OEL in a fictional sample of one hundred measurements. Each flask
-      represents an exposure. Those that are above the exposure limit are
-      colored in red. This can be changed according to your needs using the
-      sidebar on the right. Four variants of the Exceedance Plot are available.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 6d1e4ed:l1
-        Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 157, Col 13 @ Ln 164, Col 14
   - !<Text>
     Identifier: 59715a2
     Algorithm: sha1
@@ -514,22 +461,6 @@ Texts:
         Path: ./R/ui-exceedance-plot.R
         Ranges: Ln 354, Col 27 @ Ln 354, Col 60
   - !<Text>
-    Identifier: ba6c7a6
-    Algorithm: sha1
-    Hash: ba6c7a68fd0287b3688eff2f28ad66d8a69eaf5d
-    Source Language: en
-    Source Text: |-
-      Use this value as the maximal overexposure risk. It must be between 0%
-      and 100%. It represents the maximal probability that the overexposure
-      limit is met. Above this value, the situation should trigger remedial
-      action. INRS and BOHS suggest using 5% and 30%, respectively.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: ba6c7a6:l1
-        Path: ./R/ui-sidebar.R
-        Ranges: Ln 294, Col 50 @ Ln 300, Col 14
-  - !<Text>
     Identifier: '2348472'
     Algorithm: sha1
     Hash: 234847254d21d9fad008093c79a8f17ecf8370fe
@@ -541,6 +472,21 @@ Texts:
         Identifier: 2348472:l1
         Path: ./R/ui-exceedance-plot.R
         Ranges: Ln 363, Col 25 @ Ln 363, Col 78
+  - !<Text>
+    Identifier: 95feb13
+    Algorithm: sha1
+    Hash: 95feb13aa081c896015026158803c78ed2deadcb
+    Source Language: en
+    Source Text: |-
+      Depending on your system settings and locale, Tool 1 may interpret the
+      decimal separator as either a dot or a comma. Use the Statistics panel to
+      ensure all data has been read correctly.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 95feb13:l1
+        Path: ./R/ui-modal-about.R
+        Ranges: Ln 306, Col 13 @ Ln 311, Col 14
   - !<Text>
     Identifier: 7e9d895
     Algorithm: sha1
@@ -701,7 +647,7 @@ Texts:
       - !<Location>
         Identifier: 6489309:l1
         Path: ./R/ui-sidebar.R
-        Ranges: Ln 314, Col 58 @ Ln 318, Col 14
+        Ranges: Ln 315, Col 58 @ Ln 319, Col 14
   - !<Text>
     Identifier: 127b5d6
     Algorithm: sha1
@@ -725,7 +671,7 @@ Texts:
       - !<Location>
         Identifier: 6bf9771:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 251, Col 21 @ Ln 251, Col 65
+        Ranges: Ln 259, Col 21 @ Ln 259, Col 65
   - !<Text>
     Identifier: 532bf12
     Algorithm: sha1
@@ -782,6 +728,23 @@ Texts:
         Identifier: fc5b077:l3
         Path: ./R/ui-panel-percentiles.R
         Ranges: Ln 580, Col 38 @ Ln 580, Col 95
+  - !<Text>
+    Identifier: f0d17dd
+    Algorithm: sha1
+    Hash: f0d17dd48036d5b56ee8bd6dca918d0ea5e09235
+    Source Language: en
+    Source Text: |-
+      This plot illustrates the proportion of exposures that would be above the
+      OEL in a fictional sample of one hundred measurements. Each flask
+      represents an exposure value. Those that are above the exposure limit are
+      colored in red. This can be changed according to your needs using the
+      sidebar on the right. Four variants of the Exceedance Plot are available.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: f0d17dd:l1
+        Path: ./R/ui-exceedance-plot.R
+        Ranges: Ln 157, Col 13 @ Ln 164, Col 14
   - !<Text>
     Identifier: b66eca7
     Algorithm: sha1
@@ -923,6 +886,18 @@ Texts:
         Path: ./R/ui-sidebar.R
         Ranges: Ln 280, Col 27 @ Ln 280, Col 72
   - !<Text>
+    Identifier: 8fc2a6a
+    Algorithm: sha1
+    Hash: 8fc2a6a05d3d2c16a14029c84c07cc619c9ad549
+    Source Language: en
+    Source Text: Data Interpretation for One Similar Exposure Group
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 8fc2a6a:l1
+        Path: ./R/ui-title.R
+        Ranges: Ln 249, Col 13 @ Ln 251, Col 14
+  - !<Text>
     Identifier: f3c096c
     Algorithm: sha1
     Hash: f3c096cacd88cc43d9c676efa4fb17fd04caf6dd
@@ -934,6 +909,20 @@ Texts:
         Identifier: f3c096c:l1
         Path: ./R/ui-sidebar.R
         Ranges: Ln 221, Col 13 @ Ln 224, Col 14
+  - !<Text>
+    Identifier: ca187e6
+    Algorithm: sha1
+    Hash: ca187e6c34eed6ccc81eb410ff9198e45523c4d2
+    Source Language: en
+    Source Text: |-
+      Enter your measurements. There must be one value per line. You may paste
+      values copied from a spreadsheet column.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: ca187e6:l1
+        Path: ./R/ui-modal-about.R
+        Ranges: Ln 278, Col 29 @ Ln 282, Col 22
   - !<Text>
     Identifier: 1a0644e
     Algorithm: sha1
@@ -974,7 +963,7 @@ Texts:
       - !<Location>
         Identifier: 4da3eb3:l1
         Path: ./R/ui-modal-about.R
-        Ranges: Ln 395, Col 17 @ Ln 399, Col 18
+        Ranges: Ln 413, Col 17 @ Ln 417, Col 18
   - !<Text>
     Identifier: d111f1a
     Algorithm: sha1
@@ -1071,7 +1060,7 @@ Texts:
       - !<Location>
         Identifier: 2e77aed:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 323, Col 55 @ Ln 325, Col 14
+        Ranges: Ln 331, Col 55 @ Ln 333, Col 14
   - !<Text>
     Identifier: 798b335
     Algorithm: sha1
@@ -1085,20 +1074,6 @@ Texts:
         Path: ./R/ui-sidebar.R
         Ranges: Ln 264, Col 27 @ Ln 264, Col 82
   - !<Text>
-    Identifier: e6b6dc4
-    Algorithm: sha1
-    Hash: e6b6dc4b9f0e69209a173fda7c0f55dfa8a50cbb
-    Source Language: en
-    Source Text: |-
-      Enter your measurements. There must be one value per line. You may paste
-      values copied from a spreadsheet's column.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: e6b6dc4:l1
-        Path: ./R/ui-modal-about.R
-        Ranges: Ln 268, Col 29 @ Ln 272, Col 22
-  - !<Text>
     Identifier: '6298302'
     Algorithm: sha1
     Hash: 6298302ddcb6d8c3e4206a9d9f014b6012fd3f06
@@ -1109,7 +1084,7 @@ Texts:
       - !<Location>
         Identifier: 6298302:l1
         Path: ./R/ui-sidebar.R
-        Ranges: Ln 320, Col 57 @ Ln 322, Col 14
+        Ranges: Ln 321, Col 57 @ Ln 323, Col 14
   - !<Text>
     Identifier: 04bd5eb
     Algorithm: sha1
@@ -1121,7 +1096,7 @@ Texts:
       - !<Location>
         Identifier: 04bd5eb:l1
         Path: ./R/ui-modal-about.R
-        Ranges: Ln 440, Col 26 @ Ln 440, Col 58
+        Ranges: Ln 458, Col 26 @ Ln 458, Col 58
   - !<Text>
     Identifier: 4e2a12c
     Algorithm: sha1
@@ -1143,6 +1118,24 @@ Texts:
         Path: ./R/ui-panel-percentiles.R
         Ranges: Ln 378, Col 25 @ Ln 381, Col 26
   - !<Text>
+    Identifier: ff8d5e3
+    Algorithm: sha1
+    Hash: ff8d5e3144a8940705017fb9f7c48e8f9be5bb54
+    Source Language: en
+    Source Text: |-
+      It builds on a recognized risk assessment framework endorsed by leading
+      institutions, including the American Industrial Hygiene Association
+      (AIHA), the British Occupational Hygiene Society (BOHS), the Dutch
+      Society for Occupational Hygiene (NVVA), the French Institut national de
+      recherche et de sécurité (INRS), the National Institute for Occupational
+      Safety and Health (NIOSH), and the European Standards Organization.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: ff8d5e3:l1
+        Path: ./R/ui-modal-about.R
+        Ranges: Ln 245, Col 24 @ Ln 254, Col 18
+  - !<Text>
     Identifier: ddd9ef3
     Algorithm: sha1
     Hash: ddd9ef3b623cb6625573b23516204b939e711ead
@@ -1156,18 +1149,6 @@ Texts:
         Identifier: ddd9ef3:l1
         Path: ./R/ui-exceedance-plot.R
         Ranges: Ln 404, Col 57 @ Ln 407, Col 14
-  - !<Text>
-    Identifier: c2bb46d
-    Algorithm: sha1
-    Hash: c2bb46decd9016c5cd85617c75deffeeacfe8f8c
-    Source Language: en
-    Source Text: It naturally integrates the treatment of non-detects.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: c2bb46d:l1
-        Path: ./R/ui-modal-about.R
-        Ranges: Ln 327, Col 29 @ Ln 329, Col 22
   - !<Text>
     Identifier: e92bf46
     Algorithm: sha1
@@ -1226,7 +1207,7 @@ Texts:
       - !<Location>
         Identifier: fffde19:l1
         Path: ./R/ui-sidebar.R
-        Ranges: Ln 308, Col 61 @ Ln 312, Col 14
+        Ranges: Ln 309, Col 61 @ Ln 313, Col 14
   - !<Text>
     Identifier: a5a2911
     Algorithm: sha1
@@ -1301,12 +1282,8 @@ Texts:
         Ranges: Ln 51, Col 17 @ Ln 51, Col 50
       - !<Location>
         Identifier: f7a0860:l3
-        Path: ./R/ui-modal-about.R
-        Ranges: Ln 223, Col 17 @ Ln 223, Col 48
-      - !<Location>
-        Identifier: f7a0860:l4
         Path: ./R/ui-title.R
-        Ranges: Ln 237, Col 13 @ Ln 237, Col 46
+        Ranges: Ln 245, Col 13 @ Ln 245, Col 46
   - !<Text>
     Identifier: 96d547d
     Algorithm: sha1
@@ -1376,7 +1353,7 @@ Texts:
       - !<Location>
         Identifier: 2b83cc5:l1
         Path: ./R/ui-sidebar.R
-        Ranges: Ln 302, Col 51 @ Ln 306, Col 14
+        Ranges: Ln 303, Col 51 @ Ln 307, Col 14
   - !<Text>
     Identifier: 1b1ddee
     Algorithm: sha1
@@ -1388,7 +1365,7 @@ Texts:
       - !<Location>
         Identifier: 1b1ddee:l1
         Path: ./R/ui-modal-about.R
-        Ranges: Ln 299, Col 13 @ Ln 299, Col 61
+        Ranges: Ln 315, Col 13 @ Ln 315, Col 61
       - !<Location>
         Identifier: 1b1ddee:l2
         Path: ./R/ui-panel-statistics.R
@@ -1404,7 +1381,7 @@ Texts:
       - !<Location>
         Identifier: 9725731:l1
         Path: ./R/ui-modal-about.R
-        Ranges: Ln 434, Col 26 @ Ln 434, Col 76
+        Ranges: Ln 452, Col 26 @ Ln 452, Col 76
   - !<Text>
     Identifier: ffb2d53
     Algorithm: sha1
@@ -1479,20 +1456,6 @@ Texts:
         Path: ./R/ui-panel-arithmetic-mean.R
         Ranges: Ln 629, Col 31 @ Ln 629, Col 80
   - !<Text>
-    Identifier: 836003a
-    Algorithm: sha1
-    Hash: 836003ac7c5aa8188964487b4904bea45fa6d4af
-    Source Language: en
-    Source Text: |-
-      This application uses a Bayesian approach to estimate the parameters of
-      the log-normal distribution.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 836003a:l1
-        Path: ./R/ui-modal-about.R
-        Ranges: Ln 316, Col 24 @ Ln 319, Col 18
-  - !<Text>
     Identifier: 99db36b
     Algorithm: sha1
     Hash: 99db36bef3b74d9063868074f093f8f3bcdeadb5
@@ -1527,56 +1490,6 @@ Texts:
           - Ln 343, Col 39 @ Ln 343, Col 80
           - Ln 363, Col 39 @ Ln 363, Col 80
   - !<Text>
-    Identifier: e617759
-    Algorithm: sha1
-    Hash: e6177597c6a45a46f2447ccdfa08e640e8020dfb
-    Source Language: en
-    Source Text: |-
-      It assumes that input measurements represent a random sample stemming
-      from the distribution of exposures that underlie the sampled context. In
-      other words, the data is representative of the specific exposure regimen
-      one wishes to assess.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: e617759:l1
-        Path: ./R/ui-modal-about.R
-        Ranges: Ln 246, Col 24 @ Ln 252, Col 18
-  - !<Text>
-    Identifier: 5f32e41
-    Algorithm: sha1
-    Hash: 5f32e4163d2a9297eb158bc5edeac1ec6a81a3a1
-    Source Language: en
-    Source Text: |-
-      It yields a more intuitive rationale compared to traditional
-      (frequentist) methods.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 5f32e41:l1
-        Path: ./R/ui-modal-about.R
-        Ranges: Ln 322, Col 29 @ Ln 325, Col 22
-  - !<Text>
-    Identifier: 8153e10
-    Algorithm: sha1
-    Hash: 8153e10a3900b257b666ebd976bcb8169446e689
-    Source Language: en
-    Source Text: Square brackets give the underlying credible intervals.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 8153e10:l1
-        Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 555, Col 13 @ Ln 557, Col 14
-      - !<Location>
-        Identifier: 8153e10:l2
-        Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 550, Col 13 @ Ln 552, Col 14
-      - !<Location>
-        Identifier: 8153e10:l3
-        Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 532, Col 13 @ Ln 534, Col 14
-  - !<Text>
     Identifier: f34d487
     Algorithm: sha1
     Hash: f34d4871bdb2599e6ff70a62d0aff6dc09dc7f14
@@ -1587,7 +1500,7 @@ Texts:
       - !<Location>
         Identifier: f34d487:l1
         Path: ./R/ui-modal-about.R
-        Ranges: Ln 257, Col 13 @ Ln 257, Col 50
+        Ranges: Ln 267, Col 13 @ Ln 267, Col 50
   - !<Text>
     Identifier: e80025a
     Algorithm: sha1
@@ -1623,6 +1536,57 @@ Texts:
         Path: ./R/ui-exceedance-plot.R
         Ranges: Ln 393, Col 54 @ Ln 397, Col 14
   - !<Text>
+    Identifier: c73ed1b
+    Algorithm: sha1
+    Hash: c73ed1b43dcd276710a71fc8f8bd7fe42181b531
+    Source Language: en
+    Source Text: Credible intervals are shown in square brackets.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: c73ed1b:l1
+        Path: ./R/ui-panel-arithmetic-mean.R
+        Ranges: Ln 555, Col 13 @ Ln 557, Col 14
+      - !<Location>
+        Identifier: c73ed1b:l2
+        Path: ./R/ui-panel-exceedance-fraction.R
+        Ranges: Ln 550, Col 13 @ Ln 552, Col 14
+      - !<Location>
+        Identifier: c73ed1b:l3
+        Path: ./R/ui-panel-percentiles.R
+        Ranges: Ln 532, Col 13 @ Ln 534, Col 14
+  - !<Text>
+    Identifier: f4e38b8
+    Algorithm: sha1
+    Hash: f4e38b83250c143acd0cd901e321b94b365be360
+    Source Language: en
+    Source Text: |-
+      Compared to traditional (frequentist) methods, it allows making
+      probabilistic statements about exposures that are easier to convey to
+      stakeholders.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: f4e38b8:l1
+        Path: ./R/ui-modal-about.R
+        Ranges: Ln 338, Col 29 @ Ln 342, Col 22
+  - !<Text>
+    Identifier: 4db1f10
+    Algorithm: sha1
+    Hash: 4db1f10f104906a2427dbd48ad66fbedf9c650fd
+    Source Language: en
+    Source Text: |-
+      The application assumes that the input measurements represent a random
+      sample drawn from the underlying distribution of exposures within the
+      sampled context. In other words, the data is considered representative of
+      the specific exposure regimen being assessed.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 4db1f10:l1
+        Path: ./R/ui-modal-about.R
+        Ranges: Ln 256, Col 24 @ Ln 262, Col 18
+  - !<Text>
     Identifier: '3883288'
     Algorithm: sha1
     Hash: 3883288b72620358eaab3caddf8c8166f779f189
@@ -1647,7 +1611,7 @@ Texts:
       - !<Location>
         Identifier: 9895a88:l1
         Path: ./R/ui-modal-about.R
-        Ranges: Ln 420, Col 56 @ Ln 423, Col 14
+        Ranges: Ln 438, Col 56 @ Ln 441, Col 14
   - !<Text>
     Identifier: fd52582
     Algorithm: sha1
@@ -1746,7 +1710,7 @@ Texts:
       - !<Location>
         Identifier: bdd75ae:l1
         Path: ./R/ui-sidebar.R
-        Ranges: Ln 324, Col 56 @ Ln 327, Col 14
+        Ranges: Ln 325, Col 56 @ Ln 328, Col 14
   - !<Text>
     Identifier: 81fb05e
     Algorithm: sha1
@@ -1772,17 +1736,33 @@ Texts:
         Path: ./R/ui-panel-statistics.R
         Ranges: Ln 258, Col 21 @ Ln 258, Col 75
   - !<Text>
-    Identifier: b1a2654
+    Identifier: 2a1f655
     Algorithm: sha1
-    Hash: b1a2654625beedc471d46138873ca1002747cc87
+    Hash: 2a1f65579bbe8d173f18df4a0bdbe00b4bceaa22
     Source Language: en
-    Source Text: Click on the Submit button.
+    Source Text: It also naturally integrates the treatment of non-detects.
     Translations: ~
     Locations:
       - !<Location>
-        Identifier: b1a2654:l1
+        Identifier: 2a1f655:l1
         Path: ./R/ui-modal-about.R
-        Ranges: Ln 278, Col 29 @ Ln 280, Col 22
+        Ranges: Ln 344, Col 29 @ Ln 347, Col 22
+  - !<Text>
+    Identifier: f08555d
+    Algorithm: sha1
+    Hash: f08555d2986be0fbf4296f8129f60b42054e1c9c
+    Source Language: en
+    Source Text: |-
+      The Bayesian models and data interpretation procedures used by this
+      application are derived from current best practices in industrial
+      hygiene, as reviewed in the following scientific paper. Further details
+      and references are also available on %s.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: f08555d:l1
+        Path: ./R/ui-modal-about.R
+        Ranges: Ln 366, Col 25 @ Ln 372, Col 26
   - !<Text>
     Identifier: b3c553f
     Algorithm: sha1
@@ -1825,7 +1805,7 @@ Texts:
       - !<Location>
         Identifier: e052b8d:l1
         Path: ./R/ui-modal-about.R
-        Ranges: Ln 303, Col 13 @ Ln 310, Col 14
+        Ranges: Ln 319, Col 13 @ Ln 326, Col 14
   - !<Text>
     Identifier: 3e0b7d6
     Algorithm: sha1
@@ -1859,6 +1839,21 @@ Texts:
         Path: ./R/ui-panel-percentiles.R
         Ranges: Ln 320, Col 13 @ Ln 320, Col 49
   - !<Text>
+    Identifier: d851760
+    Algorithm: sha1
+    Hash: d85176076d73650d9fc8961e44bd4c47bf156444
+    Source Language: en
+    Source Text: |-
+      This application facilitates the interpretation of industrial hygiene
+      measurements, particularly in assessing compliance with occupational
+      exposure limits (OELs).
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: d851760:l1
+        Path: ./R/ui-modal-about.R
+        Ranges: Ln 239, Col 24 @ Ln 243, Col 18
+  - !<Text>
     Identifier: 10ef3a6
     Algorithm: sha1
     Hash: 10ef3a66cb5a63c95fd85b8fb942af5bb1b00c83
@@ -1870,6 +1865,27 @@ Texts:
         Identifier: 10ef3a6:l1
         Path: ./R/ui-panel-statistics.R
         Ranges: Ln 341, Col 39 @ Ln 341, Col 98
+  - !<Text>
+    Identifier: 426cfe3
+    Algorithm: sha1
+    Hash: 426cfe3131ba0b8f97c1a9d04c39afbc6d8e2026
+    Source Language: en
+    Source Text: |-
+      Risk assessment based on the arithmetic mean relies on the availability
+      of a long-term averaged OEL (LTA-OEL in the AIHA terminology)
+      representing a cumulative burden threshold. Most current OELs are not
+      created as LTA-OEL.
+
+      Despite an annoying lack of precise definition by most organizations,
+      they should be most often viewed as thresholds to be exceeded as rarely
+      as possible. Some authors have suggested using one-tenth of the OEL as a
+      practical LTA-OEL when assessing risk using the arithmetic mean.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 426cfe3:l1
+        Path: ./R/ui-panel-arithmetic-mean.R
+        Ranges: Ln 432, Col 13 @ Ln 443, Col 14
   - !<Text>
     Identifier: 1dba349
     Algorithm: sha1
@@ -1906,7 +1922,7 @@ Texts:
       - !<Location>
         Identifier: 0705c1d:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 318, Col 61 @ Ln 321, Col 14
+        Ranges: Ln 326, Col 61 @ Ln 329, Col 14
   - !<Text>
     Identifier: ac24260
     Algorithm: sha1
@@ -1935,6 +1951,23 @@ Texts:
         Identifier: da5e3d2:l1
         Path: ./R/ui-panel-arithmetic-mean.R
         Ranges: Ln 381, Col 21 @ Ln 384, Col 22
+  - !<Text>
+    Identifier: 4dd1267
+    Algorithm: sha1
+    Hash: 4dd1267139a0d4a69880da1c3489ebe847977bb8
+    Source Language: en
+    Source Text: |-
+      Use this value as the maximal overexposure risk. It must be between 0%
+      and 100%. It represents the maximal probability that the overexposure
+      criterion is met. Above this value, the situation should trigger remedial
+      action. While 5% is the traditional chosen value, recent guidelines
+      suggest using 30% instead.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 4dd1267:l1
+        Path: ./R/ui-sidebar.R
+        Ranges: Ln 294, Col 50 @ Ln 301, Col 14
   - !<Text>
     Identifier: 7d94d60
     Algorithm: sha1
@@ -1976,6 +2009,20 @@ Texts:
         Identifier: 5464daa:l1
         Path: ./R/ui-panel-statistics.R
         Ranges: Ln 204, Col 13 @ Ln 204, Col 51
+  - !<Text>
+    Identifier: cdb58e3
+    Algorithm: sha1
+    Hash: cdb58e3e8cb6a8f4406f361fa9308effbeed5f09
+    Source Language: en
+    Source Text: |-
+      It also allows the inclusion of external information in the measurements
+      (not yet leveraged).
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: cdb58e3:l1
+        Path: ./R/ui-modal-about.R
+        Ranges: Ln 349, Col 29 @ Ln 352, Col 22
   - !<Text>
     Identifier: 466a65e
     Algorithm: sha1
@@ -2035,7 +2082,7 @@ Texts:
       - !<Location>
         Identifier: 1a51cee:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 259, Col 21 @ Ln 259, Col 52
+        Ranges: Ln 267, Col 21 @ Ln 267, Col 52
   - !<Text>
     Identifier: 1c03385
     Algorithm: sha1
@@ -2047,7 +2094,7 @@ Texts:
       - !<Location>
         Identifier: 1c03385:l1
         Path: ./R/ui-modal-about.R
-        Ranges: Ln 340, Col 13 @ Ln 340, Col 49
+        Ranges: Ln 358, Col 13 @ Ln 358, Col 49
   - !<Text>
     Identifier: d36a0cb
     Algorithm: sha1
@@ -2065,7 +2112,7 @@ Texts:
       - !<Location>
         Identifier: d36a0cb:l1
         Path: ./R/ui-modal-about.R
-        Ranges: Ln 287, Col 24 @ Ln 294, Col 18
+        Ranges: Ln 294, Col 24 @ Ln 301, Col 18
   - !<Text>
     Identifier: 8e9ba68
     Algorithm: sha1
@@ -2110,7 +2157,7 @@ Texts:
       - !<Location>
         Identifier: 3710c88:l1
         Path: ./R/ui-modal-about.R
-        Ranges: Ln 370, Col 33 @ Ln 376, Col 34
+        Ranges: Ln 388, Col 33 @ Ln 394, Col 34
   - !<Text>
     Identifier: 6db5beb
     Algorithm: sha1
@@ -2150,19 +2197,7 @@ Texts:
       - !<Location>
         Identifier: e6a9040:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 310, Col 56 @ Ln 312, Col 14
-  - !<Text>
-    Identifier: '7778904'
-    Algorithm: sha1
-    Hash: 7778904f5cb75fa748814943ef360982981c20d9
-    Source Language: en
-    Source Text: Data Interpretation for One Similarly Exposed Group
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 7778904:l1
-        Path: ./R/ui-title.R
-        Ranges: Ln 241, Col 13 @ Ln 243, Col 14
+        Ranges: Ln 318, Col 56 @ Ln 320, Col 14
   - !<Text>
     Identifier: 24a1b71
     Algorithm: sha1
@@ -2186,23 +2221,7 @@ Texts:
       - !<Location>
         Identifier: 3dedfcc:l1
         Path: ./R/ui-modal-about.R
-        Ranges: Ln 274, Col 29 @ Ln 276, Col 22
-  - !<Text>
-    Identifier: '5266185'
-    Algorithm: sha1
-    Hash: 52661858698b5e65c2adbbd8df346961920f73c3
-    Source Language: en
-    Source Text: |-
-      The Bayesian models and data interpretation procedures used by this
-      application are derived from current best practices in industrial
-      hygiene, which are described in the following scientific paper. Further
-      details and references are available on %s.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 5266185:l1
-        Path: ./R/ui-modal-about.R
-        Ranges: Ln 348, Col 25 @ Ln 354, Col 26
+        Ranges: Ln 284, Col 29 @ Ln 286, Col 22
   - !<Text>
     Identifier: 00650f3
     Algorithm: sha1
@@ -2214,7 +2233,7 @@ Texts:
       - !<Location>
         Identifier: 00650f3:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 314, Col 56 @ Ln 316, Col 14
+        Ranges: Ln 322, Col 56 @ Ln 324, Col 14
   - !<Text>
     Identifier: 677f437
     Algorithm: sha1
@@ -2249,18 +2268,6 @@ Texts:
         Path: ./R/ui-footer.R
         Ranges: Ln 75, Col 17 @ Ln 75, Col 64
   - !<Text>
-    Identifier: 654b124
-    Algorithm: sha1
-    Hash: 654b12423c49e8036cfa2b311bf773d55b88d55d
-    Source Language: en
-    Source Text: Wait for the calculations to be performed.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 654b124:l1
-        Path: ./R/ui-modal-about.R
-        Ranges: Ln 282, Col 29 @ Ln 284, Col 22
-  - !<Text>
     Identifier: 62fc968
     Algorithm: sha1
     Hash: 62fc9685270adbdef9827a232c7be96063f019dd
@@ -2281,6 +2288,20 @@ Texts:
         Ranges:
           - Ln 245, Col 29 @ Ln 245, Col 64
           - Ln 252, Col 29 @ Ln 252, Col 64
+  - !<Text>
+    Identifier: aeb3077
+    Algorithm: sha1
+    Hash: aeb30771d917c15a9d449124044edff008fcc812
+    Source Language: en
+    Source Text: |-
+      Submit inputs by clicking on the Submit button and wait for the
+      calculations to be performed.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: aeb3077:l1
+        Path: ./R/ui-modal-about.R
+        Ranges: Ln 288, Col 29 @ Ln 291, Col 22
   - !<Text>
     Identifier: 745ebd1
     Algorithm: sha1
@@ -2332,23 +2353,6 @@ Texts:
         Identifier: e510a31:l1
         Path: ./R/ui-panel-percentiles.R
         Ranges: Ln 483, Col 25 @ Ln 486, Col 26
-  - !<Text>
-    Identifier: e01beba
-    Algorithm: sha1
-    Hash: e01beba0a6ab363cce14ca99213cf29a530f42c5
-    Source Language: en
-    Source Text: |-
-      It is based on a risk assessment framework recognized by prominent
-      institutions such as the American Industrial Hygiene Association, the
-      British and Dutch Society for Occupational Health and Safety (BOHS/NVVA),
-      the French Institut national de recherche et de sécurité (INRS), and the
-      European Standards Organization.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: e01beba:l1
-        Path: ./R/ui-modal-about.R
-        Ranges: Ln 237, Col 24 @ Ln 244, Col 18
   - !<Text>
     Identifier: 5b8a460
     Algorithm: sha1

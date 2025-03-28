@@ -294,9 +294,10 @@ server_sidebar <- function(id, lang, panel_active) {
             bslib::update_tooltip("psi_tooltip", translate(lang = lang, "
                 Use this value as the maximal overexposure risk. It must be
                 between 0% and 100%. It represents the maximal probability that
-                the overexposure limit is met. Above this value, the situation
-                should trigger remedial action. INRS and BOHS suggest using 5%
-                and 30%, respectively.
+                the overexposure criterion is met. Above this value, the
+                situation should trigger remedial action. While 5% is the
+                traditional chosen value, recent guidelines suggest using 30%
+                instead.
             "))
 
             bslib::update_tooltip("data_tooltip", translate(lang = lang, "
