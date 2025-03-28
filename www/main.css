@@ -1,83 +1,4 @@
-/* --bs- variables are exposed by Bootstrap v5 and used below. */
-
-.app-title {
-  margin-top: 16px;
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  font-size: 2.5rem;
-}
-
-.app-panel-title {
-  margin: 16px 0;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--bs-gray-300);
-}
-
-.app-panel-subtitle {
-  margin-top: 16px;
-  margin-bottom: 16px;
-}
-
-/* Flexible container that aligns its child elements on the
-   same row, wrapping them onto the next line when necessary.
-   Spaces between them is determined by the browser. */
-.app-flex-row {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-}
-
-.app-list > li:not(:last-child) {
-  padding: 0 0 15px 0;
-}
-
-.app-banner-wait {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  padding: 5px 0px;
-  text-align: center;
-  font-weight: bold;
-  color: #fff;
-  background-color: #2c3e50;
-  z-index: 1;
-}
-
-.app-input > label {
-  font-weight: bold;
-}
-
-.app-sidebar-hr {
-  color: var(--bs-gray-500);
-}
-
-.app-sidebar-footer {
-  color: var(--bs-gray-500);
-}
-
-.app-sidebar-footer > * {
-  margin: 0 auto;
-}
-
-.app-output-inline {
-  font-weight: bold;
-}
-
-/* A top margin is added to risk meter <img> containers
-   for better alignment with the subsection <h3> title
-   (Risk Decision subtitle). */
-.app-risk-meter {
-  margin-top: 21px;
-}
-
-/* renderPlot() returns PNG images, which are rendered
-   as <img> tags by browsers. These tags are inline by
-   default, so they can be centered in their container
-   as text would be. */
-.app-center-plot {
-  text-align: center;
-}
+/* --bs- variables overwrites variables of Bootstrap v5. */
 
 /* Justify all paragraphs by adding spaces between words.
    Using this CSS selector is an exception, since there
@@ -85,4 +6,18 @@
 p {
   text-align: justify;
   text-justify: inter-word;
+}
+
+.app-btn {
+  --bs-btn-padding-y: 0.25rem;
+  --bs-btn-padding-x: 0.75rem;
+  --bs-btn-font-size: 1.5rem;
+}
+
+/* Display elements only on bigger
+   screens of at least 1500px. */
+@media screen and (max-width: 1499px) {
+  .app-large-screen-only {
+    display: none;
+  }
 }
