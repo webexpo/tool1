@@ -1,6 +1,7 @@
-<!-- Logo: start -->
-<p align="center"><img src="www/android-chrome-192x192.png" alt="Expostats's logo" height="192" width="192" /></p>
-<!-- Logo: end -->
+<div align="center">
+
+<!-- Expostats' logo -->
+<img src="www/android-chrome-192x192.png" alt="Expostats's logo" height="192" width="192" />
 
 # Tool 1: Data Interpretation for One Similarly Exposed Group
 
@@ -8,15 +9,19 @@
 [![Version](https://img.shields.io/badge/version-4.0.0-blue)](https://github.com/webexpo/app-tool1/releases/tag/v4.0.0)
 [![Lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Location](https://img.shields.io/badge/live-shinyapps.io-5b90bf)](https://lavoue.shinyapps.io/tool1/)
+[![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://github.com/webexpo/tool1/blob/main/LICENSE.md)
 <!-- badges: end -->
+
+</div>
 
 A Shiny application developed by the Industrial Hygiene team of the Department
 of Environmental and Occupational Health at the
 [École de Santé Publique](https://espum.umontreal.ca/english/home/) of the
 [Université de Montréal](https://www.umontreal.ca/en/) (EPSUM) in collaboration
 with [Ununoctium](https://ununoctium.dev) (Jean-Mathieu Potvin).
-[Ununoctium](https://ununoctium.dev) designed the user interface and currently
-maintains the web application (but not scripts stored in `scripts/`).
+[Ununoctium](https://ununoctium.dev) designed the user interface (for versions
+greater than or equal to `4.0.0`) and currently maintains the web application
+(but not scripts stored in `scripts/`).
 
 ## Introduction
 
@@ -43,7 +48,7 @@ are thoroughly described in
 
 ## Usage
 
-To launch and serve Tool 1 locally, call
+To serve Tool 1 locally, call
 
 ```r
 .run()
@@ -53,7 +58,7 @@ This sources `.scripts/run.R`. See this script for details.
 
 ## Deploy
 
-Tool 1 is deployed to and runs on [shinyapps.io](https://lavoue.shinyapps.io/tool1).
+Tool 1 is deployed to [shinyapps.io](https://lavoue.shinyapps.io/tool1).
 To deploy a new version, call
 
 ```r
@@ -62,7 +67,7 @@ To deploy a new version, call
 
 This sources `.scripts/publish.R`. See this script for details.
 
-Some environments variables are required to publish new releases with `.pub()`.
+Some environment variables are required to publish new releases with `.pub()`.
 They must be stored in a top-level `.Renviron` file as shown below. This file is
 ignored by Git and `rsconnect`.
 
@@ -81,14 +86,14 @@ RSCONNECT_ACCOUNT_SECRET=<secret>
 
 Tool 1 relies on package [transltr](https://cran.r-project.org/package=transltr)
 to support multiple languages. Translations (and related metadata) are stored
-in `intl/`. To updates its content, call
+in `intl/`. To update its content, call
 
 ```r
 .intl()
 ```
 
 This sources `.scripts/find-text.R` and updates all underlying
-translations files. See this script for details.
+translations files. See that script for details.
 
 Tool 1 further supports translation of ordinal numbers. Each supported
 language requires an `ordinal_rules_*()` function. For example, English
@@ -115,11 +120,13 @@ See `R/helpers-html.R` for more information.
 
 We may work on these issues in a near future.
 
-- French translations are officially supported but missing.
+- French translations are officially supported but missing [COMING SOON].
 
-- Inputs lack robust validation mechanisms and may lead to undefined behavior.
+- Inputs lack robust validation mechanisms and may lead to undefined behavior
+  in some cases.
 
-- Application is not optimized for mobile phones and small screens (<500px).
+- Tool 1 is not optimized for mobile phones and small screens having widths
+  lower than 500 pixels.
 
 - Accessibility mechanisms
   ([ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA)) are
@@ -129,16 +136,15 @@ We may work on these issues in a near future.
   all plots are inconsistent and must be standardized.
   - This could be achieved with `shiny::getCurrentOutputInfo()`.
 
-- In the source text, many inputs have multiple slightly different names. For
-  example, OEL (Occupational Exposure Limit) is sometimes named EL (Exposure
-  Limit).
+- In the source text, many inputs have slightly different names. For example,
+  OEL (Occupational Exposure Limit) is sometimes named EL (Exposure Limit).
 
 ## Bugs and Feedback
 
 You may submit bugs, request features, and provide feedback by creating an
 [issue on GitHub](https://github.com/webexpo/app-tool1/issues/new).
 
-If you do not have an account, send an email to <jerome.lavoue@umontreal.ca>
+If you do not have a GitHub account, send an email to <jerome.lavoue@umontreal.ca>
 **and** <jeanmathieupotvin@ununoctium.dev>. Please use the following standard
 subject line:
 
