@@ -1,68 +1,16 @@
-#' HTML Strings
+#' Translate Source Text
 #'
-#' Create character strings containing HTML elements and itself having an
-#' HTML container (optionally).
+#' Alias to method `$translate()` of the main [transltr::Translator] object.
 #'
-#' [html()] is a (much) lighter alternative to [htmltools::HTML()] built
-#' specifically for Tool 1.
-#'
-#' @param container A function that generates an HTML element to contain the
-#'   formatted text, or `NULL` for no container.
-#'
-#' @param text A character string possibly using [sprintf()] placeholders (so-
-#'   called *conversion specifications*).
-#'
-#' @param ... Further values to insert into `text` with respect to what
-#'   placeholders dictate.
-#'
-#' @param .ignore A character string. Any `text` identical to this value is
-#'   treated *as is* and further arguments passed to `...` are ignored. This
-#'   avoids warnings stemming from [intl()] when translations are unavailable.
-#'
-#' @param .noWS Character vector used to omit some of the whitespace that
-#'   would normally be written around this tag. Valid options include `before`,
-#'   `after`, `outside`, `after-begin`, and `before-end`. Any number of these
-#'   options can be specified. This is taken directly from the documentation
-#'   of package shiny.
-#'
-#' @returns
-#' A character vector of length 1 and of class `html`. It further has a `noWS`
-#' attribute set equal to argument `.noWS` and a second attribute `html` set
-#' equal to `TRUE`. It can be used as if it was a regular Shiny tag.
-#'
-#' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
+#' @rdname helpers-translate
 #'
 #' @export
-html <- function(
-    container = shiny::div,
-    text      = "",
-    ...,
-    .ignore = missing_translation_msg,
-    .noWS   = NULL)
-{
-    str <- if (identical(text, .ignore)) {
-        text
-    } else {
-        do.call(sprintf, c(fmt = text, lapply(list(...), as.character)))
-    }
-
-    html_text <- structure(
-        str,
-        html  = TRUE,
-        noWS  = .noWS,
-        class = c("html", "character"))
-
-    return(if (is.null(container)) html_text else container(html_text))
-}
+translate <- tr$translate
 
 #' Ordinal Numbers (1st, 2nd, 3rd, 4th, etc.)
 #'
 #' Display values as ordinal numbers (e.g. 1st, 2nd, 3rd, 4th, etc.). Built-in
 #' rules are provided for English and French.
-#'
-#' [ordinal()] is provided for convenience. Tool 1 only uses [ordinal_abbr()].
-#' It calls [ordinal_rules()] to choose the required set of grammar rules for
-#' `lang`.
 #'
 #' ## Rulesets
 #'
@@ -80,6 +28,12 @@ html <- function(
 #'
 #' @param lang A character string. The underlying language code, i.e. the
 #'   value of `input$lang`.
+#'
+#' @param format A character string equal to one of the values below and
+#'   controlling the output's format.
+#'
+#'   - `html`: a `shiny.tag` object.
+#'   - `string`: a character string is returned.
 #'
 #' @param ... Further arguments passed to [ordinal_rules_english()] and
 #'   [ordinal_rules_french()].
@@ -124,11 +78,46 @@ html <- function(
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
+#' @rdname helpers-translate
+#'
 #' @export
-ordinal <- function(x = numeric(1L), lang = "en", ...) {
-    return(sprintf("%i%s", as.integer(x), ordinal_abbr(x, lang, ...)))
+ordinal <- function(
+    x      = numeric(1L),
+    lang   = "en",
+    format = c("html", "string"),
+    ...)
+{
+    format <- match.arg(format)
+    x_int <- as.integer(x)
+    abbr <- ordinal_abbr(x_int, lang, ...)
+
+    return(
+        switch(format,
+            string = sprintf("%i%s", x_int, abbr),
+            html   = tags$span(
+                x_int,
+                tags$sup(
+                    abbr,
+                    .noWS = c(
+                        "before",
+                        "after",
+                        "outside",
+                        "after-begin",
+                        "before-end"
+                    )
+                ),
+                .noWS = c(
+                    "before",
+                    "after-begin",
+                    "before-end"
+                )
+            )
+        )
+    )
 }
 
+#' @rdname helpers-translate
+#' @export
 ordinal_abbr <- function(x = numeric(1L), lang = "en", ...) {
     rules <- ordinal_rules(lang, ...)
 
@@ -144,6 +133,8 @@ ordinal_abbr <- function(x = numeric(1L), lang = "en", ...) {
     return(rules$indicators[[(x %% 10L) + 1L]])
 }
 
+#' @rdname helpers-translate
+#' @export
 ordinal_rules <- function(lang = "en", ...) {
     return(
         switch(lang,
@@ -152,6 +143,8 @@ ordinal_rules <- function(lang = "en", ...) {
             stop("no support for ordinal numbers in the current language.")))
 }
 
+#' @rdname helpers-translate
+#' @export
 ordinal_rules_english <- function() {
     return(
         list(
@@ -174,6 +167,8 @@ ordinal_rules_english <- function() {
                 "13" = "th")))
 }
 
+#' @rdname helpers-translate
+#' @export
 ordinal_rules_french <- function(
     gender = c("masculin", "feminin"),
     plural = FALSE)
@@ -209,23 +204,4 @@ ordinal_rules_french <- function(
     }
 
     return(list(indicators = indicators, exceptions = exceptions))
-}
-
-intl <- function(lang, ...) {
-    return(tr$translate(..., lang = lang, source_lang = default_lang))
-}
-
-is_chr1 <- function(x) {
-    return(is.character(x) && length(x) == 1L && nzchar(x) && !is.na(x))
-}
-
-update_attribute <- function(id = "", attr = "", value) {
-    stopifnot(
-        is_chr1(id),
-        is_chr1(attr)
-    )
-
-    session <- shiny::getDefaultReactiveDomain()
-    msg_obj <- list(id = id, attr = attr, value = value)
-    return(session$sendCustomMessage("update_attribute", msg_obj))
 }
