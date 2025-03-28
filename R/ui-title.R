@@ -1,15 +1,4 @@
-#' Title Bar Module
-#'
-#' @usage
-#' ui <- bslib::page_sidebar(
-#'   title = ui_title("title"),
-#'   ...
-#' )
-#'
-#' server <- function(input, output, session) {
-#'   server_title("title")
-#'   ...
-#' }
+#' Title Module
 #'
 #' @description
 #' This module cotrols the Title component conceptually illustrated below.
@@ -30,40 +19,46 @@
 #' ---------------------------------------
 #' ```
 #'
-#' Call [ui_title()] in the application's user interface and [server_title()]
-#' in its [server()] function.
-#'
 #' @details
-#' This module takes in parameters ony when necessary and relies on global
-#' constants defined in `R/global.R` otherwise.
+#' This module implicitly relies on values defined in `R/global.R` and
+#' `R/helpers*.R` scripts. They are sourced by [shiny::runApp()].
 #'
-#' @param id The module's unique identifier. It is passed to [shiny::NS()]
-#'   to scope names of inputs and outputs. Shiny handles namespaces inside
-#'   server functions. However, users must explicitly declare the current
-#'   namespace when using [update_attribute()].
+#' @template param-id
 #'
-#' @param lang A [shiny::reactive()] object returning the code of the current
-#'   language.
+#' @template param-lang
+#'
+#' @returns
+#' [ui_title()] returns a `shiny.tag` object.
+#'
+#' [server_title()] returns `NULL`, invisibly.
+#'
+#' @note
+#' This module implements two Bootstrap dropdown menus with single buttons
+#' (https://getbootstrap.com/docs/5.3/components/dropdowns).
+#'
+#' Both buttons have a [bslib::tooltip()]. This function automatically sets
+#' attribute `data-bs-toggle` on its input element. Since there can only be
+#' one Bootstrap toggle event per element, calling this function on buttons
+#' overwrites any previous `data-bs-toggle` attribute, like the one required
+#' for the dropdown menu.
+#'
+#' The solution is to separate these two events (dropdown and tooltip trigger
+#' metadata) by attaching the tooltip toggle to an outer container containing
+#' each button.
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
+#' @rdname ui-title
+#'
 #' @export
-ui_title <- function(id = "") {
+ui_title <- function(id) {
     ns <- shiny::NS(id)
-
-    # Height of logo is derived from h1's font size
-    # (which is in rem units) for consistency. Width
-    # is automatically set to preserve aspect ratio.
-    logo_size <- sprintf(
-        "height: calc(%s * 1.0);",
-        bslib::bs_get_variables(ui_bs_theme, "h1-font-size")
-    )
 
     # Bootstrap recommends to mark elements of dropdowns
     # within <li> elements. Each <li> encapsulate a link
     # (an <a> tag) that sets the URL's lang parameter.
     # Tags are constructed from supported languages.
-    btn_lang_choices <- mapply(
+    btn_langs_choices <- mapply(
         code     = names(tr$native_languages),
         lang     = tr$native_languages,
         SIMPLIFY = FALSE,
@@ -83,60 +78,129 @@ ui_title <- function(id = "") {
         }
     )
 
-    ui <- shiny::tagList(
+    ui <- shiny::div(
+        class = "w-100 d-flex flex-wrap align-items-center justify-content-between",
+        style = "gap: 15px;",
+
         # Left: Logo and Title -------------------------------------------------
 
-        tags$h1(
-            class = "d-flex flex-row align-items-center fw-bolder",
+        tags$div(
+            class = "d-flex align-items-center",
 
-            # Width and height of the logo are resized
-            # based on the theme's H1 font-size property.
-            tags$img(
-                id     = ns("logo"),
-                src    = "logo-400x400.png",
-                alt    = "Logo",
-                width  = "400px",
-                height = "400px",
-                class  = "pe-3 w-auto",
-                style  = logo_size
+            # Logo is a link that can be
+            # clicked to reset everything.
+            tags$a(
+                href     = "",
+                hreflang = default_lang,
+                target   = "_self",
+
+                # Height of logo is manually set
+                # equal to the height of buttons.
+                tags$img(
+                    id     = ns("logo"),
+                    src    = "images/logo-400x400.png",
+                    alt    = "Logo",
+                    width  = "400px",
+                    height = "400px",
+                    class  = "pe-3",
+                    style  = "height: 46px; width: auto;"
+                )
             ),
 
-            shiny::textOutput(ns("title"), inline = TRUE)
+            # Bottom margin is removed to align logo
+            # and name/title on the horizontal axis.
+            tags$h1(
+                class = "d-flex mb-0",
+
+                htmltools::tagAppendAttributes(
+                    class = "fw-bold",
+                    shiny::textOutput(ns("name"), tags$span)
+                ),
+
+                # Colons are used to separate the app's name
+                # from its title. The latter is only shown on
+                # screens of >=1500 pixels.
+                tags$span(
+                    class = "app-large-screen-only text-muted",
+                    ":",
+                    shiny::textOutput(ns("title"), tags$span)
+                )
+            )
         ),
 
         # Right: Buttons -------------------------------------------------------
 
-        # Buttons are shown on larger screens only.
-        # Otherwise, they are shown in the sidebar.
         tags$div(
-            class = "d-flex app-large-screen-only",
+            class = "d-flex",
+            style = "gap: 15px;",
 
-            # This implements a Bootstrap dropdown via a single button
-            # (https://getbootstrap.com/docs/5.3/components/dropdowns).
-            # Since clicking on the button is very self-explanatory,
-            # there is no tooltip.
+            ## Languages -------------------------------------------------------
+
+            # See @note above on dropdowns and tooltips.
             tags$div(
-                id    = ns("btn_lang"),
-                class = "dropdown d-inline-block",
+                id = ns("btn_langs"),
+                # Display inline-block is required to align
+                # the dropdown button with other buttons on
+                # the vertical axis.
+                class = "d-inline-block dropdown",
 
                 tags$button(
-                    class            = "btn btn-outline-secondary dropdown-toggle mx-2 app-btn",
+                    class            = "btn btn-outline-secondary app-btn dropdown-toggle",
                     type             = "button",
                     "data-bs-toggle" = "dropdown",
-                    "aria-expanded"  = "false",
-                    ui_icons$intl
+                    bsicons::bs_icon("translate", a11y = "none")
                 ),
 
-                tags$ul(class = "dropdown-menu") |>
-                htmltools::tagSetChildren(list = btn_lang_choices)
+                htmltools::tagSetChildren(
+                    tags$ul(class = "dropdown-menu"),
+                    list = btn_langs_choices
+                )
+            ) |> bslib::tooltip(
+                id        = ns("btn_langs_tooltip"),
+                placement = "left",
+                ""
             ),
+
+            ## Links -----------------------------------------------------------
+
+            # See @note above on dropdowns and tooltips.
+            tags$div(
+                id = ns("btn_links"),
+                # Display inline-block is required to align
+                # the dropdown button with other buttons on
+                # the vertical axis.
+                class = "d-inline-block dropdown",
+
+                tags$button(
+                    class            = "btn btn-outline-secondary app-btn dropdown-toggle",
+                    type             = "button",
+                    "data-bs-toggle" = "dropdown",
+                    bsicons::bs_icon("link", a11y = "none")
+                ),
+
+                shiny::uiOutput(
+                    ns("btn_links_choices"),
+                    container = tags$ul,
+                    class     = "dropdown-menu"
+                )
+            ) |> bslib::tooltip(
+                id        = ns("btn_links_tooltip"),
+                placement = "left",
+                ""
+            ),
+
+            ## Help/About ------------------------------------------------------
+
+            ui_modal_about(ns("about")),
+
+            ## Other Buttons ---------------------------------------------------
 
             # UI starts in light mode, so the icon to show
             # is the one indicating dark mode is available.
             shiny::actionButton(
                 inputId = ns("btn_color_mode"),
-                label   = ui_icons$dark_mode,
-                class   = "btn btn-outline-secondary mx-2 app-btn"
+                label   = bsicons::bs_icon("moon-fill", a11y = "none"),
+                class   = "btn btn-outline-secondary app-btn"
             ) |>
             bslib::tooltip(
                 id        = ns("btn_color_mode_tooltip"),
@@ -145,26 +209,13 @@ ui_title <- function(id = "") {
             ),
 
             tags$a(
-                href   = urls$code,
+                href   = default_urls$code,
                 target = "_blank",
-                class  = "btn btn-outline-secondary mx-2 app-btn",
-                ui_icons$github
+                class  = "btn btn-outline-secondary app-btn",
+                bsicons::bs_icon("github", a11y = "none")
             ) |>
             bslib::tooltip(
                 id        = ns("btn_code_tooltip"),
-                placement = "bottom",
-                ""
-            ),
-
-            tags$a(
-                id     = ns("btn_expostats"),
-                href   = "",
-                target = "_blank",
-                class  = "btn btn-outline-secondary mx-2 app-btn",
-                ui_icons$globe
-            ) |>
-            bslib::tooltip(
-                id        = ns("btn_expostats_tooltip"),
                 placement = "bottom",
                 ""
             )
@@ -179,16 +230,61 @@ ui_title <- function(id = "") {
 server_title <- function(id, lang) {
     stopifnot(shiny::is.reactive(lang))
 
-    # Only required when using custom messages.
-    # Shiny handles the rest automatically.
-    ns <- shiny::NS(id)
-
     server <- \(input, output, session) {
-        output$title <- shiny::renderText(intl(lang = lang(), "
-            Tool 1: Data Interpretation for One Similarly Exposed Group
-        "))
+        server_modal_about("about", lang)
 
-        # Observer for color mode (light/dark).
+        output$name <- shiny::renderText({
+            translate(lang = lang(), "Tool 1")
+        })
+
+        output$title <- shiny::renderText({
+            translate(lang = lang(), "
+                Data Interpretation for One Similarly Exposed Group
+            ")
+        })
+
+        output$btn_links_choices <- shiny::renderUI({
+            lang <- lang()
+            links <- list(
+                list(
+                    default_urls$tool1_simplified[[lang]],
+                    translate(lang = lang, "Tool 1 (Simplified)")
+                ),
+                list(
+                    default_urls$tool2[[lang]],
+                    translate(lang = lang, "Tool 2")
+                ),
+                list(
+                    default_urls$tool3[[lang]],
+                    translate(lang = lang, "Tool 3")
+                ),
+                list(
+                    default_urls$expostats[[lang]],
+                    "Expostats"
+                ),
+                list(
+                    default_urls$ndexpo,
+                    "NDExpo"
+                )
+            )
+
+            lapply(links, \(link) {
+                return(
+                    tags$li(
+                        tags$a(
+                            class    = "dropdown-item",
+                            href     = link[[1L]],
+                            hreflang = lang,
+                            rel      = "external",
+                            target   = "_blank",
+                            link[[2L]]
+                        )
+                    )
+                )
+            })
+        })
+
+        # Toggle color mode (light/dark).
         shiny::observe({
             # Icon shown in light mode is the one for dark mode,
             # and vice-versa. Since light is the initial mode,
@@ -196,9 +292,9 @@ server_title <- function(id, lang) {
             # show icon for dark mode, and odd numbers show the
             # icon of light mode (each click toggles dark mode).
             icon <- if (input$btn_color_mode %% 2L == 0L) {
-                ui_icons$dark_mode
+                bsicons::bs_icon("moon-fill", a11y = "none")
             } else {
-                ui_icons$light_mode
+                bsicons::bs_icon("sun-fill", a11y = "none")
             }
 
             bslib::toggle_dark_mode()
@@ -206,26 +302,31 @@ server_title <- function(id, lang) {
         }) |>
         shiny::bindEvent(input$btn_color_mode)
 
-        # Observer for internationalization.
+        # Translate elements not rendered
+        # with a shiny::render*() function.
         shiny::observe({
             lang <- lang()
 
-            update_attribute(ns("btn_expostats"), "href", urls$expostats[[lang]])
-
-            bslib::update_tooltip("btn_color_mode_tooltip", intl(lang = lang, "
-                Choose your preferred color scheme.
+            bslib::update_tooltip("btn_langs_tooltip", translate(lang = lang, "
+                Choose your preferred language.
             "))
 
-            bslib::update_tooltip("btn_code_tooltip", intl(lang = lang, "
-                Click here to see the source code hosted on GitHub.
+            bslib::update_tooltip("btn_links_tooltip", translate(lang = lang, "
+                Explore Expostats and other tools.
             "))
 
-            bslib::update_tooltip("btn_expostats_tooltip", intl(lang = lang, "
-                Click here for more information on Expostats and related
-                tools.
+            bslib::update_tooltip("btn_color_mode_tooltip", translate(lang = lang, "
+                Choose your preferred color scheme. This is an experimental
+                feature. Contents may not be displayed appropriately.
+            "))
+
+            bslib::update_tooltip("btn_code_tooltip", translate(lang = lang, "
+                See the source code on GitHub.
             "))
         }) |>
         shiny::bindEvent(lang())
+
+        return(invisible())
     }
 
     return(shiny::moduleServer(id, server))
