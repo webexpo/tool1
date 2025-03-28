@@ -10,11 +10,6 @@
 # Ignore Git files (.git is already ignored).
 .gitignore
 
-# Ignore renv files.
-# These does not work with rsconnect and shinyapps.io.
-renv
-renv.lock
-
 # Ignore by-products and temporary files.
 .RData
 www/images/img1.png
