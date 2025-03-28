@@ -242,7 +242,7 @@ Texts:
       - !<Location>
         Identifier: 5e2c2fa:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 263, Col 21 @ Ln 263, Col 52
+        Ranges: Ln 284, Col 21 @ Ln 284, Col 52
   - !<Text>
     Identifier: cea3b6c
     Algorithm: sha1
@@ -448,6 +448,18 @@ Texts:
         Identifier: 03c33e5:l1
         Path: ./R/ui-banner.R
         Ranges: Ln 90, Col 13 @ Ln 90, Col 62
+  - !<Text>
+    Identifier: 59f9427
+    Algorithm: sha1
+    Hash: 59f94273bde5eaa2d43ef32eee175d2d0cb7afc7
+    Source Language: en
+    Source Text: Submit a bug or provide feedback to the maintainers.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 59f9427:l1
+        Path: ./R/ui-title.R
+        Ranges: Ln 352, Col 54 @ Ln 354, Col 14
   - !<Text>
     Identifier: 8d5cf97
     Algorithm: sha1
@@ -671,7 +683,7 @@ Texts:
       - !<Location>
         Identifier: 6bf9771:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 259, Col 21 @ Ln 259, Col 65
+        Ranges: Ln 280, Col 21 @ Ln 280, Col 65
   - !<Text>
     Identifier: 532bf12
     Algorithm: sha1
@@ -896,7 +908,7 @@ Texts:
       - !<Location>
         Identifier: 8fc2a6a:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 249, Col 13 @ Ln 251, Col 14
+        Ranges: Ln 270, Col 13 @ Ln 272, Col 14
   - !<Text>
     Identifier: f3c096c
     Algorithm: sha1
@@ -965,6 +977,25 @@ Texts:
         Path: ./R/ui-modal-about.R
         Ranges: Ln 413, Col 17 @ Ln 417, Col 18
   - !<Text>
+    Identifier: ef12e2b
+    Algorithm: sha1
+    Hash: ef12e2b7d4cdcd9bf3436f84f4666b2436cdf90d
+    Source Language: en
+    Source Text: |-
+      This plot shows the probability distribution of the uncertainty around
+      the arithmetic mean. It shows the probability that its true value is (1)
+      below 1%% of the OEL, (2) between 1%% and 10%% of the OEL, (3) between
+      10%% and 50%% of the OEL, (4) between 50%% and 100%% of the OEL, and (5)
+      greater than the OEL. This is based on the classification adopted by %s.
+      The red column represents the probability of an overexposure. The latter
+      should be lower than the threshold (black dashed line).
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: ef12e2b:l1
+        Path: ./R/ui-panel-arithmetic-mean.R
+        Ranges: Ln 635, Col 17 @ Ln 647, Col 18
+  - !<Text>
     Identifier: d111f1a
     Algorithm: sha1
     Hash: d111f1a61356a1da7fa12ed06ae736a5c04fd8e0
@@ -984,25 +1015,6 @@ Texts:
         Identifier: d111f1a:l3
         Path: ./R/ui-panel-percentiles.R
         Ranges: Ln 336, Col 13 @ Ln 336, Col 52
-  - !<Text>
-    Identifier: ef12e2b
-    Algorithm: sha1
-    Hash: ef12e2b7d4cdcd9bf3436f84f4666b2436cdf90d
-    Source Language: en
-    Source Text: |-
-      This plot shows the probability distribution of the uncertainty around
-      the arithmetic mean. It shows the probability that its true value is (1)
-      below 1%% of the OEL, (2) between 1%% and 10%% of the OEL, (3) between
-      10%% and 50%% of the OEL, (4) between 50%% and 100%% of the OEL, and (5)
-      greater than the OEL. This is based on the classification adopted by %s.
-      The red column represents the probability of an overexposure. The latter
-      should be lower than the threshold (black dashed line).
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: ef12e2b:l1
-        Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 635, Col 17 @ Ln 647, Col 18
   - !<Text>
     Identifier: 449ff93
     Algorithm: sha1
@@ -1060,7 +1072,7 @@ Texts:
       - !<Location>
         Identifier: 2e77aed:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 331, Col 55 @ Ln 333, Col 14
+        Ranges: Ln 356, Col 55 @ Ln 358, Col 14
   - !<Text>
     Identifier: 798b335
     Algorithm: sha1
@@ -1283,7 +1295,7 @@ Texts:
       - !<Location>
         Identifier: f7a0860:l3
         Path: ./R/ui-title.R
-        Ranges: Ln 245, Col 13 @ Ln 245, Col 46
+        Ranges: Ln 266, Col 13 @ Ln 266, Col 46
   - !<Text>
     Identifier: 96d547d
     Algorithm: sha1
@@ -1922,7 +1934,7 @@ Texts:
       - !<Location>
         Identifier: 0705c1d:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 326, Col 61 @ Ln 329, Col 14
+        Ranges: Ln 347, Col 61 @ Ln 350, Col 14
   - !<Text>
     Identifier: ac24260
     Algorithm: sha1
@@ -2082,7 +2094,7 @@ Texts:
       - !<Location>
         Identifier: 1a51cee:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 267, Col 21 @ Ln 267, Col 52
+        Ranges: Ln 288, Col 21 @ Ln 288, Col 52
   - !<Text>
     Identifier: 1c03385
     Algorithm: sha1
@@ -2197,7 +2209,7 @@ Texts:
       - !<Location>
         Identifier: e6a9040:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 318, Col 56 @ Ln 320, Col 14
+        Ranges: Ln 339, Col 56 @ Ln 341, Col 14
   - !<Text>
     Identifier: 24a1b71
     Algorithm: sha1
@@ -2233,7 +2245,7 @@ Texts:
       - !<Location>
         Identifier: 00650f3:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 322, Col 56 @ Ln 324, Col 14
+        Ranges: Ln 343, Col 56 @ Ln 345, Col 14
   - !<Text>
     Identifier: 677f437
     Algorithm: sha1

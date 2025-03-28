@@ -54,6 +54,11 @@
 ui_title <- function(id) {
     ns <- shiny::NS(id)
 
+    submit_bug_mailto <- paste0(
+        "mailto:",
+        paste0(default_maintainers_emails, collapse = ",")
+    )
+
     # Bootstrap recommends to mark elements of dropdowns
     # within <li> elements. Each <li> encapsulate a link
     # (an <a> tag) that sets the URL's lang parameter.
@@ -201,7 +206,7 @@ ui_title <- function(id) {
 
             ui_modal_about(ns("about")),
 
-            ## Other Buttons ---------------------------------------------------
+            ## Dark Mode -------------------------------------------------------
 
             # UI starts in light mode, so the icon to show
             # is the one indicating dark mode is available.
@@ -215,6 +220,22 @@ ui_title <- function(id) {
                 placement = "bottom",
                 ""
             ),
+
+            # Submit Bug -------------------------------------------------------
+
+            tags$a(
+                href   = submit_bug_mailto,
+                target = "_blank",
+                class  = "btn btn-outline-secondary app-btn",
+                bsicons::bs_icon("bug-fill", a11y = "none")
+            ) |>
+            bslib::tooltip(
+                id        = ns("btn_bug_tooltip"),
+                placement = "bottom",
+                ""
+            ),
+
+            # Source Code ------------------------------------------------------
 
             tags$a(
                 href   = default_urls$code,
@@ -326,6 +347,10 @@ server_title <- function(id, lang) {
             bslib::update_tooltip("btn_color_mode_tooltip", translate(lang = lang, "
                 Choose your preferred color scheme. This is an experimental
                 feature. Contents may not be displayed appropriately.
+            "))
+
+            bslib::update_tooltip("btn_bug_tooltip", translate(lang = lang, "
+                Submit a bug or provide feedback to the maintainers.
             "))
 
             bslib::update_tooltip("btn_code_tooltip", translate(lang = lang, "

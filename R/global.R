@@ -68,6 +68,12 @@ default_images_dir <- file.path("www", "images")
 # Default message to show when there is no available translation.
 tr$set_default_value(default_missing_translation_msg <- "{no translation}")
 
+# Default maintainers' emails.
+default_maintainers_emails <- c(
+    jerome_lavoue = "jerome.lavoue@umontreal.ca",
+    ununoctium    = "jeanmathieupotvin@ununoctium.dev"
+)
+
 # Default URLs to various resources.
 default_urls <- list(
     code            = "https://github.com/webexpo/tool1",

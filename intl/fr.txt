@@ -287,6 +287,14 @@ Updating. Please wait.
 
 # Insert a translation here.
 
+:: Translations: 59f9427: Source Text
+
+Submit a bug or provide feedback to the maintainers.
+
+:: Translations: 59f9427: Translation
+
+# Insert a translation here.
+
 :: Translations: 8d5cf97: Source Text
 
 Variant:
@@ -587,14 +595,6 @@ the %s.
 
 # Insert a translation here.
 
-:: Translations: d111f1a: Source Text
-
-Density Plot
-
-:: Translations: d111f1a: Translation
-
-# Insert a translation here.
-
 :: Translations: ef12e2b: Source Text
 
 This plot shows the probability distribution of the uncertainty around the
@@ -606,6 +606,14 @@ the probability of an overexposure. The latter should be lower than the
 threshold (black dashed line).
 
 :: Translations: ef12e2b: Translation
+
+# Insert a translation here.
+
+:: Translations: d111f1a: Source Text
+
+Density Plot
+
+:: Translations: d111f1a: Translation
 
 # Insert a translation here.
 
