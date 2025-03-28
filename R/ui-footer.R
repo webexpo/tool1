@@ -6,27 +6,34 @@
 #' into the Sidebar and About Modal modules.
 #'
 #' @details
-#' This module takes in parameters ony when necessary and relies on global
-#' constants defined in `R/global.R` and `R/ui-theme.R` otherwise.
+#' This module implicitly relies on values defined in `R/global.R` and
+#' `R/helpers*.R` scripts. They are sourced by [shiny::runApp()].
 #'
-#' @param id The module's unique identifier. It is passed to [shiny::NS()]
-#'   to scope names of inputs and outputs. Shiny handles namespaces inside
-#'   server functions.
+#' @template param-id
 #'
-#' @param lang A [shiny::reactive()] object returning the current language.
+#' @template param-lang
+#'
+#' @returns
+#' [ui_footer()] returns a `shiny.tag` object.
+#'
+#' [server_footer()] returns `NULL`, invisibly.
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
+#'
+#' @rdname ui-footer
 #'
 #' @export
 ui_footer <- function(id) {
     ns <- shiny::NS(id)
+
     return(
         tags$footer(
             class = "m-auto text-center",
             style = "font-size: 0.75rem;",
 
             shiny::uiOutput(ns("version")),
-            shiny::uiOutput(ns("copyright"))
+            shiny::uiOutput(ns("copyright")),
+            shiny::uiOutput(ns("made_by"))
         )
     )
 }
@@ -40,34 +47,55 @@ server_footer <- function(id, lang) {
         output$version <- shiny::renderUI({
             lang <- lang()
 
-            return(
-                tags$div(
-                    intl(lang = lang(), "Tool 1"),
-                    intl(lang = lang(), "version"),
-                    tags$a(
-                        version_number,
-                        href   = urls$code,
-                        target = "_blank"
-                    ),
-                    sprintf("(%s).", version_date)
-                )
+            tags$div(
+                translate(lang = lang(), "Tool 1"),
+                translate(lang = lang(), "version"),
+
+                tags$a(
+                    href   = default_urls$code,
+                    target = "_blank",
+                    default_version[["number"]]
+                ),
+
+                sprintf("(%s).", default_version[["release_date"]])
             )
         })
 
         output$copyright <- shiny::renderUI({
-            return(
-                tags$div(
-                    ui_icons$copyright,
-                    tags$a(
-                        "Jérôme Lavoué",
-                        href   = urls$jerome_lavoue,
-                        target = "_blank"
+            tags$div(
+                bsicons::bs_icon("c-circle-fill", ally = "sem"),
+
+                tags$a(
+                    href   = default_urls$jerome_lavoue,
+                    target = "_blank",
+                    "Jérôme Lavoué"
+                ),
+
+                format(Sys.time(), tz = "EST", format = "(%Y)."),
+                translate(lang = lang(), "All rights reserved.")
+            )
+        })
+
+        output$made_by <- shiny::renderUI({
+            tags$div(
+                html(
+                    translate(lang = lang(), "Made with %s by %s."),
+
+                    tags$span(
+                        style = "color: red;",
+                        bsicons::bs_icon("heart-fill", ally = "sem")
                     ),
-                    sprintf("(%s).", year),
-                    intl(lang = lang(), "All rights reserved.")
+
+                    tags$a(
+                        href   = default_urls$ununoctium,
+                        target = "_blank",
+                        "Ununoctium"
+                    )
                 )
             )
         })
+
+        return(invisible())
     }
 
     return(shiny::moduleServer(id, server))
