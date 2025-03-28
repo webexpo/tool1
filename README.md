@@ -1,5 +1,5 @@
 <!-- Logo: start -->
-<p align="center"><img src="public/www/android-chrome-192x192.png" alt="Expostats's logo" height="192" width="192" /></p>
+<p align="center"><img src="www/android-chrome-192x192.png" alt="Expostats's logo" height="192" width="192" /></p>
 <!-- Logo: end -->
 
 # Tool 1: Data Interpretation for One Similarly Exposed Group
