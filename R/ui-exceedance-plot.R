@@ -289,7 +289,7 @@ ui_exceedance_plot_sidebar <- function(id) {
                     returnName = TRUE,
                     palette    = "limited"
                 ) |>
-                bslib::tooltip(id = ns("color_risk_tooltip"), ""),
+                bslib::tooltip(id = ns("color_risk_tooltip"), "")
             ),
 
             # Colors of backgrounds.
@@ -314,7 +314,8 @@ ui_exceedance_plot_sidebar <- function(id) {
                     returnName = TRUE,
                     palette    = "limited"
                 ) |>
-                bslib::tooltip(id = ns("color_bg_threshold_tooltip"), ""),
+                shinyjs::hidden() |>
+                bslib::tooltip(id = ns("color_bg_threshold_tooltip"), "")
             )
         )
     )
@@ -331,6 +332,13 @@ server_exceedance_plot_sidebar <- function(id, lang) {
         output$title <- shiny::renderText({
             translate(lang = lang(), "Customize")
         })
+
+        shiny::observe({
+            shinyjs::toggle("color_bg_threshold", condition = {
+                input$variant == "plot4"
+            })
+        }) |>
+        shiny::bindEvent(input$variant)
 
         # Translate elements not rendered
         # with a shiny::render*() function.

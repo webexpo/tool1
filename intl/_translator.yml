@@ -230,7 +230,7 @@ Texts:
       - !<Location>
         Identifier: 8cdd8fb:l1
         Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 362, Col 25 @ Ln 362, Col 78
+        Ranges: Ln 370, Col 25 @ Ln 370, Col 78
   - !<Text>
     Identifier: 5e2c2fa
     Algorithm: sha1
@@ -471,7 +471,7 @@ Texts:
       - !<Location>
         Identifier: 8d5cf97:l1
         Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 354, Col 27 @ Ln 354, Col 60
+        Ranges: Ln 362, Col 27 @ Ln 362, Col 60
   - !<Text>
     Identifier: '2348472'
     Algorithm: sha1
@@ -483,7 +483,7 @@ Texts:
       - !<Location>
         Identifier: 2348472:l1
         Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 363, Col 25 @ Ln 363, Col 78
+        Ranges: Ln 371, Col 25 @ Ln 371, Col 78
   - !<Text>
     Identifier: 95feb13
     Algorithm: sha1
@@ -555,8 +555,8 @@ Texts:
         Identifier: db16b44:l1
         Path: ./R/ui-exceedance-plot.R
         Ranges:
-          - Ln 372, Col 27 @ Ln 372, Col 60
-          - Ln 384, Col 27 @ Ln 384, Col 60
+          - Ln 380, Col 27 @ Ln 380, Col 60
+          - Ln 392, Col 27 @ Ln 392, Col 60
   - !<Text>
     Identifier: 1ad7b08
     Algorithm: sha1
@@ -608,7 +608,7 @@ Texts:
       - !<Location>
         Identifier: 2970e5a:l1
         Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 361, Col 25 @ Ln 361, Col 57
+        Ranges: Ln 369, Col 25 @ Ln 369, Col 57
   - !<Text>
     Identifier: cf880eb
     Algorithm: sha1
@@ -844,7 +844,7 @@ Texts:
       - !<Location>
         Identifier: 2502705:l1
         Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 399, Col 60 @ Ln 402, Col 14
+        Ranges: Ln 407, Col 60 @ Ln 410, Col 14
   - !<Text>
     Identifier: 79e5ee7
     Algorithm: sha1
@@ -1059,8 +1059,8 @@ Texts:
         Identifier: 2dc8049:l1
         Path: ./R/ui-exceedance-plot.R
         Ranges:
-          - Ln 378, Col 27 @ Ln 378, Col 73
-          - Ln 390, Col 27 @ Ln 390, Col 73
+          - Ln 386, Col 27 @ Ln 386, Col 73
+          - Ln 398, Col 27 @ Ln 398, Col 73
   - !<Text>
     Identifier: 2e77aed
     Algorithm: sha1
@@ -1160,7 +1160,7 @@ Texts:
       - !<Location>
         Identifier: ddd9ef3:l1
         Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 404, Col 57 @ Ln 407, Col 14
+        Ranges: Ln 412, Col 57 @ Ln 415, Col 14
   - !<Text>
     Identifier: e92bf46
     Algorithm: sha1
@@ -1546,7 +1546,7 @@ Texts:
       - !<Location>
         Identifier: 865ddc6:l1
         Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 393, Col 54 @ Ln 397, Col 14
+        Ranges: Ln 401, Col 54 @ Ln 405, Col 14
   - !<Text>
     Identifier: c73ed1b
     Algorithm: sha1
@@ -1609,7 +1609,7 @@ Texts:
       - !<Location>
         Identifier: 3883288:l1
         Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 332, Col 13 @ Ln 332, Col 49
+        Ranges: Ln 333, Col 13 @ Ln 333, Col 49
   - !<Text>
     Identifier: 9895a88
     Algorithm: sha1
@@ -1666,7 +1666,7 @@ Texts:
       - !<Location>
         Identifier: 75844cd:l1
         Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 414, Col 65 @ Ln 417, Col 14
+        Ranges: Ln 422, Col 65 @ Ln 425, Col 14
   - !<Text>
     Identifier: ea57967
     Algorithm: sha1
@@ -1788,7 +1788,7 @@ Texts:
       - !<Location>
         Identifier: b3c553f:l1
         Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 409, Col 55 @ Ln 412, Col 14
+        Ranges: Ln 417, Col 55 @ Ln 420, Col 14
   - !<Text>
     Identifier: 6863c44
     Algorithm: sha1
@@ -2008,7 +2008,7 @@ Texts:
       - !<Location>
         Identifier: 77a3276:l1
         Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 364, Col 25 @ Ln 364, Col 80
+        Ranges: Ln 372, Col 25 @ Ln 372, Col 80
   - !<Text>
     Identifier: 5464daa
     Algorithm: sha1
