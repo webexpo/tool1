@@ -139,7 +139,7 @@ You may submit bugs, request features, and provide feedback by creating an
 [issue on GitHub](https://github.com/webexpo/app-tool1/issues/new).
 
 If you do not have an account, send an email to <jerome.lavoue@umontreal.ca>
-and CC <jeanmathieupotvin@ununcotium.dev>. Please use the following standard
+**and** <jeanmathieupotvin@ununoctium.dev>. Please use the following standard
 subject line:
 
 ```
