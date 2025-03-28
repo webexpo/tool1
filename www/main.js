@@ -14,9 +14,3 @@ Shiny.addCustomMessageHandler("update_page_lang", (lang) => {
   document.documentElement.lang = lang;
   console.log(`[INFO] Updating attribute lang of root element to ${lang}.`);
 });
-
-// Update the value of attribute named "attr" of element identified by "id".
-Shiny.addCustomMessageHandler("update_attribute", ({ id, attr, value }) => {
-  document.getElementById(id).setAttribute(attr, value);
-  console.log(`[INFO] Updating attribute ${attr} of #${id} to ${value}.`);
-});
