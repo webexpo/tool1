@@ -207,22 +207,26 @@ server_sidebar <- function(id, lang, panel_active) {
 
         output$title <- shiny::renderText({
             translate(lang = lang(), "Calculation Parameters")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$submit_btn_label <- shiny::renderText({
             translate(lang = lang(), "Submit")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$clear_btn_label <- shiny::renderText({
             translate(lang = lang(), "Clear")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$footer_warning_text <- shiny::renderText({
             translate(lang = lang(), "
                 No results are shown in the right panels until inputs are
                 submitted.
             ")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         # Clear the main <textarea> of input$data.
         shiny::observe({

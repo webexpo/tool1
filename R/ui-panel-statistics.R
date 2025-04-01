@@ -194,27 +194,33 @@ server_panel_statistics <- function(id, lang, parameters, data_sample) {
 
         output$title <- shiny::renderText({
             translate(lang = lang(), "Statistics")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$stats_title <- shiny::renderText({
             translate(lang = lang(), "Descriptive Statistics")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$info_title <- shiny::renderText({
             translate(lang = lang(), "Information")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$info_censoring_title <- shiny::renderText({
             translate(lang = lang(), "Censored Measurements")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$qq_plot_title <- shiny::renderText({
             translate(lang = lang(), "Quantile-Quantile Plot")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$box_plot_title <- shiny::renderText({
             translate(lang = lang(), "Box and Whiskers Plot")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$stats <- DT::renderDT(server = FALSE, {
             lang <- lang()
@@ -285,7 +291,8 @@ server_panel_statistics <- function(id, lang, parameters, data_sample) {
                 Arithmetic Mean above) where inference is based on
                 Bayesian models.
             ")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$info_censoring <- shiny::renderUI({
             lang <- lang()
@@ -330,7 +337,8 @@ server_panel_statistics <- function(id, lang, parameters, data_sample) {
                     )
                 )
             )
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$qq_plot <- shiny::renderPlot({
             lang <- lang()
@@ -352,7 +360,8 @@ server_panel_statistics <- function(id, lang, parameters, data_sample) {
                 the data may have to be split into distinct subsets, or that some
                 outliers must be investigated.
             ")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$box_plot <- shiny::renderPlot({
             lang <- lang()
@@ -384,7 +393,8 @@ server_panel_statistics <- function(id, lang, parameters, data_sample) {
                 tags$sup(ordinal_abbr(10L, lang)),
                 tags$sup(ordinal_abbr(90L, lang))
             )
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         return(invisible())
     }

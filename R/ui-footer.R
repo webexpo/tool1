@@ -59,7 +59,8 @@ server_footer <- function(id, lang) {
 
                 sprintf("(%s).", default_version[["release_date"]])
             )
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$copyright <- shiny::renderUI({
             tags$div(
@@ -93,7 +94,8 @@ server_footer <- function(id, lang) {
                     )
                 )
             )
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         return(invisible())
     }

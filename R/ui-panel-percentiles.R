@@ -306,39 +306,48 @@ server_panel_percentiles <- function(
 
         output$title <- shiny::renderText({
             translate(lang = lang(), "Percentiles")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$risk_assessment_title <- shiny::renderText({
             translate(lang = lang(), "Risk Assessment")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$risk_meter_plot_title <- shiny::renderText({
             translate(lang = lang(), "Risk Meter")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$estimates_title <- shiny::renderText({
             translate(lang = lang(), "Estimates")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$estimates_params_title <- shiny::renderText({
             translate(lang = lang(), "Distribution Parameters")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$estimates_percentile_title <- shiny::renderText({
             translate(lang = lang(), "Percentile")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$seq_plot_title <- shiny::renderText({
             translate(lang = lang(), "Sequential Plot")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$density_plot_title <- shiny::renderText({
             translate(lang = lang(), "Density Plot")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$risk_band_plot_title <- shiny::renderText({
             translate(lang = lang(), "Risk Band Plot")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$risk_assessment <- shiny::renderUI({
             lang <- lang()
@@ -433,7 +442,8 @@ server_panel_percentiles <- function(
                 high when compared to the occupational exposure limit. The red
                 zone indicates a poorly controlled exposure.
             ")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$estimates_params <- shiny::renderUI({
             lang <- lang()
@@ -532,7 +542,8 @@ server_panel_percentiles <- function(
             translate(lang = lang(), "
                 Credible intervals are shown in square brackets.
             ")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$seq_plot <- shiny::renderPlot({
             lang <- lang()
@@ -561,7 +572,8 @@ server_panel_percentiles <- function(
                 values, this approximately represents a full year of exposure.
                 The OEL is shown as a red line.
             ")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$density_plot <- shiny::renderPlot({
             lang <- lang()
@@ -592,7 +604,8 @@ server_panel_percentiles <- function(
                 The OEL is shown as a red dotted line and the point estimate
                 of the selected percentile as a continuous blue line.
             ")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$risk_band_plot <- shiny::renderPlot({
             lang <- lang()
@@ -640,7 +653,8 @@ server_panel_percentiles <- function(
                     "AIHA"
                 )
             )
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         # Swap colors of borders and background of
         # the risk assessment card if data shows a

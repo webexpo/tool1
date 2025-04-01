@@ -8,5 +8,9 @@
 .Rproj
 .Rproj.user
 
-# Ignore by-products and temporary files.
+# Ignore cached objects and results.
+.cache
+.cache.log
+
+# Ignore by-products, and temporary files.
 www/images/img*.png

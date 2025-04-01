@@ -10,6 +10,10 @@
 # Ignore Git files (.git is already ignored).
 .gitignore
 
+# Ignore cached objects and results.
+.cache
+.cache.log
+
 # Ignore by-products and temporary files.
 .RData
 www/images/img1.png

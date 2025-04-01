@@ -231,7 +231,8 @@ server_modal_about <- function(id, lang) {
 
         output$title <- shiny::renderText({
             translate(lang = lang(), "About")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$objectives <- shiny::renderUI({
             lang <- lang()
@@ -261,11 +262,13 @@ server_modal_about <- function(id, lang) {
                     of the specific exposure regimen being assessed.
                 "))
             )
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$usage_title <- shiny::renderText({
             translate(lang = lang(), "How To Use")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$usage <- shiny::renderUI({
             lang <- lang()
@@ -300,7 +303,8 @@ server_modal_about <- function(id, lang) {
                     it and click on the Expand button on the bottom right.
                 "))
             )
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$warning <- shiny::renderText({
             translate(lang = lang(), "
@@ -309,11 +313,13 @@ server_modal_about <- function(id, lang) {
                 Use the Statistics panel to ensure all data has been read
                 correctly.
             ")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$censoring_title <- shiny::renderText({
             translate(lang = lang(), "Censored Measurements")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$censoring <- shiny::renderText({
             translate(lang = lang(), "
@@ -324,7 +330,8 @@ server_modal_about <- function(id, lang) {
                 measurement censored to the right (e.g. >30.0). Use square
                 brackets to denote interval censored values (e.g. [20-30]).
             ")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$approach <- shiny::renderUI({
             lang <- lang()
@@ -352,11 +359,13 @@ server_modal_about <- function(id, lang) {
                     "))
                 )
             )
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$expostats_title <- shiny::renderText({
             translate(lang = lang(), "Expostats")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$expostats <- shiny::renderUI({
             lang <- lang()
@@ -405,7 +414,8 @@ server_modal_about <- function(id, lang) {
                     )
                 )
             )
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$authors <- shiny::renderUI({
             lang <- lang()
@@ -428,7 +438,8 @@ server_modal_about <- function(id, lang) {
                     "Université de Montréal"
                 )
             )
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         # Translate elements not rendered
         # with a shiny::render*() function.

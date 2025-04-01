@@ -44,6 +44,11 @@ source(file.path("scripts", "Common", "Main graph functions.R"))
 
 tr <- transltr::translator_read()
 
+# Global Persistent Cache ------------------------------------------------------
+
+# Default cache for truly static UI elements.
+shiny::shinyOptions(cache = cachem::cache_disk(".cache", logfile = ".cache.log"))
+
 # Constants --------------------------------------------------------------------
 
 # Default version/release to display in footers.

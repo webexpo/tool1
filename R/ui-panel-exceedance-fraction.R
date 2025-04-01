@@ -328,39 +328,48 @@ server_panel_exceedance_fraction <- function(
 
         output$title <- shiny::renderText({
             translate(lang = lang(), "Exceedance Fraction")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$risk_assessment_title <- shiny::renderText({
             translate(lang = lang(), "Risk Assessment")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$risk_meter_plot_title <- shiny::renderText({
             translate(lang = lang(), "Risk Meter")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$estimates_title <- shiny::renderText({
             translate(lang = lang(), "Estimates")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$estimates_params_title <- shiny::renderText({
             translate(lang = lang(), "Distribution Parameters")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$estimates_fraction_title <- shiny::renderText({
             translate(lang = lang(), "Exceedance Fraction")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$seq_plot_title <- shiny::renderText({
             translate(lang = lang(), "Sequential Plot")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$density_plot_title <- shiny::renderText({
             translate(lang = lang(), "Density Plot")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$risk_band_plot_title <- shiny::renderText({
             translate(lang = lang(), "Risk Band Plot")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$risk_assessment <- shiny::renderUI({
             lang <- lang()
@@ -455,7 +464,8 @@ server_panel_exceedance_fraction <- function(
                 high when compared to the occupational exposure limit. The red
                 zone indicates a poorly controlled exposure.
             ")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$estimates_params <- shiny::renderUI({
             lang <- lang()
@@ -550,7 +560,8 @@ server_panel_exceedance_fraction <- function(
             translate(lang = lang(), "
                 Credible intervals are shown in square brackets.
             ")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$seq_plot <- shiny::renderPlot({
             lang <- lang()
@@ -575,7 +586,8 @@ server_panel_exceedance_fraction <- function(
                 approximately represents a full year of exposure. The OEL is shown
                 as a red line.
             ")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$density_plot <- shiny::renderPlot({
             lang <- lang()
@@ -601,7 +613,8 @@ server_panel_exceedance_fraction <- function(
                 red line. The exceedance fraction is the area under the curve
                 beyond the OEL value.
             ")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$risk_band_plot <- shiny::renderPlot({
             lang <- lang()

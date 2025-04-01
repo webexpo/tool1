@@ -84,7 +84,8 @@ server_exceedance_plot <- function(id, lang, parameters, num_results) {
 
         output$title <- shiny::renderText({
             translate(lang = lang(), "Exceedance Plot")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$plot <- shiny::renderPlot({
             lang <- lang()
@@ -162,7 +163,8 @@ server_exceedance_plot <- function(id, lang, parameters, num_results) {
                 be changed according to your needs using the sidebar on the
                 right. Four variants of the Exceedance Plot are available.
             ")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$description_variant <- shiny::renderText({
             switch(sidebar_inputs()$variant,
@@ -331,7 +333,8 @@ server_exceedance_plot_sidebar <- function(id, lang) {
     server <- function(input, output, session) {
         output$title <- shiny::renderText({
             translate(lang = lang(), "Customize")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         shiny::observe({
             shinyjs::toggle("color_bg_threshold", condition = {

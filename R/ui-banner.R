@@ -88,7 +88,8 @@ server_banner <- function(id, lang) {
     server <- function(input, output, session) {
         output$text <- shiny::renderText({
             translate(lang = lang(), "Updating. Please wait.")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         return(invisible())
     }

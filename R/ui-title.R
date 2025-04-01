@@ -264,13 +264,15 @@ server_title <- function(id, lang) {
 
         output$name <- shiny::renderText({
             translate(lang = lang(), "Tool 1")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$title <- shiny::renderText({
             translate(lang = lang(), "
                 Data Interpretation for One Similar Exposure Group
             ")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$btn_links_choices <- shiny::renderUI({
             lang <- lang()

@@ -325,39 +325,48 @@ server_panel_arithmetic_mean <- function(
 
         output$title <- shiny::renderText({
             translate(lang = lang(), "Arithmetic Mean")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$risk_assessment_title <- shiny::renderText({
             translate(lang = lang(), "Risk Assessment")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$risk_meter_plot_title <- shiny::renderText({
             translate(lang = lang(), "Risk Meter")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$estimates_title <- shiny::renderText({
             translate(lang = lang(), "Estimates")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$estimates_params_title <- shiny::renderText({
             translate(lang = lang(), "Distribution Parameters")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$estimates_mean_title <- shiny::renderText({
             translate(lang = lang(), "Arithmetic Mean")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$seq_plot_title <- shiny::renderText({
             translate(lang = lang(), "Sequential Plot")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$density_plot_title <- shiny::renderText({
             translate(lang = lang(), "Density Plot")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$risk_band_plot_title <- shiny::renderText({
             translate(lang = lang(), "Risk Band Plot")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$risk_assessment <- shiny::renderUI({
             lang <- lang()
@@ -441,7 +450,8 @@ server_panel_arithmetic_mean <- function(
                 suggested using one-tenth of the OEL as a practical LTA-OEL
                 when assessing risk using the arithmetic mean.
             ")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$risk_assessment_icon <- shiny::renderUI({
             risk_assessment()$icon
@@ -460,7 +470,8 @@ server_panel_arithmetic_mean <- function(
                 high when compared to the occupational exposure limit. The red
                 zone indicates a poorly controlled exposure.
             ")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$estimates_params <- shiny::renderUI({
             lang <- lang()
@@ -555,7 +566,8 @@ server_panel_arithmetic_mean <- function(
             translate(lang = lang(), "
                 Credible intervals are shown in square brackets.
             ")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$seq_plot <- shiny::renderPlot({
             lang <- lang()
@@ -582,7 +594,8 @@ server_panel_arithmetic_mean <- function(
                 The OEL is shown as a red dotted line and the point estimate
                 of the arithmetic mean as a continuous green line.
             ")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$density_plot <- shiny::renderPlot({
             lang <- lang()
@@ -608,7 +621,8 @@ server_panel_arithmetic_mean <- function(
                 red dotted line and the point estimate of the arithmetic mean
                 as a continuous green line.
             ")
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         output$risk_band_plot <- shiny::renderPlot({
             lang <- lang()
@@ -652,7 +666,8 @@ server_panel_arithmetic_mean <- function(
                     "AIHA"
                 )
             )
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         # Swap colors of borders and background of
         # the risk assessment card if data shows a
