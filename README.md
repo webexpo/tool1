@@ -116,6 +116,20 @@ Tool 1 uses `sprintf()-`placeholders (conversion specifications beginning by
 `%s`, `%i`, and `%%` in the source text and translations **must be left as is**.
 See `R/helpers-html.R` for more information.
 
+## Styling
+
+Tool 1 uses as few custom CSS (Cascading Style Sheets) rules as possible. It
+does so by maximizing usage of `bslib` features and predefined
+[Bootstrap 5](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+CSS classes. Any CSS rule not declared in file `www/main.css` is highly likely
+to stem from [Bootstrap 5](https://getbootstrap.com/docs/5.3/getting-started/introduction/).
+This is a well-known and well-maintained framework that can be trivially
+understood and leveraged.
+
+It is worthwhile to note that it is **not** necessary to include
+[Bootstrap's assets](https://getbootstrap.com/docs/5.3/getting-started/download/#cdn-via-jsdelivr)
+(in the `<head>` of Tool 1) because `bslib` already does that automatically.
+
 ## Known Issues
 
 We may work on these issues in a near future.
@@ -125,7 +139,7 @@ We may work on these issues in a near future.
 - Inputs lack robust validation mechanisms and may lead to undefined behavior
   in some cases.
 
-- Tool 1 is not optimized for mobile phones and small screens having widths
+- Tool 1 is not optimized for mobile phones and small screens having a width
   lower than 500 pixels.
 
 - Accessibility mechanisms
