@@ -14,6 +14,7 @@
 transltr::language_source_set("en")
 
 options(
+    shiny.autoload.r       = TRUE,
     transltr.path          = file.path("intl", "_translator.yml"),
     transltr.verbose       = TRUE,
     warnPartialMatchArgs   = TRUE,
@@ -24,6 +25,10 @@ options(
 # Development Tools ------------------------------------------------------------
 
 if (interactive()) {
+    # Reload Shiny instances whenever a change is detected.
+    # See shiny::shinyOptions() for more information.
+    options(shiny.autoreload = TRUE)
+
     cat("R session is interactive. Attaching development tools.\n")
 
     # Attach development packages.
