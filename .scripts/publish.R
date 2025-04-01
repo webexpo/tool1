@@ -31,7 +31,7 @@ rsconnect::deployApp(
         version_number       = default_version[["number"]],
         version_release_date = default_version[["release_date"]],
         license              = "MIT + file LICENSE",
-        bugReports           = "https://github.com/webexpo/app-tool1/issues",
+        bug_reports          = "https://github.com/webexpo/app-tool1/issues",
         encoding             = "UTF-8",
         language             = "en"
     )
