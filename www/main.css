@@ -14,6 +14,10 @@ p {
   --bs-btn-font-size: 1.5rem;
 }
 
+.app-rotated-minus-90 {
+    transform: rotate(-90deg);
+}
+
 /* Display elements only on bigger
    screens of at least 1500px. */
 @media screen and (max-width: 1499px) {

@@ -86,23 +86,38 @@ ui <- bslib::page_sidebar(
         shinyjs::useShinyjs()
     ),
 
-    # It is shown whenever the Shiny engine is blocked.
+    # Main ---------------------------------------------------------------------
+
+    # Banner shown whenever the Shiny engine is blocked.
     ui_banner("busy_banner"),
 
     bslib::navset_card_underline(
         id       = "panel_active",
         selected = "panel_stats",
 
-        ui_panel_statistics("panel_stats"),
-        ui_panel_exceedance_fraction("panel_fraction"),
-        ui_panel_percentiles("panel_percentiles"),
-        ui_panel_arithmetic_mean("panel_mean")
+        ui_panel_descriptive_statistics("panel_stats"),
+
+        # Group together panels used
+        # for inference purposes.
+        bslib::nav_menu(
+            title = shiny::textOutput("inference_menu_title", tags$span),
+            icon  = tags$span(
+                class = "pe-1",
+                bsicons::bs_icon(
+                    name  = "body-text",
+                    a11y  = "deco",
+                    class = "app-rotated-minus-90"
+                )
+            ),
+
+            ui_panel_exceedance_fraction("panel_fraction"),
+            ui_panel_percentiles("panel_percentiles"),
+            ui_panel_arithmetic_mean("panel_mean")
+        )
     )
 )
 
 server <- function(input, output, session) {
-    # Values -------------------------------------------------------------------
-
     lang <- shiny::reactive({
         # lang is extracted from URL's search paramter ?lang.
         lang <- shiny::parseQueryString(session$clientData$url_search)$lang
@@ -173,6 +188,24 @@ server <- function(input, output, session) {
         )
     })
 
+    output$inference_menu_title <- shiny::renderText({
+        translate(lang = lang(), "Inference")
+    })
+
+    # Observers ----------------------------------------------------------------
+
+    # See www/main.js for more information.
+    shiny::observe({
+        # Update the window's title (what the browser's tab displays).
+        session$sendCustomMessage("update_page_lang", lang())
+
+        # Update the lang attribute of the root <html> tag.
+        session$sendCustomMessage(
+            "update_window_title",
+            sprintf("Expostats - %s", translate(lang = lang(), "Tool 1")))
+    }) |>
+    shiny::bindEvent(lang())
+
     # Modules ------------------------------------------------------------------
 
     server_title("layout_title", lang)
@@ -187,7 +220,7 @@ server <- function(input, output, session) {
         panel_active = shiny::reactive({ input$panel_active })
     )
 
-    server_panel_statistics(
+    server_panel_descriptive_statistics(
         id          = "panel_stats",
         lang        = lang,
         parameters  = parameters,
@@ -221,20 +254,6 @@ server <- function(input, output, session) {
         num_results       = num_results,
         estimates_params  = estimates_params
     )
-
-    # Observers ----------------------------------------------------------------
-
-    # See www/main.js for more information.
-    shiny::observe({
-        # Update the window's title (what the browser's tab displays).
-        session$sendCustomMessage("update_page_lang", lang())
-
-        # Update the lang attribute of the root <html> tag.
-        session$sendCustomMessage(
-            "update_window_title",
-            sprintf("Expostats - %s", translate(lang = lang(), "Tool 1")))
-    }) |>
-    shiny::bindEvent(lang())
 }
 
 # Create a shiny.appobj object that
