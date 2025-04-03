@@ -148,7 +148,8 @@ We may work on these issues in a near future.
 
 - Margins, aspect ratios, font sizes, font families, dimensions, and colors of
   all plots are inconsistent and must be standardized.
-  - This could be achieved with `shiny::getCurrentOutputInfo()`.
+  - This could be achieved with `shiny::getCurrentOutputInfo()` and
+    `bslib::bs_current_theme()`.
 
 - In the source text, many inputs have slightly different names. For example,
   OEL (Occupational Exposure Limit) is sometimes named EL (Exposure Limit).
