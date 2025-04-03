@@ -44,7 +44,11 @@ ui_sidebar <- function(id) {
     ns <- shiny::NS(id)
     ui <- bslib::sidebar(
         width = "400px",
-        open  = TRUE,
+        open  = list(
+            mobile  = "closed",
+            desktop = "open"
+        ),
+
         # Force sidebar to use all available
         # space. This is required to push the
         # footer to the bottom of the screen.
