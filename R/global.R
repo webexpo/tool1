@@ -46,20 +46,27 @@ tr <- transltr::translator_read()
 
 # Global Persistent Cache ------------------------------------------------------
 
-# Default cache for truly static UI elements.
-shiny::shinyOptions(cache = cachem::cache_disk(".cache", logfile = ".cache.log"))
+# Default in-memory cache for truly static UI elements.
+shiny::shinyOptions(
+    cache = cachem::cache_mem(
+        max_size = 100L * 1024L ^ 2L,  # Max size is 100MB.
+        max_age  = Inf,                # Cache never expires (until new release).
+        max_n    = Inf,                # Cache can store as many objects as needed.
+        evict    = "lru",              # Replace Least Recently Used (LRU) objects.
+        logfile  = ".cache.log"        # Log information for debugging purposes.
+    )
+)
 
 # Constants --------------------------------------------------------------------
 
 # Default version/release to display in footers.
-default_version <- c(number = "4.0.0", release_date = "2025-03-28")
+default_version <- c(number = "4.0.0-rc3", release_date = "2025-03-28")
 
 # Default language.
 default_lang <- transltr::language_source_get()
 
-# Default heights.
-default_text_card_height <- "445px"
-default_plot_card_height <- "600px"
+# Default height of cards.
+default_card_height <- "600px"
 
 # Default number of Bayesian iterations.
 default_n_bayes_iter <- 25000L
