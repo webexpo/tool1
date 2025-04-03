@@ -65,7 +65,8 @@ ui_panel_exceedance_fraction <- function(id) {
     # Risk Assessment ----------------------------------------------------------
 
     risk_assessment <- bslib::card(
-        id = ns("risk_assessment_card"),
+        id     = ns("risk_assessment_card"),
+        height = default_card_height,
 
         bslib::card_header(
             id = ns("risk_assessment_header"),
@@ -92,6 +93,7 @@ ui_panel_exceedance_fraction <- function(id) {
     # Risk Meter ---------------------------------------------------------------
 
     risk_meter <- bslib::card(
+        height      = default_card_height,
         full_screen = TRUE,
 
         bslib::card_header(
@@ -114,6 +116,8 @@ ui_panel_exceedance_fraction <- function(id) {
     # Estimates ----------------------------------------------------------------
 
     estimates <- bslib::card(
+        height = default_card_height,
+
         bslib::card_header(
             bslib::card_title(
                 container = tags$h2,
@@ -164,6 +168,7 @@ ui_panel_exceedance_fraction <- function(id) {
     # Sequential Plot ----------------------------------------------------------
 
     seq_plot <- bslib::card(
+        height      = default_card_height,
         full_screen = TRUE,
 
         bslib::card_header(
@@ -186,6 +191,7 @@ ui_panel_exceedance_fraction <- function(id) {
     # Density Plot -------------------------------------------------------------
 
     density_plot <- bslib::card(
+        height      = default_card_height,
         full_screen = TRUE,
 
         bslib::card_header(
@@ -208,6 +214,7 @@ ui_panel_exceedance_fraction <- function(id) {
     # Risk Band Plot -----------------------------------------------------------
 
     risk_band_plot <- bslib::card(
+        height      = default_card_height,
         full_screen = TRUE,
 
         bslib::card_header(
@@ -234,37 +241,17 @@ ui_panel_exceedance_fraction <- function(id) {
         title = shiny::textOutput(ns("title"), tags$span),
 
         bslib::layout_column_wrap(
-            width  = 1/2,
-            height = default_text_card_height,
-            fill   = FALSE,
+            width = 1/2,
+            fill  = FALSE,
             risk_assessment,
-            estimates
-        ),
-
-        bslib::layout_column_wrap(
-            width  = 1/2,
-            height = default_plot_card_height,
-            fill   = FALSE,
+            estimates,
             risk_meter,
-            seq_plot
-        ),
-
-        bslib::layout_column_wrap(
-            width  = 1/2,
-            height = default_plot_card_height,
-            fill   = FALSE,
+            seq_plot,
             density_plot,
             risk_band_plot
         ),
 
-        # Height is determined by the component.
-        # It must be at least as "long" as other
-        # cards.
-        bslib::layout_column_wrap(
-            fill       = FALSE,
-            min_height = default_plot_card_height,
-            ui_exceedance_plot(ns("exceedance_plot"))
-        )
+        ui_exceedance_plot(ns("exceedance_plot"))
     )
 
     return(ui)

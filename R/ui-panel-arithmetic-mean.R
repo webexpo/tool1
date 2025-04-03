@@ -62,7 +62,8 @@ ui_panel_arithmetic_mean <- function(id) {
     # Risk Assessment ----------------------------------------------------------
 
     risk_assessment <- bslib::card(
-        id = ns("risk_assessment_card"),
+        id     = ns("risk_assessment_card"),
+        height = default_card_height,
 
         bslib::card_header(
             id = ns("risk_assessment_header"),
@@ -107,6 +108,7 @@ ui_panel_arithmetic_mean <- function(id) {
     # Risk Meter ---------------------------------------------------------------
 
     risk_meter <- bslib::card(
+        height      = default_card_height,
         full_screen = TRUE,
 
         bslib::card_header(
@@ -129,6 +131,8 @@ ui_panel_arithmetic_mean <- function(id) {
     # Estimates ----------------------------------------------------------------
 
     estimates <- bslib::card(
+        height = default_card_height,
+
         bslib::card_header(
             bslib::card_title(
                 container = tags$h2,
@@ -179,6 +183,7 @@ ui_panel_arithmetic_mean <- function(id) {
     # Sequential Plot ----------------------------------------------------------
 
     seq_plot <- bslib::card(
+        height      = default_card_height,
         full_screen = TRUE,
 
         bslib::card_header(
@@ -201,6 +206,7 @@ ui_panel_arithmetic_mean <- function(id) {
     # Density Plot -------------------------------------------------------------
 
     density_plot <- bslib::card(
+        height      = default_card_height,
         full_screen = TRUE,
 
         bslib::card_header(
@@ -223,6 +229,7 @@ ui_panel_arithmetic_mean <- function(id) {
     # Risk Band Plot -----------------------------------------------------------
 
     risk_band_plot <- bslib::card(
+        height      = default_card_height,
         full_screen = TRUE,
 
         bslib::card_header(
@@ -249,25 +256,12 @@ ui_panel_arithmetic_mean <- function(id) {
         title = shiny::textOutput(ns("title"), tags$span),
 
         bslib::layout_column_wrap(
-            width  = 1/2,
-            height = default_text_card_height,
-            fill   = FALSE,
+            width = 1/2,
+            fill  = FALSE,
             risk_assessment,
-            estimates
-        ),
-
-        bslib::layout_column_wrap(
-            width  = 1/2,
-            height = default_plot_card_height,
-            fill   = FALSE,
+            estimates,
             risk_meter,
-            seq_plot
-        ),
-
-        bslib::layout_column_wrap(
-            width  = 1/2,
-            height = default_plot_card_height,
-            fill   = FALSE,
+            seq_plot,
             density_plot,
             risk_band_plot
         )

@@ -39,6 +39,7 @@
 ui_exceedance_plot <- function(id) {
     ns <- shiny::NS(id)
     ui <- bslib::card(
+        fill        = FALSE,
         full_screen = TRUE,
 
         bslib::card_header(
