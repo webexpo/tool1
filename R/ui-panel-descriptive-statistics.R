@@ -1,8 +1,9 @@
-#' Statistics Panel Module
+#' Descriptive Statistics Panel Module
 #'
 #' @description
-#' This module cotrols the Statistics panel component. It is currently nested
-#' into the application's main [bslib::navset] conceptually illustrated below.
+#' This module controls the Descriptive Statistics panel component. It is
+#' currently nested into the application's main [bslib::navset] conceptually
+#' illustrated below.
 #'
 #' ```
 #' -------------------------------------------------
@@ -14,7 +15,7 @@
 #' |         |  ---------------------------------  |
 #' |         |  | Active Panel                  |  |
 #' |         |  |                               |  |
-#' |         |  | Statistics Panel              |  |
+#' |         |  | Descriptive Statistics Panel  |  |
 #' |         |  | (this module)                 |  |
 #' |         |  | (shown when active)           |  |
 #' |         |  |                               |  |
@@ -37,22 +38,25 @@
 #' @template param-data-sample
 #'
 #' @returns
-#' [ui_panel_statistics()] returns a `shiny.tag` object
+#' [ui_panel_descriptive_statistics()] returns a `shiny.tag` object
 #' (an output of [bslib::nav_panel()]).
 #'
-#' [server_panel_statistics()] returns `NULL`, invisibly.
+#' [server_panel_descriptive_statistics()] returns `NULL`, invisibly.
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
-#' @rdname ui-panel-statistics
+#' @rdname ui-panel-descriptive-statistics
 #'
 #' @export
-ui_panel_statistics <- function(id) {
+ui_panel_descriptive_statistics <- function(id) {
     ns <- shiny::NS(id)
 
     # Descriptive Statistics ---------------------------------------------------
 
     stats <- bslib::card(
+        height      = default_card_height,
+        full_screen = TRUE,
+
         bslib::card_header(
             bslib::card_title(
                 container = tags$h2,
@@ -66,44 +70,10 @@ ui_panel_statistics <- function(id) {
         )
     )
 
-    # Information --------------------------------------------------------------
-
-    info <- bslib::card(
-        class = "bg-info-subtle border-info",
-
-        bslib::card_header(
-            class = "border-info",
-
-            bslib::card_title(
-                container = tags$h2,
-                class     = "my-2 fs-5",
-
-                tags$span(
-                    class = "pe-2",
-                    bsicons::bs_icon("info-circle-fill", a11y = "deco")
-                ),
-
-                shiny::textOutput(ns("info_title"), tags$span)
-            )
-        ),
-
-        bslib::card_body(
-            shiny::textOutput(ns("info"), tags$p),
-
-            tags$div(
-                htmltools::tagAppendAttributes(
-                    class = "fs-5",
-                    shiny::textOutput(ns("info_censoring_title"), tags$h3),
-                ),
-
-                shiny::uiOutput(ns("info_censoring"))
-            )
-        )
-    )
-
     # QQ Plot -------------------------------------------------------------------
 
     qq_plot <- bslib::card(
+        height      = default_card_height,
         full_screen = TRUE,
 
         bslib::card_header(
@@ -126,6 +96,7 @@ ui_panel_statistics <- function(id) {
     # Box Plot -----------------------------------------------------------------
 
     box_plot <- bslib::card(
+        height      = default_card_height,
         full_screen = TRUE,
 
         bslib::card_header(
@@ -150,19 +121,15 @@ ui_panel_statistics <- function(id) {
     ui <- bslib::nav_panel(
         value = id,
         title = shiny::textOutput(ns("title"), tags$span),
-
-        bslib::layout_column_wrap(
-            width  = 1/2,
-            height = default_text_card_height,
-            fill   = FALSE,
-            stats,
-            info
+        icon  = tags$span(
+            class = "pe-1",
+            bsicons::bs_icon(name = "123", a11y = "deco")
         ),
 
         bslib::layout_column_wrap(
-            width  = 1/2,
-            height = default_plot_card_height,
-            fill   = FALSE,
+            width = 1/2,
+            fill  = FALSE,
+            stats,
             qq_plot,
             box_plot
         )
@@ -171,9 +138,14 @@ ui_panel_statistics <- function(id) {
     return(ui)
 }
 
-#' @rdname ui-panel-statistics
+#' @rdname ui-panel-descriptive-statistics
 #' @export
-server_panel_statistics <- function(id, lang, parameters, data_sample) {
+server_panel_descriptive_statistics <- function(
+    id,
+    lang,
+    parameters,
+    data_sample)
+{
     stopifnot(exprs = {
         shiny::is.reactive(lang)
         shiny::is.reactive(parameters)
@@ -181,6 +153,8 @@ server_panel_statistics <- function(id, lang, parameters, data_sample) {
     })
 
     server <- function(input, output, session) {
+        server_card_info("info", lang)
+
         data_sample_imputed <- reactive({
             data_sample <- data_sample()
 
@@ -193,22 +167,12 @@ server_panel_statistics <- function(id, lang, parameters, data_sample) {
         })
 
         output$title <- shiny::renderText({
-            translate(lang = lang(), "Statistics")
+            translate(lang = lang(), "About My Measurements")
         }) |>
         shiny::bindCache(lang())
 
         output$stats_title <- shiny::renderText({
             translate(lang = lang(), "Descriptive Statistics")
-        }) |>
-        shiny::bindCache(lang())
-
-        output$info_title <- shiny::renderText({
-            translate(lang = lang(), "Information")
-        }) |>
-        shiny::bindCache(lang())
-
-        output$info_censoring_title <- shiny::renderText({
-            translate(lang = lang(), "Censored Measurements")
         }) |>
         shiny::bindCache(lang())
 
@@ -279,66 +243,6 @@ server_panel_statistics <- function(id, lang, parameters, data_sample) {
                 autoHideNavigation = TRUE
             )
         })
-
-        output$info <- shiny::renderText({
-            translate(lang = lang(), "
-                The parameters shown here are a simple description of the
-                measurements. They ensure that the data input and import
-                process went well and that there are no obvious outliers.
-                They should not be viewed as useful estimates of the
-                underlying exposure distribution. For that purpose, use
-                the other panels (Exceedance Fraction, Percentiles, or
-                Arithmetic Mean above) where inference is based on
-                Bayesian models.
-            ")
-        }) |>
-        shiny::bindCache(lang())
-
-        output$info_censoring <- shiny::renderUI({
-            lang <- lang()
-            list(
-                tags$p(translate(lang = lang, "
-                    Censored measurements are subject to one of the
-                    following procedure.
-                ")),
-
-                tags$ul(
-                    tags$li(translate(lang = lang, "
-                        Interval censored measurements are imputed as the
-                        mid-range.
-                    ")),
-
-                    tags$li(translate(lang = lang, "
-                        Measurements censored to the right are imputed as 9/4
-                        of the censoring point.
-                    ")),
-
-                    tags$li(
-                        html(
-                            translate(lang = lang, "
-                                Measurements censored to the left are treated
-                                using robust Log-probit regression on order
-                                statistics. The algorithm used is derived from
-                                %s (itself derived from previous work of %s).
-                            "),
-
-                            tags$a(
-                                href   = default_urls$ndexpo,
-                                target = "_blank",
-                                "NDExpo"
-                            ),
-
-                            tags$a(
-                                href   = default_urls$dennis_helsel,
-                                target = "_blank",
-                                "Dennis Helsel"
-                            )
-                        )
-                    )
-                )
-            )
-        }) |>
-        shiny::bindCache(lang())
 
         output$qq_plot <- shiny::renderPlot({
             lang <- lang()
