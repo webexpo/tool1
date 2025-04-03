@@ -1,7 +1,7 @@
 #' Title Module
 #'
 #' @description
-#' This module cotrols the Title component conceptually illustrated below.
+#' This module controls the Title component conceptually illustrated below.
 #'
 #' ```
 #' ---------------------------------------
@@ -83,7 +83,7 @@ ui_title <- function(id) {
         }
     )
 
-    ui <- shiny::div(
+    ui <- tags$div(
         class = "w-100 d-flex flex-wrap align-items-center justify-content-between",
         style = "gap: 15px;",
 
@@ -150,8 +150,11 @@ ui_title <- function(id) {
             ## Languages -------------------------------------------------------
 
             # See @note above on dropdowns and tooltips.
+            # bslib::nav_menu() cannot be used outside of
+            # a bslib::navset.
             tags$div(
                 id = ns("btn_langs"),
+
                 # Display inline-block is required to align
                 # the dropdown button with other buttons on
                 # the vertical axis.
@@ -179,6 +182,7 @@ ui_title <- function(id) {
             # See @note above on dropdowns and tooltips.
             tags$div(
                 id = ns("btn_links"),
+
                 # Display inline-block is required to align
                 # the dropdown button with other buttons on
                 # the vertical axis.

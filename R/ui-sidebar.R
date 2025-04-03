@@ -1,7 +1,7 @@
 #' Sidebar Module
 #'
 #' @description
-#' This module cotrols the Sidebar component conceptually illustrated below.
+#' This module controls the Sidebar component conceptually illustrated below.
 #'
 #' ```
 #' ---------------------------------------------

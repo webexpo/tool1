@@ -1,7 +1,7 @@
 #' Top Busy Banner Module
 #'
 #' @description
-#' This module cotrols the Banner component conceptually illustrated below.
+#' This module controls the Banner component conceptually illustrated below.
 #'
 #' ```
 #' ------------------------------------------------------------

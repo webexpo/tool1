@@ -1,7 +1,7 @@
 #' Percentiles Panel Module
 #'
 #' @description
-#' This module cotrols the Percentiles panel component. It is currently nested
+#' This module controls the Percentiles panel component. It is currently nested
 #' into the application's main [bslib::navset] conceptually illustrated below.
 #'
 #' ```
