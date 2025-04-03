@@ -26,7 +26,9 @@ options(
 
 if (interactive()) {
     # Reload Shiny instances whenever a change is detected.
-    # See shiny::shinyOptions() for more information.
+    # See shiny::shinyOptions() for more information. Note
+    # that this does not work with Shiny modules stored in
+    # R/. A fix is likely coming in a future Shiny release.
     options(shiny.autoreload = TRUE)
 
     cat("R session is interactive. Attaching development tools.\n")
