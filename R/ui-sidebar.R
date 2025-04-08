@@ -130,7 +130,7 @@ ui_sidebar <- function(id) {
 
         tags$div(
             class = "d-flex justify-content-around",
-            style = "gap: 15px;",
+            style = "gap: 15px; margin-bottom: 1rem;",
 
             shiny::actionButton(
                 inputId = ns("submit_btn"),
@@ -167,17 +167,26 @@ ui_sidebar <- function(id) {
             )
         ),
 
-        # Warning --------------------------------------------------------------
+        # Warnings -------------------------------------------------------------
 
-        # Identifier is used to hide the warning
-        # once the submit button is clicked for
-        # the first time.
-        tags$p(
-            id    = ns("footer_warning"),
-            class = "fst-italic text-center text-body-tertiary",
+        # Warning for the numbering format.
+        bslib::card(
+            id    = ns("card_data_format"),
+            class = "border-warning bg-warning-subtle text-center small",
 
-            bsicons::bs_icon("exclamation-diamond-fill", a11y = "deco"),
-            shiny::textOutput(ns("footer_warning_text"), tags$span)
+            bslib::card_body(
+                shiny::textOutput(ns("card_data_format_text"), tags$span)
+            )
+        ),
+
+        # Warning for the hidden inputs.
+        bslib::card(
+            id    = ns("card_inputs_hidden"),
+            class = "border-info bg-info-subtle text-center small",
+
+            bslib::card_body(
+                shiny::textOutput(ns("card_inputs_hidden_text"), tags$span)
+            )
         ),
 
         # Footer ---------------------------------------------------------------
@@ -219,7 +228,16 @@ server_sidebar <- function(id, lang, panel_active) {
         }) |>
         shiny::bindCache(lang())
 
-        output$footer_warning_text <- shiny::renderText({
+        output$card_data_format_text <- shiny::renderText({
+            translate(lang = lang(), "
+                Always put a leading zero before decimals for numbers strictly
+                smaller than one. Always use a dot for decimals. Do not use a
+                separator for thousands.
+            ")
+        }) |>
+        shiny::bindCache(lang())
+
+        output$card_inputs_hidden_text <- shiny::renderText({
             translate(lang = lang(), "
                 No results are shown in the right panels until inputs are
                 submitted.
@@ -233,10 +251,10 @@ server_sidebar <- function(id, lang, panel_active) {
         }) |>
         shiny::bindEvent(input$clear_btn)
 
-        # Hide the small warning in the
-        # footer once inputs are submitted.
+        # Hide warnings once inputs are submitted.
         shiny::observe({
-            shinyjs::hide("footer_warning")
+            shinyjs::hide("card_data_format")
+            shinyjs::hide("card_inputs_hidden")
         }) |>
         shiny::bindEvent(input$submit_btn)
 
@@ -260,27 +278,33 @@ server_sidebar <- function(id, lang, panel_active) {
 
             shiny::updateNumericInput(
                 inputId = "oel",
-                label   = translate(lang = lang, "Exposure Limit:"))
+                label   = translate(lang = lang, "Exposure Limit:")
+            )
 
             shiny::updateNumericInput(
                 inputId = "conf",
-                label   = translate(lang = lang, "Credible Interval Probability:"))
+                label   = translate(lang = lang, "Credible Interval Probability:")
+            )
 
             shiny::updateNumericInput(
                 inputId = "psi",
-                label   = translate(lang = lang, "Overexposure Risk Threshold:"))
-
-            shiny::updateTextAreaInput(
-                inputId = "data",
-                label   = translate(lang = lang, "Measurements:"))
+                label   = translate(lang = lang, "Overexposure Risk Threshold:")
+            )
 
             shiny::updateNumericInput(
                 inputId = "frac_threshold",
-                label   = translate(lang = lang, "Exceedance Fraction Threshold:"))
+                label   = translate(lang = lang, "Exceedance Fraction Threshold:")
+            )
 
             shiny::updateNumericInput(
                 inputId = "target_perc",
-                label   = translate(lang = lang, "Critical Percentile:"))
+                label   = translate(lang = lang, "Critical Percentile:")
+            )
+
+            shiny::updateTextAreaInput(
+                inputId = "data",
+                label   = translate(lang = lang, "Measurements:")
+            )
 
             bslib::update_tooltip("oel_tooltip", translate(lang = lang, "
                 Use the exposure limit to assess overexposure. It must have the
@@ -303,12 +327,6 @@ server_sidebar <- function(id, lang, panel_active) {
                 instead.
             "))
 
-            bslib::update_tooltip("data_tooltip", translate(lang = lang, "
-                The measurement dataset. There must be one value per line. Values
-                can be censored to the left (<), to the right (>), or interval
-                censored ([X-Y]).
-            "))
-
             bslib::update_tooltip("frac_threshold_tooltip", translate(lang = lang, "
                 Use this value as an acceptable proportion of exposures above
                 the exposure limit (OEL). It must be between 0% and 100%. The
@@ -319,6 +337,12 @@ server_sidebar <- function(id, lang, panel_active) {
                 Use this value to set the percentile of the exposure distribution
                 that will be compared to the OEL. It must be between 0% and 100%.
                 The traditional default value is 95%.
+            "))
+
+            bslib::update_tooltip("data_tooltip", translate(lang = lang, "
+                The measurement dataset. There must be one value per line. Values
+                can be censored to the left (<), to the right (>), or interval
+                censored ([X-Y]).
             "))
 
             bslib::update_tooltip("submit_btn_tooltip", translate(lang = lang, "
