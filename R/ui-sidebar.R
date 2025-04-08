@@ -49,11 +49,6 @@ ui_sidebar <- function(id) {
             desktop = "open"
         ),
 
-        # Force sidebar to use all available
-        # space. This is required to push the
-        # footer to the bottom of the screen.
-        style = "height: 100%;",
-
         # Title ----------------------------------------------------------------
 
         # Setting class sidebar-title is recommended by
