@@ -2,7 +2,7 @@
 
 /* Justify all paragraphs by adding spaces between words.
    Using this CSS selector is an exception, since there
-   are a large nu,ber of <p> tags in the app. */
+   are a large number of <p> tags in the app. */
 p {
   text-align: justify;
   text-justify: inter-word;
