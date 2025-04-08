@@ -92,18 +92,6 @@ ui_sidebar <- function(id) {
         ) |>
         bslib::tooltip(id = ns("psi_tooltip"), ""),
 
-        shiny::textAreaInput(
-            inputId = ns("data"),
-            label   = "",
-            rows    = 10L,
-            resize  = "vertical",
-            value   = paste(
-                "28.9", "19.4", "<5.5", "149.9", "26.42", "56.1",
-                sep = "\n"
-            )
-        ) |>
-        bslib::tooltip(id = ns("data_tooltip"), ""),
-
         # This output is only shown when the active panel is panel_fraction.
         shiny::numericInput(
             inputId = ns("frac_threshold"),
@@ -125,6 +113,18 @@ ui_sidebar <- function(id) {
         ) |>
         shinyjs::hidden() |>
         bslib::tooltip(id = ns("target_perc_tooltip"), ""),
+
+        shiny::textAreaInput(
+            inputId = ns("data"),
+            label   = "",
+            rows    = 10L,
+            resize  = "vertical",
+            value   = paste(
+                "28.9", "19.4", "<5.5", "149.9", "26.42", "56.1",
+                sep = "\n"
+            )
+        ) |>
+        bslib::tooltip(id = ns("data_tooltip"), ""),
 
         # Buttons --------------------------------------------------------------
 
