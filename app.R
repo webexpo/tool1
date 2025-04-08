@@ -41,13 +41,9 @@
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
 ui <- bslib::page_sidebar(
-    # lang and window_title are updated
-    # with session$sendCustomMessage().
-    lang         = NULL,
-    window_title = NULL,
-    theme        = bslib::bs_theme(version = 5L, preset = "shiny"),
-    title        = ui_title("layout_title"),
-    sidebar      = ui_sidebar("layout_sidebar"),
+    theme   = bslib::bs_theme(5L, "shiny"),
+    title   = ui_title("layout_title"),
+    sidebar = ui_sidebar("layout_sidebar"),
 
     tags$head(
         tags$link(
@@ -212,8 +208,8 @@ server <- function(input, output, session) {
 
     server_banner("busy_banner", lang)
 
-    # This returns a shiny::reactive()
-    # that itself returns all user inputs.
+    # This server function returns a shiny::reactive()
+    # object that returns all user inputs in a list.
     parameters <- server_sidebar(
         id           = "layout_sidebar",
         lang         = lang,
