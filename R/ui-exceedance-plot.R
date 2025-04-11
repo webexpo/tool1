@@ -41,6 +41,10 @@ ui_exceedance_plot <- function(id) {
     ui <- bslib::card(
         fill        = FALSE,
         full_screen = TRUE,
+        # The card may have to grow vertically
+        # beyond the usual threshold to avoid
+        # vertical overflowing of the sidebar.
+        min_height = default_card_height,
 
         bslib::card_header(
             bslib::card_title(

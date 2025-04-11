@@ -62,7 +62,7 @@ ui_panel_percentiles <- function(id) {
 
     risk_assessment <- bslib::card(
         id     = ns("risk_assessment_card"),
-        height = default_card_height,
+        height = default_card_height_text_only,
 
         bslib::card_header(
             id = ns("risk_assessment_header"),
@@ -112,7 +112,7 @@ ui_panel_percentiles <- function(id) {
     # Estimates ----------------------------------------------------------------
 
     estimates <- bslib::card(
-        height = default_card_height,
+        height = default_card_height_text_only,
 
         bslib::card_header(
             bslib::card_title(
@@ -237,8 +237,10 @@ ui_panel_percentiles <- function(id) {
         title = shiny::textOutput(ns("title"), tags$span),
 
         bslib::layout_column_wrap(
-            width = 1/2,
-            fill  = FALSE,
+            width         = 1/2,
+            fill          = FALSE,
+            heights_equal = "row",
+
             risk_assessment,
             estimates,
             risk_meter,

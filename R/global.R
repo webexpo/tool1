@@ -67,6 +67,7 @@ default_lang <- transltr::language_source_get()
 
 # Default height of cards.
 default_card_height <- "600px"
+default_card_height_text_only <- "425px"
 
 # Default number of Bayesian iterations.
 default_n_bayes_iter <- 25000L
