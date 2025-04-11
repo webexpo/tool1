@@ -169,23 +169,23 @@ ui_sidebar <- function(id) {
 
         # Warnings -------------------------------------------------------------
 
-        # Warning for the numbering format.
+        # Measurements' numbering format.
         bslib::card(
-            id    = ns("card_data_format"),
+            id    = ns("data_format_card"),
             class = "border-warning bg-warning-subtle text-center small",
 
             bslib::card_body(
-                shiny::textOutput(ns("card_data_format_text"), tags$span)
+                shiny::textOutput(ns("data_format_card_text"), tags$span)
             )
         ),
 
-        # Warning for the hidden inputs.
+        # Hidden inputs.
         bslib::card(
-            id    = ns("card_inputs_hidden"),
+            id    = ns("hidden_inputs_card"),
             class = "border-info bg-info-subtle text-center small",
 
             bslib::card_body(
-                shiny::textOutput(ns("card_inputs_hidden_text"), tags$span)
+                shiny::textOutput(ns("hidden_inputs_card_text"), tags$span)
             )
         ),
 
@@ -228,7 +228,7 @@ server_sidebar <- function(id, lang, panel_active) {
         }) |>
         shiny::bindCache(lang())
 
-        output$card_data_format_text <- shiny::renderText({
+        output$data_format_card_text <- shiny::renderText({
             translate(lang = lang(), "
                 Always put a leading zero before decimals for numbers strictly
                 smaller than one. Always use a dot for decimals. Do not use a
@@ -237,7 +237,7 @@ server_sidebar <- function(id, lang, panel_active) {
         }) |>
         shiny::bindCache(lang())
 
-        output$card_inputs_hidden_text <- shiny::renderText({
+        output$hidden_inputs_card_text <- shiny::renderText({
             translate(lang = lang(), "
                 No results are shown in the right panels until inputs are
                 submitted.
@@ -253,8 +253,8 @@ server_sidebar <- function(id, lang, panel_active) {
 
         # Hide warnings once inputs are submitted.
         shiny::observe({
-            shinyjs::hide("card_data_format")
-            shinyjs::hide("card_inputs_hidden")
+            shinyjs::hide("data_format_card")
+            shinyjs::hide("hidden_inputs_card")
         }) |>
         shiny::bindEvent(input$submit_btn)
 
