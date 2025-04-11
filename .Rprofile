@@ -1,6 +1,6 @@
 #' R Session's Entry Point
 #'
-#' This script is automatically executed by R whenever a new session is started.
+#' This is automatically executed by R whenever a new session is started.
 #'
 #' @note
 #' [interactive()] is used to prevent this script from being executed in remote
@@ -8,22 +8,30 @@
 #' set no matter the underlying environment.
 #'
 #' @seealso
-#' [The .Rprofile file of package transltr](https://github.com/jeanmathieupotvin/transltr/blob/main/.Rprofile),
 #' [Startup process](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html)
 
+# Set the default source language.
 transltr::language_source_set("en")
 
 options(
+    shiny.autoload.r       = TRUE,
     transltr.path          = file.path("intl", "_translator.yml"),
     transltr.verbose       = TRUE,
     warnPartialMatchArgs   = TRUE,
     warnPartialMatchDollar = TRUE,
-    warnPartialMatchAttr   = TRUE)
+    warnPartialMatchAttr   = TRUE
+)
 
-# Development Tools and Utility Functions --------------------------------------
+# Development Tools ------------------------------------------------------------
 
 if (interactive()) {
-    cat("R session is interactive. Loading development tools.", sep = "\n")
+    # Reload Shiny instances whenever a change is detected.
+    # See shiny::shinyOptions() for more information. Note
+    # that this does not work with Shiny modules stored in
+    # R/. A fix is likely coming in a future Shiny release.
+    options(shiny.autoreload = TRUE)
+
+    cat("R session is interactive. Attaching development tools.\n")
 
     # Attach development packages.
     suppressMessages({
@@ -33,30 +41,20 @@ if (interactive()) {
     # Attach aliases and small dev tools.
     # Names are as small as possible by design.
     attach(name = "tools:dev", what = local({
-        # Shorter aliases.
+        # Aliases.
         .mb <- microbenchmark::microbenchmark
+
+        # Shortcuts to run development scripts.
+        .find <- \() invisible(source(file.path(".scripts", "find-text.R")))
+        .pub  <- \() invisible(source(file.path(".scripts", "publish.R")))
+        .run  <- \() invisible(source(file.path(".scripts", "run.R")))
+
+        # Clear the global environment.
+        .rm <- \() rm(list = ls(name = globalenv()), pos = globalenv())
 
         # Source everything in R/.
         .src <- \() invisible(lapply(list.files("R", full.names = TRUE), source))
         .src()
-
-        # Start the application locally.
-        .run <- \() invisible(source(file.path(".scripts", "entrypoint.R")))
-
-        # Activate/deactivate debug version of functions.
-        # Only intl() currently has one.
-        .debug <- \(on = TRUE) {
-            if (on) {
-                .src()
-                intl <<- tr$translate
-                return(invisible())
-            }
-
-            return(.src())
-        }
-
-        # Clear the global environment.
-        .rm <- \() rm(list = ls(name = globalenv()), pos = globalenv())
 
         # Return this local environment
         # (to attach it to the search path).

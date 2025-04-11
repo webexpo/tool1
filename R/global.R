@@ -2,16 +2,26 @@
 #'
 #' Load libraries, scripts and global constants.
 #'
-#' This script is sourced automatically by [shiny::runApp()].
-#'
 #' @note
-#' Packages below must be attached to the search path with [library()] until
-#' all scripts stored in `scripts/` are revamped (they do not include reference
-#' to namespaces).
+#' For historical reasons, scripts stored in `scripts/` do not reference the
+#' namespaces of the functions they call, and the packages they use must be
+#' attached to the search path.
+#'
+#' This is considered to be a bad practice. The intent should always be clear
+#' and consistent.
+#'
+#' ```
+#' # Good
+#' transltr::language_source_get()
+#'
+#' # Bad
+#' language_source_get()
+#' ```
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
-# Load libraries required by external scripts stored in scripts/.
+# Libraries --------------------------------------------------------------------
+
 # rjags returns internal warnings over which we have no control.
 suppressMessages({
     suppressWarnings(library(rjags))
@@ -30,48 +40,85 @@ source(file.path("scripts", "Common", "Bayesian engine functions.R"))
 source(file.path("scripts", "Common", "Numerical output functions.R"))
 source(file.path("scripts", "Common", "Main graph functions.R"))
 
+# Translations -----------------------------------------------------------------
+
+tr <- transltr::translator_read()
+
+# Global Persistent Cache ------------------------------------------------------
+
+# Default in-memory cache for truly static UI elements.
+shiny::shinyOptions(
+    cache = cachem::cache_mem(
+        max_size = 100L * 1024L ^ 2L,  # Max size is 100MB.
+        max_age  = Inf,                # Cache never expires (until new release).
+        max_n    = Inf,                # Cache can store as many objects as needed.
+        evict    = "lru",              # Replace Least Recently Used (LRU) objects.
+        logfile  = NULL
+    )
+)
+
 # Constants --------------------------------------------------------------------
 
-# Shortcut to usual Shiny's list of HTML <tag> functions.
-tags <- htmltools::tags
+# Default version/release to display in footers.
+default_version <- c(number = "4.0.0", release_date = "2025-04-11")
 
-# Current version in production (release). Shown in footer.
-version <- "4.0.0-rc1"
+# Default language.
+default_lang <- transltr::language_source_get()
 
-# Current year. Shown in footer.
-year <- format(Sys.time(), tz = "EST", format = "%Y")
-
-# Where to store images.
-images_dir_rel_path <- file.path("www", "images")
-
-# Default height of plots.
-plot_default_height <- "600px"
-
-# Default height of risk meters.
-# Using a lower height for these specific plots is preferable.
-plot_risk_meter_default_height <- "500px"
+# Default height of cards.
+default_card_height <- "600px"
+default_card_height_text_only <- "425px"
 
 # Default number of Bayesian iterations.
-n_bayes_iter <- 25000L
+default_n_bayes_iter <- 25000L
 
 # Default number of significant digits to keep.
-n_digits <- 3L
+default_n_digits <- 3L
 
-# Language codes used below must match supported
-# languges. See script R/intl.R for more information.
-urls <- list(
-    code             = "https://github.com/webexpo/tool1",
-    aiha             = "https://www.aiha.org",
-    dennis_helsel    = "https://www.practicalstats.com/info2use/books.html",
-    jerome_lavoue    = "https://orcid.org/0000-0003-4950-5475",
-    expostats_ndexpo = "https://www.expostats.ca/site/app-local/NDExpo",
-    expostats_paper  = "https://doi.org/10.1093/annweh/wxy100",
+# Default relative path to images' directory.
+default_images_dir <- file.path("www", "images")
+
+# Default message to show when there is no available translation.
+tr$set_default_value(default_missing_translation_msg <- "{no translation}")
+
+# Default maintainers' emails.
+default_maintainers_emails <- c(
+    jerome_lavoue = "jerome.lavoue@umontreal.ca",
+    ununoctium    = "jeanmathieupotvin@ununoctium.dev"
+)
+
+# Default URLs to various resources.
+default_urls <- list(
+    code            = "https://github.com/webexpo/tool1",
+    aiha            = "https://www.aiha.org",
+    ununoctium      = "https://ununoctium.dev",
+    dennis_helsel   = "https://www.practicalstats.com/info2use/books.html",
+    jerome_lavoue   = "https://orcid.org/0000-0003-4950-5475",
+    nist_j032       = "https://www.nist.gov/system/files/documents/2023/09/26/J-032%20Writing%20with%20the%20SI.pdf",
+    ndexpo          = "https://www.expostats.ca/site/app-local/NDExpo",
+    expostats_paper = "https://doi.org/10.1093/annweh/wxy100",
     expostats = c(
         en = "http://www.expostats.ca/site/en/info.html",
-        fr = "https://www.expostats.ca/site/info.html"),
+        fr = "https://www.expostats.ca/site/info.html"
+    ),
+    tool1_simplified = c(
+        en = "https://lavoue.shinyapps.io/Tool1Expv3En/",
+        fr = "https://lavoue.shinyapps.io/Tool1Expv3Fr/"
+    ),
+    tool2 = c(
+        en = "https://lavoue.shinyapps.io/Tool2v3En/",
+        fr = "https://lavoue.shinyapps.io/Tool2v3Fr/"
+    ),
+    tool3 = c(
+        en = "https://lavoue.shinyapps.io/Tool3v3En/",
+        fr = "https://lavoue.shinyapps.io/Tool3v3Fr/"
+    ),
     epsum = c(
         en = "https://espum.umontreal.ca/english/home",
-        fr = "https://espum.umontreal.ca/accueil"),
+        fr = "https://espum.umontreal.ca/accueil"
+    ),
     udm = c(
         en = "https://www.umontreal.ca/en",
-        fr = "https://www.umontreal.ca"))
+        fr = "https://www.umontreal.ca"
+    )
+)

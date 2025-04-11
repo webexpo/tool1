@@ -7,8 +7,12 @@
 # Ignore scripts used for development.
 .scripts
 
-# Ignore Git files.
+# Ignore Git files (.git is already ignored).
 .gitignore
+
+# Ignore cached objects and results.
+.cache
+.cache.log
 
 # Ignore by-products and temporary files.
 .RData

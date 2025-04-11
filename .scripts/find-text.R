@@ -1,6 +1,11 @@
 #' Find Text That Requires Translations
 #'
-#' Prepare translations files and manage translations.
+#' Prepare translations files. This creates and updates the contents of
+#' directory intl/.
+#'
+#' @usage
+#' ## In interactive sessions
+#' .intl()
 #'
 #' @note
 #' transltr does not yet have a robust mechanism to easily update existing
@@ -14,17 +19,17 @@
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
 # Create a new Translator object.
-# Source text is identifiable via SHA-1 hashes.
-tr <- transltr::translator(id = "expostats:tool1", algorithm = "sha1")
+tr <- transltr::translator(id = "expostats:tool1")
 
-# Register languages that must be supported (including the source language).
+# Register languages that must be supported.
 tr$set_native_languages(
     en = "English",
-    fr = "Français")
+    fr = "Français"
+)
 
 # Extract source text to translate from source scripts.
-transltr::find_source(tr = tr, interface = quote(intl))
+transltr::find_source(tr = tr, interface = quote(translate))
 
-# Export translations.
-# They are imported whenever the application is launched. See R/global.R.
+# Export source text and translations.
+# This populates the contents of intl/.
 transltr::translator_write(tr, overwrite = TRUE)

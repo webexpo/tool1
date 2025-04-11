@@ -1,6 +1,6 @@
 #' Application's Entry Point
 #'
-#' Use this script to launch the application locally for development purposes.
+#' Launch the application locally for development purposes.
 #'
 #' @usage
 #' ## In interactive sessions

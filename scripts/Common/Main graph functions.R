@@ -555,15 +555,14 @@ riskband.plot.frac <-function(mu.chain , sigma.chain , c.oel , frac_threshold , 
     graph9 <-graph9+
       geom_bar(stat="identity",fill=c('green4','greenyellow','yellow','orange','red'))+
       theme(aspect.ratio=0.6)+
-      xlab(riskplot.8)+
-      ylab(riskplot.2) +
       theme(axis.title.x=element_text(size=16,vjust=-1))+
       theme(axis.text.x=element_text(size=13))+
       theme(axis.title.y=element_text(size=16,angle=90))+
       theme(axis.text.y=element_text(size=13,angle=90,hjust=0.5))+
       theme(legend.position = "none")+
       geom_text(x=1:5,y=c(C1,C2,C3,C4,C5)+5,label=paste(signif(c(C1,C2,C3,C4,C5),3),'%',sep=''),size=5,colour='grey28') +
-      scale_y_continuous(breaks=c(0,20,40,60,80,100),limits=c(0,110))
+      scale_x_discrete(riskplot.8, labels = cats, guide = guide_axis(n.dodge = 2L)) +
+      scale_y_continuous(riskplot.2, breaks=c(0,20,40,60,80,100),limits=c(0,110))
 
     graph9 <-graph9+geom_segment(aes(x = 4.5, y = psi,
                                      xend = 5.5,
@@ -607,15 +606,14 @@ riskband.plot.frac <-function(mu.chain , sigma.chain , c.oel , frac_threshold , 
     graph10 <-graph10+
       geom_bar(stat="identity",fill=c('green4','greenyellow','yellow','orange','red'))+
       theme(aspect.ratio=0.6)+
-      xlab(riskplot.9)+
-      ylab(riskplot.2) +
       theme(axis.title.x=element_text(size=16,vjust=-1))+
       theme(axis.text.x=element_text(size=13))+
       theme(axis.title.y=element_text(size=16,angle=90))+
       theme(axis.text.y=element_text(size=13,angle=90,hjust=0.5))+
       theme(legend.position = "none")+
       geom_text(x=1:5,y=c(C1,C2,C3,C4,C5)+5,label=paste(signif(c(C1,C2,C3,C4,C5),3),'%',sep=''),size=5,colour='grey28') +
-      scale_y_continuous(breaks=c(0,20,40,60,80,100),limits=c(0,110))
+      scale_x_discrete(riskplot.9, labels = cats, guide = guide_axis(n.dodge = 2L)) +
+      scale_y_continuous(riskplot.2, breaks=c(0,20,40,60,80,100),limits=c(0,110))
 
     graph10 <-graph10+geom_segment(aes(x = 4.5, y = psi,
                                      xend = 5.5,

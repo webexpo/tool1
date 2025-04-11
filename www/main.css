@@ -1,92 +1,78 @@
-/* --bs- variables are exposed by Bootstrap v5 and used below. */
-
-.app-title {
-  margin-top: 16px;
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  font-size: 2.5rem;
-}
-
-.app-panel-title {
-  margin: 16px 0;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--bs-gray-300);
-}
-
-.app-panel-subtitle {
-  margin-top: 16px;
-  margin-bottom: 16px;
-}
-
-/* Flexible container that aligns its child elements on the
-   same row, wrapping them onto the next line when necessary.
-   Spaces between them is determined by the browser. */
-.app-flex-row {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-}
-
-.app-ul {
-  list-style-type: "\25B9";
-}
-
-.app-ul > li {
-  padding: 0 0 15px 10px;
-}
-
-.app-banner-wait {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  padding: 5px 0px;
-  text-align: center;
-  font-weight: bold;
-  color: #fff;
-  background-color: #2c3e50;
-  z-index: 1;
-}
-
-.app-input > label {
-  font-weight: bold;
-}
-
-.app-sidebar-hr {
-  color: var(--bs-gray-500);
-}
-
-.app-sidebar-footer {
-  color: var(--bs-gray-500);
-}
-
-.app-sidebar-footer > * {
-  margin: 0 auto;
-}
-
-.app-output-inline {
-  font-weight: bold;
-}
-
-/* A top margin is added to risk meter <img> containers
-   for better alignment with the subsection <h3> title
-   (Risk Decision subtitle). */
-.app-risk-meter {
-  margin-top: 21px;
-}
-
-/* renderPlot() returns PNG images, which are rendered
-   as <img> tags by browsers. These tags are inline by
-   default, so they can be centered in their container
-   as text would be. */
-.app-center-plot {
-  text-align: center;
-}
+/* --bs- variables overwrites variables of Bootstrap v5. */
 
 /* Justify all paragraphs by adding spaces between words.
    Using this CSS selector is an exception, since there
-   are a large nu,ber of <p> tags in the app. */
+   are a large number of <p> tags in the app. */
 p {
   text-align: justify;
   text-justify: inter-word;
+}
+
+/* Change buttons to make them a
+   little bit bigger or smaller. */
+.app-btn {
+  --bs-btn-padding-y: 0.25rem;
+  --bs-btn-padding-x: 0.75rem;
+  --bs-btn-font-size: 1.5rem;
+  color: var(--bs-body-color);
+}
+
+.app-btn-small {
+  --bs-btn-padding-y: 0.25rem;
+  --bs-btn-padding-x: 0.5rem;
+  --bs-btn-font-size: 1rem;
+  color: var(--bs-body-color);
+}
+
+.app-rotated-minus-90 {
+  transform: rotate(-90deg);
+}
+
+/* Change the font weight of active/opened
+   accordion panels by tagreting the title
+   using Bootstrap and bslib structure. */
+.app-accordion-active-bold .accordion-button:not(.collapsed) .accordion-title {
+  font-weight: bold;
+}
+
+/* app-navset-bar-fix is a special class used solely
+   to select child elements. The goal is to force the
+   <nav> bar of a bslib::navset_bar() to look exactly
+   like a <nav> bar embedded in a header created by
+   bslib::navset_card_underline(). See details below. */
+.app-navset-bar-fix .navbar {
+  /* A card's header has the following padding settings.
+     --bs-card-cap-padding-y: var(--bs-card-spacer-y) * 0.5
+     --bs-card-cap-padding-x: var(--bs-card-spacer-x)
+     --bs-card-spacer-y: $spacer;
+     --bs-card-spacer-x: $spacer;
+     $spacer is implicitly always equal to 1rem. This yields
+     the following padding values.
+  */
+  padding: 0.5rem 1rem;
+  margin-bottom: 0;
+}
+
+.app-navset-bar-fix .navbar .container-fluid {
+  /* Padding is controlled by .navbar. */
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.app-navset-bar-fix a.nav-link {
+  font-weight: 600;
+}
+
+.app-navset-bar-fix a.nav-link.active {
+  /* Change the space between each active
+     <nav> element and its underline. */
+  padding: 8px 5px !important;
+}
+
+/* Display elements only on bigger
+   screens of at least 1500px. */
+@media screen and (max-width: 1499px) {
+  .app-large-screen-only {
+    display: none;
+  }
 }
