@@ -357,7 +357,7 @@ Texts:
       - !<Location>
         Identifier: f7a0860:l1
         Path: ./app.R
-        Ranges: Ln 201, Col 39 @ Ln 201, Col 72
+        Ranges: Ln 203, Col 39 @ Ln 203, Col 70
       - !<Location>
         Identifier: f7a0860:l2
         Path: ./R/ui-footer.R

@@ -192,13 +192,15 @@ server <- function(input, output, session) {
 
     # See www/main.js for more information.
     shiny::observe({
+        lang <- lang()
+
         # Update the window's title (what the browser's tab displays).
-        session$sendCustomMessage("update_page_lang", lang())
+        session$sendCustomMessage("update_page_lang", lang)
 
         # Update the lang attribute of the root <html> tag.
         session$sendCustomMessage(
             "update_window_title",
-            sprintf("Expostats - %s", translate(lang = lang(), "Tool 1")))
+            sprintf("Expostats - %s", translate(lang = lang, "Tool 1")))
     }) |>
     shiny::bindEvent(lang())
 
