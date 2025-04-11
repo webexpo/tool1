@@ -53,7 +53,7 @@ shiny::shinyOptions(
         max_age  = Inf,                # Cache never expires (until new release).
         max_n    = Inf,                # Cache can store as many objects as needed.
         evict    = "lru",              # Replace Least Recently Used (LRU) objects.
-        logfile  = ".cache.log"        # Log information for debugging purposes.
+        logfile  = NULL
     )
 )
 
