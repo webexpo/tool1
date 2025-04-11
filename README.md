@@ -154,6 +154,8 @@ We may work on these issues in a near future.
 - In the source text, many inputs have slightly different names. For example,
   OEL (Occupational Exposure Limit) is sometimes named EL (Exposure Limit).
 
+- There are currently no explicit Terms of Service and Privacy Policy.
+
 ## Bugs and Feedback
 
 You may submit bugs, request features, and provide feedback by creating an
