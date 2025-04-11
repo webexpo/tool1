@@ -83,6 +83,15 @@ ui_title <- function(id) {
         }
     )
 
+    # Temporarily disable French language (explicitly).
+    # TODO: Reactivate menu item once translations become available.
+    btn_langs_choices$fr <- htmltools::tagAppendAttributes(
+        btn_langs_choices$fr,
+        class           = "disabled",
+        "aria-disabled" = "true",
+        .cssSelector    = "a"
+    )
+
     ui <- tags$div(
         class = "w-100 d-flex flex-wrap align-items-center justify-content-between",
         style = "gap: 15px;",

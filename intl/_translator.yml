@@ -262,7 +262,7 @@ Texts:
       - !<Location>
         Identifier: 00650f3:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 349, Col 56 @ Ln 351, Col 14
+        Ranges: Ln 358, Col 56 @ Ln 360, Col 14
   - !<Text>
     Identifier: 8f7f102
     Algorithm: sha1
@@ -365,7 +365,7 @@ Texts:
       - !<Location>
         Identifier: f7a0860:l3
         Path: ./R/ui-title.R
-        Ranges: Ln 270, Col 13 @ Ln 270, Col 46
+        Ranges: Ln 279, Col 13 @ Ln 279, Col 46
   - !<Text>
     Identifier: 5f52075
     Algorithm: sha1
@@ -1040,7 +1040,7 @@ Texts:
       - !<Location>
         Identifier: 2e77aed:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 362, Col 55 @ Ln 364, Col 14
+        Ranges: Ln 371, Col 55 @ Ln 373, Col 14
   - !<Text>
     Identifier: 1fa04de
     Algorithm: sha1
@@ -1323,7 +1323,7 @@ Texts:
       - !<Location>
         Identifier: 59f9427:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 358, Col 54 @ Ln 360, Col 14
+        Ranges: Ln 367, Col 54 @ Ln 369, Col 14
   - !<Text>
     Identifier: 23eb033
     Algorithm: sha1
@@ -1489,7 +1489,7 @@ Texts:
       - !<Location>
         Identifier: e6a9040:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 345, Col 56 @ Ln 347, Col 14
+        Ranges: Ln 354, Col 56 @ Ln 356, Col 14
   - !<Text>
     Identifier: 4dd1267
     Algorithm: sha1
@@ -1889,7 +1889,7 @@ Texts:
       - !<Location>
         Identifier: 5e2c2fa:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 290, Col 21 @ Ln 290, Col 52
+        Ranges: Ln 299, Col 21 @ Ln 299, Col 52
   - !<Text>
     Identifier: fd52582
     Algorithm: sha1
@@ -2067,7 +2067,7 @@ Texts:
       - !<Location>
         Identifier: 1a51cee:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 294, Col 21 @ Ln 294, Col 52
+        Ranges: Ln 303, Col 21 @ Ln 303, Col 52
   - !<Text>
     Identifier: 899d691
     Algorithm: sha1
@@ -2110,7 +2110,7 @@ Texts:
       - !<Location>
         Identifier: 8fc2a6a:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 275, Col 13 @ Ln 277, Col 14
+        Ranges: Ln 284, Col 13 @ Ln 286, Col 14
   - !<Text>
     Identifier: fffde19
     Algorithm: sha1
@@ -2235,7 +2235,7 @@ Texts:
       - !<Location>
         Identifier: 0705c1d:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 353, Col 61 @ Ln 356, Col 14
+        Ranges: Ln 362, Col 61 @ Ln 365, Col 14
   - !<Text>
     Identifier: b7b4f0b
     Algorithm: sha1
@@ -2761,7 +2761,7 @@ Texts:
       - !<Location>
         Identifier: 6bf9771:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 286, Col 21 @ Ln 286, Col 65
+        Ranges: Ln 295, Col 21 @ Ln 295, Col 65
   - !<Text>
     Identifier: da34e30
     Algorithm: sha1
