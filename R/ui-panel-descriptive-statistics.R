@@ -153,8 +153,6 @@ server_panel_descriptive_statistics <- function(
     })
 
     server <- function(input, output, session) {
-        server_card_info("info", lang)
-
         data_sample_imputed <- reactive({
             data_sample <- data_sample()
 

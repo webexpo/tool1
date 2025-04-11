@@ -206,9 +206,9 @@ ui_title <- function(id) {
                 ""
             ),
 
-            ## Help/About ------------------------------------------------------
+            ## Frequently Asked Questions --------------------------------------
 
-            ui_modal_about(ns("about")),
+            ui_modal_faq(ns("faq")),
 
             ## Dark Mode -------------------------------------------------------
 
@@ -264,7 +264,7 @@ server_title <- function(id, lang) {
     stopifnot(shiny::is.reactive(lang))
 
     server <- \(input, output, session) {
-        server_modal_about("about", lang)
+        server_modal_faq("faq", lang)
 
         output$name <- shiny::renderText({
             translate(lang = lang(), "Tool 1")

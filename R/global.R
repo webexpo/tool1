@@ -94,6 +94,7 @@ default_urls <- list(
     ununoctium      = "https://ununoctium.dev",
     dennis_helsel   = "https://www.practicalstats.com/info2use/books.html",
     jerome_lavoue   = "https://orcid.org/0000-0003-4950-5475",
+    nist_j032       = "https://www.nist.gov/system/files/documents/2023/09/26/J-032%20Writing%20with%20the%20SI.pdf",
     ndexpo          = "https://www.expostats.ca/site/app-local/NDExpo",
     expostats_paper = "https://doi.org/10.1093/annweh/wxy100",
     expostats = c(
