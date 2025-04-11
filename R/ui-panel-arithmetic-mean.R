@@ -655,12 +655,7 @@ server_panel_arithmetic_mean <- function(
                     column represents the probability of an overexposure. The
                     latter should be lower than the threshold (black dashed line).
                 "),
-
-                tags$a(
-                    href   = default_urls$aiha,
-                    target = "_blank",
-                    "AIHA"
-                )
+                ui_link(default_urls$aiha, "AIHA")
             )
         }) |>
         shiny::bindCache(lang())

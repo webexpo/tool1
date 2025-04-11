@@ -26,8 +26,7 @@ translate <- tr$translate
 #'
 #' @param x A numeric value.
 #'
-#' @param lang A character string. The underlying language code, i.e. the
-#'   value of `input$lang`.
+#' @param lang A character string. The underlying language code.
 #'
 #' @param format A character string equal to one of the values below and
 #'   controlling the output's format.

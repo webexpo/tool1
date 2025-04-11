@@ -50,13 +50,7 @@ server_footer <- function(id, lang) {
             tags$div(
                 translate(lang = lang(), "Tool 1"),
                 translate(lang = lang(), "version"),
-
-                tags$a(
-                    href   = default_urls$code,
-                    target = "_blank",
-                    default_version[["number"]]
-                ),
-
+                ui_link(default_urls$code, default_version[["number"]]),
                 sprintf("(%s).", default_version[["release_date"]])
             )
         }) |>
@@ -64,14 +58,7 @@ server_footer <- function(id, lang) {
 
         output$copyright <- shiny::renderUI({
             tags$div(
-                bsicons::bs_icon("c-circle-fill", ally = "sem"),
-
-                tags$a(
-                    href   = default_urls$jerome_lavoue,
-                    target = "_blank",
-                    "Jérôme Lavoué"
-                ),
-
+                ui_link(default_urls$jerome_lavoue, "Jérôme Lavoué"),
                 format(Sys.time(), tz = "EST", format = "(%Y)."),
                 translate(lang = lang(), "All rights reserved.")
             )
@@ -83,15 +70,12 @@ server_footer <- function(id, lang) {
                     translate(lang = lang(), "Made with %s by %s."),
 
                     tags$span(
+                        class = "px-1",
                         style = "color: red;",
                         bsicons::bs_icon("heart-fill", ally = "sem")
                     ),
 
-                    tags$a(
-                        href   = default_urls$ununoctium,
-                        target = "_blank",
-                        "Ununoctium"
-                    )
+                    ui_link(default_urls$ununoctium, "Ununoctium")
                 )
             )
         }) |>

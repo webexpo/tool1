@@ -642,12 +642,7 @@ server_panel_percentiles <- function(
                     latter should be lower than the threshold shown by the
                     black dashed line.
                 "),
-
-                tags$a(
-                    href   = default_urls$aiha,
-                    target = "_blank",
-                    "AIHA"
-                )
+                ui_link(default_urls$aiha, "AIHA")
             )
         }) |>
         shiny::bindCache(lang())
