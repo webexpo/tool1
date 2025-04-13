@@ -23,12 +23,21 @@
 #' This module implicitly relies on values defined in `R/global.R` and
 #' `R/helpers*.R` scripts. They are sourced by [shiny::runApp()].
 #'
+#' ## Bootstrap Navbar
+#'
+#' [bslib::page_sidebar()] implicitly wraps the content of what is passed to
+#' argument `title` with a div.navbar.navbar-static-top > div.container-fluid
+#' in accordance with what Bootstrap prescribes. Consequently, [ui_title()]
+#' returns a list of HTML elements styled with Bootstrap `navbar-*` classes
+#' directly (and not within a div.navbar). This is currently undocumented by
+#' bslib.
+#'
 #' @template param-id
 #'
 #' @template param-lang
 #'
 #' @returns
-#' [ui_title()] returns a `shiny.tag` object.
+#' [ui_title()] returns a list of `shiny.tag` objects.
 #'
 #' [server_title()] returns `NULL`, invisibly.
 #'
@@ -47,6 +56,10 @@
 #' each button.
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
+#'
+#' @seealso
+#' [Bootrap 5 Navbars](https://getbootstrap.com/docs/5.3/components/navbar/),
+#' [Bootstrap 5 Dropdowns](https://getbootstrap.com/docs/5.3/components/dropdowns)
 #'
 #' @rdname ui-title
 #'
@@ -92,18 +105,14 @@ ui_title <- function(id) {
         .cssSelector    = "a"
     )
 
-    ui <- tags$div(
-        class = "w-100 d-flex flex-wrap align-items-center justify-content-between",
-        style = "gap: 15px;",
-
-        # Left: Logo and Title -------------------------------------------------
+    ui <- list(
+        # Branding (Logo and title) --------------------------------------------
 
         tags$div(
-            class = "d-flex align-items-center",
+            class = "navbar-brand py-0",
 
-            # Logo is a link that can be
-            # clicked to reset everything.
             tags$a(
+                style    = "text-decoration: none;",
                 href     = "",
                 hreflang = default_lang,
                 target   = "_self",
@@ -116,58 +125,45 @@ ui_title <- function(id) {
                     alt    = "Logo",
                     width  = "400px",
                     height = "400px",
-                    class  = "pe-3",
-                    style  = "height: 46px; width: auto;"
+                    style  = "height: 40px;",
+                    class  = "w-auto pe-1"
                 )
             ),
 
-            # Bottom margin is removed to align logo
-            # and name/title on the horizontal axis.
-            tags$h1(
-                class = "d-flex mb-0",
+            htmltools::tagAppendAttributes(
+                class = "fw-bold",
+                shiny::textOutput(ns("name"), tags$span)
+            ),
 
-                htmltools::tagAppendAttributes(
-                    class = "fw-bold",
-                    shiny::textOutput(ns("name"), tags$span)
-                ),
+            # Title is only shown on screens
+            # larger than >=1500 pixels.
+            tags$span(
+                class = "app-large-screen-only text-muted",
 
-                # Colons are used to separate the app's name
-                # from its title. The latter is only shown on
-                # screens of >=1500 pixels.
-                tags$span(
-                    class = "app-large-screen-only text-muted",
-
-                    ":",
-
-                    shiny::textOutput(ns("title"), tags$span),
-
-                    # This can be combined with the textOutput()
-                    # above if it ever requires translation.
-                    tags$span(class = "ms-1", "(SEG)")
-                ),
-
-
+                ":",
+                shiny::textOutput(ns("title"), tags$span),
+                "(SEG)"
             )
         ),
 
-        # Right: Buttons -------------------------------------------------------
+        # Navigation Bar (Buttons) ---------------------------------------------
 
         tags$div(
-            class = "d-flex",
-            style = "gap: 15px;",
+            class = "navbar-nav",
 
             ## Languages -------------------------------------------------------
 
             # See @note above on dropdowns and tooltips.
             # bslib::nav_menu() cannot be used outside of
             # a bslib::navset.
+
             tags$div(
                 id = ns("btn_langs"),
 
                 # Display inline-block is required to align
                 # the dropdown button with other buttons on
                 # the vertical axis.
-                class = "d-inline-block dropdown",
+                class = "nav-link d-inline-block dropdown py-0",
 
                 tags$button(
                     class            = "btn btn-outline-secondary app-btn dropdown-toggle",
@@ -186,6 +182,30 @@ ui_title <- function(id) {
                 ""
             ),
 
+            ## Frequently Asked Questions --------------------------------------
+
+            tags$div(
+                class = "nav-link py-0",
+                ui_modal_faq(ns("faq"))
+            ),
+
+            ## Dark Mode -------------------------------------------------------
+
+            tags$div(
+                class = "nav-link py-0",
+
+                shiny::actionButton(
+                    class   = "btn btn-outline-secondary app-btn",
+                    inputId = ns("btn_color_mode"),
+                    label   = bsicons::bs_icon("moon-fill", a11y = "none"),
+                ) |>
+                bslib::tooltip(
+                    id        = ns("btn_color_mode_tooltip"),
+                    placement = "bottom",
+                    ""
+                )
+            ),
+
             ## Links -----------------------------------------------------------
 
             # See @note above on dropdowns and tooltips.
@@ -195,7 +215,7 @@ ui_title <- function(id) {
                 # Display inline-block is required to align
                 # the dropdown button with other buttons on
                 # the vertical axis.
-                class = "d-inline-block dropdown",
+                class = "nav-link d-inline-block dropdown py-0",
 
                 tags$button(
                     class            = "btn btn-outline-secondary app-btn dropdown-toggle",
@@ -215,51 +235,43 @@ ui_title <- function(id) {
                 ""
             ),
 
-            ## Frequently Asked Questions --------------------------------------
+            ## Submit Bug ------------------------------------------------------
 
-            ui_modal_faq(ns("faq")),
+            tags$div(
+                class = "nav-link py-0",
 
-            ## Dark Mode -------------------------------------------------------
-
-            # UI starts in light mode, so the icon to show
-            # is the one indicating dark mode is available.
-            shiny::actionButton(
-                inputId = ns("btn_color_mode"),
-                label   = bsicons::bs_icon("moon-fill", a11y = "none"),
-                class   = "btn btn-outline-secondary app-btn"
-            ) |>
-            bslib::tooltip(
-                id        = ns("btn_color_mode_tooltip"),
-                placement = "bottom",
-                ""
+                tags$a(
+                    class  = "btn btn-outline-secondary app-btn",
+                    href   = submit_bug_mailto,
+                    target = "_blank",
+                    bsicons::bs_icon("bug-fill", a11y = "none")
+                ) |>
+                bslib::tooltip(
+                    id        = ns("btn_bug_tooltip"),
+                    placement = "bottom",
+                    ""
+                )
             ),
 
-            # Submit Bug -------------------------------------------------------
+            ## Source Code -----------------------------------------------------
 
-            tags$a(
-                href   = submit_bug_mailto,
-                target = "_blank",
-                class  = "btn btn-outline-secondary app-btn",
-                bsicons::bs_icon("bug-fill", a11y = "none")
-            ) |>
-            bslib::tooltip(
-                id        = ns("btn_bug_tooltip"),
-                placement = "bottom",
-                ""
-            ),
+            # Padding is removed for last element
+            # for consistency with padding on the
+            # left of the navbar.
+            tags$div(
+                class = "nav-link py-0 pe-0",
 
-            # Source Code ------------------------------------------------------
-
-            tags$a(
-                href   = default_urls$code,
-                target = "_blank",
-                class  = "btn btn-outline-secondary app-btn",
-                bsicons::bs_icon("github", a11y = "none")
-            ) |>
-            bslib::tooltip(
-                id        = ns("btn_code_tooltip"),
-                placement = "bottom",
-                ""
+                tags$a(
+                    class  = "btn btn-outline-secondary app-btn",
+                    href   = default_urls$code,
+                    target = "_blank",
+                    bsicons::bs_icon("github", a11y = "none")
+                ) |>
+                bslib::tooltip(
+                    id        = ns("btn_code_tooltip"),
+                    placement = "bottom",
+                    ""
+                )
             )
         )
     )

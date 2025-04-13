@@ -13,7 +13,7 @@ p {
 .app-btn {
   --bs-btn-padding-y: 0.25rem;
   --bs-btn-padding-x: 0.75rem;
-  --bs-btn-font-size: 1.5rem;
+  --bs-btn-font-size: 1.25rem;
   color: var(--bs-body-color);
 }
 
