@@ -34,7 +34,7 @@ Texts:
       - !<Location>
         Identifier: 1a6a68b:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 822, Col 21 @ Ln 824, Col 14
+        Ranges: Ln 817, Col 21 @ Ln 819, Col 14
   - !<Text>
     Identifier: 67c3cba
     Algorithm: sha1
@@ -46,7 +46,7 @@ Texts:
       - !<Location>
         Identifier: 67c3cba:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 778, Col 21 @ Ln 780, Col 14
+        Ranges: Ln 773, Col 21 @ Ln 775, Col 14
   - !<Text>
     Identifier: 4e2a12c
     Algorithm: sha1
@@ -131,7 +131,7 @@ Texts:
       - !<Location>
         Identifier: f6e929e:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 350, Col 21 @ Ln 354, Col 22
+        Ranges: Ln 345, Col 21 @ Ln 349, Col 22
   - !<Text>
     Identifier: 73dff8f
     Algorithm: sha1
@@ -143,7 +143,7 @@ Texts:
       - !<Location>
         Identifier: 73dff8f:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 544, Col 21 @ Ln 544, Col 75
+        Ranges: Ln 539, Col 21 @ Ln 539, Col 75
   - !<Text>
     Identifier: 6aff6b7
     Algorithm: sha1
@@ -158,7 +158,7 @@ Texts:
       - !<Location>
         Identifier: 6aff6b7:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 782, Col 20 @ Ln 786, Col 14
+        Ranges: Ln 777, Col 20 @ Ln 781, Col 14
   - !<Text>
     Identifier: 96d547d
     Algorithm: sha1
@@ -245,24 +245,12 @@ Texts:
         Identifier: 745ebd1:l1
         Path: ./R/ui-modal-faq.R
         Ranges:
-          - Ln 244, Col 13 @ Ln 244, Col 62
-          - Ln 446, Col 37 @ Ln 446, Col 84
+          - Ln 251, Col 13 @ Ln 251, Col 62
+          - Ln 441, Col 37 @ Ln 441, Col 84
       - !<Location>
         Identifier: 745ebd1:l2
         Path: ./R/ui-sidebar.R
         Ranges: Ln 217, Col 13 @ Ln 217, Col 62
-  - !<Text>
-    Identifier: 00650f3
-    Algorithm: sha1
-    Hash: 00650f3ae1a9d101d35a12ffea24b34dc831e016
-    Source Language: en
-    Source Text: Explore Expostats and other tools.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 00650f3:l1
-        Path: ./R/ui-title.R
-        Ranges: Ln 358, Col 56 @ Ln 360, Col 14
   - !<Text>
     Identifier: 8f7f102
     Algorithm: sha1
@@ -365,7 +353,7 @@ Texts:
       - !<Location>
         Identifier: f7a0860:l3
         Path: ./R/ui-title.R
-        Ranges: Ln 279, Col 13 @ Ln 279, Col 46
+        Ranges: Ln 305, Col 13 @ Ln 305, Col 46
   - !<Text>
     Identifier: 5f52075
     Algorithm: sha1
@@ -449,7 +437,7 @@ Texts:
       - !<Location>
         Identifier: 2052e8c:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 526, Col 21 @ Ln 531, Col 22
+        Ranges: Ln 521, Col 21 @ Ln 526, Col 22
   - !<Text>
     Identifier: '8785301'
     Algorithm: sha1
@@ -485,7 +473,7 @@ Texts:
       - !<Location>
         Identifier: 92193c3:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 322, Col 21 @ Ln 322, Col 61
+        Ranges: Ln 317, Col 21 @ Ln 317, Col 61
   - !<Text>
     Identifier: 179eb27
     Algorithm: sha1
@@ -497,7 +485,7 @@ Texts:
       - !<Location>
         Identifier: 179eb27:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 459, Col 21 @ Ln 459, Col 79
+        Ranges: Ln 454, Col 21 @ Ln 454, Col 79
   - !<Text>
     Identifier: 4a8e3cf
     Algorithm: sha1
@@ -562,9 +550,9 @@ Texts:
         Identifier: dcc46c4:l2
         Path: ./R/ui-modal-faq.R
         Ranges:
-          - Ln 533, Col 38 @ Ln 533, Col 72
-          - Ln 687, Col 42 @ Ln 687, Col 76
-          - Ln 735, Col 38 @ Ln 735, Col 72
+          - Ln 528, Col 38 @ Ln 528, Col 72
+          - Ln 682, Col 42 @ Ln 682, Col 76
+          - Ln 730, Col 38 @ Ln 730, Col 72
   - !<Text>
     Identifier: a32a1f9
     Algorithm: sha1
@@ -630,7 +618,7 @@ Texts:
       - !<Location>
         Identifier: c6394ac:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 518, Col 37 @ Ln 518, Col 83
+        Ranges: Ln 513, Col 37 @ Ln 513, Col 83
       - !<Location>
         Identifier: c6394ac:l2
         Path: ./R/ui-panel-descriptive-statistics.R
@@ -700,7 +688,7 @@ Texts:
       - !<Location>
         Identifier: 962996f:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 794, Col 21 @ Ln 797, Col 22
+        Ranges: Ln 789, Col 21 @ Ln 792, Col 22
   - !<Text>
     Identifier: 00b437c
     Algorithm: sha1
@@ -952,7 +940,7 @@ Texts:
       - !<Location>
         Identifier: f59a9a9:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 750, Col 21 @ Ln 754, Col 22
+        Ranges: Ln 745, Col 21 @ Ln 749, Col 22
   - !<Text>
     Identifier: f111efa
     Algorithm: sha1
@@ -964,7 +952,7 @@ Texts:
       - !<Location>
         Identifier: f111efa:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 364, Col 21 @ Ln 364, Col 77
+        Ranges: Ln 359, Col 21 @ Ln 359, Col 77
   - !<Text>
     Identifier: 6863c44
     Algorithm: sha1
@@ -977,6 +965,18 @@ Texts:
         Identifier: 6863c44:l1
         Path: ./R/ui-sidebar.R
         Ranges: Ln 227, Col 13 @ Ln 227, Col 45
+  - !<Text>
+    Identifier: ecd9787
+    Algorithm: sha1
+    Hash: ecd9787a8a861c1747ffe00be307f5e4a8f32435
+    Source Language: en
+    Source Text: Toogle the current color scheme (light or dark).
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: ecd9787:l1
+        Path: ./R/ui-title.R
+        Ranges: Ln 394, Col 56 @ Ln 396, Col 14
   - !<Text>
     Identifier: f3c096c
     Algorithm: sha1
@@ -1012,7 +1012,7 @@ Texts:
       - !<Location>
         Identifier: 9725731:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 254, Col 13 @ Ln 254, Col 65
+        Ranges: Ln 261, Col 13 @ Ln 261, Col 65
   - !<Text>
     Identifier: f08555d
     Algorithm: sha1
@@ -1028,19 +1028,7 @@ Texts:
       - !<Location>
         Identifier: f08555d:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 828, Col 21 @ Ln 834, Col 22
-  - !<Text>
-    Identifier: 2e77aed
-    Algorithm: sha1
-    Hash: 2e77aedf2ff3773facedbfe2ea1ce6fd6792be69
-    Source Language: en
-    Source Text: See the source code on GitHub.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 2e77aed:l1
-        Path: ./R/ui-title.R
-        Ranges: Ln 371, Col 55 @ Ln 373, Col 14
+        Ranges: Ln 823, Col 21 @ Ln 829, Col 22
   - !<Text>
     Identifier: 1fa04de
     Algorithm: sha1
@@ -1069,7 +1057,7 @@ Texts:
       - !<Location>
         Identifier: af71ace:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 600, Col 21 @ Ln 603, Col 22
+        Ranges: Ln 595, Col 21 @ Ln 598, Col 22
   - !<Text>
     Identifier: 5fafea5
     Algorithm: sha1
@@ -1081,7 +1069,7 @@ Texts:
       - !<Location>
         Identifier: 5fafea5:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 722, Col 21 @ Ln 722, Col 85
+        Ranges: Ln 717, Col 21 @ Ln 717, Col 85
   - !<Text>
     Identifier: 99db36b
     Algorithm: sha1
@@ -1117,7 +1105,7 @@ Texts:
       - !<Location>
         Identifier: 9d61612:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 728, Col 21 @ Ln 733, Col 22
+        Ranges: Ln 723, Col 21 @ Ln 728, Col 22
   - !<Text>
     Identifier: e510a31
     Algorithm: sha1
@@ -1143,7 +1131,7 @@ Texts:
       - !<Location>
         Identifier: ad77e09:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 546, Col 20 @ Ln 549, Col 14
+        Ranges: Ln 541, Col 20 @ Ln 544, Col 14
   - !<Text>
     Identifier: 9670dfb
     Algorithm: sha1
@@ -1155,7 +1143,7 @@ Texts:
       - !<Location>
         Identifier: 9670dfb:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 481, Col 21 @ Ln 481, Col 76
+        Ranges: Ln 476, Col 21 @ Ln 476, Col 76
   - !<Text>
     Identifier: 0d592d3
     Algorithm: sha1
@@ -1169,7 +1157,7 @@ Texts:
       - !<Location>
         Identifier: 0d592d3:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 811, Col 21 @ Ln 814, Col 22
+        Ranges: Ln 806, Col 21 @ Ln 809, Col 22
   - !<Text>
     Identifier: e2d8fab
     Algorithm: sha1
@@ -1195,7 +1183,7 @@ Texts:
       - !<Location>
         Identifier: 378fb16:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 239, Col 13 @ Ln 239, Col 47
+        Ranges: Ln 246, Col 13 @ Ln 246, Col 47
   - !<Text>
     Identifier: a2acebe
     Algorithm: sha1
@@ -1209,7 +1197,7 @@ Texts:
       - !<Location>
         Identifier: a2acebe:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 567, Col 21 @ Ln 570, Col 22
+        Ranges: Ln 562, Col 21 @ Ln 565, Col 22
   - !<Text>
     Identifier: da9cc89
     Algorithm: sha1
@@ -1271,7 +1259,7 @@ Texts:
       - !<Location>
         Identifier: b267cef:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 466, Col 25 @ Ln 473, Col 26
+        Ranges: Ln 461, Col 25 @ Ln 468, Col 26
   - !<Text>
     Identifier: 8cbc334
     Algorithm: sha1
@@ -1283,7 +1271,7 @@ Texts:
       - !<Location>
         Identifier: 8cbc334:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 647, Col 21 @ Ln 647, Col 85
+        Ranges: Ln 642, Col 21 @ Ln 642, Col 85
   - !<Text>
     Identifier: ea57967
     Algorithm: sha1
@@ -1312,18 +1300,6 @@ Texts:
         Identifier: b66eca7:l1
         Path: ./R/ui-panel-descriptive-statistics.R
         Ranges: Ln 259, Col 13 @ Ln 264, Col 14
-  - !<Text>
-    Identifier: 59f9427
-    Algorithm: sha1
-    Hash: 59f94273bde5eaa2d43ef32eee175d2d0cb7afc7
-    Source Language: en
-    Source Text: Submit a bug or provide feedback to the maintainers.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 59f9427:l1
-        Path: ./R/ui-title.R
-        Ranges: Ln 367, Col 54 @ Ln 369, Col 14
   - !<Text>
     Identifier: 23eb033
     Algorithm: sha1
@@ -1381,21 +1357,7 @@ Texts:
       - !<Location>
         Identifier: 5f12363:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 436, Col 21 @ Ln 436, Col 83
-  - !<Text>
-    Identifier: 9895a88
-    Algorithm: sha1
-    Hash: 9895a88d97c848109e620a576313f12b68166ae7
-    Source Language: en
-    Source Text: |-
-      Get more information on this application and learn how to use it
-      properly.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 9895a88:l1
-        Path: ./R/ui-modal-faq.R
-        Ranges: Ln 294, Col 54 @ Ln 297, Col 14
+        Ranges: Ln 431, Col 21 @ Ln 431, Col 83
   - !<Text>
     Identifier: 21d66f8
     Algorithm: sha1
@@ -1465,7 +1427,7 @@ Texts:
       - !<Location>
         Identifier: 5518029:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 505, Col 21 @ Ln 507, Col 14
+        Ranges: Ln 500, Col 21 @ Ln 502, Col 14
   - !<Text>
     Identifier: 501a2ee
     Algorithm: sha1
@@ -1478,18 +1440,6 @@ Texts:
         Identifier: 501a2ee:l1
         Path: ./R/ui-panel-descriptive-statistics.R
         Ranges: Ln 276, Col 39 @ Ln 276, Col 78
-  - !<Text>
-    Identifier: e6a9040
-    Algorithm: sha1
-    Hash: e6a904003b5c792e5efbb07c5ed935c1cc89f275
-    Source Language: en
-    Source Text: Choose your preferred language.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: e6a9040:l1
-        Path: ./R/ui-title.R
-        Ranges: Ln 354, Col 56 @ Ln 356, Col 14
   - !<Text>
     Identifier: 4dd1267
     Algorithm: sha1
@@ -1521,7 +1471,7 @@ Texts:
       - !<Location>
         Identifier: 3710c88:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 845, Col 29 @ Ln 851, Col 30
+        Ranges: Ln 840, Col 29 @ Ln 846, Col 30
   - !<Text>
     Identifier: a5a2911
     Algorithm: sha1
@@ -1586,7 +1536,7 @@ Texts:
       - !<Location>
         Identifier: 20a872f:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 390, Col 21 @ Ln 394, Col 22
+        Ranges: Ln 385, Col 21 @ Ln 389, Col 22
   - !<Text>
     Identifier: 0e99366
     Algorithm: sha1
@@ -1625,7 +1575,7 @@ Texts:
       - !<Location>
         Identifier: a7c73b7:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 440, Col 21 @ Ln 444, Col 22
+        Ranges: Ln 435, Col 21 @ Ln 439, Col 22
   - !<Text>
     Identifier: 2bbf9dd
     Algorithm: sha1
@@ -1637,7 +1587,7 @@ Texts:
       - !<Location>
         Identifier: 2bbf9dd:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 384, Col 21 @ Ln 386, Col 14
+        Ranges: Ln 379, Col 21 @ Ln 381, Col 14
   - !<Text>
     Identifier: 7d94d60
     Algorithm: sha1
@@ -1680,6 +1630,18 @@ Texts:
         Path: ./R/ui-panel-descriptive-statistics.R
         Ranges: Ln 233, Col 21 @ Ln 233, Col 51
   - !<Text>
+    Identifier: cb9ddbb
+    Algorithm: sha1
+    Hash: cb9ddbb485c1f06a511342b9f69216412863e2f8
+    Source Language: en
+    Source Text: Submit a bug or provide feedback to the maintainers by email.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: cb9ddbb:l1
+        Path: ./R/ui-title.R
+        Ranges: Ln 390, Col 54 @ Ln 392, Col 14
+  - !<Text>
     Identifier: 0595dc0
     Algorithm: sha1
     Hash: 0595dc09f0922030fa5758085cdb454bbaa97055
@@ -1708,7 +1670,7 @@ Texts:
       - !<Location>
         Identifier: ff8d5e3:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 331, Col 20 @ Ln 340, Col 14
+        Ranges: Ln 326, Col 20 @ Ln 335, Col 14
   - !<Text>
     Identifier: 9eef958
     Algorithm: sha1
@@ -1723,7 +1685,7 @@ Texts:
       - !<Location>
         Identifier: 9eef958:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 619, Col 25 @ Ln 624, Col 26
+        Ranges: Ln 614, Col 25 @ Ln 619, Col 26
   - !<Text>
     Identifier: 5dc95f8
     Algorithm: sha1
@@ -1735,7 +1697,7 @@ Texts:
       - !<Location>
         Identifier: 5dc95f8:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 249, Col 13 @ Ln 249, Col 45
+        Ranges: Ln 256, Col 13 @ Ln 256, Col 45
   - !<Text>
     Identifier: c2bb46d
     Algorithm: sha1
@@ -1747,7 +1709,7 @@ Texts:
       - !<Location>
         Identifier: c2bb46d:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 803, Col 21 @ Ln 805, Col 22
+        Ranges: Ln 798, Col 21 @ Ln 800, Col 22
   - !<Text>
     Identifier: 930bac6
     Algorithm: sha1
@@ -1759,7 +1721,7 @@ Texts:
       - !<Location>
         Identifier: 930bac6:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 659, Col 21 @ Ln 659, Col 73
+        Ranges: Ln 654, Col 21 @ Ln 654, Col 73
   - !<Text>
     Identifier: 1b5e945
     Algorithm: sha1
@@ -1771,7 +1733,7 @@ Texts:
       - !<Location>
         Identifier: 1b5e945:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 576, Col 21 @ Ln 579, Col 22
+        Ranges: Ln 571, Col 21 @ Ln 574, Col 22
   - !<Text>
     Identifier: ad9a641
     Algorithm: sha1
@@ -1783,7 +1745,7 @@ Texts:
       - !<Location>
         Identifier: ad9a641:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 346, Col 21 @ Ln 346, Col 65
+        Ranges: Ln 341, Col 21 @ Ln 341, Col 65
   - !<Text>
     Identifier: 02a9a58
     Algorithm: sha1
@@ -1889,7 +1851,7 @@ Texts:
       - !<Location>
         Identifier: 5e2c2fa:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 299, Col 21 @ Ln 299, Col 52
+        Ranges: Ln 330, Col 21 @ Ln 330, Col 52
   - !<Text>
     Identifier: fd52582
     Algorithm: sha1
@@ -1932,7 +1894,7 @@ Texts:
       - !<Location>
         Identifier: 4f7aff7:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 587, Col 21 @ Ln 587, Col 84
+        Ranges: Ln 582, Col 21 @ Ln 582, Col 84
   - !<Text>
     Identifier: b740be6
     Algorithm: sha1
@@ -1944,7 +1906,7 @@ Texts:
       - !<Location>
         Identifier: b740be6:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 487, Col 21 @ Ln 487, Col 83
+        Ranges: Ln 482, Col 21 @ Ln 482, Col 83
   - !<Text>
     Identifier: 5bbca33
     Algorithm: sha1
@@ -2055,7 +2017,7 @@ Texts:
       - !<Location>
         Identifier: 8141885:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 511, Col 21 @ Ln 516, Col 22
+        Ranges: Ln 506, Col 21 @ Ln 511, Col 22
   - !<Text>
     Identifier: 1a51cee
     Algorithm: sha1
@@ -2067,7 +2029,7 @@ Texts:
       - !<Location>
         Identifier: 1a51cee:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 303, Col 21 @ Ln 303, Col 52
+        Ranges: Ln 334, Col 21 @ Ln 334, Col 52
   - !<Text>
     Identifier: 899d691
     Algorithm: sha1
@@ -2081,7 +2043,7 @@ Texts:
       - !<Location>
         Identifier: 899d691:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 671, Col 21 @ Ln 674, Col 22
+        Ranges: Ln 666, Col 21 @ Ln 669, Col 22
   - !<Text>
     Identifier: f0d17dd
     Algorithm: sha1
@@ -2110,7 +2072,7 @@ Texts:
       - !<Location>
         Identifier: 8fc2a6a:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 284, Col 13 @ Ln 286, Col 14
+        Ranges: Ln 310, Col 13 @ Ln 312, Col 14
   - !<Text>
     Identifier: fffde19
     Algorithm: sha1
@@ -2127,6 +2089,18 @@ Texts:
         Path: ./R/ui-sidebar.R
         Ranges: Ln 330, Col 61 @ Ln 334, Col 14
   - !<Text>
+    Identifier: 70d45be
+    Algorithm: sha1
+    Hash: 70d45be1f58f1b57c6a634c4653bae8452c5d49e
+    Source Language: en
+    Source Text: Language
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 70d45be:l1
+        Path: ./R/ui-title.R
+        Ranges: Ln 317, Col 13 @ Ln 317, Col 48
+  - !<Text>
     Identifier: 0cdc87d
     Algorithm: sha1
     Hash: 0cdc87dea7d6c6952e0e302182099be863e14952
@@ -2141,7 +2115,7 @@ Texts:
       - !<Location>
         Identifier: 0cdc87d:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 368, Col 21 @ Ln 374, Col 22
+        Ranges: Ln 363, Col 21 @ Ln 369, Col 22
   - !<Text>
     Identifier: 6db5beb
     Algorithm: sha1
@@ -2223,20 +2197,6 @@ Texts:
         Path: ./R/ui-sidebar.R
         Ranges: Ln 232, Col 13 @ Ln 236, Col 14
   - !<Text>
-    Identifier: 0705c1d
-    Algorithm: sha1
-    Hash: 0705c1dee7907a03059782e607d82defa2cb230e
-    Source Language: en
-    Source Text: |-
-      Choose your preferred color scheme. This is an experimental feature.
-      Contents may not be displayed appropriately.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 0705c1d:l1
-        Path: ./R/ui-title.R
-        Ranges: Ln 362, Col 61 @ Ln 365, Col 14
-  - !<Text>
     Identifier: b7b4f0b
     Algorithm: sha1
     Hash: b7b4f0bd5f3d0cd911e84c45210a118c51fb8073
@@ -2266,7 +2226,7 @@ Texts:
       - !<Location>
         Identifier: 9cc07de:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 401, Col 21 @ Ln 408, Col 22
+        Ranges: Ln 396, Col 21 @ Ln 403, Col 22
   - !<Text>
     Identifier: 3116c76
     Algorithm: sha1
@@ -2278,7 +2238,7 @@ Texts:
       - !<Location>
         Identifier: 3116c76:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 756, Col 37 @ Ln 756, Col 68
+        Ranges: Ln 751, Col 37 @ Ln 751, Col 68
   - !<Text>
     Identifier: 449ff93
     Algorithm: sha1
@@ -2355,7 +2315,7 @@ Texts:
       - !<Location>
         Identifier: 89fba6b:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 234, Col 13 @ Ln 234, Col 66
+        Ranges: Ln 241, Col 13 @ Ln 241, Col 66
   - !<Text>
     Identifier: ceefbab
     Algorithm: sha1
@@ -2377,6 +2337,18 @@ Texts:
         Path: ./R/ui-panel-percentiles.R
         Ranges: Ln 587, Col 38 @ Ln 587, Col 70
   - !<Text>
+    Identifier: 5d328be
+    Algorithm: sha1
+    Hash: 5d328be196b9ca21d4241565c16d3de790136974
+    Source Language: en
+    Source Text: See the source code of Tool 1 on GitHub.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 5d328be:l1
+        Path: ./R/ui-title.R
+        Ranges: Ln 386, Col 55 @ Ln 388, Col 14
+  - !<Text>
     Identifier: 9797b53
     Algorithm: sha1
     Hash: 9797b53374920aa94a856e2cb860440171f90820
@@ -2391,7 +2363,7 @@ Texts:
       - !<Location>
         Identifier: 9797b53:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 259, Col 13 @ Ln 265, Col 14
+        Ranges: Ln 266, Col 13 @ Ln 272, Col 14
   - !<Text>
     Identifier: cb21ace
     Algorithm: sha1
@@ -2403,7 +2375,19 @@ Texts:
       - !<Location>
         Identifier: cb21ace:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 589, Col 20 @ Ln 592, Col 14
+        Ranges: Ln 584, Col 20 @ Ln 587, Col 14
+  - !<Text>
+    Identifier: '7464899'
+    Algorithm: sha1
+    Hash: 74648993367e2041b592cfdd4da2c8948df0e597
+    Source Language: en
+    Source Text: FAQ
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 7464899:l1
+        Path: ./R/ui-modal-faq.R
+        Ranges: Ln 236, Col 13 @ Ln 236, Col 43
   - !<Text>
     Identifier: 8a17368
     Algorithm: sha1
@@ -2415,7 +2399,7 @@ Texts:
       - !<Location>
         Identifier: 8a17368:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 698, Col 25 @ Ln 700, Col 26
+        Ranges: Ln 693, Col 25 @ Ln 695, Col 26
   - !<Text>
     Identifier: a632e97
     Algorithm: sha1
@@ -2509,7 +2493,7 @@ Texts:
       - !<Location>
         Identifier: 380f931:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 702, Col 41 @ Ln 702, Col 72
+        Ranges: Ln 697, Col 41 @ Ln 697, Col 72
       - !<Location>
         Identifier: 380f931:l2
         Path: ./R/ui-sidebar.R
@@ -2527,7 +2511,7 @@ Texts:
       - !<Location>
         Identifier: 4aabcde:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 681, Col 25 @ Ln 685, Col 26
+        Ranges: Ln 676, Col 25 @ Ln 680, Col 26
   - !<Text>
     Identifier: 9bdd102
     Algorithm: sha1
@@ -2554,7 +2538,7 @@ Texts:
       - !<Location>
         Identifier: 4c9bab6:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 324, Col 20 @ Ln 329, Col 14
+        Ranges: Ln 319, Col 20 @ Ln 324, Col 14
   - !<Text>
     Identifier: 8c8796c
     Algorithm: sha1
@@ -2566,7 +2550,7 @@ Texts:
       - !<Location>
         Identifier: 8c8796c:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 746, Col 21 @ Ln 746, Col 68
+        Ranges: Ln 741, Col 21 @ Ln 741, Col 68
   - !<Text>
     Identifier: '9616619'
     Algorithm: sha1
@@ -2581,7 +2565,7 @@ Texts:
       - !<Location>
         Identifier: 9616619:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 493, Col 21 @ Ln 497, Col 22
+        Ranges: Ln 488, Col 21 @ Ln 492, Col 22
   - !<Text>
     Identifier: 865ddc6
     Algorithm: sha1
@@ -2623,7 +2607,7 @@ Texts:
       - !<Location>
         Identifier: 1a0644e:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 609, Col 21 @ Ln 612, Col 22
+        Ranges: Ln 604, Col 21 @ Ln 607, Col 22
   - !<Text>
     Identifier: aeaec6e
     Algorithm: sha1
@@ -2637,7 +2621,7 @@ Texts:
       - !<Location>
         Identifier: aeaec6e:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 711, Col 21 @ Ln 714, Col 22
+        Ranges: Ln 706, Col 21 @ Ln 709, Col 22
   - !<Text>
     Identifier: 3eba509
     Algorithm: sha1
@@ -2721,7 +2705,7 @@ Texts:
       - !<Location>
         Identifier: 54697e1:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 661, Col 20 @ Ln 663, Col 14
+        Ranges: Ln 656, Col 20 @ Ln 658, Col 14
   - !<Text>
     Identifier: 4e85c1b
     Algorithm: sha1
@@ -2735,7 +2719,7 @@ Texts:
       - !<Location>
         Identifier: 4e85c1b:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 649, Col 20 @ Ln 653, Col 14
+        Ranges: Ln 644, Col 20 @ Ln 648, Col 14
   - !<Text>
     Identifier: 38210f7
     Algorithm: sha1
@@ -2749,7 +2733,7 @@ Texts:
       - !<Location>
         Identifier: 38210f7:l1
         Path: ./R/ui-modal-faq.R
-        Ranges: Ln 558, Col 21 @ Ln 561, Col 22
+        Ranges: Ln 553, Col 21 @ Ln 556, Col 22
   - !<Text>
     Identifier: 6bf9771
     Algorithm: sha1
@@ -2761,7 +2745,7 @@ Texts:
       - !<Location>
         Identifier: 6bf9771:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 295, Col 21 @ Ln 295, Col 65
+        Ranges: Ln 326, Col 21 @ Ln 326, Col 65
   - !<Text>
     Identifier: da34e30
     Algorithm: sha1

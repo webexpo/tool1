@@ -104,13 +104,15 @@ ui_modal_faq <- function(id) {
         "data-bs-target" = paste0("#", modal_id),
 
         tags$button(
-            class = "btn btn-outline-secondary app-btn",
+            class = "nav-link",
             type  = "button",
-            bsicons::bs_icon("info-circle-fill", a11y = "sem")
-        ) |> bslib::tooltip(
-            id        = ns("btn_faq_tooltip"),
-            placement = "bottom",
-            ""
+
+            tags$span(
+                class = "pe-1",
+                bsicons::bs_icon("info-circle-fill", a11y = "sem")
+            ),
+
+            shiny::textOutput(ns("btn_open_text"), tags$span)
         )
     )
 
@@ -119,10 +121,10 @@ ui_modal_faq <- function(id) {
     # is a little weird, but this value is
     # used to id the currently opened modal.
     btn_close <- tags$button(
-        class             = "btn btn-outline-secondary app-btn-small",
+        class             = "btn btn-outline-secondary app-btn",
         type              = "button",
         "data-bs-dismiss" = "modal",
-        bsicons::bs_icon("x-square-fill", a11y = "sem")
+        bsicons::bs_icon("x-lg", a11y = "sem")
     )
 
     panel_intro <- bslib::nav_panel(
@@ -230,6 +232,11 @@ server_modal_faq <- function(id, lang) {
     server <- \(input, output, session) {
         server_footer("footer", lang)
 
+        output$btn_open_text <- shiny::renderText({
+            translate(lang = lang(), "FAQ")
+        }) |>
+        shiny::bindCache(lang())
+
         output$title <- shiny::renderText({
             translate(lang = lang(), "Frequently Asked Questions")
         }) |>
@@ -285,18 +292,6 @@ server_modal_faq <- function(id, lang) {
             ui_panel_metho_accordion(lang())
         }) |>
         shiny::bindCache(lang())
-
-        # Translate elements not rendered
-        # with a shiny::render*() function.
-        shiny::observe({
-            lang <- lang()
-
-            bslib::update_tooltip("btn_faq_tooltip", translate(lang = lang, "
-                Get more information on this application and learn how to
-                use it properly.
-            "))
-        }) |>
-        shiny::bindEvent(lang())
 
         return(invisible())
     }

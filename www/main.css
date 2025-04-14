@@ -9,7 +9,9 @@ p {
 }
 
 /* Change buttons to make them a
-   little bit bigger or smaller. */
+   little bit bigger or smaller.
+   Colors rules allow appropriate
+   usage of dark mode. */
 .app-btn {
   --bs-btn-padding-y: 0.25rem;
   --bs-btn-padding-x: 0.75rem;
@@ -17,11 +19,10 @@ p {
   color: var(--bs-body-color);
 }
 
-.app-btn-small {
-  --bs-btn-padding-y: 0.25rem;
-  --bs-btn-padding-x: 0.5rem;
-  --bs-btn-font-size: 1rem;
-  color: var(--bs-body-color);
+/* App buttons used inside nav
+   items are colored as such. */
+.nav-item .app-btn {
+  color: var(--bs-nav-link-color);
 }
 
 .app-rotated-minus-90 {
@@ -67,12 +68,4 @@ p {
   /* Change the space between each active
      <nav> element and its underline. */
   padding: 8px 5px !important;
-}
-
-/* Display elements only on bigger
-   screens of at least 1500px. */
-@media screen and (max-width: 1499px) {
-  .app-large-screen-only {
-    display: none;
-  }
 }

@@ -59,18 +59,15 @@
 #'
 #' @seealso
 #' [Bootrap 5 Navbars](https://getbootstrap.com/docs/5.3/components/navbar/),
-#' [Bootstrap 5 Dropdowns](https://getbootstrap.com/docs/5.3/components/dropdowns)
+#' [Bootstrap 5 Dropdowns](https://getbootstrap.com/docs/5.3/components/dropdowns),
+#' [Bootstrap 5 Breakpoints](https://getbootstrap.com/docs/5.3/layout/breakpoints/)
 #'
 #' @rdname ui-title
 #'
 #' @export
 ui_title <- function(id) {
     ns <- shiny::NS(id)
-
-    submit_bug_mailto <- paste0(
-        "mailto:",
-        paste0(default_maintainers_emails, collapse = ",")
-    )
+    nav_id <- ns("navbar_nav")
 
     # Bootstrap recommends to mark elements of dropdowns
     # within <li> elements. Each <li> encapsulate a link
@@ -105,178 +102,195 @@ ui_title <- function(id) {
         .cssSelector    = "a"
     )
 
-    ui <- list(
-        # Branding (Logo and title) --------------------------------------------
-
-        tags$div(
-            class = "navbar-brand py-0",
-
-            tags$a(
-                style    = "text-decoration: none;",
-                href     = "",
-                hreflang = default_lang,
-                target   = "_self",
-
-                # Height of logo is manually set
-                # equal to the height of buttons.
-                tags$img(
-                    id     = ns("logo"),
-                    src    = "images/logo-400x400.png",
-                    alt    = "Logo",
-                    width  = "400px",
-                    height = "400px",
-                    style  = "height: 40px;",
-                    class  = "w-auto pe-1"
-                )
-            ),
-
-            htmltools::tagAppendAttributes(
-                class = "fw-bold",
-                shiny::textOutput(ns("name"), tags$span)
-            ),
-
-            # Title is only shown on screens
-            # larger than >=1500 pixels.
-            tags$span(
-                class = "app-large-screen-only text-muted",
-
-                ":",
-                shiny::textOutput(ns("title"), tags$span),
-                "(SEG)"
-            )
-        ),
-
-        # Navigation Bar (Buttons) ---------------------------------------------
-
-        tags$div(
-            class = "navbar-nav",
-
-            ## Languages -------------------------------------------------------
-
-            # See @note above on dropdowns and tooltips.
-            # bslib::nav_menu() cannot be used outside of
-            # a bslib::navset.
+    return(
+        list(
+            # Branding (Logo and title) ----------------------------------------
 
             tags$div(
-                id = ns("btn_langs"),
-
-                # Display inline-block is required to align
-                # the dropdown button with other buttons on
-                # the vertical axis.
-                class = "nav-link d-inline-block dropdown py-0",
-
-                tags$button(
-                    class            = "btn btn-outline-secondary app-btn dropdown-toggle",
-                    type             = "button",
-                    "data-bs-toggle" = "dropdown",
-                    bsicons::bs_icon("translate", a11y = "none")
-                ),
-
-                htmltools::tagSetChildren(
-                    tags$ul(class = "dropdown-menu"),
-                    list = btn_langs_choices
-                )
-            ) |> bslib::tooltip(
-                id        = ns("btn_langs_tooltip"),
-                placement = "left",
-                ""
-            ),
-
-            ## Frequently Asked Questions --------------------------------------
-
-            tags$div(
-                class = "nav-link py-0",
-                ui_modal_faq(ns("faq"))
-            ),
-
-            ## Dark Mode -------------------------------------------------------
-
-            tags$div(
-                class = "nav-link py-0",
-
-                shiny::actionButton(
-                    class   = "btn btn-outline-secondary app-btn",
-                    inputId = ns("btn_color_mode"),
-                    label   = bsicons::bs_icon("moon-fill", a11y = "none"),
-                ) |>
-                bslib::tooltip(
-                    id        = ns("btn_color_mode_tooltip"),
-                    placement = "bottom",
-                    ""
-                )
-            ),
-
-            ## Links -----------------------------------------------------------
-
-            # See @note above on dropdowns and tooltips.
-            tags$div(
-                id = ns("btn_links"),
-
-                # Display inline-block is required to align
-                # the dropdown button with other buttons on
-                # the vertical axis.
-                class = "nav-link d-inline-block dropdown py-0",
-
-                tags$button(
-                    class            = "btn btn-outline-secondary app-btn dropdown-toggle",
-                    type             = "button",
-                    "data-bs-toggle" = "dropdown",
-                    bsicons::bs_icon("link", a11y = "none")
-                ),
-
-                shiny::uiOutput(
-                    ns("btn_links_choices"),
-                    container = tags$ul,
-                    class     = "dropdown-menu"
-                )
-            ) |> bslib::tooltip(
-                id        = ns("btn_links_tooltip"),
-                placement = "left",
-                ""
-            ),
-
-            ## Submit Bug ------------------------------------------------------
-
-            tags$div(
-                class = "nav-link py-0",
+                class = "navbar-brand py-0",
 
                 tags$a(
-                    class  = "btn btn-outline-secondary app-btn",
-                    href   = submit_bug_mailto,
-                    target = "_blank",
-                    bsicons::bs_icon("bug-fill", a11y = "none")
-                ) |>
-                bslib::tooltip(
-                    id        = ns("btn_bug_tooltip"),
-                    placement = "bottom",
-                    ""
+                    style    = "text-decoration: none;",
+                    href     = "",
+                    hreflang = default_lang,
+                    target   = "_self",
+
+                    tags$img(
+                        id     = ns("logo"),
+                        src    = "images/logo-400x400.png",
+                        alt    = "Logo",
+                        width  = "400px",
+                        height = "400px",
+                        style  = "height: 40px;",
+                        class  = "w-auto pe-1"
+                    )
+                ),
+
+                htmltools::tagAppendAttributes(
+                    class = "fw-bolder",
+                    shiny::textOutput(ns("name"), tags$span)
+                ),
+
+                # The full title is only shown on extra extra large
+                # screens (>=1400px). See Bootstrap breakpoints for
+                # more information.
+                tags$span(
+                    class = "d-none d-xxl-inline",
+
+                    ":",
+                    shiny::textOutput(ns("title"), tags$span),
+                    "(SEG)"
                 )
             ),
 
-            ## Source Code -----------------------------------------------------
+            # Menu Button ------------------------------------------------------
 
-            # Padding is removed for last element
-            # for consistency with padding on the
-            # left of the navbar.
+            # Hamburger button to toggle menu.
+            # Only shown on smaller screens (<= 992px).
+            tags$button(
+                class            = "navbar-toggler",
+                type             = "button",
+                "data-bs-toggle" = "collapse",
+                "data-bs-target" = paste0("#", nav_id),
+
+                # Default Boostrap hamburger icon.
+                tags$span(class = "navbar-toggler-icon")
+            ),
+
+            # Navigation Bar ---------------------------------------------------
+
             tags$div(
-                class = "nav-link py-0 pe-0",
+                id    = nav_id,
+                class = "collapse navbar-collapse justify-content-end",
 
-                tags$a(
-                    class  = "btn btn-outline-secondary app-btn",
-                    href   = default_urls$code,
-                    target = "_blank",
-                    bsicons::bs_icon("github", a11y = "none")
-                ) |>
-                bslib::tooltip(
-                    id        = ns("btn_code_tooltip"),
-                    placement = "bottom",
-                    ""
+                tags$ul(
+                    class = "navbar-nav",
+
+                    # Extra padding to separate branding from nav items.
+                    # Only shown on smaller screens (<= 992px).
+                    tags$div(class = "d-lg-none mt-3"),
+
+                    ## Frequently Asked Questions ------------------------------
+
+                    tags$li(
+                        class = "nav-item",
+                        ui_modal_faq(ns("faq"))
+                    ),
+
+                    ## Languages -----------------------------------------------
+
+                    tags$li(
+                        class = "nav-item dropdown",
+
+                        tags$button(
+                            class            = "nav-link dropdown-toggle",
+                            type             = "button",
+                            "data-bs-toggle" = "dropdown",
+
+                            tags$span(
+                                class = "pe-1",
+                                bsicons::bs_icon("translate", a11y = "none")
+                            ),
+
+                            shiny::textOutput(ns("nav_item_language"), tags$span)
+                        ),
+
+                        htmltools::tagSetChildren(
+                            tags$ul(class = "dropdown-menu"),
+                            list = btn_langs_choices
+                        )
+                    ),
+
+                    ## Expostats Links -----------------------------------------
+
+                    tags$li(
+                        class = "nav-item dropdown",
+
+                        tags$button(
+                            class            = "nav-link dropdown-toggle",
+                            type             = "button",
+                            "data-bs-toggle" = "dropdown",
+
+                            tags$span(
+                                class = "pe-1",
+                                bsicons::bs_icon("link", a11y = "none")
+                            ),
+
+                            "Expostats"
+                        ),
+
+                        shiny::uiOutput(
+                            ns("nav_item_expostats_links"),
+                            container = tags$ul,
+                            class     = "dropdown-menu"
+                        )
+                    ),
+
+                    ## Spacers -------------------------------------------------
+
+                    # Vertical bar for larger screens to
+                    # separate buttons from other nav items.
+                    # Only shown on larger screens (>= 992px).
+                    tags$div(class = "d-none d-lg-block vr ms-2 me-3"),
+
+                    # Extra padding to separate buttons from other nav items.
+                    # Only shown on smaller screens (<= 992px).
+                    tags$div(class = "d-lg-none mt-3"),
+
+                    ## Buttons -------------------------------------------------
+
+                    # They are grouped together as a single nav item.
+                    tags$li(
+                        class = "nav-item",
+
+                        ### GitHub ---------------------------------------------
+
+                        tags$a(
+                            class  = "btn btn-outline-secondary app-btn me-2",
+                            href   = default_urls$code,
+                            target = "_blank",
+                            bsicons::bs_icon("github", a11y = "none")
+                        ) |>
+                        bslib::tooltip(
+                            id        = ns("btn_code_tooltip"),
+                            placement = "bottom",
+                            ""
+                        ),
+
+                        ### Submit Bugs ----------------------------------------
+
+                        tags$a(
+                            class  = "btn btn-outline-secondary app-btn me-2",
+                            href   = paste0(
+                                "mailto:",
+                                paste(default_maintainers_emails, collapse = ",")
+                            ),
+                            target = "_blank",
+                            bsicons::bs_icon("bug-fill", a11y = "none")
+                        ) |>
+                        bslib::tooltip(
+                            id        = ns("btn_bug_tooltip"),
+                            placement = "bottom",
+                            ""
+                        ),
+
+                        ### Source Code ----------------------------------------
+
+                        shiny::actionButton(
+                            class   = "btn btn-outline-secondary app-btn",
+                            inputId = ns("btn_color"),
+                            label   = bsicons::bs_icon("moon-fill", a11y = "none")
+                        ) |>
+                        bslib::tooltip(
+                            id        = ns("btn_color_tooltip"),
+                            placement = "bottom",
+                            ""
+                        )
+                    )
                 )
             )
         )
     )
-
-    return(ui)
 }
 
 #' @rdname ui-title
@@ -299,7 +313,12 @@ server_title <- function(id, lang) {
         }) |>
         shiny::bindCache(lang())
 
-        output$btn_links_choices <- shiny::renderUI({
+        output$nav_item_language <- shiny::renderText({
+            translate(lang = lang(), "Language")
+        }) |>
+        shiny::bindCache(lang())
+
+        output$nav_item_expostats_links <- shiny::renderUI({
             lang <- lang()
             links <- list(
                 list(
@@ -338,50 +357,42 @@ server_title <- function(id, lang) {
                     )
                 )
             })
-        })
+        }) |>
+        shiny::bindCache(lang())
 
         # Toggle color mode (light/dark).
         shiny::observe({
             # Icon shown in light mode is the one for dark mode,
             # and vice-versa. Since light is the initial mode,
-            # even values (including 0) of input$btn_color_mode
-            # show icon for dark mode, and odd numbers show the
-            # icon of light mode (each click toggles dark mode).
-            icon <- if (input$btn_color_mode %% 2L == 0L) {
+            # even values (including 0) of input$btn_color show
+            # icon for dark mode, and odd numbers show the icon
+            # of light mode (each click toggles dark mode).
+            icon <- if (input$btn_color %% 2L == 0L) {
                 bsicons::bs_icon("moon-fill", a11y = "none")
             } else {
                 bsicons::bs_icon("sun-fill", a11y = "none")
             }
 
             bslib::toggle_dark_mode()
-            shiny::updateActionButton(session, "btn_color_mode", label = icon)
+            shiny::updateActionButton(session, "btn_color", label = icon)
         }) |>
-        shiny::bindEvent(input$btn_color_mode)
+        shiny::bindEvent(input$btn_color)
 
         # Translate elements not rendered
         # with a shiny::render*() function.
         shiny::observe({
             lang <- lang()
 
-            bslib::update_tooltip("btn_langs_tooltip", translate(lang = lang, "
-                Choose your preferred language.
-            "))
-
-            bslib::update_tooltip("btn_links_tooltip", translate(lang = lang, "
-                Explore Expostats and other tools.
-            "))
-
-            bslib::update_tooltip("btn_color_mode_tooltip", translate(lang = lang, "
-                Choose your preferred color scheme. This is an experimental
-                feature. Contents may not be displayed appropriately.
+            bslib::update_tooltip("btn_code_tooltip", translate(lang = lang, "
+                See the source code of Tool 1 on GitHub.
             "))
 
             bslib::update_tooltip("btn_bug_tooltip", translate(lang = lang, "
-                Submit a bug or provide feedback to the maintainers.
+                Submit a bug or provide feedback to the maintainers by email.
             "))
 
-            bslib::update_tooltip("btn_code_tooltip", translate(lang = lang, "
-                See the source code on GitHub.
+            bslib::update_tooltip("btn_color_tooltip", translate(lang = lang, "
+                Toogle the current color scheme (light or dark).
             "))
         }) |>
         shiny::bindEvent(lang())

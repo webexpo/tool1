@@ -155,14 +155,6 @@ Calculation Parameters
 
 # Insert a translation here.
 
-:: Translations: 00650f3: Source Text
-
-Explore Expostats and other tools.
-
-:: Translations: 00650f3: Translation
-
-# Insert a translation here.
-
 :: Translations: 8f7f102: Source Text
 
 Quantile-Quantile Plot
@@ -554,6 +546,14 @@ Clear
 
 # Insert a translation here.
 
+:: Translations: ecd9787: Source Text
+
+Toogle the current color scheme (light or dark).
+
+:: Translations: ecd9787: Translation
+
+# Insert a translation here.
+
 :: Translations: f3c096c: Source Text
 
 No results are shown in the right panels until inputs are submitted.
@@ -586,14 +586,6 @@ the following scientific paper. Further details and references are also
 available on %s.
 
 :: Translations: f08555d: Translation
-
-# Insert a translation here.
-
-:: Translations: 2e77aed: Source Text
-
-See the source code on GitHub.
-
-:: Translations: 2e77aed: Translation
 
 # Insert a translation here.
 
@@ -765,14 +757,6 @@ split into distinct subsets, or that some outliers must be investigated.
 
 # Insert a translation here.
 
-:: Translations: 59f9427: Source Text
-
-Submit a bug or provide feedback to the maintainers.
-
-:: Translations: 59f9427: Translation
-
-# Insert a translation here.
-
 :: Translations: 23eb033: Source Text
 
 Critical Percentile Category
@@ -809,14 +793,6 @@ uncertainty (using the upper limit of the underlying credible interval).
 How should measurements be formatted?
 
 :: Translations: 5f12363: Translation
-
-# Insert a translation here.
-
-:: Translations: 9895a88: Source Text
-
-Get more information on this application and learn how to use it properly.
-
-:: Translations: 9895a88: Translation
 
 # Insert a translation here.
 
@@ -865,14 +841,6 @@ How can I verify that my measurements were successfully imported?
 Exposure Limit
 
 :: Translations: 501a2ee: Translation
-
-# Insert a translation here.
-
-:: Translations: e6a9040: Source Text
-
-Choose your preferred language.
-
-:: Translations: e6a9040: Translation
 
 # Insert a translation here.
 
@@ -996,6 +964,14 @@ Exposure Limit:
 Value
 
 :: Translations: 81fb05e: Translation
+
+# Insert a translation here.
+
+:: Translations: cb9ddbb: Source Text
+
+Submit a bug or provide feedback to the maintainers by email.
+
+:: Translations: cb9ddbb: Translation
 
 # Insert a translation here.
 
@@ -1278,6 +1254,14 @@ limit (OEL). It must be between 0% and 100%. The traditional default value is
 
 # Insert a translation here.
 
+:: Translations: 70d45be: Source Text
+
+Language
+
+:: Translations: 70d45be: Translation
+
+# Insert a translation here.
+
 :: Translations: 0cdc87d: Source Text
 
 %s and %s currently maintains Tool 1. Ununoctium is an external collaborator
@@ -1329,15 +1313,6 @@ Always put a leading zero before decimals for numbers strictly smaller than
 one. Always use a dot for decimals. Do not use a separator for thousands.
 
 :: Translations: dbb0a02: Translation
-
-# Insert a translation here.
-
-:: Translations: 0705c1d: Source Text
-
-Choose your preferred color scheme. This is an experimental feature. Contents
-may not be displayed appropriately.
-
-:: Translations: 0705c1d: Translation
 
 # Insert a translation here.
 
@@ -1423,6 +1398,14 @@ Density
 
 # Insert a translation here.
 
+:: Translations: 5d328be: Source Text
+
+See the source code of Tool 1 on GitHub.
+
+:: Translations: 5d328be: Translation
+
+# Insert a translation here.
+
 :: Translations: 9797b53: Source Text
 
 Tool 1 assumes that the measurements represent a random sample drawn from the
@@ -1439,6 +1422,14 @@ being assessed.
 Censored measurements are subject to one of the following procedures.
 
 :: Translations: cb21ace: Translation
+
+# Insert a translation here.
+
+:: Translations: 7464899: Source Text
+
+FAQ
+
+:: Translations: 7464899: Translation
 
 # Insert a translation here.
 
