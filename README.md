@@ -139,9 +139,6 @@ We may work on these issues in a near future.
 - Inputs lack robust validation mechanisms and may lead to undefined behavior
   in some cases.
 
-- Tool 1 is not optimized for mobile phones and small screens having a width
-  lower than 500 pixels.
-
 - Accessibility mechanisms
   ([ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA)) are
   not implemented.
