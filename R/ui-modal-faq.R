@@ -120,8 +120,9 @@ ui_modal_faq <- function(id) {
     # modal_id according to Bootstrap. This
     # is a little weird, but this value is
     # used to id the currently opened modal.
+    # Only shown on larger screens (>= 992px).
     btn_close <- tags$button(
-        class             = "btn btn-outline-secondary app-btn",
+        class             = "btn btn-outline-secondary app-btn d-none d-lg-block",
         type              = "button",
         "data-bs-dismiss" = "modal",
         bsicons::bs_icon("x-lg", a11y = "sem")
