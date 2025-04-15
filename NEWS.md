@@ -10,17 +10,20 @@
   text labels.
 
 * This changelog is now accessible directly from a link included in the footer
-  of the sidebar and Frequently Asked Questions modal.
+  of the Calculation Parameters sidebar and Frequently Asked Questions modal.
 
 ## Server Changes
 
 * The implementation of `ui_title()` was revamped and optimized. The objective
-  was to create a responsive Title Bar module. It now leverages
+  was to create a responsive Title Bar module leveraging
   [Bootrap 5 Navbar classes](https://getbootstrap.com/docs/5.3/components/navbar/).
 
-* The implementation of `server_title()` is now a little bit faster. There are
-  less calls to `bslib::update_tooltip()` and all static outputs are now cached.
+* The implementation of `server_title()` is now a little bit faster. The number
+  of times `bslib::update_tooltip()` is called has been reduced. All outputs
+  are cached.
 
 ## Fixes
 
-None.
+* Estimates boxes now properly overflow vertically as a whole (with only one
+  scrollbar) and not as two separate elements. The latter was confusing on
+  smaller screens.

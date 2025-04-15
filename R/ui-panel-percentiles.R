@@ -122,37 +122,33 @@ ui_panel_percentiles <- function(id) {
             )
         ),
 
-        # Estimates of the underlying distribution parameters.
         bslib::card_body(
-            fillable = FALSE,
+            # Estimates of the underlying distribution parameters.
+            tags$div(
+                tags$h3(
+                    class = "fs-5",
+                    shiny::textOutput(ns("estimates_params_title"), tags$span)
+                ),
 
-            bslib::card_title(
-                container = tags$h3,
-                class     = "mb-2 fs-5",
-                shiny::textOutput(ns("estimates_params_title"), tags$span)
+                shiny::uiOutput(
+                    outputId   = ns("estimates_params"),
+                    container = tags$ul,
+                    class     = "list-group list-group-flush"
+                )
             ),
 
-            shiny::uiOutput(
-                outputId   = ns("estimates_params"),
-                container = tags$ul,
-                class     = "list-group list-group-flush"
-            )
-        ),
+            # Estimate of the percentile.
+            tags$div(
+                tags$h3(
+                    class = "fs-5",
+                    shiny::textOutput(ns("estimates_percentile_title"), tags$span)
+                ),
 
-        # Estimate of the percentile.
-        bslib::card_body(
-            fillable = FALSE,
-
-            bslib::card_title(
-                container = tags$h3,
-                class     = "mb-2 fs-5",
-                shiny::textOutput(ns("estimates_percentile_title"), tags$span)
-            ),
-
-            shiny::uiOutput(
-                outputId   = ns("estimates_percentile"),
-                container = tags$ul,
-                class     = "list-group list-group-flush"
+                shiny::uiOutput(
+                    outputId   = ns("estimates_percentile"),
+                    container = tags$ul,
+                    class     = "list-group list-group-flush"
+                )
             )
         ),
 
