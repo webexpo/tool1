@@ -27,3 +27,7 @@
 * Estimates boxes now properly overflow vertically as a whole (with only one
   scrollbar) and not as two separate elements. The latter was confusing on
   smaller screens.
+
+* Message boxes included in the Calculation Parameters sidebar now properly
+  grow and shrink on all screens. They no longer collapse to a single line
+  with a width equal to `2px` (top and bottom borders).
