@@ -342,7 +342,8 @@ server_sidebar <- function(id, lang, panel_active) {
             bslib::update_tooltip("data_tooltip", translate(lang = lang, "
                 The measurement dataset. There must be one value per line. Values
                 can be censored to the left (<), to the right (>), or interval
-                censored ([X-Y]).
+                censored ([X-Y]). For more information, see the Calculation
+                Parameters section in Frequently Asked Questions (FAQ) above.
             "))
 
             bslib::update_tooltip("submit_btn_tooltip", translate(lang = lang, "

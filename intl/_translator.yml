@@ -58,15 +58,15 @@ Texts:
       - !<Location>
         Identifier: 4e2a12c:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 395, Col 25 @ Ln 398, Col 26
+        Ranges: Ln 391, Col 25 @ Ln 394, Col 26
       - !<Location>
         Identifier: 4e2a12c:l2
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 398, Col 25 @ Ln 401, Col 26
+        Ranges: Ln 394, Col 25 @ Ln 397, Col 26
       - !<Location>
         Identifier: 4e2a12c:l3
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 383, Col 25 @ Ln 386, Col 26
+        Ranges: Ln 379, Col 25 @ Ln 382, Col 26
   - !<Text>
     Identifier: '2348472'
     Algorithm: sha1
@@ -97,7 +97,7 @@ Texts:
       - !<Location>
         Identifier: ef12e2b:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 645, Col 17 @ Ln 657, Col 18
+        Ranges: Ln 641, Col 17 @ Ln 653, Col 18
   - !<Text>
     Identifier: 7e9d895
     Algorithm: sha1
@@ -109,15 +109,15 @@ Texts:
       - !<Location>
         Identifier: 7e9d895:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 302, Col 37 @ Ln 302, Col 81
+        Ranges: Ln 298, Col 37 @ Ln 298, Col 81
       - !<Location>
         Identifier: 7e9d895:l2
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 298, Col 37 @ Ln 298, Col 81
+        Ranges: Ln 294, Col 37 @ Ln 294, Col 81
       - !<Location>
         Identifier: 7e9d895:l3
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 283, Col 37 @ Ln 283, Col 81
+        Ranges: Ln 279, Col 37 @ Ln 279, Col 81
   - !<Text>
     Identifier: f6e929e
     Algorithm: sha1
@@ -182,15 +182,15 @@ Texts:
       - !<Location>
         Identifier: e80025a:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 353, Col 13 @ Ln 353, Col 55
+        Ranges: Ln 349, Col 13 @ Ln 349, Col 55
       - !<Location>
         Identifier: e80025a:l2
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 349, Col 13 @ Ln 349, Col 55
+        Ranges: Ln 345, Col 13 @ Ln 345, Col 55
       - !<Location>
         Identifier: e80025a:l3
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 334, Col 13 @ Ln 334, Col 55
+        Ranges: Ln 330, Col 13 @ Ln 330, Col 55
   - !<Text>
     Identifier: 3d4f8d5
     Algorithm: sha1
@@ -215,8 +215,8 @@ Texts:
         Identifier: 1de8474:l1
         Path: ./R/ui-panel-arithmetic-mean.R
         Ranges:
-          - Ln 577, Col 29 @ Ln 577, Col 67
-          - Ln 605, Col 30 @ Ln 605, Col 68
+          - Ln 573, Col 29 @ Ln 573, Col 67
+          - Ln 601, Col 30 @ Ln 601, Col 68
       - !<Location>
         Identifier: 1de8474:l2
         Path: ./R/ui-panel-descriptive-statistics.R
@@ -225,14 +225,14 @@ Texts:
         Identifier: 1de8474:l3
         Path: ./R/ui-panel-exceedance-fraction.R
         Ranges:
-          - Ln 564, Col 29 @ Ln 564, Col 67
-          - Ln 590, Col 30 @ Ln 590, Col 68
+          - Ln 560, Col 29 @ Ln 560, Col 67
+          - Ln 586, Col 30 @ Ln 586, Col 68
       - !<Location>
         Identifier: 1de8474:l4
         Path: ./R/ui-panel-percentiles.R
         Ranges:
-          - Ln 556, Col 38 @ Ln 556, Col 76
-          - Ln 586, Col 38 @ Ln 586, Col 76
+          - Ln 552, Col 38 @ Ln 552, Col 76
+          - Ln 582, Col 38 @ Ln 582, Col 76
   - !<Text>
     Identifier: 745ebd1
     Algorithm: sha1
@@ -276,7 +276,7 @@ Texts:
       - !<Location>
         Identifier: e3d5355:l1
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 304, Col 13 @ Ln 304, Col 51
+        Ranges: Ln 300, Col 13 @ Ln 300, Col 51
   - !<Text>
     Identifier: 62fc968
     Algorithm: sha1
@@ -295,9 +295,9 @@ Texts:
         Identifier: 62fc968:l2
         Path: ./R/ui-panel-percentiles.R
         Ranges:
-          - Ln 329, Col 13 @ Ln 329, Col 50
-          - Ln 558, Col 38 @ Ln 558, Col 73
-          - Ln 590, Col 38 @ Ln 590, Col 73
+          - Ln 325, Col 13 @ Ln 325, Col 50
+          - Ln 554, Col 38 @ Ln 554, Col 73
+          - Ln 586, Col 38 @ Ln 586, Col 73
   - !<Text>
     Identifier: 5b8a460
     Algorithm: sha1
@@ -310,15 +310,15 @@ Texts:
       - !<Location>
         Identifier: 5b8a460:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 495, Col 25 @ Ln 498, Col 26
+        Ranges: Ln 491, Col 25 @ Ln 494, Col 26
       - !<Location>
         Identifier: 5b8a460:l2
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 482, Col 25 @ Ln 485, Col 26
+        Ranges: Ln 478, Col 25 @ Ln 481, Col 26
       - !<Location>
         Identifier: 5b8a460:l3
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 467, Col 25 @ Ln 470, Col 26
+        Ranges: Ln 463, Col 25 @ Ln 466, Col 26
   - !<Text>
     Identifier: 463c845
     Algorithm: sha1
@@ -333,7 +333,7 @@ Texts:
       - !<Location>
         Identifier: 463c845:l1
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 599, Col 13 @ Ln 604, Col 14
+        Ranges: Ln 595, Col 13 @ Ln 600, Col 14
   - !<Text>
     Identifier: f7a0860
     Algorithm: sha1
@@ -365,11 +365,11 @@ Texts:
       - !<Location>
         Identifier: 5f52075:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 636, Col 31 @ Ln 636, Col 71
+        Ranges: Ln 632, Col 31 @ Ln 632, Col 71
       - !<Location>
         Identifier: 5f52075:l2
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 622, Col 31 @ Ln 622, Col 71
+        Ranges: Ln 618, Col 31 @ Ln 618, Col 71
   - !<Text>
     Identifier: fc5b077
     Algorithm: sha1
@@ -381,15 +381,15 @@ Texts:
       - !<Location>
         Identifier: fc5b077:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 607, Col 30 @ Ln 607, Col 87
+        Ranges: Ln 603, Col 30 @ Ln 603, Col 87
       - !<Location>
         Identifier: fc5b077:l2
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 593, Col 30 @ Ln 593, Col 87
+        Ranges: Ln 589, Col 30 @ Ln 589, Col 87
       - !<Location>
         Identifier: fc5b077:l3
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 588, Col 38 @ Ln 588, Col 95
+        Ranges: Ln 584, Col 38 @ Ln 584, Col 95
   - !<Text>
     Identifier: 2970e5a
     Algorithm: sha1
@@ -414,15 +414,15 @@ Texts:
       - !<Location>
         Identifier: 59715a2:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 532, Col 25 @ Ln 535, Col 26
+        Ranges: Ln 528, Col 25 @ Ln 531, Col 26
       - !<Location>
         Identifier: 59715a2:l2
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 519, Col 25 @ Ln 522, Col 26
+        Ranges: Ln 515, Col 25 @ Ln 518, Col 26
       - !<Location>
         Identifier: 59715a2:l3
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 508, Col 25 @ Ln 511, Col 26
+        Ranges: Ln 504, Col 25 @ Ln 507, Col 26
   - !<Text>
     Identifier: 2052e8c
     Algorithm: sha1
@@ -461,7 +461,7 @@ Texts:
       - !<Location>
         Identifier: 7be717b:l1
         Path: ./R/ui-footer.R
-        Ranges: Ln 70, Col 21 @ Ln 70, Col 67
+        Ranges: Ln 73, Col 21 @ Ln 73, Col 67
   - !<Text>
     Identifier: 92193c3
     Algorithm: sha1
@@ -514,10 +514,10 @@ Texts:
         Identifier: df83adb:l1
         Path: ./R/ui-panel-arithmetic-mean.R
         Ranges:
-          - Ln 323, Col 13 @ Ln 323, Col 55
-          - Ln 348, Col 13 @ Ln 348, Col 55
-          - Ln 579, Col 29 @ Ln 579, Col 69
-          - Ln 609, Col 30 @ Ln 609, Col 70
+          - Ln 319, Col 13 @ Ln 319, Col 55
+          - Ln 344, Col 13 @ Ln 344, Col 55
+          - Ln 575, Col 29 @ Ln 575, Col 69
+          - Ln 605, Col 30 @ Ln 605, Col 70
       - !<Location>
         Identifier: df83adb:l2
         Path: ./R/ui-panel-descriptive-statistics.R
@@ -569,7 +569,7 @@ Texts:
       - !<Location>
         Identifier: a32a1f9:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 585, Col 13 @ Ln 592, Col 14
+        Ranges: Ln 581, Col 13 @ Ln 588, Col 14
   - !<Text>
     Identifier: 1dba349
     Algorithm: sha1
@@ -584,15 +584,15 @@ Texts:
       - !<Location>
         Identifier: 1dba349:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 464, Col 13 @ Ln 468, Col 14
+        Ranges: Ln 460, Col 13 @ Ln 464, Col 14
       - !<Location>
         Identifier: 1dba349:l2
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 451, Col 13 @ Ln 455, Col 14
+        Ranges: Ln 447, Col 13 @ Ln 451, Col 14
       - !<Location>
         Identifier: 1dba349:l3
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 436, Col 13 @ Ln 440, Col 14
+        Ranges: Ln 432, Col 13 @ Ln 436, Col 14
   - !<Text>
     Identifier: db16b44
     Algorithm: sha1
@@ -634,7 +634,7 @@ Texts:
       - !<Location>
         Identifier: 6298302:l1
         Path: ./R/ui-sidebar.R
-        Ranges: Ln 348, Col 57 @ Ln 350, Col 14
+        Ranges: Ln 349, Col 57 @ Ln 351, Col 14
   - !<Text>
     Identifier: 8d5cf97
     Algorithm: sha1
@@ -648,6 +648,22 @@ Texts:
         Path: ./R/ui-exceedance-plot.R
         Ranges: Ln 370, Col 27 @ Ln 370, Col 60
   - !<Text>
+    Identifier: 68c086f
+    Algorithm: sha1
+    Hash: 68c086f367deb32174a2aa64fba2cf4df0153b6c
+    Source Language: en
+    Source Text: |-
+      The measurement dataset. There must be one value per line. Values can be
+      censored to the left (<), to the right (>), or interval censored ([X-Y]).
+      For more information, see the Calculation Parameters section in
+      Frequently Asked Questions (FAQ) above.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 68c086f:l1
+        Path: ./R/ui-sidebar.R
+        Ranges: Ln 342, Col 51 @ Ln 347, Col 14
+  - !<Text>
     Identifier: d257a4e
     Algorithm: sha1
     Hash: d257a4e6645f4dc5240b86db354f00a9dde4d62d
@@ -658,11 +674,11 @@ Texts:
       - !<Location>
         Identifier: d257a4e:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 634, Col 31 @ Ln 634, Col 64
+        Ranges: Ln 630, Col 31 @ Ln 630, Col 64
       - !<Location>
         Identifier: d257a4e:l2
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 620, Col 31 @ Ln 620, Col 64
+        Ranges: Ln 616, Col 31 @ Ln 616, Col 64
   - !<Text>
     Identifier: 80d1a60
     Algorithm: sha1
@@ -674,7 +690,7 @@ Texts:
       - !<Location>
         Identifier: 80d1a60:l1
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 619, Col 34 @ Ln 619, Col 87
+        Ranges: Ln 615, Col 34 @ Ln 615, Col 87
   - !<Text>
     Identifier: 962996f
     Algorithm: sha1
@@ -740,15 +756,15 @@ Texts:
       - !<Location>
         Identifier: 9add3cf:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 333, Col 13 @ Ln 333, Col 50
+        Ranges: Ln 329, Col 13 @ Ln 329, Col 50
       - !<Location>
         Identifier: 9add3cf:l2
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 329, Col 13 @ Ln 329, Col 50
+        Ranges: Ln 325, Col 13 @ Ln 325, Col 50
       - !<Location>
         Identifier: 9add3cf:l3
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 314, Col 13 @ Ln 314, Col 50
+        Ranges: Ln 310, Col 13 @ Ln 310, Col 50
   - !<Text>
     Identifier: 8cdd8fb
     Algorithm: sha1
@@ -800,18 +816,18 @@ Texts:
         Identifier: ad1e98e:l1
         Path: ./R/ui-panel-arithmetic-mean.R
         Ranges:
-          - Ln 578, Col 29 @ Ln 578, Col 57
-          - Ln 608, Col 30 @ Ln 608, Col 58
+          - Ln 574, Col 29 @ Ln 574, Col 57
+          - Ln 604, Col 30 @ Ln 604, Col 58
       - !<Location>
         Identifier: ad1e98e:l2
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 594, Col 30 @ Ln 594, Col 58
+        Ranges: Ln 590, Col 30 @ Ln 590, Col 58
       - !<Location>
         Identifier: ad1e98e:l3
         Path: ./R/ui-panel-percentiles.R
         Ranges:
-          - Ln 557, Col 38 @ Ln 557, Col 66
-          - Ln 589, Col 38 @ Ln 589, Col 66
+          - Ln 553, Col 38 @ Ln 553, Col 66
+          - Ln 585, Col 38 @ Ln 585, Col 66
   - !<Text>
     Identifier: b3c553f
     Algorithm: sha1
@@ -837,15 +853,15 @@ Texts:
       - !<Location>
         Identifier: cebe5c4:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 580, Col 29 @ Ln 580, Col 71
+        Ranges: Ln 576, Col 29 @ Ln 576, Col 71
       - !<Location>
         Identifier: cebe5c4:l2
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 566, Col 29 @ Ln 566, Col 71
+        Ranges: Ln 562, Col 29 @ Ln 562, Col 71
       - !<Location>
         Identifier: cebe5c4:l3
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 559, Col 38 @ Ln 559, Col 80
+        Ranges: Ln 555, Col 38 @ Ln 555, Col 80
   - !<Text>
     Identifier: f10baab
     Algorithm: sha1
@@ -857,15 +873,15 @@ Texts:
       - !<Location>
         Identifier: f10baab:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 633, Col 31 @ Ln 633, Col 67
+        Ranges: Ln 629, Col 31 @ Ln 629, Col 67
       - !<Location>
         Identifier: f10baab:l2
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 620, Col 34 @ Ln 620, Col 70
+        Ranges: Ln 616, Col 34 @ Ln 616, Col 70
       - !<Location>
         Identifier: f10baab:l3
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 619, Col 31 @ Ln 619, Col 67
+        Ranges: Ln 615, Col 31 @ Ln 615, Col 67
   - !<Text>
     Identifier: 6918de6
     Algorithm: sha1
@@ -906,7 +922,7 @@ Texts:
       - !<Location>
         Identifier: ac24260:l1
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 383, Col 25 @ Ln 386, Col 26
+        Ranges: Ln 379, Col 25 @ Ln 382, Col 26
   - !<Text>
     Identifier: d111f1a
     Algorithm: sha1
@@ -918,15 +934,15 @@ Texts:
       - !<Location>
         Identifier: d111f1a:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 358, Col 13 @ Ln 358, Col 52
+        Ranges: Ln 354, Col 13 @ Ln 354, Col 52
       - !<Location>
         Identifier: d111f1a:l2
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 354, Col 13 @ Ln 354, Col 52
+        Ranges: Ln 350, Col 13 @ Ln 350, Col 52
       - !<Location>
         Identifier: d111f1a:l3
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 339, Col 13 @ Ln 339, Col 52
+        Ranges: Ln 335, Col 13 @ Ln 335, Col 52
   - !<Text>
     Identifier: f59a9a9
     Algorithm: sha1
@@ -1045,7 +1061,7 @@ Texts:
       - !<Location>
         Identifier: 1fa04de:l1
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 630, Col 17 @ Ln 640, Col 18
+        Ranges: Ln 626, Col 17 @ Ln 636, Col 18
   - !<Text>
     Identifier: af71ace
     Algorithm: sha1
@@ -1081,15 +1097,15 @@ Texts:
       - !<Location>
         Identifier: 99db36b:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 312, Col 37 @ Ln 312, Col 85
+        Ranges: Ln 308, Col 37 @ Ln 308, Col 85
       - !<Location>
         Identifier: 99db36b:l2
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 308, Col 37 @ Ln 308, Col 85
+        Ranges: Ln 304, Col 37 @ Ln 304, Col 85
       - !<Location>
         Identifier: 99db36b:l3
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 293, Col 37 @ Ln 293, Col 85
+        Ranges: Ln 289, Col 37 @ Ln 289, Col 85
   - !<Text>
     Identifier: 9d61612
     Algorithm: sha1
@@ -1117,7 +1133,7 @@ Texts:
       - !<Location>
         Identifier: e510a31:l1
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 489, Col 25 @ Ln 492, Col 26
+        Ranges: Ln 485, Col 25 @ Ln 488, Col 26
   - !<Text>
     Identifier: ad77e09
     Algorithm: sha1
@@ -1209,15 +1225,15 @@ Texts:
       - !<Location>
         Identifier: da9cc89:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 363, Col 13 @ Ln 363, Col 54
+        Ranges: Ln 359, Col 13 @ Ln 359, Col 54
       - !<Location>
         Identifier: da9cc89:l2
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 359, Col 13 @ Ln 359, Col 54
+        Ranges: Ln 355, Col 13 @ Ln 355, Col 54
       - !<Location>
         Identifier: da9cc89:l3
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 344, Col 13 @ Ln 344, Col 54
+        Ranges: Ln 340, Col 13 @ Ln 340, Col 54
   - !<Text>
     Identifier: da5e3d2
     Algorithm: sha1
@@ -1231,7 +1247,7 @@ Texts:
       - !<Location>
         Identifier: da5e3d2:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 386, Col 21 @ Ln 389, Col 22
+        Ranges: Ln 382, Col 21 @ Ln 385, Col 22
   - !<Text>
     Identifier: 10ef3a6
     Algorithm: sha1
@@ -1311,7 +1327,7 @@ Texts:
       - !<Location>
         Identifier: 23eb033:l1
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 625, Col 31 @ Ln 625, Col 84
+        Ranges: Ln 621, Col 31 @ Ln 621, Col 84
   - !<Text>
     Identifier: 1d671e4
     Algorithm: sha1
@@ -1325,7 +1341,7 @@ Texts:
       - !<Location>
         Identifier: 1d671e4:l1
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 368, Col 25 @ Ln 371, Col 26
+        Ranges: Ln 364, Col 25 @ Ln 367, Col 26
   - !<Text>
     Identifier: be6fb8b
     Algorithm: sha1
@@ -1393,15 +1409,15 @@ Texts:
       - !<Location>
         Identifier: e0147d1:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 480, Col 25 @ Ln 483, Col 26
+        Ranges: Ln 476, Col 25 @ Ln 479, Col 26
       - !<Location>
         Identifier: e0147d1:l2
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 467, Col 25 @ Ln 470, Col 26
+        Ranges: Ln 463, Col 25 @ Ln 466, Col 26
       - !<Location>
         Identifier: e0147d1:l3
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 452, Col 25 @ Ln 455, Col 26
+        Ranges: Ln 448, Col 25 @ Ln 451, Col 26
   - !<Text>
     Identifier: 897e74a
     Algorithm: sha1
@@ -1484,10 +1500,10 @@ Texts:
         Identifier: a5a2911:l1
         Path: ./R/ui-panel-exceedance-fraction.R
         Ranges:
-          - Ln 319, Col 13 @ Ln 319, Col 59
-          - Ln 344, Col 13 @ Ln 344, Col 59
-          - Ln 565, Col 29 @ Ln 565, Col 73
-          - Ln 592, Col 30 @ Ln 592, Col 74
+          - Ln 315, Col 13 @ Ln 315, Col 59
+          - Ln 340, Col 13 @ Ln 340, Col 59
+          - Ln 561, Col 29 @ Ln 561, Col 73
+          - Ln 588, Col 30 @ Ln 588, Col 74
   - !<Text>
     Identifier: 4528da3
     Algorithm: sha1
@@ -1548,7 +1564,7 @@ Texts:
       - !<Location>
         Identifier: 0e99366:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 639, Col 31 @ Ln 639, Col 80
+        Ranges: Ln 635, Col 31 @ Ln 635, Col 80
   - !<Text>
     Identifier: 24a1b71
     Algorithm: sha1
@@ -1604,7 +1620,7 @@ Texts:
       - !<Location>
         Identifier: 7d94d60:l1
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 595, Col 13 @ Ln 602, Col 14
+        Ranges: Ln 591, Col 13 @ Ln 598, Col 14
   - !<Text>
     Identifier: 1ad7b08
     Algorithm: sha1
@@ -1652,7 +1668,7 @@ Texts:
       - !<Location>
         Identifier: 0595dc0:l1
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 504, Col 25 @ Ln 507, Col 26
+        Ranges: Ln 500, Col 25 @ Ln 503, Col 26
   - !<Text>
     Identifier: ff8d5e3
     Algorithm: sha1
@@ -1764,7 +1780,7 @@ Texts:
       - !<Location>
         Identifier: 02a9a58:l1
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 631, Col 17 @ Ln 644, Col 18
+        Ranges: Ln 627, Col 17 @ Ln 640, Col 18
   - !<Text>
     Identifier: f69c2db
     Algorithm: sha1
@@ -1776,15 +1792,15 @@ Texts:
       - !<Location>
         Identifier: f69c2db:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 338, Col 13 @ Ln 338, Col 49
+        Ranges: Ln 334, Col 13 @ Ln 334, Col 49
       - !<Location>
         Identifier: f69c2db:l2
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 334, Col 13 @ Ln 334, Col 49
+        Ranges: Ln 330, Col 13 @ Ln 330, Col 49
       - !<Location>
         Identifier: f69c2db:l3
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 319, Col 13 @ Ln 319, Col 49
+        Ranges: Ln 315, Col 13 @ Ln 315, Col 49
   - !<Text>
     Identifier: cf880eb
     Algorithm: sha1
@@ -1796,7 +1812,7 @@ Texts:
       - !<Location>
         Identifier: cf880eb:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 517, Col 25 @ Ln 520, Col 26
+        Ranges: Ln 513, Col 25 @ Ln 516, Col 26
   - !<Text>
     Identifier: 036cb38
     Algorithm: sha1
@@ -1811,7 +1827,7 @@ Texts:
       - !<Location>
         Identifier: 036cb38:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 614, Col 13 @ Ln 619, Col 14
+        Ranges: Ln 610, Col 13 @ Ln 615, Col 14
   - !<Text>
     Identifier: f533761
     Algorithm: sha1
@@ -1835,11 +1851,11 @@ Texts:
       - !<Location>
         Identifier: c165d34:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 635, Col 31 @ Ln 635, Col 70
+        Ranges: Ln 631, Col 31 @ Ln 631, Col 70
       - !<Location>
         Identifier: c165d34:l2
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 621, Col 31 @ Ln 621, Col 70
+        Ranges: Ln 617, Col 31 @ Ln 617, Col 70
   - !<Text>
     Identifier: 5e2c2fa
     Algorithm: sha1
@@ -1882,7 +1898,7 @@ Texts:
       - !<Location>
         Identifier: bdd75ae:l1
         Path: ./R/ui-sidebar.R
-        Ranges: Ln 352, Col 56 @ Ln 355, Col 14
+        Ranges: Ln 353, Col 56 @ Ln 356, Col 14
   - !<Text>
     Identifier: 4f7aff7
     Algorithm: sha1
@@ -1942,15 +1958,15 @@ Texts:
       - !<Location>
         Identifier: 79e5ee7:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 343, Col 13 @ Ln 343, Col 63
+        Ranges: Ln 339, Col 13 @ Ln 339, Col 63
       - !<Location>
         Identifier: 79e5ee7:l2
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 339, Col 13 @ Ln 339, Col 63
+        Ranges: Ln 335, Col 13 @ Ln 335, Col 63
       - !<Location>
         Identifier: 79e5ee7:l3
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 324, Col 13 @ Ln 324, Col 63
+        Ranges: Ln 320, Col 13 @ Ln 320, Col 63
   - !<Text>
     Identifier: '7034018'
     Algorithm: sha1
@@ -1978,11 +1994,11 @@ Texts:
       - !<Location>
         Identifier: 27c579f:l1
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 571, Col 13 @ Ln 577, Col 14
+        Ranges: Ln 567, Col 13 @ Ln 573, Col 14
       - !<Location>
         Identifier: 27c579f:l2
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 564, Col 13 @ Ln 570, Col 14
+        Ranges: Ln 560, Col 13 @ Ln 566, Col 14
   - !<Text>
     Identifier: c73ed1b
     Algorithm: sha1
@@ -1994,15 +2010,15 @@ Texts:
       - !<Location>
         Identifier: c73ed1b:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 562, Col 13 @ Ln 564, Col 14
+        Ranges: Ln 558, Col 13 @ Ln 560, Col 14
       - !<Location>
         Identifier: c73ed1b:l2
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 549, Col 13 @ Ln 551, Col 14
+        Ranges: Ln 545, Col 13 @ Ln 547, Col 14
       - !<Location>
         Identifier: c73ed1b:l3
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 538, Col 13 @ Ln 540, Col 14
+        Ranges: Ln 534, Col 13 @ Ln 536, Col 14
   - !<Text>
     Identifier: '8141885'
     Algorithm: sha1
@@ -2127,11 +2143,11 @@ Texts:
       - !<Location>
         Identifier: 6db5beb:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 637, Col 31 @ Ln 637, Col 72
+        Ranges: Ln 633, Col 31 @ Ln 633, Col 72
       - !<Location>
         Identifier: 6db5beb:l2
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 623, Col 31 @ Ln 623, Col 72
+        Ranges: Ln 619, Col 31 @ Ln 619, Col 72
   - !<Text>
     Identifier: 75844cd
     Algorithm: sha1
@@ -2172,15 +2188,15 @@ Texts:
       - !<Location>
         Identifier: 3be3ecd:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 547, Col 25 @ Ln 550, Col 26
+        Ranges: Ln 543, Col 25 @ Ln 546, Col 26
       - !<Location>
         Identifier: 3be3ecd:l2
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 534, Col 25 @ Ln 537, Col 26
+        Ranges: Ln 530, Col 25 @ Ln 533, Col 26
       - !<Location>
         Identifier: 3be3ecd:l3
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 523, Col 25 @ Ln 526, Col 26
+        Ranges: Ln 519, Col 25 @ Ln 522, Col 26
   - !<Text>
     Identifier: dbb0a02
     Algorithm: sha1
@@ -2250,15 +2266,15 @@ Texts:
       - !<Location>
         Identifier: 449ff93:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 425, Col 25 @ Ln 425, Col 78
+        Ranges: Ln 421, Col 25 @ Ln 421, Col 78
       - !<Location>
         Identifier: 449ff93:l2
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 428, Col 25 @ Ln 428, Col 78
+        Ranges: Ln 424, Col 25 @ Ln 424, Col 78
       - !<Location>
         Identifier: 449ff93:l3
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 413, Col 25 @ Ln 413, Col 78
+        Ranges: Ln 409, Col 25 @ Ln 409, Col 78
   - !<Text>
     Identifier: '9578728'
     Algorithm: sha1
@@ -2270,7 +2286,7 @@ Texts:
       - !<Location>
         Identifier: 9578728:l1
         Path: ./R/ui-footer.R
-        Ranges: Ln 63, Col 17 @ Ln 63, Col 64
+        Ranges: Ln 66, Col 17 @ Ln 66, Col 64
   - !<Text>
     Identifier: 426cfe3
     Algorithm: sha1
@@ -2291,7 +2307,7 @@ Texts:
       - !<Location>
         Identifier: 426cfe3:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 437, Col 13 @ Ln 448, Col 14
+        Ranges: Ln 433, Col 13 @ Ln 444, Col 14
   - !<Text>
     Identifier: 03c33e5
     Algorithm: sha1
@@ -2327,15 +2343,15 @@ Texts:
       - !<Location>
         Identifier: ceefbab:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 606, Col 30 @ Ln 606, Col 62
+        Ranges: Ln 602, Col 30 @ Ln 602, Col 62
       - !<Location>
         Identifier: ceefbab:l2
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 591, Col 30 @ Ln 591, Col 62
+        Ranges: Ln 587, Col 30 @ Ln 587, Col 62
       - !<Location>
         Identifier: ceefbab:l3
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 587, Col 38 @ Ln 587, Col 70
+        Ranges: Ln 583, Col 38 @ Ln 583, Col 70
   - !<Text>
     Identifier: 5d328be
     Algorithm: sha1
@@ -2473,15 +2489,15 @@ Texts:
       - !<Location>
         Identifier: 603143d:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 410, Col 25 @ Ln 413, Col 26
+        Ranges: Ln 406, Col 25 @ Ln 409, Col 26
       - !<Location>
         Identifier: 603143d:l2
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 413, Col 25 @ Ln 416, Col 26
+        Ranges: Ln 409, Col 25 @ Ln 412, Col 26
       - !<Location>
         Identifier: 603143d:l3
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 398, Col 25 @ Ln 401, Col 26
+        Ranges: Ln 394, Col 25 @ Ln 397, Col 26
   - !<Text>
     Identifier: 380f931
     Algorithm: sha1
@@ -2633,15 +2649,15 @@ Texts:
       - !<Location>
         Identifier: 3eba509:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 328, Col 13 @ Ln 328, Col 55
+        Ranges: Ln 324, Col 13 @ Ln 324, Col 55
       - !<Location>
         Identifier: 3eba509:l2
         Path: ./R/ui-panel-exceedance-fraction.R
-        Ranges: Ln 324, Col 13 @ Ln 324, Col 55
+        Ranges: Ln 320, Col 13 @ Ln 320, Col 55
       - !<Location>
         Identifier: 3eba509:l3
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 309, Col 13 @ Ln 309, Col 55
+        Ranges: Ln 305, Col 13 @ Ln 305, Col 55
   - !<Text>
     Identifier: '3883288'
     Algorithm: sha1
@@ -2668,20 +2684,6 @@ Texts:
         Identifier: 2502705:l1
         Path: ./R/ui-exceedance-plot.R
         Ranges: Ln 415, Col 60 @ Ln 418, Col 14
-  - !<Text>
-    Identifier: 2b83cc5
-    Algorithm: sha1
-    Hash: 2b83cc525d940618609420a991a0f687a33b2fdc
-    Source Language: en
-    Source Text: |-
-      The measurement dataset. There must be one value per line. Values can be
-      censored to the left (<), to the right (>), or interval censored ([X-Y]).
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 2b83cc5:l1
-        Path: ./R/ui-sidebar.R
-        Ranges: Ln 342, Col 51 @ Ln 346, Col 14
   - !<Text>
     Identifier: 632ebd0
     Algorithm: sha1
@@ -2769,9 +2771,9 @@ Texts:
       - !<Location>
         Identifier: 532bf12:l1
         Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 638, Col 31 @ Ln 638, Col 61
+        Ranges: Ln 634, Col 31 @ Ln 634, Col 61
       - !<Location>
         Identifier: 532bf12:l2
         Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 624, Col 31 @ Ln 624, Col 61
+        Ranges: Ln 620, Col 31 @ Ln 620, Col 61
 

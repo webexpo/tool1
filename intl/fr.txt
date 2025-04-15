@@ -368,6 +368,17 @@ Variant:
 
 # Insert a translation here.
 
+:: Translations: 68c086f: Source Text
+
+The measurement dataset. There must be one value per line. Values can be
+censored to the left (<), to the right (>), or interval censored ([X-Y]). For
+more information, see the Calculation Parameters section in Frequently Asked
+Questions (FAQ) above.
+
+:: Translations: 68c086f: Translation
+
+# Insert a translation here.
+
 :: Translations: d257a4e: Source Text
 
 ≤ 1% OEL
@@ -1598,15 +1609,6 @@ Use this value to change the color of exposures that are below the exposure
 limit.
 
 :: Translations: 2502705: Translation
-
-# Insert a translation here.
-
-:: Translations: 2b83cc5: Source Text
-
-The measurement dataset. There must be one value per line. Values can be
-censored to the left (<), to the right (>), or interval censored ([X-Y]).
-
-:: Translations: 2b83cc5: Translation
 
 # Insert a translation here.
 
