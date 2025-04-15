@@ -89,6 +89,7 @@ default_maintainers_emails <- c(
 
 # Default URLs to various resources.
 default_urls <- list(
+    news            = "https://github.com/webexpo/tool1/blob/main/NEWS.md",
     code            = "https://github.com/webexpo/tool1",
     aiha            = "https://www.aiha.org",
     ununoctium      = "https://ununoctium.dev",

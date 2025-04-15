@@ -9,6 +9,9 @@
 * The title bar is now slightly smaller, and has more intuitive buttons with
   text labels.
 
+* This changelog is now accessible directly from a link included in the footer
+  of the sidebar and Frequently Asked Questions modal.
+
 ## Server Changes
 
 * The implementation of `ui_title()` was revamped and optimized. The objective
