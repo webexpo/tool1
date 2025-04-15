@@ -53,8 +53,7 @@ server_footer <- function(id, lang) {
                 ui_link(default_urls$code, default_version[["number"]]),
                 sprintf("(%s)", default_version[["release_date"]]),
                 bsicons::bs_icon("dot", ally = "deco"),
-                ui_link(default_urls$news, "Changelog"),
-                "."
+                ui_link(default_urls$news, "Changelog")
             )
         }) |>
         shiny::bindCache(lang())
