@@ -46,8 +46,11 @@ if (interactive()) {
 
         # Shortcuts to run development scripts.
         .find <- \() invisible(source(file.path(".scripts", "find-text.R")))
-        .pub  <- \() invisible(source(file.path(".scripts", "publish.R")))
         .run  <- \() invisible(source(file.path(".scripts", "run.R")))
+        .pub  <- \(...) {
+            source(file.path(".scripts", "publish.R"), TRUE)
+            return(invisible(publish(...)))
+        }
 
         # Clear the global environment.
         .rm <- \() rm(list = ls(name = globalenv()), pos = globalenv())

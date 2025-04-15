@@ -22,6 +22,10 @@
   of times `bslib::update_tooltip()` is called has been reduced. All outputs
   are cached.
 
+* Development script `R/publish.R` was refactored into a `publish()` function.
+  It can either publish a development version or an official version of Tool 1.
+  See `README.md` for details.
+
 ## Fixes
 
 * Estimates boxes now properly overflow vertically as a whole (with only one

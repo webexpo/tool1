@@ -59,10 +59,16 @@ This sources `.scripts/run.R`. See this script for details.
 ## Deploy
 
 Tool 1 is deployed to [shinyapps.io](https://lavoue.shinyapps.io/tool1).
-To deploy a new version, call
+To deploy a new version, call `.pub()`.
 
 ```r
+# Deploy a beta version (useful for testing purposes).
+# It is publicly accessible at https://lavoue.shinyapps.io/tool1-beta/.
 .pub()
+
+# Deploy an official version.
+# It is publicly accessible at https://lavoue.shinyapps.io/tool1/.
+.pub("prod")
 ```
 
 This sources `.scripts/publish.R`. See this script for details.
