@@ -60,7 +60,7 @@ shiny::shinyOptions(
 # Constants --------------------------------------------------------------------
 
 # Default version/release to display in footers.
-default_version <- c(number = "4.0.0", release_date = "2025-04-11")
+default_version <- c(number = "4.1.0", release_date = "2025-04-16")
 
 # Default language.
 default_lang <- transltr::language_source_get()
@@ -89,6 +89,7 @@ default_maintainers_emails <- c(
 
 # Default URLs to various resources.
 default_urls <- list(
+    news            = "https://github.com/webexpo/tool1/blob/main/NEWS.md",
     code            = "https://github.com/webexpo/tool1",
     aiha            = "https://www.aiha.org",
     ununoctium      = "https://ununoctium.dev",

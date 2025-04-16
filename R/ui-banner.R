@@ -66,7 +66,7 @@ ui_banner <- function(id) {
                 role  = "alert",
 
                 tags$div(
-                    class = "fs-4",
+                    class = "fs-4 text-center",
 
                     tags$span(
                         class = "pe-2",

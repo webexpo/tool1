@@ -104,13 +104,15 @@ ui_modal_faq <- function(id) {
         "data-bs-target" = paste0("#", modal_id),
 
         tags$button(
-            class = "btn btn-outline-secondary app-btn",
+            class = "nav-link",
             type  = "button",
-            bsicons::bs_icon("info-circle-fill", a11y = "sem")
-        ) |> bslib::tooltip(
-            id        = ns("btn_faq_tooltip"),
-            placement = "bottom",
-            ""
+
+            tags$span(
+                class = "pe-1",
+                bsicons::bs_icon("info-circle-fill", a11y = "sem")
+            ),
+
+            shiny::textOutput(ns("btn_open_text"), tags$span)
         )
     )
 
@@ -118,11 +120,12 @@ ui_modal_faq <- function(id) {
     # modal_id according to Bootstrap. This
     # is a little weird, but this value is
     # used to id the currently opened modal.
+    # Only shown on larger screens (>= 992px).
     btn_close <- tags$button(
-        class             = "btn btn-outline-secondary app-btn-small",
+        class             = "btn btn-outline-secondary app-btn",
         type              = "button",
         "data-bs-dismiss" = "modal",
-        bsicons::bs_icon("x-square-fill", a11y = "sem")
+        bsicons::bs_icon("x-lg", a11y = "sem")
     )
 
     panel_intro <- bslib::nav_panel(
@@ -184,7 +187,7 @@ ui_modal_faq <- function(id) {
                 # It is postioned at the bottom of the screen unless
                 # classes modal-dialog-centered and mt-5 are set.
                 tags$div(
-                    class = "modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl mt-5",
+                    class = "modal-dialog modal-dialog-scrollable modal-xl",
 
                     tags$div(
                         # Class app-navset-bar-fix is a special
@@ -195,25 +198,39 @@ ui_modal_faq <- function(id) {
                         class = "modal-content app-navset-bar-fix",
 
                         # Modal's body.
-                        # Optional class modal-body is not included for
-                        # seamless integration of a bslib::navset_bar().
-                        bslib::navset_bar(
-                            id       = ns("panel_active"),
-                            selected = ns("panel_intro"),
-                            title    = shiny::textOutput(ns("title"), tags$span),
-                            footer   = tags$div(
-                                class = "border-top py-3",
-                                ui_footer(ns("footer"))
-                            ),
+                        tags$div(
+                            class = "modal-body p-0",
 
-                            bslib::nav_spacer(),
+                            bslib::navset_bar(
+                                id       = ns("panel_active"),
+                                selected = ns("panel_intro"),
+                                title    = shiny::textOutput(ns("title"), tags$span),
+                                footer   = tags$div(
+                                    class = "border-top py-3",
+                                    ui_footer(ns("footer"))
+                                ),
 
-                            panel_intro,
-                            panel_parameters,
-                            panel_usage,
-                            panel_metho,
+                                bslib::nav_spacer(),
 
-                            bslib::nav_item(btn_close)
+                                panel_intro,
+                                panel_parameters,
+                                panel_usage,
+                                panel_metho,
+
+                                # Close button.
+                                bslib::nav_item(
+                                    # Extra padding to separate
+                                    # button from other nav items.
+
+                                    # Only shown on larger screens (>= 992px).
+                                    tags$div(class = "d-none d-lg-block"),
+
+                                    # Only shown on smaller screens (<= 992px).
+                                    tags$div(class = "d-lg-none mt-2"),
+
+                                    btn_close
+                                )
+                            )
                         )
                     )
                 )
@@ -229,6 +246,11 @@ server_modal_faq <- function(id, lang) {
 
     server <- \(input, output, session) {
         server_footer("footer", lang)
+
+        output$btn_open_text <- shiny::renderText({
+            translate(lang = lang(), "FAQ")
+        }) |>
+        shiny::bindCache(lang())
 
         output$title <- shiny::renderText({
             translate(lang = lang(), "Frequently Asked Questions")
@@ -286,18 +308,6 @@ server_modal_faq <- function(id, lang) {
         }) |>
         shiny::bindCache(lang())
 
-        # Translate elements not rendered
-        # with a shiny::render*() function.
-        shiny::observe({
-            lang <- lang()
-
-            bslib::update_tooltip("btn_faq_tooltip", translate(lang = lang, "
-                Get more information on this application and learn how to
-                use it properly.
-            "))
-        }) |>
-        shiny::bindEvent(lang())
-
         return(invisible())
     }
 
@@ -315,6 +325,7 @@ ui_panel_intro_accordion <- function(lang = "") {
         open     = FALSE,
         multiple = FALSE,
         class    = "accordion-flush app-accordion-active-bold",
+        style    = "overflow: auto;",
 
         ## Panel: What is Tool 1? ----------------------------------------------
 
@@ -429,6 +440,7 @@ ui_panel_parameters_accordion <- function(lang = "") {
         open     = FALSE,
         multiple = FALSE,
         class    = "accordion-flush app-accordion-active-bold",
+        style    = "overflow: auto;",
 
         ## Panel: How should measurements be formatted? ------------------------
 
@@ -450,7 +462,7 @@ ui_panel_parameters_accordion <- function(lang = "") {
             ),
 
             tags$ol(
-                class = "list-group list-group-flush px-5",
+                class = "list-group list-group-flush px-2",
                 style = "text-align: justify;",
 
                 tags$li(
@@ -549,7 +561,7 @@ ui_panel_parameters_accordion <- function(lang = "") {
             ")),
 
             tags$ol(
-                class = "list-group list-group-flush px-5",
+                class = "list-group list-group-flush px-2",
                 style = "text-align: justify;",
 
                 tags$li(
@@ -592,7 +604,7 @@ ui_panel_parameters_accordion <- function(lang = "") {
             ")),
 
             tags$ul(
-                class = "list-group list-group-flush px-5",
+                class = "list-group list-group-flush px-2",
 
                 tags$li(
                     class = "list-group-item",
@@ -640,6 +652,7 @@ ui_panel_usage_accordion <- function(lang = "") {
         open     = FALSE,
         multiple = FALSE,
         class    = "accordion-flush app-accordion-active-bold",
+        style    = "overflow: auto;",
 
         ## Panel: Why is there no shown output initially? ----------------------
 
@@ -663,7 +676,7 @@ ui_panel_usage_accordion <- function(lang = "") {
             ")),
 
             tags$ol(
-                class = "list-group list-group-flush px-5",
+                class = "list-group list-group-flush px-2",
 
                 tags$li(
                     class = "list-group-item",
@@ -771,6 +784,7 @@ ui_panel_metho_accordion <- function(lang = "") {
         open     = FALSE,
         multiple = FALSE,
         class    = "accordion-flush app-accordion-active-bold",
+        style    = "overflow: auto;",
 
         ## Panel: What is the statistical approach used by Tool 1? -------------
 
@@ -786,7 +800,7 @@ ui_panel_metho_accordion <- function(lang = "") {
             ")),
 
             tags$ul(
-                class = "list-group list-group-flush px-5",
+                class = "list-group list-group-flush px-2",
 
                 tags$li(
                     class = "list-group-item",

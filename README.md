@@ -6,7 +6,7 @@
 # Tool 1: Data Interpretation for One Similar Exposure Group (SEG)
 
 <!-- badges: start -->
-[![Version](https://img.shields.io/badge/version-4.0.0-blue)](https://github.com/webexpo/app-tool1/releases/tag/v4.0.0)
+[![Version](https://img.shields.io/badge/version-4.1.0-blue)](https://github.com/webexpo/app-tool1/releases/tag/v4.1.0)
 [![Lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Location](https://img.shields.io/badge/live-shinyapps.io-5b90bf)](https://lavoue.shinyapps.io/tool1/)
 [![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://github.com/webexpo/tool1/blob/main/LICENSE.md)
@@ -59,10 +59,16 @@ This sources `.scripts/run.R`. See this script for details.
 ## Deploy
 
 Tool 1 is deployed to [shinyapps.io](https://lavoue.shinyapps.io/tool1).
-To deploy a new version, call
+To deploy a new version, call `.pub()`.
 
 ```r
+# Deploy a beta version (useful for testing purposes).
+# It is publicly accessible at https://lavoue.shinyapps.io/tool1-beta/.
 .pub()
+
+# Deploy an official version.
+# It is publicly accessible at https://lavoue.shinyapps.io/tool1/.
+.pub("prod")
 ```
 
 This sources `.scripts/publish.R`. See this script for details.
@@ -89,17 +95,16 @@ to support multiple languages. Translations (and related metadata) are stored
 in `intl/`. To update its content, call
 
 ```r
-.intl()
+.find()
 ```
 
 This sources `.scripts/find-text.R` and updates all underlying
 translations files. See that script for details.
 
 Tool 1 further supports translation of ordinal numbers. Each supported
-language requires an `ordinal_rules_*()` function. For example, English
-has its own  `ordinal_rules_english()` function implementing grammar
-rules for English ordinal numbers. See `R/helpers-translate.R` for more
-information.
+language requires an `ordinal_rules_<lang>()` function. For example, the
+`ordinal_rules_english()` function implements grammar rules for English
+ordinal numbers. See `R/helpers-translate.R` for more information.
 
 ### Warning
 
@@ -138,9 +143,6 @@ We may work on these issues in a near future.
 
 - Inputs lack robust validation mechanisms and may lead to undefined behavior
   in some cases.
-
-- Tool 1 is not optimized for mobile phones and small screens having a width
-  lower than 500 pixels.
 
 - Accessibility mechanisms
   ([ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA)) are

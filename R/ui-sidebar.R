@@ -169,23 +169,28 @@ ui_sidebar <- function(id) {
 
         # Warnings -------------------------------------------------------------
 
-        # Measurements' numbering format.
-        bslib::card(
-            id    = ns("data_format_card"),
-            class = "border-warning bg-warning-subtle text-center small",
+        # The <div> ensures that cards grow as expected
+        # (without having to deal with fill and fillable
+        # details) once they are updated by the server.
+        tags$div(
+            # Measurements' numbering format.
+            bslib::card(
+                id    = ns("data_format_card"),
+                class = "border-warning bg-warning-subtle small",
 
-            bslib::card_body(
-                shiny::textOutput(ns("data_format_card_text"), tags$span)
-            )
-        ),
+                bslib::card_body(
+                    shiny::textOutput(ns("data_format_card_text"), tags$p)
+                )
+            ),
 
-        # Hidden inputs.
-        bslib::card(
-            id    = ns("hidden_inputs_card"),
-            class = "border-info bg-info-subtle text-center small",
+            # Hidden inputs.
+            bslib::card(
+                id    = ns("hidden_inputs_card"),
+                class = "border-info bg-info-subtle small mb-0",
 
-            bslib::card_body(
-                shiny::textOutput(ns("hidden_inputs_card_text"), tags$span)
+                bslib::card_body(
+                    shiny::textOutput(ns("hidden_inputs_card_text"), tags$p)
+                )
             )
         ),
 
@@ -342,7 +347,8 @@ server_sidebar <- function(id, lang, panel_active) {
             bslib::update_tooltip("data_tooltip", translate(lang = lang, "
                 The measurement dataset. There must be one value per line. Values
                 can be censored to the left (<), to the right (>), or interval
-                censored ([X-Y]).
+                censored ([X-Y]). For more information, see the Calculation
+                Parameters section in Frequently Asked Questions (FAQ) above.
             "))
 
             bslib::update_tooltip("submit_btn_tooltip", translate(lang = lang, "
