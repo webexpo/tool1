@@ -1,4 +1,4 @@
-# Tool 1 version `4.1.0` (In development)
+# Tool 1 version `4.1.0`
 
 ## User Visible Changes
 
@@ -25,6 +25,13 @@
 * Development script `R/publish.R` was refactored into a `publish()` function.
   It can either publish a development version or an official version of Tool 1.
   See `README.md` for details.
+
+* Some application-level observers (defined in `app.R`) are now executed once
+  and discarded afterwards.
+
+* Attribute `lang` of the root `<html>` element and the window's title (the
+  browser's tab name) are now only updated if `lang` is not equal to the
+  default language. Doing so yields faster loading times.
 
 ## Fixes
 
