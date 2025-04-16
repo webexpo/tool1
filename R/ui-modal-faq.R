@@ -187,7 +187,7 @@ ui_modal_faq <- function(id) {
                 # It is postioned at the bottom of the screen unless
                 # classes modal-dialog-centered and mt-5 are set.
                 tags$div(
-                    class = "modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl mt-5",
+                    class = "modal-dialog modal-dialog-scrollable modal-xl",
 
                     tags$div(
                         # Class app-navset-bar-fix is a special
@@ -198,25 +198,39 @@ ui_modal_faq <- function(id) {
                         class = "modal-content app-navset-bar-fix",
 
                         # Modal's body.
-                        # Optional class modal-body is not included for
-                        # seamless integration of a bslib::navset_bar().
-                        bslib::navset_bar(
-                            id       = ns("panel_active"),
-                            selected = ns("panel_intro"),
-                            title    = shiny::textOutput(ns("title"), tags$span),
-                            footer   = tags$div(
-                                class = "border-top py-3",
-                                ui_footer(ns("footer"))
-                            ),
+                        tags$div(
+                            class = "modal-body p-0",
 
-                            bslib::nav_spacer(),
+                            bslib::navset_bar(
+                                id       = ns("panel_active"),
+                                selected = ns("panel_intro"),
+                                title    = shiny::textOutput(ns("title"), tags$span),
+                                footer   = tags$div(
+                                    class = "border-top py-3",
+                                    ui_footer(ns("footer"))
+                                ),
 
-                            panel_intro,
-                            panel_parameters,
-                            panel_usage,
-                            panel_metho,
+                                bslib::nav_spacer(),
 
-                            bslib::nav_item(btn_close)
+                                panel_intro,
+                                panel_parameters,
+                                panel_usage,
+                                panel_metho,
+
+                                # Close button.
+                                bslib::nav_item(
+                                    # Extra padding to separate
+                                    # button from other nav items.
+
+                                    # Only shown on larger screens (>= 992px).
+                                    tags$div(class = "d-none d-lg-block"),
+
+                                    # Only shown on smaller screens (<= 992px).
+                                    tags$div(class = "d-lg-none mt-2"),
+
+                                    btn_close
+                                )
+                            )
                         )
                     )
                 )
@@ -311,6 +325,7 @@ ui_panel_intro_accordion <- function(lang = "") {
         open     = FALSE,
         multiple = FALSE,
         class    = "accordion-flush app-accordion-active-bold",
+        style    = "overflow: auto;",
 
         ## Panel: What is Tool 1? ----------------------------------------------
 
@@ -425,6 +440,7 @@ ui_panel_parameters_accordion <- function(lang = "") {
         open     = FALSE,
         multiple = FALSE,
         class    = "accordion-flush app-accordion-active-bold",
+        style    = "overflow: auto;",
 
         ## Panel: How should measurements be formatted? ------------------------
 
@@ -446,7 +462,7 @@ ui_panel_parameters_accordion <- function(lang = "") {
             ),
 
             tags$ol(
-                class = "list-group list-group-flush px-5",
+                class = "list-group list-group-flush px-2",
                 style = "text-align: justify;",
 
                 tags$li(
@@ -545,7 +561,7 @@ ui_panel_parameters_accordion <- function(lang = "") {
             ")),
 
             tags$ol(
-                class = "list-group list-group-flush px-5",
+                class = "list-group list-group-flush px-2",
                 style = "text-align: justify;",
 
                 tags$li(
@@ -588,7 +604,7 @@ ui_panel_parameters_accordion <- function(lang = "") {
             ")),
 
             tags$ul(
-                class = "list-group list-group-flush px-5",
+                class = "list-group list-group-flush px-2",
 
                 tags$li(
                     class = "list-group-item",
@@ -636,6 +652,7 @@ ui_panel_usage_accordion <- function(lang = "") {
         open     = FALSE,
         multiple = FALSE,
         class    = "accordion-flush app-accordion-active-bold",
+        style    = "overflow: auto;",
 
         ## Panel: Why is there no shown output initially? ----------------------
 
@@ -659,7 +676,7 @@ ui_panel_usage_accordion <- function(lang = "") {
             ")),
 
             tags$ol(
-                class = "list-group list-group-flush px-5",
+                class = "list-group list-group-flush px-2",
 
                 tags$li(
                     class = "list-group-item",
@@ -767,6 +784,7 @@ ui_panel_metho_accordion <- function(lang = "") {
         open     = FALSE,
         multiple = FALSE,
         class    = "accordion-flush app-accordion-active-bold",
+        style    = "overflow: auto;",
 
         ## Panel: What is the statistical approach used by Tool 1? -------------
 
@@ -782,7 +800,7 @@ ui_panel_metho_accordion <- function(lang = "") {
             ")),
 
             tags$ul(
-                class = "list-group list-group-flush px-5",
+                class = "list-group list-group-flush px-2",
 
                 tags$li(
                     class = "list-group-item",

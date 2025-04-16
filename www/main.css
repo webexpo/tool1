@@ -71,5 +71,5 @@ p {
 .app-navset-bar-fix a.nav-link.active {
   /* Change the space between each active
      <nav> element and its underline. */
-  padding: 8px 5px !important;
+  padding: 8px 5px 16px 5px !important;
 }
