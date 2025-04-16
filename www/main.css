@@ -25,6 +25,10 @@ p {
   color: var(--bs-nav-link-color);
 }
 
+.nav-item .app-btn:hover {
+  color: #fff;
+}
+
 .app-rotated-minus-90 {
   transform: rotate(-90deg);
 }
