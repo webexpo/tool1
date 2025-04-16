@@ -855,6 +855,8 @@ ui_panel_metho_accordion <- function(lang = "") {
 
                 bslib::card_body(
                     tags$p(
+                        class = "text-center",
+
                         html(
                             translate(lang = lang, "
                                 Jérôme Lavoué, Lawrence Joseph, Peter Knott,
