@@ -95,17 +95,16 @@ to support multiple languages. Translations (and related metadata) are stored
 in `intl/`. To update its content, call
 
 ```r
-.intl()
+.find()
 ```
 
 This sources `.scripts/find-text.R` and updates all underlying
 translations files. See that script for details.
 
 Tool 1 further supports translation of ordinal numbers. Each supported
-language requires an `ordinal_rules_*()` function. For example, English
-has its own  `ordinal_rules_english()` function implementing grammar
-rules for English ordinal numbers. See `R/helpers-translate.R` for more
-information.
+language requires an `ordinal_rules_<lang>()` function. For example, the
+`ordinal_rules_english()` function implements grammar rules for English
+ordinal numbers. See `R/helpers-translate.R` for more information.
 
 ### Warning
 
