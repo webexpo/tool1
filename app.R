@@ -41,9 +41,13 @@
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
 ui <- bslib::page_sidebar(
-    theme   = bslib::bs_theme(5L, "shiny"),
-    title   = ui_title("layout_title"),
-    sidebar = ui_sidebar("layout_sidebar"),
+    # lang and window_title are both updated
+    # by server() based on the chosen lang.
+    lang         = default_lang,
+    window_title = "Expostats - Tool 1",
+    theme        = bslib::bs_theme(5L, "shiny"),
+    title        = ui_title("layout_title"),
+    sidebar      = ui_sidebar("layout_sidebar"),
 
     tags$head(
         tags$link(
@@ -128,7 +132,7 @@ server <- function(input, output, session) {
 
         return(lang)
     }) |>
-    shiny::bindEvent(session$clientData$url_search)
+    shiny::bindEvent(session$clientData$url_search, once = TRUE)
 
     data_sample <- shiny::reactive({
         parameters <- parameters()
@@ -194,15 +198,17 @@ server <- function(input, output, session) {
     shiny::observe({
         lang <- lang()
 
-        # Update the window's title (what the browser's tab displays).
-        session$sendCustomMessage("update_page_lang", lang)
+        if (lang != default_lang) {
+            # Update the window's title (what the browser's tab displays).
+            session$sendCustomMessage("update_page_lang", lang)
 
-        # Update the lang attribute of the root <html> tag.
-        session$sendCustomMessage(
-            "update_window_title",
-            sprintf("Expostats - %s", translate(lang = lang, "Tool 1")))
+            # Update the lang attribute of the root <html> tag.
+            session$sendCustomMessage(
+                "update_window_title",
+                sprintf("Expostats - %s", translate(lang = lang, "Tool 1")))
+        }
     }) |>
-    shiny::bindEvent(lang())
+    shiny::bindEvent(lang(), once = TRUE)
 
     # Modules ------------------------------------------------------------------
 
