@@ -1,3 +1,20 @@
+# Tool 1 version `5.0.0` (In development)
+
+This major version introduces Tool 1 Simplified directly into Tool 1. The former
+was rewritten during the process. All existing functionalities were preserved.
+
+## User Visible Changes
+
+None.
+
+## Server Changes
+
+None.
+
+## Fixes
+
+None.
+
 # Tool 1 version `4.1.0`
 
 ## User Visible Changes
