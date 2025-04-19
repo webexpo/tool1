@@ -130,7 +130,7 @@ ui_sidebar <- function(id) {
 
         tags$div(
             class = "d-flex justify-content-around",
-            style = "gap: 15px; margin-bottom: 1rem;",
+            style = "gap: 1rem; margin-bottom: 1rem;",
 
             shiny::actionButton(
                 inputId = ns("submit_btn"),
@@ -173,6 +173,8 @@ ui_sidebar <- function(id) {
         # (without having to deal with fill and fillable
         # details) once they are updated by the server.
         tags$div(
+            style = "margin-bottom: 1rem;",
+
             # Measurements' numbering format.
             bslib::card(
                 id    = ns("data_format_card"),
@@ -196,10 +198,8 @@ ui_sidebar <- function(id) {
 
         # Footer ---------------------------------------------------------------
 
-        # Class mt-auto pushes the footer
-        # to the bottom of the sidebar.
         tags$div(
-            class = "mt-auto border-top pt-3",
+            class = "border-top pt-3",
             ui_footer(ns("footer"))
         )
     )
