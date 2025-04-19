@@ -274,15 +274,15 @@ ui_title <- function(id) {
                             ""
                         ),
 
-                        ### Source Code ----------------------------------------
+                        ### Color Mode -----------------------------------------
 
                         shiny::actionButton(
                             class   = "btn btn-outline-secondary app-btn",
-                            inputId = ns("btn_color"),
+                            inputId = ns("btn_color_mode"),
                             label   = bsicons::bs_icon("moon-fill", a11y = "none")
                         ) |>
                         bslib::tooltip(
-                            id        = ns("btn_color_tooltip"),
+                            id        = ns("btn_color_mode_tooltip"),
                             placement = "bottom",
                             ""
                         )
@@ -364,19 +364,19 @@ server_title <- function(id, lang) {
         shiny::observe({
             # Icon shown in light mode is the one for dark mode,
             # and vice-versa. Since light is the initial mode,
-            # even values (including 0) of input$btn_color show
-            # icon for dark mode, and odd numbers show the icon
-            # of light mode (each click toggles dark mode).
-            icon <- if (input$btn_color %% 2L == 0L) {
+            # even values (including 0) of input$btn_color_mode
+            # show icon for dark mode, and odd numbers show the
+            # icon of light mode (each click toggles dark mode).
+            icon <- if (input$btn_color_mode %% 2L == 0L) {
                 bsicons::bs_icon("moon-fill", a11y = "none")
             } else {
                 bsicons::bs_icon("sun-fill", a11y = "none")
             }
 
             bslib::toggle_dark_mode()
-            shiny::updateActionButton(session, "btn_color", label = icon)
+            shiny::updateActionButton(session, "btn_color_mode", label = icon)
         }) |>
-        shiny::bindEvent(input$btn_color)
+        shiny::bindEvent(input$btn_color_mode)
 
         # Translate elements not rendered
         # with a shiny::render*() function.
@@ -391,7 +391,7 @@ server_title <- function(id, lang) {
                 Submit a bug or provide feedback to the maintainers by email.
             "))
 
-            bslib::update_tooltip("btn_color_tooltip", translate(lang = lang, "
+            bslib::update_tooltip("btn_color_mode_tooltip", translate(lang = lang, "
                 Toogle the current color scheme (light or dark).
             "))
         }) |>
