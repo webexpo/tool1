@@ -78,7 +78,11 @@ default_n_digits <- 3L
 # Default relative path to images' directory.
 default_images_dir <- file.path("www", "images")
 
-# Default message to show when there is no available translation.
+# Default message to show when
+#   - there is no available translation, OR
+#   - the underlying source text has not yet been registered by object tr
+#     using transltr::find_source(). Call .find() whenever you change the
+#     text passed to translate().
 tr$set_default_value(default_missing_translation_msg <- "{no translation}")
 
 # Default maintainers' emails.
@@ -101,10 +105,6 @@ default_urls <- list(
     expostats = c(
         en = "http://www.expostats.ca/site/en/info.html",
         fr = "https://www.expostats.ca/site/info.html"
-    ),
-    tool1_simplified = c(
-        en = "https://lavoue.shinyapps.io/Tool1Expv3En/",
-        fr = "https://lavoue.shinyapps.io/Tool1Expv3Fr/"
     ),
     tool2 = c(
         en = "https://lavoue.shinyapps.io/Tool2v3En/",
