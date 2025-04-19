@@ -134,7 +134,7 @@ ui_sidebar <- function(id) {
 
             shiny::actionButton(
                 inputId = ns("submit_btn"),
-                class   = "btn btn-outline-secondary w-100 app-btn",
+                class   = "btn btn-outline-secondary w-100 app-btn fw-light",
                 label   = tags$span(
                     tags$span(
                         class = "pe-1",
@@ -152,7 +152,7 @@ ui_sidebar <- function(id) {
 
             shiny::actionButton(
                 inputId = ns("clear_btn"),
-                class   = "btn btn-outline-secondary w-100 app-btn",
+                class   = "btn btn-outline-secondary w-100 app-btn fw-light",
                 label   = tags$span(
                     tags$span(
                         class = "pe-1",
