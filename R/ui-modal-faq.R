@@ -542,7 +542,7 @@ ui_panel_parameters_accordion <- function(lang = "") {
                         information inferred from Bayesian models.
                     "),
                     ui_panel_title_display(
-                        title      = translate(lang = lang, "Inference"),
+                        title      = translate(lang = lang, "Statistical inference"),
                         icon_name  = "body-text",
                         icon_class = "app-rotated-minus-90"
                     )
@@ -714,7 +714,7 @@ ui_panel_usage_accordion <- function(lang = "") {
                             shown when an %s panel is chosen.
                         "),
                         ui_panel_title_display(
-                            title      = translate(lang = lang, "Inference"),
+                            title      = translate(lang = lang, "Statistical inference"),
                             icon_name  = "body-text",
                             icon_class = "app-rotated-minus-90"
                         )
@@ -762,7 +762,7 @@ ui_panel_usage_accordion <- function(lang = "") {
                         Some %s panels require more computing time and resources.
                     "),
                     ui_panel_title_display(
-                        title      = translate(lang = lang, "Inference"),
+                        title      = translate(lang = lang, "Statistical inference"),
                         icon_name  = "body-text",
                         icon_class = "app-rotated-minus-90"
                     )

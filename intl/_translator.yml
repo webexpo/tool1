@@ -514,25 +514,6 @@ Texts:
         Path: ./R/ui-footer.R
         Ranges: Ln 52, Col 17 @ Ln 52, Col 51
   - !<Text>
-    Identifier: dcc46c4
-    Algorithm: sha1
-    Hash: dcc46c4f83d4a8f876fd71f044597fc7636932b1
-    Source Language: en
-    Source Text: Inference
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: dcc46c4:l1
-        Path: ./app.R
-        Ranges: Ln 192, Col 9 @ Ln 192, Col 45
-      - !<Location>
-        Identifier: dcc46c4:l2
-        Path: ./R/ui-modal-faq.R
-        Ranges:
-          - Ln 545, Col 38 @ Ln 545, Col 72
-          - Ln 717, Col 42 @ Ln 717, Col 76
-          - Ln 765, Col 38 @ Ln 765, Col 72
-  - !<Text>
     Identifier: a32a1f9
     Algorithm: sha1
     Hash: a32a1f93cfb06f99bddcebbdb63bab9d3cd802f9
@@ -2030,6 +2011,25 @@ Texts:
         Identifier: 27c579f:l2
         Path: ./R/ui-panel-percentiles.R
         Ranges: Ln 560, Col 13 @ Ln 566, Col 14
+  - !<Text>
+    Identifier: 2a34e0c
+    Algorithm: sha1
+    Hash: 2a34e0c7c75029da3f73411d3c3b057de222336f
+    Source Language: en
+    Source Text: Statistical inference
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 2a34e0c:l1
+        Path: ./app.R
+        Ranges: Ln 192, Col 9 @ Ln 192, Col 57
+      - !<Location>
+        Identifier: 2a34e0c:l2
+        Path: ./R/ui-modal-faq.R
+        Ranges:
+          - Ln 545, Col 38 @ Ln 545, Col 84
+          - Ln 717, Col 42 @ Ln 717, Col 88
+          - Ln 765, Col 38 @ Ln 765, Col 84
   - !<Text>
     Identifier: c73ed1b
     Algorithm: sha1

@@ -189,7 +189,7 @@ server <- function(input, output, session) {
     })
 
     output$inference_menu_title <- shiny::renderText({
-        translate(lang = lang(), "Inference")
+        translate(lang = lang(), "Statistical inference")
     })
 
     # Observers ----------------------------------------------------------------

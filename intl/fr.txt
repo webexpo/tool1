@@ -298,14 +298,6 @@ version
 
 # Insert a translation here.
 
-:: Translations: dcc46c4: Source Text
-
-Inference
-
-:: Translations: dcc46c4: Translation
-
-# Insert a translation here.
-
 :: Translations: a32a1f9: Source Text
 
 This plot shows the estimated exposure distribution when assuming 250 exposure
@@ -1218,6 +1210,14 @@ measurements have been collected. If the measurements represent 8-hour TWA
 exposure. The OEL is shown as a red line.
 
 :: Translations: 27c579f: Translation
+
+# Insert a translation here.
+
+:: Translations: 2a34e0c: Source Text
+
+Statistical inference
+
+:: Translations: 2a34e0c: Translation
 
 # Insert a translation here.
 
