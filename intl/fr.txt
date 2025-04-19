@@ -229,14 +229,6 @@ Default
 
 # Insert a translation here.
 
-:: Translations: 59715a2: Source Text
-
-The point estimate of its 70%% upper confidence limit is equal to %s.
-
-:: Translations: 59715a2: Translation
-
-# Insert a translation here.
-
 :: Translations: 2052e8c: Source Text
 
 Descriptive statistics should not be viewed as useful estimates of the
@@ -706,6 +698,15 @@ Add a greater than or equal sign before each measurement censored to the right
 
 # Insert a translation here.
 
+:: Translations: e6619f5: Source Text
+
+In the tab 'about my measurements', non detects are subjects to one of the
+following cruder procedures.
+
+:: Translations: e6619f5: Translation
+
+# Insert a translation here.
+
 :: Translations: da9cc89: Source Text
 
 Risk Band Plot
@@ -812,6 +813,18 @@ How should measurements be formatted?
 Detected
 
 :: Translations: 21d66f8: Translation
+
+# Insert a translation here.
+
+:: Translations: bc4c37a: Source Text
+
+Censored measurements are treated differently in the tab 'about my
+measurements' and in the tabs 'statistical inference'. In all statistical
+inference tabs, non detects are interpreted as such by the bayesian model,
+which is natively able to extract the corresponding information. There is no
+inputation, no invention of arbitrary value. see for example %s.
+
+:: Translations: bc4c37a: Translation
 
 # Insert a translation here.
 
@@ -947,6 +960,14 @@ behavior.
 How can I submit bugs or provide feedback?
 
 :: Translations: 2bbf9dd: Translation
+
+# Insert a translation here.
+
+:: Translations: f73886c: Source Text
+
+The 95%% upper confidence limit is equal to %s.
+
+:: Translations: f73886c: Translation
 
 # Insert a translation here.
 
@@ -1310,14 +1331,6 @@ limit.
 
 # Insert a translation here.
 
-:: Translations: 3be3ecd: Source Text
-
-The point estimate of its 95%% upper confidence limit is equal to %s.
-
-:: Translations: 3be3ecd: Translation
-
-# Insert a translation here.
-
 :: Translations: dbb0a02: Source Text
 
 Always put a leading zero before decimals for numbers strictly smaller than
@@ -1425,14 +1438,6 @@ words, the data is considered representative of the specific exposure regimen
 being assessed.
 
 :: Translations: 9797b53: Translation
-
-# Insert a translation here.
-
-:: Translations: cb21ace: Source Text
-
-Censored measurements are subject to one of the following procedures.
-
-:: Translations: cb21ace: Translation
 
 # Insert a translation here.
 
@@ -1592,6 +1597,14 @@ they are ready.
 Risk Assessment
 
 :: Translations: 3eba509: Translation
+
+# Insert a translation here.
+
+:: Translations: 2f456d9: Source Text
+
+The 70%% upper confidence limit is equal to %s.
+
+:: Translations: 2f456d9: Translation
 
 # Insert a translation here.
 

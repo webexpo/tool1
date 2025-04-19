@@ -121,5 +121,6 @@ default_urls <- list(
     udm = c(
         en = "https://www.umontreal.ca/en",
         fr = "https://www.umontreal.ca"
-    )
+    ),
+    huynh = "https://academic.oup.com/annweh/article-abstract/60/1/56/2196069"
 )
