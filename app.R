@@ -212,7 +212,7 @@ server <- function(input, output, session) {
 
     # Modules ------------------------------------------------------------------
 
-    server_title("layout_title", lang)
+    app_mode_is_simplified <- server_title("layout_title", lang)
 
     server_banner("busy_banner", lang)
 

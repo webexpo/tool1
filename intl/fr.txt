@@ -557,14 +557,6 @@ Clear
 
 # Insert a translation here.
 
-:: Translations: ecd9787: Source Text
-
-Toogle the current color scheme (light or dark).
-
-:: Translations: ecd9787: Translation
-
-# Insert a translation here.
-
 :: Translations: f3c096c: Source Text
 
 No results are shown in the right panels until inputs are submitted.
@@ -815,6 +807,14 @@ Detected
 
 # Insert a translation here.
 
+:: Translations: 74f948f: Source Text
+
+Frequently Asked Questions. Get additional information on Tool 1.
+
+:: Translations: 74f948f: Translation
+
+# Insert a translation here.
+
 :: Translations: 3e0b7d6: Source Text
 
 Minimum
@@ -975,14 +975,6 @@ Exposure Limit:
 Value
 
 :: Translations: 81fb05e: Translation
-
-# Insert a translation here.
-
-:: Translations: cb9ddbb: Source Text
-
-Submit a bug or provide feedback to the maintainers by email.
-
-:: Translations: cb9ddbb: Translation
 
 # Insert a translation here.
 
@@ -1218,6 +1210,16 @@ parsed as expected and successfully imported.
 
 # Insert a translation here.
 
+:: Translations: 77445c1: Source Text
+
+Toggle the current mode. Use either the default or simplified mode of Tool 1.
+The latter is formerly known as Tool 1 Express (Tool 1 Simplified) and shows a
+subset of available results.
+
+:: Translations: 77445c1: Translation
+
+# Insert a translation here.
+
 :: Translations: 1a51cee: Source Text
 
 Tool 3
@@ -1436,14 +1438,6 @@ Censored measurements are subject to one of the following procedures.
 
 # Insert a translation here.
 
-:: Translations: 7464899: Source Text
-
-FAQ
-
-:: Translations: 7464899: Translation
-
-# Insert a translation here.
-
 :: Translations: 8a17368: Source Text
 
 Submit inputs by clicking on the %s button.
@@ -1612,6 +1606,14 @@ limit.
 
 # Insert a translation here.
 
+:: Translations: 84f7000: Source Text
+
+Toggle the current color scheme (light or dark).
+
+:: Translations: 84f7000: Translation
+
+# Insert a translation here.
+
 :: Translations: 632ebd0: Source Text
 
 Sample Statistic
@@ -1643,14 +1645,6 @@ Add a lower than or equal sign before each measurement censored to the left
 (e.g. <30.0).
 
 :: Translations: 38210f7: Translation
-
-# Insert a translation here.
-
-:: Translations: 6bf9771: Source Text
-
-Tool 1 (Simplified)
-
-:: Translations: 6bf9771: Translation
 
 # Insert a translation here.
 

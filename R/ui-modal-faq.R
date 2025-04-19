@@ -104,15 +104,14 @@ ui_modal_faq <- function(id) {
         "data-bs-target" = paste0("#", modal_id),
 
         tags$button(
-            class = "nav-link",
+            class = "btn btn-outline-secondary app-btn",
             type  = "button",
-
-            tags$span(
-                class = "pe-1",
-                bsicons::bs_icon("info-circle-fill", a11y = "sem")
-            ),
-
-            shiny::textOutput(ns("btn_open_text"), tags$span)
+            bsicons::bs_icon("info-circle-fill", a11y = "sem")
+        ) |>
+        bslib::tooltip(
+            id        = ns("btn_open_tooltip"),
+            placement = "bottom",
+            ""
         )
     )
 
@@ -122,7 +121,7 @@ ui_modal_faq <- function(id) {
     # used to id the currently opened modal.
     # Only shown on larger screens (>= 992px).
     btn_close <- tags$button(
-        class             = "btn btn-outline-secondary app-btn",
+        class             = "btn btn-outline-secondary app-btn ms-1",
         type              = "button",
         "data-bs-dismiss" = "modal",
         bsicons::bs_icon("x-lg", a11y = "sem")
@@ -247,11 +246,6 @@ server_modal_faq <- function(id, lang) {
     server <- \(input, output, session) {
         server_footer("footer", lang)
 
-        output$btn_open_text <- shiny::renderText({
-            translate(lang = lang(), "FAQ")
-        }) |>
-        shiny::bindCache(lang())
-
         output$title <- shiny::renderText({
             translate(lang = lang(), "Frequently Asked Questions")
         }) |>
@@ -307,6 +301,16 @@ server_modal_faq <- function(id, lang) {
             ui_panel_metho_accordion(lang())
         }) |>
         shiny::bindCache(lang())
+
+        # Translate elements not rendered
+        # with a shiny::render*() function.
+        shiny::observe({
+            bslib::update_tooltip("btn_open_tooltip", translate(lang = lang(), "
+                Frequently Asked Questions. Get additional information on
+                Tool 1.
+            "))
+        }) |>
+        shiny::bindEvent(lang())
 
         return(invisible())
     }
