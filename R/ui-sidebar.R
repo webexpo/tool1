@@ -136,11 +136,12 @@ ui_sidebar <- function(id) {
                 inputId = ns("submit_btn"),
                 class   = "btn btn-outline-secondary w-100 app-btn",
                 label   = tags$span(
-                    bsicons::bs_icon("check-circle-fill", a11y = "deco"),
-                    htmltools::tagAppendAttributes(
-                        style = "font-size: 1rem;",
-                        shiny::textOutput(ns("submit_btn_label"))
-                    )
+                    tags$span(
+                        class = "pe-1",
+                        bsicons::bs_icon("check-circle-fill", a11y = "deco")
+                    ),
+
+                    shiny::textOutput(ns("submit_btn_label"), tags$span)
                 )
             ) |>
             bslib::tooltip(
@@ -153,11 +154,12 @@ ui_sidebar <- function(id) {
                 inputId = ns("clear_btn"),
                 class   = "btn btn-outline-secondary w-100 app-btn",
                 label   = tags$span(
-                    bsicons::bs_icon("x-circle-fill", a11y = "deco"),
-                    htmltools::tagAppendAttributes(
-                        style = "font-size: 1rem;",
-                        shiny::textOutput(ns("clear_btn_label"))
-                    )
+                    tags$span(
+                        class = "pe-1",
+                        bsicons::bs_icon("x-circle-fill", a11y = "deco")
+                    ),
+
+                    shiny::textOutput(ns("clear_btn_label"), tags$span)
                 )
             ) |>
             bslib::tooltip(
