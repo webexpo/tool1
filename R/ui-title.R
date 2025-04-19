@@ -39,7 +39,8 @@
 #' @returns
 #' [ui_title()] returns a list of `shiny.tag` objects.
 #'
-#' [server_title()] returns `NULL`, invisibly.
+#' [server_title()] returns a [shiny::reactive()] object returning whether
+#' the current state of Tool 1 is simplified (or not).
 #'
 #' @note
 #' This module implements two Bootstrap dropdown menus with single buttons
@@ -163,19 +164,14 @@ ui_title <- function(id) {
                 id    = nav_id,
                 class = "collapse navbar-collapse justify-content-end",
 
+                # .navbar-nav is a flex container by design.
                 tags$ul(
                     class = "navbar-nav",
+                    style = "gap: 0.5rem;",
 
                     # Extra padding to separate branding from nav items.
                     # Only shown on smaller screens (<= 992px).
                     tags$div(class = "d-lg-none mt-3"),
-
-                    ## Frequently Asked Questions ------------------------------
-
-                    tags$li(
-                        class = "nav-item",
-                        ui_modal_faq(ns("faq"))
-                    ),
 
                     ## Languages -----------------------------------------------
 
@@ -189,7 +185,7 @@ ui_title <- function(id) {
 
                             tags$span(
                                 class = "pe-1",
-                                bsicons::bs_icon("translate", a11y = "none")
+                                bsicons::bs_icon("translate", a11y = "deco")
                             ),
 
                             shiny::textOutput(ns("nav_item_language"), tags$span)
@@ -213,7 +209,7 @@ ui_title <- function(id) {
 
                             tags$span(
                                 class = "pe-1",
-                                bsicons::bs_icon("link", a11y = "none")
+                                bsicons::bs_icon("link", a11y = "deco")
                             ),
 
                             "Expostats"
@@ -226,50 +222,33 @@ ui_title <- function(id) {
                         )
                     ),
 
-                    ## Spacers -------------------------------------------------
+                    ## Spacer --------------------------------------------------
 
-                    # Vertical bar for larger screens to
-                    # separate buttons from other nav items.
-                    # Only shown on larger screens (>= 992px).
-                    tags$div(class = "d-none d-lg-block vr ms-2 me-3"),
-
-                    # Extra padding to separate buttons from other nav items.
+                    # Vertical padding to separate
+                    # buttons from other nav items.
                     # Only shown on smaller screens (<= 992px).
-                    tags$div(class = "d-lg-none mt-3"),
+                    tags$div(class = "d-lg-none mt-1"),
 
                     ## Buttons -------------------------------------------------
 
                     # They are grouped together as a single nav item.
                     tags$li(
-                        class = "nav-item",
+                        class = "nav-item d-flex",
+                        style = "gap: 1rem;",
 
-                        ### GitHub ---------------------------------------------
+                        ### Frequently Asked Questions -------------------------
 
-                        tags$a(
-                            class  = "btn btn-outline-secondary app-btn me-2",
-                            href   = default_urls$code,
-                            target = "_blank",
-                            bsicons::bs_icon("github", a11y = "none")
+                        ui_modal_faq(ns("faq")),
+
+                        ### App Mode -------------------------------------------
+
+                        shiny::actionButton(
+                            class   = "btn btn-outline-secondary app-btn",
+                            inputId = ns("btn_app_mode"),
+                            label   = bsicons::bs_icon("exclude", a11y = "sem"),
                         ) |>
                         bslib::tooltip(
-                            id        = ns("btn_code_tooltip"),
-                            placement = "bottom",
-                            ""
-                        ),
-
-                        ### Submit Bugs ----------------------------------------
-
-                        tags$a(
-                            class  = "btn btn-outline-secondary app-btn me-2",
-                            href   = paste0(
-                                "mailto:",
-                                paste(default_maintainers_emails, collapse = ",")
-                            ),
-                            target = "_blank",
-                            bsicons::bs_icon("bug-fill", a11y = "none")
-                        ) |>
-                        bslib::tooltip(
-                            id        = ns("btn_bug_tooltip"),
+                            id        = ns("btn_app_mode_tooltip"),
                             placement = "bottom",
                             ""
                         ),
@@ -279,10 +258,24 @@ ui_title <- function(id) {
                         shiny::actionButton(
                             class   = "btn btn-outline-secondary app-btn",
                             inputId = ns("btn_color_mode"),
-                            label   = bsicons::bs_icon("moon-fill", a11y = "none")
+                            label   = bsicons::bs_icon("moon-fill", a11y = "sem")
                         ) |>
                         bslib::tooltip(
                             id        = ns("btn_color_mode_tooltip"),
+                            placement = "bottom",
+                            ""
+                        ),
+
+                        ### GitHub ---------------------------------------------
+
+                        tags$a(
+                            class  = "btn btn-outline-secondary app-btn",
+                            href   = default_urls$code,
+                            target = "_blank",
+                            bsicons::bs_icon("github", a11y = "sem")
+                        ) |>
+                        bslib::tooltip(
+                            id        = ns("btn_code_tooltip"),
                             placement = "bottom",
                             ""
                         )
@@ -322,10 +315,6 @@ server_title <- function(id, lang) {
             lang <- lang()
             links <- list(
                 list(
-                    default_urls$tool1_simplified[[lang]],
-                    translate(lang = lang, "Tool 1 (Simplified)")
-                ),
-                list(
                     default_urls$tool2[[lang]],
                     translate(lang = lang, "Tool 2")
                 ),
@@ -360,17 +349,32 @@ server_title <- function(id, lang) {
         }) |>
         shiny::bindCache(lang())
 
+        # Toggle app mode (default/simplified).
+        shiny::observe({
+            # Icon shown in default mode is the one of simplified
+            # mode and vice-versa. Since the former is the initial
+            # mode, even values (and 0) yield the icon of simplified
+            # mode, and odd numbers yield the icon of default mode.
+            icon <- if (input$btn_app_mode %% 2L == 0L) {
+                bsicons::bs_icon("exclude", a11y = "sem")
+            } else {
+                bsicons::bs_icon("union", a11y = "sem")
+            }
+
+            shiny::updateActionButton(session, "btn_app_mode", label = icon)
+        }) |>
+        shiny::bindEvent(input$btn_app_mode)
+
         # Toggle color mode (light/dark).
         shiny::observe({
-            # Icon shown in light mode is the one for dark mode,
-            # and vice-versa. Since light is the initial mode,
-            # even values (including 0) of input$btn_color_mode
-            # show icon for dark mode, and odd numbers show the
-            # icon of light mode (each click toggles dark mode).
+            # Icon shown in light mode is the one of dark mode
+            # and vice-versa. Since the former is the initial
+            # mode, even values (and 0) yield icon of dark mode,
+            # and odd numbers yield the icon of light mode.
             icon <- if (input$btn_color_mode %% 2L == 0L) {
-                bsicons::bs_icon("moon-fill", a11y = "none")
+                bsicons::bs_icon("moon-fill", a11y = "sem")
             } else {
-                bsicons::bs_icon("sun-fill", a11y = "none")
+                bsicons::bs_icon("sun-fill", a11y = "sem")
             }
 
             bslib::toggle_dark_mode()
@@ -383,21 +387,25 @@ server_title <- function(id, lang) {
         shiny::observe({
             lang <- lang()
 
-            bslib::update_tooltip("btn_code_tooltip", translate(lang = lang, "
-                See the source code of Tool 1 on GitHub.
-            "))
-
-            bslib::update_tooltip("btn_bug_tooltip", translate(lang = lang, "
-                Submit a bug or provide feedback to the maintainers by email.
+            bslib::update_tooltip("btn_app_mode_tooltip", translate(lang = lang, "
+                Toggle the current mode. Use either the default or simplified
+                mode of Tool 1. The latter is formerly known as Tool 1 Express
+                (Tool 1 Simplified) and shows a subset of available results.
             "))
 
             bslib::update_tooltip("btn_color_mode_tooltip", translate(lang = lang, "
-                Toogle the current color scheme (light or dark).
+                Toggle the current color scheme (light or dark).
+            "))
+
+            bslib::update_tooltip("btn_code_tooltip", translate(lang = lang, "
+                See the source code of Tool 1 on GitHub.
             "))
         }) |>
         shiny::bindEvent(lang())
 
-        return(invisible())
+        # An introspector for checking whether app
+        # mode is simplified (or not) is returned.
+        return(shiny::reactive({ input$btn_app_mode %% 2L != 0L }))
     }
 
     return(shiny::moduleServer(id, server))
