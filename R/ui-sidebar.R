@@ -44,6 +44,7 @@ ui_sidebar <- function(id) {
     ns <- shiny::NS(id)
     ui <- bslib::sidebar(
         width = "400px",
+        gap   = "1.25rem",
         open  = list(
             mobile  = "closed",
             desktop = "open"
@@ -177,23 +178,16 @@ ui_sidebar <- function(id) {
         tags$div(
             style = "margin-bottom: 1rem;",
 
-            # Measurements' numbering format.
             bslib::card(
-                id    = ns("data_format_card"),
-                class = "border-warning bg-warning-subtle small",
+                id    = ns("warning_card"),
+                class = "border-warning bg-warning-subtle small mb-0",
 
                 bslib::card_body(
-                    shiny::textOutput(ns("data_format_card_text"), tags$p)
-                )
-            ),
+                    gap = 0L,
 
-            # Hidden inputs.
-            bslib::card(
-                id    = ns("hidden_inputs_card"),
-                class = "border-info bg-info-subtle small mb-0",
-
-                bslib::card_body(
-                    shiny::textOutput(ns("hidden_inputs_card_text"), tags$p)
+                    shiny::textOutput(ns("warning_card_data_format"), tags$p),
+                    tags$hr(class = "my-3"),
+                    shiny::textOutput(ns("warning_card_hidden_inputs"), tags$p)
                 )
             )
         ),
@@ -235,7 +229,7 @@ server_sidebar <- function(id, lang, panel_active) {
         }) |>
         shiny::bindCache(lang())
 
-        output$data_format_card_text <- shiny::renderText({
+        output$warning_card_data_format <- shiny::renderText({
             translate(lang = lang(), "
                 Always put a leading zero before decimals for numbers strictly
                 smaller than one. Always use a dot for decimals. Do not use a
@@ -244,7 +238,7 @@ server_sidebar <- function(id, lang, panel_active) {
         }) |>
         shiny::bindCache(lang())
 
-        output$hidden_inputs_card_text <- shiny::renderText({
+        output$warning_card_hidden_inputs <- shiny::renderText({
             translate(lang = lang(), "
                 No results are shown in the right panels until inputs are
                 submitted.
@@ -261,9 +255,8 @@ server_sidebar <- function(id, lang, panel_active) {
         # Hide warnings once inputs are submitted.
         shiny::observe({
             shinyjs::hide("data_format_card")
-            shinyjs::hide("hidden_inputs_card")
         }) |>
-        shiny::bindEvent(input$submit_btn)
+        shiny::bindEvent(input$submit_btn, once = TRUE)
 
         # Hide/show inputs that are specific to certain panels.
         # What panel_active returns depends on values passed to
