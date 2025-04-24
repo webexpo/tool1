@@ -60,7 +60,7 @@ shiny::shinyOptions(
 # Constants --------------------------------------------------------------------
 
 # Default version/release to display in footers.
-default_version <- c(number = "4.1.0", release_date = "2025-04-16")
+default_version <- c(number = "4.1.01", release_date = "2025-04-21")
 
 # Default language.
 default_lang <- transltr::language_source_get()
@@ -121,5 +121,6 @@ default_urls <- list(
     udm = c(
         en = "https://www.umontreal.ca/en",
         fr = "https://www.umontreal.ca"
-    )
+    ),
+    huynh = "https://academic.oup.com/annweh/article-abstract/60/1/56/2196069"
 )

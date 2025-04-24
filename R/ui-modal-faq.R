@@ -542,7 +542,7 @@ ui_panel_parameters_accordion <- function(lang = "") {
                         information inferred from Bayesian models.
                     "),
                     ui_panel_title_display(
-                        title      = translate(lang = lang, "Inference"),
+                        title      = translate(lang = lang, "Statistical inference"),
                         icon_name  = "body-text",
                         icon_class = "app-rotated-minus-90"
                     )
@@ -598,10 +598,27 @@ ui_panel_parameters_accordion <- function(lang = "") {
         bslib::accordion_panel(
             title = translate(lang = lang, "How are censored measurements imputed?"),
 
-            tags$p(translate(lang = lang, "
-                Censored measurements are subject to one of the following
-                procedures.
-            ")),
+            tags$p(
+
+                    html(
+
+                    translate(lang = lang, "
+                    Censored measurements are treated differently in the tab 'about my measurements' and in the tabs 'statistical inference'. In all statistical inference tabs, non detects are interpreted as such by the bayesian model, which is natively able to extract the corresponding information. There is no inputation, no invention of arbitrary value. see for example %s.
+                "),
+
+                    ui_link(default_urls$huynh, "Huynh et al.")
+
+                    )
+
+                ),
+
+
+            tags$p(
+
+              translate(lang = lang, "
+                    In the tab 'about my measurements', non detects are subjects to one of the following cruder procedures.
+                ")
+            ),
 
             tags$ul(
                 class = "list-group list-group-flush px-2",
@@ -697,7 +714,7 @@ ui_panel_usage_accordion <- function(lang = "") {
                             shown when an %s panel is chosen.
                         "),
                         ui_panel_title_display(
-                            title      = translate(lang = lang, "Inference"),
+                            title      = translate(lang = lang, "Statistical inference"),
                             icon_name  = "body-text",
                             icon_class = "app-rotated-minus-90"
                         )
@@ -745,7 +762,7 @@ ui_panel_usage_accordion <- function(lang = "") {
                         Some %s panels require more computing time and resources.
                     "),
                     ui_panel_title_display(
-                        title      = translate(lang = lang, "Inference"),
+                        title      = translate(lang = lang, "Statistical inference"),
                         icon_name  = "body-text",
                         icon_class = "app-rotated-minus-90"
                     )

@@ -4,6 +4,7 @@
 #
 # graphical output functions
 #
+# v1.04    21 avril 2025 changement des couleurs
 # V1.03    4 juin 2018 correction des graphes sequentiel - n<50
 # V1.02    2 mai 2018 script delphines Bosson
 # V1.01    22 march 2018 adding psi to the riskband plots
@@ -553,7 +554,7 @@ riskband.plot.frac <-function(mu.chain , sigma.chain , c.oel , frac_threshold , 
 
     graph9<- ggplot(data,aes(x=cats,y=perc))
     graph9 <-graph9+
-      geom_bar(stat="identity",fill=c('green4','greenyellow','yellow','orange','red'))+
+      geom_bar(stat="identity",fill=c('darkcyan','chartreuse4','darkseagreen2','orange','red'))+
       theme(aspect.ratio=0.6)+
       theme(axis.title.x=element_text(size=16,vjust=-1))+
       theme(axis.text.x=element_text(size=13))+
@@ -604,7 +605,7 @@ riskband.plot.frac <-function(mu.chain , sigma.chain , c.oel , frac_threshold , 
 
     graph10<- ggplot(data,aes(x=cats,y=perc))
     graph10 <-graph10+
-      geom_bar(stat="identity",fill=c('green4','greenyellow','yellow','orange','red'))+
+      geom_bar(stat="identity",fill=c('darkcyan','chartreuse4','darkseagreen2','orange','red'))+
       theme(aspect.ratio=0.6)+
       theme(axis.title.x=element_text(size=16,vjust=-1))+
       theme(axis.text.x=element_text(size=13))+
