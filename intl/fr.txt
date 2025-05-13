@@ -524,6 +524,14 @@ to %s.
 
 # Insert a translation here.
 
+:: Translations: 05019d4: Source Text
+
+Simplified
+
+:: Translations: 05019d4: Translation
+
+# Insert a translation here.
+
 :: Translations: d111f1a: Source Text
 
 Density Plot
@@ -1210,16 +1218,6 @@ parsed as expected and successfully imported.
 
 # Insert a translation here.
 
-:: Translations: 77445c1: Source Text
-
-Toggle the current mode. Use either the default or simplified mode of Tool 1.
-The latter is formerly known as Tool 1 Express (Tool 1 Simplified) and shows a
-subset of available results.
-
-:: Translations: 77445c1: Translation
-
-# Insert a translation here.
-
 :: Translations: 1a51cee: Source Text
 
 Tool 3
@@ -1578,6 +1576,14 @@ Wait for the server to perform the calculations. All results will be shown once
 they are ready.
 
 :: Translations: aeaec6e: Translation
+
+# Insert a translation here.
+
+:: Translations: 0524962: Source Text
+
+Mode
+
+:: Translations: 0524962: Translation
 
 # Insert a translation here.
 

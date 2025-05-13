@@ -99,6 +99,10 @@ ui <- bslib::page_sidebar(
 
         ui_panel_descriptive_statistics("panel_stats"),
 
+        # This panel is hidden by default.
+        # It is shown if mode() returns "simplified".
+        ui_panel_simplified("panel_simplified"),
+
         # Group other default inference panels.
         # It is shown by default and hidden if mode() returns "simplified".
         bslib::nav_menu(
@@ -268,6 +272,23 @@ server <- function(input, output, session) {
     }) |>
     shiny::bindEvent(lang(), once = TRUE)
 
+    # Toggle panel(s) based on the current mode.
+    shiny::observe({
+        state <- switch(mode(),
+            default = c(
+                show = "panels_menu",
+                hide = "panel_simplified"
+            ),
+            simplified = c(
+                show = "panel_simplified",
+                hide = "panels_menu"
+            )
+        )
+
+        bslib::nav_show("panel_active", state[["show"]])
+        bslib::nav_hide("panel_active", state[["hide"]])
+    }) |>
+    shiny::bindEvent(mode())
 }
 
 # Create a shiny.appobj object that
