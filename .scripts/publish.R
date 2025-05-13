@@ -51,7 +51,7 @@ publish <- function(
 {
     region <- match.arg(region)
 
-    stopifnot({
+    stopifnot(exprs = {
         is_chr1(account)
         is_chr1(version)
         is_chr1(release_date)
