@@ -204,9 +204,10 @@ ui_sidebar <- function(id) {
 
 #' @rdname ui-sidebar
 #' @export
-server_sidebar <- function(id, lang, panel_active) {
+server_sidebar <- function(id, lang, mode, panel_active) {
     stopifnot(exprs = {
         shiny::is.reactive(lang)
+        shiny::is.reactive(mode)
         shiny::is.reactive(panel_active)
     })
 
@@ -257,18 +258,30 @@ server_sidebar <- function(id, lang, panel_active) {
         }) |>
         shiny::bindEvent(input$btn_submit, once = TRUE)
 
-        # Hide/show inputs that are specific to certain panels.
-        # What panel_active returns depends on values passed to
-        # arg id of ui_panel*() functions in app.R.
+        # Show inputs that are specific to certain panels.
+        # Identifiers are hardcoded (they will never change).
         shiny::observe({
+            panel_active <- panel_active()
+
+            # Since inputs are hidden by default, operator == is used.
             shinyjs::toggle("frac_threshold", condition = {
-                panel_active() == "panel_fraction"
+                panel_active == "panel_fraction"
             })
             shinyjs::toggle("target_perc", condition = {
-                panel_active() == "panel_percentiles"
+                panel_active == "panel_percentiles"
             })
         }) |>
         shiny::bindEvent(panel_active())
+
+        # Show inputs oel and data only if mode is simplified.
+        shiny::observe({
+            mode <- mode()
+
+            # Since inputs are shown by default, operator != is used.
+            shinyjs::toggle("conf", condition = { mode != "simplified" })
+            shinyjs::toggle("psi",  condition = { mode != "simplified" })
+        }) |>
+        shiny::bindEvent(mode())
 
         # Translate elements not rendered
         # with a shiny::render*() function.
