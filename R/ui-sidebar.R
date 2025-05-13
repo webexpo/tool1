@@ -254,7 +254,7 @@ server_sidebar <- function(id, lang, mode, panel_active) {
 
         # Hide warnings once inputs are submitted.
         shiny::observe({
-            shinyjs::hide("data_format_card")
+            shinyjs::hide("warning_card")
         }) |>
         shiny::bindEvent(input$btn_submit, once = TRUE)
 
