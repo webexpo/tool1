@@ -2,22 +2,6 @@
 #'
 #' Load libraries, scripts and global constants.
 #'
-#' @note
-#' For historical reasons, scripts stored in `scripts/` do not reference the
-#' namespaces of the functions they call, and the packages they use must be
-#' attached to the search path.
-#'
-#' This is considered to be a bad practice. The intent should always be clear
-#' and consistent.
-#'
-#' ```
-#' # Good
-#' transltr::language_source_get()
-#'
-#' # Bad
-#' language_source_get()
-#' ```
-#'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
 # Libraries --------------------------------------------------------------------

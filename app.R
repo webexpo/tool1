@@ -8,20 +8,21 @@
 #' .run()
 #'
 #' @details
-#' Development scripts are stored in .scripts/. These are not required at
-#' runtime. Helper functions that can be called to source them are attached
-#' to the search path of [interactive()] R sessions. See .Rprofile for more
-#' information.
-#'
-#' ## R Objects
-#'
-#' Shiny modules, global constants, helper functions, and other objects
-#' are stored in R/. They are loaded automatically by [shiny::runApp()]
-#' and `.run()`.
+#' Shiny modules, global constants, functions, and other objects are stored
+#' in R/. They are loaded automatically by [shiny::runApp()] and `.run()`.
+#' They are also sourced into the global environment for development purposes
+#' in [interactive()] R sessions. See .Rprofile for more information.
 #'
 #' Tool 1 depends on a large set of functions stemming from previous projects.
 #' For historical reasons, these are stored in scripts/ and are not structured
-#' in a standard way. They are explicitly loaded at runtime by R/global.R.
+#' in a standard way. They are explicitly sourced at runtime (see R/global.R).
+#'
+#' ## Development Scripts
+#'
+#' Development scripts are stored in .scripts/ (not scripts/ !) and automate
+#' various actions. They are not required at runtime.
+#'
+#' .Rprofile defines small helper functions to seamlessly run them.
 #'
 #' ## Static Assets
 #'
@@ -29,17 +30,44 @@
 #'
 #' ## Naming Conventions
 #'
-#' The `snake_case_with_lower_cases` naming pattern is used at all times. CSS
-#' classes uses `dash-case-with-lower-cases` for consistency with usual best
-#' practices in web development. Each class name must begin with `app-`.
+#' `snake_case_with_lower_cases` is used at all times.
+#'
+#' CSS classes use `dash-case-with-lower-cases` for consistency with usual
+#' best practices in web development. Each CSS class name must begin with
+#' the `app-` prefix (when possible).
 #'
 #' For historical reasons, R objects defined in scripts/ use a different
 #' naming convention. Avoid it.
 #'
+#' ## Namespaces
+#'
+#' For historical reasons, scripts stored in scripts/ do not reference the
+#' namespace (the package) of the functions they call. Consequently, some
+#' packages must be attached to the search path. This is a bad practice from
+#' which Tool 1 is moving away.
+#'
+#' ```
+#' # Good
+#' transltr::language_source_get()
+#'
+#' # Bad
+#' language_source_get()
+#' ```
+#'
+#' @format
+#' `ui` is a `bslib_page` object (an output of [bslib::page_sidebar()]).
+#' This is a list of `shiny.tag` objects.
+#.
+#' @returns
+#' [server()] returns `NULL`, invisibly.
+#'
 #' @author Jérôme Lavoué (<jerome.lavoue@@umontreal.ca>)
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
-
+#'
+#' @rdname app
+#'
+#' @export
 ui <- bslib::page_sidebar(
     # lang and window_title are both updated
     # by server() based on the chosen lang.
@@ -124,8 +152,13 @@ ui <- bslib::page_sidebar(
     )
 )
 
+#' @rdname app
+#' @export
 server <- function(input, output, session) {
     data_sample <- shiny::reactive({
+        # calc_parameters() is a shiny::reactive object
+        # returned by the Sidebar module below. It holds
+        # all user input values.
         calc_parameters <- calc_parameters()
 
         # oel.mult is set equal to 1 until Webexpo scripts
@@ -186,7 +219,6 @@ server <- function(input, output, session) {
     # current language, mode, and color.
     ui_parameters <- server_title("layout_title")
 
-    # Avoid repeated extractions (calls to `$`) below.
     lang <- ui_parameters$lang
     mode <- ui_parameters$mode
 
@@ -249,7 +281,7 @@ server <- function(input, output, session) {
     output$panels_menu_title <- shiny::renderText({
         translate(lang = lang(), "Inference")
     }) |>
-    shiny::bindEvent(lang(), once = TRUE)
+    shiny::bindEvent(lang())
 
     # Observers ----------------------------------------------------------------
 
@@ -270,7 +302,7 @@ server <- function(input, output, session) {
                 sprintf("Expostats - %s", translate(lang = lang, "Tool 1")))
         }
     }) |>
-    shiny::bindEvent(lang(), once = TRUE)
+    shiny::bindEvent(lang())
 
     # Toggle panel(s) based on the current mode.
     shiny::observe({
@@ -289,8 +321,10 @@ server <- function(input, output, session) {
         bslib::nav_hide("panel_active", state[["hide"]])
     }) |>
     shiny::bindEvent(mode())
+
+    return(invisible())
 }
 
-# Create a shiny.appobj object that
-# can be passed to shiny::runApp().
+#' @rdname app
+#' @export
 app <- shiny::shinyApp(ui, server)
