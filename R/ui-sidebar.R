@@ -133,7 +133,7 @@ ui_sidebar <- function(id) {
             style = "gap: 1rem; margin-bottom: 1rem;",
 
             shiny::actionButton(
-                inputId = ns("submit_btn"),
+                inputId = ns("btn_submit"),
                 class   = "btn btn-outline-success app-btn w-100 fw-light",
                 label   = tags$span(
                     tags$span(
@@ -141,17 +141,17 @@ ui_sidebar <- function(id) {
                         bsicons::bs_icon("check-circle-fill", a11y = "deco")
                     ),
 
-                    shiny::textOutput(ns("submit_btn_label"), tags$span)
+                    shiny::textOutput(ns("btn_submit_label"), tags$span)
                 )
             ) |>
             bslib::tooltip(
-                id        = ns("submit_btn_tooltip"),
+                id        = ns("btn_submit_tooltip"),
                 placement = "bottom",
                 ""
             ),
 
             shiny::actionButton(
-                inputId = ns("clear_btn"),
+                inputId = ns("btn_clear"),
                 class   = "btn btn-outline-secondary app-btn w-100 fw-light",
                 label   = tags$span(
                     tags$span(
@@ -159,11 +159,11 @@ ui_sidebar <- function(id) {
                         bsicons::bs_icon("x-circle-fill", a11y = "deco")
                     ),
 
-                    shiny::textOutput(ns("clear_btn_label"), tags$span)
+                    shiny::textOutput(ns("btn_clear_label"), tags$span)
                 )
             ) |>
             bslib::tooltip(
-                id        = ns("clear_btn_tooltip"),
+                id        = ns("btn_clear_tooltip"),
                 placement = "bottom",
                 ""
             )
@@ -218,12 +218,12 @@ server_sidebar <- function(id, lang, panel_active) {
         }) |>
         shiny::bindCache(lang())
 
-        output$submit_btn_label <- shiny::renderText({
+        output$btn_submit_label <- shiny::renderText({
             translate(lang = lang(), "Submit")
         }) |>
         shiny::bindCache(lang())
 
-        output$clear_btn_label <- shiny::renderText({
+        output$btn_clear_label <- shiny::renderText({
             translate(lang = lang(), "Clear")
         }) |>
         shiny::bindCache(lang())
@@ -249,13 +249,13 @@ server_sidebar <- function(id, lang, panel_active) {
         shiny::observe({
             shiny::updateTextAreaInput(inputId = "data", value = "")
         }) |>
-        shiny::bindEvent(input$clear_btn)
+        shiny::bindEvent(input$btn_clear)
 
         # Hide warnings once inputs are submitted.
         shiny::observe({
             shinyjs::hide("data_format_card")
         }) |>
-        shiny::bindEvent(input$submit_btn, once = TRUE)
+        shiny::bindEvent(input$btn_submit, once = TRUE)
 
         # Hide/show inputs that are specific to certain panels.
         # What panel_active returns depends on values passed to
@@ -345,11 +345,11 @@ server_sidebar <- function(id, lang, panel_active) {
                 Parameters section in Frequently Asked Questions (FAQ) above.
             "))
 
-            bslib::update_tooltip("submit_btn_tooltip", translate(lang = lang, "
+            bslib::update_tooltip("btn_submit_tooltip", translate(lang = lang, "
                 Submit all parameters and start Bayesian calculations.
             "))
 
-            bslib::update_tooltip("clear_btn_tooltip", translate(lang = lang, "
+            bslib::update_tooltip("btn_clear_tooltip", translate(lang = lang, "
                 Clear the measurement dataset. Doing so does not automatically
                 update the current results.
             "))
@@ -368,7 +368,7 @@ server_sidebar <- function(id, lang, panel_active) {
                     target_perc    = input$target_perc
                 )
             }) |>
-            shiny::bindEvent(input$submit_btn)
+            shiny::bindEvent(input$btn_submit)
         )
     }
 
