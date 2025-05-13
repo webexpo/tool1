@@ -355,13 +355,13 @@ server_exceedance_plot_sidebar <- function(id, lang) {
             bslib::accordion_panel_update(
                 id     = "accordion",
                 target = "exposure",
-                title  = "Exposures"
+                title  = translate(lang = lang, "Exposures")
             )
 
             bslib::accordion_panel_update(
                 id     = "accordion",
                 target = "background",
-                title  = "Backgrounds"
+                title  = translate(lang = lang, "Backgrounds")
             )
 
             shiny::updateSelectInput(
