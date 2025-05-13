@@ -34,7 +34,6 @@
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
 #' @rdname ui-exceedance-plot
-#'
 #' @export
 ui_exceedance_plot <- function(id) {
     ns <- shiny::NS(id)

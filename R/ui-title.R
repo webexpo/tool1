@@ -64,7 +64,6 @@
 #' [Bootstrap 5 Breakpoints](https://getbootstrap.com/docs/5.3/layout/breakpoints/)
 #'
 #' @rdname ui-title
-#'
 #' @export
 ui_title <- function(id) {
     ns <- shiny::NS(id)

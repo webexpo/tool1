@@ -44,7 +44,6 @@
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
 #' @rdname ui-banner
-#'
 #' @export
 ui_banner <- function(id) {
     ns <- shiny::NS(id)

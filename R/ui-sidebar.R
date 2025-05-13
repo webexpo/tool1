@@ -38,7 +38,6 @@
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
 #' @rdname ui-sidebar
-#'
 #' @export
 ui_sidebar <- function(id) {
     ns <- shiny::NS(id)

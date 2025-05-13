@@ -46,7 +46,6 @@
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
 #' @rdname ui-panel-descriptive-statistics
-#'
 #' @export
 ui_panel_descriptive_statistics <- function(id) {
     ns <- shiny::NS(id)

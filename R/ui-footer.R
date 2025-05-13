@@ -21,7 +21,6 @@
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
 #' @rdname ui-footer
-#'
 #' @export
 ui_footer <- function(id) {
     ns <- shiny::NS(id)

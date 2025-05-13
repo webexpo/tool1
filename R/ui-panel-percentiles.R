@@ -53,7 +53,6 @@
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
 #' @rdname ui-panel-percentiles
-#'
 #' @export
 ui_panel_percentiles <- function(id) {
     ns <- shiny::NS(id)

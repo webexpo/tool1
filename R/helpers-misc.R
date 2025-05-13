@@ -21,7 +21,6 @@
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
 #' @rdname helpers-misc-is
-#'
 #' @export
 is_num1 <- function(x) {
     return(is.numeric(x) && length(x) == 1L && !is.na(x))

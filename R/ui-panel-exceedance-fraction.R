@@ -57,7 +57,6 @@
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
 #' @rdname ui-panel-exceedance-fraction
-#'
 #' @export
 ui_panel_exceedance_fraction <- function(id) {
     ns <- shiny::NS(id)

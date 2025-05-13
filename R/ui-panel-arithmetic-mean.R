@@ -54,7 +54,6 @@
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
 #' @rdname ui-panel-arithmetic-mean
-#'
 #' @export
 ui_panel_arithmetic_mean <- function(id) {
     ns <- shiny::NS(id)

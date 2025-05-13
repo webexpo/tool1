@@ -85,7 +85,6 @@
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
 #' @rdname ui-modal-faq
-#'
 #' @export
 ui_modal_faq <- function(id) {
     ns <- shiny::NS(id)

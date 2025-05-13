@@ -3,7 +3,6 @@
 #' Alias to method `$translate()` of the main [transltr::Translator] object.
 #'
 #' @rdname helpers-translate
-#'
 #' @export
 translate <- tr$translate
 
@@ -78,7 +77,6 @@ translate <- tr$translate
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
 #' @rdname helpers-translate
-#'
 #' @export
 ordinal <- function(
     x      = numeric(1L),

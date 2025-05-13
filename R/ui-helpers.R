@@ -27,7 +27,6 @@
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
 #' @rdname ui-helpers
-#'
 #' @export
 ui_link <- function(href = "", ..., tags = htmltools::tags) {
     return(
