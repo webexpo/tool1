@@ -99,10 +99,11 @@ ui <- bslib::page_sidebar(
 
         ui_panel_descriptive_statistics("panel_stats"),
 
-        # Group together panels used
-        # for inference purposes.
+        # Group other default inference panels.
+        # It is shown by default and hidden if mode() returns "simplified".
         bslib::nav_menu(
-            title = shiny::textOutput("inference_menu_title", tags$span),
+            value = "panels_menu",
+            title = shiny::textOutput("panels_menu_title", tags$span),
             icon  = tags$span(
                 class = "pe-1",
                 bsicons::bs_icon(
@@ -120,31 +121,15 @@ ui <- bslib::page_sidebar(
 )
 
 server <- function(input, output, session) {
-    lang <- shiny::reactive({
-        # lang is extracted from URL's search paramter ?lang.
-        lang <- shiny::parseQueryString(session$clientData$url_search)$lang
-
-        # If lang is not supplied or does not match
-        # any supported language, the default_lang
-        # is used and ?lang is updated accordingly.
-        if (is.null(lang) || !match(lang, names(tr$native_languages), 0L)) {
-            shiny::updateQueryString(sprintf("?lang=%s", default_lang))
-            return(default_lang)
-        }
-
-        return(lang)
-    }) |>
-    shiny::bindEvent(session$clientData$url_search, once = TRUE)
-
     data_sample <- shiny::reactive({
-        parameters <- parameters()
+        calc_parameters <- calc_parameters()
 
         # oel.mult is set equal to 1 until Webexpo scripts
         # are rewritten. In what follows, c.oel is ignored
         # and input$oel is used instead.
         data.formatting.SEG(
-            data.in  = parameters$data,
-            oel      = parameters$oel,
+            data.in  = calc_parameters$data,
+            oel      = calc_parameters$oel,
             oel.mult = 1L
         )
     })
@@ -159,22 +144,22 @@ server <- function(input, output, session) {
             rightcensored = data_sample$rightcensored,
             intcensored   = data_sample$intcensored,
             seed          = data_sample$seed,
-            c.oel         = parameters()$oel,
+            c.oel         = calc_parameters()$oel,
             n.iter        = default_n_bayes_iter
         )
     })
 
     num_results <- shiny::reactive({
-        parameters <- parameters()
+        calc_parameters <- calc_parameters()
         bayesian_analysis <- bayesian_analysis()
 
         all.numeric(
             mu.chain       = bayesian_analysis$mu.chain,
             sigma.chain    = bayesian_analysis$sigma.chain,
-            c.oel          = parameters$oel,
-            conf           = parameters$conf,
-            frac_threshold = parameters$frac_threshold,
-            target_perc    = parameters$target_perc
+            c.oel          = calc_parameters$oel,
+            conf           = calc_parameters$conf,
+            frac_threshold = calc_parameters$frac_threshold,
+            target_perc    = calc_parameters$target_perc
         )
     })
 
@@ -190,14 +175,85 @@ server <- function(input, output, session) {
         )
     })
 
-    output$inference_menu_title <- shiny::renderText({
+    # Modules ------------------------------------------------------------------
+
+    # This returns a list of shiny::reactive()
+    # objects that can be used to get the UI's
+    # current language, mode, and color.
+    ui_parameters <- server_title("layout_title")
+
+    # Avoid repeated extractions (calls to `$`) below.
+    lang <- ui_parameters$lang
+    mode <- ui_parameters$mode
+
+    # This returns a shiny::reactive() object
+    # returning a named list containing all
+    # user inputs in a list.
+    calc_parameters <- server_sidebar(
+        id           = "layout_sidebar",
+        lang         = lang,
+        panel_active = shiny::reactive({ input$panel_active })
+    )
+
+    server_banner(
+        id   = "busy_banner",
+        lang = lang
+    )
+
+    server_panel_descriptive_statistics(
+        id          = "panel_stats",
+        lang        = lang,
+        parameters  = calc_parameters,
+        data_sample = data_sample
+    )
+
+    server_panel_simplified(
+        id   = "panel_simplified",
+        lang = lang
+    )
+
+    server_panel_exceedance_fraction(
+        id                = "panel_fraction",
+        lang              = lang,
+        parameters        = calc_parameters,
+        data_sample       = data_sample,
+        bayesian_analysis = bayesian_analysis,
+        num_results       = num_results,
+        estimates_params  = estimates_params
+    )
+
+    server_panel_percentiles(
+        id                = "panel_percentiles",
+        lang              = lang,
+        parameters        = calc_parameters,
+        bayesian_analysis = bayesian_analysis,
+        num_results       = num_results,
+        estimates_params  = estimates_params
+    )
+
+    server_panel_arithmetic_mean(
+        id                = "panel_mean",
+        lang              = lang,
+        parameters        = calc_parameters,
+        bayesian_analysis = bayesian_analysis,
+        num_results       = num_results,
+        estimates_params  = estimates_params
+    )
+
+    # Outputs ------------------------------------------------------------------
+
+    output$panels_menu_title <- shiny::renderText({
         translate(lang = lang(), "Inference")
-    })
+    }) |>
+    shiny::bindEvent(lang(), once = TRUE)
 
     # Observers ----------------------------------------------------------------
 
-    # See www/main.js for more information.
-    shiny::observe({
+    # Set the lang attribute of the root <html>
+    # element and translate the title of the
+    # browser's tab. See www/main.js for more
+    # information.
+    shiny::observe(priority = 1L, {
         lang <- lang()
 
         if (lang != default_lang) {
@@ -212,54 +268,6 @@ server <- function(input, output, session) {
     }) |>
     shiny::bindEvent(lang(), once = TRUE)
 
-    # Modules ------------------------------------------------------------------
-
-    app_mode_is_simplified <- server_title("layout_title", lang)
-
-    server_banner("busy_banner", lang)
-
-    # This server function returns a shiny::reactive()
-    # object that returns all user inputs in a list.
-    parameters <- server_sidebar(
-        id           = "layout_sidebar",
-        lang         = lang,
-        panel_active = shiny::reactive({ input$panel_active })
-    )
-
-    server_panel_descriptive_statistics(
-        id          = "panel_stats",
-        lang        = lang,
-        parameters  = parameters,
-        data_sample = data_sample
-    )
-
-    server_panel_exceedance_fraction(
-        id                = "panel_fraction",
-        lang              = lang,
-        parameters        = parameters,
-        data_sample       = data_sample,
-        bayesian_analysis = bayesian_analysis,
-        num_results       = num_results,
-        estimates_params  = estimates_params
-    )
-
-    server_panel_percentiles(
-        id                = "panel_percentiles",
-        lang              = lang,
-        parameters        = parameters,
-        bayesian_analysis = bayesian_analysis,
-        num_results       = num_results,
-        estimates_params  = estimates_params
-    )
-
-    server_panel_arithmetic_mean(
-        id                = "panel_mean",
-        lang              = lang,
-        parameters        = parameters,
-        bayesian_analysis = bayesian_analysis,
-        num_results       = num_results,
-        estimates_params  = estimates_params
-    )
 }
 
 # Create a shiny.appobj object that
