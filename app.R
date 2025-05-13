@@ -49,6 +49,8 @@ ui <- bslib::page_sidebar(
     title        = ui_title("layout_title"),
     sidebar      = ui_sidebar("layout_sidebar"),
 
+    # <head> -------------------------------------------------------------------
+
     tags$head(
         tags$link(
             rel  = "manifest",
@@ -86,7 +88,7 @@ ui <- bslib::page_sidebar(
         shinyjs::useShinyjs()
     ),
 
-    # Main ---------------------------------------------------------------------
+    # <main> -------------------------------------------------------------------
 
     # Banner shown whenever the Shiny engine is blocked.
     ui_banner("busy_banner"),
