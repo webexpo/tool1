@@ -372,16 +372,27 @@ server_sidebar <- function(id, lang, mode, panel_active) {
         # Return all inputs except buttons.
         return(
             shiny::reactive({
-                list(
-                    oel            = input$oel,
-                    conf           = input$conf,
-                    psi            = input$psi,
-                    data           = input$data,
-                    frac_threshold = input$frac_threshold,
-                    target_perc    = input$target_perc
+                switch(mode(),
+                    simplified = list(
+                        oel            = input$oel,
+                        conf           = 90,
+                        psi            = 30,
+                        data           = input$data,
+                        frac_threshold = 5,
+                        target_perc    = 95
+                    ),
+                    # Default case (mode == "default").
+                    list(
+                        oel            = input$oel,
+                        conf           = input$conf,
+                        psi            = input$psi,
+                        data           = input$data,
+                        frac_threshold = input$frac_threshold,
+                        target_perc    = input$target_perc
+                    )
                 )
             }) |>
-            shiny::bindEvent(input$btn_submit)
+            shiny::bindEvent(input$btn_submit, mode(), ignoreInit = TRUE)
         )
     }
 
