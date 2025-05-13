@@ -79,10 +79,10 @@ default_n_digits <- 3L
 default_images_dir <- file.path("www", "images")
 
 # Default message to show when
-#   - there is no available translation, OR
-#   - the underlying source text has not yet been registered by object tr
-#     using transltr::find_source(). Call .find() whenever you change the
-#     text passed to translate().
+#  - there is no available translation, OR
+#  - the underlying source text has not yet been registered by object tr
+#    using transltr::find_source(). Call .find() whenever you change the
+#    text passed to translate().
 tr$set_default_value(default_missing_translation_msg <- "{no translation}")
 
 # Default maintainers' emails.
