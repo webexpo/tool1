@@ -32,75 +32,48 @@
 #' directly (and not within a div.navbar). This is currently undocumented by
 #' bslib.
 #'
+#' ## User Interface State
+#'
+#' This module implements buttons that can be used to customize the user
+#' interface and oversees their underlying internal states using functions
+#' defined in `R/helpers-ui-title.R`.
+#'
+#' ## Languages
+#'
+#' This module automatically creates required buttons and observers for all
+#' supported languages. In other words, it does not need to be updated when
+#' a new language is added.
+#'
 #' @template param-id
 #'
-#' @template param-lang
+#' @param langs A named character vector. Elements are native language names
+#'   (used as untranslated button labels). Names are the underlying language
+#'   codes. It is equal to global constant `tr$native_languages` by default.
 #'
 #' @returns
 #' [ui_title()] returns a list of `shiny.tag` objects.
 #'
-#' [server_title()] returns a [shiny::reactive()] object returning whether
-#' the current state of Tool 1 is simplified (or not).
+#' [server_title()] returns a named list of length 3 containing these elements:
+#' `lang`, `mode`, and `color`. These are [shiny::reactive()] objects returning
+#' the current value of these parameters.
 #'
 #' @note
 #' This module implements two Bootstrap dropdown menus with single buttons
 #' (https://getbootstrap.com/docs/5.3/components/dropdowns).
 #'
-#' Both buttons have a [bslib::tooltip()]. This function automatically sets
-#' attribute `data-bs-toggle` on its input element. Since there can only be
-#' one Bootstrap toggle event per element, calling this function on buttons
-#' overwrites any previous `data-bs-toggle` attribute, like the one required
-#' for the dropdown menu.
-#'
-#' The solution is to separate these two events (dropdown and tooltip trigger
-#' metadata) by attaching the tooltip toggle to an outer container containing
-#' each button.
-#'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
 #' @seealso
-#' [Bootrap 5 Navbars](https://getbootstrap.com/docs/5.3/components/navbar/),
+#' [Bootstrap 5 Navbars](https://getbootstrap.com/docs/5.3/components/navbar/),
 #' [Bootstrap 5 Dropdowns](https://getbootstrap.com/docs/5.3/components/dropdowns),
-#' [Bootstrap 5 Breakpoints](https://getbootstrap.com/docs/5.3/layout/breakpoints/)
+#' [Bootstrap 5 Breakpoints](https://getbootstrap.com/docs/5.3/layout/breakpoints/),
+#' [Bootstrap 5 Color Modes](https://getbootstrap.com/docs/5.3/customize/color-modes/)
 #'
 #' @rdname ui-title
 #' @export
-ui_title <- function(id) {
+ui_title <- function(id, langs = tr$native_languages) {
     ns <- shiny::NS(id)
     nav_id <- ns("navbar_nav")
-
-    # Bootstrap recommends to mark elements of dropdowns
-    # within <li> elements. Each <li> encapsulate a link
-    # (an <a> tag) that sets the URL's lang parameter.
-    # Tags are constructed from supported languages.
-    btn_langs_choices <- mapply(
-        code     = names(tr$native_languages),
-        lang     = tr$native_languages,
-        SIMPLIFY = FALSE,
-        \(code, lang) {
-            return(
-                tags$li(
-                    tags$a(
-                        class    = "dropdown-item",
-                        href     = sprintf("?lang=%s", code),
-                        hreflang = code,
-                        rel      = "alternate",
-                        target   = "_self",
-                        lang
-                    )
-                )
-            )
-        }
-    )
-
-    # Temporarily disable French language (explicitly).
-    # TODO: Reactivate menu item once translations become available.
-    btn_langs_choices$fr <- htmltools::tagAppendAttributes(
-        btn_langs_choices$fr,
-        class           = "disabled",
-        "aria-disabled" = "true",
-        .cssSelector    = "a"
-    )
 
     return(
         list(
@@ -172,6 +145,57 @@ ui_title <- function(id) {
                     # Only shown on smaller screens (<= 992px).
                     tags$div(class = "d-lg-none mt-3"),
 
+                    ## Modes ---------------------------------------------------
+
+                    tags$li(
+                        class = "nav-item dropdown",
+
+                        tags$button(
+                            class            = "nav-link dropdown-toggle",
+                            type             = "button",
+                            "data-bs-toggle" = "dropdown",
+
+                            tags$span(
+                                class = "pe-1",
+                                bsicons::bs_icon(
+                                    name = "layout-text-window-reverse",
+                                    a11y = "deco"
+                                )
+                            ),
+
+                            shiny::textOutput(ns("btn_modes_label"), tags$span)
+                        ),
+
+                        # Bootstrap use a smaller font for buttons.
+                        # Class fs-6 ensures the same font is used
+                        # for both links and buttons in dropdowns.
+                        tags$ul(
+                            class = "dropdown-menu dropdown-menu-end",
+
+                            tags$li(
+                                shiny::actionButton(
+                                    inputId = ns("btn_mode_default"),
+                                    class   = "dropdown-item fs-6",
+                                    label   = shiny::textOutput(
+                                        outputId  = ns("btn_mode_default_label"),
+                                        container = tags$span
+                                    )
+                                )
+                            ),
+
+                            tags$li(
+                                shiny::actionButton(
+                                    inputId = ns("btn_mode_simplified"),
+                                    class   = "dropdown-item fs-6",
+                                    label   = shiny::textOutput(
+                                        outputId  = ns("btn_mode_simplified_label"),
+                                        container = tags$span
+                                    )
+                                )
+                            )
+                        )
+                    ),
+
                     ## Languages -----------------------------------------------
 
                     tags$li(
@@ -187,16 +211,33 @@ ui_title <- function(id) {
                                 bsicons::bs_icon("translate", a11y = "deco")
                             ),
 
-                            shiny::textOutput(ns("nav_item_language"), tags$span)
+                            shiny::textOutput(ns("btn_langs_label"), tags$span)
                         ),
 
-                        htmltools::tagSetChildren(
-                            tags$ul(class = "dropdown-menu"),
-                            list = btn_langs_choices
-                        )
+                        # Generate a button for each supported language.
+                        # Labels are created from native language names
+                        # that must not be translated.
+                        do.call(tags$ul, c(
+                            class = "dropdown-menu dropdown-menu-end",
+                            mapply(
+                                lang      = names(langs),
+                                name      = langs,
+                                SIMPLIFY  = FALSE,
+                                USE.NAMES = FALSE,
+                                \(lang, name) {
+                                    tags$li(
+                                        shiny::actionButton(
+                                            inputId = ns(sprintf("btn_lang_%s", lang)),
+                                            class   = "dropdown-item fs-6",
+                                            label   = name
+                                        )
+                                    )
+                                }
+                            )
+                        ))
                     ),
 
-                    ## Expostats Links -----------------------------------------
+                    ## Links ---------------------------------------------------
 
                     tags$li(
                         class = "nav-item dropdown",
@@ -217,7 +258,7 @@ ui_title <- function(id) {
                         shiny::uiOutput(
                             ns("nav_item_expostats_links"),
                             container = tags$ul,
-                            class     = "dropdown-menu"
+                            class     = "dropdown-menu dropdown-menu-end"
                         )
                     ),
 
@@ -235,35 +276,22 @@ ui_title <- function(id) {
                         class = "nav-item d-flex",
                         style = "gap: 1rem;",
 
-                        ### Frequently Asked Questions -------------------------
-
-                        ui_modal_faq(ns("faq")),
-
-                        ### App Mode -------------------------------------------
+                        ### UI Color Mode --------------------------------------
 
                         shiny::actionButton(
                             class   = "btn btn-outline-secondary app-btn",
-                            inputId = ns("btn_app_mode"),
-                            label   = bsicons::bs_icon("exclude", a11y = "sem"),
-                        ) |>
-                        bslib::tooltip(
-                            id        = ns("btn_app_mode_tooltip"),
-                            placement = "bottom",
-                            ""
-                        ),
-
-                        ### Color Mode -----------------------------------------
-
-                        shiny::actionButton(
-                            class   = "btn btn-outline-secondary app-btn",
-                            inputId = ns("btn_color_mode"),
+                            inputId = ns("btn_color"),
                             label   = bsicons::bs_icon("moon-fill", a11y = "sem")
                         ) |>
                         bslib::tooltip(
-                            id        = ns("btn_color_mode_tooltip"),
+                            id        = ns("btn_color_tooltip"),
                             placement = "bottom",
                             ""
                         ),
+
+                        ### Frequently Asked Questions -------------------------
+
+                        ui_modal_faq(ns("faq")),
 
                         ### GitHub ---------------------------------------------
 
@@ -287,11 +315,124 @@ ui_title <- function(id) {
 
 #' @rdname ui-title
 #' @export
-server_title <- function(id, lang) {
-    stopifnot(shiny::is.reactive(lang))
-
+server_title <- function(id, langs = tr$native_languages) {
     server <- \(input, output, session) {
+        # UI Parameters --------------------------------------------------------
+
+        # Each language is tied to a button which can
+        # be captured by input$btn_lang_<lang>. These
+        # inputs represent click events to be attached
+        # to the reactive value returning the current
+        # language and to observers listening to these
+        # clicks (see below).
+        lang_btn_ids <- sprintf("btn_lang_%s", names(langs))
+
+        # Update lang whenever one of the related buttons is clicked.
+        lang <- shiny::reactive({
+            get_lang()
+        }) |>
+        # Create a list where the first element is the reactive above,
+        # and further elements are unevaluated input[[btn_lang_<lang>]]
+        # calls created using partial substitution with bquote().
+        c(
+            x = _,
+            lapply(lang_btn_ids, \(btn_id) {
+                bquote(input[[.(btn_id)]])
+            })
+        ) |>
+        # Pass this list as arguments to shiny::bindEvent() with do.call().
+        do.call(shiny::bindEvent, args = _)
+
+        # Update mode whenever one of the related buttons is clicked.
+        mode <- shiny::reactive({
+            get_mode()
+        }) |>
+        shiny::bindEvent(input$btn_mode_default, input$btn_mode_simplified)
+
+        # Update color whenever the related button is clicked.
+        color <- shiny::reactive({
+            get_color("current")
+        }) |>
+        shiny::bindEvent(input$btn_color)
+
+        # Observers that set/control UI parameters (below) have a higher
+        # priority to ensure they are always executed first (before all
+        # other observers and reactive expressions). This is because
+        # values must always be updated with set_*() functions first.
+
+        # Apply UI parameters passed as query parameters.
+        shiny::observe(priority = 10L, {
+            # Extract parameters from the URL.
+            query_params <- shiny::getQueryString()
+
+            # Validate and set extracted parameters.
+            set_lang(parse_lang(query_params$lang))
+            set_mode(parse_mode(query_params$mode))
+            color <- set_color(parse_color(query_params$color))
+
+            # Update the URL with valid values. Some
+            # values could had been invalid initially.
+            update_query_string()
+
+            # Update the color mode and the label
+            # of the button controlling it.
+            bslib::toggle_dark_mode(color[["current"]])
+            shiny::updateActionButton(
+                inputId = "btn_color",
+                label   = color[["label"]]
+            )
+        }) |>
+        # After execution, the user may update current
+        # parameters by using the buttons of the module.
+        shiny::bindEvent(session$clientData$url_search, once = TRUE)
+
+        # Update the current language.
+        # Each language has a dedicated button requiring its own observer.
+        mapply(
+            lang   = names(langs),
+            btn_id = lang_btn_ids,
+            \(lang, btn_id) {
+                shiny::observe(priority = 10L, {
+                    update_query_string(lang = set_lang(lang))
+                }) |>
+                shiny::bindEvent(input[[btn_id]], ignoreInit = TRUE)
+            }
+        )
+
+        # Update the current mode.
+        # Each mode has a dedicated button.
+        shiny::observe(priority = 10L, {
+            update_query_string(mode = set_mode("default"))
+        }) |>
+        shiny::bindEvent(input$btn_mode_default, ignoreInit = TRUE)
+
+        shiny::observe(priority = 10L, {
+            update_query_string(mode = set_mode("simplified"))
+        }) |>
+        shiny::bindEvent(input$btn_mode_simplified, ignoreInit = TRUE)
+
+        # Update the current color mode.
+        shiny::observe(priority = 10L, {
+            # Passing a NULL toggles the state.
+            color <- set_color(NULL)
+
+            update_query_string(color = color[["current"]])
+
+            bslib::toggle_dark_mode(color[["current"]])
+            shiny::updateActionButton(
+                inputId = "btn_color",
+                label   = color[["label"]]
+            )
+        }) |>
+        shiny::bindEvent(input$btn_color, ignoreInit = TRUE)
+
+        # Modules --------------------------------------------------------------
+
+        # Module is loaded after defining
+        # lang() because it is required.
         server_modal_faq("faq", lang)
+
+        # Outputs and Other Observers ------------------------------------------
 
         output$name <- shiny::renderText({
             translate(lang = lang(), "Tool 1")
@@ -305,7 +446,22 @@ server_title <- function(id, lang) {
         }) |>
         shiny::bindCache(lang())
 
-        output$nav_item_language <- shiny::renderText({
+        output$btn_modes_label <- shiny::renderText({
+            translate(lang = lang(), "Mode")
+        }) |>
+        shiny::bindCache(lang())
+
+        output$btn_mode_default_label <- shiny::renderText({
+            translate(lang = lang(), "Default")
+        }) |>
+        shiny::bindCache(lang())
+
+        output$btn_mode_simplified_label <- shiny::renderText({
+            translate(lang = lang(), "Simplified")
+        }) |>
+        shiny::bindCache(lang())
+
+        output$btn_langs_label <- shiny::renderText({
             translate(lang = lang(), "Language")
         }) |>
         shiny::bindCache(lang())
@@ -314,20 +470,20 @@ server_title <- function(id, lang) {
             lang <- lang()
             links <- list(
                 list(
-                    default_urls$tool2[[lang]],
-                    translate(lang = lang, "Tool 2")
+                    href  = default_urls$tool2[[lang]],
+                    label = translate(lang = lang, "Tool 2")
                 ),
                 list(
-                    default_urls$tool3[[lang]],
-                    translate(lang = lang, "Tool 3")
+                    href  = default_urls$tool3[[lang]],
+                    label = translate(lang = lang, "Tool 3")
                 ),
                 list(
-                    default_urls$expostats[[lang]],
-                    "Expostats"
+                    href  = default_urls$expostats[[lang]],
+                    label = "Expostats"
                 ),
                 list(
-                    default_urls$ndexpo,
-                    "NDExpo"
+                    href  = default_urls$ndexpo,
+                    label = "NDExpo"
                 )
             )
 
@@ -336,11 +492,11 @@ server_title <- function(id, lang) {
                     tags$li(
                         tags$a(
                             class    = "dropdown-item",
-                            href     = link[[1L]],
+                            href     = link$href,
                             hreflang = lang,
                             rel      = "external",
                             target   = "_blank",
-                            link[[2L]]
+                            link$label
                         )
                     )
                 )
@@ -348,51 +504,12 @@ server_title <- function(id, lang) {
         }) |>
         shiny::bindCache(lang())
 
-        # Toggle app mode (default/simplified).
-        shiny::observe({
-            # Icon shown in default mode is the one of simplified
-            # mode and vice-versa. Since the former is the initial
-            # mode, even values (and 0) yield the icon of simplified
-            # mode, and odd numbers yield the icon of default mode.
-            icon <- if (input$btn_app_mode %% 2L == 0L) {
-                bsicons::bs_icon("exclude", a11y = "sem")
-            } else {
-                bsicons::bs_icon("union", a11y = "sem")
-            }
-
-            shiny::updateActionButton(session, "btn_app_mode", label = icon)
-        }) |>
-        shiny::bindEvent(input$btn_app_mode)
-
-        # Toggle color mode (light/dark).
-        shiny::observe({
-            # Icon shown in light mode is the one of dark mode
-            # and vice-versa. Since the former is the initial
-            # mode, even values (and 0) yield icon of dark mode,
-            # and odd numbers yield the icon of light mode.
-            icon <- if (input$btn_color_mode %% 2L == 0L) {
-                bsicons::bs_icon("moon-fill", a11y = "sem")
-            } else {
-                bsicons::bs_icon("sun-fill", a11y = "sem")
-            }
-
-            bslib::toggle_dark_mode()
-            shiny::updateActionButton(session, "btn_color_mode", label = icon)
-        }) |>
-        shiny::bindEvent(input$btn_color_mode)
-
         # Translate elements not rendered
         # with a shiny::render*() function.
         shiny::observe({
             lang <- lang()
 
-            bslib::update_tooltip("btn_app_mode_tooltip", translate(lang = lang, "
-                Toggle the current mode. Use either the default or simplified
-                mode of Tool 1. The latter is formerly known as Tool 1 Express
-                (Tool 1 Simplified) and shows a subset of available results.
-            "))
-
-            bslib::update_tooltip("btn_color_mode_tooltip", translate(lang = lang, "
+            bslib::update_tooltip("btn_color_tooltip", translate(lang = lang, "
                 Toggle the current color scheme (light or dark).
             "))
 
@@ -402,9 +519,13 @@ server_title <- function(id, lang) {
         }) |>
         shiny::bindEvent(lang())
 
-        # An introspector for checking whether app
-        # mode is simplified (or not) is returned.
-        return(shiny::reactive({ input$btn_app_mode %% 2L != 0L }))
+        return(
+            list(
+                lang  = lang,
+                mode  = mode,
+                color = color
+            )
+        )
     }
 
     return(shiny::moduleServer(id, server))
