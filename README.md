@@ -46,6 +46,11 @@ are thoroughly described in
 (Annals of Work Exposures and Health, Volume 63, Issue 3, April 2019, Pages
 267–279).
 
+## Requirements
+
+R version `4.4.0` is required to work on and serve Tool 1 locally. To be
+completed.
+
 ## Usage
 
 To serve Tool 1 locally, call
@@ -105,6 +110,10 @@ Tool 1 further supports translation of ordinal numbers. Each supported
 language requires an `ordinal_rules_<lang>()` function. For example, the
 `ordinal_rules_english()` function implements grammar rules for English
 ordinal numbers. See `R/helpers-translate.R` for more information.
+
+### Working with tranlations files stored in `intl/`
+
+To be completed.
 
 ### Warning
 
