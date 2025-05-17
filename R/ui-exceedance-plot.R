@@ -335,6 +335,94 @@ server_exceedance_plot_sidebar <- function(id, lang) {
     stopifnot(shiny::is.reactive(lang))
 
     server <- function(input, output, session) {
+        accordion_panel_exposure_title <- shiny::reactive({
+            translate(lang = lang(), "Exposures")
+        }) |>
+        shiny::bindCache(lang())
+
+        accordion_panel_background_title <- shiny::reactive({
+            translate(lang = lang(), "Backgrounds")
+        }) |>
+        shiny::bindCache(lang())
+
+        variant_labels <- shiny::reactive({
+            translate(lang = lang(), "Variant:")
+        }) |>
+        shiny::bindCache(lang())
+
+        variant_choices <- shiny::reactive({
+            lang <- lang()
+            structure(
+                # Names are the labels that users see.
+                # Values are what input$variant returns.
+                # They must not be changed.
+                c(
+                    "plot1",
+                    "plot2",
+                    "plot3",
+                    "plot4"
+                ),
+                names = c(
+                    translate(lang = lang, "Default"),
+                    translate(lang = lang, "Two plots (with uncertainty)"),
+                    translate(lang = lang, "Single plot (no uncertainty)"),
+                    translate(lang = lang, "Single plot (with uncertainty)")
+                )
+            )
+        }) |>
+        shiny::bindCache(lang())
+
+        color_no_risk_label <- color_bg_label <- shiny::reactive({
+            translate(lang = lang(), "Default:")
+        }) |>
+        shiny::bindCache(lang())
+
+        color_risk_label <- color_bg_threshold_label <- shiny::reactive({
+            translate(lang = lang(), "Above Exposure Limit:")
+        }) |>
+        shiny::bindCache(lang())
+
+        variant_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                Use this value to change how the information is displayed.
+                See the footer below for additional details on the chosen
+                variant.
+            ")
+        }) |>
+        shiny::bindEvent(lang())
+
+        color_no_risk_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                Use this value to change the color of exposures that are
+                below the exposure limit.
+            ")
+        }) |>
+        shiny::bindEvent(lang())
+
+        color_risk_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                Use this value to change the color of exposures that are
+                above the exposure limit.
+            ")
+        }) |>
+        shiny::bindEvent(lang())
+
+        color_bg_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                Use this value to change the background color of
+                exposures those that are below the exposure limit.
+            ")
+        }) |>
+        shiny::bindEvent(lang())
+
+        color_bg_threshold_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                Use this value to change the background color of
+                exposures those that are above the exposure limit.
+            ")
+        }) |>
+        shiny::bindEvent(lang())
+
         output$title <- shiny::renderText({
             translate(lang = lang(), "Customize")
         }) |>
@@ -350,86 +438,49 @@ server_exceedance_plot_sidebar <- function(id, lang) {
         # Translate elements not rendered
         # with a shiny::render*() function.
         shiny::observe({
-            lang <- lang()
-
             bslib::accordion_panel_update(
                 id     = "accordion",
                 target = "exposure",
-                title  = translate(lang = lang, "Exposures")
+                title  = accordion_panel_exposure_title()
             )
-
             bslib::accordion_panel_update(
                 id     = "accordion",
                 target = "background",
-                title  = translate(lang = lang, "Backgrounds")
+                title  = accordion_panel_background_title()
             )
 
             shiny::updateSelectInput(
                 inputId = "variant",
-                label   = translate(lang = lang, "Variant:"),
-                choices = structure(
-                    # Names are the labels that users see.
-                    # Values are what input$variant returns.
-                    # They must not be changed.
-                    c("plot1", "plot2", "plot3", "plot4"),
-                    names = c(
-                        translate(lang = lang, "Default"),
-                        translate(lang = lang, "Two plots (with uncertainty)"),
-                        translate(lang = lang, "Single plot (no uncertainty)"),
-                        translate(lang = lang, "Single plot (with uncertainty)")
-                    )
-                )
+                label   = variant_labels(),
+                choices = variant_choices()
             )
 
             colourpicker::updateColourInput(
                 session = session,
                 inputId = "color_no_risk",
-                label   = translate(lang = lang, "Default:")
+                label   = color_no_risk_label()
             )
-
             colourpicker::updateColourInput(
                 session = session,
                 inputId = "color_risk",
-                label   = translate(lang = lang, "Above Exposure Limit:")
+                label   = color_risk_label()
             )
-
             colourpicker::updateColourInput(
                 session = session,
                 inputId = "color_bg",
-                label   = translate(lang = lang, "Default:")
+                label   = color_bg_label()
             )
-
             colourpicker::updateColourInput(
                 session = session,
                 inputId = "color_bg_threshold",
-                label   = translate(lang = lang, "Above Exposure Limit:")
+                label   = color_bg_threshold_label()
             )
 
-            bslib::update_tooltip("variant_tooltip", translate(lang = lang, "
-                Use this value to change how the information is displayed.
-                See the footer below for additional details on the chosen
-                variant.
-            "))
-
-            bslib::update_tooltip("color_no_risk_tooltip", translate(lang = lang, "
-                Use this value to change the color of exposures that are
-                below the exposure limit.
-            "))
-
-            bslib::update_tooltip("color_risk_tooltip", translate(lang = lang, "
-                Use this value to change the color of exposures that are
-                above the exposure limit.
-            "))
-
-            bslib::update_tooltip("color_bg_tooltip", translate(lang = lang, "
-                Use this value to change the background color of
-                exposures those that are below the exposure limit.
-            "))
-
-            bslib::update_tooltip("color_bg_threshold_tooltip", translate(lang = lang, "
-                Use this value to change the background color of
-                exposures those that are above the exposure limit.
-            "))
+            bslib::update_tooltip("variant_tooltip", variant_tooltip_text())
+            bslib::update_tooltip("color_no_risk_tooltip", color_no_risk_tooltip_text())
+            bslib::update_tooltip("color_risk_tooltip", color_risk_tooltip_text())
+            bslib::update_tooltip("color_bg_tooltip", color_bg_tooltip_text())
+            bslib::update_tooltip("color_bg_threshold_tooltip", color_bg_threshold_tooltip_text())
         }) |>
         shiny::bindEvent(lang())
 

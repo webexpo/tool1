@@ -214,6 +214,112 @@ server_sidebar <- function(id, lang, mode, panel_active) {
     server <- \(input, output, session) {
         server_footer("footer", lang)
 
+        oel_label <- shiny::reactive({
+            translate(lang = lang(), "Exposure Limit:")
+        }) |>
+        shiny::bindCache(lang())
+
+        conf_label <- shiny::reactive({
+            translate(lang = lang(), "Credible Interval Probability:")
+        }) |>
+        shiny::bindCache(lang())
+
+        psi_label <- shiny::reactive({
+            translate(lang = lang(), "Overexposure Risk Threshold:")
+        }) |>
+        shiny::bindCache(lang())
+
+        frac_threshold_label <- shiny::reactive({
+            translate(lang = lang(), "Exceedance Fraction Threshold:")
+        }) |>
+        shiny::bindCache(lang())
+
+        target_perc_label <- shiny::reactive({
+            translate(lang = lang(), "Critical Percentile:")
+        }) |>
+        shiny::bindCache(lang())
+
+        data_label <- shiny::reactive({
+            translate(lang = lang(), "Measurements:")
+        }) |>
+        shiny::bindCache(lang())
+
+        oel_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                Use the exposure limit to assess overexposure. It must
+                have the same unit as the measurement data.
+            ")
+        }) |>
+        shiny::bindCache(lang())
+
+        conf_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                Use this value as a probability for the credible intervals
+                around parameter estimates. It must be between 0% and 100%.
+                The default value is set equal to 90%. The credible interval
+                is the Bayesian equivalent of the confidence interval.
+            ")
+        }) |>
+        shiny::bindCache(lang())
+
+        psi_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                Use this value as the maximal overexposure risk. It must be
+                between 0% and 100%. It represents the maximal probability
+                that the overexposure criterion is met. Above this value,
+                the situation requires remedial action. While 5% is the
+                traditional chosen value, recent guidelines suggest using
+                30% instead.
+            ")
+        }) |>
+        shiny::bindCache(lang())
+
+        frac_threshold_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                Use this value as an acceptable proportion of exposures
+                above the exposure limit (OEL). It must be between 0% and
+                100%. The traditional default value is 5%.
+            ")
+        }) |>
+        shiny::bindCache(lang())
+
+        target_perc_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                Use this value to set the percentile of the exposure
+                distribution that will be compared to the OEL. It must
+                be between 0% and 100%. The traditional default value
+                is 95%.
+            ")
+        }) |>
+        shiny::bindCache(lang())
+
+        data_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                The measurement dataset. There must be one value per line.
+                Values can be censored to the left (<), to the right (>),
+                or interval censored ([X-Y]). For more information, see the
+                Calculation Parameters section in Frequently Asked Questions
+                (FAQ) above.
+            ")
+        }) |>
+        shiny::bindCache(lang())
+
+        btn_submit_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                Submit all parameters and start Bayesian calculations.
+            ")
+        }) |>
+        shiny::bindCache(lang())
+
+        btn_clear_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                Clear the measurement dataset. Doing so does not
+                automatically update the current results. Click
+                on the Submit button when you are ready to do so.
+            ")
+        }) |>
+        shiny::bindCache(lang())
+
         output$title <- shiny::renderText({
             translate(lang = lang(), "Calculation Parameters")
         }) |>
@@ -254,7 +360,7 @@ server_sidebar <- function(id, lang, mode, panel_active) {
 
         # Hide warnings once inputs are submitted.
         shiny::observe({
-            shinyjs::hide("warning_card")
+            shinyjs::hide("warning_card_container")
         }) |>
         shiny::bindEvent(input$btn_submit, once = TRUE)
 
@@ -286,88 +392,22 @@ server_sidebar <- function(id, lang, mode, panel_active) {
         # Translate elements not rendered
         # with a shiny::render*() function.
         shiny::observe({
-            lang <- lang()
+            shiny::updateNumericInput(inputId = "oel", label = oel_label())
+            shiny::updateNumericInput(inputId = "conf", label = conf_label())
+            shiny::updateNumericInput(inputId = "psi", label = psi_label())
+            shiny::updateNumericInput(inputId = "frac_threshold", label = frac_threshold_label())
+            shiny::updateNumericInput(inputId = "target_perc", label = target_perc_label())
+            shiny::updateTextAreaInput(inputId = "data", label = data_label())
 
-            shiny::updateNumericInput(
-                inputId = "oel",
-                label   = translate(lang = lang, "Exposure Limit:")
-            )
-
-            shiny::updateNumericInput(
-                inputId = "conf",
-                label   = translate(lang = lang, "Credible Interval Probability:")
-            )
-
-            shiny::updateNumericInput(
-                inputId = "psi",
-                label   = translate(lang = lang, "Overexposure Risk Threshold:")
-            )
-
-            shiny::updateNumericInput(
-                inputId = "frac_threshold",
-                label   = translate(lang = lang, "Exceedance Fraction Threshold:")
-            )
-
-            shiny::updateNumericInput(
-                inputId = "target_perc",
-                label   = translate(lang = lang, "Critical Percentile:")
-            )
-
-            shiny::updateTextAreaInput(
-                inputId = "data",
-                label   = translate(lang = lang, "Measurements:")
-            )
-
-            bslib::update_tooltip("oel_tooltip", translate(lang = lang, "
-                Use the exposure limit to assess overexposure. It must have the
-                same unit as the measurement data.
-            "))
-
-            bslib::update_tooltip("conf_tooltip", translate(lang = lang, "
-                Use this value as a probability for the credible intervals around
-                parameter estimates. It must be between 0% and 100%. The default
-                value is set equal to 90%. The credible interval is the Bayesian
-                equivalent of the confidence interval.
-            "))
-
-            bslib::update_tooltip("psi_tooltip", translate(lang = lang, "
-                Use this value as the maximal overexposure risk. It must be
-                between 0% and 100%. It represents the maximal probability that
-                the overexposure criterion is met. Above this value, the
-                situation should trigger remedial action. While 5% is the
-                traditional chosen value, recent guidelines suggest using 30%
-                instead.
-            "))
-
-            bslib::update_tooltip("frac_threshold_tooltip", translate(lang = lang, "
-                Use this value as an acceptable proportion of exposures above
-                the exposure limit (OEL). It must be between 0% and 100%. The
-                traditional default value is 5%.
-            "))
-
-            bslib::update_tooltip("target_perc_tooltip", translate(lang = lang, "
-                Use this value to set the percentile of the exposure distribution
-                that will be compared to the OEL. It must be between 0% and 100%.
-                The traditional default value is 95%.
-            "))
-
-            bslib::update_tooltip("data_tooltip", translate(lang = lang, "
-                The measurement dataset. There must be one value per line. Values
-                can be censored to the left (<), to the right (>), or interval
-                censored ([X-Y]). For more information, see the Calculation
-                Parameters section in Frequently Asked Questions (FAQ) above.
-            "))
-
-            bslib::update_tooltip("btn_submit_tooltip", translate(lang = lang, "
-                Submit all parameters and start Bayesian calculations.
-            "))
-
-            bslib::update_tooltip("btn_clear_tooltip", translate(lang = lang, "
-                Clear the measurement dataset. Doing so does not automatically
-                update the current results.
-            "))
-        }) |>
-        shiny::bindEvent(lang())
+            bslib::update_tooltip("oel_tooltip", oel_tooltip_text())
+            bslib::update_tooltip("conf_tooltip", conf_tooltip_text())
+            bslib::update_tooltip("psi_tooltip", psi_tooltip_text())
+            bslib::update_tooltip("frac_threshold_tooltip", frac_threshold_tooltip_text())
+            bslib::update_tooltip("target_perc_tooltip", target_perc_tooltip_text())
+            bslib::update_tooltip("data_tooltip", data_tooltip_text())
+            bslib::update_tooltip("btn_submit_tooltip", btn_submit_tooltip_text())
+            bslib::update_tooltip("btn_clear_tooltip", btn_clear_tooltip_text())
+        })
 
         # Return all inputs except buttons.
         return(

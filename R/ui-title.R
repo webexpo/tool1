@@ -538,17 +538,9 @@ server_title <- function(id) {
         # Translate elements not rendered
         # with a shiny::render*() function.
         shiny::observe({
-            lang <- lang()
-
-            bslib::update_tooltip("btn_color_tooltip", translate(lang = lang, "
-                Toggle the current color scheme (light or dark).
-            "))
-
-            bslib::update_tooltip("btn_code_tooltip", translate(lang = lang, "
-                See the source code of Tool 1 on GitHub.
-            "))
-        }) |>
-        shiny::bindEvent(lang())
+            bslib::update_tooltip("btn_color_tooltip", btn_color_tooltip_text())
+            bslib::update_tooltip("btn_code_tooltip", btn_code_tooltip_text())
+        })
 
         return(
             list(

@@ -250,6 +250,14 @@ server_modal_faq <- function(id, lang) {
     server <- \(input, output, session) {
         server_footer("footer", lang)
 
+        btn_open_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                Frequently Asked Questions. Get additional information on
+                Tool 1.
+            ")
+        }) |>
+        shiny::bindCache(lang())
+
         output$title <- shiny::renderText({
             translate(lang = lang(), "Frequently Asked Questions")
         }) |>
@@ -309,12 +317,8 @@ server_modal_faq <- function(id, lang) {
         # Translate elements not rendered
         # with a shiny::render*() function.
         shiny::observe({
-            bslib::update_tooltip("btn_open_tooltip", translate(lang = lang(), "
-                Frequently Asked Questions. Get additional information on
-                Tool 1.
-            "))
-        }) |>
-        shiny::bindEvent(lang())
+            bslib::update_tooltip("btn_open_tooltip", btn_open_tooltip_text())
+        })
 
         return(invisible())
     }
