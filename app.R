@@ -312,6 +312,7 @@ server <- function(input, output, session) {
 
         bslib::nav_show("panel_active", state[["show"]])
         bslib::nav_hide("panel_active", state[["hide"]])
+        bslib::nav_select("panel_active", "panel_stats")
     }) |>
     shiny::bindEvent(mode())
 
