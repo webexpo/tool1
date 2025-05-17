@@ -75,21 +75,15 @@ default_maintainers_emails <- c(
     ununoctium    = "jeanmathieupotvin@ununoctium.dev"
 )
 
-# Default URLs to various resources.
-default_urls <- list(
-    news            = "https://github.com/webexpo/tool1/blob/main/NEWS.md",
-    code            = "https://github.com/webexpo/tool1",
-    aiha            = "https://www.aiha.org",
-    ununoctium      = "https://ununoctium.dev",
-    dennis_helsel   = "https://www.practicalstats.com/info2use/books.html",
-    jerome_lavoue   = "https://orcid.org/0000-0003-4950-5475",
-    nist_j032       = "https://www.nist.gov/system/files/documents/2023/09/26/J-032%20Writing%20with%20the%20SI.pdf",
-    ndexpo          = "https://www.expostats.ca/site/app-local/NDExpo",
-    expostats_paper = "https://doi.org/10.1093/annweh/wxy100",
-    expostats = c(
-        en = "http://www.expostats.ca/site/en/info.html",
-        fr = "https://www.expostats.ca/site/info.html"
-    ),
+# URLs used more than once in the code.
+shared_urls <- list(
+    code          = "https://github.com/webexpo/tool1",
+    ununoctium    = "https://ununoctium.dev",
+    jerome_lavoue = "https://orcid.org/0000-0003-4950-5475",
+    aiha_videos   = "https://www.aiha.org/education/elearning/online-courses/making-accurate-exposure-risk-decisions",
+    ndexpo        = "https://www.expostats.ca/site/app-local/NDExpo",
+    # Links to resources that offer translations.
+    # Names should match names of tr$native_languages.
     tool2 = c(
         en = "https://lavoue.shinyapps.io/Tool2v3En/",
         fr = "https://lavoue.shinyapps.io/Tool2v3Fr/"
@@ -98,12 +92,11 @@ default_urls <- list(
         en = "https://lavoue.shinyapps.io/Tool3v3En/",
         fr = "https://lavoue.shinyapps.io/Tool3v3Fr/"
     ),
-    epsum = c(
-        en = "https://espum.umontreal.ca/english/home",
-        fr = "https://espum.umontreal.ca/accueil"
-    ),
-    udm = c(
-        en = "https://www.umontreal.ca/en",
-        fr = "https://www.umontreal.ca"
+    expostats = c(
+        en = "https://www.expostats.ca/site/en/info.html",
+        fr = "https://www.expostats.ca/site/info.html"
+    )
+)
+
     )
 )

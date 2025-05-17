@@ -82,6 +82,11 @@
 #' [Bootstrap List Groups](https://getbootstrap.com/docs/5.3/components/list-group/)
 #' [bslib::accordion()]
 #'
+#' @note
+#' Some embedded URLs are ridiculously long and break all usual styling
+#' conventions. They are still written as single character strings for
+#' simplicity.
+#'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
 #' @rdname ui-modal-faq
@@ -366,8 +371,20 @@ ui_panel_intro_accordion <- function(lang = "") {
                         the Department of Environmental and Occupational Health
                         at the %s of the %s.
                     "),
-                    ui_link(default_urls$epsum[[lang]], "École de Santé Publique"),
-                    ui_link(default_urls$udm[[lang]], "Université de Montréal")
+
+                    c(
+                        en = "https://espum.umontreal.ca/english/home",
+                        fr = "https://espum.umontreal.ca/accueil"
+                    ) |>
+                    _[[lang]] |>
+                    ui_link("École de Santé Publique"),
+
+                    c(
+                        en = "https://www.umontreal.ca/en",
+                        fr = "https://www.umontreal.ca"
+                    ) |>
+                    _[[lang]] |>
+                    ui_link("Université de Montréal")
                 )
             )
         ),
@@ -386,8 +403,8 @@ ui_panel_intro_accordion <- function(lang = "") {
                         to 4.0.0. It oversees non-scientific components of the
                         web application on behalf of Jérôme Lavoué.
                     "),
-                    ui_link(default_urls$jerome_lavoue, "Jérôme Lavoué"),
-                    ui_link(default_urls$ununoctium, "Ununoctium")
+                    ui_link(shared_urls$jerome_lavoue, "Jérôme Lavoué"),
+                    ui_link(shared_urls$ununoctium, "Ununoctium")
                 )
             )
         ),
@@ -406,7 +423,7 @@ ui_panel_intro_accordion <- function(lang = "") {
                         request features, and provide feedback by creating
                         an issue on %s.
                     "),
-                    ui_link(default_urls$code, "GitHub")
+                    ui_link(shared_urls$code, "GitHub")
                 )
             ),
 
@@ -486,7 +503,10 @@ ui_panel_parameters_accordion <- function(lang = "") {
                             zero before decimals for numbers strictly smaller
                             than one.
                         "),
-                        ui_link(default_urls$nist_j032, "J-032")
+                        ui_link(
+                            "https://www.nist.gov/system/files/documents/2023/09/26/J-032%20Writing%20with%20the%20SI.pdf",
+                            "J-032"
+                        )
                     )
                 ),
 
@@ -637,8 +657,11 @@ ui_panel_parameters_accordion <- function(lang = "") {
                             The algorithm used is derived from %s (itself
                             derived from the work of %s).
                         "),
-                        ui_link(default_urls$ndexpo, "NDExpo"),
-                        ui_link(default_urls$dennis_helsel, "Dennis Helsel")
+                        ui_link(shared_urls$ndexpo, "NDExpo"),
+                        ui_link(
+                            "https://www.practicalstats.com/info2use/books.html",
+                            "Dennis Helsel"
+                        )
                     )
                 )
             )
@@ -781,6 +804,31 @@ ui_panel_usage_accordion <- function(lang = "") {
 #' @rdname ui-modal-faq
 #' @export
 ui_panel_metho_accordion <- function(lang = "") {
+    expostats_paper_card <- bslib::card(
+        class = "border-primary bg-primary-subtle mx-5",
+
+        bslib::card_body(
+            tags$p(
+                class = "text-center",
+                html(
+                    translate(lang = lang, "
+                        Jérôme Lavoué, Lawrence Joseph, Peter Knott,
+                        Hugh Davies, France Labrèche, Frédéric Clerc,
+                        Gautier Mater, Tracy Kirkham, %s, Annals of
+                        Work Exposures and Health, Volume 63, Issue
+                        3, April 2019, Pages 267-279.
+                    "),
+                    ui_link(
+                        "https://doi.org/10.1093/annweh/wxy100",
+                        tags$em(
+                            "Expostats: A Bayesian Toolkit to Aid the Interpretation of Occupational Exposure Measurements"
+                        )
+                    )
+                )
+            )
+        )
+    )
+
     # To preserve space, the return()
     # statement is avoided exceptionally.
     bslib::accordion(

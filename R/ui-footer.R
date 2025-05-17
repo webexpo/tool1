@@ -49,17 +49,21 @@ server_footer <- function(id, lang) {
             tags$div(
                 translate(lang = lang(), "Tool 1"),
                 translate(lang = lang(), "version"),
-                ui_link(default_urls$code, default_version[["number"]]),
+                ui_link(shared_urls$code, default_version[["number"]]),
                 sprintf("(%s)", default_version[["release_date"]]),
                 bsicons::bs_icon("dot", ally = "deco"),
-                ui_link(default_urls$news, "Changelog")
+                ui_link(
+                    "https://github.com/webexpo/tool1/blob/main/NEWS.md",
+                    "Changelog"
+                )
             )
         }) |>
+        # All values are constants.
         shiny::bindCache(lang())
 
         output$copyright <- shiny::renderUI({
             tags$div(
-                ui_link(default_urls$jerome_lavoue, "Jérôme Lavoué"),
+                ui_link(shared_urls$jerome_lavoue, "Jérôme Lavoué"),
                 format(Sys.time(), tz = "EST", format = "(%Y)."),
                 translate(lang = lang(), "All rights reserved.")
             )
@@ -69,14 +73,12 @@ server_footer <- function(id, lang) {
             tags$div(
                 html(
                     translate(lang = lang(), "Made with %s by %s."),
-
                     tags$span(
                         class = "px-1",
                         style = "color: red;",
                         bsicons::bs_icon("heart-fill", ally = "sem")
                     ),
-
-                    ui_link(default_urls$ununoctium, "Ununoctium")
+                    ui_link(shared_urls$ununoctium, "Ununoctium")
                 )
             )
         }) |>
