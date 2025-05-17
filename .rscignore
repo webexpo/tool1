@@ -3,6 +3,9 @@
 
 # Ignore local files.
 .local
+*.Rhistory
+*.Rproj
+*.Rproj.user
 
 # Ignore scripts used for development.
 .scripts

@@ -5,12 +5,12 @@ account: lavoue
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 14521166
-bundleId: 10126034
+bundleId: 10298967
 url: https://lavoue.shinyapps.io/tool1-beta/
 version: 1
 region: dev
-version_number: 4.1.0
-version_release_date: 2025-04-16
+version_number: 5.0.0
+version_release_date: 2025-05-17
 license: MIT + file LICENSE
 bug_reports: https://github.com/webexpo/app-tool1/issues
 encoding: UTF-8

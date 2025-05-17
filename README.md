@@ -6,7 +6,7 @@
 # Tool 1: Data Interpretation for One Similar Exposure Group (SEG)
 
 <!-- badges: start -->
-[![Version](https://img.shields.io/badge/version-4.1.0-blue)](https://github.com/webexpo/app-tool1/releases/tag/v4.1.0)
+[![Version](https://img.shields.io/badge/version-5.0.0-blue)](https://github.com/webexpo/app-tool1/releases/tag/v5.0.0)
 [![Lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Location](https://img.shields.io/badge/live-shinyapps.io-5b90bf)](https://lavoue.shinyapps.io/tool1/)
 [![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://github.com/webexpo/tool1/blob/main/LICENSE.md)
@@ -45,6 +45,11 @@ are thoroughly described in
 *[Expostats: A Bayesian Toolkit to Aid the Interpretation of Occupational Exposure Measurements](https://doi.org/10.1093/annweh/wxy100)*
 (Annals of Work Exposures and Health, Volume 63, Issue 3, April 2019, Pages
 267–279).
+
+## Requirements
+
+R version `4.4.0` is required to work on and serve Tool 1 locally. To be
+completed.
 
 ## Usage
 
@@ -106,6 +111,19 @@ language requires an `ordinal_rules_<lang>()` function. For example, the
 `ordinal_rules_english()` function implements grammar rules for English
 ordinal numbers. See `R/helpers-translate.R` for more information.
 
+### Working with translation files stored in `intl/`
+
+All files are **required at runtime** and read by `transltr::translator_read()`
+to create global constant `tr`.
+
+The `_translator.yml` file must **never be modified manually**. It should not
+be shared with collaborators working on translations. Notably, developers may
+consult it to locate translations in the source code.
+
+Further `<lang>.txt` files contain actual translations. These files are shared
+with collaborators working on translations and must be edited manually (using
+any text editor). They always include basic instructions to follow at all times.
+
 ### Warning
 
 Package [transltr](https://cran.r-project.org/package=transltr) currently lacks
@@ -139,8 +157,6 @@ It is worthwhile to note that it is **not** necessary to include
 
 We may work on these issues in a near future.
 
-- French translations are officially supported but missing [COMING SOON].
-
 - Inputs lack robust validation mechanisms and may lead to undefined behavior
   in some cases.
 
@@ -157,6 +173,9 @@ We may work on these issues in a near future.
   OEL (Occupational Exposure Limit) is sometimes named EL (Exposure Limit).
 
 - There are currently no explicit Terms of Service and Privacy Policy.
+
+- Some useful `<meta>` tags are currently missing in `<head>`. Notably, tags
+  used for sharing purposes such as `<meta property="og:">` are not implemented.
 
 ## Bugs and Feedback
 

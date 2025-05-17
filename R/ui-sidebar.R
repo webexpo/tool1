@@ -38,12 +38,12 @@
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
 #' @rdname ui-sidebar
-#'
 #' @export
 ui_sidebar <- function(id) {
     ns <- shiny::NS(id)
     ui <- bslib::sidebar(
         width = "400px",
+        gap   = "1.25rem",
         open  = list(
             mobile  = "closed",
             desktop = "open"
@@ -130,38 +130,26 @@ ui_sidebar <- function(id) {
 
         tags$div(
             class = "d-flex justify-content-around",
-            style = "gap: 15px; margin-bottom: 1rem;",
+            style = "gap: 1rem; margin-bottom: 1rem;",
 
             shiny::actionButton(
-                inputId = ns("submit_btn"),
-                class   = "btn btn-outline-secondary w-100 app-btn",
-                label   = tags$span(
-                    bsicons::bs_icon("check-circle-fill", a11y = "deco"),
-                    htmltools::tagAppendAttributes(
-                        style = "font-size: 1rem;",
-                        shiny::textOutput(ns("submit_btn_label"))
-                    )
-                )
+                inputId = ns("btn_submit"),
+                class   = "btn btn-success app-btn w-100",
+                label   = shiny::textOutput(ns("btn_submit_label"), tags$span)
             ) |>
             bslib::tooltip(
-                id        = ns("submit_btn_tooltip"),
+                id        = ns("btn_submit_tooltip"),
                 placement = "bottom",
                 ""
             ),
 
             shiny::actionButton(
-                inputId = ns("clear_btn"),
-                class   = "btn btn-outline-secondary w-100 app-btn",
-                label   = tags$span(
-                    bsicons::bs_icon("x-circle-fill", a11y = "deco"),
-                    htmltools::tagAppendAttributes(
-                        style = "font-size: 1rem;",
-                        shiny::textOutput(ns("clear_btn_label"))
-                    )
-                )
+                inputId = ns("btn_clear"),
+                class   = "btn btn-secondary app-btn w-100",
+                label   = shiny::textOutput(ns("btn_clear_label"), tags$span)
             ) |>
             bslib::tooltip(
-                id        = ns("clear_btn_tooltip"),
+                id        = ns("btn_clear_tooltip"),
                 placement = "bottom",
                 ""
             )
@@ -173,33 +161,26 @@ ui_sidebar <- function(id) {
         # (without having to deal with fill and fillable
         # details) once they are updated by the server.
         tags$div(
-            # Measurements' numbering format.
+            id    = ns("warning_card_container"),
+            style = "margin-bottom: 1rem;",
+
             bslib::card(
-                id    = ns("data_format_card"),
-                class = "border-warning bg-warning-subtle small",
+                class = "border-warning bg-warning-subtle small mb-0",
 
                 bslib::card_body(
-                    shiny::textOutput(ns("data_format_card_text"), tags$p)
-                )
-            ),
+                    gap = 0L,
 
-            # Hidden inputs.
-            bslib::card(
-                id    = ns("hidden_inputs_card"),
-                class = "border-info bg-info-subtle small mb-0",
-
-                bslib::card_body(
-                    shiny::textOutput(ns("hidden_inputs_card_text"), tags$p)
+                    shiny::textOutput(ns("warning_card_data_format"), tags$p),
+                    tags$hr(class = "my-3"),
+                    shiny::textOutput(ns("warning_card_hidden_inputs"), tags$p)
                 )
             )
         ),
 
         # Footer ---------------------------------------------------------------
 
-        # Class mt-auto pushes the footer
-        # to the bottom of the sidebar.
         tags$div(
-            class = "mt-auto border-top pt-3",
+            class = "border-top pt-3",
             ui_footer(ns("footer"))
         )
     )
@@ -209,31 +190,138 @@ ui_sidebar <- function(id) {
 
 #' @rdname ui-sidebar
 #' @export
-server_sidebar <- function(id, lang, panel_active) {
+server_sidebar <- function(id, lang, mode, panel_active) {
     stopifnot(exprs = {
         shiny::is.reactive(lang)
+        shiny::is.reactive(mode)
         shiny::is.reactive(panel_active)
     })
 
     server <- \(input, output, session) {
         server_footer("footer", lang)
 
+        oel_label <- shiny::reactive({
+            translate(lang = lang(), "Exposure Limit:")
+        }) |>
+        shiny::bindCache(lang())
+
+        conf_label <- shiny::reactive({
+            translate(lang = lang(), "Credible Interval Probability:")
+        }) |>
+        shiny::bindCache(lang())
+
+        psi_label <- shiny::reactive({
+            translate(lang = lang(), "Overexposure Risk Threshold:")
+        }) |>
+        shiny::bindCache(lang())
+
+        frac_threshold_label <- shiny::reactive({
+            translate(lang = lang(), "Exceedance Fraction Threshold:")
+        }) |>
+        shiny::bindCache(lang())
+
+        target_perc_label <- shiny::reactive({
+            translate(lang = lang(), "Critical Percentile:")
+        }) |>
+        shiny::bindCache(lang())
+
+        data_label <- shiny::reactive({
+            translate(lang = lang(), "Measurements:")
+        }) |>
+        shiny::bindCache(lang())
+
+        oel_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                Use the exposure limit to assess overexposure. It must
+                have the same unit as the measurement data.
+            ")
+        }) |>
+        shiny::bindCache(lang())
+
+        conf_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                Use this value as a probability for the credible intervals
+                around parameter estimates. It must be between 0% and 100%.
+                The default value is set equal to 90%. The credible interval
+                is the Bayesian equivalent of the confidence interval.
+            ")
+        }) |>
+        shiny::bindCache(lang())
+
+        psi_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                Use this value as the maximal overexposure risk. It must be
+                between 0% and 100%. It represents the maximal probability
+                that the overexposure criterion is met. Above this value,
+                the situation requires remedial action. While 5% is the
+                traditional chosen value, recent guidelines suggest using
+                30% instead.
+            ")
+        }) |>
+        shiny::bindCache(lang())
+
+        frac_threshold_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                Use this value as an acceptable proportion of exposures
+                above the exposure limit (OEL). It must be between 0% and
+                100%. The traditional default value is 5%.
+            ")
+        }) |>
+        shiny::bindCache(lang())
+
+        target_perc_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                Use this value to set the percentile of the exposure
+                distribution that will be compared to the OEL. It must
+                be between 0% and 100%. The traditional default value
+                is 95%.
+            ")
+        }) |>
+        shiny::bindCache(lang())
+
+        data_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                The measurement dataset. There must be one value per line.
+                Values can be censored to the left (<), to the right (>),
+                or interval censored ([X-Y]). For more information, see the
+                Calculation Parameters section in Frequently Asked Questions
+                (FAQ) above.
+            ")
+        }) |>
+        shiny::bindCache(lang())
+
+        btn_submit_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                Submit all parameters and start Bayesian calculations.
+            ")
+        }) |>
+        shiny::bindCache(lang())
+
+        btn_clear_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                Clear the measurement dataset. Doing so does not
+                automatically update the current results. Click
+                on the Submit button when you are ready to do so.
+            ")
+        }) |>
+        shiny::bindCache(lang())
+
         output$title <- shiny::renderText({
             translate(lang = lang(), "Calculation Parameters")
         }) |>
         shiny::bindCache(lang())
 
-        output$submit_btn_label <- shiny::renderText({
+        output$btn_submit_label <- shiny::renderText({
             translate(lang = lang(), "Submit")
         }) |>
         shiny::bindCache(lang())
 
-        output$clear_btn_label <- shiny::renderText({
+        output$btn_clear_label <- shiny::renderText({
             translate(lang = lang(), "Clear")
         }) |>
         shiny::bindCache(lang())
 
-        output$data_format_card_text <- shiny::renderText({
+        output$warning_card_data_format <- shiny::renderText({
             translate(lang = lang(), "
                 Always put a leading zero before decimals for numbers strictly
                 smaller than one. Always use a dot for decimals. Do not use a
@@ -242,10 +330,10 @@ server_sidebar <- function(id, lang, panel_active) {
         }) |>
         shiny::bindCache(lang())
 
-        output$hidden_inputs_card_text <- shiny::renderText({
+        output$warning_card_hidden_inputs <- shiny::renderText({
             translate(lang = lang(), "
-                No results are shown in the right panels until inputs are
-                submitted.
+                No results are shown in the right panels until the inputs
+                are submitted, or the current mode is updated.
             ")
         }) |>
         shiny::bindCache(lang())
@@ -254,127 +342,80 @@ server_sidebar <- function(id, lang, panel_active) {
         shiny::observe({
             shiny::updateTextAreaInput(inputId = "data", value = "")
         }) |>
-        shiny::bindEvent(input$clear_btn)
+        shiny::bindEvent(input$btn_clear)
 
         # Hide warnings once inputs are submitted.
         shiny::observe({
-            shinyjs::hide("data_format_card")
-            shinyjs::hide("hidden_inputs_card")
+            shinyjs::hide("warning_card_container")
         }) |>
-        shiny::bindEvent(input$submit_btn)
+        shiny::bindEvent(input$btn_submit, once = TRUE)
 
-        # Hide/show inputs that are specific to certain panels.
-        # What panel_active returns depends on values passed to
-        # arg id of ui_panel*() functions in app.R.
+        # Show inputs that are specific to certain panels.
+        # Identifiers are hardcoded (they will never change).
         shiny::observe({
+            panel_active <- panel_active()
+
+            # Since inputs are hidden by default, operator == is used.
             shinyjs::toggle("frac_threshold", condition = {
-                panel_active() == "panel_fraction"
+                panel_active == "panel_fraction"
             })
             shinyjs::toggle("target_perc", condition = {
-                panel_active() == "panel_percentiles"
+                panel_active == "panel_percentiles"
             })
         }) |>
         shiny::bindEvent(panel_active())
 
+        # Show inputs oel and data only if mode is simplified.
+        shiny::observe({
+            mode <- mode()
+
+            # Since inputs are shown by default, operator != is used.
+            shinyjs::toggle("conf", condition = { mode != "simplified" })
+            shinyjs::toggle("psi",  condition = { mode != "simplified" })
+        }) |>
+        shiny::bindEvent(mode())
+
         # Translate elements not rendered
         # with a shiny::render*() function.
         shiny::observe({
-            lang <- lang()
+            shiny::updateNumericInput(inputId = "oel", label = oel_label())
+            shiny::updateNumericInput(inputId = "conf", label = conf_label())
+            shiny::updateNumericInput(inputId = "psi", label = psi_label())
+            shiny::updateNumericInput(inputId = "frac_threshold", label = frac_threshold_label())
+            shiny::updateNumericInput(inputId = "target_perc", label = target_perc_label())
+            shiny::updateTextAreaInput(inputId = "data", label = data_label())
 
-            shiny::updateNumericInput(
-                inputId = "oel",
-                label   = translate(lang = lang, "Exposure Limit:")
-            )
-
-            shiny::updateNumericInput(
-                inputId = "conf",
-                label   = translate(lang = lang, "Credible Interval Probability:")
-            )
-
-            shiny::updateNumericInput(
-                inputId = "psi",
-                label   = translate(lang = lang, "Overexposure Risk Threshold:")
-            )
-
-            shiny::updateNumericInput(
-                inputId = "frac_threshold",
-                label   = translate(lang = lang, "Exceedance Fraction Threshold:")
-            )
-
-            shiny::updateNumericInput(
-                inputId = "target_perc",
-                label   = translate(lang = lang, "Critical Percentile:")
-            )
-
-            shiny::updateTextAreaInput(
-                inputId = "data",
-                label   = translate(lang = lang, "Measurements:")
-            )
-
-            bslib::update_tooltip("oel_tooltip", translate(lang = lang, "
-                Use the exposure limit to assess overexposure. It must have the
-                same unit as the measurement data.
-            "))
-
-            bslib::update_tooltip("conf_tooltip", translate(lang = lang, "
-                Use this value as a probability for the credible intervals around
-                parameter estimates. It must be between 0% and 100%. The default
-                value is set equal to 90%. The credible interval is the Bayesian
-                equivalent of the confidence interval.
-            "))
-
-            bslib::update_tooltip("psi_tooltip", translate(lang = lang, "
-                Use this value as the maximal overexposure risk. It must be
-                between 0% and 100%. It represents the maximal probability that
-                the overexposure criterion is met. Above this value, the
-                situation should trigger remedial action. While 5% is the
-                traditional chosen value, recent guidelines suggest using 30%
-                instead.
-            "))
-
-            bslib::update_tooltip("frac_threshold_tooltip", translate(lang = lang, "
-                Use this value as an acceptable proportion of exposures above
-                the exposure limit (OEL). It must be between 0% and 100%. The
-                traditional default value is 5%.
-            "))
-
-            bslib::update_tooltip("target_perc_tooltip", translate(lang = lang, "
-                Use this value to set the percentile of the exposure distribution
-                that will be compared to the OEL. It must be between 0% and 100%.
-                The traditional default value is 95%.
-            "))
-
-            bslib::update_tooltip("data_tooltip", translate(lang = lang, "
-                The measurement dataset. There must be one value per line. Values
-                can be censored to the left (<), to the right (>), or interval
-                censored ([X-Y]). For more information, see the Calculation
-                Parameters section in Frequently Asked Questions (FAQ) above.
-            "))
-
-            bslib::update_tooltip("submit_btn_tooltip", translate(lang = lang, "
-                Submit all parameters and start Bayesian calculations.
-            "))
-
-            bslib::update_tooltip("clear_btn_tooltip", translate(lang = lang, "
-                Clear the measurement dataset. Doing so does not automatically
-                update the current results.
-            "))
-        }) |>
-        shiny::bindEvent(lang())
+            bslib::update_tooltip("oel_tooltip", oel_tooltip_text())
+            bslib::update_tooltip("conf_tooltip", conf_tooltip_text())
+            bslib::update_tooltip("psi_tooltip", psi_tooltip_text())
+            bslib::update_tooltip("frac_threshold_tooltip", frac_threshold_tooltip_text())
+            bslib::update_tooltip("target_perc_tooltip", target_perc_tooltip_text())
+            bslib::update_tooltip("data_tooltip", data_tooltip_text())
+            bslib::update_tooltip("btn_submit_tooltip", btn_submit_tooltip_text())
+            bslib::update_tooltip("btn_clear_tooltip", btn_clear_tooltip_text())
+        })
 
         # Return all inputs except buttons.
         return(
             shiny::reactive({
-                list(
-                    oel            = input$oel,
-                    conf           = input$conf,
-                    psi            = input$psi,
-                    data           = input$data,
-                    frac_threshold = input$frac_threshold,
-                    target_perc    = input$target_perc
+                switch(mode(),
+                    simplified = c(
+                        oel  = input$oel,
+                        data = input$data,
+                        default_simplified_inputs
+                    ),
+                    # Default case (mode == "default").
+                    list(
+                        oel            = input$oel,
+                        conf           = input$conf,
+                        psi            = input$psi,
+                        data           = input$data,
+                        frac_threshold = input$frac_threshold,
+                        target_perc    = input$target_perc
+                    )
                 )
             }) |>
-            shiny::bindEvent(input$submit_btn)
+            shiny::bindEvent(input$btn_submit, mode(), ignoreInit = TRUE)
         )
     }
 

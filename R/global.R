@@ -2,22 +2,6 @@
 #'
 #' Load libraries, scripts and global constants.
 #'
-#' @note
-#' For historical reasons, scripts stored in `scripts/` do not reference the
-#' namespaces of the functions they call, and the packages they use must be
-#' attached to the search path.
-#'
-#' This is considered to be a bad practice. The intent should always be clear
-#' and consistent.
-#'
-#' ```
-#' # Good
-#' transltr::language_source_get()
-#'
-#' # Bad
-#' language_source_get()
-#' ```
-#'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
 # Libraries --------------------------------------------------------------------
@@ -60,10 +44,13 @@ shiny::shinyOptions(
 # Constants --------------------------------------------------------------------
 
 # Default version/release to display in footers.
-default_version <- c(number = "4.1.0", release_date = "2025-04-16")
+default_version <- c(number = "5.0.0", release_date = "2025-05-17")
 
 # Default language.
 default_lang <- transltr::language_source_get()
+
+# Default language names.
+default_lang_names <- tr$native_languages
 
 # Default height of cards.
 default_card_height <- "600px"
@@ -75,10 +62,22 @@ default_n_bayes_iter <- 25000L
 # Default number of significant digits to keep.
 default_n_digits <- 3L
 
+# Default internal values for inputs in simplified mode.
+default_simplified_inputs <- list(
+    conf           = 90,
+    psi            = 30,
+    frac_threshold = 5,
+    target_perc    = 95
+)
+
 # Default relative path to images' directory.
 default_images_dir <- file.path("www", "images")
 
-# Default message to show when there is no available translation.
+# Default message to show when
+#  - there is no available translation, OR
+#  - the underlying source text has not yet been registered by object tr
+#    using transltr::find_source(). Call .find() whenever you change the
+#    text passed to translate().
 tr$set_default_value(default_missing_translation_msg <- "{no translation}")
 
 # Default maintainers' emails.
@@ -87,25 +86,15 @@ default_maintainers_emails <- c(
     ununoctium    = "jeanmathieupotvin@ununoctium.dev"
 )
 
-# Default URLs to various resources.
-default_urls <- list(
-    news            = "https://github.com/webexpo/tool1/blob/main/NEWS.md",
-    code            = "https://github.com/webexpo/tool1",
-    aiha            = "https://www.aiha.org",
-    ununoctium      = "https://ununoctium.dev",
-    dennis_helsel   = "https://www.practicalstats.com/info2use/books.html",
-    jerome_lavoue   = "https://orcid.org/0000-0003-4950-5475",
-    nist_j032       = "https://www.nist.gov/system/files/documents/2023/09/26/J-032%20Writing%20with%20the%20SI.pdf",
-    ndexpo          = "https://www.expostats.ca/site/app-local/NDExpo",
-    expostats_paper = "https://doi.org/10.1093/annweh/wxy100",
-    expostats = c(
-        en = "http://www.expostats.ca/site/en/info.html",
-        fr = "https://www.expostats.ca/site/info.html"
-    ),
-    tool1_simplified = c(
-        en = "https://lavoue.shinyapps.io/Tool1Expv3En/",
-        fr = "https://lavoue.shinyapps.io/Tool1Expv3Fr/"
-    ),
+# URLs used more than once in the code.
+shared_urls <- list(
+    code          = "https://github.com/webexpo/tool1",
+    ununoctium    = "https://ununoctium.dev",
+    jerome_lavoue = "https://orcid.org/0000-0003-4950-5475",
+    aiha_videos   = "https://www.aiha.org/education/elearning/online-courses/making-accurate-exposure-risk-decisions",
+    ndexpo        = "https://www.expostats.ca/site/app-local/NDExpo",
+    # Links to resources that offer translations.
+    # Names should match names of tr$native_languages.
     tool2 = c(
         en = "https://lavoue.shinyapps.io/Tool2v3En/",
         fr = "https://lavoue.shinyapps.io/Tool2v3Fr/"
@@ -114,12 +103,55 @@ default_urls <- list(
         en = "https://lavoue.shinyapps.io/Tool3v3En/",
         fr = "https://lavoue.shinyapps.io/Tool3v3Fr/"
     ),
-    epsum = c(
-        en = "https://espum.umontreal.ca/english/home",
-        fr = "https://espum.umontreal.ca/accueil"
+    expostats = c(
+        en = "https://www.expostats.ca/site/en/info.html",
+        fr = "https://www.expostats.ca/site/info.html"
+    )
+)
+
+# Standard AIHA discrete risk levels and related metadata.
+# Names of levels and thresholds should never change.
+aiha_risk_levels <- list(
+    # Changing thresholds requires additional changes
+    # in the risk_assessment() reactive value defined
+    # in server_panel_simplified().
+    thresholds = c(
+        acceptable  = 0L,  # [0, 5L)
+        tolerable   = 5L,  # [5L, 30)
+        problematic = 30L  # [30L, ∞)
     ),
-    udm = c(
-        en = "https://www.umontreal.ca/en",
-        fr = "https://www.umontreal.ca"
+    # $text must be a function in order to prevent
+    # early evaluation (lang() cannot be passed to
+    # translate() directly because it is a reactive
+    # value). Reactive values can only be called in
+    # a reactive context.
+    metadata = list(
+        acceptable = list(
+            level = "acceptable",
+            text  =  \(lang) translate(lang = lang, "acceptable"),
+            color = "success",
+            icon  = bsicons::bs_icon(
+                name = "check-circle",
+                a11y = "deco"
+            )
+        ),
+        tolerable = list(
+            level = "tolerable",
+            text  = \(lang) translate(lang = lang, "tolerable"),
+            color = "warning",
+            icon  = bsicons::bs_icon(
+                name = "exclamation-triangle-fill",
+                a11y = "deco"
+            )
+        ),
+        problematic = list(
+            level = "problematic",
+            text  = \(lang) translate(lang = lang, "problematic"),
+            color = "danger",
+            icon  = bsicons::bs_icon(
+                name = "exclamation-octagon-fill",
+                a11y = "deco"
+            )
+        )
     )
 )

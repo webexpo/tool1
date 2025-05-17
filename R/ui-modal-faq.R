@@ -82,10 +82,14 @@
 #' [Bootstrap List Groups](https://getbootstrap.com/docs/5.3/components/list-group/)
 #' [bslib::accordion()]
 #'
+#' @note
+#' Some embedded URLs are ridiculously long and break all usual styling
+#' conventions. They are still written as single character strings for
+#' simplicity.
+#'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
 #' @rdname ui-modal-faq
-#'
 #' @export
 ui_modal_faq <- function(id) {
     ns <- shiny::NS(id)
@@ -104,15 +108,14 @@ ui_modal_faq <- function(id) {
         "data-bs-target" = paste0("#", modal_id),
 
         tags$button(
-            class = "nav-link",
+            class = "btn btn-outline-secondary app-btn",
             type  = "button",
-
-            tags$span(
-                class = "pe-1",
-                bsicons::bs_icon("info-circle-fill", a11y = "sem")
-            ),
-
-            shiny::textOutput(ns("btn_open_text"), tags$span)
+            bsicons::bs_icon("info-circle-fill", a11y = "sem")
+        ) |>
+        bslib::tooltip(
+            id        = ns("btn_open_tooltip"),
+            placement = "bottom",
+            ""
         )
     )
 
@@ -122,7 +125,7 @@ ui_modal_faq <- function(id) {
     # used to id the currently opened modal.
     # Only shown on larger screens (>= 992px).
     btn_close <- tags$button(
-        class             = "btn btn-outline-secondary app-btn",
+        class             = "btn btn-outline-secondary app-btn ms-1",
         type              = "button",
         "data-bs-dismiss" = "modal",
         bsicons::bs_icon("x-lg", a11y = "sem")
@@ -199,7 +202,7 @@ ui_modal_faq <- function(id) {
 
                         # Modal's body.
                         tags$div(
-                            class = "modal-body p-0",
+                            class = "modal-body px-0 pb-0 pt-2",
 
                             bslib::navset_bar(
                                 id       = ns("panel_active"),
@@ -247,8 +250,11 @@ server_modal_faq <- function(id, lang) {
     server <- \(input, output, session) {
         server_footer("footer", lang)
 
-        output$btn_open_text <- shiny::renderText({
-            translate(lang = lang(), "FAQ")
+        btn_open_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                Frequently Asked Questions. Get additional information on
+                Tool 1.
+            ")
         }) |>
         shiny::bindCache(lang())
 
@@ -308,6 +314,12 @@ server_modal_faq <- function(id, lang) {
         }) |>
         shiny::bindCache(lang())
 
+        # Translate elements not rendered
+        # with a shiny::render*() function.
+        shiny::observe({
+            bslib::update_tooltip("btn_open_tooltip", btn_open_tooltip_text())
+        })
+
         return(invisible())
     }
 
@@ -363,8 +375,20 @@ ui_panel_intro_accordion <- function(lang = "") {
                         the Department of Environmental and Occupational Health
                         at the %s of the %s.
                     "),
-                    ui_link(default_urls$epsum[[lang]], "École de Santé Publique"),
-                    ui_link(default_urls$udm[[lang]], "Université de Montréal")
+
+                    c(
+                        en = "https://espum.umontreal.ca/english/home",
+                        fr = "https://espum.umontreal.ca/accueil"
+                    ) |>
+                    _[[lang]] |>
+                    ui_link("École de Santé Publique"),
+
+                    c(
+                        en = "https://www.umontreal.ca/en",
+                        fr = "https://www.umontreal.ca"
+                    ) |>
+                    _[[lang]] |>
+                    ui_link("Université de Montréal")
                 )
             )
         ),
@@ -383,8 +407,8 @@ ui_panel_intro_accordion <- function(lang = "") {
                         to 4.0.0. It oversees non-scientific components of the
                         web application on behalf of Jérôme Lavoué.
                     "),
-                    ui_link(default_urls$jerome_lavoue, "Jérôme Lavoué"),
-                    ui_link(default_urls$ununoctium, "Ununoctium")
+                    ui_link(shared_urls$jerome_lavoue, "Jérôme Lavoué"),
+                    ui_link(shared_urls$ununoctium, "Ununoctium")
                 )
             )
         ),
@@ -403,7 +427,7 @@ ui_panel_intro_accordion <- function(lang = "") {
                         request features, and provide feedback by creating
                         an issue on %s.
                     "),
-                    ui_link(default_urls$code, "GitHub")
+                    ui_link(shared_urls$code, "GitHub")
                 )
             ),
 
@@ -454,26 +478,20 @@ ui_panel_parameters_accordion <- function(lang = "") {
                         of the %s sidebar. Failing to follow the following rules
                         below will inevitably lead to undefined behavior.
                     "),
-                    ui_panel_title_display(
-                        title     = translate(lang = lang, "Calculation Parameters"),
-                        icon_name = "calculator-fill"
-                    )
+                    ui_element(translate(lang = lang, "Calculation Parameters"))
                 )
             ),
 
             tags$ol(
                 class = "list-group list-group-flush px-2",
-                style = "text-align: justify;",
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "There must be one value per line.")
                 ),
 
                 tags$li(
                     class = "list-group-item",
-
                     html(
                         translate(lang = lang, "
                             In accordance with the International System of Units
@@ -483,25 +501,25 @@ ui_panel_parameters_accordion <- function(lang = "") {
                             zero before decimals for numbers strictly smaller
                             than one.
                         "),
-                        ui_link(default_urls$nist_j032, "J-032")
+                        ui_link(
+                            "https://www.nist.gov/system/files/documents/2023/09/26/J-032%20Writing%20with%20the%20SI.pdf",
+                            "J-032"
+                        )
                     )
                 ),
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "Always use a dot for decimals.")
                 ),
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "Do not use a separator for thousands.")
                 ),
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "
                         Do not put a blank character (tab, space, etc.) before
                         and after special characters used to indicate how a
@@ -526,10 +544,7 @@ ui_panel_parameters_accordion <- function(lang = "") {
                         can be used to ensure that measurements were parsed as
                         expected and successfully imported.
                     "),
-                    ui_panel_title_display(
-                        title     = translate(lang = lang, "About My Measurements"),
-                        icon_name = "123"
-                    )
+                    ui_element(translate(lang = lang, "About My Measurements"))
                 )
             ),
 
@@ -541,11 +556,7 @@ ui_panel_parameters_accordion <- function(lang = "") {
                         the %s panels for that purpose. These provide
                         information inferred from Bayesian models.
                     "),
-                    ui_panel_title_display(
-                        title      = translate(lang = lang, "Inference"),
-                        icon_name  = "body-text",
-                        icon_class = "app-rotated-minus-90"
-                    )
+                    ui_element(translate(lang = lang, "Statistical Inference"))
                 )
             )
         ),
@@ -562,11 +573,9 @@ ui_panel_parameters_accordion <- function(lang = "") {
 
             tags$ol(
                 class = "list-group list-group-flush px-2",
-                style = "text-align: justify;",
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "
                         Add a lower than or equal sign before each
                         measurement censored to the left (e.g. <30.0).
@@ -575,7 +584,6 @@ ui_panel_parameters_accordion <- function(lang = "") {
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "
                         Add a greater than or equal sign before each
                         measurement censored to the right (e.g. >30.0).
@@ -584,7 +592,6 @@ ui_panel_parameters_accordion <- function(lang = "") {
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "
                         Use square brackets to denote interval censored values
                         (e.g. [20-30]).
@@ -598,17 +605,41 @@ ui_panel_parameters_accordion <- function(lang = "") {
         bslib::accordion_panel(
             title = translate(lang = lang, "How are censored measurements imputed?"),
 
-            tags$p(translate(lang = lang, "
-                Censored measurements are subject to one of the following
-                procedures.
-            ")),
+             tags$p(
+                html(
+                    translate(lang = lang, "
+                        The %s panel and %s panels treat censored measurements
+                        differently. In %2$s panels, non-detects are interpreted
+                        as such by the Bayesian model. The latter natively
+                        extracts and uses the corresponding information. There
+                        is no imputation and no creation of arbitrary values.
+                        See %s for an example.
+                    "),
+                    ui_element(translate(lang = lang, "About My Measurements")),
+                    ui_element(translate(lang = lang, "Statistical Inference")),
+                    ui_link(
+                        "https://academic.oup.com/annweh/article-abstract/60/1/56/2196069",
+                        "Huynh et al. (2015)"
+                    )
+                )
+            ),
+
+
+            tags$p(
+                html(
+                    translate(lang = lang, "
+                        In the %s panel, censored measurements are subject to
+                        one of the following procedures.
+                    "),
+                    ui_element(translate(lang = lang, "About My Measurements"))
+                )
+            ),
 
             tags$ul(
                 class = "list-group list-group-flush px-2",
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "
                         Interval censored measurements are imputed as the
                         mid-range.
@@ -617,7 +648,6 @@ ui_panel_parameters_accordion <- function(lang = "") {
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "
                         Measurements censored to the right are imputed as 9/4
                         of the censoring point.
@@ -626,7 +656,6 @@ ui_panel_parameters_accordion <- function(lang = "") {
 
                 tags$li(
                     class = "list-group-item",
-
                     html(
                         translate(lang = lang, "
                             Measurements censored to the left are treated using
@@ -634,8 +663,11 @@ ui_panel_parameters_accordion <- function(lang = "") {
                             The algorithm used is derived from %s (itself
                             derived from the work of %s).
                         "),
-                        ui_link(default_urls$ndexpo, "NDExpo"),
-                        ui_link(default_urls$dennis_helsel, "Dennis Helsel")
+                        ui_link(shared_urls$ndexpo, "NDExpo"),
+                        ui_link(
+                            "https://www.practicalstats.com/info2use/books.html",
+                            "Dennis Helsel"
+                        )
                     )
                 )
             )
@@ -653,6 +685,80 @@ ui_panel_usage_accordion <- function(lang = "") {
         multiple = FALSE,
         class    = "accordion-flush app-accordion-active-bold",
         style    = "overflow: auto;",
+
+        ## Panel: What are modes? ----------------------------------------------
+
+        bslib::accordion_panel(
+            title = translate(lang = lang, "What are modes?"),
+
+            tags$p(
+                html(
+                    translate(lang = lang, "
+                        Tool 1 offers two so-called %s controlling how
+                        much information is displayed to the user.
+                    "),
+                    ui_element(
+                        title     = translate(lang = lang, "Modes"),
+                        icon_name = "layout-text-window-reverse"
+                    )
+                )
+            ),
+
+            tags$ul(
+                class = "list-group list-group-flush px-2 mb-3",
+
+                tags$li(
+                    class = "list-group-item",
+                    html(
+                        translate(lang = lang, "
+                            The %s mode corresponds to the standard version
+                            of Tool 1. All %s panels are shown.
+                        "),
+                        tags$em(translate(lang = lang, "default")),
+                        ui_element(translate(lang = lang, "Statistical Inference"))
+                    )
+                ),
+
+                tags$li(
+                    class = "list-group-item",
+                    html(
+                        translate(lang = lang, "
+                            The %s mode corresponds to a version of Tool 1 that
+                            only shows a curated subset of results in a single
+                            %s panel. It used to be a distinct web application
+                            called Tool 1 Express (Simplified) in earlier
+                            versions of Tool 1 and Expostats.
+                        "),
+                        tags$em(translate(lang = lang, "simplified")),
+                        ui_element(translate(lang = lang, "Statistical Inference"))
+                    )
+                )
+            ),
+
+            tags$p(translate(lang = lang, "
+                Choosing either one is a matter of personal preference.
+            "))
+        ),
+
+        ## Panel: How can I customize the user interface? ----------------------
+
+        bslib::accordion_panel(
+            title = translate(lang = lang, "How can I customize the user interface?"),
+
+            tags$p(translate(lang = lang, "
+                You may customize the user interface by using the menus and
+                buttons located in the title bar of Tool 1 (in the top right
+                corner). All parameters may be changed anytime on-the-fly
+                throughout the session.
+            ")),
+
+            tags$p(translate(lang = lang, "
+                You may bookmark your preferred settings by passing them as
+                query parameters (see the current URL displayed by your web
+                browser for the current web page). Values must be valid.
+                Otherwise, they are automatically replaced by default values.
+            "))
+        ),
 
         ## Panel: Why is there no shown output initially? ----------------------
 
@@ -680,7 +786,6 @@ ui_panel_usage_accordion <- function(lang = "") {
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "
                         Enter your measurements. Measurements can be pasted
                         from a copied spreadsheet column.
@@ -689,38 +794,28 @@ ui_panel_usage_accordion <- function(lang = "") {
 
                 tags$li(
                     class = "list-group-item",
-
                     html(
                         translate(lang = lang, "
                             Enter other parameters. Some inputs are specific to
                             certain panels and are initially hidden. They are
                             shown when an %s panel is chosen.
                         "),
-                        ui_panel_title_display(
-                            title      = translate(lang = lang, "Inference"),
-                            icon_name  = "body-text",
-                            icon_class = "app-rotated-minus-90"
-                        )
+                        ui_element(translate(lang = lang, "Statistical Inference"))
                     )
                 ),
 
                 tags$li(
                     class = "list-group-item",
-
                     html(
                         translate(lang = lang, "
                             Submit inputs by clicking on the %s button.
                         "),
-                        ui_panel_title_display(
-                            title     = translate(lang = lang, "Submit"),
-                            icon_name = "check-circle-fill"
-                        )
+                        ui_element(translate(lang = lang, "Submit"))
                     )
                 ),
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "
                         Wait for the server to perform the calculations. All
                         results will be shown once they are ready.
@@ -736,7 +831,6 @@ ui_panel_usage_accordion <- function(lang = "") {
 
             tags$p(
                 class = "pt-3",
-
                 html(
                     translate(lang = lang, "
                         Depending on the server's current load and the sample's
@@ -744,11 +838,7 @@ ui_panel_usage_accordion <- function(lang = "") {
                         results. Waiting times are usually lower than 30 seconds.
                         Some %s panels require more computing time and resources.
                     "),
-                    ui_panel_title_display(
-                        title      = translate(lang = lang, "Inference"),
-                        icon_name  = "body-text",
-                        icon_class = "app-rotated-minus-90"
-                    )
+                    ui_element(translate(lang = lang, "Statistical Inference"))
                 )
             )
         ),
@@ -765,7 +855,7 @@ ui_panel_usage_accordion <- function(lang = "") {
                         Hover over it and click on the %s button on the bottom
                         right.
                     "),
-                    ui_panel_title_display(
+                    ui_element(
                         title     = translate(lang = lang, "Expand"),
                         icon_name = "arrows-angle-expand"
                     )
@@ -778,6 +868,31 @@ ui_panel_usage_accordion <- function(lang = "") {
 #' @rdname ui-modal-faq
 #' @export
 ui_panel_metho_accordion <- function(lang = "") {
+    expostats_paper_card <- bslib::card(
+        class = "border-primary bg-primary-subtle mx-5",
+
+        bslib::card_body(
+            tags$p(
+                class = "text-center",
+                html(
+                    translate(lang = lang, "
+                        Jérôme Lavoué, Lawrence Joseph, Peter Knott,
+                        Hugh Davies, France Labrèche, Frédéric Clerc,
+                        Gautier Mater, Tracy Kirkham, %s, Annals of
+                        Work Exposures and Health, Volume 63, Issue
+                        3, April 2019, Pages 267-279.
+                    "),
+                    ui_link(
+                        "https://doi.org/10.1093/annweh/wxy100",
+                        tags$em(
+                            "Expostats: A Bayesian Toolkit to Aid the Interpretation of Occupational Exposure Measurements"
+                        )
+                    )
+                )
+            )
+        )
+    )
+
     # To preserve space, the return()
     # statement is avoided exceptionally.
     bslib::accordion(
@@ -804,7 +919,6 @@ ui_panel_metho_accordion <- function(lang = "") {
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "
                         Its resulting probabilistic statements are easier to
                         convey to stakeholders.
@@ -813,7 +927,6 @@ ui_panel_metho_accordion <- function(lang = "") {
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "
                         It naturally integrates the treatment of non-detects.
                     ")
@@ -821,11 +934,142 @@ ui_panel_metho_accordion <- function(lang = "") {
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "
                         It allows the inclusion of external information in the
                         measurements (not yet leveraged).
                     ")
+                )
+            )
+        ),
+
+        ## Panel: What is the rationale for the proposed ... -------------------
+
+        bslib::accordion_panel(
+            title = translate(lang = lang, "
+                What is the rationale for the proposed risk assessment framework?
+            "),
+
+            tags$p(translate(lang = lang, "
+                The rationale proposed by Expostats for decision-making when
+                interpreting industrial hygiene exposure data is described in
+                the following accompanying paper.
+            ")),
+
+            expostats_paper_card,
+
+            tags$p(translate(lang = lang, "It is as follows.")),
+
+            tags$ol(
+                class = "list-group list-group-flush list-group-numbered px-2 mb-3",
+
+                tags$li(
+                    class = "list-group-item",
+                    html(
+                        translate(lang = lang, "
+                            Select a criterion for what is considered
+                            overexposure (for example, the %s percentile
+                            being greater than or equal to the OEL).
+                        "),
+                        ordinal(95.0, lang)
+                    )
+                ),
+
+                tags$li(
+                    class = "list-group-item",
+                    translate(lang = lang, "
+                        Select a threshold for the probability that this
+                        criterion is met, above which remedial action (or
+                        additional sampling) should be required. Equivalently,
+                        one can reason in terms of the degree of confidence
+                        that the exposure criterion is not met: an overexposure
+                        risk threshold of at most 30% is equivalent to reaching
+                        at least 70% confidence that there is no overexposure.
+                    ")
+                )
+            ),
+
+            tags$p(translate(lang = lang, "
+                The traditional threshold for the probability of overexposure is
+                5% (i.e. reaching 95% confidence that there is no overexposure).
+                More recently, following foundational work in France around 2010,
+                several institutions have adopted an overexposure risk threshold
+                of 30% (70% level of confidence). Discussion about the rationale
+                for the use of 70% confidence (or a 30% tolerable overexposure
+                risk) can be found in the following scientific paper.
+            ")),
+
+            bslib::card(
+                class = "border-primary bg-primary-subtle mx-5",
+
+                bslib::card_body(
+                    tags$p(
+                        class = "text-center",
+                        # Only the main title is used for the
+                        # link. Otherwise, it is too long and
+                        # breaks the layout.
+                        html(
+                            translate(lang = lang, "
+                                Ogden, Trevor, and Jérôme Lavoué. %s, %s,
+                                Journal of Occupational and Environmental
+                                Hygiene, Volume 9, Issue 4, 2012, Pages
+                                D63-D70.
+                            "),
+                            ui_link(
+                                "https://doi.org/10.1080/15459624.2012.663702",
+                                tags$em("2011 William P. Yant Award Lecture")
+                            ),
+                            tags$em("Testing Compliance with Occupational Exposure Limits: Development of the British-Dutch Guidance")
+                        )
+                    )
+                )
+            ),
+
+            tags$p(
+                html(
+                    translate(lang = lang, "
+                        The decision scheme adopted for the Simplified mode of
+                        Tool 1 was elaborated during the creation of the AIHA
+                        video series %s. In that scheme, reaching 95%% is ideal
+                        and yields an %s situation. Not reaching 95%% confidence
+                        but reaching 70%% confidence makes the situation %s. Not
+                        reaching 70%% confidence that there is no overexposure
+                        makes the situation %s.
+                    "),
+                    ui_link(
+                        shared_urls$aiha_videos,
+                        tags$em(
+                            translate(lang = lang, "
+                                Making Accurate Exposure Risk Decisions
+                            ")
+                        )
+                    ),
+                    tags$em(translate(lang = lang, "acceptable")),
+                    tags$em(translate(lang = lang, "tolerable")),
+                    tags$em(translate(lang = lang, "problematic"))
+                )
+            ),
+
+            tags$p(
+                html(
+                    translate(lang = lang, "
+                        The %s, %s, and %s about measurement data interpretation
+                        are very similar but aggregate the %s and %s categories
+                        as %4$s.
+                    "),
+                    ui_link(
+                        "https://www.inrs.fr/dms/inrs/PDF/metropol-strategie-principe/metropol-strategie-principe.pdf",
+                        translate(lang = lang, "French guidelines")
+                    ),
+                    ui_link(
+                        "https://knowledge.bsigroup.com/products/workplace-exposure-measurement-of-exposure-by-inhalation-to-chemical-agents-strategy-for-testing-compliance-with-occupational-exposure-limit-values",
+                        translate(lang = lang, "European guidelines EN689")
+                    ),
+                    ui_link(
+                        "https://www.bohs.org/app/uploads/2022/11/Testing-Compliance-with-OELs-for-Airborne-Substances-2022.pdf",
+                        translate(lang = lang, "Dutch-British guidelines")
+                    ),
+                    tags$em(translate(lang = lang, "acceptable")),
+                    tags$em(translate(lang = lang, "tolerable"))
                 )
             )
         ),
@@ -843,32 +1087,88 @@ ui_panel_metho_accordion <- function(lang = "") {
                         The Bayesian models and data interpretation procedures
                         used by this application are derived from current best
                         practices in industrial hygiene, as reviewed in the
-                        following scientific paper. Further details and
-                        references are also available on %s.
+                        the following accompanying scientifice paper. Further
+                        details and references are also available on %s.
                     "),
-                    ui_link(default_urls$expostats[[lang]], "expostats.ca")
+                    ui_link(shared_urls$expostats[[lang]], "expostats.ca")
                 )
             ),
+
+            expostats_paper_card
+        ),
+
+        ## Panel: Are there other educational resources ... --------------------
+
+        bslib::accordion_panel(
+            title = translate(lang = lang, "
+                Are there other educational resources about industrial hygiene
+                statistics?
+            "),
+
+            tags$p(translate(lang = lang, "
+                Yes. Below are four videos made by the authors of Expostats.
+                The last two stem from a 6-hour-long professional development
+                course (PDC) made in 2024 for the Indonesian Industrial Hygiene
+                Association.
+            ")),
+
+            tags$ul(
+                class = "list-group list-group-flush px-2 mb-3",
+
+                tags$li(
+                    class = "list-group-item",
+                    ui_link(
+                        "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?pid=0a7847f9-66be-4efb-9752-aed201487e1b",
+                        tags$em("Bayesian Statistics for Non-Statisticians Part 1")
+                    )
+                ),
+
+                tags$li(
+                    class = "list-group-item",
+                    ui_link(
+                        "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?pid=0a7847f9-66be-4efb-9752-aed201487e1b&id=68aeaea6-3186-44fc-80e0-aeb300b2d326&advance=true",
+                        tags$em("Bayesian Statistics for Non-Statisticians Part 2")
+                    )
+                ),
+
+                tags$li(
+                    class = "list-group-item",
+                    ui_link(
+                        "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?id=39e5beaa-8033-4430-8991-b2de0147b366",
+                        tags$em("Statistical Background")
+                    )
+                ),
+
+                tags$li(
+                    class = "list-group-item",
+                    ui_link(
+                        "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?id=21e20e15-24aa-4946-8361-b2de0147bae3",
+                        tags$em("Bayesian Statistics & Overview of Current Recommendations")
+                    )
+                )
+            ),
+
+            tags$p(translate(lang = lang, "
+                You may also consult the scientific report of the Webexpo
+                project. It includes a large introductory section focusing
+                on industrial hygiene statistics.
+            ")),
 
             bslib::card(
                 class = "border-primary bg-primary-subtle mx-5",
 
                 bslib::card_body(
                     tags$p(
+                        class = "text-center",
                         html(
                             translate(lang = lang, "
-                                Jérôme Lavoué, Lawrence Joseph, Peter Knott,
-                                Hugh Davies, France Labrèche, Frédéric Clerc,
-                                Gautier Mater, Tracy Kirkham, %s, Annals of
-                                Work Exposures and Health, Volume 63, Issue
-                                3, April 2019, Pages 267-279.
+                                Jérôme Lavoué, Lawrence Joseph, Tracy L.
+                                Kirkham, France Labrèche, Gautier Mater, and
+                                Frédéric Clerc (2020). %s (Report R-1065). IRSST.
                             "),
                             ui_link(
-                                default_urls$expostats_paper,
-                                tags$span(
-                                    class = "fst-italic",
-                                    "Expostats: A Bayesian Toolkit to Aid the Interpretation of Occupational Exposure Measurements"
-                                )
+                                "https://pharesst.irsst.qc.ca/cgi/viewcontent.cgi?article=1087&context=rapports-scientifique",
+                                tags$em("WebExpo: Towards a Better Interpretation of Measurements of Occupational Exposure to Chemicals In the Workplace")
                             )
                         )
                     )

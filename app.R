@@ -8,20 +8,21 @@
 #' .run()
 #'
 #' @details
-#' Development scripts are stored in .scripts/. These are not required at
-#' runtime. Helper functions that can be called to source them are attached
-#' to the search path of [interactive()] R sessions. See .Rprofile for more
-#' information.
-#'
-#' ## R Objects
-#'
-#' Shiny modules, global constants, helper functions, and other objects
-#' are stored in R/. They are loaded automatically by [shiny::runApp()]
-#' and `.run()`.
+#' Shiny modules, global constants, functions, and other objects are stored
+#' in R/. They are loaded automatically by [shiny::runApp()] and `.run()`.
+#' They are also sourced into the global environment for development purposes
+#' in [interactive()] R sessions. See .Rprofile for more information.
 #'
 #' Tool 1 depends on a large set of functions stemming from previous projects.
 #' For historical reasons, these are stored in scripts/ and are not structured
-#' in a standard way. They are explicitly loaded at runtime by R/global.R.
+#' in a standard way. They are explicitly sourced at runtime (see R/global.R).
+#'
+#' ## Development Scripts
+#'
+#' Development scripts are stored in .scripts/ (not scripts/ !) and automate
+#' various actions. They are not required at runtime.
+#'
+#' .Rprofile defines small helper functions to seamlessly run them.
 #'
 #' ## Static Assets
 #'
@@ -29,17 +30,44 @@
 #'
 #' ## Naming Conventions
 #'
-#' The `snake_case_with_lower_cases` naming pattern is used at all times. CSS
-#' classes uses `dash-case-with-lower-cases` for consistency with usual best
-#' practices in web development. Each class name must begin with `app-`.
+#' `snake_case_with_lower_cases` is used at all times.
+#'
+#' CSS classes use `dash-case-with-lower-cases` for consistency with usual
+#' best practices in web development. Each CSS class name must begin with
+#' the `app-` prefix (when possible).
 #'
 #' For historical reasons, R objects defined in scripts/ use a different
 #' naming convention. Avoid it.
 #'
+#' ## Namespaces
+#'
+#' For historical reasons, scripts stored in scripts/ do not reference the
+#' namespace (the package) of the functions they call. Consequently, some
+#' packages must be attached to the search path. This is a bad practice from
+#' which Tool 1 is moving away.
+#'
+#' ```
+#' # Good
+#' transltr::language_source_get()
+#'
+#' # Bad
+#' language_source_get()
+#' ```
+#'
+#' @format
+#' `ui` is a `bslib_page` object (an output of [bslib::page_sidebar()]).
+#' This is a list of `shiny.tag` objects.
+#.
+#' @returns
+#' [server()] returns `NULL`, invisibly.
+#'
 #' @author Jérôme Lavoué (<jerome.lavoue@@umontreal.ca>)
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
-
+#'
+#' @rdname app
+#'
+#' @export
 ui <- bslib::page_sidebar(
     # lang and window_title are both updated
     # by server() based on the chosen lang.
@@ -48,6 +76,8 @@ ui <- bslib::page_sidebar(
     theme        = bslib::bs_theme(5L, "shiny"),
     title        = ui_title("layout_title"),
     sidebar      = ui_sidebar("layout_sidebar"),
+
+    # <head> -------------------------------------------------------------------
 
     tags$head(
         tags$link(
@@ -86,7 +116,7 @@ ui <- bslib::page_sidebar(
         shinyjs::useShinyjs()
     ),
 
-    # Main ---------------------------------------------------------------------
+    # <main> -------------------------------------------------------------------
 
     # Banner shown whenever the Shiny engine is blocked.
     ui_banner("busy_banner"),
@@ -97,17 +127,18 @@ ui <- bslib::page_sidebar(
 
         ui_panel_descriptive_statistics("panel_stats"),
 
-        # Group together panels used
-        # for inference purposes.
+        # This panel is hidden by default.
+        # It is shown if mode() returns "simplified".
+        ui_panel_simplified("panel_simplified"),
+
+        # Group other default inference panels.
+        # It is shown by default and hidden if mode() returns "simplified".
         bslib::nav_menu(
-            title = shiny::textOutput("inference_menu_title", tags$span),
+            value = "panels_menu",
+            title = shiny::textOutput("panels_menu_title", tags$span),
             icon  = tags$span(
                 class = "pe-1",
-                bsicons::bs_icon(
-                    name  = "body-text",
-                    a11y  = "deco",
-                    class = "app-rotated-minus-90"
-                )
+                bsicons::bs_icon(name = "list", a11y = "deco")
             ),
 
             ui_panel_exceedance_fraction("panel_fraction"),
@@ -117,32 +148,21 @@ ui <- bslib::page_sidebar(
     )
 )
 
+#' @rdname app
+#' @export
 server <- function(input, output, session) {
-    lang <- shiny::reactive({
-        # lang is extracted from URL's search paramter ?lang.
-        lang <- shiny::parseQueryString(session$clientData$url_search)$lang
-
-        # If lang is not supplied or does not match
-        # any supported language, the default_lang
-        # is used and ?lang is updated accordingly.
-        if (is.null(lang) || !match(lang, names(tr$native_languages), 0L)) {
-            shiny::updateQueryString(sprintf("?lang=%s", default_lang))
-            return(default_lang)
-        }
-
-        return(lang)
-    }) |>
-    shiny::bindEvent(session$clientData$url_search, once = TRUE)
-
     data_sample <- shiny::reactive({
-        parameters <- parameters()
+        # calc_parameters() is a shiny::reactive object
+        # returned by the Sidebar module below. It holds
+        # all user input values.
+        calc_parameters <- calc_parameters()
 
         # oel.mult is set equal to 1 until Webexpo scripts
         # are rewritten. In what follows, c.oel is ignored
         # and input$oel is used instead.
         data.formatting.SEG(
-            data.in  = parameters$data,
-            oel      = parameters$oel,
+            data.in  = calc_parameters$data,
+            oel      = calc_parameters$oel,
             oel.mult = 1L
         )
     })
@@ -157,22 +177,22 @@ server <- function(input, output, session) {
             rightcensored = data_sample$rightcensored,
             intcensored   = data_sample$intcensored,
             seed          = data_sample$seed,
-            c.oel         = parameters()$oel,
+            c.oel         = calc_parameters()$oel,
             n.iter        = default_n_bayes_iter
         )
     })
 
     num_results <- shiny::reactive({
-        parameters <- parameters()
+        calc_parameters <- calc_parameters()
         bayesian_analysis <- bayesian_analysis()
 
         all.numeric(
             mu.chain       = bayesian_analysis$mu.chain,
             sigma.chain    = bayesian_analysis$sigma.chain,
-            c.oel          = parameters$oel,
-            conf           = parameters$conf,
-            frac_threshold = parameters$frac_threshold,
-            target_perc    = parameters$target_perc
+            c.oel          = calc_parameters$oel,
+            conf           = calc_parameters$conf,
+            frac_threshold = calc_parameters$frac_threshold,
+            target_perc    = calc_parameters$target_perc
         )
     })
 
@@ -188,54 +208,51 @@ server <- function(input, output, session) {
         )
     })
 
-    output$inference_menu_title <- shiny::renderText({
-        translate(lang = lang(), "Inference")
-    })
-
-    # Observers ----------------------------------------------------------------
-
-    # See www/main.js for more information.
-    shiny::observe({
-        lang <- lang()
-
-        if (lang != default_lang) {
-            # Update the window's title (what the browser's tab displays).
-            session$sendCustomMessage("update_page_lang", lang)
-
-            # Update the lang attribute of the root <html> tag.
-            session$sendCustomMessage(
-                "update_window_title",
-                sprintf("Expostats - %s", translate(lang = lang, "Tool 1")))
-        }
-    }) |>
-    shiny::bindEvent(lang(), once = TRUE)
-
     # Modules ------------------------------------------------------------------
 
-    server_title("layout_title", lang)
+    # This returns a list of shiny::reactive()
+    # objects that can be used to get the UI's
+    # current language, mode, and color.
+    ui_parameters <- server_title("layout_title")
 
-    server_banner("busy_banner", lang)
+    lang <- ui_parameters$lang
+    mode <- ui_parameters$mode
 
-    # This server function returns a shiny::reactive()
-    # object that returns all user inputs in a list.
-    parameters <- server_sidebar(
+    # This returns a shiny::reactive() object
+    # returning a named list containing all
+    # user inputs in a list.
+    calc_parameters <- server_sidebar(
         id           = "layout_sidebar",
         lang         = lang,
+        mode         = mode,
         panel_active = shiny::reactive({ input$panel_active })
+    )
+
+    server_banner(
+        id   = "busy_banner",
+        lang = lang
     )
 
     server_panel_descriptive_statistics(
         id          = "panel_stats",
         lang        = lang,
-        parameters  = parameters,
+        parameters  = calc_parameters,
         data_sample = data_sample
+    )
+
+    server_panel_simplified(
+        id                = "panel_simplified",
+        lang              = lang,
+        parameters        = calc_parameters,
+        bayesian_analysis = bayesian_analysis,
+        num_results       = num_results,
+        estimates_params  = estimates_params
     )
 
     server_panel_exceedance_fraction(
         id                = "panel_fraction",
         lang              = lang,
-        parameters        = parameters,
-        data_sample       = data_sample,
+        parameters        = calc_parameters,
         bayesian_analysis = bayesian_analysis,
         num_results       = num_results,
         estimates_params  = estimates_params
@@ -244,7 +261,7 @@ server <- function(input, output, session) {
     server_panel_percentiles(
         id                = "panel_percentiles",
         lang              = lang,
-        parameters        = parameters,
+        parameters        = calc_parameters,
         bayesian_analysis = bayesian_analysis,
         num_results       = num_results,
         estimates_params  = estimates_params
@@ -253,13 +270,60 @@ server <- function(input, output, session) {
     server_panel_arithmetic_mean(
         id                = "panel_mean",
         lang              = lang,
-        parameters        = parameters,
+        parameters        = calc_parameters,
         bayesian_analysis = bayesian_analysis,
         num_results       = num_results,
         estimates_params  = estimates_params
     )
+
+    # Outputs ------------------------------------------------------------------
+
+    output$panels_menu_title <- shiny::renderText({
+        translate(lang = lang(), "Statistical Inference")
+    }) |>
+    shiny::bindEvent(lang())
+
+    # Observers ----------------------------------------------------------------
+
+    # Set the lang attribute of the root <html>
+    # element and translate the title of the
+    # browser's tab. See www/main.js for more
+    # information.
+    shiny::observe(priority = 1L, {
+        lang <- lang()
+
+        # Update the window's title (what the browser's tab displays).
+        session$sendCustomMessage("update_page_lang", lang)
+
+        # Update the lang attribute of the root <html> tag.
+        session$sendCustomMessage(
+            "update_window_title",
+            sprintf("Expostats - %s", translate(lang = lang, "Tool 1")))
+    }) |>
+    shiny::bindEvent(lang())
+
+    # Toggle panel(s) based on the current mode.
+    shiny::observe({
+        state <- switch(mode(),
+            default = c(
+                show = "panels_menu",
+                hide = "panel_simplified"
+            ),
+            simplified = c(
+                show = "panel_simplified",
+                hide = "panels_menu"
+            )
+        )
+
+        bslib::nav_show("panel_active", state[["show"]])
+        bslib::nav_hide("panel_active", state[["hide"]])
+        bslib::nav_select("panel_active", "panel_stats")
+    }) |>
+    shiny::bindEvent(mode())
+
+    return(invisible())
 }
 
-# Create a shiny.appobj object that
-# can be passed to shiny::runApp().
+#' @rdname app
+#' @export
 app <- shiny::shinyApp(ui, server)

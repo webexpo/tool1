@@ -25,12 +25,6 @@ options(
 # Development Tools ------------------------------------------------------------
 
 if (interactive()) {
-    # Reload Shiny instances whenever a change is detected.
-    # See shiny::shinyOptions() for more information. Note
-    # that this does not work with Shiny modules stored in
-    # R/. A fix is likely coming in a future Shiny release.
-    options(shiny.autoreload = TRUE)
-
     cat("R session is interactive. Attaching development tools.\n")
 
     # Attach development packages.
@@ -48,6 +42,7 @@ if (interactive()) {
         .find <- \() invisible(source(file.path(".scripts", "find-text.R")))
         .run  <- \() invisible(source(file.path(".scripts", "run.R")))
         .pub  <- \(...) {
+            .src()
             source(file.path(".scripts", "publish.R"), TRUE)
             return(invisible(publish(...)))
         }
