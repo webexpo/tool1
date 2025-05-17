@@ -161,10 +161,10 @@ ui_sidebar <- function(id) {
         # (without having to deal with fill and fillable
         # details) once they are updated by the server.
         tags$div(
+            id    = ns("warning_card_container"),
             style = "margin-bottom: 1rem;",
 
             bslib::card(
-                id    = ns("warning_card"),
                 class = "border-warning bg-warning-subtle small mb-0",
 
                 bslib::card_body(
