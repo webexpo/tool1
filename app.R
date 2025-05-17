@@ -248,7 +248,6 @@ server <- function(input, output, session) {
         id                = "panel_fraction",
         lang              = lang,
         parameters        = calc_parameters,
-        data_sample       = data_sample,
         bayesian_analysis = bayesian_analysis,
         num_results       = num_results,
         estimates_params  = estimates_params

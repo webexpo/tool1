@@ -35,8 +35,6 @@
 #'
 #' @template param-parameters
 #'
-#' @template param-data-sample
-#'
 #' @template param-bayesian-analysis
 #'
 #' @template param-num-results
@@ -260,7 +258,6 @@ server_panel_exceedance_fraction <- function(
     id,
     lang,
     parameters,
-    data_sample,
     bayesian_analysis,
     num_results,
     estimates_params)
@@ -268,7 +265,6 @@ server_panel_exceedance_fraction <- function(
     stopifnot(exprs = {
         shiny::is.reactive(lang)
         shiny::is.reactive(parameters)
-        shiny::is.reactive(data_sample)
         shiny::is.reactive(bayesian_analysis)
         shiny::is.reactive(num_results)
         shiny::is.reactive(estimates_params)
