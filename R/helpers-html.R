@@ -31,6 +31,7 @@ tags <- htmltools::tags
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
 #' @rdname helpers-html
+#'
 #' @export
 html <- function(template = "", ..., ignore = default_missing_translation_msg) {
     text <- if (identical(template, ignore)) {

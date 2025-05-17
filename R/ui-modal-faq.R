@@ -483,17 +483,14 @@ ui_panel_parameters_accordion <- function(lang = "") {
 
             tags$ol(
                 class = "list-group list-group-flush px-2",
-                style = "text-align: justify;",
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "There must be one value per line.")
                 ),
 
                 tags$li(
                     class = "list-group-item",
-
                     html(
                         translate(lang = lang, "
                             In accordance with the International System of Units
@@ -512,19 +509,16 @@ ui_panel_parameters_accordion <- function(lang = "") {
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "Always use a dot for decimals.")
                 ),
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "Do not use a separator for thousands.")
                 ),
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "
                         Do not put a blank character (tab, space, etc.) before
                         and after special characters used to indicate how a
@@ -585,11 +579,9 @@ ui_panel_parameters_accordion <- function(lang = "") {
 
             tags$ol(
                 class = "list-group list-group-flush px-2",
-                style = "text-align: justify;",
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "
                         Add a lower than or equal sign before each
                         measurement censored to the left (e.g. <30.0).
@@ -598,7 +590,6 @@ ui_panel_parameters_accordion <- function(lang = "") {
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "
                         Add a greater than or equal sign before each
                         measurement censored to the right (e.g. >30.0).
@@ -607,7 +598,6 @@ ui_panel_parameters_accordion <- function(lang = "") {
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "
                         Use square brackets to denote interval censored values
                         (e.g. [20-30]).
@@ -631,7 +621,6 @@ ui_panel_parameters_accordion <- function(lang = "") {
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "
                         Interval censored measurements are imputed as the
                         mid-range.
@@ -640,7 +629,6 @@ ui_panel_parameters_accordion <- function(lang = "") {
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "
                         Measurements censored to the right are imputed as 9/4
                         of the censoring point.
@@ -649,7 +637,6 @@ ui_panel_parameters_accordion <- function(lang = "") {
 
                 tags$li(
                     class = "list-group-item",
-
                     html(
                         translate(lang = lang, "
                             Measurements censored to the left are treated using
@@ -706,7 +693,6 @@ ui_panel_usage_accordion <- function(lang = "") {
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "
                         Enter your measurements. Measurements can be pasted
                         from a copied spreadsheet column.
@@ -715,7 +701,6 @@ ui_panel_usage_accordion <- function(lang = "") {
 
                 tags$li(
                     class = "list-group-item",
-
                     html(
                         translate(lang = lang, "
                             Enter other parameters. Some inputs are specific to
@@ -732,7 +717,6 @@ ui_panel_usage_accordion <- function(lang = "") {
 
                 tags$li(
                     class = "list-group-item",
-
                     html(
                         translate(lang = lang, "
                             Submit inputs by clicking on the %s button.
@@ -762,7 +746,6 @@ ui_panel_usage_accordion <- function(lang = "") {
 
             tags$p(
                 class = "pt-3",
-
                 html(
                     translate(lang = lang, "
                         Depending on the server's current load and the sample's
@@ -855,7 +838,6 @@ ui_panel_metho_accordion <- function(lang = "") {
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "
                         Its resulting probabilistic statements are easier to
                         convey to stakeholders.
@@ -864,7 +846,6 @@ ui_panel_metho_accordion <- function(lang = "") {
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "
                         It naturally integrates the treatment of non-detects.
                     ")
@@ -872,7 +853,6 @@ ui_panel_metho_accordion <- function(lang = "") {
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "
                         It allows the inclusion of external information in the
                         measurements (not yet leveraged).
