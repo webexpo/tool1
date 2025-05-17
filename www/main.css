@@ -1,25 +1,21 @@
 /* --bs- variables overwrites variables of Bootstrap v5. */
 
-/* Justify all paragraphs by adding spaces between words.
-   Using this CSS selector is an exception, since there
-   are a large number of <p> tags in the app. */
-p {
+/* Justify all paragraphs and lists
+   by adding spaces between words. */
+p, ol, ul {
   text-align: justify;
   text-justify: inter-word;
 }
 
-/* Change buttons to make them a
-   little bit bigger or smaller.
-   Colors rules allow appropriate
-   usage of dark mode. */
+/* Change buttons to make them bigger. */
 .app-btn {
   --bs-btn-padding-y: 0.25rem;
   --bs-btn-padding-x: 0.75rem;
   --bs-btn-font-size: 1.25rem;
 }
 
-/* App buttons used inside nav
-   items are colored as such. */
+
+/* Color child buttons of nav items as links. */
 .nav-item .app-btn {
   color: var(--bs-nav-link-color);
 }
@@ -39,36 +35,38 @@ p {
   font-weight: bold;
 }
 
-/* app-navset-bar-fix is a special class used solely
-   to select child elements. The goal is to force the
-   <nav> bar of a bslib::navset_bar() to look exactly
-   like a <nav> bar embedded in a header created by
-   bslib::navset_card_underline(). See details below. */
+/* app-navset-bar-fix is a special class used solely to
+   select child elements. The goal is to force the <nav>
+   bar of a bslib::navset_bar() to look exactly like a
+   <nav> created by bslib::navset_card_underline(). See
+   details below.
+
+   A card's header has the following padding settings.
+
+   --bs-card-cap-padding-y: var(--bs-card-spacer-y) * 0.5
+   --bs-card-cap-padding-x: var(--bs-card-spacer-x)
+   --bs-card-spacer-y: $spacer;
+   --bs-card-spacer-x: $spacer;
+   $spacer is implicitly always equal to 1rem.
+   This yields the following padding values. */
 .app-navset-bar-fix .navbar {
-  /* A card's header has the following padding settings.
-     --bs-card-cap-padding-y: var(--bs-card-spacer-y) * 0.5
-     --bs-card-cap-padding-x: var(--bs-card-spacer-x)
-     --bs-card-spacer-y: $spacer;
-     --bs-card-spacer-x: $spacer;
-     $spacer is implicitly always equal to 1rem. This yields
-     the following padding values.
-  */
   padding: 0.5rem 1rem;
   margin-bottom: 0;
 }
 
+/* Padding is controlled by .navbar. */
 .app-navset-bar-fix .navbar .container-fluid {
-  /* Padding is controlled by .navbar. */
   padding-left: 0px !important;
   padding-right: 0px !important;
 }
 
 .app-navset-bar-fix a.nav-link {
+  padding: 8px 5px !important;
   font-weight: 600;
 }
 
+/* Change the space between each active
+   <nav> element and its underline. */
 .app-navset-bar-fix a.nav-link.active {
-  /* Change the space between each active
-     <nav> element and its underline. */
-  padding: 8px 5px 16px 5px !important;
+  padding: 8px 5px !important;
 }
