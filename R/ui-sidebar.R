@@ -134,15 +134,8 @@ ui_sidebar <- function(id) {
 
             shiny::actionButton(
                 inputId = ns("btn_submit"),
-                class   = "btn btn-outline-success app-btn w-100 fw-light",
-                label   = tags$span(
-                    tags$span(
-                        class = "pe-1",
-                        bsicons::bs_icon("check-circle-fill", a11y = "deco")
-                    ),
-
-                    shiny::textOutput(ns("btn_submit_label"), tags$span)
-                )
+                class   = "btn btn-success app-btn w-100",
+                label   = shiny::textOutput(ns("btn_submit_label"), tags$span)
             ) |>
             bslib::tooltip(
                 id        = ns("btn_submit_tooltip"),
@@ -152,15 +145,8 @@ ui_sidebar <- function(id) {
 
             shiny::actionButton(
                 inputId = ns("btn_clear"),
-                class   = "btn btn-outline-secondary app-btn w-100 fw-light",
-                label   = tags$span(
-                    tags$span(
-                        class = "pe-1",
-                        bsicons::bs_icon("x-circle-fill", a11y = "deco")
-                    ),
-
-                    shiny::textOutput(ns("btn_clear_label"), tags$span)
-                )
+                class   = "btn btn-secondary app-btn w-100",
+                label   = shiny::textOutput(ns("btn_clear_label"), tags$span)
             ) |>
             bslib::tooltip(
                 id        = ns("btn_clear_tooltip"),

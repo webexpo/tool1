@@ -138,11 +138,7 @@ ui <- bslib::page_sidebar(
             title = shiny::textOutput("panels_menu_title", tags$span),
             icon  = tags$span(
                 class = "pe-1",
-                bsicons::bs_icon(
-                    name  = "body-text",
-                    a11y  = "deco",
-                    class = "app-rotated-minus-90"
-                )
+                bsicons::bs_icon(name = "list", a11y = "deco")
             ),
 
             ui_panel_exceedance_fraction("panel_fraction"),

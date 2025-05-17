@@ -120,10 +120,6 @@ ui_panel_descriptive_statistics <- function(id) {
     ui <- bslib::nav_panel(
         value = id,
         title = shiny::textOutput(ns("title"), tags$span),
-        icon  = tags$span(
-            class = "pe-1",
-            bsicons::bs_icon(name = "123", a11y = "deco")
-        ),
 
         bslib::layout_column_wrap(
             width = 1/2,
