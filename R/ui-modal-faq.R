@@ -202,7 +202,7 @@ ui_modal_faq <- function(id) {
 
                         # Modal's body.
                         tags$div(
-                            class = "modal-body p-0",
+                            class = "modal-body px-0 pb-0 pt-2",
 
                             bslib::navset_bar(
                                 id       = ns("panel_active"),
