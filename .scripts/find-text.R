@@ -23,8 +23,7 @@ tr <- transltr::translator(id = "expostats:tool1")
 
 # Register languages that must be supported.
 tr$set_native_languages(
-    en = "English",
-    fr = "Français"
+    en = "English"
 )
 
 # Extract source text to translate from source scripts.
