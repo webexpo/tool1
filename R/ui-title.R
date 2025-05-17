@@ -40,15 +40,29 @@
 #'
 #' ## Languages
 #'
-#' This module automatically creates required buttons and observers for all
-#' supported languages. In other words, it does not need to be updated when
-#' a new language is added.
+#' Three actions are required when adding a new language.
+#'
+#'   1. Add a new dedicated [shiny::actionButton()] in [ui_title()] under
+#'      section Languages. Its `id` must be `btn_lang_<lang>`. It must be
+#'      wrapped in an `<li>` tag.
+#'
+#'   2. Bind the button created at step 1 to `lang()` by passing
+#'      `input$btn_lang_<lang>` to the [shiny::bindEvent()] call.
+#'
+#'   3. Create an observer for the button created at step 1 and bind it
+#'      to `input$btn_lang_<lang>` with a call to [shiny::bindEvent()].
+#'      The observer must (1) highlight the chosen `lang` in the menu,
+#'      (2) call [set_lang()], and (3) call [update_query_string()].
+#'
+#' You may copy/paste the existing logic for the default language and
+#' adapt it to the new `lang` value.
+#'
+#' Earlier versions of Tool 1 automated these tasks. While this was much safer
+#' (it guaranteed that language codes and names matched expectations), it
+#' required a deeper knowledge of R language objects and how shiny manipulates
+#' them. It was removed in favour of simplicity.
 #'
 #' @template param-id
-#'
-#' @param langs A named character vector. Elements are native language names
-#'   (used as untranslated button labels). Names are the underlying language
-#'   codes. It is equal to global constant `tr$native_languages` by default.
 #'
 #' @returns
 #' [ui_title()] returns a list of `shiny.tag` objects.
@@ -71,7 +85,7 @@
 #'
 #' @rdname ui-title
 #' @export
-ui_title <- function(id, langs = tr$native_languages) {
+ui_title <- function(id) {
     ns <- shiny::NS(id)
     nav_id <- ns("navbar_nav")
 
@@ -214,27 +228,27 @@ ui_title <- function(id, langs = tr$native_languages) {
                             shiny::textOutput(ns("btn_langs_label"), tags$span)
                         ),
 
-                        # Generate a button for each supported language.
-                        # Labels are created from native language names
-                        # that must not be translated.
-                        do.call(tags$ul, c(
+                        # Labels must not be translated.
+                        tags$ul(
                             class = "dropdown-menu dropdown-menu-end",
-                            mapply(
-                                lang      = names(langs),
-                                name      = langs,
-                                SIMPLIFY  = FALSE,
-                                USE.NAMES = FALSE,
-                                \(lang, name) {
-                                    tags$li(
-                                        shiny::actionButton(
-                                            inputId = ns(sprintf("btn_lang_%s", lang)),
-                                            class   = "dropdown-item fs-6",
-                                            label   = name
-                                        )
-                                    )
-                                }
+
+                            tags$li(
+                                shiny::actionButton(
+                                    inputId = ns("btn_lang_en"),
+                                    class   = "dropdown-item fs-6",
+                                    label   = default_lang_names[["en"]]
+                                )
+                            ),
+
+                            tags$li(
+                                tags$hr(class = "dropdown-divider")
+                            ),
+
+                            tags$p(
+                                class = "px-3 mb-0 text-start",
+                                shiny::textOutput(ns("btn_langs_footer"), tags$span)
                             )
-                        ))
+                        )
                     ),
 
                     ## Links ---------------------------------------------------
@@ -315,39 +329,27 @@ ui_title <- function(id, langs = tr$native_languages) {
 
 #' @rdname ui-title
 #' @export
-server_title <- function(id, langs = tr$native_languages) {
+server_title <- function(id) {
     server <- \(input, output, session) {
         # UI Parameters --------------------------------------------------------
-
-        # Each language is tied to a button which can
-        # be captured by input$btn_lang_<lang>. These
-        # inputs represent click events to be attached
-        # to the reactive value returning the current
-        # language and to observers listening to these
-        # clicks (see below).
-        lang_btn_ids <- sprintf("btn_lang_%s", names(langs))
 
         # Update lang whenever one of the related buttons is clicked.
         lang <- shiny::reactive({
             get_lang()
         }) |>
-        # Create a list where the first element is the reactive above,
-        # and further elements are unevaluated input[[btn_lang_<lang>]]
-        # calls created using partial substitution with bquote().
-        c(
-            x = _,
-            lapply(lang_btn_ids, \(btn_id) {
-                bquote(input[[.(btn_id)]])
-            })
-        ) |>
-        # Pass this list as arguments to shiny::bindEvent() with do.call().
-        do.call(shiny::bindEvent, args = _)
+        shiny::bindEvent(
+            session$clientData$url_search,
+            input$btn_lang_en
+        )
 
         # Update mode whenever one of the related buttons is clicked.
         mode <- shiny::reactive({
             get_mode()
         }) |>
-        shiny::bindEvent(input$btn_mode_default, input$btn_mode_simplified)
+        shiny::bindEvent(
+            input$btn_mode_default,
+            input$btn_mode_simplified
+        )
 
         # Update color whenever the related button is clicked.
         color <- shiny::reactive({
@@ -366,13 +368,18 @@ server_title <- function(id, langs = tr$native_languages) {
             query_params <- shiny::getQueryString()
 
             # Validate and set extracted parameters.
-            set_lang(parse_lang(query_params$lang))
-            set_mode(parse_mode(query_params$mode))
+            lang  <- set_lang(parse_lang(query_params$lang))
+            mode  <- set_mode(parse_mode(query_params$mode))
             color <- set_color(parse_color(query_params$color))
 
             # Update the URL with valid values. Some
             # values could had been invalid initially.
             update_query_string()
+
+            # Highlight lang and mode parameters
+            # in their respective dropdown menus.
+            shinyjs::addClass(sprintf("btn_lang_%s", lang), "active")
+            shinyjs::addClass(sprintf("btn_mode_%s", mode), "active")
 
             # Update the color mode and the label
             # of the button controlling it.
@@ -387,26 +394,31 @@ server_title <- function(id, langs = tr$native_languages) {
         shiny::bindEvent(session$clientData$url_search, once = TRUE)
 
         # Update the current language.
-        # Each language has a dedicated button requiring its own observer.
-        mapply(
-            lang   = names(langs),
-            btn_id = lang_btn_ids,
-            \(lang, btn_id) {
-                shiny::observe(priority = 10L, {
-                    update_query_string(lang = set_lang(lang))
-                }) |>
-                shiny::bindEvent(input[[btn_id]], ignoreInit = TRUE)
-            }
-        )
+        # Each language has a dedicated button.
+        shiny::observe(priority = 10L, {
+            old_lang <- get_lang()
+
+            shinyjs::removeClass(sprintf("btn_lang_%s", old_lang), "active")
+            shinyjs::addClass("btn_lang_en", "active")
+
+            update_query_string(lang = set_lang("en"))
+        }) |>
+        shiny::bindEvent(input$btn_lang_en, ignoreInit = TRUE)
 
         # Update the current mode.
         # Each mode has a dedicated button.
         shiny::observe(priority = 10L, {
+            shinyjs::addClass("btn_mode_default", "active")
+            shinyjs::removeClass("btn_mode_simplified", "active")
+
             update_query_string(mode = set_mode("default"))
         }) |>
         shiny::bindEvent(input$btn_mode_default, ignoreInit = TRUE)
 
         shiny::observe(priority = 10L, {
+            shinyjs::addClass("btn_mode_simplified", "active")
+            shinyjs::removeClass("btn_mode_default", "active")
+
             update_query_string(mode = set_mode("simplified"))
         }) |>
         shiny::bindEvent(input$btn_mode_simplified, ignoreInit = TRUE)
@@ -434,6 +446,20 @@ server_title <- function(id, langs = tr$native_languages) {
 
         # Outputs and Other Observers ------------------------------------------
 
+        btn_color_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                Toggle the current color scheme (light or dark).
+            ")
+        }) |>
+        shiny::bindCache(lang())
+
+        btn_code_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                See the source code of Tool 1 on GitHub.
+            ")
+        }) |>
+        shiny::bindCache(lang())
+
         output$name <- shiny::renderText({
             translate(lang = lang(), "Tool 1")
         }) |>
@@ -443,6 +469,16 @@ server_title <- function(id, langs = tr$native_languages) {
             translate(lang = lang(), "
                 Data Interpretation for One Similar Exposure Group
             ")
+        }) |>
+        shiny::bindCache(lang())
+
+        output$btn_langs_label <- shiny::renderText({
+            translate(lang = lang(), "Language")
+        }) |>
+        shiny::bindCache(lang())
+
+        output$btn_langs_footer <- shiny::renderText({
+            translate(lang = lang(), "More languages coming soon.")
         }) |>
         shiny::bindCache(lang())
 
@@ -458,11 +494,6 @@ server_title <- function(id, langs = tr$native_languages) {
 
         output$btn_mode_simplified_label <- shiny::renderText({
             translate(lang = lang(), "Simplified")
-        }) |>
-        shiny::bindCache(lang())
-
-        output$btn_langs_label <- shiny::renderText({
-            translate(lang = lang(), "Language")
         }) |>
         shiny::bindCache(lang())
 
