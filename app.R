@@ -279,7 +279,7 @@ server <- function(input, output, session) {
     # Outputs ------------------------------------------------------------------
 
     output$panels_menu_title <- shiny::renderText({
-        translate(lang = lang(), "Inference")
+        translate(lang = lang(), "Statistical Inference")
     }) |>
     shiny::bindEvent(lang())
 

@@ -330,7 +330,7 @@ server_panel_simplified <- function(
         })
 
         output$title <- shiny::renderText({
-            translate(lang = lang(), "Inference")
+            translate(lang = lang(), "Statistical Inference")
         }) |>
         shiny::bindCache(lang())
 
@@ -562,8 +562,7 @@ server_panel_simplified <- function(
                     class = "list-group-item",
                     html(
                         translate(lang = lang, "
-                            The point estimate of its 70%% upper confidence
-                            limit is equal to %s.
+                            The 70%% upper confidence limit is equal to %s.
                         "),
                         tags$strong(
                             as_percentage(num_results()$frac.ucl70)
@@ -575,8 +574,7 @@ server_panel_simplified <- function(
                     class = "list-group-item",
                     html(
                         translate(lang = lang, "
-                            The point estimate of its 95%% upper confidence
-                            limit is equal to %s.
+                            The 95%% upper confidence limit is equal to %s.
                         "),
                         tags$strong(
                             as_percentage(num_results()$frac.ucl95)
@@ -611,8 +609,7 @@ server_panel_simplified <- function(
                     class = "list-group-item",
                     html(
                         translate(lang = lang, "
-                            The point estimate of its 70%% upper confidence
-                            limit is equal to %s.
+                            The 70%% upper confidence limit is equal to %s.
                         "),
                         tags$strong(
                             signif(num_results()$perc.ucl70, default_n_digits)
@@ -624,8 +621,7 @@ server_panel_simplified <- function(
                     class = "list-group-item",
                     html(
                         translate(lang = lang, "
-                            The point estimate of its 95%% upper confidence
-                            limit is equal to %s.
+                            The 95%% upper confidence limit is equal to %s.
                         "),
                         tags$strong(
                             signif(num_results()$perc.ucl95, default_n_digits)
@@ -657,8 +653,7 @@ server_panel_simplified <- function(
                     class = "list-group-item",
                     html(
                         translate(lang = lang, "
-                            The point estimate of its 70%% upper confidence
-                            limit is equal to %s.
+                            The 70%% upper confidence limit is equal to %s.
                         "),
                         tags$strong(
                             signif(num_results()$am.ucl70, default_n_digits)
@@ -670,8 +665,7 @@ server_panel_simplified <- function(
                     class = "list-group-item",
                     html(
                         translate(lang = lang, "
-                            The point estimate of its 95%% upper confidence
-                            limit is equal to %s.
+                            The 95%% upper confidence limit is equal to %s.
                         "),
                         tags$strong(
                             signif(num_results()$am.ucl95, default_n_digits)

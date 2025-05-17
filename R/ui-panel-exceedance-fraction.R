@@ -464,8 +464,7 @@ server_panel_exceedance_fraction <- function(
                     class = "list-group-item",
                     html(
                         translate(lang = lang, "
-                            The point estimate of its 70%% upper confidence
-                            limit is equal to %s.
+                            The 70%% upper confidence limit is equal to %s.
                         "),
                         tags$strong(
                             as_percentage(num_results()$frac.ucl70)
@@ -477,8 +476,7 @@ server_panel_exceedance_fraction <- function(
                     class = "list-group-item",
                     html(
                         translate(lang = lang, "
-                            The point estimate of its 95%% upper confidence
-                            limit is equal to %s.
+                            The 95%% upper confidence limit is equal to %s.
                         "),
                         tags$strong(
                             as_percentage(num_results()$frac.ucl95)

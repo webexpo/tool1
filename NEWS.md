@@ -5,7 +5,14 @@ was rewritten during the process. All existing functionalities were preserved.
 
 ## User Visible Changes
 
-None.
+* There is now additional information on the treatment of non-detects in the
+  Frequently Asked Questions.
+
+* The vocabulary used inside Estimates cards was shortened.
+
+* Risk Band plots use the latest AIHA color scheme.
+
+* Inference panels were renamed to Statistical Inference.
 
 ## Server Changes
 

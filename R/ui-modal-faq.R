@@ -556,7 +556,7 @@ ui_panel_parameters_accordion <- function(lang = "") {
                         the %s panels for that purpose. These provide
                         information inferred from Bayesian models.
                     "),
-                    ui_element(translate(lang = lang, "Inference"))
+                    ui_element(translate(lang = lang, "Statistical Inference"))
                 )
             )
         ),
@@ -605,12 +605,31 @@ ui_panel_parameters_accordion <- function(lang = "") {
         bslib::accordion_panel(
             title = translate(lang = lang, "How are censored measurements imputed?"),
 
+             tags$p(
+                html(
+                    translate(lang = lang, "
+                        The %s panel and %s panels treat censored measurements
+                        differently. In %2$s panels, non-detects are interpreted
+                        as such by the Bayesian model. The latter natively
+                        extracts and uses the corresponding information. There
+                        is no imputation and no creation of arbitrary values.
+                        See %s for an example.
+                    "),
+                    ui_element(translate(lang = lang, "About My Measurements")),
+                    ui_element(translate(lang = lang, "Statistical Inference")),
+                    ui_link(
+                        "https://academic.oup.com/annweh/article-abstract/60/1/56/2196069",
+                        "Huynh et al. (2015)"
+                    )
+                )
+            ),
+
+
             tags$p(
                 html(
                     translate(lang = lang, "
-                        Censored measurements are subject to one of the
-                        following procedures. They only affect the results
-                        shown in the %s panel.
+                        In the %s panel, censored measurements are subject to
+                        one of the following procedures.
                     "),
                     ui_element(translate(lang = lang, "About My Measurements"))
                 )
@@ -692,10 +711,11 @@ ui_panel_usage_accordion <- function(lang = "") {
                     class = "list-group-item",
                     html(
                         translate(lang = lang, "
-                            The %s mode corresponds to the standard version of
-                            Tool 1. All statistical inference panels are shown.
+                            The %s mode corresponds to the standard version
+                            of Tool 1. All %s panels are shown.
                         "),
-                        tags$em(translate(lang = lang, "default"))
+                        tags$em(translate(lang = lang, "default")),
+                        ui_element(translate(lang = lang, "Statistical Inference"))
                     )
                 ),
 
@@ -705,11 +725,12 @@ ui_panel_usage_accordion <- function(lang = "") {
                         translate(lang = lang, "
                             The %s mode corresponds to a version of Tool 1 that
                             only shows a curated subset of results in a single
-                            statistical inference panel. It used to be a distinct
-                            web application called Tool 1 Express (Simplified) in
-                            earlier versions of Tool 1.
+                            %s panel. It used to be a distinct web application
+                            called Tool 1 Express (Simplified) in earlier
+                            versions of Tool 1 and Expostats.
                         "),
-                        tags$em(translate(lang = lang, "simplified"))
+                        tags$em(translate(lang = lang, "simplified")),
+                        ui_element(translate(lang = lang, "Statistical Inference"))
                     )
                 )
             ),
@@ -779,7 +800,7 @@ ui_panel_usage_accordion <- function(lang = "") {
                             certain panels and are initially hidden. They are
                             shown when an %s panel is chosen.
                         "),
-                        ui_element(translate(lang = lang, "Inference"))
+                        ui_element(translate(lang = lang, "Statistical Inference"))
                     )
                 ),
 
@@ -817,7 +838,7 @@ ui_panel_usage_accordion <- function(lang = "") {
                         results. Waiting times are usually lower than 30 seconds.
                         Some %s panels require more computing time and resources.
                     "),
-                    ui_element(translate(lang = lang, "Inference"))
+                    ui_element(translate(lang = lang, "Statistical Inference"))
                 )
             )
         ),

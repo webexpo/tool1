@@ -456,8 +456,7 @@ server_panel_percentiles <- function(
                     class = "list-group-item",
                     html(
                         translate(lang = lang, "
-                            The point estimate of its 70%% upper confidence
-                            limit is equal to %s.
+                            The 70%% upper confidence limit is equal to %s.
                         "),
                         tags$strong(
                             signif(num_results()$perc.ucl70, default_n_digits)
@@ -469,8 +468,7 @@ server_panel_percentiles <- function(
                     class = "list-group-item",
                     html(
                         translate(lang = lang, "
-                            The point estimate of its 95%% upper confidence
-                            limit is equal to %s.
+                            The 95%% upper confidence limit is equal to %s.
                         "),
                         tags$strong(
                             signif(num_results()$perc.ucl95, default_n_digits)
