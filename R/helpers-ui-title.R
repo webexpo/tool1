@@ -22,11 +22,11 @@
 #'
 #' `mode` controls how much information is displayed to the user.
 #'
-#' The `default` mode corresponds to the default version of Tool 1. All panels
-#' are available/shown.
+#' The `default` mode corresponds to the normal standard version of Tool 1.
+#' All panels are available/shown.
 #'
-#' The `simplified` mode corresponds to a version of Tool 1 only showing a
-#' curated subset of results in a single panel. This mode used to be called
+#' The `simplified` mode corresponds to a version of Tool 1 that only shows
+#' a curated subset of results in a single panel. This mode used to be called
 #' Tool 1 Express (Simplified) in the past.
 #'
 #' The current `mode` can always be changed without triggering a full refresh
