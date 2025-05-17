@@ -211,7 +211,8 @@ server_exceedance_plot <- function(id, lang, parameters, num_results) {
                     credible interval).
                 ")
             )
-        })
+        }) |>
+        shiny::bindCache({ sidebar_inputs()$variant }, lang())
 
         return(invisible())
     }
