@@ -221,7 +221,7 @@ ui_panel_percentiles <- function(id) {
         ),
 
         bslib::card_footer(
-            shiny::uiOutput(ns("risk_band_plot_desc"), container = tags$p)
+            shiny::textOutput(ns("risk_band_plot_desc"), container = tags$p)
         )
     )
 
@@ -621,24 +621,21 @@ server_panel_percentiles <- function(
             )
         })
 
-        output$risk_band_plot_desc <- shiny::renderUI({
-            html(
-                translate(lang = lang(), "
-                    This plot shows the probability distribution of the
-                    uncertainty around the selected percentile. It shows
-                    the probability that its true value is
-                    (1) below 1%% of the OEL,
-                    (2) between 1%% and 10%% of the OEL,
-                    (3) between 10%% and 50%% of the OEL,
-                    (4) between 50%% and 100%% of the OEL, and
-                    (5) greater than the OEL.
-                    This is based on the classification adopted by %s. The red
-                    column represents the probability of an overexposure. The
-                    latter should be lower than the threshold shown by the
-                    black dashed line.
-                "),
-                ui_link(default_urls$aiha, "AIHA")
-            )
+        output$risk_band_plot_desc <- shiny::renderText({
+            translate(lang = lang(), "
+                This plot shows the probability distribution of the
+                uncertainty around the selected percentile. It shows
+                the probability that its true value is
+                (1) below 1%% of the OEL,
+                (2) between 1%% and 10%% of the OEL,
+                (3) between 10%% and 50%% of the OEL,
+                (4) between 50%% and 100%% of the OEL, and
+                (5) greater than the OEL.
+                This is based on the classification adopted by AIHA. The
+                red column represents the probability of an overexposure.
+                The latter should be lower than the threshold shown as a
+                black dashed line.
+            ")
         }) |>
         shiny::bindCache(lang())
 

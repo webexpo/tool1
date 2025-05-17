@@ -240,7 +240,7 @@ ui_panel_arithmetic_mean <- function(id) {
         ),
 
         bslib::card_footer(
-            shiny::uiOutput(ns("risk_band_plot_desc"), container = tags$p)
+            shiny::textOutput(ns("risk_band_plot_desc"), container = tags$p)
         )
     )
 
