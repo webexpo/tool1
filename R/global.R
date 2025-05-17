@@ -62,6 +62,14 @@ default_n_bayes_iter <- 25000L
 # Default number of significant digits to keep.
 default_n_digits <- 3L
 
+# Default internal values for inputs in simplified mode.
+default_simplified_inputs <- list(
+    conf           = 90,
+    psi            = 30,
+    frac_threshold = 5,
+    target_perc    = 95
+)
+
 # Default relative path to images' directory.
 default_images_dir <- file.path("www", "images")
 
@@ -101,5 +109,49 @@ shared_urls <- list(
     )
 )
 
+# Standard AIHA discrete risk levels and related metadata.
+# Names of levels and thresholds should never change.
+aiha_risk_levels <- list(
+    # Changing thresholds requires additional changes
+    # in the risk_assessment() reactive value defined
+    # in server_panel_simplified().
+    thresholds = c(
+        acceptable  = 0L,  # [0, 5L)
+        tolerable   = 5L,  # [5L, 30)
+        problematic = 30L  # [30L, ∞)
+    ),
+    # $text must be a function in order to prevent
+    # early evaluation (lang() cannot be passed to
+    # translate() directly because it is a reactive
+    # value). Reactive values can only be called in
+    # a reactive context.
+    metadata = list(
+        acceptable = list(
+            level = "acceptable",
+            text  =  \(lang) translate(lang = lang, "acceptable"),
+            color = "success",
+            icon  = bsicons::bs_icon(
+                name = "check-circle",
+                a11y = "deco"
+            )
+        ),
+        tolerable = list(
+            level = "tolerable",
+            text  = \(lang) translate(lang = lang, "tolerable"),
+            color = "warning",
+            icon  = bsicons::bs_icon(
+                name = "exclamation-triangle-fill",
+                a11y = "deco"
+            )
+        ),
+        problematic = list(
+            level = "problematic",
+            text  = \(lang) translate(lang = lang, "problematic"),
+            color = "danger",
+            icon  = bsicons::bs_icon(
+                name = "exclamation-octagon-fill",
+                a11y = "deco"
+            )
+        )
     )
 )

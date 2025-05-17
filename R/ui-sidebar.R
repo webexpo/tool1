@@ -399,13 +399,10 @@ server_sidebar <- function(id, lang, mode, panel_active) {
         return(
             shiny::reactive({
                 switch(mode(),
-                    simplified = list(
-                        oel            = input$oel,
-                        conf           = 90,
-                        psi            = 30,
-                        data           = input$data,
-                        frac_threshold = 5,
-                        target_perc    = 95
+                    simplified = c(
+                        oel  = input$oel,
+                        data = input$data,
+                        default_simplified_inputs
                     ),
                     # Default case (mode == "default").
                     list(

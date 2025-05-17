@@ -267,32 +267,14 @@ server_panel_percentiles <- function(
     })
 
     server <- function(input, output, session) {
-        # Assess whether the situation is controlled or
-        # not, and return miscellaneous values based on
-        # the result. They are used to modify the UI
-        # accordingly.
         risk_assessment <- shiny::reactive({
-            if (num_results()$perc.risk >= parameters()$psi) {
-                list(
-                    is_controlled = FALSE,
-                    text          = translate(lang = lang(), "poorly controlled"),
-                    bs_base_color = "danger",
-                    icon          = bsicons::bs_icon(
-                        name = "exclamation-diamond",
-                        a11y = "deco"
-                    )
-                )
+            risk_level <- if (num_results()$perc.risk >= parameters()$psi) {
+                "problematic"
             } else {
-                list(
-                    is_controlled = TRUE,
-                    text          = translate(lang = lang(), "adequately controlled"),
-                    bs_base_color = "success",
-                    icon          = bsicons::bs_icon(
-                        name = "check-circle",
-                        a11y = "deco"
-                    )
-                )
+                "acceptable"
             }
+
+            aiha_risk_levels$metadata[[risk_level]]
         })
 
         output$title <- shiny::renderText({
@@ -348,13 +330,13 @@ server_panel_percentiles <- function(
 
             li_classes <- sprintf(
                 "list-group-item bg-%s-subtle border-%1$s",
-                risk_assessment$bs_base_color
+                risk_assessment$color
             )
 
             tags$ul(
                 class = sprintf(
                     "list-group list-group-flush bg-%s-subtle border-%1$s",
-                    risk_assessment$bs_base_color
+                    risk_assessment$color
                 ),
 
                 tags$li(
@@ -406,11 +388,7 @@ server_panel_percentiles <- function(
                     class = li_classes,
                     html(
                         translate(lang = lang, "The current situation is %s."),
-
-                        tags$span(
-                            class = "fw-bold",
-                            risk_assessment$text
-                        )
+                        tags$strong(risk_assessment$text(lang))
                     )
                 )
             )
@@ -431,7 +409,7 @@ server_panel_percentiles <- function(
             translate(lang = lang(), "
                 This risk meter shows the probability of the exposure being too
                 high when compared to the occupational exposure limit. The red
-                zone indicates a poorly controlled exposure.
+                zone indicates a problematic exposure.
             ")
         }) |>
         shiny::bindCache(lang())
@@ -639,36 +617,36 @@ server_panel_percentiles <- function(
         }) |>
         shiny::bindCache(lang())
 
-        # Swap colors of borders and background of
-        # the risk assessment card if data shows a
-        # poorly controlled situation.
+        # Update colors of borders and background
+        # of the risk assessment card based on the
+        # risk level.
         shiny::observe({
-            is_controlled <- risk_assessment()$is_controlled
+            risk_level <- risk_assessment()$level
+            color_acceptable  <- aiha_risk_levels$metadata$acceptable$color
+            color_problematic <- aiha_risk_levels$metadata$problematic$color
 
-            # Use green colors if the risk is controlled.
+            # Use green colors if the risk is acceptable.
             shinyjs::toggleClass(
                 id        = "risk_assessment_header",
-                class     = "border-success text-success",
-                condition = is_controlled
+                class     = sprintf("border-%s text-%1$s", color_acceptable),
+                condition = { risk_level == "acceptable" }
             )
-
             shinyjs::toggleClass(
                 id        = "risk_assessment_card",
-                class     = "bg-success-subtle border-success",
-                condition = is_controlled
+                class     = sprintf("border-%s bg-%1$s-subtle", color_acceptable),
+                condition = { risk_level == "acceptable" }
             )
 
-            # Use red colors if the risk is not controlled.
+            # Use red colors if the risk is problematic.
             shinyjs::toggleClass(
                 id        = "risk_assessment_header",
-                class     = "border-danger text-danger",
-                condition = !is_controlled
+                class     = sprintf("border-%s text-%1$s", color_problematic),
+                condition = { risk_level == "problematic" }
             )
-
             shinyjs::toggleClass(
                 id        = "risk_assessment_card",
-                class     = "bg-danger-subtle border-danger",
-                condition = !is_controlled
+                class     = sprintf("border-%s bg-%1$s-subtle", color_problematic),
+                condition = { risk_level == "problematic" }
             )
         }) |>
         shiny::bindEvent(risk_assessment())
