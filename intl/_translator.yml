@@ -506,6 +506,25 @@ Texts:
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 277, Col 13 @ Ln 277, Col 45
   - !<Text>
+    Identifier: 6192e8e
+    Algorithm: sha1
+    Hash: 6192e8e0e6fda5e7f6808b7f5859efb8bfaa9891
+    Source Language: en
+    Source Text: |-
+      This plot shows the probability distribution of the uncertainty around
+      the arithmetic mean. It shows the probability that its true value is (1)
+      below 1% of the OEL, (2) between 1% and 10% of the OEL, (3) between 10%
+      and 50% of the OEL, (4) between 50% and 100% of the OEL, and (5) greater
+      than the OEL. This is based on the classification adopted by AIHA. The
+      red column represents the probability of an overexposure. The latter
+      should be lower than the threshold (black dashed line).
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 6192e8e:l1
+        Path: ./R/ui-panel-arithmetic-mean.R
+        Ranges: Ln 593, Col 13 @ Ln 605, Col 14
+  - !<Text>
     Identifier: cebe5c4
     Algorithm: sha1
     Hash: cebe5c4f2bcaa65fe29c2a54f198aee1c8393340
@@ -557,25 +576,6 @@ Texts:
         Identifier: 6863c44:l1
         Path: ./R/ui-sidebar.R
         Ranges: Ln 320, Col 13 @ Ln 320, Col 45
-  - !<Text>
-    Identifier: b13ad8c
-    Algorithm: sha1
-    Hash: b13ad8c33e7cecef1c0e230bb9036e27d1f45d1a
-    Source Language: en
-    Source Text: |-
-      This plot shows the probability distribution of the uncertainty around
-      the arithmetic mean. It shows the probability that its true value is (1)
-      below 1%% of the OEL, (2) between 1%% and 10%% of the OEL, (3) between
-      10%% and 50%% of the OEL, (4) between 50%% and 100%% of the OEL, and (5)
-      greater than the OEL. This is based on the classification adopted by
-      AIHA. The red column represents the probability of an overexposure. The
-      latter should be lower than the threshold (black dashed line).
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: b13ad8c:l1
-        Path: ./R/ui-panel-arithmetic-mean.R
-        Ranges: Ln 593, Col 13 @ Ln 605, Col 14
   - !<Text>
     Identifier: 179eb27
     Algorithm: sha1
@@ -2286,26 +2286,6 @@ Texts:
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 701, Col 37 @ Ln 701, Col 67
   - !<Text>
-    Identifier: 88439f2
-    Algorithm: sha1
-    Hash: 88439f22af1bb7b9f9b9282fa9b6631b1994b254
-    Source Language: en
-    Source Text: |-
-      This plot shows the probability distribution of the uncertainty around
-      the selected percentile. It shows the probability that its true value is
-      (1) below 1%% of the OEL, (2) between 1%% and 10%% of the OEL, (3)
-      between 10%% and 50%% of the OEL, (4) between 50%% and 100%% of the OEL,
-      and (5) greater than the OEL. This is based on the classification adopted
-      by AIHA. The red column represents the probability of an overexposure.
-      The latter should be lower than the threshold shown as a black dashed
-      line.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 88439f2:l1
-        Path: ./R/ui-panel-percentiles.R
-        Ranges: Ln 574, Col 13 @ Ln 587, Col 14
-  - !<Text>
     Identifier: 92981c5
     Algorithm: sha1
     Hash: 92981c5d8c4c04a55a05301e0d01be12130245b9
@@ -2432,6 +2412,25 @@ Texts:
         Identifier: ffb2d53:l1
         Path: ./R/ui-panel-descriptive-statistics.R
         Ranges: Ln 178, Col 13 @ Ln 178, Col 61
+  - !<Text>
+    Identifier: 8da5ea7
+    Algorithm: sha1
+    Hash: 8da5ea7b36d7b9f41e61e1b5ccbc9017c1bb1c6b
+    Source Language: en
+    Source Text: |-
+      This plot shows the probability distribution of the uncertainty around
+      the selected percentile. It shows the probability that its true value is
+      (1) below 1% of the OEL, (2) between 1% and 10% of the OEL, (3) between
+      10% and 50% of the OEL, (4) between 50% and 100% of the OEL, and (5)
+      greater than the OEL. This is based on the classification adopted by
+      AIHA. The red column represents the probability of an overexposure. The
+      latter should be lower than the threshold shown as a black dashed line.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 8da5ea7:l1
+        Path: ./R/ui-panel-percentiles.R
+        Ranges: Ln 574, Col 13 @ Ln 587, Col 14
   - !<Text>
     Identifier: 4f7aff7
     Algorithm: sha1
