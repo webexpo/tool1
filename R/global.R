@@ -49,6 +49,9 @@ default_version <- c(number = "5.0.0", release_date = "2025-04-30")
 # Default language.
 default_lang <- transltr::language_source_get()
 
+# Default language names.
+default_lang_names <- tr$native_languages
+
 # Default height of cards.
 default_card_height <- "600px"
 default_card_height_text_only <- "425px"

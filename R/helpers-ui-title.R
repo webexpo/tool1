@@ -50,7 +50,7 @@
 #' NOT trigger a refresh of the web page.
 #'
 #' @param lang A character string. It must be equal to one of the values
-#'   defined in `langs`.
+#'   defined in `default_lang_names`.
 #'
 #' @param mode A character string equal to `"default"` or `"simplified"`.
 #'
@@ -191,7 +191,7 @@ get_color <- function(what = c("both", "current", "label")) {
 
 #' @rdname helpers-ui-title
 #' @export
-parse_lang <- function(lang = "", langs = names(tr$native_languages)) {
+parse_lang <- function(lang = "", langs = names(default_lang_names)) {
     if (is.null(lang) || !match(lang <- tolower(lang), langs, 0L)) {
         return(default_lang)
     }
