@@ -579,7 +579,7 @@ server_panel_exceedance_fraction <- function(
                     (3) greater than %s.
                     The red column represents the probability of an
                     overexposure. The latter should be lower than the
-                    threshold shown by the black dashed line.
+                    threshold shown as a black dashed line.
                 "),
                 lower_limit,
                 upper_limit
