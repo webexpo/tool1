@@ -332,8 +332,8 @@ server_sidebar <- function(id, lang, mode, panel_active) {
 
         output$warning_card_hidden_inputs <- shiny::renderText({
             translate(lang = lang(), "
-                No results are shown in the right panels until inputs are
-                submitted.
+                No results are shown in the right panels until the inputs
+                are submitted, or the current mode is updated.
             ")
         }) |>
         shiny::bindCache(lang())

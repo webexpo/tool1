@@ -246,7 +246,7 @@ ui_title <- function(id) {
 
                             tags$p(
                                 class = "px-3 mb-0 text-start",
-                                shiny::textOutput(ns("btn_langs_footer"), tags$span)
+                                shiny::textOutput(ns("btn_langs_footer"), tags$small)
                             )
                         )
                     ),
@@ -478,7 +478,7 @@ server_title <- function(id) {
         shiny::bindCache(lang())
 
         output$btn_langs_footer <- shiny::renderText({
-            translate(lang = lang(), "More languages coming soon.")
+            translate(lang = lang(), "More languages are coming soon.")
         }) |>
         shiny::bindCache(lang())
 
