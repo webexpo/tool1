@@ -111,9 +111,18 @@ language requires an `ordinal_rules_<lang>()` function. For example, the
 `ordinal_rules_english()` function implements grammar rules for English
 ordinal numbers. See `R/helpers-translate.R` for more information.
 
-### Working with tranlations files stored in `intl/`
+### Working with translation files stored in `intl/`
 
-To be completed.
+All files are **required at runtime** and read by `transltr::translator_read()`
+to create global constant `tr`.
+
+The `_translator.yml` file must **never be modified manually**. It should not
+be shared with collaborators working on translations. Notably, developers may
+consult it to locate translations in the source code.
+
+Further `<lang>.txt` files contain actual translations. These files are shared
+with collaborators working on translations and must be edited manually (using
+any text editor). They always include basic instructions to follow at all times.
 
 ### Warning
 
@@ -148,8 +157,6 @@ It is worthwhile to note that it is **not** necessary to include
 
 We may work on these issues in a near future.
 
-- French translations are officially supported but missing [COMING SOON].
-
 - Inputs lack robust validation mechanisms and may lead to undefined behavior
   in some cases.
 
@@ -166,6 +173,9 @@ We may work on these issues in a near future.
   OEL (Occupational Exposure Limit) is sometimes named EL (Exposure Limit).
 
 - There are currently no explicit Terms of Service and Privacy Policy.
+
+- Some useful `<meta>` tags are currently missing in `<head>`. Notably, tags
+  used for sharing purposes such as `<meta property="og:">` are not implemented.
 
 ## Bugs and Feedback
 
