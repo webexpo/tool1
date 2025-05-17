@@ -145,6 +145,18 @@ Texts:
         Path: ./R/ui-title.R
         Ranges: Ln 450, Col 13 @ Ln 452, Col 14
   - !<Text>
+    Identifier: 46750d4
+    Algorithm: sha1
+    Hash: 46750d4ffc074c8f93ac9d420e252851464dd628
+    Source Language: en
+    Source Text: More languages are coming soon.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 46750d4:l1
+        Path: ./R/ui-title.R
+        Ranges: Ln 481, Col 13 @ Ln 481, Col 71
+  - !<Text>
     Identifier: e0147d1
     Algorithm: sha1
     Hash: e0147d1ee4b182bd9f8ad1b78b24220b75b4d1ea
@@ -769,18 +781,6 @@ Texts:
         Identifier: af71ace:l1
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 643, Col 21 @ Ln 646, Col 22
-  - !<Text>
-    Identifier: cd27741
-    Algorithm: sha1
-    Hash: cd2774147dc15360121cc7d95d28e80a9a0402eb
-    Source Language: en
-    Source Text: More languages coming soon.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: cd27741:l1
-        Path: ./R/ui-title.R
-        Ranges: Ln 481, Col 13 @ Ln 481, Col 67
   - !<Text>
     Identifier: 1d671e4
     Algorithm: sha1
@@ -2021,6 +2021,20 @@ Texts:
         Path: ./R/ui-exceedance-plot.R
         Ranges: Ln 369, Col 21 @ Ln 369, Col 74
   - !<Text>
+    Identifier: 0a5c356
+    Algorithm: sha1
+    Hash: 0a5c356e97636c56b66ffd5d4d585ad671d14ad2
+    Source Language: en
+    Source Text: |-
+      No results are shown in the right panels until the inputs are submitted,
+      or the current mode is updated.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 0a5c356:l1
+        Path: ./R/ui-sidebar.R
+        Ranges: Ln 334, Col 13 @ Ln 337, Col 14
+  - !<Text>
     Identifier: e510a31
     Algorithm: sha1
     Hash: e510a31645a63a4ae1cf85d895ef460a268d5775
@@ -3009,18 +3023,6 @@ Texts:
         Identifier: c6394ac:l2
         Path: ./R/ui-panel-descriptive-statistics.R
         Ranges: Ln 163, Col 13 @ Ln 163, Col 61
-  - !<Text>
-    Identifier: f3c096c
-    Algorithm: sha1
-    Hash: f3c096cacd88cc43d9c676efa4fb17fd04caf6dd
-    Source Language: en
-    Source Text: No results are shown in the right panels until inputs are submitted.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: f3c096c:l1
-        Path: ./R/ui-sidebar.R
-        Ranges: Ln 334, Col 13 @ Ln 337, Col 14
   - !<Text>
     Identifier: 21d66f8
     Algorithm: sha1
