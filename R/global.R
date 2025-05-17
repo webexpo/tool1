@@ -44,7 +44,7 @@ shiny::shinyOptions(
 # Constants --------------------------------------------------------------------
 
 # Default version/release to display in footers.
-default_version <- c(number = "5.0.0", release_date = "2025-04-30")
+default_version <- c(number = "5.0.0", release_date = "2025-05-17")
 
 # Default language.
 default_lang <- transltr::language_source_get()
