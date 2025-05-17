@@ -346,11 +346,7 @@ server_panel_percentiles <- function(
                             Overexposure is defined as the %s percentile
                             being greater than or equal to the OEL.
                         "),
-
-                        tags$span(
-                            class = "fw-bold",
-                            ordinal(parameters$target_perc, lang)
-                        )
+                        tags$strong(ordinal(parameters$target_perc, lang))
                     )
                 ),
 
@@ -361,11 +357,7 @@ server_panel_percentiles <- function(
                             The probability that this criterion is met is equal
                             to %s.
                         "),
-
-                        tags$span(
-                            class = "fw-bold",
-                            as_percentage(num_results$perc.risk)
-                        )
+                        tags$strong(as_percentage(num_results$perc.risk))
                     )
                 ),
 
@@ -376,11 +368,7 @@ server_panel_percentiles <- function(
                             The probability that this criterion is met should
                             be lower than %s.
                         "),
-
-                        tags$span(
-                            class = "fw-bold",
-                            as_percentage(parameters$psi)
-                        )
+                        tags$strong(as_percentage(parameters$psi))
                     )
                 ),
 
@@ -426,11 +414,7 @@ server_panel_percentiles <- function(
                             The point estimate of the geometric mean is equal
                             to %s.
                         "),
-
-                        tags$span(
-                            class = "fw-bold",
-                            estimates_params$gm
-                        )
+                        tags$strong(estimates_params$gm)
                     )
                 ),
 
@@ -441,11 +425,7 @@ server_panel_percentiles <- function(
                             The point estimate of the geometric standard
                             deviation is equal to %s.
                         "),
-
-                        tags$span(
-                            class = "fw-bold",
-                            estimates_params$gsd
-                        )
+                        tags$strong(estimates_params$gsd)
                     )
                 )
             )
@@ -463,14 +443,10 @@ server_panel_percentiles <- function(
                             The point estimate of the %s percentile is
                             equal to %s.
                         "),
-
                         tags$span(
                             ordinal(parameters()$target_perc, lang)
                         ),
-
-                        tags$span(
-                            class = "fw-bold",
-                            sprintf("%s%% [%s - %s]", perc$est, perc$lcl, perc$ucl)
+                        tags$strong(
                         )
                     )
                 ),
@@ -482,9 +458,7 @@ server_panel_percentiles <- function(
                             The point estimate of its 70%% upper confidence
                             limit is equal to %s.
                         "),
-
-                        tags$span(
-                            class = "fw-bold",
+                        tags$strong(
                             signif(num_results()$perc.ucl70, default_n_digits)
                         )
                     )
@@ -497,9 +471,7 @@ server_panel_percentiles <- function(
                             The point estimate of its 95%% upper confidence
                             limit is equal to %s.
                         "),
-
-                        tags$span(
-                            class = "fw-bold",
+                        tags$strong(
                             signif(num_results()$perc.ucl95, default_n_digits)
                         )
                     )

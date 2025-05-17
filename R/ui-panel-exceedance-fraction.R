@@ -357,11 +357,7 @@ server_panel_exceedance_fraction <- function(
                             Overexposure is defined as the exceedance fraction
                             being greater than or equal to %s.
                         "),
-
-                        tags$span(
-                            class = "fw-bold",
-                            as_percentage(parameters$frac_threshold)
-                        )
+                        tags$strong(as_percentage(parameters$frac_threshold))
                     )
                 ),
 
@@ -372,11 +368,7 @@ server_panel_exceedance_fraction <- function(
                             The probability that this criterion is met is equal
                             to %s.
                         "),
-
-                        tags$span(
-                            class = "fw-bold",
-                            as_percentage(num_results$frac.risk)
-                        )
+                        tags$strong(as_percentage(num_results$frac.risk))
                     )
                 ),
 
@@ -387,11 +379,7 @@ server_panel_exceedance_fraction <- function(
                             The probability that this criterion is met should
                             be lower than %s.
                         "),
-
-                        tags$span(
-                            class = "fw-bold",
-                            as_percentage(parameters$psi)
-                        )
+                        tags$strong(as_percentage(parameters$psi))
                     )
                 ),
 
@@ -437,11 +425,7 @@ server_panel_exceedance_fraction <- function(
                             The point estimate of the geometric mean is equal
                             to %s.
                         "),
-
-                        tags$span(
-                            class = "fw-bold",
-                            estimates_params$gm
-                        )
+                        tags$strong(estimates_params$gm)
                     )
                 ),
 
@@ -452,11 +436,7 @@ server_panel_exceedance_fraction <- function(
                             The point estimate of the geometric standard
                             deviation is equal to %s.
                         "),
-
-                        tags$span(
-                            class = "fw-bold",
-                            estimates_params$gsd
-                        )
+                        tags$strong(estimates_params$gsd)
                     )
                 )
             )
@@ -474,10 +454,7 @@ server_panel_exceedance_fraction <- function(
                             The point estimate of the exceedance fraction is
                             equal to %s.
                         "),
-
-                        tags$span(
-                            class = "fw-bold",
-                            sprintf("%s%% [%s - %s]", frac$est, frac$lcl, frac$ucl)
+                        tags$strong(
                         )
                     )
                 ),
@@ -489,9 +466,7 @@ server_panel_exceedance_fraction <- function(
                             The point estimate of its 70%% upper confidence
                             limit is equal to %s.
                         "),
-
-                        tags$span(
-                            class = "fw-bold",
+                        tags$strong(
                             as_percentage(num_results()$frac.ucl70)
                         )
                     )
@@ -504,9 +479,7 @@ server_panel_exceedance_fraction <- function(
                             The point estimate of its 95%% upper confidence
                             limit is equal to %s.
                         "),
-
-                        tags$span(
-                            class = "fw-bold",
+                        tags$strong(
                             as_percentage(num_results()$frac.ucl95)
                         )
                     )

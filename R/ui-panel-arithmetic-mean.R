@@ -373,11 +373,7 @@ server_panel_arithmetic_mean <- function(
                             The probability that this criterion is met is equal
                             to %s.
                         "),
-
-                        tags$span(
-                            class = "fw-bold",
-                            as_percentage(num_results$am.risk)
-                        )
+                        tags$strong(as_percentage(num_results$am.risk))
                     )
                 ),
 
@@ -388,11 +384,7 @@ server_panel_arithmetic_mean <- function(
                             The probability that this criterion is met should
                             be lower than %s.
                         "),
-
-                        tags$span(
-                            class = "fw-bold",
-                            as_percentage(parameters$psi)
-                        )
+                        tags$strong(as_percentage(parameters$psi))
                     )
                 ),
 
@@ -454,11 +446,7 @@ server_panel_arithmetic_mean <- function(
                             The point estimate of the geometric mean is equal
                             to %s.
                         "),
-
-                        tags$span(
-                            class = "fw-bold",
-                            estimates_params$gm
-                        )
+                        tags$strong(estimates_params$gm)
                     )
                 ),
 
@@ -469,11 +457,7 @@ server_panel_arithmetic_mean <- function(
                             The point estimate of the geometric standard
                             deviation is equal to %s.
                         "),
-
-                        tags$span(
-                            class = "fw-bold",
-                            estimates_params$gsd
-                        )
+                        tags$strong(estimates_params$gsd)
                     )
                 )
             )
@@ -491,10 +475,7 @@ server_panel_arithmetic_mean <- function(
                             The point estimate of the arithmetic mean is
                             equal to %s.
                         "),
-
-                        tags$span(
-                            class = "fw-bold",
-                            sprintf("%s%% [%s - %s]", am$est, am$lcl, am$ucl)
+                        tags$strong(
                         )
                     )
                 ),
@@ -506,9 +487,7 @@ server_panel_arithmetic_mean <- function(
                             The point estimate of its 70%% upper confidence
                             limit is equal to %s.
                         "),
-
-                        tags$span(
-                            class = "fw-bold",
+                        tags$strong(
                             signif(num_results()$am.ucl70, default_n_digits)
                         )
                     )
@@ -521,9 +500,7 @@ server_panel_arithmetic_mean <- function(
                             The point estimate of its 95%% upper confidence
                             limit is equal to %s.
                         "),
-
-                        tags$span(
-                            class = "fw-bold",
+                        tags$strong(
                             signif(num_results()$am.ucl95, default_n_digits)
                         )
                     )
