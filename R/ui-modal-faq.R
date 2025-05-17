@@ -478,10 +478,7 @@ ui_panel_parameters_accordion <- function(lang = "") {
                         of the %s sidebar. Failing to follow the following rules
                         below will inevitably lead to undefined behavior.
                     "),
-                    ui_panel_title_display(
-                        title     = translate(lang = lang, "Calculation Parameters"),
-                        icon_name = "calculator-fill"
-                    )
+                    ui_element(translate(lang = lang, "Calculation Parameters"))
                 )
             ),
 
@@ -547,10 +544,7 @@ ui_panel_parameters_accordion <- function(lang = "") {
                         can be used to ensure that measurements were parsed as
                         expected and successfully imported.
                     "),
-                    ui_panel_title_display(
-                        title     = translate(lang = lang, "About My Measurements"),
-                        icon_name = "123"
-                    )
+                    ui_element(translate(lang = lang, "About My Measurements"))
                 )
             ),
 
@@ -562,11 +556,7 @@ ui_panel_parameters_accordion <- function(lang = "") {
                         the %s panels for that purpose. These provide
                         information inferred from Bayesian models.
                     "),
-                    ui_panel_title_display(
-                        title      = translate(lang = lang, "Inference"),
-                        icon_name  = "body-text",
-                        icon_class = "app-rotated-minus-90"
-                    )
+                    ui_element(translate(lang = lang, "Inference"))
                 )
             )
         ),
@@ -615,10 +605,16 @@ ui_panel_parameters_accordion <- function(lang = "") {
         bslib::accordion_panel(
             title = translate(lang = lang, "How are censored measurements imputed?"),
 
-            tags$p(translate(lang = lang, "
-                Censored measurements are subject to one of the following
-                procedures.
-            ")),
+            tags$p(
+                html(
+                    translate(lang = lang, "
+                        Censored measurements are subject to one of the
+                        following procedures. They only affect the results
+                        shown in the %s panel.
+                    "),
+                    ui_element(translate(lang = lang, "About My Measurements"))
+                )
+            ),
 
             tags$ul(
                 class = "list-group list-group-flush px-2",
@@ -711,11 +707,7 @@ ui_panel_usage_accordion <- function(lang = "") {
                             certain panels and are initially hidden. They are
                             shown when an %s panel is chosen.
                         "),
-                        ui_panel_title_display(
-                            title      = translate(lang = lang, "Inference"),
-                            icon_name  = "body-text",
-                            icon_class = "app-rotated-minus-90"
-                        )
+                        ui_element(translate(lang = lang, "Inference"))
                     )
                 ),
 
@@ -725,16 +717,12 @@ ui_panel_usage_accordion <- function(lang = "") {
                         translate(lang = lang, "
                             Submit inputs by clicking on the %s button.
                         "),
-                        ui_panel_title_display(
-                            title     = translate(lang = lang, "Submit"),
-                            icon_name = "check-circle-fill"
-                        )
+                        ui_element(translate(lang = lang, "Submit"))
                     )
                 ),
 
                 tags$li(
                     class = "list-group-item",
-
                     translate(lang = lang, "
                         Wait for the server to perform the calculations. All
                         results will be shown once they are ready.
@@ -757,11 +745,7 @@ ui_panel_usage_accordion <- function(lang = "") {
                         results. Waiting times are usually lower than 30 seconds.
                         Some %s panels require more computing time and resources.
                     "),
-                    ui_panel_title_display(
-                        title      = translate(lang = lang, "Inference"),
-                        icon_name  = "body-text",
-                        icon_class = "app-rotated-minus-90"
-                    )
+                    ui_element(translate(lang = lang, "Inference"))
                 )
             )
         ),
@@ -778,7 +762,7 @@ ui_panel_usage_accordion <- function(lang = "") {
                         Hover over it and click on the %s button on the bottom
                         right.
                     "),
-                    ui_panel_title_display(
+                    ui_element(
                         title     = translate(lang = lang, "Expand"),
                         icon_name = "arrows-angle-expand"
                     )

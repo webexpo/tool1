@@ -12,8 +12,9 @@
 #'
 #' @param title A character string.
 #'
-#' @param icon_name A character string. It is passed to argument `name` of
-#'   [bsicons::bs_icon()].
+#' @param icon_name A character string or `NULL`. It is passed to argument
+#'   `name` of [bsicons::bs_icon()]. If `NULL` or an empty character string
+#'   is passed to `icon_name`, no icon is shown and `icon_class` is ignored.
 #'
 #' @param icon_class A character string. It is passed to argument `class` of
 #'   [bsicons::bs_icon()].
@@ -56,7 +57,7 @@ ui_link_mailto <- function(emails = character(), ..., tags = htmltools::tags) {
 
 #' @rdname ui-helpers
 #' @export
-ui_panel_title_display <- function(
+ui_element <- function(
     title      = "",
     icon_name  = "",
     icon_class = NULL,
@@ -66,14 +67,16 @@ ui_panel_title_display <- function(
         tags$span(
             class = "text-primary fw-bold px-1",
 
-            tags$span(
-                class = "pe-1",
-                bsicons::bs_icon(
-                    name  = icon_name,
-                    a11y  = "deco",
-                    class = icon_class
+            if (!is.null(icon_name) && nzchar(icon_name)) {
+                tags$span(
+                    class = "pe-1",
+                    bsicons::bs_icon(
+                        name  = icon_name,
+                        a11y  = "deco",
+                        class = icon_class
+                    )
                 )
-            ),
+            },
 
             title
         )
