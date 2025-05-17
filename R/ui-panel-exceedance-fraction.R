@@ -444,7 +444,7 @@ server_panel_exceedance_fraction <- function(
 
         output$estimates_fraction <- shiny::renderUI({
             lang <- lang()
-            frac <- lapply(num_results()$frac, signif, digits = default_n_digits)
+            frac <- lapply(num_results()$frac, as_percentage)
 
             list(
                 tags$li(
@@ -455,6 +455,7 @@ server_panel_exceedance_fraction <- function(
                             equal to %s.
                         "),
                         tags$strong(
+                            sprintf("%s [%s - %s]", frac$est, frac$lcl, frac$ucl)
                         )
                     )
                 ),

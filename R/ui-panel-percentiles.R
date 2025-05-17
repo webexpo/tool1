@@ -447,6 +447,7 @@ server_panel_percentiles <- function(
                             ordinal(parameters()$target_perc, lang)
                         ),
                         tags$strong(
+                            sprintf("%s [%s - %s]", perc$est, perc$lcl, perc$ucl)
                         )
                     )
                 ),

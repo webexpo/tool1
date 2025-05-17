@@ -476,6 +476,7 @@ server_panel_arithmetic_mean <- function(
                             equal to %s.
                         "),
                         tags$strong(
+                            sprintf("%s [%s - %s]", am$est, am$lcl, am$ucl)
                         )
                     )
                 ),
