@@ -42,6 +42,7 @@ if (interactive()) {
         .find <- \() invisible(source(file.path(".scripts", "find-text.R")))
         .run  <- \() invisible(source(file.path(".scripts", "run.R")))
         .pub  <- \(...) {
+            .src()
             source(file.path(".scripts", "publish.R"), TRUE)
             return(invisible(publish(...)))
         }
