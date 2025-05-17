@@ -14,6 +14,10 @@ p, ol, ul {
   --bs-btn-font-size: 1.25rem;
 }
 
+/* Increase max width of popover (by default, 276px). */
+.app-popover {
+  --bs-popover-max-width: 600px;
+}
 
 /* Color child buttons of nav items as links. */
 .nav-item .app-btn {

@@ -667,6 +667,78 @@ ui_panel_usage_accordion <- function(lang = "") {
         class    = "accordion-flush app-accordion-active-bold",
         style    = "overflow: auto;",
 
+        ## Panel: What are modes? ----------------------------------------------
+
+        bslib::accordion_panel(
+            title = translate(lang = lang, "What are modes?"),
+
+            tags$p(
+                html(
+                    translate(lang = lang, "
+                        Tool 1 offers two so-called %s controlling how
+                        much information is displayed to the user.
+                    "),
+                    ui_element(
+                        title     = translate(lang = lang, "Modes"),
+                        icon_name = "layout-text-window-reverse"
+                    )
+                )
+            ),
+
+            tags$ul(
+                class = "list-group list-group-flush px-2 mb-3",
+
+                tags$li(
+                    class = "list-group-item",
+                    html(
+                        translate(lang = lang, "
+                            The %s mode corresponds to the standard version of
+                            Tool 1. All statistical inference panels are shown.
+                        "),
+                        tags$em(translate(lang = lang, "default"))
+                    )
+                ),
+
+                tags$li(
+                    class = "list-group-item",
+                    html(
+                        translate(lang = lang, "
+                            The %s mode corresponds to a version of Tool 1 that
+                            only shows a curated subset of results in a single
+                            statistical inference panel. It used to be a distinct
+                            web application called Tool 1 Express (Simplified) in
+                            earlier versions of Tool 1.
+                        "),
+                        tags$em(translate(lang = lang, "simplified"))
+                    )
+                )
+            ),
+
+            tags$p(translate(lang = lang, "
+                Choosing either one is a matter of personal preference.
+            "))
+        ),
+
+        ## Panel: How can I customize the user interface? ----------------------
+
+        bslib::accordion_panel(
+            title = translate(lang = lang, "How can I customize the user interface?"),
+
+            tags$p(translate(lang = lang, "
+                You may customize the user interface by using the menus and
+                buttons located in the title bar of Tool 1 (in the top right
+                corner). All parameters may be changed anytime on-the-fly
+                throughout the session.
+            ")),
+
+            tags$p(translate(lang = lang, "
+                You may bookmark your preferred settings by passing them as
+                query parameters (see the current URL displayed by your web
+                browser for the current web page). Values must be valid.
+                Otherwise, they are automatically replaced by default values.
+            "))
+        ),
+
         ## Panel: Why is there no shown output initially? ----------------------
 
         bslib::accordion_panel(
@@ -849,6 +921,138 @@ ui_panel_metho_accordion <- function(lang = "") {
             )
         ),
 
+        ## Panel: What is the rationale for the proposed ... -------------------
+
+        bslib::accordion_panel(
+            title = translate(lang = lang, "
+                What is the rationale for the proposed risk assessment framework?
+            "),
+
+            tags$p(translate(lang = lang, "
+                The rationale proposed by Expostats for decision-making when
+                interpreting industrial hygiene exposure data is described in
+                the following accompanying paper.
+            ")),
+
+            expostats_paper_card,
+
+            tags$p(translate(lang = lang, "It is as follows.")),
+
+            tags$ol(
+                class = "list-group list-group-flush list-group-numbered px-2 mb-3",
+
+                tags$li(
+                    class = "list-group-item",
+                    html(
+                        translate(lang = lang, "
+                            Select a criterion for what is considered
+                            overexposure (for example, the %s percentile
+                            being greater than or equal to the OEL).
+                        "),
+                        ordinal(95.0, lang)
+                    )
+                ),
+
+                tags$li(
+                    class = "list-group-item",
+                    translate(lang = lang, "
+                        Select a threshold for the probability that this
+                        criterion is met, above which remedial action (or
+                        additional sampling) should be required. Equivalently,
+                        one can reason in terms of the degree of confidence
+                        that the exposure criterion is not met: an overexposure
+                        risk threshold of at most 30% is equivalent to reaching
+                        at least 70% confidence that there is no overexposure.
+                    ")
+                )
+            ),
+
+            tags$p(translate(lang = lang, "
+                The traditional threshold for the probability of overexposure is
+                5% (i.e. reaching 95% confidence that there is no overexposure).
+                More recently, following foundational work in France around 2010,
+                several institutions have adopted an overexposure risk threshold
+                of 30% (70% level of confidence). Discussion about the rationale
+                for the use of 70% confidence (or a 30% tolerable overexposure
+                risk) can be found in the following scientific paper.
+            ")),
+
+            bslib::card(
+                class = "border-primary bg-primary-subtle mx-5",
+
+                bslib::card_body(
+                    tags$p(
+                        class = "text-center",
+                        # Only the main title is used for the
+                        # link. Otherwise, it is too long and
+                        # breaks the layout.
+                        html(
+                            translate(lang = lang, "
+                                Ogden, Trevor, and Jérôme Lavoué. %s, %s,
+                                Journal of Occupational and Environmental
+                                Hygiene, Volume 9, Issue 4, 2012, Pages
+                                D63-D70.
+                            "),
+                            ui_link(
+                                "https://doi.org/10.1080/15459624.2012.663702",
+                                tags$em("2011 William P. Yant Award Lecture")
+                            ),
+                            tags$em("Testing Compliance with Occupational Exposure Limits: Development of the British-Dutch Guidance")
+                        )
+                    )
+                )
+            ),
+
+            tags$p(
+                html(
+                    translate(lang = lang, "
+                        The decision scheme adopted for the Simplified mode of
+                        Tool 1 was elaborated during the creation of the AIHA
+                        video series %s. In that scheme, reaching 95%% is ideal
+                        and yields an %s situation. Not reaching 95%% confidence
+                        but reaching 70%% confidence makes the situation %s. Not
+                        reaching 70%% confidence that there is no overexposure
+                        makes the situation %s.
+                    "),
+                    ui_link(
+                        shared_urls$aiha_videos,
+                        tags$em(
+                            translate(lang = lang, "
+                                Making Accurate Exposure Risk Decisions
+                            ")
+                        )
+                    ),
+                    tags$em(translate(lang = lang, "acceptable")),
+                    tags$em(translate(lang = lang, "tolerable")),
+                    tags$em(translate(lang = lang, "problematic"))
+                )
+            ),
+
+            tags$p(
+                html(
+                    translate(lang = lang, "
+                        The %s, %s, and %s about measurement data interpretation
+                        are very similar but aggregate the %s and %s categories
+                        as %4$s.
+                    "),
+                    ui_link(
+                        "https://www.inrs.fr/dms/inrs/PDF/metropol-strategie-principe/metropol-strategie-principe.pdf",
+                        translate(lang = lang, "French guidelines")
+                    ),
+                    ui_link(
+                        "https://knowledge.bsigroup.com/products/workplace-exposure-measurement-of-exposure-by-inhalation-to-chemical-agents-strategy-for-testing-compliance-with-occupational-exposure-limit-values",
+                        translate(lang = lang, "European guidelines EN689")
+                    ),
+                    ui_link(
+                        "https://www.bohs.org/app/uploads/2022/11/Testing-Compliance-with-OELs-for-Airborne-Substances-2022.pdf",
+                        translate(lang = lang, "Dutch-British guidelines")
+                    ),
+                    tags$em(translate(lang = lang, "acceptable")),
+                    tags$em(translate(lang = lang, "tolerable"))
+                )
+            )
+        ),
+
         ## Panel: Is the approach of Tool 1 recognized and peer-reviewed? ------
 
         bslib::accordion_panel(
@@ -862,12 +1066,72 @@ ui_panel_metho_accordion <- function(lang = "") {
                         The Bayesian models and data interpretation procedures
                         used by this application are derived from current best
                         practices in industrial hygiene, as reviewed in the
-                        following scientific paper. Further details and
-                        references are also available on %s.
+                        the following accompanying scientifice paper. Further
+                        details and references are also available on %s.
                     "),
-                    ui_link(default_urls$expostats[[lang]], "expostats.ca")
+                    ui_link(shared_urls$expostats[[lang]], "expostats.ca")
                 )
             ),
+
+            expostats_paper_card
+        ),
+
+        ## Panel: Are there other educational resources ... --------------------
+
+        bslib::accordion_panel(
+            title = translate(lang = lang, "
+                Are there other educational resources about industrial hygiene
+                statistics?
+            "),
+
+            tags$p(translate(lang = lang, "
+                Yes. Below are four videos made by the authors of Expostats.
+                The last two stem from a 6-hour-long professional development
+                course (PDC) made in 2024 for the Indonesian Industrial Hygiene
+                Association.
+            ")),
+
+            tags$ul(
+                class = "list-group list-group-flush px-2 mb-3",
+
+                tags$li(
+                    class = "list-group-item",
+                    ui_link(
+                        "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?pid=0a7847f9-66be-4efb-9752-aed201487e1b",
+                        tags$em("Bayesian Statistics for Non-Statisticians Part 1")
+                    )
+                ),
+
+                tags$li(
+                    class = "list-group-item",
+                    ui_link(
+                        "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?pid=0a7847f9-66be-4efb-9752-aed201487e1b&id=68aeaea6-3186-44fc-80e0-aeb300b2d326&advance=true",
+                        tags$em("Bayesian Statistics for Non-Statisticians Part 2")
+                    )
+                ),
+
+                tags$li(
+                    class = "list-group-item",
+                    ui_link(
+                        "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?id=39e5beaa-8033-4430-8991-b2de0147b366",
+                        tags$em("Statistical Background")
+                    )
+                ),
+
+                tags$li(
+                    class = "list-group-item",
+                    ui_link(
+                        "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?id=21e20e15-24aa-4946-8361-b2de0147bae3",
+                        tags$em("Bayesian Statistics & Overview of Current Recommendations")
+                    )
+                )
+            ),
+
+            tags$p(translate(lang = lang, "
+                You may also consult the scientific report of the Webexpo
+                project. It includes a large introductory section focusing
+                on industrial hygiene statistics.
+            ")),
 
             bslib::card(
                 class = "border-primary bg-primary-subtle mx-5",
@@ -875,21 +1139,15 @@ ui_panel_metho_accordion <- function(lang = "") {
                 bslib::card_body(
                     tags$p(
                         class = "text-center",
-
                         html(
                             translate(lang = lang, "
-                                Jérôme Lavoué, Lawrence Joseph, Peter Knott,
-                                Hugh Davies, France Labrèche, Frédéric Clerc,
-                                Gautier Mater, Tracy Kirkham, %s, Annals of
-                                Work Exposures and Health, Volume 63, Issue
-                                3, April 2019, Pages 267-279.
+                                Jérôme Lavoué, Lawrence Joseph, Tracy L.
+                                Kirkham, France Labrèche, Gautier Mater, and
+                                Frédéric Clerc (2020). %s (Report R-1065). IRSST.
                             "),
                             ui_link(
-                                default_urls$expostats_paper,
-                                tags$span(
-                                    class = "fst-italic",
-                                    "Expostats: A Bayesian Toolkit to Aid the Interpretation of Occupational Exposure Measurements"
-                                )
+                                "https://pharesst.irsst.qc.ca/cgi/viewcontent.cgi?article=1087&context=rapports-scientifique",
+                                tags$em("WebExpo: Towards a Better Interpretation of Measurements of Occupational Exposure to Chemicals In the Workplace")
                             )
                         )
                     )

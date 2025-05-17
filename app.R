@@ -224,6 +224,7 @@ server <- function(input, output, session) {
     calc_parameters <- server_sidebar(
         id           = "layout_sidebar",
         lang         = lang,
+        mode         = mode,
         panel_active = shiny::reactive({ input$panel_active })
     )
 
@@ -240,8 +241,12 @@ server <- function(input, output, session) {
     )
 
     server_panel_simplified(
-        id   = "panel_simplified",
-        lang = lang
+        id                = "panel_simplified",
+        lang              = lang,
+        parameters        = calc_parameters,
+        bayesian_analysis = bayesian_analysis,
+        num_results       = num_results,
+        estimates_params  = estimates_params
     )
 
     server_panel_exceedance_fraction(
