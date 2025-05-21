@@ -241,6 +241,14 @@ ui_title <- function(id) {
                             ),
 
                             tags$li(
+                                shiny::actionButton(
+                                    inputId = ns("btn_lang_fr"),
+                                    class   = "dropdown-item fs-6",
+                                    label   = default_lang_names[["fr"]]
+                                )
+                            ),
+
+                            tags$li(
                                 tags$hr(class = "dropdown-divider")
                             ),
 
@@ -339,7 +347,8 @@ server_title <- function(id) {
         }) |>
         shiny::bindEvent(
             session$clientData$url_search,
-            input$btn_lang_en
+            input$btn_lang_en,
+            input$btn_lang_fr
         )
 
         # Update mode whenever one of the related buttons is clicked.
@@ -404,6 +413,16 @@ server_title <- function(id) {
             update_query_string(lang = set_lang("en"))
         }) |>
         shiny::bindEvent(input$btn_lang_en, ignoreInit = TRUE)
+
+        shiny::observe(priority = 10L, {
+            old_lang <- get_lang()
+
+            shinyjs::removeClass(sprintf("btn_lang_%s", old_lang), "active")
+            shinyjs::addClass("btn_lang_fr", "active")
+
+            update_query_string(lang = set_lang("fr"))
+        }) |>
+        shiny::bindEvent(input$btn_lang_fr, ignoreInit = TRUE)
 
         # Update the current mode.
         # Each mode has a dedicated button.

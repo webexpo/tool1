@@ -9,6 +9,7 @@ Identifier: expostats:tool1
 Algorithm: sha1
 Languages:
   en: English
+  fr: Français
 Texts:
   - !<Text>
     Identifier: 4c9bab6
@@ -143,7 +144,7 @@ Texts:
       - !<Location>
         Identifier: 84f7000:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 450, Col 13 @ Ln 452, Col 14
+        Ranges: Ln 469, Col 13 @ Ln 471, Col 14
   - !<Text>
     Identifier: 46750d4
     Algorithm: sha1
@@ -155,7 +156,7 @@ Texts:
       - !<Location>
         Identifier: 46750d4:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 481, Col 13 @ Ln 481, Col 71
+        Ranges: Ln 500, Col 13 @ Ln 500, Col 71
   - !<Text>
     Identifier: e0147d1
     Algorithm: sha1
@@ -470,7 +471,7 @@ Texts:
       - !<Location>
         Identifier: 2970e5a:l3
         Path: ./R/ui-title.R
-        Ranges: Ln 491, Col 13 @ Ln 491, Col 47
+        Ranges: Ln 510, Col 13 @ Ln 510, Col 47
   - !<Text>
     Identifier: fc5ad54
     Algorithm: sha1
@@ -496,7 +497,7 @@ Texts:
       - !<Location>
         Identifier: 5d328be:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 457, Col 13 @ Ln 459, Col 14
+        Ranges: Ln 476, Col 13 @ Ln 478, Col 14
   - !<Text>
     Identifier: 5dc95f8
     Algorithm: sha1
@@ -631,7 +632,7 @@ Texts:
       - !<Location>
         Identifier: 0524962:l2
         Path: ./R/ui-title.R
-        Ranges: Ln 486, Col 13 @ Ln 486, Col 44
+        Ranges: Ln 505, Col 13 @ Ln 505, Col 44
   - !<Text>
     Identifier: 3eba509
     Algorithm: sha1
@@ -1239,7 +1240,7 @@ Texts:
       - !<Location>
         Identifier: 8fc2a6a:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 469, Col 13 @ Ln 471, Col 14
+        Ranges: Ln 488, Col 13 @ Ln 490, Col 14
   - !<Text>
     Identifier: f7a0860
     Algorithm: sha1
@@ -1259,7 +1260,7 @@ Texts:
       - !<Location>
         Identifier: f7a0860:l3
         Path: ./R/ui-title.R
-        Ranges: Ln 464, Col 13 @ Ln 464, Col 46
+        Ranges: Ln 483, Col 13 @ Ln 483, Col 46
   - !<Text>
     Identifier: 92193c3
     Algorithm: sha1
@@ -1519,7 +1520,7 @@ Texts:
       - !<Location>
         Identifier: 70d45be:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 476, Col 13 @ Ln 476, Col 48
+        Ranges: Ln 495, Col 13 @ Ln 495, Col 48
   - !<Text>
     Identifier: 074c7d8
     Algorithm: sha1
@@ -1605,7 +1606,7 @@ Texts:
       - !<Location>
         Identifier: 5e2c2fa:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 505, Col 29 @ Ln 505, Col 60
+        Ranges: Ln 524, Col 29 @ Ln 524, Col 60
   - !<Text>
     Identifier: '3883288'
     Algorithm: sha1
@@ -2193,7 +2194,7 @@ Texts:
       - !<Location>
         Identifier: 05019d4:l2
         Path: ./R/ui-title.R
-        Ranges: Ln 496, Col 13 @ Ln 496, Col 50
+        Ranges: Ln 515, Col 13 @ Ln 515, Col 50
   - !<Text>
     Identifier: ddd9ef3
     Algorithm: sha1
@@ -3236,7 +3237,7 @@ Texts:
       - !<Location>
         Identifier: 1a51cee:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 509, Col 29 @ Ln 509, Col 60
+        Ranges: Ln 528, Col 29 @ Ln 528, Col 60
   - !<Text>
     Identifier: 2bbf9dd
     Algorithm: sha1
