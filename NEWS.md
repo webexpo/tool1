@@ -9,6 +9,9 @@
 * All `server_panel_*()` functions now returns a `shiny::reactive()` object
   that can be called to get the panel's underlying title.
 
+* The `README` now contains clear instructions to follow when adding a new
+  supported language.
+
 ## Fixes
 
 None.

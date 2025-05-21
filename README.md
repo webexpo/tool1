@@ -139,6 +139,42 @@ Tool 1 uses `sprintf()-`placeholders (conversion specifications beginning by
 `%s`, `%i`, and `%%` in the source text and translations **must be left as is**.
 See `R/helpers-html.R` for more information.
 
+### Adding new languages
+
+Follow these steps to support a new language. Use the existing code as a
+template to follow.
+
+1. Implement a dedicated `ordinal_rules_<lang>()` function in
+   `R/helpers-translate.R`.
+
+2. Incorporate the function created at step (1) into `ordinal_rules()` in
+   `R/helpers-translate.R`.
+
+3. Add a new entry to `tr$native_languages` in `.scripts/find-text.R`.
+
+4. Implement the required button and observer in `ui_title()` and
+   `server_title()` respectively. Follow instructions contained in
+   `R/ui-title.R` to do so (see subsection Languages).
+
+   * You may add class `disabled` to the `shiny::actionButton()` created at
+     step (4) to deactivate the language in the user interface until further
+     notice. This is entirely optional.
+
+5. Call `.find()`.
+
+6. Share the `intl/<lang>.txt` file created at step (5) with collaborator(s)
+   in charge of translating Tool 1.
+
+   * Never share the `_translator.yml` file. The latter is only useful to
+     developers.
+
+7. Import the `intl/<lang>.txt` file updated at step (6) back into the source
+   code. **Commit it.**
+
+You may repeat steps (5) to (7) whenever required. Notably, they **must** be
+repeated whenever the source text is changed (whenever a call to `translate()`
+is either added or updated).
+
 ## Styling
 
 Tool 1 uses as few custom CSS (Cascading Style Sheets) rules as possible. It
