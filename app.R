@@ -128,7 +128,7 @@ ui <- bslib::page_sidebar(
         # Breadcrumbs to convey what
         # is being shown to the user.
         header = bslib::card_header(
-            class = "bg-light opacity-75",
+            class = "opacity-75",
 
             tags$ol(
                 class = "breadcrumb mb-0",
