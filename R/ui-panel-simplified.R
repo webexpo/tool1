@@ -45,7 +45,8 @@
 #' [ui_panel_simplified()] returns a `shiny.tag` object
 #' (an output of [bslib::nav_panel()]).
 #'
-#' [server_panel_simplified()] returns `NULL`, invisibly.
+#' [server_panel_simplified()] returns returns a [shiny::reactive()] object.
+#' It can be called to get the panel's title.
 #'
 #' @note
 #' This module is similar to the Exceedance Fraction, Percentiles, and
@@ -314,6 +315,11 @@ server_panel_simplified <- function(
     })
 
     server <- function(input, output, session) {
+        title <- shiny::reactive({
+            translate(lang = lang(), "Statistical Inference")
+        }) |>
+        shiny::bindCache(lang())
+
         risk_assessment <- shiny::reactive({
             # findInterval() creates a fourth interval from
             # the standard thresholds: (-∞, 0L). It maps it
@@ -330,9 +336,8 @@ server_panel_simplified <- function(
         })
 
         output$title <- shiny::renderText({
-            translate(lang = lang(), "Statistical Inference")
-        }) |>
-        shiny::bindCache(lang())
+            title()
+        })
 
         output$risk_assessment_help_title <- shiny::renderText({
             translate(lang = lang(), "How should I interpret these results?")
@@ -849,7 +854,7 @@ server_panel_simplified <- function(
         }) |>
         shiny::bindEvent(risk_assessment())
 
-        return(invisible())
+        return(title)
     }
 
     return(shiny::moduleServer(id, server))

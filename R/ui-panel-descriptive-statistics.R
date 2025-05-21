@@ -41,7 +41,8 @@
 #' [ui_panel_descriptive_statistics()] returns a `shiny.tag` object
 #' (an output of [bslib::nav_panel()]).
 #'
-#' [server_panel_descriptive_statistics()] returns `NULL`, invisibly.
+#' [server_panel_descriptive_statistics()] returns a [shiny::reactive()]
+#' object. It can be called to get the panel's title.
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
@@ -148,6 +149,11 @@ server_panel_descriptive_statistics <- function(
     })
 
     server <- function(input, output, session) {
+        title <- shiny::reactive({
+            translate(lang = lang(), "About My Measurements")
+        }) |>
+        shiny::bindCache(lang())
+
         data_sample_imputed <- reactive({
             data_sample <- data_sample()
 
@@ -160,9 +166,8 @@ server_panel_descriptive_statistics <- function(
         })
 
         output$title <- shiny::renderText({
-            translate(lang = lang(), "About My Measurements")
-        }) |>
-        shiny::bindCache(lang())
+            title()
+        })
 
         output$stats_title <- shiny::renderText({
             translate(lang = lang(), "Descriptive Statistics")
@@ -293,7 +298,7 @@ server_panel_descriptive_statistics <- function(
         }) |>
         shiny::bindCache(lang())
 
-        return(invisible())
+        return(title)
     }
 
     return(shiny::moduleServer(id, server))

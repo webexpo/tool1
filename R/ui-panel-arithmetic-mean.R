@@ -45,7 +45,8 @@
 #' [ui_panel_arithmetic_mean()] returns a `shiny.tag` object
 #' (an output of [bslib::nav_panel()]).
 #'
-#' [server_panel_arithmetic_mean()] returns `NULL`, invisibly.
+#' [server_panel_arithmetic_mean()] returns a [shiny::reactive()] object. It
+#' can be called to get the panel's title.
 #'
 #' @note
 #' This module is almost identical to the Exceedance Fraction panel module
@@ -286,6 +287,11 @@ server_panel_arithmetic_mean <- function(
     })
 
     server <- function(input, output, session) {
+        title <- shiny::reactive({
+            translate(lang = lang(), "Arithmetic Mean")
+        }) |>
+        shiny::bindCache(lang())
+
         risk_assessment <- shiny::reactive({
             risk_level <- if (num_results()$am.risk >= parameters()$psi) {
                 "problematic"
@@ -297,9 +303,8 @@ server_panel_arithmetic_mean <- function(
         })
 
         output$title <- shiny::renderText({
-            translate(lang = lang(), "Arithmetic Mean")
-        }) |>
-        shiny::bindCache(lang())
+            title()
+        })
 
         output$risk_assessment_title <- shiny::renderText({
             translate(lang = lang(), "Risk Assessment")
@@ -647,7 +652,7 @@ server_panel_arithmetic_mean <- function(
         }) |>
         shiny::bindEvent(risk_assessment(), once = TRUE)
 
-        return(invisible())
+        return(title)
     }
 
     return(shiny::moduleServer(id, server))

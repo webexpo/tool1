@@ -125,6 +125,38 @@ ui <- bslib::page_sidebar(
         id       = "panel_active",
         selected = "panel_stats",
 
+        # Breadcrumbs to convey what
+        # is being shown to the user.
+        header = bslib::card_header(
+            class = "bg-light opacity-75",
+
+            tags$ol(
+                class = "breadcrumb mb-0",
+                style = "padding-left: 5px;",
+
+                tags$li(
+                    class = "breadcrumb-item",
+                    tags$span(
+                        class = "pe-1",
+                        bsicons::bs_icon(
+                            name = "layout-text-window-reverse",
+                            a11y = "deco"
+                        )
+                    ),
+                    shiny::textOutput(outputId = "breadcrumbs_mode", tags$span)
+                ),
+
+                tags$li(
+                    class = "breadcrumb-item",
+                    tags$span(
+                        class = "pe-1",
+                        bsicons::bs_icon(name = "list", a11y = "deco")
+                    ),
+                    shiny::textOutput(outputId = "breadcrumbs_panel", tags$span)
+                )
+            )
+        ),
+
         ui_panel_descriptive_statistics("panel_stats"),
 
         # This panel is hidden by default.
@@ -222,9 +254,11 @@ server <- function(input, output, session) {
     # returning a named list containing all
     # user inputs in a list.
     calc_parameters <- server_sidebar(
-        id           = "layout_sidebar",
-        lang         = lang,
-        mode         = mode,
+        id   = "layout_sidebar",
+        lang = lang,
+        mode = mode,
+        # This input can only be accessed
+        # from within a reactive context.
         panel_active = shiny::reactive({ input$panel_active })
     )
 
@@ -233,14 +267,17 @@ server <- function(input, output, session) {
         lang = lang
     )
 
-    server_panel_descriptive_statistics(
+    # Each server_panel_*() function below returns a
+    # shiny::reactive() object that can be called to
+    # get the underlying panel's title.
+    panel_stats_title <- server_panel_descriptive_statistics(
         id          = "panel_stats",
         lang        = lang,
         parameters  = calc_parameters,
         data_sample = data_sample
     )
 
-    server_panel_simplified(
+    panel_simplified_title <- server_panel_simplified(
         id                = "panel_simplified",
         lang              = lang,
         parameters        = calc_parameters,
@@ -249,7 +286,7 @@ server <- function(input, output, session) {
         estimates_params  = estimates_params
     )
 
-    server_panel_exceedance_fraction(
+    panel_fraction_title <- server_panel_exceedance_fraction(
         id                = "panel_fraction",
         lang              = lang,
         parameters        = calc_parameters,
@@ -258,7 +295,7 @@ server <- function(input, output, session) {
         estimates_params  = estimates_params
     )
 
-    server_panel_percentiles(
+    panel_percentiles_title <- server_panel_percentiles(
         id                = "panel_percentiles",
         lang              = lang,
         parameters        = calc_parameters,
@@ -267,7 +304,7 @@ server <- function(input, output, session) {
         estimates_params  = estimates_params
     )
 
-    server_panel_arithmetic_mean(
+    panel_mean_title <- server_panel_arithmetic_mean(
         id                = "panel_mean",
         lang              = lang,
         parameters        = calc_parameters,
@@ -282,6 +319,29 @@ server <- function(input, output, session) {
         translate(lang = lang(), "Statistical Inference")
     }) |>
     shiny::bindEvent(lang())
+
+    output$breadcrumbs_mode <- shiny::renderText({
+        mode <- switch(mode(),
+            default    = translate(lang = lang(), "Default"),
+            simplified = translate(lang = lang(), "Simplified")
+        )
+
+        sprintf("%s : %s", translate(lang = lang(), "Mode"), mode)
+    }) |>
+    shiny::bindEvent(mode())
+
+    output$breadcrumbs_panel <- shiny::renderText({
+        panel <- switch(input$panel_active,
+            panel_stats       = panel_stats_title,
+            panel_simplified  = panel_simplified_title,
+            panel_fraction    = panel_fraction_title,
+            panel_percentiles = panel_percentiles_title,
+            panel_mean        = panel_mean_title,
+        )
+
+        sprintf("%s : %s", translate(lang = lang(), "Panel"), panel())
+    }) |>
+    shiny::bindEvent(input$panel_active)
 
     # Observers ----------------------------------------------------------------
 

@@ -45,7 +45,8 @@
 #' [ui_panel_exceedance_fraction()] returns a `shiny.tag` object
 #' (an output of [bslib::nav_panel()]).
 #'
-#' [server_panel_exceedance_fraction()] returns `NULL`, invisibly.
+#' [server_panel_exceedance_fraction()] returns a [shiny::reactive()] object.
+#' It can be called to get the panel's title.
 #'
 #' @note
 #' This module is used as a general template that is copied and refactored
@@ -278,6 +279,11 @@ server_panel_exceedance_fraction <- function(
             num_results = num_results
         )
 
+        title <- shiny::reactive({
+            translate(lang = lang(), "Exceedance Fraction")
+        }) |>
+        shiny::bindCache(lang())
+
         risk_assessment <- shiny::reactive({
             risk_level <- if (num_results()$frac.risk >= parameters()$psi) {
                 "problematic"
@@ -289,9 +295,8 @@ server_panel_exceedance_fraction <- function(
         })
 
         output$title <- shiny::renderText({
-            translate(lang = lang(), "Exceedance Fraction")
-        }) |>
-        shiny::bindCache(lang())
+            title()
+        })
 
         output$risk_assessment_title <- shiny::renderText({
             translate(lang = lang(), "Risk Assessment")
@@ -618,7 +623,7 @@ server_panel_exceedance_fraction <- function(
         }) |>
         shiny::bindEvent(risk_assessment())
 
-        return(invisible())
+        return(title)
     }
 
     return(shiny::moduleServer(id, server))

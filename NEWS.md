@@ -1,3 +1,18 @@
+# Tool 1 version `5.1.0`
+
+## User Visible Changes
+
+* Each panel now shows the current mode and panel chosen by the user.
+
+## Server Changes
+
+* All `server_panel_*()` functions now returns a `shiny::reactive()` object
+  that can be called to get the panel's underlying title.
+
+## Fixes
+
+None.
+
 # Tool 1 version `5.0.0`
 
 This major version introduces Tool 1 Express (Simplified) directly into Tool 1.

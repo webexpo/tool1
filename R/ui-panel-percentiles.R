@@ -44,7 +44,8 @@
 #' [ui_panel_percentiles()] returns a `shiny.tag` object
 #' (an output of [bslib::nav_panel()]).
 #'
-#' [server_panel_percentiles()] returns `NULL`, invisibly.
+#' [server_panel_percentiles()] returns returns a [shiny::reactive()] object.
+#' It can be called to get the panel's title.
 #'
 #' @note
 #' This module is almost identical to the Exceedance Fraction panel module
@@ -267,6 +268,11 @@ server_panel_percentiles <- function(
     })
 
     server <- function(input, output, session) {
+        title <- shiny::reactive({
+            translate(lang = lang(), "Percentiles")
+        }) |>
+        shiny::bindCache(lang())
+
         risk_assessment <- shiny::reactive({
             risk_level <- if (num_results()$perc.risk >= parameters()$psi) {
                 "problematic"
@@ -278,9 +284,8 @@ server_panel_percentiles <- function(
         })
 
         output$title <- shiny::renderText({
-            translate(lang = lang(), "Percentiles")
-        }) |>
-        shiny::bindCache(lang())
+            title()
+        })
 
         output$risk_assessment_title <- shiny::renderText({
             translate(lang = lang(), "Risk Assessment")
@@ -622,7 +627,7 @@ server_panel_percentiles <- function(
         }) |>
         shiny::bindEvent(risk_assessment())
 
-        return(invisible())
+        return(title)
     }
 
     return(shiny::moduleServer(id, server))
