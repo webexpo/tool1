@@ -124,36 +124,29 @@ ui <- bslib::page_sidebar(
     bslib::navset_card_underline(
         id       = "panel_active",
         selected = "panel_stats",
+        header   = bslib::card_header(
+            class = "d-flex align-items-center",
+            style = "gap: 8px;",
 
-        # Breadcrumbs to convey what
-        # is being shown to the user.
-        header = bslib::card_header(
-            class = "opacity-75",
+            # Current mode.
+            tags$div(
+                class = "d-flex alert alert-primary p-2 m-0",
 
-            tags$ol(
-                class = "breadcrumb mb-0",
-                style = "padding-left: 5px;",
-
-                tags$li(
-                    class = "breadcrumb-item",
-                    tags$span(
-                        class = "pe-1",
-                        bsicons::bs_icon(
-                            name = "layout-text-window-reverse",
-                            a11y = "deco"
-                        )
-                    ),
-                    shiny::textOutput(outputId = "breadcrumbs_mode", tags$span)
+                tags$span(
+                    class = "pe-1",
+                    bsicons::bs_icon(
+                        name = "layout-text-window-reverse",
+                        a11y = "deco"
+                    )
                 ),
+                shiny::textOutput("panel_title_mode", tags$span)
+            ),
 
-                tags$li(
-                    class = "breadcrumb-item",
-                    tags$span(
-                        class = "pe-1",
-                        bsicons::bs_icon(name = "list", a11y = "deco")
-                    ),
-                    shiny::textOutput(outputId = "breadcrumbs_panel", tags$span)
-                )
+            # Current panel.
+            bslib::card_title(
+                container = tags$h2,
+                class     = "m-0 fs-5 opacity-75",
+                shiny::textOutput("panel_title", tags$span)
             )
         ),
 
@@ -318,30 +311,26 @@ server <- function(input, output, session) {
     output$panels_menu_title <- shiny::renderText({
         translate(lang = lang(), "Statistical Inference")
     }) |>
-    shiny::bindEvent(lang())
+    shiny::bindCache(lang())
 
-    output$breadcrumbs_mode <- shiny::renderText({
-        mode <- switch(mode(),
+    output$panel_title <- shiny::renderText({
+        switch(input$panel_active,
+            panel_simplified  = panel_simplified_title(),
+            panel_stats       = panel_stats_title(),
+            panel_fraction    = panel_fraction_title(),
+            panel_percentiles = panel_percentiles_title(),
+            panel_mean        = panel_mean_title(),
+        )
+    }) |>
+    shiny::bindCache(input$panel_active, lang())
+
+    output$panel_title_mode <- shiny::renderText({
+        switch(mode(),
             default    = translate(lang = lang(), "Default"),
             simplified = translate(lang = lang(), "Simplified")
         )
-
-        sprintf("%s : %s", translate(lang = lang(), "Mode"), mode)
     }) |>
-    shiny::bindEvent(mode())
-
-    output$breadcrumbs_panel <- shiny::renderText({
-        panel <- switch(input$panel_active,
-            panel_stats       = panel_stats_title,
-            panel_simplified  = panel_simplified_title,
-            panel_fraction    = panel_fraction_title,
-            panel_percentiles = panel_percentiles_title,
-            panel_mean        = panel_mean_title,
-        )
-
-        sprintf("%s : %s", translate(lang = lang(), "Panel"), panel())
-    }) |>
-    shiny::bindEvent(input$panel_active)
+    shiny::bindCache(mode(), lang())
 
     # Observers ----------------------------------------------------------------
 

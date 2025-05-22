@@ -463,7 +463,7 @@ Texts:
       - !<Location>
         Identifier: 2970e5a:l1
         Path: ./app.R
-        Ranges: Ln 325, Col 26 @ Ln 325, Col 60
+        Ranges: Ln 329, Col 26 @ Ln 329, Col 60
       - !<Location>
         Identifier: 2970e5a:l2
         Path: ./R/ui-exceedance-plot.R
@@ -627,10 +627,6 @@ Texts:
     Locations:
       - !<Location>
         Identifier: 0524962:l1
-        Path: ./app.R
-        Ranges: Ln 329, Col 28 @ Ln 329, Col 59
-      - !<Location>
-        Identifier: 0524962:l2
         Path: ./R/ui-title.R
         Ranges: Ln 505, Col 13 @ Ln 505, Col 44
   - !<Text>
@@ -889,22 +885,6 @@ Texts:
         Path: ./R/ui-panel-simplified.R
         Ranges: Ln 392, Col 13 @ Ln 392, Col 55
   - !<Text>
-    Identifier: de4ebb0
-    Algorithm: sha1
-    Hash: de4ebb0a3205dd97563315eaa6000f7a44e9a423
-    Source Language: en
-    Source Text: |-
-      The %s mode corresponds to a version of Tool 1 that only shows a curated
-      subset of results in a single %s panel. It used to be a distinct web
-      application called Tool 1 Express (Simplified) in earlier versions of
-      Tool 1 and Expostats.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: de4ebb0:l1
-        Path: ./R/ui-modal-faq.R
-        Ranges: Ln 725, Col 25 @ Ln 731, Col 26
-  - !<Text>
     Identifier: c73ed1b
     Algorithm: sha1
     Hash: c73ed1b43dcd276710a71fc8f8bd7fe42181b531
@@ -940,6 +920,22 @@ Texts:
         Identifier: 930bac6:l1
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 778, Col 21 @ Ln 778, Col 73
+  - !<Text>
+    Identifier: de4ebb0
+    Algorithm: sha1
+    Hash: de4ebb0a3205dd97563315eaa6000f7a44e9a423
+    Source Language: en
+    Source Text: |-
+      The %s mode corresponds to a version of Tool 1 that only shows a curated
+      subset of results in a single %s panel. It used to be a distinct web
+      application called Tool 1 Express (Simplified) in earlier versions of
+      Tool 1 and Expostats.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: de4ebb0:l1
+        Path: ./R/ui-modal-faq.R
+        Ranges: Ln 725, Col 25 @ Ln 731, Col 26
   - !<Text>
     Identifier: 7d94d60
     Algorithm: sha1
@@ -1010,7 +1006,7 @@ Texts:
       - !<Location>
         Identifier: 511580d:l1
         Path: ./app.R
-        Ranges: Ln 319, Col 9 @ Ln 319, Col 57
+        Ranges: Ln 312, Col 9 @ Ln 312, Col 57
       - !<Location>
         Identifier: 511580d:l2
         Path: ./R/ui-modal-faq.R
@@ -1252,7 +1248,7 @@ Texts:
       - !<Location>
         Identifier: f7a0860:l1
         Path: ./app.R
-        Ranges: Ln 361, Col 39 @ Ln 361, Col 70
+        Ranges: Ln 350, Col 39 @ Ln 350, Col 70
       - !<Location>
         Identifier: f7a0860:l2
         Path: ./R/ui-footer.R
@@ -1497,18 +1493,6 @@ Texts:
         Identifier: 362ceb2:l1
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 717, Col 33 @ Ln 717, Col 65
-  - !<Text>
-    Identifier: b704c70
-    Algorithm: sha1
-    Hash: b704c7025fd464ae8eb6e787e30c45712c553180
-    Source Language: en
-    Source Text: Panel
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: b704c70:l1
-        Path: ./app.R
-        Ranges: Ln 342, Col 28 @ Ln 342, Col 60
   - !<Text>
     Identifier: 70d45be
     Algorithm: sha1
@@ -2190,7 +2174,7 @@ Texts:
       - !<Location>
         Identifier: 05019d4:l1
         Path: ./app.R
-        Ranges: Ln 326, Col 26 @ Ln 326, Col 63
+        Ranges: Ln 330, Col 26 @ Ln 330, Col 63
       - !<Location>
         Identifier: 05019d4:l2
         Path: ./R/ui-title.R
@@ -2488,6 +2472,18 @@ Texts:
         Identifier: be6fb8b:l1
         Path: ./R/ui-exceedance-plot.R
         Ranges: Ln 201, Col 25 @ Ln 212, Col 18
+  - !<Text>
+    Identifier: 46750b1
+    Algorithm: sha1
+    Hash: 46750b18132d8b67544431e4665861bc757b0efd
+    Source Language: en
+    Source Text: Changelog
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 46750b1:l1
+        Path: ./R/ui-footer.R
+        Ranges: Ln 57, Col 21 @ Ln 57, Col 57
   - !<Text>
     Identifier: 67c3cba
     Algorithm: sha1
