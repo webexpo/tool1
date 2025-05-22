@@ -14,7 +14,7 @@
 
 ## Fixes
 
-None.
+* Some piece of text were not wrapped in `translate()` calls.
 
 # Tool 1 version `5.0.0`
 

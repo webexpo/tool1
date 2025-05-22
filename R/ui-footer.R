@@ -54,7 +54,7 @@ server_footer <- function(id, lang) {
                 bsicons::bs_icon("dot", ally = "deco"),
                 ui_link(
                     "https://github.com/webexpo/tool1/blob/main/NEWS.md",
-                    "Changelog"
+                    translate(lang = lang(), "Changelog")
                 )
             )
         }) |>
