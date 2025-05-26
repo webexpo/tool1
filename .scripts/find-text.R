@@ -18,8 +18,12 @@
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
-# Create a new Translator object.
-tr <- transltr::translator(id = "expostats:tool1")
+# Use the existing Translator object, or create one if it does not exist.
+tr <- if (utils::file_test("-f", getOption("transltr.path"))) {
+    transltr::translator_read()
+} else {
+    transltr::translator(id = "expostats:tool1")
+}
 
 # Register languages that must be supported.
 tr$set_native_languages(
