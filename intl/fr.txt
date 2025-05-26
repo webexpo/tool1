@@ -513,7 +513,8 @@ OEL.
 
 :: Translations: 1d671e4: Translation
 
-La surexposition est définie comme le percentile %s supérieur ou égal à la VLE.
+La surexposition est définie comme étant le percentile %s supérieur ou égal à
+la VLE.
 
 :: Translations: 5fafea5: Source Text
 
@@ -627,7 +628,7 @@ Exceedance Plot
 
 :: Translations: f533761: Translation
 
-Graphique illustrant la fraction de dépassement
+Graphique de la fraction de dépassement
 
 :: Translations: 8baa3d7: Source Text
 
@@ -1198,7 +1199,9 @@ problematic exposure.
 
 :: Translations: 7acfc21: Translation
 
-# Insert a translation here.
+Cet indicateur de risque montre la probabilité que l'exposition soit trop élevée
+par rapport à la valeur limite d'exposition. La zone rouge indique une
+exposition problématique.
 
 :: Translations: c2bb46d: Source Text
 
@@ -1206,7 +1209,7 @@ It naturally integrates the treatment of non-detects.
 
 :: Translations: c2bb46d: Translation
 
-# Insert a translation here.
+Le traitement des valeurs non-détectées est intrinsèque. [REVIEW]
 
 :: Translations: c165d34: Source Text
 
@@ -1214,7 +1217,7 @@ It naturally integrates the treatment of non-detects.
 
 :: Translations: c165d34: Translation
 
-# Insert a translation here.
+1% < VLE ≤ 10%
 
 :: Translations: 0ff7e09: Source Text
 
@@ -1222,7 +1225,7 @@ Descriptive Statistics
 
 :: Translations: 0ff7e09: Translation
 
-# Insert a translation here.
+Statistiques Descriptives
 
 :: Translations: 23eb033: Source Text
 
@@ -1230,7 +1233,7 @@ Critical Percentile Category
 
 :: Translations: 23eb033: Translation
 
-# Insert a translation here.
+Catégorie de percentile critique
 
 :: Translations: 4bc6823: Source Text
 
@@ -1238,7 +1241,7 @@ Making Accurate Exposure Risk Decisions
 
 :: Translations: 4bc6823: Translation
 
-# Insert a translation here.
+Making Accurate Exposure Risk Decisions [DO NOT TRANSLATE]
 
 :: Translations: 8f7f102: Source Text
 
@@ -1246,7 +1249,7 @@ Quantile-Quantile Plot
 
 :: Translations: 8f7f102: Translation
 
-# Insert a translation here.
+Graphique quantile-quantile
 
 :: Translations: 6db5beb: Source Text
 
@@ -1254,7 +1257,7 @@ Quantile-Quantile Plot
 
 :: Translations: 6db5beb: Translation
 
-# Insert a translation here.
+50% < VLE ≤ 100%
 
 :: Translations: 2348472: Source Text
 
@@ -1262,7 +1265,7 @@ Single plot (no uncertainty)
 
 :: Translations: 2348472: Translation
 
-# Insert a translation here.
+Graphique unique (sans d'incertitude)
 
 :: Translations: 0a5c356: Source Text
 
@@ -1271,7 +1274,8 @@ current mode is updated.
 
 :: Translations: 0a5c356: Translation
 
-# Insert a translation here.
+Aucun résultat n'est affiché dans les panneaux de droite tant que les données
+n'ont pas été soumises ou que le mode actuel n'a pas été mis à jour.
 
 :: Translations: e510a31: Source Text
 
@@ -1279,7 +1283,7 @@ The point estimate of the %s percentile is equal to %s.
 
 :: Translations: e510a31: Translation
 
-# Insert a translation here.
+L'estimation ponctuelle du %s percentile est égale à %s.
 
 :: Translations: dbb0a02: Source Text
 
@@ -1288,7 +1292,9 @@ one. Always use a dot for decimals. Do not use a separator for thousands.
 
 :: Translations: dbb0a02: Translation
 
-# Insert a translation here.
+Les décimales doivent toujours être précédées d'un zéro pour les nombres
+strictement inférieurs à un. Utilisez toujours un point pour les décimales.
+N'utilisez pas de séparateur pour les milliers.
 
 :: Translations: 690c3dc: Source Text
 
@@ -1296,7 +1302,7 @@ Percentile Category
 
 :: Translations: 690c3dc: Translation
 
-# Insert a translation here.
+Catégorie de percentile
 
 :: Translations: 8a17368: Source Text
 
@@ -1304,7 +1310,7 @@ Submit inputs by clicking on the %s button.
 
 :: Translations: 8a17368: Translation
 
-# Insert a translation here.
+Soumettez les entrées en cliquant sur le bouton %s.
 
 :: Translations: ea57967: Source Text
 
@@ -1312,7 +1318,7 @@ Exceedance Fraction Threshold:
 
 :: Translations: ea57967: Translation
 
-# Insert a translation here.
+Seuil de la fraction de dépassement:
 
 :: Translations: f69c2db: Source Text
 
@@ -1320,7 +1326,7 @@ Estimates
 
 :: Translations: f69c2db: Translation
 
-# Insert a translation here.
+Estimations
 
 :: Translations: 798b335: Source Text
 
@@ -1328,7 +1334,7 @@ Credible Interval Probability:
 
 :: Translations: 798b335: Translation
 
-# Insert a translation here.
+Probabilité pour les intervalles de crédibilité: [REVIEW]
 
 :: Translations: 62fc968: Source Text
 
@@ -1336,7 +1342,7 @@ Percentile
 
 :: Translations: 62fc968: Translation
 
-# Insert a translation here.
+Percentile
 
 :: Translations: 05019d4: Source Text
 
@@ -1344,7 +1350,7 @@ Simplified
 
 :: Translations: 05019d4: Translation
 
-# Insert a translation here.
+Simplifié
 
 :: Translations: ddd9ef3: Source Text
 
@@ -1353,7 +1359,8 @@ limit.
 
 :: Translations: ddd9ef3: Translation
 
-# Insert a translation here.
+Cette valeur permet de modifier la couleur des expositions qui dépassent la
+valeur limite d'exposition.
 
 :: Translations: 677f437: Source Text
 
@@ -1368,7 +1375,15 @@ of the underlying credible interval).
 
 :: Translations: 677f437: Translation
 
-# Insert a translation here.
+Le graphique de gauche montre une situation acceptable pour le seuil de
+dépassement choisi (traditionnellement 5% au-dessus de la VLE). Le graphique de
+droite montre la situation estimée par le modèle bayésien. Il prend en compte
+l'incertitude de l'estimation à l'aide de symboles rayés. Le nombre de symboles
+pleins représente la meilleure estimation du nombre de mesures supérieures à la
+VLE. Le nombre total de symboles (rayés ou non) représente le nombre maximal
+lausible de mesures supérieur à la la VLE compte tenu de l'incertitude
+d'estimation (en utilisant la limite supérieure de l'intervalle de crédibilité
+sous-jacent).
 
 :: Translations: 310d9b2: Source Text
 
@@ -1376,7 +1391,7 @@ Exposures
 
 :: Translations: 310d9b2: Translation
 
-# Insert a translation here.
+Expositions
 
 :: Translations: db16b44: Source Text
 
@@ -1384,7 +1399,7 @@ Default:
 
 :: Translations: db16b44: Translation
 
-# Insert a translation here.
+Par défaut:
 
 :: Translations: 962996f: Source Text
 
@@ -1392,7 +1407,8 @@ Its resulting probabilistic statements are easier to convey to stakeholders.
 
 :: Translations: 962996f: Translation
 
-# Insert a translation here.
+Les conclusions probabilistes qui en résultent sont plus faciles à communiquer
+aux parties prenantes.
 
 :: Translations: ff8d5e3: Source Text
 
@@ -1405,7 +1421,12 @@ the European Standards Organization.
 
 :: Translations: ff8d5e3: Translation
 
-# Insert a translation here.
+Il s'appuie sur un cadre d'évaluation des risques reconnu et approuvé par des
+institutions de premier plan, notamment l'American Industrial Hygiene
+Association (AIHA), la British Occupational Hygiene Society (BOHS), la Dutch
+Society for Occupational Hygiene (NVVA), l'Institut national de recherche et de
+sécurité (INRS), le National Institute for Occupational Safety and Health
+(NIOSH) et l'Organisation européenne de normalisation (OEN). [REVIEW]
 
 :: Translations: 9e15647: Source Text
 
@@ -1413,7 +1434,7 @@ Dutch-British guidelines
 
 :: Translations: 9e15647: Translation
 
-# Insert a translation here.
+lignes directrices néerlando-britanniques
 
 :: Translations: 5147736: Source Text
 
@@ -1421,7 +1442,7 @@ Modes
 
 :: Translations: 5147736: Translation
 
-# Insert a translation here.
+Modes
 
 :: Translations: 92981c5: Source Text
 
@@ -1430,7 +1451,8 @@ requires remedial action. We call it %s.
 
 :: Translations: 92981c5: Translation
 
-# Insert a translation here.
+Si le risque de surexposition est supérieur à 30%%, il est élevé. La situation
+nécessite une action corrective. Nous l'appelons %s.
 
 :: Translations: 4aabcde: Source Text
 
@@ -1439,7 +1461,9 @@ initially hidden. They are shown when an %s panel is chosen.
 
 :: Translations: 4aabcde: Translation
 
-# Insert a translation here.
+Saisissez les autres paramètres. Certains paramètres sont spécifiques à certains
+panneaux et sont initialement cachés. Ils sont affichés lorsqu'un panneau d'%s
+est choisi. [REVIEW]
 
 :: Translations: 0cd35ca: Source Text
 
@@ -1448,7 +1472,8 @@ shown.
 
 :: Translations: 0cd35ca: Translation
 
-# Insert a translation here.
+Le mode %s correspond à la version standard de l'Outil 1. Tous les panneaux %s
+sont affichés. [REVIEW]
 
 :: Translations: aeaec6e: Source Text
 
@@ -1457,7 +1482,8 @@ they are ready.
 
 :: Translations: aeaec6e: Translation
 
-# Insert a translation here.
+Patientez pendant que le serveur effectue les calculs. Tous les résultats seront
+affichés dès qu'ils seront prêts.
 
 :: Translations: 2502705: Source Text
 
@@ -1466,7 +1492,8 @@ limit.
 
 :: Translations: 2502705: Translation
 
-# Insert a translation here.
+Cette valeur permet de modifier la couleur des expositions inférieures à la
+limite d'exposition.
 
 :: Translations: f59a9a9: Source Text
 
@@ -1475,7 +1502,8 @@ on the %s button on the bottom right.
 
 :: Translations: f59a9a9: Translation
 
-# Insert a translation here.
+Oui. Chaque graphique peut être agrandi en mode plein écran. Survolez-le et
+cliquez sur le bouton %s en bas à droite.
 
 :: Translations: 9797b53: Source Text
 
@@ -1486,7 +1514,10 @@ being assessed.
 
 :: Translations: 9797b53: Translation
 
-# Insert a translation here.
+L'Outil 1 suppose que les mesures représentent un échantillon aléatoire tiré de
+la distribution sous-jacente des expositions dans le contexte échantillonné. En
+d'autres termes, les données sont considérées comme représentatives du régime
+d'exposition évalué.
 
 :: Translations: 3710c88: Source Text
 
@@ -1496,7 +1527,9 @@ Health, Volume 63, Issue 3, April 2019, Pages 267-279.
 
 :: Translations: 3710c88: Translation
 
-# Insert a translation here.
+Jérôme Lavoué, Lawrence Joseph, Peter Knott, Hugh Davies, France Labrèche,
+Frédéric Clerc, Gautier Mater, Tracy Kirkham, %s, Annals of Work Exposures and
+Health, Volume 63, Numéro 3, Avril 2019, Pages 267-279.
 
 :: Translations: ffb2d53: Source Text
 
@@ -1504,7 +1537,7 @@ Box and Whiskers Plot
 
 :: Translations: ffb2d53: Translation
 
-# Insert a translation here.
+Graphique de la boîte à moustaches
 
 :: Translations: 8da5ea7: Source Text
 
@@ -1518,7 +1551,14 @@ threshold shown as a black dashed line.
 
 :: Translations: 8da5ea7: Translation
 
-# Insert a translation here.
+Ce graphique montre la distribution de probabilité de l'incertitude autour du
+percentile sélectionné. Il montre la probabilité que sa valeur réelle soit
+(1) inférieure à 1% de la VLE, (2) comprise entre 1% et 10% de la VLE,
+(3) comprise entre 10% et 50% de la VLE, (4) comprise entre 50% et 100% de la
+VLE, et (5) supérieure à la VLE. Cette classification est basée sur celle
+adoptée par l'AIHA. La colonne rouge représente la probabilité d'une
+surexposition. Celle-ci doit être inférieure au seuil représenté par une ligne
+noire en pointillés.
 
 :: Translations: 4f7aff7: Source Text
 
@@ -1526,7 +1566,7 @@ How are censored measurements imputed?
 
 :: Translations: 4f7aff7: Translation
 
-# Insert a translation here.
+Comment les mesures censurées sont-elles imputées?
 
 :: Translations: be6fb8b: Source Text
 
@@ -1540,7 +1580,15 @@ uncertainty (using the upper limit of the underlying credible interval).
 
 :: Translations: be6fb8b: Translation
 
-# Insert a translation here.
+Ce graphique montre une région ombrée et plus foncée correspondant au
+dépassement maximal acceptable. Les symboles rouges situés en dehors de cette
+région correspondent à des expositions inacceptables. Il tient compte de
+l'incertitude de l'estimation avec des symboles rayés. Le nombre de symboles
+simples représente la meilleure estimation du nombre de mesures supérieures à
+la VLE. Le nombre total de symboles (rayés ou non) représente le nombre maximal
+plausible de mesures dépassant la VLE compte tenu de l'incertitude de
+l'estimation (en utilisant la limite supérieure de l'intervalle de crédibilité
+sous-jacent).
 
 :: Translations: 46750b1: Source Text
 
@@ -1548,7 +1596,7 @@ Changelog
 
 :: Translations: 46750b1: Translation
 
-# Insert a translation here.
+Journal des modifications (en anglais seulement)
 
 :: Translations: 67c3cba: Source Text
 
@@ -1556,7 +1604,7 @@ What is the statistical approach used by Tool 1?
 
 :: Translations: 67c3cba: Translation
 
-# Insert a translation here.
+Quelle est l'approche statistique utilisée par l'Outil 1?
 
 :: Translations: 3a47c3b: Source Text
 
@@ -1568,7 +1616,12 @@ reaching at least 70% confidence that there is no overexposure.
 
 :: Translations: 3a47c3b: Translation
 
-# Insert a translation here.
+Choisissez un seuil pour la probabilité que ce critère soit rempli, au-delà
+duquel une action corrective (ou un échantillonnage supplémentaire) devrait
+être exigée. De manière équivalente, on peut raisonner en termes de degré de
+confiance que le critère d'exposition ne soit pas satisfait: un seuil de risque
+de surexposition d'au plus 30% équivaut à atteindre un degré de confiance d'au
+moins 70% qu'il n'y ait pas de surexposition.
 
 :: Translations: 4765dff: Source Text
 
@@ -1580,7 +1633,11 @@ the threshold shown as a black dashed line.
 
 :: Translations: 4765dff: Translation
 
-# Insert a translation here.
+Ce graphique montre la distribution de probabilité de l'incertitude autour de
+la fraction de dépassement. Il indique la probabilité que sa valeur réelle soit
+(1) inférieure à %s, (2) comprise entre %1$s et %2$s, et (3) supérieure à %s.
+La colonne rouge représente la probabilité de surexposition. Cette dernière doit
+être inférieure au seuil représenté par la ligne noire en pointillés.
 
 :: Translations: ac24260: Source Text
 
@@ -1589,7 +1646,8 @@ to %s.
 
 :: Translations: ac24260: Translation
 
-# Insert a translation here.
+La surexposition est définie comme étant la fraction de dépassement supérieure
+ou égale à %s. [REVIEW]
 
 :: Translations: b3c553f: Source Text
 
@@ -1598,7 +1656,8 @@ the exposure limit.
 
 :: Translations: b3c553f: Translation
 
-# Insert a translation here.
+Cette valeur permet de modifier la couleur d'arrière-plan des expositions qui
+sont inférieures à la limite d'exposition.
 
 :: Translations: 466a65e: Source Text
 
@@ -1606,7 +1665,7 @@ Overexposure Risk Threshold:
 
 :: Translations: 466a65e: Translation
 
-# Insert a translation here.
+Seuil de risque de surexposition:
 
 :: Translations: 97a777e: Source Text
 
@@ -1614,7 +1673,7 @@ Quantiles (Standardized Measurements)
 
 :: Translations: 97a777e: Translation
 
-# Insert a translation here.
+Quantiles (mesures standardisées) [REVIEW]
 
 :: Translations: 1b5e945: Source Text
 
@@ -1622,7 +1681,8 @@ Use square brackets to denote interval censored values (e.g. [20-30]).
 
 :: Translations: 1b5e945: Translation
 
-# Insert a translation here.
+Utilisez des crochets pour indiquer les valeurs censurées par intervalle (par
+exemple [20-30]).
 
 :: Translations: 8cdd8fb: Source Text
 
@@ -1630,7 +1690,7 @@ Two plots (with uncertainty)
 
 :: Translations: 8cdd8fb: Translation
 
-# Insert a translation here.
+Deux graphiques (avec incertitude)
 
 :: Translations: da34e30: Source Text
 
@@ -1638,7 +1698,7 @@ Geometric Mean
 
 :: Translations: da34e30: Translation
 
-# Insert a translation here.
+Moyenne géométrique
 
 :: Translations: 54697e1: Source Text
 
@@ -1646,7 +1706,8 @@ Locate the primary sidebar on the left and follow these steps.
 
 :: Translations: 54697e1: Translation
 
-# Insert a translation here.
+Localisez la barre latérale principale sur la gauche et suivez les étapes
+suivantes.
 
 :: Translations: a2acebe: Source Text
 
@@ -1655,7 +1716,8 @@ Add a greater than or equal sign before each measurement censored to the right
 
 :: Translations: a2acebe: Translation
 
-# Insert a translation here.
+Ajoutez un signe plus grand que ou égal devant chaque mesure censurée à droite
+(par exemple, >30.0).
 
 :: Translations: 89fba6b: Source Text
 
@@ -1663,7 +1725,7 @@ Frequently Asked Questions
 
 :: Translations: 89fba6b: Translation
 
-# Insert a translation here.
+Questions fréquentes
 
 :: Translations: 0d592d3: Source Text
 
@@ -1672,7 +1734,8 @@ leveraged).
 
 :: Translations: 0d592d3: Translation
 
-# Insert a translation here.
+Il permet d'inclure des informations externes dans les mesures (pas encore
+exploitées).
 
 :: Translations: 3bd86da: Source Text
 
@@ -1682,7 +1745,10 @@ Indonesian Industrial Hygiene Association.
 
 :: Translations: 3bd86da: Translation
 
-# Insert a translation here.
+Voici quatre vidéos (en anglais seulement) réalisées par les auteurs d'Expostats.
+Les deux dernières sont issues d'un cours de développement professionnel (PDC)
+de 6 heures réalisé en 2024 pour l'Association indonésienne d'hygiène
+industrielle.
 
 :: Translations: cf880eb: Source Text
 
@@ -1690,7 +1756,7 @@ The point estimate of the arithmetic mean is equal to %s.
 
 :: Translations: cf880eb: Translation
 
-# Insert a translation here.
+L'estimation ponctuelle de la moyenne arithmétique est égale à %s.
 
 :: Translations: e92bf46: Source Text
 
@@ -1698,7 +1764,7 @@ version
 
 :: Translations: e92bf46: Translation
 
-# Insert a translation here.
+version
 
 :: Translations: 07fb93b: Source Text
 
@@ -1706,7 +1772,7 @@ problematic
 
 :: Translations: 07fb93b: Translation
 
-# Insert a translation here.
+problématique
 
 :: Translations: a7c73b7: Source Text
 
@@ -1716,7 +1782,9 @@ behavior.
 
 :: Translations: a7c73b7: Translation
 
-# Insert a translation here.
+Les mesures sont saisies dans la zone de texte Mesures de la barre latérale %s.
+Le non-respect des règles suivantes entraînera inévitablement un comportement
+indéfini. [REVIEW]
 
 :: Translations: b267cef: Source Text
 
@@ -1727,7 +1795,10 @@ numbers strictly smaller than one.
 
 :: Translations: b267cef: Translation
 
-# Insert a translation here.
+Conformément au Système international d'unités (SI) et aux recommandations du
+National Institute of Standards and Technology (NIST) des États-Unis (voir %s
+pour plus d'informations), les décimales doivent toujours être précédées d'un
+zéro pour les nombres strictement inférieurs à un.
 
 :: Translations: 5f12363: Source Text
 
@@ -1735,7 +1806,7 @@ How should measurements be formatted?
 
 :: Translations: 5f12363: Translation
 
-# Insert a translation here.
+Comment les mesures doivent-elles être formatées?
 
 :: Translations: ab42808: Source Text
 
@@ -1748,7 +1819,13 @@ tolerable overexposure risk) can be found in the following scientific paper.
 
 :: Translations: ab42808: Translation
 
-# Insert a translation here.
+Le seuil traditionnel de probabilité de surexposition est de 5% (soit un niveau
+de confiance de 95% qu'il n'y a pas de surexposition). Plus récemment, à la
+suite de travaux menés en France vers 2010, plusieurs institutions ont adopté
+un seuil de risque de surexposition de 30% (niveau de confiance de 70%). Une
+discussion sur la justification de l'utilisation d'un niveau de confiance de
+70% (ou d'un risque de surexposition tolérable de 30%) est disponible dans
+l'article scientifique suivant.
 
 :: Translations: d111f1a: Source Text
 
@@ -1756,7 +1833,7 @@ Density Plot
 
 :: Translations: d111f1a: Translation
 
-# Insert a translation here.
+Graphique de la densité de probabilité
 
 :: Translations: 4a8e3cf: Source Text
 
@@ -1767,7 +1844,10 @@ estimation uncertainty.
 
 :: Translations: 4a8e3cf: Translation
 
-# Insert a translation here.
+Le graphique de gauche montre une situation acceptable pour le seuil de
+dépassement choisi (traditionnellement 5% au-dessus de la VLE). Le graphique de
+droite montre la situation estimée par le modèle bayésien. Il ne tient pas
+compte de l'incertitude de l'estimation.
 
 :: Translations: 39bcd98: Source Text
 
@@ -1781,7 +1861,14 @@ shown as a black dashed line.
 
 :: Translations: 39bcd98: Translation
 
-# Insert a translation here.
+Ce graphique montre la distribution de probabilité de l'incertitude autour du
+%s percentile. Il montre la probabilité que sa valeur réelle soit
+(1) inférieure à 1%% de la VLE, (2) comprise entre 1%% et 10%% de la VLE,
+(3) comprise entre 10%% et 50%% de la VLE, (4) comprise entre 50%% et 100%% de
+la VLE, et (5) supérieure à la VLE. Cette classification est basée sur celle
+adoptée par l'AIHA. La colonne rouge représente la probabilité de surexposition.
+Celle-ci doit être inférieure au seuil représenté par la ligne noire en
+pointillés.
 
 :: Translations: 899d691: Source Text
 
@@ -1790,7 +1877,8 @@ column.
 
 :: Translations: 899d691: Translation
 
-# Insert a translation here.
+Saisissez vos mesures. Les mesures peuvent être copiées et collées à partir
+d'une colonne de tableur.
 
 :: Translations: 0e99366: Source Text
 
@@ -1798,7 +1886,7 @@ Arithmetic Mean Category
 
 :: Translations: 0e99366: Translation
 
-# Insert a translation here.
+Catégorie de la moyenne arithmétique
 
 :: Translations: 8d5cf97: Source Text
 
@@ -1806,7 +1894,7 @@ Variant:
 
 :: Translations: 8d5cf97: Translation
 
-# Insert a translation here.
+Variantes: [REVIEW]
 
 :: Translations: 897e74a: Source Text
 
@@ -1814,7 +1902,7 @@ Current Sample
 
 :: Translations: 897e74a: Translation
 
-# Insert a translation here.
+Échantillon actuel
 
 :: Translations: 5518029: Source Text
 
@@ -1822,7 +1910,7 @@ How can I verify that my measurements were successfully imported?
 
 :: Translations: 5518029: Translation
 
-# Insert a translation here.
+Comment puis-je vérifier que mes mesures ont été importées avec succès?
 
 :: Translations: f111efa: Source Text
 
@@ -1830,7 +1918,7 @@ Who currently maintains Tool 1?
 
 :: Translations: f111efa: Translation
 
-# Insert a translation here.
+Qui assure actuellement la maintenance de l'Outil 1?
 
 :: Translations: 5b8a460: Source Text
 
@@ -1838,7 +1926,7 @@ The point estimate of the geometric standard deviation is equal to %s.
 
 :: Translations: 5b8a460: Translation
 
-# Insert a translation here.
+L'estimation ponctuelle de l'écart-type géométrique est égale à %s.
 
 :: Translations: 96d547d: Source Text
 
@@ -1846,7 +1934,7 @@ Maximum
 
 :: Translations: 96d547d: Translation
 
-# Insert a translation here.
+Maximum
 
 :: Translations: 4f91509: Source Text
 
@@ -1854,7 +1942,7 @@ Maximum
 
 :: Translations: 4f91509: Translation
 
-# Insert a translation here.
+%s Percentile
 
 :: Translations: da9cc89: Source Text
 
@@ -1862,7 +1950,7 @@ Risk Band Plot
 
 :: Translations: da9cc89: Translation
 
-# Insert a translation here.
+Graphique des bandes de risque
 
 :: Translations: 2dc8049: Source Text
 
@@ -1870,7 +1958,7 @@ Above Exposure Limit:
 
 :: Translations: 2dc8049: Translation
 
-# Insert a translation here.
+Supérieure à la valeur limite d'exposition:
 
 :: Translations: 9670dfb: Source Text
 
@@ -1878,7 +1966,7 @@ Always use a dot for decimals.
 
 :: Translations: 9670dfb: Translation
 
-# Insert a translation here.
+Utilisez toujours un point pour les décimales.
 
 :: Translations: c6394ac: Source Text
 
@@ -1886,7 +1974,7 @@ About My Measurements
 
 :: Translations: c6394ac: Translation
 
-# Insert a translation here.
+À propos de mes mesures
 
 :: Translations: 21d66f8: Source Text
 
@@ -1894,7 +1982,7 @@ Detected
 
 :: Translations: 21d66f8: Translation
 
-# Insert a translation here.
+Détecté [REVIEW]
 
 :: Translations: 1583901: Source Text
 
@@ -1904,7 +1992,10 @@ does not take into account estimation uncertainty.
 
 :: Translations: 1583901: Translation
 
-# Insert a translation here.
+Ce graphique montre une région ombrée et plus foncée correspondant au
+dépassement maximal acceptable. Les symboles rouges situés en dehors de cette
+région correspondent à des expositions inacceptables. Il ne tient pas compte de
+l'incertitude de l'estimation.
 
 :: Translations: f0d17dd: Source Text
 
@@ -1916,7 +2007,12 @@ Four variants of the Exceedance Plot are available.
 
 :: Translations: f0d17dd: Translation
 
-# Insert a translation here.
+Ce graphique illustre la proportion d'expositions qui seraient supérieures à la
+VLE dans un échantillon fictif de cent mesures. Chaque flacon représente une
+valeur d'exposition. Celles qui sont supérieures à la limite d'exposition sont
+colorées en rouge. Cette couleur peut être modifiée en fonction de vos besoins
+à l'aide de la barre latérale de droite. Quatre variantes du graphique de la
+fraction de dépassement sont disponibles.
 
 :: Translations: 79e5ee7: Source Text
 
@@ -1924,7 +2020,7 @@ Distribution Parameters
 
 :: Translations: 79e5ee7: Translation
 
-# Insert a translation here.
+Paramètres de distribution
 
 :: Translations: f10baab: Source Text
 
@@ -1932,7 +2028,7 @@ Probability
 
 :: Translations: f10baab: Translation
 
-# Insert a translation here.
+Probabilité
 
 :: Translations: ee91f19: Source Text
 
@@ -1940,7 +2036,7 @@ Not Censored
 
 :: Translations: ee91f19: Translation
 
-# Insert a translation here.
+Non censuré
 
 :: Translations: 1f724fd: Source Text
 
@@ -1949,7 +2045,8 @@ the user.
 
 :: Translations: 1f724fd: Translation
 
-# Insert a translation here.
+L'Outil 1 propose deux %s permettant de contrôler la quantité d'informations
+affichées à l'utilisateur.
 
 :: Translations: 7385e52: Source Text
 
@@ -1959,7 +2056,9 @@ paper.
 
 :: Translations: 7385e52: Translation
 
-# Insert a translation here.
+La logique proposée par Expostats pour la prise de décision lors de
+l'interprétation des données d'exposition en hygiène industrielle est décrite
+dans cet article scientifique.
 
 :: Translations: da5e3d2: Source Text
 
@@ -1968,7 +2067,8 @@ the OEL.
 
 :: Translations: da5e3d2: Translation
 
-# Insert a translation here.
+La surexposition est définie comme la moyenne arithmétique supérieure ou égale
+à la VLE.
 
 :: Translations: 9725731: Source Text
 
@@ -1976,7 +2076,7 @@ Methodological Background
 
 :: Translations: 9725731: Translation
 
-# Insert a translation here.
+Contexte méthodologique
 
 :: Translations: d257a4e: Source Text
 
@@ -1984,7 +2084,7 @@ Methodological Background
 
 :: Translations: d257a4e: Translation
 
-# Insert a translation here.
+≤ 1% VLE
 
 :: Translations: 1a51cee: Source Text
 
@@ -1992,7 +2092,7 @@ Tool 3
 
 :: Translations: 1a51cee: Translation
 
-# Insert a translation here.
+Outil 3
 
 :: Translations: 2bbf9dd: Source Text
 
@@ -2000,7 +2100,7 @@ How can I submit bugs or provide feedback?
 
 :: Translations: 2bbf9dd: Translation
 
-# Insert a translation here.
+Comment puis-je soumettre des bogues ou des commentaires?
 
 :: Translations: 68c086f: Source Text
 
@@ -2011,7 +2111,10 @@ Questions (FAQ) above.
 
 :: Translations: 68c086f: Translation
 
-# Insert a translation here.
+Les données de mesure. Il doit y avoir une valeur par ligne. Les valeurs peuvent
+être censurées à gauche (<), à droite (>) ou par intervalle ([X-Y]). Pour plus
+d'informations, voir la section Paramètres de calcul dans la sections Questions
+Fréquentes ci-dessus. [REVIEW]
 
 :: Translations: 463c845: Source Text
 
@@ -2021,7 +2124,9 @@ area under the curve beyond the OEL value.
 
 :: Translations: 463c845: Translation
 
-# Insert a translation here.
+Ce graphique montre la fonction de densité de probabilité de la distribution
+estimée des expositions. La VLE est représentée par une ligne rouge. La fraction
+de dépassement est l'aire sous la courbe au-delà de la valeur de la VLE.
 
 :: Translations: f9b43e3: Source Text
 
@@ -2029,7 +2134,7 @@ What is the rationale for the proposed risk assessment framework?
 
 :: Translations: f9b43e3: Translation
 
-# Insert a translation here.
+Quelle est la raison d'être du cadre d'évaluation des risques proposé? [REVIEW]
 
 :: Translations: a5a2911: Source Text
 
@@ -2037,7 +2142,7 @@ Exceedance Fraction
 
 :: Translations: a5a2911: Translation
 
-# Insert a translation here.
+Fraction de dépassement
 
 :: Translations: 7be717b: Source Text
 
@@ -2045,7 +2150,7 @@ Made with %s by %s.
 
 :: Translations: 7be717b: Translation
 
-# Insert a translation here.
+Fait avec %s par %s.
 
 :: Translations: 865ddc6: Source Text
 
@@ -2054,7 +2159,8 @@ for additional details on the chosen variant.
 
 :: Translations: 865ddc6: Translation
 
-# Insert a translation here.
+Cette valeur permet de modifier l'affichage des informations. Voir ci-dessous
+pour plus de détails sur la variante choisie. [REVIEW]
 
 :: Translations: 5eb3d78: Source Text
 
@@ -2065,7 +2171,11 @@ references are also available on %s.
 
 :: Translations: 5eb3d78: Translation
 
-# Insert a translation here.
+Les modèles bayésiens et les procédures d'interprétation des données utilisés
+par cette application sont dérivés des meilleures pratiques actuelles en matière
+d'hygiène industrielle, telles qu'elles sont examinées dans le document
+scientifique d'accompagnement suivant. D'autres détails et références sont
+également disponibles sur %s.
 
 :: Translations: ea1ddd5: Source Text
 
@@ -2074,7 +2184,9 @@ is controlled, but with a limited safety margin. We call it %s.
 
 :: Translations: ea1ddd5: Translation
 
-# Insert a translation here.
+Si le risque de surexposition se situe entre 5%% et 30%%, il est modéré. La
+situation est maîtrisée, mais avec une marge de sécurité limitée. Nous
+l'appelons %s.
 
 :: Translations: 1a0644e: Source Text
 
@@ -2082,7 +2194,7 @@ Measurements censored to the right are imputed as 9/4 of the censoring point.
 
 :: Translations: 1a0644e: Translation
 
-# Insert a translation here.
+Les mesures censurées à droite sont imputées à 9/4 du point de censure.
 
 :: Translations: 74f948f: Source Text
 
@@ -2090,7 +2202,7 @@ Frequently Asked Questions. Get additional information on Tool 1.
 
 :: Translations: 74f948f: Translation
 
-# Insert a translation here.
+Questions fréquentes. Obtenez des informations supplémentaires sur l'Outil 1.
 
 :: Translations: b740be6: Source Text
 
@@ -2098,7 +2210,7 @@ Do not use a separator for thousands.
 
 :: Translations: b740be6: Translation
 
-# Insert a translation here.
+N'utilisez pas de séparateur pour les milliers.
 
 :: Translations: 603143d: Source Text
 
@@ -2106,7 +2218,7 @@ The probability that this criterion is met should be lower than %s.
 
 :: Translations: 603143d: Translation
 
-# Insert a translation here.
+La probabilité que ce critère soit satisfait doit être inférieure à %s.
 
 :: Translations: ceefbab: Source Text
 
@@ -2114,7 +2226,7 @@ Density
 
 :: Translations: ceefbab: Translation
 
-# Insert a translation here.
+Densité
 
 :: Translations: 8141885: Source Text
 
@@ -2124,7 +2236,10 @@ parsed as expected and successfully imported.
 
 :: Translations: 8141885: Translation
 
-# Insert a translation here.
+Utilisez le panneau %s. Il fournit des statistiques descriptives, un graphique
+quantile-quantile et un graphique de boîte à moustaches qui peuvent être
+utilisés pour s'assurer que les mesures ont été analysées et importées avec
+succès.
 
 :: Translations: 75844cd: Source Text
 
@@ -2133,7 +2248,8 @@ the exposure limit.
 
 :: Translations: 75844cd: Translation
 
-# Insert a translation here.
+Cette valeur permet de modifier la couleur d'arrière-plan des expositions qui
+dépassent la limite d'exposition.
 
 :: Translations: a2334d7: Source Text
 
@@ -2141,7 +2257,7 @@ Backgrounds
 
 :: Translations: a2334d7: Translation
 
-# Insert a translation here.
+Arrière-plans
 
 :: Translations: 501a2ee: Source Text
 
@@ -2149,7 +2265,7 @@ Exposure Limit
 
 :: Translations: 501a2ee: Translation
 
-# Insert a translation here.
+Valeur limite d'exposition
 
 :: Translations: 3e0b7d6: Source Text
 
@@ -2157,7 +2273,7 @@ Minimum
 
 :: Translations: 3e0b7d6: Translation
 
-# Insert a translation here.
+Minimum
 
 :: Translations: 12bad1c: Source Text
 
@@ -2168,4 +2284,8 @@ values.
 
 :: Translations: 12bad1c: Translation
 
-# Insert a translation here.
+Vous pouvez conserver vos paramètres d'interface préférés en les passant en
+tant que paramètres de requête (voir l'URL actuelle affichée par votre
+navigateur web pour la page web actuelle). Les valeurs doivent être valides.
+Dans le cas contraire, elles sont automatiquement remplacées par les valeurs
+par défaut.
