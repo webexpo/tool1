@@ -2,6 +2,8 @@
 
 ## User Visible Changes
 
+* Tool 1 is now available in French.
+
 * Each panel now shows the current mode and panel chosen by the user.
 
 ## Server Changes
