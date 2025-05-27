@@ -47,7 +47,7 @@ server_footer <- function(id, lang) {
             lang <- lang()
 
             tags$div(
-                translate(lang = lang(), "Tool 1"),
+                "Tool 1",
                 translate(lang = lang(), "version"),
                 ui_link(shared_urls$code, default_version[["number"]]),
                 sprintf("(%s)", default_version[["release_date"]]),

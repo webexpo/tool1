@@ -273,7 +273,7 @@ server_panel_descriptive_statistics <- function(
                 c.oel               = parameters()$oel,
                 boxplot.1           = translate(lang = lang, "Measurement Type"),
                 boxplot.2           = translate(lang = lang, "Concentration"),
-                boxplot.3           = translate(lang = lang, "Exposure Limit"),
+                boxplot.3           = translate(lang = lang, "Occupational Exposure Limit"),
                 boxplot.4           = translate(lang = lang, "Censored"),
                 boxplot.5           = translate(lang = lang, "Not Censored"),
                 boxplot.6           = translate(lang = lang, "Measurements"))

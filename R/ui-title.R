@@ -113,9 +113,11 @@ ui_title <- function(id) {
                     )
                 ),
 
-                htmltools::tagAppendAttributes(
+                # Tool 1 is treated as a proper noun
+                # that must not be translated.
+                tags$span(
                     class = "fw-bolder",
-                    shiny::textOutput(ns("name"), tags$span)
+                    "Tool 1"
                 ),
 
                 # The full title is only shown on extra extra large
@@ -188,10 +190,10 @@ ui_title <- function(id) {
 
                             tags$li(
                                 shiny::actionButton(
-                                    inputId = ns("btn_mode_default"),
+                                    inputId = ns("btn_mode_extended"),
                                     class   = "dropdown-item fs-6",
                                     label   = shiny::textOutput(
-                                        outputId  = ns("btn_mode_default_label"),
+                                        outputId  = ns("btn_mode_extended_label"),
                                         container = tags$span
                                     )
                                 )
@@ -199,10 +201,10 @@ ui_title <- function(id) {
 
                             tags$li(
                                 shiny::actionButton(
-                                    inputId = ns("btn_mode_simplified"),
+                                    inputId = ns("btn_mode_express"),
                                     class   = "dropdown-item fs-6",
                                     label   = shiny::textOutput(
-                                        outputId  = ns("btn_mode_simplified_label"),
+                                        outputId  = ns("btn_mode_express_label"),
                                         container = tags$span
                                     )
                                 )
@@ -356,8 +358,8 @@ server_title <- function(id) {
             get_mode()
         }) |>
         shiny::bindEvent(
-            input$btn_mode_default,
-            input$btn_mode_simplified
+            input$btn_mode_extended,
+            input$btn_mode_express
         )
 
         # Update color whenever the related button is clicked.
@@ -427,20 +429,20 @@ server_title <- function(id) {
         # Update the current mode.
         # Each mode has a dedicated button.
         shiny::observe(priority = 10L, {
-            shinyjs::addClass("btn_mode_default", "active")
-            shinyjs::removeClass("btn_mode_simplified", "active")
+            shinyjs::addClass("btn_mode_extended", "active")
+            shinyjs::removeClass("btn_mode_express", "active")
 
-            update_query_string(mode = set_mode("default"))
+            update_query_string(mode = set_mode("extended"))
         }) |>
-        shiny::bindEvent(input$btn_mode_default, ignoreInit = TRUE)
+        shiny::bindEvent(input$btn_mode_extended, ignoreInit = TRUE)
 
         shiny::observe(priority = 10L, {
-            shinyjs::addClass("btn_mode_simplified", "active")
-            shinyjs::removeClass("btn_mode_default", "active")
+            shinyjs::addClass("btn_mode_express", "active")
+            shinyjs::removeClass("btn_mode_extended", "active")
 
-            update_query_string(mode = set_mode("simplified"))
+            update_query_string(mode = set_mode("express"))
         }) |>
-        shiny::bindEvent(input$btn_mode_simplified, ignoreInit = TRUE)
+        shiny::bindEvent(input$btn_mode_express, ignoreInit = TRUE)
 
         # Update the current color mode.
         shiny::observe(priority = 10L, {
@@ -479,11 +481,6 @@ server_title <- function(id) {
         }) |>
         shiny::bindCache(lang())
 
-        output$name <- shiny::renderText({
-            translate(lang = lang(), "Tool 1")
-        }) |>
-        shiny::bindCache(lang())
-
         output$title <- shiny::renderText({
             translate(lang = lang(), "
                 Data Interpretation for One Similar Exposure Group
@@ -506,13 +503,13 @@ server_title <- function(id) {
         }) |>
         shiny::bindCache(lang())
 
-        output$btn_mode_default_label <- shiny::renderText({
-            translate(lang = lang(), "Default")
+        output$btn_mode_extended_label <- shiny::renderText({
+            translate(lang = lang(), "Tool 1 Extended")
         }) |>
         shiny::bindCache(lang())
 
-        output$btn_mode_simplified_label <- shiny::renderText({
-            translate(lang = lang(), "Simplified")
+        output$btn_mode_express_label <- shiny::renderText({
+            translate(lang = lang(), "Tool 1 Express")
         }) |>
         shiny::bindCache(lang())
 

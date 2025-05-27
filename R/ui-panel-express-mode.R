@@ -1,7 +1,7 @@
-#' Simplified Mode Inference Panel Module
+#' Express Mode Inference Panel Module
 #'
 #' @description
-#' This module controls the Simplified Mode Inference panel component. It is
+#' This module controls the Express Mode Inference panel component. It is
 #' currently nested into the application's main [bslib::navset] conceptually
 #' illustrated below.
 #'
@@ -15,7 +15,7 @@
 #' |         |  ---------------------------------  |
 #' |         |  | Active Panel                  |  |
 #' |         |  |                               |  |
-#' |         |  | Simplified Mode Panel         |  |
+#' |         |  | Express Mode Panel            |  |
 #' |         |  | (this module)                 |  |
 #' |         |  | (shown when active)           |  |
 #' |         |  |                               |  |
@@ -42,10 +42,10 @@
 #' @template param-estimates-params
 #'
 #' @returns
-#' [ui_panel_simplified()] returns a `shiny.tag` object
+#' [ui_panel_express()] returns a `shiny.tag` object
 #' (an output of [bslib::nav_panel()]).
 #'
-#' [server_panel_simplified()] returns returns a [shiny::reactive()] object.
+#' [server_panel_express()] returns returns a [shiny::reactive()] object.
 #' It can be called to get the panel's title.
 #'
 #' @note
@@ -57,11 +57,11 @@
 #'
 #' @rdname ui-panel-percentiles
 #' @export
-ui_panel_simplified <- function(id) {
+ui_panel_express <- function(id) {
     ns <- shiny::NS(id)
 
     # Override default height of cards only containing text.
-    # They require less (vertical) space in simplified mode.
+    # They require less (vertical) space in express mode.
     default_card_height_text_only <- "300px"
 
     # Risk Assessment ----------------------------------------------------------
@@ -298,7 +298,7 @@ ui_panel_simplified <- function(id) {
 
 #' @rdname ui-panel-percentiles
 #' @export
-server_panel_simplified <- function(
+server_panel_express <- function(
     id,
     lang,
     parameters,
@@ -373,7 +373,7 @@ server_panel_simplified <- function(
             lang <- lang()
             html(
                 translate(lang = lang, "%s Percentile"),
-                ordinal(default_simplified_inputs$target_perc, lang)
+                ordinal(default_express_inputs$target_perc, lang)
             )
         }) |>
         shiny::bindCache(lang())
@@ -602,7 +602,7 @@ server_panel_simplified <- function(
                             equal to %s.
                         "),
                         as.character(
-                            ordinal(default_simplified_inputs$target_perc, lang)
+                            ordinal(default_express_inputs$target_perc, lang)
                         ),
                         tags$strong(
                             sprintf("%s [%s - %s]", perc$est, perc$lcl, perc$ucl)
@@ -785,7 +785,7 @@ server_panel_simplified <- function(
                     The latter should be lower than the threshold shown as a
                     black dashed line.
                 "),
-                ordinal(default_simplified_inputs$target_perc, lang)
+                ordinal(default_express_inputs$target_perc, lang)
             )
         }) |>
         # Since target_perc is an internal constant,

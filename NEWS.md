@@ -4,6 +4,9 @@
 
 * Tool 1 is now available in French.
 
+* Mode names were revamped: `default` is now `extended` and `simplified` is now
+  `express`. Labels were renamed accordingly.
+
 * Each panel now shows the current mode and panel chosen by the user.
 
 ## Server Changes
@@ -11,12 +14,19 @@
 * All `server_panel_*()` functions now returns a `shiny::reactive()` object
   that can be called to get the panel's underlying title.
 
+* `The Simplified Mode Inference Panel Module was renamed to Express Mode
+  Inference Panel Module. Functions, scripts, and identifiers were changed
+  accordingly.
+
 * The `README` now contains clear instructions to follow when adding a new
   supported language.
 
 ## Fixes
 
 * Some piece of text were not wrapped in `translate()` calls.
+
+* Occupational Exposure Limit was sometimes referred to as Exposure Limit. The
+  former (or its abbreviation, OEL) is now always used for clarity.
 
 # Tool 1 version `5.0.0`
 

@@ -348,7 +348,7 @@ ui_panel_intro_accordion <- function(lang = "") {
                 Tool 1 is an open-source and free-to-use web application
                 that facilitates the  interpretation of industrial hygiene
                 measurements, particularly in assessing compliance with
-                occupational exposure limits (OELs).
+                occupational exposure limits (OEL).
             ")),
 
             tags$p(translate(lang = lang, "
@@ -711,10 +711,10 @@ ui_panel_usage_accordion <- function(lang = "") {
                     class = "list-group-item",
                     html(
                         translate(lang = lang, "
-                            The %s mode corresponds to the standard version
+                            The %s mode corresponds to the default version
                             of Tool 1. All %s panels are shown.
                         "),
-                        tags$em(translate(lang = lang, "default")),
+                        ui_element(translate(lang = lang, "Extended")),
                         ui_element(translate(lang = lang, "Statistical Inference"))
                     )
                 ),
@@ -729,7 +729,7 @@ ui_panel_usage_accordion <- function(lang = "") {
                             called Tool 1 Express (Simplified) in earlier
                             versions of Tool 1 and Expostats.
                         "),
-                        tags$em(translate(lang = lang, "simplified")),
+                        ui_element(translate(lang = lang, "Express")),
                         ui_element(translate(lang = lang, "Statistical Inference"))
                     )
                 )
@@ -1027,7 +1027,7 @@ ui_panel_metho_accordion <- function(lang = "") {
             tags$p(
                 html(
                     translate(lang = lang, "
-                        The decision scheme adopted for the Simplified mode of
+                        The decision scheme adopted for the Express mode of
                         Tool 1 was elaborated during the creation of the AIHA
                         video series %s. In that scheme, reaching 95%% is ideal
                         and yields an %s situation. Not reaching 95%% confidence

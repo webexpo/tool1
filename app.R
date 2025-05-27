@@ -69,8 +69,7 @@
 #'
 #' @export
 ui <- bslib::page_sidebar(
-    # lang and window_title are both updated
-    # by server() based on the chosen lang.
+    # lang is updated by server() based on the chosen lang.
     lang         = default_lang,
     window_title = "Expostats - Tool 1",
     theme        = bslib::bs_theme(5L, "shiny"),
@@ -153,11 +152,11 @@ ui <- bslib::page_sidebar(
         ui_panel_descriptive_statistics("panel_stats"),
 
         # This panel is hidden by default.
-        # It is shown if mode() returns "simplified".
-        ui_panel_simplified("panel_simplified"),
+        # It is shown if mode() returns "express".
+        ui_panel_express("panel_express"),
 
         # Group other default inference panels.
-        # It is shown by default and hidden if mode() returns "simplified".
+        # It is shown by default and hidden if mode() returns "express".
         bslib::nav_menu(
             value = "panels_menu",
             title = shiny::textOutput("panels_menu_title", tags$span),
@@ -270,8 +269,8 @@ server <- function(input, output, session) {
         data_sample = data_sample
     )
 
-    panel_simplified_title <- server_panel_simplified(
-        id                = "panel_simplified",
+    panel_express_title <- server_panel_express(
+        id                = "panel_express",
         lang              = lang,
         parameters        = calc_parameters,
         bayesian_analysis = bayesian_analysis,
@@ -315,7 +314,7 @@ server <- function(input, output, session) {
 
     output$panel_title <- shiny::renderText({
         switch(input$panel_active,
-            panel_simplified  = panel_simplified_title(),
+            panel_express     = panel_express_title(),
             panel_stats       = panel_stats_title(),
             panel_fraction    = panel_fraction_title(),
             panel_percentiles = panel_percentiles_title(),
@@ -326,40 +325,30 @@ server <- function(input, output, session) {
 
     output$panel_title_mode <- shiny::renderText({
         switch(mode(),
-            default    = translate(lang = lang(), "Default"),
-            simplified = translate(lang = lang(), "Simplified")
+            extended = translate(lang = lang(), "Tool 1 Extended"),
+            express  = translate(lang = lang(), "Tool 1 Express")
         )
     }) |>
     shiny::bindCache(mode(), lang())
 
     # Observers ----------------------------------------------------------------
 
-    # Set the lang attribute of the root <html>
-    # element and translate the title of the
-    # browser's tab. See www/main.js for more
-    # information.
+    # Update the lang attribute of the root <html> tag.
+    # See www/main.js for more information.
     shiny::observe(priority = 1L, {
-        lang <- lang()
-
-        # Update the window's title (what the browser's tab displays).
-        session$sendCustomMessage("update_page_lang", lang)
-
-        # Update the lang attribute of the root <html> tag.
-        session$sendCustomMessage(
-            "update_window_title",
-            sprintf("Expostats - %s", translate(lang = lang, "Tool 1")))
+        session$sendCustomMessage("update_page_lang", lang())
     }) |>
     shiny::bindEvent(lang())
 
     # Toggle panel(s) based on the current mode.
     shiny::observe({
         state <- switch(mode(),
-            default = c(
+            extended = c(
                 show = "panels_menu",
-                hide = "panel_simplified"
+                hide = "panel_express"
             ),
-            simplified = c(
-                show = "panel_simplified",
+            express = c(
+                show = "panel_express",
                 hide = "panels_menu"
             )
         )

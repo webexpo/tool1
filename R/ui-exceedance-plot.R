@@ -163,9 +163,9 @@ server_exceedance_plot <- function(id, lang, parameters, num_results) {
                 This plot illustrates the proportion of exposures that
                 would be above the OEL in a fictional sample of one hundred
                 measurements. Each flask represents an exposure value. Those
-                that are above the exposure limit are colored in red. This can
-                be changed according to your needs using the sidebar on the
-                right. Four variants of the Exceedance Plot are available.
+                that are above the OEL are colored in red. This can be changed
+                according to your needs using the sidebar on the right. Four
+                variants of the Exceedance Plot are available.
             ")
         }) |>
         shiny::bindCache(lang())
@@ -379,7 +379,7 @@ server_exceedance_plot_sidebar <- function(id, lang) {
         shiny::bindCache(lang())
 
         color_risk_label <- color_bg_threshold_label <- shiny::reactive({
-            translate(lang = lang(), "Above Exposure Limit:")
+            translate(lang = lang(), "Above the Occupational Exposure Limit:")
         }) |>
         shiny::bindCache(lang())
 
@@ -395,7 +395,7 @@ server_exceedance_plot_sidebar <- function(id, lang) {
         color_no_risk_tooltip_text <- shiny::reactive({
             translate(lang = lang(), "
                 Use this value to change the color of exposures that are
-                below the exposure limit.
+                below the occupational exposure limit.
             ")
         }) |>
         shiny::bindEvent(lang())
@@ -403,23 +403,23 @@ server_exceedance_plot_sidebar <- function(id, lang) {
         color_risk_tooltip_text <- shiny::reactive({
             translate(lang = lang(), "
                 Use this value to change the color of exposures that are
-                above the exposure limit.
+                above the occupational exposure limit.
             ")
         }) |>
         shiny::bindEvent(lang())
 
         color_bg_tooltip_text <- shiny::reactive({
             translate(lang = lang(), "
-                Use this value to change the background color of
-                exposures those that are below the exposure limit.
+                Use this value to change the background color of exposures
+                that are below the occupational exposure limit.
             ")
         }) |>
         shiny::bindEvent(lang())
 
         color_bg_threshold_tooltip_text <- shiny::reactive({
             translate(lang = lang(), "
-                Use this value to change the background color of
-                exposures those that are above the exposure limit.
+                Use this value to change the background color of exposures
+                that are above the occupational exposure limit.
             ")
         }) |>
         shiny::bindEvent(lang())

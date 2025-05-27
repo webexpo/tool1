@@ -87,7 +87,7 @@ fun.qqplot <-function( data.simply.imputed , notcensored ,
 fun.boxplot <-function( data.simply.imputed , notcensored , c.oel,
                         boxplot.1 = "Measurement Type",
                         boxplot.2 = "Concentration",
-                        boxplot.3 = "Exposure Limit",
+                        boxplot.3 = "Occupational Exposure Limit",
                         boxplot.4 = "Censored",
                         boxplot.5 = "Not Censored",
                         boxplot.6 = "Measurements") {

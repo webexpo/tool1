@@ -62,8 +62,8 @@ default_n_bayes_iter <- 25000L
 # Default number of significant digits to keep.
 default_n_digits <- 3L
 
-# Default internal values for inputs in simplified mode.
-default_simplified_inputs <- list(
+# Default internal values for inputs in express mode.
+default_express_inputs <- list(
     conf           = 90,
     psi            = 30,
     frac_threshold = 5,

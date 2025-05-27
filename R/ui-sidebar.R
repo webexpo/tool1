@@ -201,7 +201,7 @@ server_sidebar <- function(id, lang, mode, panel_active) {
         server_footer("footer", lang)
 
         oel_label <- shiny::reactive({
-            translate(lang = lang(), "Exposure Limit:")
+            translate(lang = lang(), "Occupational Exposure Limit (OEL):")
         }) |>
         shiny::bindCache(lang())
 
@@ -232,8 +232,8 @@ server_sidebar <- function(id, lang, mode, panel_active) {
 
         oel_tooltip_text <- shiny::reactive({
             translate(lang = lang(), "
-                Use the exposure limit to assess overexposure. It must
-                have the same unit as the measurement data.
+                Use the occupational exposure limit to assess overexposure. It
+                must have the same unit as the measurement data.
             ")
         }) |>
         shiny::bindCache(lang())
@@ -262,8 +262,8 @@ server_sidebar <- function(id, lang, mode, panel_active) {
 
         frac_threshold_tooltip_text <- shiny::reactive({
             translate(lang = lang(), "
-                Use this value as an acceptable proportion of exposures
-                above the exposure limit (OEL). It must be between 0% and
+                Use this value as an acceptable proportion of exposures above
+                the occupational exposure limit. It must be between 0% and
                 100%. The traditional default value is 5%.
             ")
         }) |>
@@ -365,13 +365,13 @@ server_sidebar <- function(id, lang, mode, panel_active) {
         }) |>
         shiny::bindEvent(panel_active())
 
-        # Show inputs oel and data only if mode is simplified.
+        # Show inputs oel and data only if mode is express.
         shiny::observe({
             mode <- mode()
 
             # Since inputs are shown by default, operator != is used.
-            shinyjs::toggle("conf", condition = { mode != "simplified" })
-            shinyjs::toggle("psi",  condition = { mode != "simplified" })
+            shinyjs::toggle("conf", condition = { mode != "express" })
+            shinyjs::toggle("psi",  condition = { mode != "express" })
         }) |>
         shiny::bindEvent(mode())
 
@@ -399,12 +399,12 @@ server_sidebar <- function(id, lang, mode, panel_active) {
         return(
             shiny::reactive({
                 switch(mode(),
-                    simplified = c(
+                    express = c(
                         oel  = input$oel,
                         data = input$data,
-                        default_simplified_inputs
+                        default_express_inputs
                     ),
-                    # Default case (mode == "default").
+                    # Default case (mode == "extended").
                     list(
                         oel            = input$oel,
                         conf           = input$conf,
