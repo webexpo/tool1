@@ -5,8 +5,9 @@
 #'
 #' @param href A character string. A Uniform Resource Locator (URL).
 #'
-#' @param tags A list of tag functions used to construct the resulting
-#'   UI element.
+#' @param style A character string equal to `"primary"`, `"secondary"`,
+#'   `"success"`, `"danger"`, `"warning"`, `"info"`, `"light"`, `"dark"`,
+#'   or `"emphasis"`.
 #'
 #' @param emails A character vector.
 #'
@@ -20,7 +21,7 @@
 #'   [bsicons::bs_icon()].
 #'
 #' @param ... Further tag attributes (named arguments) and children (unnamed
-#'   arguments) passed to tag functions of package htmltools.
+#'   arguments) passed to various tag functions of package htmltools.
 #'
 #' @returns
 #' A `shiny.tag` object.
@@ -29,28 +30,63 @@
 #'
 #' @rdname ui-helpers
 #' @export
-ui_link <- function(href = "", ..., tags = htmltools::tags) {
+ui_link <- function(
+    href = "",
+    ...,
+    style = c(
+        "primary",
+        "secondary",
+        "success",
+        "danger",
+        "warning",
+        "info",
+        "light",
+        "dark",
+        "emphasis"
+    ))
+{
+    style <- match.arg(style)
     return(
-        tags$a(
-            class  = "icon-link icon-link-hover pe-1",
+        htmltools::a(
+            class  = sprintf("link-%s link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover", style),
             href   = href,
             target = "_blank",
-            ...,
-            bsicons::bs_icon("arrow-right", a11y = "deco")
+            ...
         )
     )
 }
 
 #' @rdname ui-helpers
 #' @export
-ui_link_mailto <- function(emails = character(), ..., tags = htmltools::tags) {
+ui_link_mailto <- function(
+    emails = character(),
+    ...,
+    style = c(
+        "primary",
+        "secondary",
+        "success",
+        "danger",
+        "warning",
+        "info",
+        "light",
+        "dark",
+        "emphasis"
+    ))
+{
+    style <- match.arg(style)
     return(
-        tags$a(
-            class  = "icon-link icon-link-hover pe-1",
-            href   = sprintf("mailto:%s", paste0(emails, collapse = ",")),
-            target = "_blank",
-            ...,
-            bsicons::bs_icon("envelope", a11y = "deco")
+        htmltools::span(
+            ui_link(
+                style = style,
+                sprintf("mailto:%s", paste0(emails, collapse = ",")),
+                ...
+            ),
+
+            htmltools::span(
+                .noWS = c("before", "after", "outside", "after-begin", "before-end"),
+                class = sprintf("text-%s ps-1", style),
+                bsicons::bs_icon("envelope", a11y = "deco")
+            )
         )
     )
 }
@@ -60,16 +96,18 @@ ui_link_mailto <- function(emails = character(), ..., tags = htmltools::tags) {
 ui_element <- function(
     title      = "",
     icon_name  = "",
-    icon_class = NULL,
-    tags       = htmltools::tags)
+    icon_class = NULL)
 {
     return(
-        tags$span(
-            class = "text-primary fw-bold px-1",
+        htmltools::span(
+            .noWS = c("before", "after", "outside", "after-begin", "before-end"),
+            class = "text-primary fw-bold",
 
             if (!is.null(icon_name) && nzchar(icon_name)) {
-                tags$span(
-                    class = "pe-1",
+                htmltools::span(
+                    .noWS = c("before", "after", "outside", "after-begin", "before-end"),
+                    class = "px-1",
+
                     bsicons::bs_icon(
                         name  = icon_name,
                         a11y  = "deco",
