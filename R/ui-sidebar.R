@@ -43,7 +43,7 @@ ui_sidebar <- function(id) {
     ns <- shiny::NS(id)
     ui <- bslib::sidebar(
         width = "400px",
-        gap   = "1.25rem",
+        gap   = "0.75rem",
         open  = list(
             mobile  = "closed",
             desktop = "open"
@@ -179,10 +179,9 @@ ui_sidebar <- function(id) {
 
         # Footer ---------------------------------------------------------------
 
-        tags$div(
-            class = "border-top pt-3",
-            ui_footer(ns("footer"))
-        )
+        tags$hr(class = "m-0 mb-2"),
+
+        ui_footer(ns("footer"))
     )
 
     return(ui)
