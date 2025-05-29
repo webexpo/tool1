@@ -525,13 +525,23 @@ ui_panel_parameters_accordion <- function(lang = "") {
                 as expected.
             ")),
 
+            bslib::card(
+                class = "border-danger bg-danger-subtle mx-5",
+                fill  = FALSE,
 
-            tags$p(translate(lang = lang, "
-                Descriptive statistics should not be viewed as useful estimates
-                of the underlying exposure distribution. Use the Statistical
-                Inference panels for that purpose. These provide information
-                inferred from Bayesian models.
-            "))
+                bslib::card_body(
+                    tags$p(
+                        class = "text-danger text-center",
+                        translate(lang = lang, "
+                            Descriptive statistics should not be viewed as
+                            useful estimates of the underlying exposure
+                            distribution. Use the Statistical Inference panels
+                            for that purpose. These provide information inferred
+                            from Bayesian models.
+                        ")
+                    )
+                )
+            )
         ),
 
         ## Panel: Can measurements be censored? --------------------------------
