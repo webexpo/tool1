@@ -433,8 +433,8 @@ server_panel_arithmetic_mean <- function(
         output$risk_meter_plot_desc <- shiny::renderText({
             translate(lang = lang(), "
                 This risk meter shows the probability of the exposure being too
-                high when compared to the occupational exposure limit. The red
-                zone indicates a problematic exposure.
+                high when compared to the OEL. The red zone indicates a
+                problematic exposure.
             ")
         }) |>
         shiny::bindCache(lang())
@@ -541,7 +541,7 @@ server_panel_arithmetic_mean <- function(
                 assuming 250 exposure measurements have been collected. If
                 the measurements represent 8-hour TWA (Time-Weighted Average)
                 values, this approximately represents a full year of exposure.
-                The OEL is shown as a red dotted line and the point estimate
+                The OEL is shown as a dotted red line and the point estimate
                 of the arithmetic mean as a continuous green line.
             ")
         }) |>
@@ -568,7 +568,7 @@ server_panel_arithmetic_mean <- function(
             translate(lang = lang(), "
                 This plot shows the probability density function of the
                 estimated distribution of exposures. The OEL is shown as a
-                red dotted line and the point estimate of the arithmetic mean
+                dotted red line and the point estimate of the arithmetic mean
                 as a continuous green line.
             ")
         }) |>

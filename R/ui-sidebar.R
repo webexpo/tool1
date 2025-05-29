@@ -232,8 +232,8 @@ server_sidebar <- function(id, lang, mode, panel_active) {
 
         oel_tooltip_text <- shiny::reactive({
             translate(lang = lang(), "
-                Use the occupational exposure limit to assess overexposure. It
-                must have the same unit as the measurement data.
+                Use this value to assess overexposure. It must have the same
+                unit as the measurement data.
             ")
         }) |>
         shiny::bindCache(lang())
@@ -263,8 +263,8 @@ server_sidebar <- function(id, lang, mode, panel_active) {
         frac_threshold_tooltip_text <- shiny::reactive({
             translate(lang = lang(), "
                 Use this value as an acceptable proportion of exposures above
-                the occupational exposure limit. It must be between 0% and
-                100%. The traditional default value is 5%.
+                the OEL. It must be between 0% and 100%. The traditional default
+                value is 5%.
             ")
         }) |>
         shiny::bindCache(lang())

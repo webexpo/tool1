@@ -252,8 +252,7 @@ server_modal_faq <- function(id, lang) {
 
         btn_open_tooltip_text <- shiny::reactive({
             translate(lang = lang(), "
-                Frequently Asked Questions. Get additional information on
-                Tool 1.
+                Get additional information on Tool 1.
             ")
         }) |>
         shiny::bindCache(lang())
@@ -279,7 +278,7 @@ server_modal_faq <- function(id, lang) {
         shiny::bindCache(lang())
 
         output$panel_metho_title <- shiny::renderText({
-            translate(lang = lang(), "Methodological Background")
+            translate(lang = lang(), "Methodology")
         }) |>
         shiny::bindCache(lang())
 
@@ -359,7 +358,7 @@ ui_panel_intro_accordion <- function(lang = "") {
                 the Dutch Society for Occupational Hygiene (NVVA),
                 the French Institut national de recherche et de sécurité (INRS),
                 the National Institute for Occupational Safety and Health (NIOSH),
-                and the European Standards Organization.
+                and the European Committee for Standardization (CEN).
             "))
         ),
 
@@ -423,24 +422,12 @@ ui_panel_intro_accordion <- function(lang = "") {
             tags$p(
                 html(
                     translate(lang = lang, "
-                        If you have a GitHub account, you may submit bugs,
-                        request features, and provide feedback by creating
-                        an issue on %s.
+                        You may submit bugs, request features, and provide
+                        feedback on %s if you have an account. You may also
+                        send an email to the current maintainers of Tool 1:
+                        %s and %s.
                     "),
-                    ui_link(shared_urls$code, "GitHub")
-                )
-            ),
-
-            tags$p(
-                html(
-                    translate(lang = lang, "
-                        Otherwise, you may send an email to the current
-                        maintainers of Tool 1: %s and %s. The content of your
-                        email will be used to create an issue on GitHub on your
-                        behalf. The objective is twofold: be transparent with
-                        the problems of Tool 1 and have a robust way to track
-                        and discuss these issues publicly.
-                    "),
+                    ui_link(shared_urls$code, "GitHub"),
                     ui_link_mailto(
                         default_maintainers_emails[["jerome_lavoue"]],
                         "Jérôme Lavoué"
@@ -535,8 +522,9 @@ ui_panel_parameters_accordion <- function(lang = "") {
                 Use the About My Measurements panel. It provides descriptive
                 statistics, a quantile-quantile plot, and a box and whiskers
                 plot that can be used to ensure that measurements were parsed
-                as expected and successfully imported.
+                as expected.
             ")),
+
 
             tags$p(translate(lang = lang, "
                 Descriptive statistics should not be viewed as useful estimates
@@ -591,13 +579,24 @@ ui_panel_parameters_accordion <- function(lang = "") {
             title = translate(lang = lang, "How are censored measurements imputed?"),
 
             tags$p(translate(lang = lang, "
-                The About My Measurements panel and Statistical Inference panels
-                treat censored measurements differently. In the latter,
-                non-detects are interpreted as such by the Bayesian model. The
-                latter natively extracts and uses the corresponding information.
-                There is no imputation and no creation of arbitrary values. See
-                %s for an example.
+                This depends on the chosen panel.
             ")),
+
+            tags$p(
+                html(
+                    translate(lang = lang, "
+                        In all Statistical Inference panels, non-detects as
+                        interpreted as such by the Bayesian model. The latter
+                        natively extracts and uses the corresponding information.
+                        There is no imputation and no creation of arbitrary
+                        values. See %s for an example.
+                    "),
+                    ui_link(
+                        "https://academic.oup.com/annweh/article-abstract/60/1/56/2196069",
+                        "Huynh et al. (2015)"
+                    )
+                )
+            ),
 
             tags$p(translate(lang = lang, "
                 In the About My Measurements panel, censored measurements are
@@ -672,7 +671,8 @@ ui_panel_usage_accordion <- function(lang = "") {
                     class = "list-group-item",
                     translate(lang = lang, "
                         The extended mode corresponds to the default version
-                        of Tool 1. All Statistical Inference panels are shown.
+                        of Tool 1. All Statistical Inference panels are
+                        available.
                     ")
                 ),
 
@@ -719,9 +719,9 @@ ui_panel_usage_accordion <- function(lang = "") {
             title = translate(lang = lang, "Why is there no shown output initially?"),
 
             tags$p(translate(lang = lang, "
-                No outputs are shown until inputs are submitted. Some static
-                elements, such as text and icons, are pre-rendered for
-                optimization purposes.
+                No outputs are shown until calculation parameters are submitted.
+                Some static elements, such as text and icons, are pre-rendered
+                for optimization purposes.
             "))
         ),
 
@@ -731,7 +731,8 @@ ui_panel_usage_accordion <- function(lang = "") {
             title = translate(lang = lang, "How can I generate results?"),
 
             tags$p(translate(lang = lang, "
-                Locate the primary sidebar on the left and follow these steps.
+                Locate the Calculation Parameters sidebar on the left and
+                follow these steps.
             ")),
 
             tags$ol(
@@ -748,9 +749,9 @@ ui_panel_usage_accordion <- function(lang = "") {
                 tags$li(
                     class = "list-group-item",
                     translate(lang = lang, "
-                        Enter other parameters. Some inputs are specific to
-                        certain panels and are initially hidden. They are
-                        shown when an Statistical Inference panel is chosen.
+                        Enter other parameters. Some are specific to certain
+                        panels and are hidden. They are only shown when their
+                        corresponding Statistical Inference panel is chosen.
                     "),
                 ),
 
@@ -962,23 +963,17 @@ ui_panel_metho_accordion <- function(lang = "") {
                     translate(lang = lang, "
                         The decision scheme adopted for the Express mode of
                         Tool 1 was elaborated during the creation of the AIHA
-                        video series %s. In that scheme, reaching 95%% is ideal
-                        and yields an %s situation. Not reaching 95%% confidence
-                        but reaching 70%% confidence makes the situation %s. Not
-                        reaching 70%% confidence that there is no overexposure
-                        makes the situation %s.
+                        video series %s (English only). In that scheme, reaching
+                        95%% is ideal and yields an acceptable situation. Not
+                        reaching 95%% confidence but reaching 70%% confidence
+                        makes the situation tolerable. Not reaching 70%%
+                        confidence that there is no overexposure makes the
+                        situation problematic.
                     "),
                     ui_link(
                         shared_urls$aiha_videos,
-                        tags$em(
-                            translate(lang = lang, "
-                                Making Accurate Exposure Risk Decisions
-                            ")
-                        )
-                    ),
-                    tags$em(translate(lang = lang, "acceptable")),
-                    tags$em(translate(lang = lang, "tolerable")),
-                    tags$em(translate(lang = lang, "problematic"))
+                        "Making Accurate Exposure Risk Decisions"
+                    )
                 )
             ),
 
@@ -1018,10 +1013,10 @@ ui_panel_metho_accordion <- function(lang = "") {
                 html(
                     translate(lang = lang, "
                         The Bayesian models and data interpretation procedures
-                        used by this application are derived from current best
-                        practices in industrial hygiene, as reviewed in the
-                        the following accompanying scientifice paper. Further
-                        details and references are also available on %s.
+                        used by Tool 1 are derived from current best practices
+                        in industrial hygiene, as reviewed in the the following
+                        scientifice paper. Further details and references are
+                        also available on %s.
                     "),
                     ui_link(shared_urls$expostats[[lang]], "expostats.ca")
                 )
@@ -1042,7 +1037,7 @@ ui_panel_metho_accordion <- function(lang = "") {
                 Yes. Below are four videos made by the authors of Expostats.
                 The last two stem from a 6-hour-long professional development
                 course (PDC) made in 2024 for the Indonesian Industrial Hygiene
-                Association.
+                Association (IIHA).
             ")),
 
             tags$ul(
@@ -1052,7 +1047,11 @@ ui_panel_metho_accordion <- function(lang = "") {
                     class = "list-group-item",
                     ui_link(
                         "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?pid=0a7847f9-66be-4efb-9752-aed201487e1b",
-                        tags$em("Bayesian Statistics for Non-Statisticians Part 1")
+                        "Bayesian Statistics for Non-Statisticians Part 1"
+                    ),
+                    tags$span(
+                        class = "ps-1",
+                        translate(lang = lang, "(English only)")
                     )
                 ),
 
@@ -1060,7 +1059,11 @@ ui_panel_metho_accordion <- function(lang = "") {
                     class = "list-group-item",
                     ui_link(
                         "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?pid=0a7847f9-66be-4efb-9752-aed201487e1b&id=68aeaea6-3186-44fc-80e0-aeb300b2d326&advance=true",
-                        tags$em("Bayesian Statistics for Non-Statisticians Part 2")
+                        "Bayesian Statistics for Non-Statisticians Part 2"
+                    ),
+                    tags$span(
+                        class = "ps-1",
+                        translate(lang = lang, "(English only)")
                     )
                 ),
 
@@ -1068,7 +1071,11 @@ ui_panel_metho_accordion <- function(lang = "") {
                     class = "list-group-item",
                     ui_link(
                         "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?id=39e5beaa-8033-4430-8991-b2de0147b366",
-                        tags$em("Statistical Background")
+                        "Statistical Background"
+                    ),
+                    tags$span(
+                        class = "ps-1",
+                        translate(lang = lang, "(English only)")
                     )
                 ),
 
@@ -1076,7 +1083,11 @@ ui_panel_metho_accordion <- function(lang = "") {
                     class = "list-group-item",
                     ui_link(
                         "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?id=21e20e15-24aa-4946-8361-b2de0147bae3",
-                        tags$em("Bayesian Statistics & Overview of Current Recommendations")
+                        "Bayesian Statistics & Overview of Current Recommendations"
+                    ),
+                    tags$span(
+                        class = "ps-1",
+                        translate(lang = lang, "(English only)")
                     )
                 )
             ),

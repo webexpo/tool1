@@ -311,7 +311,7 @@ ui_exceedance_plot_sidebar <- function(id) {
                     value      = "gray70",
                     returnName = TRUE,
                     palette    = "limited"
-                )  |>
+                ) |>
                 bslib::tooltip(id = ns("color_bg_tooltip"), ""),
 
                 colourpicker::colourInput(
@@ -337,7 +337,7 @@ server_exceedance_plot_sidebar <- function(id, lang) {
 
     server <- function(input, output, session) {
         accordion_panel_exposure_title <- shiny::reactive({
-            translate(lang = lang(), "Exposures")
+            translate(lang = lang(), "Flasks")
         }) |>
         shiny::bindCache(lang())
 
@@ -364,7 +364,7 @@ server_exceedance_plot_sidebar <- function(id, lang) {
                     "plot4"
                 ),
                 names = c(
-                    translate(lang = lang, "Default"),
+                    translate(lang = lang, "Two plots (no uncertainty)"),
                     translate(lang = lang, "Two plots (with uncertainty)"),
                     translate(lang = lang, "Single plot (no uncertainty)"),
                     translate(lang = lang, "Single plot (with uncertainty)")
@@ -374,20 +374,19 @@ server_exceedance_plot_sidebar <- function(id, lang) {
         shiny::bindCache(lang())
 
         color_no_risk_label <- color_bg_label <- shiny::reactive({
-            translate(lang = lang(), "Default:")
+            translate(lang = lang(), "Below the OLE:")
         }) |>
         shiny::bindCache(lang())
 
         color_risk_label <- color_bg_threshold_label <- shiny::reactive({
-            translate(lang = lang(), "Above the Occupational Exposure Limit:")
+            translate(lang = lang(), "Above the OLE:")
         }) |>
         shiny::bindCache(lang())
 
         variant_tooltip_text <- shiny::reactive({
             translate(lang = lang(), "
-                Use this value to change how the information is displayed.
-                See the footer below for additional details on the chosen
-                variant.
+                Use this value to change the displayed plot. See the footer
+                below for additional details on it.
             ")
         }) |>
         shiny::bindEvent(lang())

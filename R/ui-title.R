@@ -469,14 +469,14 @@ server_title <- function(id) {
 
         btn_color_tooltip_text <- shiny::reactive({
             translate(lang = lang(), "
-                Toggle the current color scheme (light or dark).
+                Toggle the current theme of the interface (light or dark).
             ")
         }) |>
         shiny::bindCache(lang())
 
         btn_code_tooltip_text <- shiny::reactive({
             translate(lang = lang(), "
-                See the source code of Tool 1 on GitHub.
+                See the source code of Tool 1 on GitHub (English only).
             ")
         }) |>
         shiny::bindCache(lang())
@@ -518,11 +518,11 @@ server_title <- function(id) {
             links <- list(
                 list(
                     href  = shared_urls$tool2[[lang]],
-                    label = translate(lang = lang, "Tool 2")
+                    label = "Tool 2"
                 ),
                 list(
                     href  = shared_urls$tool3[[lang]],
-                    label = translate(lang = lang, "Tool 3")
+                    label = "Tool 3"
                 ),
                 list(
                     href  = shared_urls$expostats[[lang]],

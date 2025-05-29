@@ -412,8 +412,8 @@ server_panel_exceedance_fraction <- function(
         output$risk_meter_plot_desc <- shiny::renderText({
             translate(lang = lang(), "
                 This risk meter shows the probability of the exposure being too
-                high when compared to the occupational exposure limit. The red
-                zone indicates a problematic exposure.
+                high when compared to the OEL. The red zone indicates a
+                problematic exposure.
             ")
         }) |>
         shiny::bindCache(lang())
@@ -568,6 +568,9 @@ server_panel_exceedance_fraction <- function(
         })
 
         output$risk_band_plot_desc <- shiny::renderUI({
+            # These variables are used as semantic sugar
+            # because it may not be ovious what the source
+            # text refers to at first glance.
             frac_threshold <- parameters()$frac_threshold
             lower_limit <- as_percentage(frac_threshold / 10L)
             upper_limit <- as_percentage(frac_threshold)
@@ -582,7 +585,7 @@ server_panel_exceedance_fraction <- function(
                     (3) greater than %s.
                     The red column represents the probability of an
                     overexposure. The latter should be lower than the
-                    threshold shown as a black dashed line.
+                    threshold (black dashed line).
                 "),
                 lower_limit,
                 upper_limit

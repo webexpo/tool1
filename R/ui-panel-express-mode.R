@@ -462,13 +462,11 @@ server_panel_express <- function(
                             overexposure (the overexposure risk, which is the
                             probability that the overexposure criterion is met)
                             follows the recommendation of the AIHA video series
-                            %s.
+                            %s (English only).
                         "),
                         ui_link(
                             shared_urls$aiha_videos,
-                            tags$em(translate(lang = lang, "
-                                Making Accurate Exposure Risk Decisions
-                            "))
+                            "Making Accurate Exposure Risk Decisions"
                         )
                     )
                 ),
@@ -713,8 +711,8 @@ server_panel_express <- function(
         output$risk_meter_plot_desc <- shiny::renderText({
             translate(lang = lang(), "
                 This risk meter shows the probability of the exposure being too
-                high when compared to the occupational exposure limit. The red
-                zone indicates a problematic exposure.
+                high when compared to the OEL. The red zone indicates a
+                problematic exposure.
             ")
         }) |>
         shiny::bindCache(lang())
