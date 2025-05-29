@@ -31,6 +31,7 @@ ui_link <- function(href = "", ..., color = "primary") {
     color <- ui_bs_color(color)
     return(
         htmltools::a(
+            .noWS  = c("before", "after", "outside", "after-begin", "before-end"),
             class  = sprintf("link-%s link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover", color),
             href   = href,
             target = "_blank",
