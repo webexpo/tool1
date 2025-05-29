@@ -34,11 +34,10 @@ tags <- htmltools::tags
 #'
 #' @export
 html <- function(template = "", ..., ignore = default_missing_translation_msg) {
-    text <- if (identical(template, ignore)) {
-        ignore
-    } else {
-        do.call(sprintf, list(fmt = template, ...))
+    if (identical(template, ignore)) {
+        return(htmltools::HTML(ignore))
     }
 
-    return(htmltools::HTML(text))
+    str <- do.call(sprintf, c(fmt = template, lapply(list(...), as.character)))
+    return(htmltools::HTML(str))
 }
