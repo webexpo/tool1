@@ -5,7 +5,7 @@
 #'
 #' @usage
 #' ## In interactive sessions
-#' .intl()
+#' .find()
 #'
 #' @note
 #' transltr does not yet have a robust mechanism to easily update existing
