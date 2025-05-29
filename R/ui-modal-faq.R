@@ -471,16 +471,11 @@ ui_panel_parameters_accordion <- function(lang = "") {
         bslib::accordion_panel(
             title = translate(lang = lang, "How should measurements be formatted?"),
 
-            tags$p(
-                html(
-                    translate(lang = lang, "
-                        Measurements are entered in the Measurements text area
-                        of the %s sidebar. Failing to follow the following rules
-                        below will inevitably lead to undefined behavior.
-                    "),
-                    ui_element(translate(lang = lang, "Calculation Parameters"))
-                )
-            ),
+            tags$p(translate(lang = lang, "
+                Measurements are entered in the Measurements text area of the
+                Calculation Parameters sidebar. Failing to follow the following
+                rules below will inevitably lead to undefined behavior.
+            ")),
 
             tags$ol(
                 class = "list-group list-group-flush px-2",
@@ -536,29 +531,19 @@ ui_panel_parameters_accordion <- function(lang = "") {
                 How can I verify that my measurements were successfully imported?
             "),
 
-            tags$p(
-                html(
-                    translate(lang = lang, "
-                        Use the %s panel. It provides descriptive statistics, a
-                        quantile-quantile plot, and a box and whiskers plot that
-                        can be used to ensure that measurements were parsed as
-                        expected and successfully imported.
-                    "),
-                    ui_element(translate(lang = lang, "About My Measurements"))
-                )
-            ),
+            tags$p(translate(lang = lang, "
+                Use the About My Measurements panel. It provides descriptive
+                statistics, a quantile-quantile plot, and a box and whiskers
+                plot that can be used to ensure that measurements were parsed
+                as expected and successfully imported.
+            ")),
 
-            tags$p(
-                html(
-                    translate(lang = lang, "
-                        Descriptive statistics should not be viewed as useful
-                        estimates of the underlying exposure distribution. Use
-                        the %s panels for that purpose. These provide
-                        information inferred from Bayesian models.
-                    "),
-                    ui_element(translate(lang = lang, "Statistical Inference"))
-                )
-            )
+            tags$p(translate(lang = lang, "
+                Descriptive statistics should not be viewed as useful estimates
+                of the underlying exposure distribution. Use the Statistical
+                Inference panels for that purpose. These provide information
+                inferred from Bayesian models.
+            "))
         ),
 
         ## Panel: Can measurements be censored? --------------------------------
@@ -605,35 +590,19 @@ ui_panel_parameters_accordion <- function(lang = "") {
         bslib::accordion_panel(
             title = translate(lang = lang, "How are censored measurements imputed?"),
 
-             tags$p(
-                html(
-                    translate(lang = lang, "
-                        The %s panel and %s panels treat censored measurements
-                        differently. In %2$s panels, non-detects are interpreted
-                        as such by the Bayesian model. The latter natively
-                        extracts and uses the corresponding information. There
-                        is no imputation and no creation of arbitrary values.
-                        See %s for an example.
-                    "),
-                    ui_element(translate(lang = lang, "About My Measurements")),
-                    ui_element(translate(lang = lang, "Statistical Inference")),
-                    ui_link(
-                        "https://academic.oup.com/annweh/article-abstract/60/1/56/2196069",
-                        "Huynh et al. (2015)"
-                    )
-                )
-            ),
+            tags$p(translate(lang = lang, "
+                The About My Measurements panel and Statistical Inference panels
+                treat censored measurements differently. In the latter,
+                non-detects are interpreted as such by the Bayesian model. The
+                latter natively extracts and uses the corresponding information.
+                There is no imputation and no creation of arbitrary values. See
+                %s for an example.
+            ")),
 
-
-            tags$p(
-                html(
-                    translate(lang = lang, "
-                        In the %s panel, censored measurements are subject to
-                        one of the following procedures.
-                    "),
-                    ui_element(translate(lang = lang, "About My Measurements"))
-                )
-            ),
+            tags$p(translate(lang = lang, "
+                In the About My Measurements panel, censored measurements are
+                subject to one of the following procedures.
+            ")),
 
             tags$ul(
                 class = "list-group list-group-flush px-2",
@@ -691,47 +660,31 @@ ui_panel_usage_accordion <- function(lang = "") {
         bslib::accordion_panel(
             title = translate(lang = lang, "What are modes?"),
 
-            tags$p(
-                html(
-                    translate(lang = lang, "
-                        Tool 1 offers two so-called %s controlling how
-                        much information is displayed to the user.
-                    "),
-                    ui_element(
-                        title     = translate(lang = lang, "Modes"),
-                        icon_name = "layout-text-window-reverse"
-                    )
-                )
-            ),
+            tags$p(translate(lang = lang, "
+                Tool 1 offers two modes controlling how much information is
+                displayed to the user.
+            ")),
 
             tags$ul(
                 class = "list-group list-group-flush px-2 mb-3",
 
                 tags$li(
                     class = "list-group-item",
-                    html(
-                        translate(lang = lang, "
-                            The %s mode corresponds to the default version
-                            of Tool 1. All %s panels are shown.
-                        "),
-                        ui_element(translate(lang = lang, "Extended")),
-                        ui_element(translate(lang = lang, "Statistical Inference"))
-                    )
+                    translate(lang = lang, "
+                        The extended mode corresponds to the default version
+                        of Tool 1. All Statistical Inference panels are shown.
+                    ")
                 ),
 
                 tags$li(
                     class = "list-group-item",
-                    html(
-                        translate(lang = lang, "
-                            The %s mode corresponds to a version of Tool 1 that
-                            only shows a curated subset of results in a single
-                            %s panel. It used to be a distinct web application
-                            called Tool 1 Express (Simplified) in earlier
-                            versions of Tool 1 and Expostats.
-                        "),
-                        ui_element(translate(lang = lang, "Express")),
-                        ui_element(translate(lang = lang, "Statistical Inference"))
-                    )
+                    translate(lang = lang, "
+                        The express mode corresponds to a version of Tool 1
+                        that only shows a curated subset of results in a single
+                        Statistical Inference panel. It used to be a distinct
+                        web application called Tool 1 Express (Simplified) in
+                        earlier versions of Tool 1 and Expostats.
+                    ")
                 )
             ),
 
@@ -794,24 +747,19 @@ ui_panel_usage_accordion <- function(lang = "") {
 
                 tags$li(
                     class = "list-group-item",
-                    html(
-                        translate(lang = lang, "
-                            Enter other parameters. Some inputs are specific to
-                            certain panels and are initially hidden. They are
-                            shown when an %s panel is chosen.
-                        "),
-                        ui_element(translate(lang = lang, "Statistical Inference"))
-                    )
+                    translate(lang = lang, "
+                        Enter other parameters. Some inputs are specific to
+                        certain panels and are initially hidden. They are
+                        shown when an Statistical Inference panel is chosen.
+                    "),
                 ),
 
                 tags$li(
                     class = "list-group-item",
-                    html(
-                        translate(lang = lang, "
-                            Submit inputs by clicking on the %s button.
-                        "),
-                        ui_element(translate(lang = lang, "Submit"))
-                    )
+                    translate(lang = lang, "
+                        Submit inputs by clicking on the green button
+                        located below calculation parameters.
+                    ")
                 ),
 
                 tags$li(
@@ -829,18 +777,12 @@ ui_panel_usage_accordion <- function(lang = "") {
         bslib::accordion_panel(
             title = translate(lang = lang, "How long should I wait for the results?"),
 
-            tags$p(
-                class = "pt-3",
-                html(
-                    translate(lang = lang, "
-                        Depending on the server's current load and the sample's
-                        size, you may have to wait a little while before obtaining
-                        results. Waiting times are usually lower than 30 seconds.
-                        Some %s panels require more computing time and resources.
-                    "),
-                    ui_element(translate(lang = lang, "Statistical Inference"))
-                )
-            )
+            tags$p(translate(lang = lang, "
+                Depending on the server's current load and the sample's
+                size, you may have to wait a little while before obtaining
+                results. Waiting times are usually lower than 30 seconds.
+                Some panels require more computing time and resources.
+            "))
         ),
 
         ## Panel: Can plots be expanded? ---------------------------------------
@@ -848,19 +790,10 @@ ui_panel_usage_accordion <- function(lang = "") {
         bslib::accordion_panel(
             title = translate(lang = lang, "Can plots be expanded?"),
 
-            tags$p(
-                html(
-                    translate(lang = lang, "
-                        Yes. Each plot may be expanded to a full-screen size.
-                        Hover over it and click on the %s button on the bottom
-                        right.
-                    "),
-                    ui_element(
-                        title     = translate(lang = lang, "Expand"),
-                        icon_name = "arrows-angle-expand"
-                    )
-                )
-            )
+            tags$p(translate(lang = lang, "
+                Yes. Each plot may be expanded to a full-screen size. Hover
+                over it and click on the Expand button on the bottom right.
+            "))
         )
     )
 }
