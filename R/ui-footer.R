@@ -27,12 +27,17 @@ ui_footer <- function(id) {
 
     return(
         tags$footer(
-            class = "m-auto text-center",
-            style = "font-size: 0.75rem;",
+            class = "d-flex flex-column m-auto text-center",
+            style = "gap: 4px; font-size: 0.75rem;",
 
-            shiny::uiOutput(ns("version")),
-            shiny::uiOutput(ns("copyright")),
-            shiny::uiOutput(ns("made_by"))
+            # Shiny uses display: contents when shiny::renderUI()
+            # returns a list. Here, it breaks how contents should
+            # flow, so display: block; is used to override this
+            # default behavior.
+            shiny::uiOutput(ns("version"),   class = "d-block"),
+            shiny::uiOutput(ns("changelog"), class = "d-block"),
+            shiny::uiOutput(ns("copyright"), class = "d-block"),
+            shiny::uiOutput(ns("made_by"),   class = "d-block")
         )
     )
 }
@@ -43,18 +48,34 @@ server_footer <- function(id, lang) {
     stopifnot(shiny::is.reactive(lang))
 
     server <- function(input, output, session) {
-        output$version <- shiny::renderUI({
-            lang <- lang()
+        latest_tag_url <- sprintf(
+            "%s/releases/tag/v%s",
+            shared_urls$code,
+            default_version[["number"]]
+        )
 
-            tags$div(
-                "Tool 1",
+        output$version <- shiny::renderUI({
+            html(
+                "Tool 1 %s %s (%s)",
                 translate(lang = lang(), "version"),
-                ui_link(shared_urls$code, default_version[["number"]]),
-                sprintf("(%s)", default_version[["release_date"]]),
-                bsicons::bs_icon("dot", ally = "deco"),
+                ui_link(latest_tag_url, default_version[["number"]]),
+                default_version[["release_date"]]
+            )
+        }) |>
+        # All values are constants.
+        shiny::bindCache(lang())
+
+        output$changelog <- shiny::renderUI({
+            lang <- lang()
+            list(
                 ui_link(
                     "https://github.com/webexpo/tool1/blob/main/NEWS.md",
-                    translate(lang = lang(), "Changelog")
+                    translate(lang = lang, "Changelog")
+                ),
+
+                tags$span(
+                    class = "ps-1",
+                    translate(lang = lang, "(English only)")
                 )
             )
         }) |>
@@ -62,26 +83,32 @@ server_footer <- function(id, lang) {
         shiny::bindCache(lang())
 
         output$copyright <- shiny::renderUI({
-            tags$div(
+            html(
+                "%s (%s). %s",
+
                 ui_link(shared_urls$jerome_lavoue, "Jérôme Lavoué"),
-                format(Sys.time(), tz = "EST", format = "(%Y)."),
+                format(Sys.time(), tz = "EST", format = "%Y"),
                 translate(lang = lang(), "All rights reserved.")
             )
-        })
+        }) |>
+        # We consider the year to be constant
+        # while server_footer() is running.
+        shiny::bindCache(lang())
 
         output$made_by <- shiny::renderUI({
-            tags$div(
-                html(
-                    translate(lang = lang(), "Made with %s by %s."),
-                    tags$span(
-                        class = "px-1",
-                        style = "color: red;",
-                        bsicons::bs_icon("heart-fill", ally = "sem")
-                    ),
-                    ui_link(shared_urls$ununoctium, "Ununoctium")
-                )
+            html(
+                translate(lang = lang(), "Made with %s by %s."),
+
+                tags$span(
+                    class = "px-1",
+                    style = "color: red;",
+                    bsicons::bs_icon("heart-fill", ally = "sem")
+                ),
+
+                ui_link(shared_urls$ununoctium, "Ununoctium")
             )
         }) |>
+        # All values are constants.
         shiny::bindCache(lang())
 
         return(invisible())
