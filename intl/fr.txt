@@ -71,6 +71,16 @@ Vous pouvez également consulter le rapport scientifique du projet Webexpo. Il
 comprend une section introductive consacrée aux statistiques de l'hygiène
 industrielle.
 
+:: Translations: 1232395: Source Text
+
+If the overexposure risk is higher than 30%, it is high. The situation requires
+remedial action.
+
+:: Translations: 1232395: Translation
+
+Si le risque de surexposition est supérieur à 30%, il est élevé. La situation
+nécessite une action corrective.
+
 :: Translations: 78552d4: Source Text
 
 Default Background:
@@ -828,6 +838,14 @@ Use this value to change the color of exposures that are above the OEL.
 Cette valeur permet de modifier la couleur des expositions supérieures à la
 VLE.
 
+:: Translations: abe3699: Source Text
+
+Acceptable
+
+:: Translations: abe3699: Translation
+
+Acceptable
+
 :: Translations: 22d0b63: Source Text
 
 This plot shows the probability density function of the estimated distribution
@@ -967,6 +985,16 @@ It is as follows.
 
 Elle se présente comme suit.
 
+:: Translations: a5db55c: Source Text
+
+If the overexposure risk is lower than 5%, it is very low. The situation is
+well controlled.
+
+:: Translations: a5db55c: Translation
+
+Si le risque de surexposition est inférieur à 5%, il est très faible. La
+situation est bien maîtrisée.
+
 :: Translations: 70d45be: Source Text
 
 Language
@@ -974,16 +1002,6 @@ Language
 :: Translations: 70d45be: Translation
 
 Langue
-
-:: Translations: 074c7d8: Source Text
-
-If the overexposure risk is lower than 5%%, it is very low. The situation is
-well controlled. We call it %s.
-
-:: Translations: 074c7d8: Translation
-
-Si le risque de surexposition est inférieur à 5%%, il est très faible et la
-situation est bien maîtrisée. Nous l'appelons %s. [REVIEW]
 
 :: Translations: 27c579f: Source Text
 
@@ -1032,6 +1050,14 @@ Proportion Censored
 
 Proportion d'observations censurées
 
+:: Translations: e04262e: Source Text
+
+Choosing either one is a matter of personal preference.
+
+:: Translations: e04262e: Translation
+
+Le choix de l'un ou l'autre est une question de préférence personnelle.
+
 :: Translations: 08b8516: Source Text
 
 The decision scheme to interpret the probability of overexposure (the
@@ -1052,14 +1078,6 @@ Why is there no shown output initially?
 :: Translations: 8cbc334: Translation
 
 Pourquoi n'y a-t-il pas de résultats affichés au départ?
-
-:: Translations: e04262e: Source Text
-
-Choosing either one is a matter of personal preference.
-
-:: Translations: e04262e: Translation
-
-Le choix de l'un ou l'autre est une question de préférence personnelle.
 
 :: Translations: 848dc48: Source Text
 
@@ -1472,6 +1490,16 @@ colorés en rouge. Cette couleur peut être modifiée en fonction de vos besoins
 l'aide de la barre latérale de droite. Quatre variantes du graphique de la
 fraction de dépassement sont disponibles.
 
+:: Translations: 2e733c4: Source Text
+
+If the overexposure risk is betwen 5% and 30%, it is moderate. The situation is
+controlled, but with a limited safety margin.
+
+:: Translations: 2e733c4: Translation
+
+Si le risque de surexposition se situe entre 5% et 30%, il est modéré. La
+situation est maîtrisée, mais avec une marge de sécurité limitée.
+
 :: Translations: 962996f: Source Text
 
 Its resulting probabilistic statements are easier to convey to stakeholders.
@@ -1499,15 +1527,26 @@ Inference panels are available.
 Le mode étendu correspond à la version par défaut de Tool 1. Tous les panneaux
 d'inférence statistique sont disponibles.
 
-:: Translations: 92981c5: Source Text
+:: Translations: ebaaa0c: Source Text
 
-If the overexposure risk is higher than 30%%, it is high. The situation
-requires remedial action. We call it %s.
+This plot shows the probability distribution of the uncertainty around the %s
+percentile. It shows the probability that its true value is (1) below 1%% of
+the OEL, (2) between 1%% and 10%% of the OEL, (3) between 10%% and 50%% of the
+OEL, (4) between 50%% and 100%% of the OEL, and (5) greater than the OEL. This
+is based on the classification adopted by AIHA. The red column represents the
+probability of an overexposure. The latter should be lower than the threshold
+(black dashed line).
 
-:: Translations: 92981c5: Translation
+:: Translations: ebaaa0c: Translation
 
-Si le risque de surexposition est supérieur à 30%%, il est élevé. La situation
-nécessite une action corrective. Nous l'appelons %s.
+Ce graphique montre la distribution de probabilité de l'incertitude autour du
+%s percentile. Il montre la probabilité que sa valeur réelle soit (1)
+inférieure à 1%% de la VLE, (2) comprise entre 1%% et 10%% de la VLE, (3)
+comprise entre 10%% et 50%% de la VLE, (4) comprise entre 50%% et 100%% de la
+VLE, et (5) supérieure à la VLE. Cette classification est basée sur celle
+adoptée par l'AIHA. La colonne rouge représente la probabilité de
+surexposition. Celle-ci doit être inférieure au seuil (ligne noire en
+pointillés).
 
 :: Translations: aeaec6e: Source Text
 
@@ -1703,6 +1742,14 @@ Add a greater than or equal sign before each measurement censored to the right
 Ajoutez un signe plus grand ou égal devant chaque mesure censurée à droite (par
 exemple, >30.0).
 
+:: Translations: 6f32d93: Source Text
+
+Problematic
+
+:: Translations: 6f32d93: Translation
+
+Problématique
+
 :: Translations: 89fba6b: Source Text
 
 Frequently Asked Questions
@@ -1839,27 +1886,6 @@ Le graphique de gauche montre une situation acceptable pour le seuil de
 dépassement choisi (traditionnellement 5% au-dessus de la VLE). Le graphique de
 droite montre la situation estimée par le modèle bayésien. Il ne tient pas
 compte de l'incertitude de l'estimation.
-
-:: Translations: 39bcd98: Source Text
-
-This plot shows the probability distribution of the uncertainty around the %s
-percentile. It shows the probability that its true value is (1) below 1%% of
-the OEL, (2) between 1%% and 10%% of the OEL, (3) between 10%% and 50%% of the
-OEL, (4) between 50%% and 100%% of the OEL, and (5) greater than the OEL. This
-is based on the classification adopted by AIHA. The red column represents the
-probability of an overexposure. The latter should be lower than the threshold
-shown as a black dashed line.
-
-:: Translations: 39bcd98: Translation
-
-Ce graphique montre la distribution de probabilité de l'incertitude autour du
-%s percentile. Il montre la probabilité que sa valeur réelle soit (1)
-inférieure à 1%% de la VLE, (2) comprise entre 1%% et 10%% de la VLE, (3)
-comprise entre 10%% et 50%% de la VLE, (4) comprise entre 50%% et 100%% de la
-VLE, et (5) supérieure à la VLE. Cette classification est basée sur celle
-adoptée par l'AIHA. La colonne rouge représente la probabilité de
-surexposition. Celle-ci doit être inférieure au seuil représenté par la ligne
-noire en pointillés.
 
 :: Translations: 899d691: Source Text
 
@@ -2075,6 +2101,14 @@ supérieure ou égale à la VLE.
 
 ≤ 1% VLE
 
+:: Translations: fc0cbd8: Source Text
+
+Tolerable
+
+:: Translations: fc0cbd8: Translation
+
+Tolérable
+
 :: Translations: 2bbf9dd: Source Text
 
 How can I submit bugs or provide feedback?
@@ -2134,16 +2168,18 @@ Made with %s by %s.
 
 Fait avec %s par %s.
 
-:: Translations: ea1ddd5: Source Text
+:: Translations: 8dd7020: Source Text
 
-If the overexposure risk is betwen 5%% and 30%%, it is moderate. The situation
-is controlled, but with a limited safety margin. We call it %s.
+This risk meter shows the probability of the exposure being too high when
+compared to the OEL. The green region indicates an acceptable exposure, the
+yellow region a tolerable exposure, and the red region a problematic exposure.
 
-:: Translations: ea1ddd5: Translation
+:: Translations: 8dd7020: Translation
 
-Si le risque de surexposition se situe entre 5%% et 30%%, il est modéré. La
-situation est maîtrisée, mais avec une marge de sécurité limitée. Nous
-l'appelons %s.
+Cet indicateur de risque montre la probabilité que l'exposition soit trop
+élevée par rapport à la VLE. La zone verte indique une exposition acceptable,
+la zone jaune une exposition tolérable et la zone rouge une exposition
+problématique.
 
 :: Translations: 1a0644e: Source Text
 

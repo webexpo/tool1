@@ -101,6 +101,20 @@ Texts:
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 1105, Col 20 @ Ln 1109, Col 14
   - !<Text>
+    Identifier: '1232395'
+    Algorithm: sha1
+    Hash: 12323958350a81ed984ea9bbd10e995f97fef08e
+    Source Language: en
+    Source Text: |-
+      If the overexposure risk is higher than 30%, it is high. The situation
+      requires remedial action.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 1232395:l1
+        Path: ./R/ui-panel-express-mode.R
+        Ranges: Ln 510, Col 25 @ Ln 513, Col 26
+  - !<Text>
     Identifier: 78552d4
     Algorithm: sha1
     Hash: 78552d4e1adb03dda38087e8491cc0a4dfb27def
@@ -173,7 +187,7 @@ Texts:
       - !<Location>
         Identifier: e0147d1:l3
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 521, Col 25 @ Ln 524, Col 26
+        Ranges: Ln 528, Col 25 @ Ln 531, Col 26
       - !<Location>
         Identifier: e0147d1:l4
         Path: ./R/ui-panel-percentiles.R
@@ -289,10 +303,6 @@ Texts:
         Identifier: 7d60ad6:l2
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 1010, Col 29 @ Ln 1010, Col 63
-      - !<Location>
-        Identifier: 7d60ad6:l3
-        Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 493, Col 41 @ Ln 493, Col 75
   - !<Text>
     Identifier: 4cc6c29
     Algorithm: sha1
@@ -414,10 +424,6 @@ Texts:
         Ranges: Ln 413, Col 13 @ Ln 417, Col 14
       - !<Location>
         Identifier: 641f765:l3
-        Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 708, Col 13 @ Ln 712, Col 14
-      - !<Location>
-        Identifier: 641f765:l4
         Path: ./R/ui-panel-percentiles.R
         Ranges: Ln 401, Col 13 @ Ln 405, Col 14
   - !<Text>
@@ -436,10 +442,6 @@ Texts:
         Identifier: bddbd7f:l2
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 1009, Col 29 @ Ln 1009, Col 64
-      - !<Location>
-        Identifier: bddbd7f:l3
-        Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 481, Col 41 @ Ln 481, Col 76
   - !<Text>
     Identifier: '6489309'
     Algorithm: sha1
@@ -557,7 +559,7 @@ Texts:
       - !<Location>
         Identifier: cebe5c4:l3
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 727, Col 29 @ Ln 727, Col 71
+        Ranges: Ln 735, Col 29 @ Ln 735, Col 71
       - !<Location>
         Identifier: cebe5c4:l4
         Path: ./R/ui-panel-percentiles.R
@@ -980,7 +982,7 @@ Texts:
       - !<Location>
         Identifier: c73ed1b:l3
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 678, Col 13 @ Ln 680, Col 14
+        Ranges: Ln 685, Col 13 @ Ln 687, Col 14
       - !<Location>
         Identifier: c73ed1b:l4
         Path: ./R/ui-panel-percentiles.R
@@ -1097,9 +1099,9 @@ Texts:
         Identifier: 2f456d9:l3
         Path: ./R/ui-panel-express-mode.R
         Ranges:
-          - Ln 563, Col 25 @ Ln 565, Col 26
-          - Ln 610, Col 25 @ Ln 612, Col 26
-          - Ln 654, Col 25 @ Ln 656, Col 26
+          - Ln 570, Col 25 @ Ln 572, Col 26
+          - Ln 617, Col 25 @ Ln 619, Col 26
+          - Ln 661, Col 25 @ Ln 663, Col 26
       - !<Location>
         Identifier: 2f456d9:l4
         Path: ./R/ui-panel-percentiles.R
@@ -1225,7 +1227,7 @@ Texts:
       - !<Location>
         Identifier: 0595dc0:l2
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 550, Col 25 @ Ln 553, Col 26
+        Ranges: Ln 557, Col 25 @ Ln 560, Col 26
   - !<Text>
     Identifier: 1a6a68b
     Algorithm: sha1
@@ -1277,6 +1279,18 @@ Texts:
         Identifier: 7b55099:l1
         Path: ./R/ui-exceedance-plot.R
         Ranges: Ln 413, Col 13 @ Ln 416, Col 14
+  - !<Text>
+    Identifier: abe3699
+    Algorithm: sha1
+    Hash: abe369922b017686131121d8c517064dcb987099
+    Source Language: en
+    Source Text: Acceptable
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: abe3699:l1
+        Path: ./R/ui-panel-express-mode.R
+        Ranges: Ln 478, Col 29 @ Ln 478, Col 64
   - !<Text>
     Identifier: 22d0b63
     Algorithm: sha1
@@ -1343,7 +1357,7 @@ Texts:
       - !<Location>
         Identifier: 532bf12:l2
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 760, Col 31 @ Ln 760, Col 61
+        Ranges: Ln 768, Col 31 @ Ln 768, Col 61
       - !<Location>
         Identifier: 532bf12:l3
         Path: ./R/ui-panel-percentiles.R
@@ -1483,6 +1497,20 @@ Texts:
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 904, Col 20 @ Ln 904, Col 62
   - !<Text>
+    Identifier: a5db55c
+    Algorithm: sha1
+    Hash: a5db55cb599496a0d0b9550cc06fa07ef34dac1b
+    Source Language: en
+    Source Text: |-
+      If the overexposure risk is lower than 5%, it is very low. The situation
+      is well controlled.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: a5db55c:l1
+        Path: ./R/ui-panel-express-mode.R
+        Ranges: Ln 481, Col 25 @ Ln 484, Col 26
+  - !<Text>
     Identifier: 70d45be
     Algorithm: sha1
     Hash: 70d45be1f58f1b57c6a634c4653bae8452c5d49e
@@ -1494,20 +1522,6 @@ Texts:
         Identifier: 70d45be:l1
         Path: ./R/ui-title.R
         Ranges: Ln 492, Col 13 @ Ln 492, Col 48
-  - !<Text>
-    Identifier: 074c7d8
-    Algorithm: sha1
-    Hash: 074c7d8a7040d17ac7d7f6cb8a11f957ef0ee899
-    Source Language: en
-    Source Text: |-
-      If the overexposure risk is lower than 5%%, it is very low. The situation
-      is well controlled. We call it %s.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 074c7d8:l1
-        Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 476, Col 29 @ Ln 480, Col 30
   - !<Text>
     Identifier: 27c579f
     Algorithm: sha1
@@ -1527,7 +1541,7 @@ Texts:
       - !<Location>
         Identifier: 27c579f:l2
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 732, Col 13 @ Ln 738, Col 14
+        Ranges: Ln 740, Col 13 @ Ln 746, Col 14
   - !<Text>
     Identifier: 481daf9
     Algorithm: sha1
@@ -1571,6 +1585,18 @@ Texts:
         Path: ./R/ui-panel-descriptive-statistics.R
         Ranges: Ln 208, Col 21 @ Ln 208, Col 65
   - !<Text>
+    Identifier: e04262e
+    Algorithm: sha1
+    Hash: e04262e30760890228bf3302399f07858e9d9e72
+    Source Language: en
+    Source Text: Choosing either one is a matter of personal preference.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: e04262e:l1
+        Path: ./R/ui-modal-faq.R
+        Ranges: Ln 701, Col 20 @ Ln 703, Col 14
+  - !<Text>
     Identifier: 08b8516
     Algorithm: sha1
     Hash: 08b851609d457eaa263f6caeeb570badeddcca70
@@ -1598,18 +1624,6 @@ Texts:
         Identifier: 8cbc334:l1
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 729, Col 21 @ Ln 729, Col 85
-  - !<Text>
-    Identifier: e04262e
-    Algorithm: sha1
-    Hash: e04262e30760890228bf3302399f07858e9d9e72
-    Source Language: en
-    Source Text: Choosing either one is a matter of personal preference.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: e04262e:l1
-        Path: ./R/ui-modal-faq.R
-        Ranges: Ln 701, Col 20 @ Ln 703, Col 14
   - !<Text>
     Identifier: 848dc48
     Algorithm: sha1
@@ -1677,7 +1691,7 @@ Texts:
       - !<Location>
         Identifier: 1de8474:l4
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 725, Col 29 @ Ln 725, Col 67
+        Ranges: Ln 733, Col 29 @ Ln 733, Col 67
       - !<Location>
         Identifier: 1de8474:l5
         Path: ./R/ui-panel-percentiles.R
@@ -1750,7 +1764,7 @@ Texts:
       - !<Location>
         Identifier: 5f52075:l2
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 758, Col 31 @ Ln 758, Col 71
+        Ranges: Ln 766, Col 31 @ Ln 766, Col 71
       - !<Location>
         Identifier: 5f52075:l3
         Path: ./R/ui-panel-percentiles.R
@@ -1806,9 +1820,9 @@ Texts:
         Identifier: f73886c:l3
         Path: ./R/ui-panel-express-mode.R
         Ranges:
-          - Ln 575, Col 25 @ Ln 577, Col 26
-          - Ln 622, Col 25 @ Ln 624, Col 26
-          - Ln 666, Col 25 @ Ln 668, Col 26
+          - Ln 582, Col 25 @ Ln 584, Col 26
+          - Ln 629, Col 25 @ Ln 631, Col 26
+          - Ln 673, Col 25 @ Ln 675, Col 26
       - !<Location>
         Identifier: f73886c:l4
         Path: ./R/ui-panel-percentiles.R
@@ -1943,7 +1957,7 @@ Texts:
       - !<Location>
         Identifier: c165d34:l2
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 757, Col 31 @ Ln 757, Col 70
+        Ranges: Ln 765, Col 31 @ Ln 765, Col 70
       - !<Location>
         Identifier: c165d34:l3
         Path: ./R/ui-panel-percentiles.R
@@ -2028,7 +2042,7 @@ Texts:
       - !<Location>
         Identifier: 6db5beb:l2
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 759, Col 31 @ Ln 759, Col 72
+        Ranges: Ln 767, Col 31 @ Ln 767, Col 72
       - !<Location>
         Identifier: 6db5beb:l3
         Path: ./R/ui-panel-percentiles.R
@@ -2070,7 +2084,7 @@ Texts:
       - !<Location>
         Identifier: e510a31:l1
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 594, Col 25 @ Ln 597, Col 26
+        Ranges: Ln 601, Col 25 @ Ln 604, Col 26
       - !<Location>
         Identifier: e510a31:l2
         Path: ./R/ui-panel-percentiles.R
@@ -2101,7 +2115,7 @@ Texts:
       - !<Location>
         Identifier: 690c3dc:l1
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 761, Col 31 @ Ln 761, Col 75
+        Ranges: Ln 769, Col 31 @ Ln 769, Col 75
   - !<Text>
     Identifier: ea57967
     Algorithm: sha1
@@ -2229,10 +2243,6 @@ Texts:
           - Ln 220, Col 29 @ Ln 220, Col 64
       - !<Location>
         Identifier: 62fc968:l2
-        Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 373, Col 13 @ Ln 373, Col 50
-      - !<Location>
-        Identifier: 62fc968:l3
         Path: ./R/ui-panel-percentiles.R
         Ranges:
           - Ln 506, Col 38 @ Ln 506, Col 73
@@ -2284,6 +2294,20 @@ Texts:
         Path: ./R/ui-exceedance-plot.R
         Ranges: Ln 162, Col 13 @ Ln 169, Col 14
   - !<Text>
+    Identifier: 2e733c4
+    Algorithm: sha1
+    Hash: 2e733c4f59c87cfb2ec7e8c7ddcfb2f478382aab
+    Source Language: en
+    Source Text: |-
+      If the overexposure risk is betwen 5% and 30%, it is moderate. The
+      situation is controlled, but with a limited safety margin.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 2e733c4:l1
+        Path: ./R/ui-panel-express-mode.R
+        Ranges: Ln 495, Col 25 @ Ln 499, Col 26
+  - !<Text>
     Identifier: 962996f
     Algorithm: sha1
     Hash: 962996f0f892a204206524e4d1e47174f3132cd1
@@ -2324,19 +2348,24 @@ Texts:
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 682, Col 21 @ Ln 686, Col 22
   - !<Text>
-    Identifier: 92981c5
+    Identifier: ebaaa0c
     Algorithm: sha1
-    Hash: 92981c5d8c4c04a55a05301e0d01be12130245b9
+    Hash: ebaaa0c3428d65f3d6a6a458fa179384b4205612
     Source Language: en
     Source Text: |-
-      If the overexposure risk is higher than 30%%, it is high. The situation
-      requires remedial action. We call it %s.
+      This plot shows the probability distribution of the uncertainty around
+      the %s percentile. It shows the probability that its true value is (1)
+      below 1%% of the OEL, (2) between 1%% and 10%% of the OEL, (3) between
+      10%% and 50%% of the OEL, (4) between 50%% and 100%% of the OEL, and (5)
+      greater than the OEL. This is based on the classification adopted by
+      AIHA. The red column represents the probability of an overexposure. The
+      latter should be lower than the threshold (black dashed line).
     Translations: ~
     Locations:
       - !<Location>
-        Identifier: 92981c5:l1
+        Identifier: ebaaa0c:l1
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 500, Col 29 @ Ln 504, Col 30
+        Ranges: Ln 776, Col 17 @ Ln 789, Col 18
   - !<Text>
     Identifier: aeaec6e
     Algorithm: sha1
@@ -2598,6 +2627,18 @@ Texts:
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 570, Col 21 @ Ln 573, Col 22
   - !<Text>
+    Identifier: 6f32d93
+    Algorithm: sha1
+    Hash: 6f32d93515907706bdf4083cbd97bd0aed873f77
+    Source Language: en
+    Source Text: Problematic
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 6f32d93:l1
+        Path: ./R/ui-panel-express-mode.R
+        Ranges: Ln 507, Col 29 @ Ln 507, Col 65
+  - !<Text>
     Identifier: 89fba6b
     Algorithm: sha1
     Hash: 89fba6b91df1b3c490d93dbf3cdfa9c370f210a5
@@ -2638,7 +2679,7 @@ Texts:
       - !<Location>
         Identifier: cf880eb:l2
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 641, Col 25 @ Ln 644, Col 26
+        Ranges: Ln 648, Col 25 @ Ln 651, Col 26
   - !<Text>
     Identifier: e92bf46
     Algorithm: sha1
@@ -2679,10 +2720,6 @@ Texts:
         Identifier: 07fb93b:l1
         Path: ./R/global.R
         Ranges: Ln 149, Col 29 @ Ln 149, Col 65
-      - !<Location>
-        Identifier: 07fb93b:l2
-        Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 505, Col 41 @ Ln 505, Col 77
   - !<Text>
     Identifier: b267cef
     Algorithm: sha1
@@ -2796,25 +2833,6 @@ Texts:
         Identifier: 4a8e3cf:l1
         Path: ./R/ui-exceedance-plot.R
         Ranges: Ln 175, Col 25 @ Ln 181, Col 18
-  - !<Text>
-    Identifier: 39bcd98
-    Algorithm: sha1
-    Hash: 39bcd9819113c781b3836fd8dc011cebbca8d797
-    Source Language: en
-    Source Text: |-
-      This plot shows the probability distribution of the uncertainty around
-      the %s percentile. It shows the probability that its true value is (1)
-      below 1%% of the OEL, (2) between 1%% and 10%% of the OEL, (3) between
-      10%% and 50%% of the OEL, (4) between 50%% and 100%% of the OEL, and (5)
-      greater than the OEL. This is based on the classification adopted by
-      AIHA. The red column represents the probability of an overexposure. The
-      latter should be lower than the threshold shown as a black dashed line.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 39bcd98:l1
-        Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 768, Col 17 @ Ln 781, Col 18
   - !<Text>
     Identifier: 899d691
     Algorithm: sha1
@@ -2937,7 +2955,7 @@ Texts:
       - !<Location>
         Identifier: 5b8a460:l3
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 532, Col 25 @ Ln 535, Col 26
+        Ranges: Ln 539, Col 25 @ Ln 542, Col 26
       - !<Location>
         Identifier: 5b8a460:l4
         Path: ./R/ui-panel-percentiles.R
@@ -2952,6 +2970,10 @@ Texts:
     Locations:
       - !<Location>
         Identifier: 0a99270:l1
+        Path: ./R/ui-panel-express-mode.R
+        Ranges: Ln 373, Col 13 @ Ln 373, Col 59
+      - !<Location>
+        Identifier: 0a99270:l2
         Path: ./R/ui-panel-percentiles.R
         Ranges: Ln 311, Col 13 @ Ln 311, Col 59
   - !<Text>
@@ -3090,7 +3112,7 @@ Texts:
       - !<Location>
         Identifier: f10baab:l3
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 755, Col 31 @ Ln 755, Col 67
+        Ranges: Ln 763, Col 31 @ Ln 763, Col 67
       - !<Location>
         Identifier: f10baab:l4
         Path: ./R/ui-panel-percentiles.R
@@ -3168,11 +3190,23 @@ Texts:
       - !<Location>
         Identifier: d257a4e:l2
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 756, Col 31 @ Ln 756, Col 64
+        Ranges: Ln 764, Col 31 @ Ln 764, Col 64
       - !<Location>
         Identifier: d257a4e:l3
         Path: ./R/ui-panel-percentiles.R
         Ranges: Ln 567, Col 31 @ Ln 567, Col 64
+  - !<Text>
+    Identifier: fc0cbd8
+    Algorithm: sha1
+    Hash: fc0cbd82e63713c599f454ba9cb98127ba32976e
+    Source Language: en
+    Source Text: Tolerable
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: fc0cbd8:l1
+        Path: ./R/ui-panel-express-mode.R
+        Ranges: Ln 492, Col 29 @ Ln 492, Col 63
   - !<Text>
     Identifier: 2bbf9dd
     Algorithm: sha1
@@ -3249,7 +3283,7 @@ Texts:
         Path: ./R/ui-panel-express-mode.R
         Ranges:
           - Ln 368, Col 13 @ Ln 368, Col 59
-          - Ln 726, Col 29 @ Ln 726, Col 73
+          - Ln 734, Col 29 @ Ln 734, Col 73
   - !<Text>
     Identifier: 7be717b
     Algorithm: sha1
@@ -3263,19 +3297,21 @@ Texts:
         Path: ./R/ui-footer.R
         Ranges: Ln 100, Col 17 @ Ln 100, Col 63
   - !<Text>
-    Identifier: ea1ddd5
+    Identifier: 8dd7020
     Algorithm: sha1
-    Hash: ea1ddd5d04b6f2d34776243cc10367150e2c1d1a
+    Hash: 8dd70200a51729734974b93dcd0fdc42bedc3e38
     Source Language: en
     Source Text: |-
-      If the overexposure risk is betwen 5%% and 30%%, it is moderate. The
-      situation is controlled, but with a limited safety margin. We call it %s.
+      This risk meter shows the probability of the exposure being too high when
+      compared to the OEL. The green region indicates an acceptable exposure,
+      the yellow region a tolerable exposure, and the red region a problematic
+      exposure.
     Translations: ~
     Locations:
       - !<Location>
-        Identifier: ea1ddd5:l1
+        Identifier: 8dd7020:l1
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 488, Col 29 @ Ln 492, Col 30
+        Ranges: Ln 715, Col 13 @ Ln 720, Col 14
   - !<Text>
     Identifier: 1a0644e
     Algorithm: sha1

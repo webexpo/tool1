@@ -370,11 +370,7 @@ server_panel_express <- function(
         shiny::bindCache(lang())
 
         output$estimates_panel_percentile_title <- shiny::renderUI({
-            lang <- lang()
-            html(
-                translate(lang = lang, "%s Percentile"),
-                ordinal(default_express_inputs$target_perc, lang)
-            )
+            translate(lang = lang(), "Critical Percentile")
         }) |>
         shiny::bindCache(lang())
 
@@ -475,39 +471,46 @@ server_panel_express <- function(
                     class = "list-group list-group-flush",
 
                     tags$li(
-                        class = "list-group-item text-success",
-                        html(
-                            translate(lang = lang, "
-                                If the overexposure risk is lower than 5%%, it
-                                is very low. The situation is well controlled.
-                                We call it %s.
-                            "),
-                            tags$strong(translate(lang = lang, "acceptable"))
-                        )
+                        class = "list-group-item text-success pb-3",
+
+                        tags$h3(
+                            class = "fs-6 fw-bold",
+                            translate(lang = lang, "Acceptable")
+                        ),
+
+                        translate(lang = lang, "
+                            If the overexposure risk is lower than 5%, it is
+                            very low. The situation is well controlled.
+                        ")
                     ),
 
                     tags$li(
-                        class = "list-group-item text-warning",
-                        html(
-                            translate(lang = lang, "
-                                If the overexposure risk is betwen 5%% and 30%%,
-                                it is moderate. The situation is controlled, but
-                                with a limited safety margin. We call it %s.
-                            "),
-                            tags$strong(translate(lang = lang, "tolerable"))
-                        )
+                        class = "list-group-item text-warning py-3",
+
+                        tags$h3(
+                            class = "fs-6 fw-bold",
+                            translate(lang = lang, "Tolerable")
+                        ),
+
+                        translate(lang = lang, "
+                            If the overexposure risk is betwen 5% and 30%, it
+                            is moderate. The situation is controlled, but with
+                            a limited safety margin.
+                        ")
                     ),
 
                     tags$li(
-                        class = "list-group-item text-danger",
-                        html(
-                            translate(lang = lang, "
-                                If the overexposure risk is higher than 30%%, it
-                                is high. The situation requires remedial action.
-                                We call it %s.
-                            "),
-                            tags$strong(translate(lang = lang, "problematic"))
-                        )
+                        class = "list-group-item text-danger pt-3",
+
+                        tags$h3(
+                            class = "fs-6 fw-bold",
+                            translate(lang = lang, "Problematic")
+                        ),
+
+                        translate(lang = lang, "
+                            If the overexposure risk is higher than 30%, it
+                            is high. The situation requires remedial action.
+                        ")
                     )
                 )
             )
@@ -711,8 +714,9 @@ server_panel_express <- function(
         output$risk_meter_plot_desc <- shiny::renderText({
             translate(lang = lang(), "
                 This risk meter shows the probability of the exposure being too
-                high when compared to the OEL. The red zone indicates a
-                problematic exposure.
+                high when compared to the OEL. The green region indicates an
+                acceptable exposure, the yellow region a tolerable exposure,
+                and the red region a problematic exposure.
             ")
         }) |>
         shiny::bindCache(lang())
@@ -780,8 +784,8 @@ server_panel_express <- function(
                     (5) greater than the OEL.
                     This is based on the classification adopted by AIHA. The
                     red column represents the probability of an overexposure.
-                    The latter should be lower than the threshold shown as a
-                    black dashed line.
+                    The latter should be lower than the threshold (black dashed
+                    line).
                 "),
                 ordinal(default_express_inputs$target_perc, lang)
             )
