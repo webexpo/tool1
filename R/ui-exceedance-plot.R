@@ -461,9 +461,10 @@ server_exceedance_plot_sidebar <- function(id, lang) {
             )
 
             shiny::updateSelectInput(
-                inputId = "variant",
-                label   = variant_labels(),
-                choices = variant_choices()
+                inputId  = "variant",
+                label    = variant_labels(),
+                choices  = variant_choices(),
+                selected = input$variant
             )
 
             colourpicker::updateColourInput(
