@@ -227,7 +227,7 @@ ui_exceedance_plot_sidebar <- function(id) {
     ui <- bslib::sidebar(
         # Width is set to be 100px
         # less than the main sidebar.
-        width    = "300px",
+        width    = "375px",
         position = "right",
         open     = list(
             mobile  = "closed",
