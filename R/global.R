@@ -122,38 +122,57 @@ aiha_risk_levels <- list(
         tolerable   = 5L,  # [5L, 30)
         problematic = 30L  # [30L, ∞)
     ),
-    # $text must be a function in order to prevent
-    # early evaluation (lang() cannot be passed to
-    # translate() directly because it is a reactive
-    # value). Reactive values can only be called in
-    # a reactive context.
+    # $get_text() is a way to prevent early evaluation of
+    # lang(). The latter is a reactive value that can only
+    # be called in a reactive context. It is written in a
+    # way that works with transltr mechanisms: each source
+    # text requiring translation must be a literal string
+    # wrapped by translate().
     metadata = list(
         acceptable = list(
             level = "acceptable",
-            text  =  \(lang) translate(lang = lang, "acceptable"),
             color = "success",
             icon  = bsicons::bs_icon(
-                name = "check-circle",
+                name = "check-circle-fill",
                 a11y = "deco"
-            )
+            ),
+            get_text = \(lang, capitalize = FALSE) {
+                if (capitalize) {
+                    return(translate(lang = lang, "Acceptable"))
+                }
+
+                return(translate(lang = lang, "acceptable"))
+            }
         ),
         tolerable = list(
             level = "tolerable",
-            text  = \(lang) translate(lang = lang, "tolerable"),
             color = "warning",
             icon  = bsicons::bs_icon(
                 name = "exclamation-triangle-fill",
                 a11y = "deco"
-            )
+            ),
+            get_text = \(lang, capitalize = FALSE) {
+                if (capitalize) {
+                    return(translate(lang = lang, "Tolerable"))
+                }
+
+                return(translate(lang = lang, "tolerable"))
+            }
         ),
         problematic = list(
             level = "problematic",
-            text  = \(lang) translate(lang = lang, "problematic"),
             color = "danger",
             icon  = bsicons::bs_icon(
                 name = "exclamation-octagon-fill",
                 a11y = "deco"
-            )
+            ),
+            get_text = \(lang, capitalize = FALSE) {
+                if (capitalize) {
+                    return(translate(lang = lang, "Problematic"))
+                }
+
+                return(translate(lang = lang, "problematic"))
+            }
         )
     )
 )

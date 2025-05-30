@@ -113,7 +113,7 @@ Texts:
       - !<Location>
         Identifier: 1232395:l1
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 510, Col 25 @ Ln 513, Col 26
+        Ranges: Ln 514, Col 25 @ Ln 517, Col 26
   - !<Text>
     Identifier: 78552d4
     Algorithm: sha1
@@ -187,7 +187,7 @@ Texts:
       - !<Location>
         Identifier: e0147d1:l3
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 528, Col 25 @ Ln 531, Col 26
+        Ranges: Ln 532, Col 25 @ Ln 535, Col 26
       - !<Location>
         Identifier: e0147d1:l4
         Path: ./R/ui-panel-percentiles.R
@@ -298,7 +298,7 @@ Texts:
       - !<Location>
         Identifier: 7d60ad6:l1
         Path: ./R/global.R
-        Ranges: Ln 142, Col 29 @ Ln 142, Col 63
+        Ranges: Ln 159, Col 24 @ Ln 159, Col 58
       - !<Location>
         Identifier: 7d60ad6:l2
         Path: ./R/ui-modal-faq.R
@@ -437,7 +437,7 @@ Texts:
       - !<Location>
         Identifier: bddbd7f:l1
         Path: ./R/global.R
-        Ranges: Ln 133, Col 30 @ Ln 133, Col 65
+        Ranges: Ln 144, Col 24 @ Ln 144, Col 59
       - !<Location>
         Identifier: bddbd7f:l2
         Path: ./R/ui-modal-faq.R
@@ -559,7 +559,7 @@ Texts:
       - !<Location>
         Identifier: cebe5c4:l3
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 735, Col 29 @ Ln 735, Col 71
+        Ranges: Ln 739, Col 29 @ Ln 739, Col 71
       - !<Location>
         Identifier: cebe5c4:l4
         Path: ./R/ui-panel-percentiles.R
@@ -982,7 +982,7 @@ Texts:
       - !<Location>
         Identifier: c73ed1b:l3
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 685, Col 13 @ Ln 687, Col 14
+        Ranges: Ln 689, Col 13 @ Ln 691, Col 14
       - !<Location>
         Identifier: c73ed1b:l4
         Path: ./R/ui-panel-percentiles.R
@@ -1099,9 +1099,9 @@ Texts:
         Identifier: 2f456d9:l3
         Path: ./R/ui-panel-express-mode.R
         Ranges:
-          - Ln 570, Col 25 @ Ln 572, Col 26
-          - Ln 617, Col 25 @ Ln 619, Col 26
-          - Ln 661, Col 25 @ Ln 663, Col 26
+          - Ln 574, Col 25 @ Ln 576, Col 26
+          - Ln 621, Col 25 @ Ln 623, Col 26
+          - Ln 665, Col 25 @ Ln 667, Col 26
       - !<Location>
         Identifier: 2f456d9:l4
         Path: ./R/ui-panel-percentiles.R
@@ -1227,7 +1227,7 @@ Texts:
       - !<Location>
         Identifier: 0595dc0:l2
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 557, Col 25 @ Ln 560, Col 26
+        Ranges: Ln 561, Col 25 @ Ln 564, Col 26
   - !<Text>
     Identifier: 1a6a68b
     Algorithm: sha1
@@ -1289,8 +1289,8 @@ Texts:
     Locations:
       - !<Location>
         Identifier: abe3699:l1
-        Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 478, Col 29 @ Ln 478, Col 64
+        Path: ./R/global.R
+        Ranges: Ln 141, Col 28 @ Ln 141, Col 63
   - !<Text>
     Identifier: 22d0b63
     Algorithm: sha1
@@ -1357,7 +1357,7 @@ Texts:
       - !<Location>
         Identifier: 532bf12:l2
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 768, Col 31 @ Ln 768, Col 61
+        Ranges: Ln 772, Col 31 @ Ln 772, Col 61
       - !<Location>
         Identifier: 532bf12:l3
         Path: ./R/ui-panel-percentiles.R
@@ -1509,7 +1509,7 @@ Texts:
       - !<Location>
         Identifier: a5db55c:l1
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 481, Col 25 @ Ln 484, Col 26
+        Ranges: Ln 483, Col 25 @ Ln 486, Col 26
   - !<Text>
     Identifier: 70d45be
     Algorithm: sha1
@@ -1541,7 +1541,7 @@ Texts:
       - !<Location>
         Identifier: 27c579f:l2
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 740, Col 13 @ Ln 746, Col 14
+        Ranges: Ln 744, Col 13 @ Ln 750, Col 14
   - !<Text>
     Identifier: 481daf9
     Algorithm: sha1
@@ -1611,7 +1611,7 @@ Texts:
       - !<Location>
         Identifier: 08b8516:l1
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 456, Col 25 @ Ln 462, Col 26
+        Ranges: Ln 457, Col 25 @ Ln 463, Col 26
   - !<Text>
     Identifier: 8cbc334
     Algorithm: sha1
@@ -1691,7 +1691,7 @@ Texts:
       - !<Location>
         Identifier: 1de8474:l4
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 733, Col 29 @ Ln 733, Col 67
+        Ranges: Ln 737, Col 29 @ Ln 737, Col 67
       - !<Location>
         Identifier: 1de8474:l5
         Path: ./R/ui-panel-percentiles.R
@@ -1764,7 +1764,7 @@ Texts:
       - !<Location>
         Identifier: 5f52075:l2
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 766, Col 31 @ Ln 766, Col 71
+        Ranges: Ln 770, Col 31 @ Ln 770, Col 71
       - !<Location>
         Identifier: 5f52075:l3
         Path: ./R/ui-panel-percentiles.R
@@ -1820,9 +1820,9 @@ Texts:
         Identifier: f73886c:l3
         Path: ./R/ui-panel-express-mode.R
         Ranges:
-          - Ln 582, Col 25 @ Ln 584, Col 26
-          - Ln 629, Col 25 @ Ln 631, Col 26
-          - Ln 673, Col 25 @ Ln 675, Col 26
+          - Ln 586, Col 25 @ Ln 588, Col 26
+          - Ln 633, Col 25 @ Ln 635, Col 26
+          - Ln 677, Col 25 @ Ln 679, Col 26
       - !<Location>
         Identifier: f73886c:l4
         Path: ./R/ui-panel-percentiles.R
@@ -1957,7 +1957,7 @@ Texts:
       - !<Location>
         Identifier: c165d34:l2
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 765, Col 31 @ Ln 765, Col 70
+        Ranges: Ln 769, Col 31 @ Ln 769, Col 70
       - !<Location>
         Identifier: c165d34:l3
         Path: ./R/ui-panel-percentiles.R
@@ -2042,7 +2042,7 @@ Texts:
       - !<Location>
         Identifier: 6db5beb:l2
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 767, Col 31 @ Ln 767, Col 72
+        Ranges: Ln 771, Col 31 @ Ln 771, Col 72
       - !<Location>
         Identifier: 6db5beb:l3
         Path: ./R/ui-panel-percentiles.R
@@ -2084,7 +2084,7 @@ Texts:
       - !<Location>
         Identifier: e510a31:l1
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 601, Col 25 @ Ln 604, Col 26
+        Ranges: Ln 605, Col 25 @ Ln 608, Col 26
       - !<Location>
         Identifier: e510a31:l2
         Path: ./R/ui-panel-percentiles.R
@@ -2115,7 +2115,7 @@ Texts:
       - !<Location>
         Identifier: 690c3dc:l1
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 769, Col 31 @ Ln 769, Col 75
+        Ranges: Ln 773, Col 31 @ Ln 773, Col 75
   - !<Text>
     Identifier: ea57967
     Algorithm: sha1
@@ -2306,7 +2306,7 @@ Texts:
       - !<Location>
         Identifier: 2e733c4:l1
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 495, Col 25 @ Ln 499, Col 26
+        Ranges: Ln 498, Col 25 @ Ln 502, Col 26
   - !<Text>
     Identifier: 962996f
     Algorithm: sha1
@@ -2365,7 +2365,7 @@ Texts:
       - !<Location>
         Identifier: ebaaa0c:l1
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 776, Col 17 @ Ln 789, Col 18
+        Ranges: Ln 780, Col 17 @ Ln 793, Col 18
   - !<Text>
     Identifier: 1921e2a
     Algorithm: sha1
@@ -2651,8 +2651,8 @@ Texts:
     Locations:
       - !<Location>
         Identifier: 6f32d93:l1
-        Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 507, Col 29 @ Ln 507, Col 65
+        Path: ./R/global.R
+        Ranges: Ln 171, Col 28 @ Ln 171, Col 64
   - !<Text>
     Identifier: 89fba6b
     Algorithm: sha1
@@ -2694,7 +2694,7 @@ Texts:
       - !<Location>
         Identifier: cf880eb:l2
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 648, Col 25 @ Ln 651, Col 26
+        Ranges: Ln 652, Col 25 @ Ln 655, Col 26
   - !<Text>
     Identifier: e92bf46
     Algorithm: sha1
@@ -2734,7 +2734,7 @@ Texts:
       - !<Location>
         Identifier: 07fb93b:l1
         Path: ./R/global.R
-        Ranges: Ln 151, Col 29 @ Ln 151, Col 65
+        Ranges: Ln 174, Col 24 @ Ln 174, Col 60
   - !<Text>
     Identifier: b267cef
     Algorithm: sha1
@@ -2982,7 +2982,7 @@ Texts:
       - !<Location>
         Identifier: 5b8a460:l3
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 539, Col 25 @ Ln 542, Col 26
+        Ranges: Ln 543, Col 25 @ Ln 546, Col 26
       - !<Location>
         Identifier: 5b8a460:l4
         Path: ./R/ui-panel-percentiles.R
@@ -3139,7 +3139,7 @@ Texts:
       - !<Location>
         Identifier: f10baab:l3
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 763, Col 31 @ Ln 763, Col 67
+        Ranges: Ln 767, Col 31 @ Ln 767, Col 67
       - !<Location>
         Identifier: f10baab:l4
         Path: ./R/ui-panel-percentiles.R
@@ -3217,7 +3217,7 @@ Texts:
       - !<Location>
         Identifier: d257a4e:l2
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 764, Col 31 @ Ln 764, Col 64
+        Ranges: Ln 768, Col 31 @ Ln 768, Col 64
       - !<Location>
         Identifier: d257a4e:l3
         Path: ./R/ui-panel-percentiles.R
@@ -3232,8 +3232,8 @@ Texts:
     Locations:
       - !<Location>
         Identifier: fc0cbd8:l1
-        Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 492, Col 29 @ Ln 492, Col 63
+        Path: ./R/global.R
+        Ranges: Ln 156, Col 28 @ Ln 156, Col 62
   - !<Text>
     Identifier: 2bbf9dd
     Algorithm: sha1
@@ -3310,7 +3310,7 @@ Texts:
         Path: ./R/ui-panel-express-mode.R
         Ranges:
           - Ln 368, Col 13 @ Ln 368, Col 59
-          - Ln 734, Col 29 @ Ln 734, Col 73
+          - Ln 738, Col 29 @ Ln 738, Col 73
   - !<Text>
     Identifier: 7be717b
     Algorithm: sha1
@@ -3338,7 +3338,7 @@ Texts:
       - !<Location>
         Identifier: 8dd7020:l1
         Path: ./R/ui-panel-express-mode.R
-        Ranges: Ln 715, Col 13 @ Ln 720, Col 14
+        Ranges: Ln 719, Col 13 @ Ln 724, Col 14
   - !<Text>
     Identifier: 1a0644e
     Algorithm: sha1

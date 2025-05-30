@@ -437,7 +437,7 @@ server_panel_express <- function(
                     class = li_classes,
                     html(
                         translate(lang = lang, "The current situation is %s."),
-                        tags$strong(risk_assessment$text(lang))
+                        tags$strong(risk_assessment$get_text(lang))
                     )
                 )
             )
@@ -449,6 +449,7 @@ server_panel_express <- function(
 
         output$risk_assessment_help <- shiny::renderUI({
             lang <- lang()
+            risk_levels_metadata <- aiha_risk_levels$metadata
 
             list(
                 tags$p(
@@ -468,14 +469,15 @@ server_panel_express <- function(
                 ),
 
                 tags$ul(
-                    class = "list-group list-group-flush",
+                    class = "list-group list-group-flush px-3",
 
                     tags$li(
                         class = "list-group-item text-success pb-3",
 
                         tags$h3(
                             class = "fs-6 fw-bold",
-                            translate(lang = lang, "Acceptable")
+                            risk_levels_metadata$acceptable$icon,
+                            risk_levels_metadata$acceptable$get_text(lang, TRUE)
                         ),
 
                         translate(lang = lang, "
@@ -489,7 +491,8 @@ server_panel_express <- function(
 
                         tags$h3(
                             class = "fs-6 fw-bold",
-                            translate(lang = lang, "Tolerable")
+                            risk_levels_metadata$tolerable$icon,
+                            risk_levels_metadata$tolerable$get_text(lang, TRUE)
                         ),
 
                         translate(lang = lang, "
@@ -504,7 +507,8 @@ server_panel_express <- function(
 
                         tags$h3(
                             class = "fs-6 fw-bold",
-                            translate(lang = lang, "Problematic")
+                            risk_levels_metadata$problematic$icon,
+                            risk_levels_metadata$problematic$get_text(lang, TRUE)
                         ),
 
                         translate(lang = lang, "

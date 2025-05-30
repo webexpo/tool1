@@ -392,7 +392,7 @@ server_panel_exceedance_fraction <- function(
                     class = li_classes,
                     html(
                         translate(lang = lang, "The current situation is %s."),
-                        tags$strong(risk_assessment$text(lang))
+                        tags$strong(risk_assessment$get_text(lang))
                     )
                 )
             )
