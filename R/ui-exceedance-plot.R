@@ -183,32 +183,32 @@ server_exceedance_plot <- function(id, lang, parameters, num_results) {
                     The plot on the left shows an acceptable situation for the
                     chosen exceedance threshold (traditionally 5% above the
                     OEL). The plot on the right shows the situation estimated
-                    by the Bayesian model. It takes into account estimation
-                    uncertainty with stripped symbols. The number of plain
-                    symbols represents the best estimate of the number of
-                    measurements above the OEL. The total number of symbols
+                    by the Bayesian model. It further illustrates the uncertainty
+                    of the estimation with stripped flasks. The number of red
+                    plain flasks represents the best estimate of the number of
+                    measurements above the OEL. The total number of red flasks
                     (either plain or stripped) represents the maximum plausible
-                    number of measurements above the OEL given estimation
-                    uncertainty (using the upper limit of the underlying
-                    credible interval).
+                    number of measurements above the OEL given the uncertainty
+                    of the estimation process (using the upper limit of the
+                    underlying credible interval).
                 "),
                 plot3 = translate(lang = lang(), "
                     This plot shows a shaded and darker region corresponding to
-                    the maximal acceptable exceedance. Red symbols outside of it
+                    the maximal acceptable exceedance. Red flasks outside of it
                     are unacceptable exposures. It does not take into account
                     estimation uncertainty.
                 "),
                 plot4 = translate(lang = lang(), "
                     This plot shows a shaded and darker region corresponding to
                     the maximal acceptable exceedance. Red symbols outside of it
-                    are unacceptable exposures. It takes into account estimation
-                    uncertainty with stripped symbols. The number of plain
-                    symbols represents the best estimate of the number of
-                    measurements above the OEL. The total number of symbols
-                    (either plain or stripped) represents the maximum plausible
-                    number of measurements above the OEL given estimation
-                    uncertainty (using the upper limit of the underlying
-                    credible interval).
+                    are unacceptable exposures. It further illustrates the
+                    uncertainty of the estimation with stripped flasks. The
+                    number of red plain flasks represents the best estimate of
+                    the number of measurements above the OEL. The total number
+                    of red flasks (either plain or stripped) represents the
+                    maximum plausible number of measurements above the OEL given
+                    the uncertainty of the estimation process (using the upper
+                    limit of the underlying credible interval).
                 ")
             )
         }) |>
@@ -337,7 +337,7 @@ server_exceedance_plot_sidebar <- function(id, lang) {
 
     server <- function(input, output, session) {
         accordion_panel_exposure_title <- shiny::reactive({
-            translate(lang = lang(), "Flasks")
+            translate(lang = lang(), "Flasks (exposures)")
         }) |>
         shiny::bindCache(lang())
 
@@ -373,13 +373,23 @@ server_exceedance_plot_sidebar <- function(id, lang) {
         }) |>
         shiny::bindCache(lang())
 
-        color_no_risk_label <- color_bg_label <- shiny::reactive({
-            translate(lang = lang(), "Below the OLE:")
+        color_no_risk_label <- shiny::reactive({
+            translate(lang = lang(), "Below the OEL:")
         }) |>
         shiny::bindCache(lang())
 
-        color_risk_label <- color_bg_threshold_label <- shiny::reactive({
-            translate(lang = lang(), "Above the OLE:")
+        color_risk_label <- shiny::reactive({
+            translate(lang = lang(), "Above the OEL:")
+        }) |>
+        shiny::bindCache(lang())
+
+        color_bg_label <- shiny::reactive({
+            translate(lang = lang(), "Default Background:")
+        }) |>
+        shiny::bindCache(lang())
+
+        color_bg_threshold_label <- shiny::reactive({
+            translate(lang = lang(), "Maximal Acceptable Exceedance:")
         }) |>
         shiny::bindCache(lang())
 
@@ -394,7 +404,7 @@ server_exceedance_plot_sidebar <- function(id, lang) {
         color_no_risk_tooltip_text <- shiny::reactive({
             translate(lang = lang(), "
                 Use this value to change the color of exposures that are
-                below the occupational exposure limit.
+                below the OEL.
             ")
         }) |>
         shiny::bindEvent(lang())
@@ -402,23 +412,23 @@ server_exceedance_plot_sidebar <- function(id, lang) {
         color_risk_tooltip_text <- shiny::reactive({
             translate(lang = lang(), "
                 Use this value to change the color of exposures that are
-                above the occupational exposure limit.
+                above the OEL.
             ")
         }) |>
         shiny::bindEvent(lang())
 
         color_bg_tooltip_text <- shiny::reactive({
             translate(lang = lang(), "
-                Use this value to change the background color of exposures
-                that are below the occupational exposure limit.
+                Use this value to change the global background color.
             ")
         }) |>
         shiny::bindEvent(lang())
 
         color_bg_threshold_tooltip_text <- shiny::reactive({
             translate(lang = lang(), "
-                Use this value to change the background color of exposures
-                that are above the occupational exposure limit.
+                Use this value to change the background color of the maximal
+                acceptable exceedance region (maximal acceptable number of
+                exposures that are above the OEL).
             ")
         }) |>
         shiny::bindEvent(lang())
@@ -443,6 +453,7 @@ server_exceedance_plot_sidebar <- function(id, lang) {
                 target = "exposure",
                 title  = accordion_panel_exposure_title()
             )
+
             bslib::accordion_panel_update(
                 id     = "accordion",
                 target = "background",
@@ -460,16 +471,19 @@ server_exceedance_plot_sidebar <- function(id, lang) {
                 inputId = "color_no_risk",
                 label   = color_no_risk_label()
             )
+
             colourpicker::updateColourInput(
                 session = session,
                 inputId = "color_risk",
                 label   = color_risk_label()
             )
+
             colourpicker::updateColourInput(
                 session = session,
                 inputId = "color_bg",
                 label   = color_bg_label()
             )
+
             colourpicker::updateColourInput(
                 session = session,
                 inputId = "color_bg_threshold",

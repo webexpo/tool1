@@ -52,6 +52,14 @@ Risk Meter
 
 Indicateur de risque
 
+:: Translations: dbab5ea: Source Text
+
+Below the OEL:
+
+:: Translations: dbab5ea: Translation
+
+Inférieurs à la VLE:
+
 :: Translations: 10c4b97: Source Text
 
 You may also consult the scientific report of the Webexpo project. It includes
@@ -62,6 +70,14 @@ a large introductory section focusing on industrial hygiene statistics.
 Vous pouvez également consulter le rapport scientifique du projet Webexpo. Il
 comprend une section introductive consacrée aux statistiques de l'hygiène
 industrielle.
+
+:: Translations: 78552d4: Source Text
+
+Default Background:
+
+:: Translations: 78552d4: Translation
+
+Arrière-plan par défaut:
 
 :: Translations: 0cdc87d: Source Text
 
@@ -128,16 +144,6 @@ Number of Obversations
 :: Translations: a632e97: Translation
 
 Nombre d'obversations
-
-:: Translations: a79e9b8: Source Text
-
-Use this value to change the background color of exposures that are below the
-occupational exposure limit.
-
-:: Translations: a79e9b8: Translation
-
-Cette valeur permet de modifier la couleur d'arrière-plan des expositions qui
-sont inférieures à la valeur limite d'exposition.
 
 :: Translations: 7034018: Source Text
 
@@ -235,6 +241,14 @@ percentile being greater than or equal to the OEL).
 Sélectionnez un critère pour déterminer ce qui est considéré comme une
 surexposition (par exemple, le %s percentile supérieur ou égal à la VLE).
 
+:: Translations: a4cd560: Source Text
+
+Maximal Acceptable Exceedance:
+
+:: Translations: a4cd560: Translation
+
+Dépassement maximal acceptable:
+
 :: Translations: ad1e98e: Source Text
 
 OEL
@@ -289,6 +303,14 @@ Acceptable Sample
 :: Translations: 4528da3: Translation
 
 Échantillon acceptable
+
+:: Translations: 057d849: Source Text
+
+Use this value to change the global background color.
+
+:: Translations: 057d849: Translation
+
+Cette valeur permet de modifier la couleur de l'arrière-plan principal.
 
 :: Translations: 5dc95f8: Source Text
 
@@ -448,14 +470,6 @@ seuils à dépasser aussi rarement que possible. Certains auteurs ont suggéré
 d'utiliser un dixième de la VLE comme VLE moyenne à long terme lors de
 l'évaluation du risque à l'aide de la moyenne arithmétique.
 
-:: Translations: 4c8c28a: Source Text
-
-Flasks
-
-:: Translations: 4c8c28a: Translation
-
-Flacons
-
 :: Translations: 04339f1: Source Text
 
 Measurements are entered in the Measurements text area of the Calculation
@@ -491,14 +505,6 @@ Sample Statistic
 :: Translations: 632ebd0: Translation
 
 Statistique d'échantillonnage
-
-:: Translations: 347777f: Source Text
-
-Below the OLE:
-
-:: Translations: 347777f: Translation
-
-Inférieur à la VLE:
 
 :: Translations: ad9a641: Source Text
 
@@ -557,6 +563,14 @@ Interval censored measurements are imputed as the mid-range.
 :: Translations: af71ace: Translation
 
 Les mesures censurées par intervalle sont imputées au milieu de l'intervalle.
+
+:: Translations: b817814: Source Text
+
+Above the OEL:
+
+:: Translations: b817814: Translation
+
+Supérieurs à la VLE:
 
 :: Translations: 1d671e4: Source Text
 
@@ -706,6 +720,14 @@ Submit all parameters and start Bayesian calculations.
 
 Soumettre tous les paramètres et exécuter les calculs bayésiens.
 
+:: Translations: f6667d4: Source Text
+
+Flasks (exposures)
+
+:: Translations: f6667d4: Translation
+
+Flacons (expositions)
+
 :: Translations: a744f49: Source Text
 
 Occupational Exposure Limit (OEL):
@@ -796,6 +818,15 @@ Data Interpretation for One Similar Exposure Group
 :: Translations: 8fc2a6a: Translation
 
 Interprétation de données pour un groupe d'exposition similaire
+
+:: Translations: 7b55099: Source Text
+
+Use this value to change the color of exposures that are above the OEL.
+
+:: Translations: 7b55099: Translation
+
+Cette valeur permet de modifier la couleur des expositions supérieures à la
+VLE.
 
 :: Translations: 22d0b63: Source Text
 
@@ -980,6 +1011,19 @@ Tool 1 est une application web libre et gratuite qui facilite l'interprétation
 des mesures d'hygiène industrielle, en particulier pour évaluer leur conformité
 par rapport à des valeurs limites d'exposition (VLE).
 
+:: Translations: 9b3e862: Source Text
+
+This plot shows a shaded and darker region corresponding to the maximal
+acceptable exceedance. Red flasks outside of it are unacceptable exposures. It
+does not take into account estimation uncertainty.
+
+:: Translations: 9b3e862: Translation
+
+Ce graphique montre une région ombrée et plus foncée correspondant au
+dépassement maximal acceptable. Les flacons rouges situés en dehors de cette
+région correspondent à des expositions inacceptables. Il ne tient pas compte de
+l'incertitude de l'estimation.
+
 :: Translations: 6918de6: Source Text
 
 Proportion Censored
@@ -1054,6 +1098,14 @@ Concentration
 
 Concentration
 
+:: Translations: e2b62b1: Source Text
+
+How can I customize the user interface?
+
+:: Translations: e2b62b1: Translation
+
+Comment puis-je personnaliser l'interface utilisateur?
+
 :: Translations: 50da20b: Source Text
 
 European guidelines EN689
@@ -1073,14 +1125,6 @@ and %s.
 Vous pouvez soumettre des bogues, demander des fonctionnalités et fournir une
 rétroaction sur %s si vous avez un compte. Vous pouvez également envoyer un
 courriel aux responsables actuels de Tool 1 : %s et %s.
-
-:: Translations: e2b62b1: Source Text
-
-How can I customize the user interface?
-
-:: Translations: e2b62b1: Translation
-
-Comment puis-je personnaliser l'interface utilisateur?
 
 :: Translations: 5bbca33: Source Text
 
@@ -1110,6 +1154,18 @@ En fonction de la charge actuelle du serveur et de la taille de l'échantillon,
 il se peut que vous deviez patienter avant d'obtenir des résultats. Les temps
 d'attente sont généralement inférieurs à 30 secondes. Certains panels
 nécessitent plus de temps de calcul et de ressources.
+
+:: Translations: be94953: Source Text
+
+Use this value to change the background color of the maximal acceptable
+exceedance region (maximal acceptable number of exposures that are above the
+OEL).
+
+:: Translations: be94953: Translation
+
+Cette valeur permet de modifier la couleur de l'arrière-plan de la région de
+dépassement maximal acceptable (nombre maximal d'expositions supérieures à la
+VLE).
 
 :: Translations: f73886c: Source Text
 
@@ -1203,6 +1259,15 @@ Locate the Calculation Parameters sidebar on the left and follow these steps.
 
 Localisez la barre latérale Paramètres de calcul sur la gauche et suivez les
 étapes suivantes.
+
+:: Translations: 04a1dc2: Source Text
+
+Use this value to change the color of exposures that are below the OEL.
+
+:: Translations: 04a1dc2: Translation
+
+Cette valeur permet de modifier la couleur des expositions inférieures à la
+VLE.
 
 :: Translations: 0ff7e09: Source Text
 
@@ -1305,6 +1370,16 @@ Credible Interval Probability:
 
 Probabilité des intervalles de crédibilité:
 
+:: Translations: e279776: Source Text
+
+Use this value to assess overexposure. It must have the same unit as the
+measurement data.
+
+:: Translations: e279776: Translation
+
+Utilisez cette valeur pour évaluer la surexposition. Elle doit avoir les mêmes
+unités que les données de mesures.
+
 :: Translations: b69a61b: Source Text
 
 Tool 1 offers two modes controlling how much information is displayed to the
@@ -1350,16 +1425,6 @@ atteindre 95%% de confiance mais atteindre 70%% de confiance rend la situation
 tolérable. Le fait de ne pas atteindre 70%% de confiance en l'absence de
 surexposition rend la situation problématique.
 
-:: Translations: e279776: Source Text
-
-Use this value to assess overexposure. It must have the same unit as the
-measurement data.
-
-:: Translations: e279776: Translation
-
-Utilisez cette valeur pour évaluer la surexposition. Elle doit avoir les mêmes
-unités que les données de mesures.
-
 :: Translations: 62fc968: Source Text
 
 Percentile
@@ -1389,29 +1454,6 @@ chosen.
 Entrez les autres paramètres requis. Certains sont spécifiques à certains
 panneaux et sont cachés. Ils ne sont affichés que lorsque le panneau
 d'inférence statistique correspondant est choisi.
-
-:: Translations: 677f437: Source Text
-
-The plot on the left shows an acceptable situation for the chosen exceedance
-threshold (traditionally 5% above the OEL). The plot on the right shows the
-situation estimated by the Bayesian model. It takes into account estimation
-uncertainty with stripped symbols. The number of plain symbols represents the
-best estimate of the number of measurements above the OEL. The total number of
-symbols (either plain or stripped) represents the maximum plausible number of
-measurements above the OEL given estimation uncertainty (using the upper limit
-of the underlying credible interval).
-
-:: Translations: 677f437: Translation
-
-Le graphique de gauche montre une situation acceptable pour le seuil de
-dépassement choisi (traditionnellement 5% au-dessus de la VLE). Le graphique de
-droite montre la situation estimée par le modèle bayésien. L'incertitude de
-l'estimation est illustrée par les symboles rayés. Le nombre de symboles pleins
-représente la meilleure estimation du nombre de mesures supérieures à la VLE.
-Le nombre total de symboles (rayés ou non) représente le nombre maximal
-lausible de mesures supérieur à la la VLE compte tenu de l'incertitude
-d'estimation (en utilisant la limite supérieure de l'intervalle de crédibilité
-sous-jacent).
 
 :: Translations: e200a41: Source Text
 
@@ -1467,16 +1509,6 @@ requires remedial action. We call it %s.
 Si le risque de surexposition est supérieur à 30%%, il est élevé. La situation
 nécessite une action corrective. Nous l'appelons %s.
 
-:: Translations: 888702a: Source Text
-
-Use this value to change the background color of exposures that are above the
-occupational exposure limit.
-
-:: Translations: 888702a: Translation
-
-Cette valeur permet de modifier la couleur d'arrière-plan des expositions qui
-dépassent la valeur limite d'exposition.
-
 :: Translations: aeaec6e: Source Text
 
 Wait for the server to perform the calculations. All results will be shown once
@@ -1529,14 +1561,6 @@ Box and Whiskers Plot
 
 Boîte à moustaches
 
-:: Translations: 4f7aff7: Source Text
-
-How are censored measurements imputed?
-
-:: Translations: 4f7aff7: Translation
-
-Comment les mesures censurées sont-elles imputées?
-
 :: Translations: e42d220: Source Text
 
 See the source code of Tool 1 on GitHub (English only).
@@ -1545,27 +1569,13 @@ See the source code of Tool 1 on GitHub (English only).
 
 Consultez le code source de Tool 1 sur GitHub (en anglais seulement).
 
-:: Translations: be6fb8b: Source Text
+:: Translations: 4f7aff7: Source Text
 
-This plot shows a shaded and darker region corresponding to the maximal
-acceptable exceedance. Red symbols outside of it are unacceptable exposures. It
-takes into account estimation uncertainty with stripped symbols. The number of
-plain symbols represents the best estimate of the number of measurements above
-the OEL. The total number of symbols (either plain or stripped) represents the
-maximum plausible number of measurements above the OEL given estimation
-uncertainty (using the upper limit of the underlying credible interval).
+How are censored measurements imputed?
 
-:: Translations: be6fb8b: Translation
+:: Translations: 4f7aff7: Translation
 
-Ce graphique montre une région ombrée et plus foncée correspondant au
-dépassement maximal acceptable. Les symboles rouges situés en dehors de cette
-région correspondent à des expositions inacceptables. Il tient compte de
-l'incertitude de l'estimation avec des symboles rayés. Le nombre de symboles
-simples représente la meilleure estimation du nombre de mesures supérieures à
-la VLE. Le nombre total de symboles (rayés ou non) représente le nombre maximal
-plausible de mesures dépassant la VLE compte tenu de l'incertitude de
-l'estimation (en utilisant la limite supérieure de l'intervalle de crédibilité
-sous-jacent).
+Comment les mesures censurées sont-elles imputées?
 
 :: Translations: 46750b1: Source Text
 
@@ -1574,6 +1584,30 @@ Changelog
 :: Translations: 46750b1: Translation
 
 Modifications
+
+:: Translations: d1394d6: Source Text
+
+The plot on the left shows an acceptable situation for the chosen exceedance
+threshold (traditionally 5% above the OEL). The plot on the right shows the
+situation estimated by the Bayesian model. It further illustrates the
+uncertainty of the estimation with stripped flasks. The number of red plain
+flasks represents the best estimate of the number of measurements above the
+OEL. The total number of red flasks (either plain or stripped) represents the
+maximum plausible number of measurements above the OEL given the uncertainty of
+the estimation process (using the upper limit of the underlying credible
+interval).
+
+:: Translations: d1394d6: Translation
+
+Le graphique de gauche montre une situation acceptable pour le seuil de
+dépassement choisi (traditionnellement 5% au-dessus de la VLE). Le graphique de
+droite montre la situation estimée par le modèle bayésien. Il illustre
+également l'incertitude de l'estimation avec des flacons rayés. Le nombre total
+de flacons rouges pleins représente la meilleure estimation du nombre de
+mesures supérieures à la VLE. Le nombre total de flacons rouges (pleins ou
+rayés) représente le nombre maximal plausible de mesures supérieures à la VLE
+compte tenu de l'incertitude du processus d'estimation (en utilisant la limite
+supérieure de l'intervalle de crédibilité sous-jacent).
 
 :: Translations: 67c3cba: Source Text
 
@@ -1919,6 +1953,29 @@ Maximum
 
 Maximum
 
+:: Translations: 7e63316: Source Text
+
+This plot shows a shaded and darker region corresponding to the maximal
+acceptable exceedance. Red symbols outside of it are unacceptable exposures. It
+further illustrates the uncertainty of the estimation with stripped flasks. The
+number of red plain flasks represents the best estimate of the number of
+measurements above the OEL. The total number of red flasks (either plain or
+stripped) represents the maximum plausible number of measurements above the OEL
+given the uncertainty of the estimation process (using the upper limit of the
+underlying credible interval).
+
+:: Translations: 7e63316: Translation
+
+Ce graphique montre une région ombrée et plus foncée correspondant au
+dépassement maximal acceptable. Les symboles rouges situés en dehors de cette
+région correspondent à des expositions inacceptables. Il illustre également
+l'incertitude de l'estimation avec des flacons rayés. Le nombre total de
+flacons rouges pleins représente la meilleure estimation du nombre de mesures
+supérieures à la VLE. Le nombre total de flacons rouges (pleins ou rayés)
+représente le nombre maximal plausible de mesures supérieures à la VLE compte
+tenu de l'incertitude du processus d'estimation (en utilisant la limite
+supérieure de l'intervalle de crédibilité sous-jacent).
+
 :: Translations: da9cc89: Source Text
 
 Risk Band Plot
@@ -1942,19 +1999,6 @@ About My Measurements
 :: Translations: c6394ac: Translation
 
 À propos de mes mesures
-
-:: Translations: 1583901: Source Text
-
-This plot shows a shaded and darker region corresponding to the maximal
-acceptable exceedance. Red symbols outside of it are unacceptable exposures. It
-does not take into account estimation uncertainty.
-
-:: Translations: 1583901: Translation
-
-Ce graphique montre une région ombrée et plus foncée correspondant au
-dépassement maximal acceptable. Les symboles rouges situés en dehors de cette
-région correspondent à des expositions inacceptables. Il ne tient pas compte de
-l'incertitude de l'estimation.
 
 :: Translations: 025cd9d: Source Text
 
@@ -1987,16 +2031,6 @@ Not Censored
 :: Translations: ee91f19: Translation
 
 Non censuré
-
-:: Translations: e7ca519: Source Text
-
-Use this value to change the color of exposures that are above the occupational
-exposure limit.
-
-:: Translations: e7ca519: Translation
-
-Cette valeur permet de modifier la couleur des expositions qui dépassent la
-valeur limite d'exposition.
 
 :: Translations: 7385e52: Source Text
 
@@ -2119,16 +2153,6 @@ Measurements censored to the right are imputed as 9/4 of the censoring point.
 
 Les mesures censurées à droite sont imputées à 9/4 du point de censure.
 
-:: Translations: 007e59c: Source Text
-
-Use this value to change the color of exposures that are below the occupational
-exposure limit.
-
-:: Translations: 007e59c: Translation
-
-Cette valeur permet de modifier la couleur des expositions inférieures à la
-valeur limite d'exposition.
-
 :: Translations: b740be6: Source Text
 
 Do not use a separator for thousands.
@@ -2166,14 +2190,6 @@ Density
 :: Translations: ceefbab: Translation
 
 Densité
-
-:: Translations: 6241570: Source Text
-
-Above the OLE:
-
-:: Translations: 6241570: Translation
-
-Supérieur à la VLE:
 
 :: Translations: a2334d7: Source Text
 

@@ -74,6 +74,18 @@ Texts:
         Path: ./R/ui-panel-percentiles.R
         Ranges: Ln 296, Col 13 @ Ln 296, Col 50
   - !<Text>
+    Identifier: dbab5ea
+    Algorithm: sha1
+    Hash: dbab5ea5eaef2f38a9ebc7a24a6c532d0b2cd5ef
+    Source Language: en
+    Source Text: 'Below the OEL:'
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: dbab5ea:l1
+        Path: ./R/ui-exceedance-plot.R
+        Ranges: Ln 377, Col 13 @ Ln 377, Col 54
+  - !<Text>
     Identifier: 10c4b97
     Algorithm: sha1
     Hash: 10c4b9728ba55b1250c7892901fa2183f0c3b768
@@ -88,6 +100,18 @@ Texts:
         Identifier: 10c4b97:l1
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 1105, Col 20 @ Ln 1109, Col 14
+  - !<Text>
+    Identifier: 78552d4
+    Algorithm: sha1
+    Hash: 78552d4e1adb03dda38087e8491cc0a4dfb27def
+    Source Language: en
+    Source Text: 'Default Background:'
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 78552d4:l1
+        Path: ./R/ui-exceedance-plot.R
+        Ranges: Ln 387, Col 13 @ Ln 387, Col 59
   - !<Text>
     Identifier: 0cdc87d
     Algorithm: sha1
@@ -204,20 +228,6 @@ Texts:
         Identifier: a632e97:l1
         Path: ./R/ui-panel-descriptive-statistics.R
         Ranges: Ln 207, Col 21 @ Ln 207, Col 68
-  - !<Text>
-    Identifier: a79e9b8
-    Algorithm: sha1
-    Hash: a79e9b81ba5525d8c6b6c65f9b79d41908ed7e01
-    Source Language: en
-    Source Text: |-
-      Use this value to change the background color of exposures that are below
-      the occupational exposure limit.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: a79e9b8:l1
-        Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 411, Col 13 @ Ln 414, Col 14
   - !<Text>
     Identifier: '7034018'
     Algorithm: sha1
@@ -345,6 +355,18 @@ Texts:
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 912, Col 25 @ Ln 916, Col 26
   - !<Text>
+    Identifier: a4cd560
+    Algorithm: sha1
+    Hash: a4cd560853be747a10c4d067973dc0090afca0d5
+    Source Language: en
+    Source Text: 'Maximal Acceptable Exceedance:'
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: a4cd560:l1
+        Path: ./R/ui-exceedance-plot.R
+        Ranges: Ln 392, Col 13 @ Ln 392, Col 70
+  - !<Text>
     Identifier: ad1e98e
     Algorithm: sha1
     Hash: ad1e98eb9783b8c861ae474e189a1531b4290bbe
@@ -459,6 +481,18 @@ Texts:
         Ranges:
           - Ln 120, Col 42 @ Ln 120, Col 84
           - Ln 132, Col 42 @ Ln 132, Col 84
+  - !<Text>
+    Identifier: 057d849
+    Algorithm: sha1
+    Hash: 057d8499c2bde6571e77078770393e396600dcf5
+    Source Language: en
+    Source Text: Use this value to change the global background color.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 057d849:l1
+        Path: ./R/ui-exceedance-plot.R
+        Ranges: Ln 421, Col 13 @ Ln 423, Col 14
   - !<Text>
     Identifier: 5dc95f8
     Algorithm: sha1
@@ -681,18 +715,6 @@ Texts:
         Path: ./R/ui-panel-arithmetic-mean.R
         Ranges: Ln 407, Col 13 @ Ln 418, Col 14
   - !<Text>
-    Identifier: 4c8c28a
-    Algorithm: sha1
-    Hash: 4c8c28ab2c310c97a594934a9eb263dcdc8caa26
-    Source Language: en
-    Source Text: Flasks
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 4c8c28a:l1
-        Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 340, Col 13 @ Ln 340, Col 46
-  - !<Text>
     Identifier: 04339f1
     Algorithm: sha1
     Hash: 04339f17796c40550641bd74594f898e16f8e6b8
@@ -744,18 +766,6 @@ Texts:
         Path: ./R/ui-panel-descriptive-statistics.R
         Ranges: Ln 232, Col 21 @ Ln 232, Col 62
   - !<Text>
-    Identifier: 347777f
-    Algorithm: sha1
-    Hash: 347777f188c9f347ceba6ec142058a5e7e0e0cc9
-    Source Language: en
-    Source Text: 'Below the OLE:'
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 347777f:l1
-        Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 377, Col 13 @ Ln 377, Col 54
-  - !<Text>
     Identifier: ad9a641
     Algorithm: sha1
     Hash: ad9a6411277c9c791d2af1693744baa9c0f6f082
@@ -804,7 +814,7 @@ Texts:
       - !<Location>
         Identifier: 7e21f78:l1
         Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 387, Col 13 @ Ln 390, Col 14
+        Ranges: Ln 397, Col 13 @ Ln 400, Col 14
   - !<Text>
     Identifier: '9578728'
     Algorithm: sha1
@@ -841,6 +851,18 @@ Texts:
         Identifier: af71ace:l1
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 621, Col 21 @ Ln 624, Col 22
+  - !<Text>
+    Identifier: b817814
+    Algorithm: sha1
+    Hash: b817814bfa3b22151ad0225c082338238dfb2308
+    Source Language: en
+    Source Text: 'Above the OEL:'
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: b817814:l1
+        Path: ./R/ui-exceedance-plot.R
+        Ranges: Ln 382, Col 13 @ Ln 382, Col 54
   - !<Text>
     Identifier: 1d671e4
     Algorithm: sha1
@@ -1095,6 +1117,18 @@ Texts:
         Path: ./R/ui-sidebar.R
         Ranges: Ln 293, Col 13 @ Ln 295, Col 14
   - !<Text>
+    Identifier: f6667d4
+    Algorithm: sha1
+    Hash: f6667d4494f1215af0dc67eb5a73f3d938b5f8f4
+    Source Language: en
+    Source Text: Flasks (exposures)
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: f6667d4:l1
+        Path: ./R/ui-exceedance-plot.R
+        Ranges: Ln 340, Col 13 @ Ln 340, Col 58
+  - !<Text>
     Identifier: a744f49
     Algorithm: sha1
     Hash: a744f4969beea14c0d67d136d218ec6545b00f26
@@ -1230,6 +1264,19 @@ Texts:
         Identifier: 8fc2a6a:l1
         Path: ./R/ui-title.R
         Ranges: Ln 485, Col 13 @ Ln 487, Col 14
+  - !<Text>
+    Identifier: 7b55099
+    Algorithm: sha1
+    Hash: 7b550997abfc9936a13a59d2fdcfd60c84ef422d
+    Source Language: en
+    Source Text: Use this value to change the color of exposures that are above the
+      OEL.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 7b55099:l1
+        Path: ./R/ui-exceedance-plot.R
+        Ranges: Ln 413, Col 13 @ Ln 416, Col 14
   - !<Text>
     Identifier: 22d0b63
     Algorithm: sha1
@@ -1497,6 +1544,21 @@ Texts:
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 346, Col 20 @ Ln 351, Col 14
   - !<Text>
+    Identifier: 9b3e862
+    Algorithm: sha1
+    Hash: 9b3e862873097e2a5c3f2c86b0eb787d612a322e
+    Source Language: en
+    Source Text: |-
+      This plot shows a shaded and darker region corresponding to the maximal
+      acceptable exceedance. Red flasks outside of it are unacceptable
+      exposures. It does not take into account estimation uncertainty.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 9b3e862:l1
+        Path: ./R/ui-exceedance-plot.R
+        Ranges: Ln 195, Col 25 @ Ln 200, Col 18
+  - !<Text>
     Identifier: 6918de6
     Algorithm: sha1
     Hash: 6918de6e784b4bb2f4b8a13fdf109e2989b72c63
@@ -1587,7 +1649,7 @@ Texts:
       - !<Location>
         Identifier: 3883288:l1
         Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 427, Col 13 @ Ln 427, Col 49
+        Ranges: Ln 437, Col 13 @ Ln 437, Col 49
   - !<Text>
     Identifier: 1de8474
     Algorithm: sha1
@@ -1623,6 +1685,18 @@ Texts:
           - Ln 504, Col 38 @ Ln 504, Col 76
           - Ln 535, Col 38 @ Ln 535, Col 76
   - !<Text>
+    Identifier: e2b62b1
+    Algorithm: sha1
+    Hash: e2b62b1e795883830471132169e99bf3dd47dde0
+    Source Language: en
+    Source Text: How can I customize the user interface?
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: e2b62b1:l1
+        Path: ./R/ui-modal-faq.R
+        Ranges: Ln 709, Col 21 @ Ln 709, Col 85
+  - !<Text>
     Identifier: 50da20b
     Algorithm: sha1
     Hash: 50da20b389d5251b0ea2bf7fe8c5a308295e58d6
@@ -1649,18 +1723,6 @@ Texts:
         Identifier: b945076:l1
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 424, Col 21 @ Ln 429, Col 22
-  - !<Text>
-    Identifier: e2b62b1
-    Algorithm: sha1
-    Hash: e2b62b1e795883830471132169e99bf3dd47dde0
-    Source Language: en
-    Source Text: How can I customize the user interface?
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: e2b62b1:l1
-        Path: ./R/ui-modal-faq.R
-        Ranges: Ln 709, Col 21 @ Ln 709, Col 85
   - !<Text>
     Identifier: 5bbca33
     Algorithm: sha1
@@ -1709,6 +1771,21 @@ Texts:
         Identifier: e2b0950:l1
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 791, Col 20 @ Ln 796, Col 14
+  - !<Text>
+    Identifier: be94953
+    Algorithm: sha1
+    Hash: be949533595ea6358524f8cc22a37247ef446317
+    Source Language: en
+    Source Text: |-
+      Use this value to change the background color of the maximal acceptable
+      exceedance region (maximal acceptable number of exposures that are above
+      the OEL).
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: be94953:l1
+        Path: ./R/ui-exceedance-plot.R
+        Ranges: Ln 428, Col 13 @ Ln 432, Col 14
   - !<Text>
     Identifier: f73886c
     Algorithm: sha1
@@ -1886,6 +1963,19 @@ Texts:
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 743, Col 20 @ Ln 746, Col 14
   - !<Text>
+    Identifier: 04a1dc2
+    Algorithm: sha1
+    Hash: 04a1dc21f0421036164b817a83e7c6c1be336891
+    Source Language: en
+    Source Text: Use this value to change the color of exposures that are below the
+      OEL.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 04a1dc2:l1
+        Path: ./R/ui-exceedance-plot.R
+        Ranges: Ln 405, Col 13 @ Ln 408, Col 14
+  - !<Text>
     Identifier: 0ff7e09
     Algorithm: sha1
     Hash: 0ff7e09d69b90ea03a6990c6e83b05b9d8569c39
@@ -2061,6 +2151,20 @@ Texts:
         Path: ./R/ui-sidebar.R
         Ranges: Ln 208, Col 13 @ Ln 208, Col 70
   - !<Text>
+    Identifier: e279776
+    Algorithm: sha1
+    Hash: e279776cbbb6e3a3b4057f19125acf53c94e664b
+    Source Language: en
+    Source Text: |-
+      Use this value to assess overexposure. It must have the same unit as the
+      measurement data.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: e279776:l1
+        Path: ./R/ui-sidebar.R
+        Ranges: Ln 233, Col 13 @ Ln 236, Col 14
+  - !<Text>
     Identifier: b69a61b
     Algorithm: sha1
     Hash: b69a61bb6f10c1da5b4e35e6685636516fd3799b
@@ -2109,20 +2213,6 @@ Texts:
         Identifier: c0390ed:l1
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 973, Col 21 @ Ln 982, Col 22
-  - !<Text>
-    Identifier: e279776
-    Algorithm: sha1
-    Hash: e279776cbbb6e3a3b4057f19125acf53c94e664b
-    Source Language: en
-    Source Text: |-
-      Use this value to assess overexposure. It must have the same unit as the
-      measurement data.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: e279776:l1
-        Path: ./R/ui-sidebar.R
-        Ranges: Ln 233, Col 13 @ Ln 236, Col 14
   - !<Text>
     Identifier: 62fc968
     Algorithm: sha1
@@ -2176,27 +2266,6 @@ Texts:
         Identifier: 8e3c26e:l1
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 761, Col 21 @ Ln 765, Col 22
-  - !<Text>
-    Identifier: 677f437
-    Algorithm: sha1
-    Hash: 677f4376b8e8c7b9d2d31dbb5393cee678cd9990
-    Source Language: en
-    Source Text: |-
-      The plot on the left shows an acceptable situation for the chosen
-      exceedance threshold (traditionally 5% above the OEL). The plot on the
-      right shows the situation estimated by the Bayesian model. It takes into
-      account estimation uncertainty with stripped symbols. The number of plain
-      symbols represents the best estimate of the number of measurements above
-      the OEL. The total number of symbols (either plain or stripped)
-      represents the maximum plausible number of measurements above the OEL
-      given estimation uncertainty (using the upper limit of the underlying
-      credible interval).
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 677f437:l1
-        Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 182, Col 25 @ Ln 194, Col 18
   - !<Text>
     Identifier: e200a41
     Algorithm: sha1
@@ -2269,20 +2338,6 @@ Texts:
         Path: ./R/ui-panel-express-mode.R
         Ranges: Ln 500, Col 29 @ Ln 504, Col 30
   - !<Text>
-    Identifier: 888702a
-    Algorithm: sha1
-    Hash: 888702a7646e1642996aa53b8ff856a62109af1e
-    Source Language: en
-    Source Text: |-
-      Use this value to change the background color of exposures that are above
-      the occupational exposure limit.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 888702a:l1
-        Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 419, Col 13 @ Ln 422, Col 14
-  - !<Text>
     Identifier: aeaec6e
     Algorithm: sha1
     Hash: aeaec6e04b273fc24daf70775e7bfbc7bbe11fab
@@ -2352,18 +2407,6 @@ Texts:
         Path: ./R/ui-panel-descriptive-statistics.R
         Ranges: Ln 183, Col 13 @ Ln 183, Col 61
   - !<Text>
-    Identifier: 4f7aff7
-    Algorithm: sha1
-    Hash: 4f7aff7f742a3fb66f05eb8d41a727d01c317456
-    Source Language: en
-    Source Text: How are censored measurements imputed?
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 4f7aff7:l1
-        Path: ./R/ui-modal-faq.R
-        Ranges: Ln 589, Col 21 @ Ln 589, Col 84
-  - !<Text>
     Identifier: e42d220
     Algorithm: sha1
     Hash: e42d2201a850ebc15e17d95239cc71cb39d7c37b
@@ -2376,25 +2419,17 @@ Texts:
         Path: ./R/ui-title.R
         Ranges: Ln 478, Col 13 @ Ln 480, Col 14
   - !<Text>
-    Identifier: be6fb8b
+    Identifier: 4f7aff7
     Algorithm: sha1
-    Hash: be6fb8bedcb8f0bb770b67c63a8c85a74b198327
+    Hash: 4f7aff7f742a3fb66f05eb8d41a727d01c317456
     Source Language: en
-    Source Text: |-
-      This plot shows a shaded and darker region corresponding to the maximal
-      acceptable exceedance. Red symbols outside of it are unacceptable
-      exposures. It takes into account estimation uncertainty with stripped
-      symbols. The number of plain symbols represents the best estimate of the
-      number of measurements above the OEL. The total number of symbols (either
-      plain or stripped) represents the maximum plausible number of
-      measurements above the OEL given estimation uncertainty (using the upper
-      limit of the underlying credible interval).
+    Source Text: How are censored measurements imputed?
     Translations: ~
     Locations:
       - !<Location>
-        Identifier: be6fb8b:l1
-        Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 201, Col 25 @ Ln 212, Col 18
+        Identifier: 4f7aff7:l1
+        Path: ./R/ui-modal-faq.R
+        Ranges: Ln 589, Col 21 @ Ln 589, Col 84
   - !<Text>
     Identifier: 46750b1
     Algorithm: sha1
@@ -2407,6 +2442,27 @@ Texts:
         Identifier: 46750b1:l1
         Path: ./R/ui-footer.R
         Ranges: Ln 73, Col 21 @ Ln 73, Col 55
+  - !<Text>
+    Identifier: d1394d6
+    Algorithm: sha1
+    Hash: d1394d6d1e89fd4d6ef029a870c471743c2a69dc
+    Source Language: en
+    Source Text: |-
+      The plot on the left shows an acceptable situation for the chosen
+      exceedance threshold (traditionally 5% above the OEL). The plot on the
+      right shows the situation estimated by the Bayesian model. It further
+      illustrates the uncertainty of the estimation with stripped flasks. The
+      number of red plain flasks represents the best estimate of the number of
+      measurements above the OEL. The total number of red flasks (either plain
+      or stripped) represents the maximum plausible number of measurements
+      above the OEL given the uncertainty of the estimation process (using the
+      upper limit of the underlying credible interval).
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: d1394d6:l1
+        Path: ./R/ui-exceedance-plot.R
+        Ranges: Ln 182, Col 25 @ Ln 194, Col 18
   - !<Text>
     Identifier: 67c3cba
     Algorithm: sha1
@@ -2911,6 +2967,27 @@ Texts:
         Path: ./R/ui-panel-descriptive-statistics.R
         Ranges: Ln 223, Col 21 @ Ln 223, Col 53
   - !<Text>
+    Identifier: 7e63316
+    Algorithm: sha1
+    Hash: 7e6331616851f9ac48784d0be958b56a9b3261f4
+    Source Language: en
+    Source Text: |-
+      This plot shows a shaded and darker region corresponding to the maximal
+      acceptable exceedance. Red symbols outside of it are unacceptable
+      exposures. It further illustrates the uncertainty of the estimation with
+      stripped flasks. The number of red plain flasks represents the best
+      estimate of the number of measurements above the OEL. The total number of
+      red flasks (either plain or stripped) represents the maximum plausible
+      number of measurements above the OEL given the uncertainty of the
+      estimation process (using the upper limit of the underlying credible
+      interval).
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 7e63316:l1
+        Path: ./R/ui-exceedance-plot.R
+        Ranges: Ln 201, Col 25 @ Ln 212, Col 18
+  - !<Text>
     Identifier: da9cc89
     Algorithm: sha1
     Hash: da9cc8918f7bdcb5e75ab5ecd35ee0b8d941aac8
@@ -2958,21 +3035,6 @@ Texts:
         Identifier: c6394ac:l1
         Path: ./R/ui-panel-descriptive-statistics.R
         Ranges: Ln 153, Col 13 @ Ln 153, Col 61
-  - !<Text>
-    Identifier: '1583901'
-    Algorithm: sha1
-    Hash: 1583901b198346fb79822e4d2d1b04b4b2c2af15
-    Source Language: en
-    Source Text: |-
-      This plot shows a shaded and darker region corresponding to the maximal
-      acceptable exceedance. Red symbols outside of it are unacceptable
-      exposures. It does not take into account estimation uncertainty.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 1583901:l1
-        Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 195, Col 25 @ Ln 200, Col 18
   - !<Text>
     Identifier: 025cd9d
     Algorithm: sha1
@@ -3047,20 +3109,6 @@ Texts:
         Ranges:
           - Ln 255, Col 39 @ Ln 255, Col 76
           - Ln 278, Col 39 @ Ln 278, Col 76
-  - !<Text>
-    Identifier: e7ca519
-    Algorithm: sha1
-    Hash: e7ca519b4ed2de3baeb205c34d31b5070a99d295
-    Source Language: en
-    Source Text: |-
-      Use this value to change the color of exposures that are above the
-      occupational exposure limit.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: e7ca519:l1
-        Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 403, Col 13 @ Ln 406, Col 14
   - !<Text>
     Identifier: 7385e52
     Algorithm: sha1
@@ -3243,20 +3291,6 @@ Texts:
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 629, Col 21 @ Ln 632, Col 22
   - !<Text>
-    Identifier: 007e59c
-    Algorithm: sha1
-    Hash: 007e59c06e10f323a057772ffe75d0a36282ee09
-    Source Language: en
-    Source Text: |-
-      Use this value to change the color of exposures that are below the
-      occupational exposure limit.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 007e59c:l1
-        Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 395, Col 13 @ Ln 398, Col 14
-  - !<Text>
     Identifier: b740be6
     Algorithm: sha1
     Hash: b740be6e15b3c6aa4bc82393e38b0cffa243aa05
@@ -3324,18 +3358,6 @@ Texts:
         Identifier: ceefbab:l3
         Path: ./R/ui-panel-percentiles.R
         Ranges: Ln 536, Col 38 @ Ln 536, Col 70
-  - !<Text>
-    Identifier: '6241570'
-    Algorithm: sha1
-    Hash: 624157039a60c06d6e37f4eed8337d8ed095a914
-    Source Language: en
-    Source Text: 'Above the OLE:'
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 6241570:l1
-        Path: ./R/ui-exceedance-plot.R
-        Ranges: Ln 382, Col 13 @ Ln 382, Col 54
   - !<Text>
     Identifier: a2334d7
     Algorithm: sha1
