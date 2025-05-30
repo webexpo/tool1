@@ -4,29 +4,53 @@
 
 * Tool 1 is now available in French.
 
+* The source text was reviewed and rewritten for consistency and simplicity.
+  Notably, the abbrevation OEL is now always used for brevity and clarity.
+
+* Fixed incorrect descriptions of the Exceedance Plot's variants.
+
 * Mode names were revamped: `default` is now `extended` and `simplified` is now
   `express`. Labels were renamed accordingly.
 
-* Each panel now shows the current mode and panel chosen by the user.
+* Panels now have a title bar showing the current mode and the panel's
+  underlying name.
+
+* The footer of the sidebar and the FAQ panel was rearranged and updated.
 
 ## Server Changes
 
-* All `server_panel_*()` functions now returns a `shiny::reactive()` object
-  that can be called to get the panel's underlying title.
+* Many small tweaks and optimizations were introduced to ease the translation
+  process.
 
-* `The Simplified Mode Inference Panel Module was renamed to Express Mode
+* The Simplified Mode Inference Panel Module was renamed to Express Mode
   Inference Panel Module. Functions, scripts, and identifiers were changed
   accordingly.
 
 * The `README` now contains clear instructions to follow when adding a new
   supported language.
 
+* `ui_element()` is removed.
+
+* `ui_link()` and `ui_link_mailto()` were rewritten (fixing a lof of bugs and
+  problems that would arise when they were integrated into the source text with
+  `html()`).
+
+* All `server_panel_*()` functions now returns a `shiny::reactive()` object
+  that can be called to get the panel's underlying title.
+
 ## Fixes
 
-* Some piece of text were not wrapped in `translate()` calls.
+* Fixed a logical error in development script `find-text.R` that would discard
+  existing translations stored in `intl/` without reusing them.
 
-* Occupational Exposure Limit was sometimes referred to as Exposure Limit. The
-  former (or its abbreviation, OEL) is now always used for clarity.
+* Fixed some pieces of text that were not wrapped in `translate()` calls.
+
+* Fixed rare annoying edge cases by forcing `html()` to explicitly convert
+  elements passed to `...` to character strings instead of deferring this
+  operation to `sprintf()`.
+
+* Fixed a bug in the Exceedance Plot Sidebar Module where input
+  `col_bg_threshold` was hidden for `plot3` (which was wrong).
 
 # Tool 1 version `5.0.0`
 
