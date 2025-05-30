@@ -506,7 +506,7 @@ server_panel_exceedance_fraction <- function(
                 gm        = results$gm$est,
                 gsd       = results$gsd$est,
                 frac      = results$frac$est,
-                c.oel     = parameters()$oel,
+                c.oel     = results$c.oel,
                 seqplot.1 = translate(lang = lang, "Concentration"),
                 seqplot.2 = translate(lang = lang, "Exceedance Fraction"),
                 seqplot.6 = translate(lang = lang, "Measurement Index")
@@ -526,13 +526,14 @@ server_panel_exceedance_fraction <- function(
 
         output$density_plot <- shiny::renderPlot({
             lang <- lang()
+            results <- num_results()
             bayesian_analysis <- bayesian_analysis()
 
             distribution.plot.frac(
                 gm         = exp(median(bayesian_analysis$mu.chain)),
                 gsd        = exp(median(bayesian_analysis$sigma.chain)),
-                frac       = num_results()$frac$est,
-                c.oel      = parameters()$oel,
+                frac       = results$frac$est,
+                c.oel      = results$c.oel,
                 distplot.1 = translate(lang = lang, "Concentration"),
                 distplot.2 = translate(lang = lang, "Density"),
                 distplot.3 = translate(lang = lang, "Exceedance Fraction"),
@@ -559,7 +560,7 @@ server_panel_exceedance_fraction <- function(
             riskband.plot.frac(
                 mu.chain       = bayesian_analysis$mu.chain,
                 sigma.chain    = bayesian_analysis$sigma.chain,
-                c.oel          = parameters$oel,
+                c.oel          = num_results()$c.oel,
                 frac_threshold = parameters$frac_threshold,
                 psi            = parameters$psi,
                 riskplot.1     = translate(lang = lang, "Exceedance Fraction Category"),

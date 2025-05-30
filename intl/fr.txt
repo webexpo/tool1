@@ -213,18 +213,6 @@ Voici quatre vidéos réalisées par les auteurs d'Expostats. Les deux dernière
 sont issues d'un cours de développement professionnel d'une durée de 6 heures
 réalisé en 2024 pour « l'Indonesian Industrial Hygiene Association » (IIHA).
 
-:: Translations: 9616619: Source Text
-
-Do not put a blank character (tab, space, etc.) before and after special
-characters used to indicate how a measurement is censored. See below for more
-information.
-
-:: Translations: 9616619: Translation
-
-Ne mettez pas de caractère vide (tabulation, espace, etc.) avant et après les
-caractères spéciaux indiquant qu'une mesure est censurée. Voir ci-dessous pour
-plus d'informations.
-
 :: Translations: dc74f5c: Source Text
 
 This plot shows the probability distribution of the uncertainty around the
@@ -240,6 +228,18 @@ la fraction de dépassement. Il indique la probabilité que sa valeur réelle so
 (1) inférieure à %s, (2) comprise entre %1$s et %2$s, et (3) supérieure à %s.
 La colonne rouge représente la probabilité de surexposition. Celle-ci doit être
 inférieure au seuil (ligne noire en pointillés).
+
+:: Translations: 9616619: Source Text
+
+Do not put a blank character (tab, space, etc.) before and after special
+characters used to indicate how a measurement is censored. See below for more
+information.
+
+:: Translations: 9616619: Translation
+
+Ne mettez pas de caractère vide (tabulation, espace, etc.) avant et après les
+caractères spéciaux indiquant qu'une mesure est censurée. Voir ci-dessous pour
+plus d'informations.
 
 :: Translations: 176669b: Source Text
 
@@ -1548,6 +1548,18 @@ adoptée par l'AIHA. La colonne rouge représente la probabilité de
 surexposition. Celle-ci doit être inférieure au seuil (ligne noire en
 pointillés).
 
+:: Translations: 1921e2a: Source Text
+
+Use this value to modify the OEL above with a multiplier. The resulting product
+of these values is used as the effective OEL in all subsequent calculations and
+analyses.
+
+:: Translations: 1921e2a: Translation
+
+Utilisez cette valeur pour modifier la VLE ci-dessus à l'aide d'un
+multiplicateur. Le produit de ces deux valeurs est utilisé comme VLE effective
+dans tous les calculs et analyses subséquents.
+
 :: Translations: aeaec6e: Source Text
 
 Wait for the server to perform the calculations. All results will be shown once
@@ -1864,6 +1876,14 @@ un seuil de risque de surexposition de 30% (niveau de confiance de 70%). Une
 discussion sur la justification de l'utilisation d'un niveau de confiance de
 70% (ou d'un risque de surexposition tolérable de 30%) est disponible dans
 l'article scientifique suivant.
+
+:: Translations: 085f095: Source Text
+
+Occupational Exposure Limit Multiplier:
+
+:: Translations: 085f095: Translation
+
+Multiplicateur de la valeur limite d'exposition:
 
 :: Translations: d111f1a: Source Text
 

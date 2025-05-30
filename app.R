@@ -181,13 +181,10 @@ server <- function(input, output, session) {
         # all user input values.
         calc_parameters <- calc_parameters()
 
-        # oel.mult is set equal to 1 until Webexpo scripts
-        # are rewritten. In what follows, c.oel is ignored
-        # and input$oel is used instead.
         data.formatting.SEG(
             data.in  = calc_parameters$data,
             oel      = calc_parameters$oel,
-            oel.mult = 1L
+            oel.mult = calc_parameters$oel_multiplier
         )
     })
 
@@ -201,7 +198,7 @@ server <- function(input, output, session) {
             rightcensored = data_sample$rightcensored,
             intcensored   = data_sample$intcensored,
             seed          = data_sample$seed,
-            c.oel         = calc_parameters()$oel,
+            c.oel         = data_sample$c.oel,
             n.iter        = default_n_bayes_iter
         )
     })
@@ -213,7 +210,7 @@ server <- function(input, output, session) {
         all.numeric(
             mu.chain       = bayesian_analysis$mu.chain,
             sigma.chain    = bayesian_analysis$sigma.chain,
-            c.oel          = calc_parameters$oel,
+            c.oel          = data_sample()$c.oel,
             conf           = calc_parameters$conf,
             frac_threshold = calc_parameters$frac_threshold,
             target_perc    = calc_parameters$target_perc

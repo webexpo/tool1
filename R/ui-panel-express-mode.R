@@ -729,7 +729,7 @@ server_panel_express <- function(
                 gm        = results$gm$est,
                 gsd       = results$gsd$est,
                 frac      = results$frac$est,
-                c.oel     = parameters()$oel,
+                c.oel     = results$c.oel,
                 seqplot.1 = translate(lang = lang, "Concentration"),
                 seqplot.2 = translate(lang = lang, "Exceedance Fraction"),
                 seqplot.6 = translate(lang = lang, "Measurement Index")
@@ -755,7 +755,7 @@ server_panel_express <- function(
             riskband.plot.perc(
                 mu.chain    = bayesian_analysis$mu.chain,
                 sigma.chain = bayesian_analysis$sigma.chain,
-                c.oel       = parameters$oel,
+                c.oel       = num_results()$c.oel,
                 target_perc = parameters$target_perc,
                 psi         = parameters$psi,
                 # ≤ may not render in all IDEs. This is Unicode

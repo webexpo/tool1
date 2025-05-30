@@ -189,7 +189,7 @@ server_panel_descriptive_statistics <- function(
             stats <- as.matrix(
                 fun.desc.stat(
                     data.simply.imputed = data_sample_imputed(),
-                    c.oel               = parameters()$oel
+                    c.oel               = data_sample()$c.oel
                 )
             )
 
@@ -267,10 +267,12 @@ server_panel_descriptive_statistics <- function(
 
         output$box_plot <- shiny::renderPlot({
             lang <- lang()
+            data_sample <- data_sample()
+
             fun.boxplot(
                 data.simply.imputed = data_sample_imputed(),
-                notcensored         = data_sample()$notcensored,
-                c.oel               = parameters()$oel,
+                notcensored         = data_sample$notcensored,
+                c.oel               = data_sample$c.oel,
                 boxplot.1           = translate(lang = lang, "Measurement Type"),
                 boxplot.2           = translate(lang = lang, "Concentration"),
                 boxplot.3           = translate(lang = lang, "OEL"),

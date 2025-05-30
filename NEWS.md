@@ -12,6 +12,11 @@
 * Mode names were revamped: `default` is now `extended` and `simplified` is now
   `express`. Labels were renamed accordingly.
 
+* There is a new optional input in extended mode: Occupational Exposure Limit
+  Multiplier. Use this value to modify the OEL with an arbitrary multiplier.
+  The resulting product of these values will be used as the effective OEL in
+  all subsequent calculations and analyses.
+
 * Panels now have a title bar showing the current mode and the panel's
   underlying name.
 

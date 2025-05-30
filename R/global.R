@@ -63,7 +63,9 @@ default_n_bayes_iter <- 25000L
 default_n_digits <- 3L
 
 # Default internal values for inputs in express mode.
+# Names must match names of inputs defined in the Sidebar Module.
 default_express_inputs <- list(
+    oel_multiplier = 1,
     conf           = 90,
     psi            = 30,
     frac_threshold = 5,

@@ -75,6 +75,13 @@ ui_sidebar <- function(id) {
         bslib::tooltip(id = ns("oel_tooltip"), ""),
 
         shiny::numericInput(
+            inputId = ns("oel_multiplier"),
+            label   = "",
+            value   = 1
+        ) |>
+        bslib::tooltip(id = ns("oel_multiplier_tooltip"), ""),
+
+        shiny::numericInput(
             inputId = ns("conf"),
             label   = "",
             value   = 90,
@@ -204,6 +211,11 @@ server_sidebar <- function(id, lang, mode, panel_active) {
         }) |>
         shiny::bindCache(lang())
 
+        oel_multiplier_label <- shiny::reactive({
+            translate(lang = lang(), "Occupational Exposure Limit Multiplier:")
+        }) |>
+        shiny::bindCache(lang())
+
         conf_label <- shiny::reactive({
             translate(lang = lang(), "Credible Interval Probability:")
         }) |>
@@ -233,6 +245,15 @@ server_sidebar <- function(id, lang, mode, panel_active) {
             translate(lang = lang(), "
                 Use this value to assess overexposure. It must have the same
                 unit as the measurement data.
+            ")
+        }) |>
+        shiny::bindCache(lang())
+
+        oel_multiplier_tooltip_text <- shiny::reactive({
+            translate(lang = lang(), "
+                Use this value to modify the OEL above with a multiplier. The
+                resulting product of these values is used as the effective OEL
+                in all subsequent calculations and analyses.
             ")
         }) |>
         shiny::bindCache(lang())
@@ -364,13 +385,14 @@ server_sidebar <- function(id, lang, mode, panel_active) {
         }) |>
         shiny::bindEvent(panel_active())
 
-        # Show inputs oel and data only if mode is express.
+        # Only show inputs oel and data if mode is express.
         shiny::observe({
             mode <- mode()
 
             # Since inputs are shown by default, operator != is used.
+            shinyjs::toggle("oel_multiplier", condition = { mode != "express" })
             shinyjs::toggle("conf", condition = { mode != "express" })
-            shinyjs::toggle("psi",  condition = { mode != "express" })
+            shinyjs::toggle("psi", condition = { mode != "express" })
         }) |>
         shiny::bindEvent(mode())
 
@@ -378,6 +400,7 @@ server_sidebar <- function(id, lang, mode, panel_active) {
         # with a shiny::render*() function.
         shiny::observe({
             shiny::updateNumericInput(inputId = "oel", label = oel_label())
+            shiny::updateNumericInput(inputId = "oel_multiplier", label = oel_multiplier_label())
             shiny::updateNumericInput(inputId = "conf", label = conf_label())
             shiny::updateNumericInput(inputId = "psi", label = psi_label())
             shiny::updateNumericInput(inputId = "frac_threshold", label = frac_threshold_label())
@@ -385,6 +408,7 @@ server_sidebar <- function(id, lang, mode, panel_active) {
             shiny::updateTextAreaInput(inputId = "data", label = data_label())
 
             bslib::update_tooltip("oel_tooltip", oel_tooltip_text())
+            bslib::update_tooltip("oel_multiplier_tooltip", oel_multiplier_tooltip_text())
             bslib::update_tooltip("conf_tooltip", conf_tooltip_text())
             bslib::update_tooltip("psi_tooltip", psi_tooltip_text())
             bslib::update_tooltip("frac_threshold_tooltip", frac_threshold_tooltip_text())
@@ -406,6 +430,7 @@ server_sidebar <- function(id, lang, mode, panel_active) {
                     # Default case (mode == "extended").
                     list(
                         oel            = input$oel,
+                        oel_multiplier = input$oel_multiplier,
                         conf           = input$conf,
                         psi            = input$psi,
                         data           = input$data,

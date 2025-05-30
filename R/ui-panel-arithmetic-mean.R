@@ -527,7 +527,7 @@ server_panel_arithmetic_mean <- function(
                 gm        = results$gm$est,
                 gsd       = results$gsd$est,
                 am        = results$am$est,
-                c.oel     = parameters()$oel,
+                c.oel     = results$c.oel,
                 seqplot.1 = translate(lang = lang, "Concentration"),
                 seqplot.3 = translate(lang = lang, "OEL"),
                 seqplot.5 = translate(lang = lang, "Arithmetic Mean"),
@@ -549,13 +549,14 @@ server_panel_arithmetic_mean <- function(
 
         output$density_plot <- shiny::renderPlot({
             lang <- lang()
+            results <- num_results()
             bayesian_analysis <- bayesian_analysis()
 
             distribution.plot.am(
                 gm         = exp(median(bayesian_analysis$mu.chain)),
                 gsd        = exp(median(bayesian_analysis$sigma.chain)),
-                am         = num_results()$am$est,
-                c.oel      = parameters()$oel,
+                am         = results$am$est,
+                c.oel      = results$c.oel,
                 distplot.1 = translate(lang = lang, "Concentration"),
                 distplot.2 = translate(lang = lang, "Density"),
                 distplot.4 = translate(lang = lang, "OEL outside of graphical limits."),
@@ -582,7 +583,7 @@ server_panel_arithmetic_mean <- function(
             riskband.plot.am(
                 mu.chain    = bayesian_analysis$mu.chain,
                 sigma.chain = bayesian_analysis$sigma.chain,
-                c.oel       = parameters$oel,
+                c.oel       = num_results()$c.oel,
                 psi         = parameters$psi,
                 riskplot.2  = translate(lang = lang, "Probability"),
                 riskplot.3  = translate(lang = lang, "≤ 1% OEL"),

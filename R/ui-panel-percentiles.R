@@ -491,14 +491,14 @@ server_panel_percentiles <- function(
 
         output$seq_plot <- shiny::renderPlot({
             lang <- lang()
-            parameters <- parameters()
             results <- num_results()
+            parameters <- parameters()
 
             sequential.plot.perc(
                 gm                 = results$gm$est,
                 gsd                = results$gsd$est,
                 perc               = results$perc$est,
-                c.oel              = parameters$oel,
+                c.oel              = results$c.oel,
                 target_perc        = parameters$target_perc,
                 target_perc_suffix = ordinal_abbr(parameters$target_perc, lang),
                 seqplot.1          = translate(lang = lang, "Concentration"),
@@ -522,16 +522,17 @@ server_panel_percentiles <- function(
 
         output$density_plot <- shiny::renderPlot({
             lang <- lang()
+            results <- num_results()
             parameters <- parameters()
             bayesian_analysis <- bayesian_analysis()
 
             distribution.plot.perc(
                 gm                 = exp(median(bayesian_analysis$mu.chain)),
                 gsd                = exp(median(bayesian_analysis$sigma.chain)),
-                perc               = num_results()$perc$est,
+                perc               = results$perc$est,
+                c.oel              = results$c.oel,
                 target_perc        = parameters$target_perc,
                 target_perc_suffix = ordinal_abbr(parameters$target_perc, lang),
-                c.oel              = parameters$oel,
                 distplot.1         = translate(lang = lang, "Concentration"),
                 distplot.2         = translate(lang = lang, "Density"),
                 distplot.4         = translate(lang = lang, "OEL outside of graphical limits."),
@@ -558,7 +559,7 @@ server_panel_percentiles <- function(
             riskband.plot.perc(
                 mu.chain    = bayesian_analysis$mu.chain,
                 sigma.chain = bayesian_analysis$sigma.chain,
-                c.oel       = parameters$oel,
+                c.oel       = num_results()$c.oel,
                 target_perc = parameters$target_perc,
                 psi         = parameters$psi,
                 # ≤ may not render in all IDEs. This is Unicode
