@@ -440,7 +440,7 @@ server_exceedance_plot_sidebar <- function(id, lang) {
 
         shiny::observe({
             shinyjs::toggle("color_bg_threshold", condition = {
-                input$variant == "plot4"
+                input$variant == "plot3" || input$variant == "plot4"
             })
         }) |>
         shiny::bindEvent(input$variant)
