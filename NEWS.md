@@ -206,3 +206,9 @@ preserved.
 * Message boxes included in the Calculation Parameters sidebar now properly
   grow and shrink on all screens. They no longer collapse to a single line
   with a width equal to `2px` (top and bottom borders).
+
+# Tool 1 version `4.0.0`
+
+This major version is a complete redesign of Tool 1. It was entirely rewritten
+except for core scientific back-end components. They were left nearly as is in
+the source code.
