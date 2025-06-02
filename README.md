@@ -124,14 +124,6 @@ Further `<lang>.txt` files contain actual translations. These files are shared
 with collaborators working on translations and must be edited manually (using
 any text editor). They always include basic instructions to follow at all times.
 
-### Warning
-
-Package [transltr](https://cran.r-project.org/package=transltr) currently lacks
-a proper way to (intelligently and incrementally) update existing translations
-files. This feature will (likely) be released soon. Until further notice,
-updating `intl/` should only be done by
-[Jean-Mathieu Potvin](https://github.com/jeanmathieupotvin).
-
 ### Placeholders
 
 Tool 1 uses `sprintf()-`placeholders (conversion specifications beginning by
