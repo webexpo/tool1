@@ -15,19 +15,20 @@
 #'
 #' ## Current Language (`lang`)
 #'
-#' `lang` controls the displayed language. Changing it currently requires a
-#' full refresh of the application.
+#' `lang` controls the displayed language. Changing it currently requires
+#' a full refresh of the application. The default value is always equal to
+#' global constant `default_lang`.
 #'
 #' ## Current Mode (`mode`)
 #'
 #' `mode` controls how much information is displayed to the user.
 #'
-#' The `extended` mode corresponds to the default version of Tool 1. All panels
-#' are available/shown.
-#'
 #' The `express` mode corresponds to a version of Tool 1 that only shows
 #' a curated subset of results in a single panel. This mode used to be called
-#' Tool 1 Express (Simplified) in the past.
+#' Tool 1 Express (Simplified) in the past. This is the default mode.
+#'
+#' The `extended` mode corresponds to the default version of Tool 1. All panels
+#' are available/shown.
 #'
 #' The current `mode` can always be changed without triggering a full refresh
 #' of the application.
@@ -36,6 +37,8 @@
 #'
 #' `color` controls the color theme: either `light` or `dark`. It can always be
 #' changed without triggering a full refresh of the application.
+#'
+#' The default value is always `light`.
 #'
 #' ## Handling Query Strings
 #'
@@ -143,7 +146,7 @@ get_mode <- function() {
             session$userData,
             mode       = "character",
             inherits   = FALSE,
-            ifnotfound = "extended"
+            ifnotfound = "express"
         )
     )
 }
@@ -202,7 +205,7 @@ parse_lang <- function(lang = "", langs = names(default_lang_names)) {
 #' @rdname helpers-ui-title
 #' @export
 parse_mode <- function(mode = "") {
-    modes <- c("extended", "express")
+    modes <- c("express", "extended")
 
     if (is.null(mode) || !match(mode <- tolower(mode), modes, 0L)) {
         return(modes[[1L]])

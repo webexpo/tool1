@@ -1,5 +1,8 @@
 # Tool 1 version `5.1.0`
 
+This version is a massive milestone for Expostats as it becomes the official
+version of Tool 1 and Tool 1 Express (it is now *out of beta*).
+
 ## User Visible Changes
 
 * Tool 1 is now available in French.
@@ -12,6 +15,8 @@
 * Mode names were revamped: `default` is now `extended` and `simplified` is now
   `express`. Labels were renamed accordingly.
 
+* The default mode is now `express` (Tool 1 Express).
+
 * There is a new optional input in extended mode: Occupational Exposure Limit
   Multiplier. Use this value to modify the OEL with an arbitrary multiplier.
   The resulting product of these values will be used as the effective OEL in
@@ -21,6 +26,8 @@
   underlying name.
 
 * The footer of the sidebar and the FAQ panel was rearranged and updated.
+
+* The contents of the FAQ panel got a lot of small updates.
 
 ## Server Changes
 
@@ -56,6 +63,8 @@
 
 * Fixed a bug in the Exceedance Plot Sidebar Module where input
   `col_bg_threshold` was hidden for `plot3` (which was wrong).
+
+* Fixed incorrect descriptions and labels in the Exceedance Plot Module.
 
 # Tool 1 version `5.0.0`
 

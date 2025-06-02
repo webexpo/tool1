@@ -190,6 +190,17 @@ ui_title <- function(id) {
 
                             tags$li(
                                 shiny::actionButton(
+                                    inputId = ns("btn_mode_express"),
+                                    class   = "dropdown-item fs-6",
+                                    label   = shiny::textOutput(
+                                        outputId  = ns("btn_mode_express_label"),
+                                        container = tags$span
+                                    )
+                                )
+                            ),
+
+                            tags$li(
+                                shiny::actionButton(
                                     inputId = ns("btn_mode_extended"),
                                     class   = "dropdown-item fs-6",
                                     label   = shiny::textOutput(
@@ -200,14 +211,12 @@ ui_title <- function(id) {
                             ),
 
                             tags$li(
-                                shiny::actionButton(
-                                    inputId = ns("btn_mode_express"),
-                                    class   = "dropdown-item fs-6",
-                                    label   = shiny::textOutput(
-                                        outputId  = ns("btn_mode_express_label"),
-                                        container = tags$span
-                                    )
-                                )
+                                tags$hr(class = "dropdown-divider")
+                            ),
+
+                            tags$p(
+                                class = "px-3 mb-0 text-start",
+                                shiny::textOutput(ns("btn_modes_footer"), tags$small)
                             )
                         )
                     ),
@@ -500,6 +509,11 @@ server_title <- function(id) {
 
         output$btn_modes_label <- shiny::renderText({
             translate(lang = lang(), "Mode")
+        }) |>
+        shiny::bindCache(lang())
+
+        output$btn_modes_footer <- shiny::renderText({
+            translate(lang = lang(), "The default mode is Tool 1 Express.")
         }) |>
         shiny::bindCache(lang())
 
