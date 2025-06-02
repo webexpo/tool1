@@ -14,3 +14,4 @@
 # Ignore by-products, and temporary files.
 .RData
 www/images/img*.png
+www/static/*.html
