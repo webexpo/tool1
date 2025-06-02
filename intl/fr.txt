@@ -1500,6 +1500,19 @@ controlled, but with a limited safety margin.
 Si le risque de surexposition se situe entre 5% et 30%, il est modéré. La
 situation est maîtrisée, mais avec une marge de sécurité limitée.
 
+:: Translations: 0084ec7: Source Text
+
+Use this value to modify the OEL. The value used in subsequent calculations is
+the product of the OEL input (see above) and this factor. It can be used to
+determine a protection factor for respiratory protection.
+
+:: Translations: 0084ec7: Translation
+
+Utilisez cette valeur pour modifier la VLE. La valeur utilisée dans les calculs
+ultérieurs est le produit de la VLE (voir ci-dessus) et de ce facteur. Il peut
+être utilisé pour déterminer un facteur de protection pour la protection
+respiratoire.
+
 :: Translations: 962996f: Source Text
 
 Its resulting probabilistic statements are easier to convey to stakeholders.
@@ -1547,18 +1560,6 @@ VLE, et (5) supérieure à la VLE. Cette classification est basée sur celle
 adoptée par l'AIHA. La colonne rouge représente la probabilité de
 surexposition. Celle-ci doit être inférieure au seuil (ligne noire en
 pointillés).
-
-:: Translations: 1921e2a: Source Text
-
-Use this value to modify the OEL above with a multiplier. The resulting product
-of these values is used as the effective OEL in all subsequent calculations and
-analyses.
-
-:: Translations: 1921e2a: Translation
-
-Utilisez cette valeur pour modifier la VLE ci-dessus à l'aide d'un
-multiplicateur. Le produit de ces deux valeurs est utilisé comme VLE effective
-dans tous les calculs et analyses subséquents.
 
 :: Translations: aeaec6e: Source Text
 
@@ -1876,14 +1877,6 @@ un seuil de risque de surexposition de 30% (niveau de confiance de 70%). Une
 discussion sur la justification de l'utilisation d'un niveau de confiance de
 70% (ou d'un risque de surexposition tolérable de 30%) est disponible dans
 l'article scientifique suivant.
-
-:: Translations: 085f095: Source Text
-
-Occupational Exposure Limit Multiplier:
-
-:: Translations: 085f095: Translation
-
-Multiplicateur de la valeur limite d'exposition:
 
 :: Translations: d111f1a: Source Text
 
@@ -2285,6 +2278,14 @@ par défaut.
 :: Translations: af6561e: Translation
 
 (en anglais seulement)
+
+:: Translations: 5998348: Source Text
+
+OEL Multiplier:
+
+:: Translations: 5998348: Translation
+
+Multiplicateur de la VLE:
 
 :: Translations: 5540a94: Source Text
 

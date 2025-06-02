@@ -456,7 +456,7 @@ Texts:
       - !<Location>
         Identifier: 6489309:l1
         Path: ./R/ui-sidebar.R
-        Ranges: Ln 293, Col 13 @ Ln 298, Col 14
+        Ranges: Ln 294, Col 13 @ Ln 299, Col 14
   - !<Text>
     Identifier: 73dff8f
     Algorithm: sha1
@@ -539,7 +539,7 @@ Texts:
       - !<Location>
         Identifier: 127c649:l1
         Path: ./R/ui-sidebar.R
-        Ranges: Ln 284, Col 13 @ Ln 288, Col 14
+        Ranges: Ln 285, Col 13 @ Ln 289, Col 14
   - !<Text>
     Identifier: cebe5c4
     Algorithm: sha1
@@ -591,7 +591,7 @@ Texts:
       - !<Location>
         Identifier: 6863c44:l1
         Path: ./R/ui-sidebar.R
-        Ranges: Ln 340, Col 13 @ Ln 340, Col 45
+        Ranges: Ln 341, Col 13 @ Ln 341, Col 45
   - !<Text>
     Identifier: 179eb27
     Algorithm: sha1
@@ -840,7 +840,7 @@ Texts:
       - !<Location>
         Identifier: 380f931:l1
         Path: ./R/ui-sidebar.R
-        Ranges: Ln 335, Col 13 @ Ln 335, Col 46
+        Ranges: Ln 336, Col 13 @ Ln 336, Col 46
   - !<Text>
     Identifier: af71ace
     Algorithm: sha1
@@ -1117,7 +1117,7 @@ Texts:
       - !<Location>
         Identifier: 6298302:l1
         Path: ./R/ui-sidebar.R
-        Ranges: Ln 314, Col 13 @ Ln 316, Col 14
+        Ranges: Ln 315, Col 13 @ Ln 317, Col 14
   - !<Text>
     Identifier: f6667d4
     Algorithm: sha1
@@ -1169,7 +1169,7 @@ Texts:
       - !<Location>
         Identifier: 745ebd1:l2
         Path: ./R/ui-sidebar.R
-        Ranges: Ln 330, Col 13 @ Ln 330, Col 62
+        Ranges: Ln 331, Col 13 @ Ln 331, Col 62
   - !<Text>
     Identifier: 00b437c
     Algorithm: sha1
@@ -1185,7 +1185,7 @@ Texts:
       - !<Location>
         Identifier: 00b437c:l1
         Path: ./R/ui-sidebar.R
-        Ranges: Ln 262, Col 13 @ Ln 267, Col 14
+        Ranges: Ln 263, Col 13 @ Ln 268, Col 14
   - !<Text>
     Identifier: 79fb413
     Algorithm: sha1
@@ -1199,7 +1199,7 @@ Texts:
       - !<Location>
         Identifier: 79fb413:l1
         Path: ./R/ui-sidebar.R
-        Ranges: Ln 321, Col 13 @ Ln 325, Col 14
+        Ranges: Ln 322, Col 13 @ Ln 326, Col 14
   - !<Text>
     Identifier: 4f6392c
     Algorithm: sha1
@@ -1405,7 +1405,7 @@ Texts:
       - !<Location>
         Identifier: d9fe05c:l1
         Path: ./R/ui-sidebar.R
-        Ranges: Ln 272, Col 13 @ Ln 279, Col 14
+        Ranges: Ln 273, Col 13 @ Ln 280, Col 14
   - !<Text>
     Identifier: 9bdd102
     Algorithm: sha1
@@ -2072,7 +2072,7 @@ Texts:
       - !<Location>
         Identifier: 0a5c356:l1
         Path: ./R/ui-sidebar.R
-        Ranges: Ln 354, Col 13 @ Ln 357, Col 14
+        Ranges: Ln 355, Col 13 @ Ln 358, Col 14
   - !<Text>
     Identifier: e510a31
     Algorithm: sha1
@@ -2103,7 +2103,7 @@ Texts:
       - !<Location>
         Identifier: dbb0a02:l1
         Path: ./R/ui-sidebar.R
-        Ranges: Ln 345, Col 13 @ Ln 349, Col 14
+        Ranges: Ln 346, Col 13 @ Ln 350, Col 14
   - !<Text>
     Identifier: 690c3dc
     Algorithm: sha1
@@ -2308,6 +2308,22 @@ Texts:
         Path: ./R/ui-panel-express-mode.R
         Ranges: Ln 498, Col 25 @ Ln 502, Col 26
   - !<Text>
+    Identifier: 0084ec7
+    Algorithm: sha1
+    Hash: 0084ec7599b3107f5964ee9a627ef998ca45471b
+    Source Language: en
+    Source Text: |-
+      Use this value to modify the OEL. The value used in subsequent
+      calculations is the product of the OEL input (see above) and this factor.
+      It can be used to determine a protection factor for respiratory
+      protection.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 0084ec7:l1
+        Path: ./R/ui-sidebar.R
+        Ranges: Ln 253, Col 13 @ Ln 258, Col 14
+  - !<Text>
     Identifier: 962996f
     Algorithm: sha1
     Hash: 962996f0f892a204206524e4d1e47174f3132cd1
@@ -2366,21 +2382,6 @@ Texts:
         Identifier: ebaaa0c:l1
         Path: ./R/ui-panel-express-mode.R
         Ranges: Ln 780, Col 17 @ Ln 793, Col 18
-  - !<Text>
-    Identifier: 1921e2a
-    Algorithm: sha1
-    Hash: 1921e2a2bc42f95b155561e673a4c669f4b40dfe
-    Source Language: en
-    Source Text: |-
-      Use this value to modify the OEL above with a multiplier. The resulting
-      product of these values is used as the effective OEL in all subsequent
-      calculations and analyses.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 1921e2a:l1
-        Path: ./R/ui-sidebar.R
-        Ranges: Ln 253, Col 13 @ Ln 257, Col 14
   - !<Text>
     Identifier: aeaec6e
     Algorithm: sha1
@@ -2812,18 +2813,6 @@ Texts:
         Identifier: ab42808:l1
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 935, Col 20 @ Ln 943, Col 14
-  - !<Text>
-    Identifier: 085f095
-    Algorithm: sha1
-    Hash: 085f0952b03d88d0b3dbaadd285a93ad15701462
-    Source Language: en
-    Source Text: 'Occupational Exposure Limit Multiplier:'
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: 085f095:l1
-        Path: ./R/ui-sidebar.R
-        Ranges: Ln 215, Col 13 @ Ln 215, Col 79
   - !<Text>
     Identifier: d111f1a
     Algorithm: sha1
@@ -3261,7 +3250,7 @@ Texts:
       - !<Location>
         Identifier: 68c086f:l1
         Path: ./R/ui-sidebar.R
-        Ranges: Ln 303, Col 13 @ Ln 309, Col 14
+        Ranges: Ln 304, Col 13 @ Ln 310, Col 14
   - !<Text>
     Identifier: 463c845
     Algorithm: sha1
@@ -3481,6 +3470,18 @@ Texts:
           - Ln 1076, Col 25 @ Ln 1076, Col 64
           - Ln 1088, Col 25 @ Ln 1088, Col 64
           - Ln 1100, Col 25 @ Ln 1100, Col 64
+  - !<Text>
+    Identifier: '5998348'
+    Algorithm: sha1
+    Hash: 5998348843d8c36e3a5e890611bcf65261ff1d80
+    Source Language: en
+    Source Text: 'OEL Multiplier:'
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 5998348:l1
+        Path: ./R/ui-sidebar.R
+        Ranges: Ln 215, Col 13 @ Ln 215, Col 55
   - !<Text>
     Identifier: 5540a94
     Algorithm: sha1

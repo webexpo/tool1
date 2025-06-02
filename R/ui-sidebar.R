@@ -212,7 +212,7 @@ server_sidebar <- function(id, lang, mode, panel_active) {
         shiny::bindCache(lang())
 
         oel_multiplier_label <- shiny::reactive({
-            translate(lang = lang(), "Occupational Exposure Limit Multiplier:")
+            translate(lang = lang(), "OEL Multiplier:")
         }) |>
         shiny::bindCache(lang())
 
@@ -251,9 +251,10 @@ server_sidebar <- function(id, lang, mode, panel_active) {
 
         oel_multiplier_tooltip_text <- shiny::reactive({
             translate(lang = lang(), "
-                Use this value to modify the OEL above with a multiplier. The
-                resulting product of these values is used as the effective OEL
-                in all subsequent calculations and analyses.
+                Use this value to modify the OEL. The value used in subsequent
+                calculations is the product of the OEL input (see above) and
+                this factor. It can be used to determine a protection factor
+                for respiratory protection.
             ")
         }) |>
         shiny::bindCache(lang())
