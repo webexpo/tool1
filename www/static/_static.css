@@ -11,3 +11,8 @@ h1 {
     padding-bottom: 8px;
     border-bottom: 1px solid #dee2e6;
 }
+
+p, ol, ul {
+  text-align: justify;
+  text-justify: inter-word;
+}

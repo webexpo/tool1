@@ -69,7 +69,7 @@ server_footer <- function(id, lang) {
             lang <- lang()
             list(
                 ui_link(
-                    "changelog.html",
+                    "static/news.html",
                     translate(lang = lang, "Changelog")
                 ),
 

@@ -5,7 +5,7 @@ output:
         toc: TRUE
         toc_float: TRUE
         mathjax: null
-        css: www/_static.css
+        css: www/static/_static.css
 ---
 
 # Tool 1 version `5.1.0`
