@@ -39,6 +39,9 @@ version of Tool 1 and Tool 1 Express (it is now *out of beta*).
 
 * The contents of the FAQ panel got a lot of small updates.
 
+* Latest changes (this document) are now natively accessible from Tool 1.
+  GitHub is no longer needed.
+
 ## Server Changes
 
 * Many small tweaks and optimizations were introduced to ease the translation
