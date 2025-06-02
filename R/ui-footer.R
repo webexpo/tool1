@@ -69,7 +69,7 @@ server_footer <- function(id, lang) {
             lang <- lang()
             list(
                 ui_link(
-                    "https://github.com/webexpo/tool1/blob/main/NEWS.md",
+                    "changelog.html",
                     translate(lang = lang, "Changelog")
                 ),
 

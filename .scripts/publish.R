@@ -1,6 +1,8 @@
 #' Deploy to shinyapps.io Programmatically
 #'
-#' Bundle the application and deploy it to <https://shinyapps.io>.
+#' Bundle the application and deploy it to <https://shinyapps.io>. This also
+#' creates required static HTML files in www/ from Markdown files before doing
+#' so.
 #'
 #' Three environment variables are required:
 #'
@@ -57,6 +59,22 @@ publish <- function(
         is_chr1(release_date)
     })
 
+    cat(sprintf("Generating static HTML static files."), sep = "\n")
+
+    rmarkdown::render(
+        input       = "NEWS.md",
+        output_file = file.path("www", "changelog.html"),
+        runtime     = "static",
+        quiet       = TRUE
+    )
+
+    rmarkdown::render(
+        input       = file.path("intl", "README.md"),
+        output_file = file.path("www", "translating.html"),
+        runtime     = "static",
+        quiet       = TRUE
+    )
+
     cat(sprintf("Deploying app to the '%s' region.", region), sep = "\n")
 
     rsconnect::setAccountInfo(
@@ -80,7 +98,7 @@ publish <- function(
             appTitle       = "Tool1: Data Interpretation for One Similar Exposure Group (SEG)",
             appMode        = "shiny",
             appVisibility  = "public",
-            logLevel       = "verbose",
+            logLevel       = "normal",
             launch.browser = FALSE,
             lint           = FALSE,
             forceUpdate    = FALSE,
