@@ -1522,19 +1522,6 @@ controlled, but with a limited safety margin.
 Si le risque de surexposition se situe entre 5% et 30%, il est modéré. La
 situation est maîtrisée, mais avec une marge de sécurité limitée.
 
-:: Translations: 0084ec7: Source Text
-
-Use this value to modify the OEL. The value used in subsequent calculations is
-the product of the OEL input (see above) and this factor. It can be used to
-determine a protection factor for respiratory protection.
-
-:: Translations: 0084ec7: Translation
-
-Utilisez cette valeur pour modifier la VLE. La valeur utilisée dans les calculs
-ultérieurs est le produit de la VLE (voir ci-dessus) et de ce facteur. Il peut
-être utilisé pour déterminer un facteur de protection pour la protection
-respiratoire.
-
 :: Translations: 962996f: Source Text
 
 Its resulting probabilistic statements are easier to convey to stakeholders.
@@ -2263,6 +2250,19 @@ Backgrounds
 :: Translations: a2334d7: Translation
 
 Arrière-plans
+
+:: Translations: c810b50: Source Text
+
+Use this value to modify the OEL. The value used in subsequent calculations is
+the product of the OEL (see above) and this factor. It can be used to determine
+a protection factor for respiratory protection.
+
+:: Translations: c810b50: Translation
+
+Utilisez cette valeur pour modifier la VLE. La valeur utilisée dans les calculs
+ultérieurs est le produit de la VLE (voir ci-dessus) et de ce facteur. Il peut
+être utilisé pour déterminer un facteur de protection pour la protection
+respiratoire.
 
 :: Translations: 3e0b7d6: Source Text
 

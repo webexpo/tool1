@@ -252,9 +252,9 @@ server_sidebar <- function(id, lang, mode, panel_active) {
         oel_multiplier_tooltip_text <- shiny::reactive({
             translate(lang = lang(), "
                 Use this value to modify the OEL. The value used in subsequent
-                calculations is the product of the OEL input (see above) and
-                this factor. It can be used to determine a protection factor
-                for respiratory protection.
+                calculations is the product of the OEL (see above) and this
+                factor. It can be used to determine a protection factor for
+                respiratory protection.
             ")
         }) |>
         shiny::bindCache(lang())
