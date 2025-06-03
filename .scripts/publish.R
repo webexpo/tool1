@@ -1,8 +1,8 @@
 #' Deploy to shinyapps.io Programmatically
 #'
 #' Bundle the application and deploy it to <https://shinyapps.io>. This also
-#' creates required static HTML files in www/ from Markdown files before doing
-#' so.
+#' creates required static HTML files in www/static from Markdown files before
+#' doing so.
 #'
 #' Three environment variables are required:
 #'
@@ -61,18 +61,43 @@ publish <- function(
 
     cat(sprintf("Generating static HTML static files."), sep = "\n")
 
+    # Generate www/static/news.html from NEWS.md.
     rmarkdown::render(
-        input       = "NEWS.md",
-        output_file = file.path("www", "changelog.html"),
-        runtime     = "static",
-        quiet       = TRUE
+        input         = "NEWS.md",
+        output_file   = file.path("www", "static", "news.html"),
+        output_format = rmarkdown::html_document(
+            toc       = TRUE,
+            toc_float = list(
+                collapsed     = TRUE,
+                smooth_scroll = FALSE
+            ),
+            mathjax     = NULL,
+            theme       = bslib::bs_theme(5L, "shiny"),
+            css         = file.path("www", "static", "_static.css"),
+            pandoc_args = c("--metadata", "title=Expostats - Tool 1 Changelog")
+        ),
+        runtime = "static",
+        quiet   = TRUE
     )
 
+    # Generate www/static/translations.html from intl/README.md.
+    # File paths must be relative to the latter.
     rmarkdown::render(
-        input       = file.path("intl", "README.md"),
-        output_file = file.path("www", "translating.html"),
-        runtime     = "static",
-        quiet       = TRUE
+        input         = file.path("intl", "README.md"),
+        output_file   = file.path("..", "www", "static", "translations.html"),
+        output_format = rmarkdown::html_document(
+            toc       = TRUE,
+            toc_float = list(
+                collapsed     = TRUE,
+                smooth_scroll = FALSE
+            ),
+            mathjax     = NULL,
+            theme       = bslib::bs_theme(5L, "shiny"),
+            css         = file.path("..", "www", "static", "_static.css"),
+            pandoc_args = c("--metadata", "title=Expostats - Tool 1 Translations")
+        ),
+        runtime = "static",
+        quiet   = TRUE
     )
 
     cat(sprintf("Deploying app to the '%s' region.", region), sep = "\n")

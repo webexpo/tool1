@@ -1,7 +1,3 @@
----
-title: Expostats - Tool 1 Changelog
----
-
 # Tool 1 version `5.1.0`
 
 This version is a massive milestone for Expostats as it becomes the official
@@ -56,6 +52,10 @@ version of Tool 1 and Tool 1 Express (it is now *out of beta*).
 
 * All `server_panel_*()` functions now returns a `shiny::reactive()` object
   that can be called to get the panel's underlying title.
+
+* Script `.scripts/publish.R` now generates static HTML files from `NEWS.md`
+  and `intl/README.md`. These are stored in `www/static/` and served under
+  path `/static`.
 
 ## Fixes
 

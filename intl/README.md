@@ -1,7 +1,3 @@
----
-title: Expostats - Tool 1 Translations
----
-
 # Introduction
 
 This document provides guidance and instructions for external collaborators
