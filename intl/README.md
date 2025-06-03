@@ -1,11 +1,5 @@
 ---
 title: Expostats - Tool 1 Translations
-output:
-    html_document:
-        toc: TRUE
-        toc_float: TRUE
-        mathjax: null
-        css: ../www/static/_static.css
 ---
 
 # Introduction
