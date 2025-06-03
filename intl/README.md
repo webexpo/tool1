@@ -98,6 +98,10 @@ The maintainers will usually prefill this field. If you change it, please add
 a `[REVIEW]` label next to it so that the new value can be appropriately
 integrated into the source code.
 
+We use standard
+[IETF/BCP-47 language tags](https://en.wikipedia.org/wiki/IETF_language_tag#List_of_common_primary_language_subtags)
+as language codes.
+
 ## Source Text and Translation
 
 Provide a translation of each `Source Text` subsubsection under each
