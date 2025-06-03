@@ -1,17 +1,19 @@
 # Ignore environment variables. See README.
 .Renviron
 
-# Ignore local files.
+# Ignore other local files.
 .local
 *.Rhistory
 *.Rproj
 *.Rproj.user
+*.RData
 
-# Ignore cached objects and results.
+# Ignore cached objects.
 .cache
 .cache.log
 
-# Ignore by-products, and temporary files.
-.RData
+# Ignore by-product files.
+# These can be regenerated anytime.
 www/images/img*.png
-www/static/*.html
+www/static/news.html
+www/static/translations.html
