@@ -65,8 +65,8 @@ Each translation file has three internal components that **must be left as is**:
 
 3. a `Source Language` section.
 
-It further has two further components that matter for translation purposes.
-These **can be modified**:
+It has two components that matter for translation purposes. These
+**can be modified**:
 
 1. a `Language` section, and
 
@@ -75,8 +75,8 @@ These **can be modified**:
 
 The `Source Text` sub-subsections **must also be left as is**. Any modification
 will be ignored and automatically discarded. If you notice an error in the
-source text, please report it to the maintainers of Tool 1. What you can modify
-are the corresponding `Translation` sub-subsections.
+source text, please report it to the maintainers of Tool 1. You must modify
+the corresponding `Translation` sub-subsections.
 
 # Objectives
 
