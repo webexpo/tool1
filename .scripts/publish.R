@@ -1,8 +1,10 @@
 #' Deploy to shinyapps.io Programmatically
 #'
-#' Bundle the application and deploy it to <https://shinyapps.io>. This also
-#' creates required static HTML files in www/static from Markdown files before
-#' doing so.
+#' Bundle the application and deploy it to <https://shinyapps.io>.
+#'
+#' @details
+#' [publish()] also creates required static HTML files in www/static from
+#' Markdown files before bundling the application.
 #'
 #' Three environment variables are required:
 #'
@@ -61,49 +63,43 @@ publish <- function(
 
     cat(sprintf("Generating static HTML static files."), sep = "\n")
 
+    # Local function that encapsulates common rmarkdown parameters.
+    html_document <- \(title = "", ...) {
+        return(
+            rmarkdown::html_document(
+                ...,
+                toc         = TRUE,
+                toc_float   = list(collapsed = TRUE, smooth_scroll = FALSE),
+                mathjax     = NULL,
+                theme       = bslib::bs_theme(5L, "shiny"),
+                pandoc_args = c("--metadata", sprintf("title=%s", title))
+            )
+        )
+    }
+
     # Generate www/static/news.html from NEWS.md.
     rmarkdown::render(
         input         = "NEWS.md",
+        runtime       = "static",
+        quiet         = TRUE,
         output_file   = file.path("www", "static", "news.html"),
-        output_format = rmarkdown::html_document(
-            toc       = TRUE,
-            toc_float = list(
-                collapsed     = TRUE,
-                smooth_scroll = FALSE
-            ),
-            mathjax     = NULL,
-            theme       = bslib::bs_theme(5L, "shiny"),
-            css         = file.path("www", "static", "_static.css"),
-            pandoc_args = c("--metadata", "title=Expostats - Tool 1 Changelog"),
-            includes    = rmarkdown::includes(
-                in_header = file.path("www", "static", "_head.html")
-            )
-        ),
-        runtime = "static",
-        quiet   = TRUE
+        output_format = html_document(
+            title = "Expostats - Tool 1 Changelog",
+            css   = file.path("www", "static", "_static.css"),
+        )
     )
 
     # Generate www/static/translations.html from intl/README.md.
-    # File paths must be relative to the latter.
+    # File paths must be relative to the input.
     rmarkdown::render(
         input         = file.path("intl", "README.md"),
+        runtime       = "static",
+        quiet         = TRUE,
         output_file   = file.path("..", "www", "static", "translations.html"),
-        output_format = rmarkdown::html_document(
-            toc       = TRUE,
-            toc_float = list(
-                collapsed     = TRUE,
-                smooth_scroll = FALSE
-            ),
-            mathjax     = NULL,
-            theme       = bslib::bs_theme(5L, "shiny"),
-            css         = file.path("..", "www", "static", "_static.css"),
-            pandoc_args = c("--metadata", "title=Expostats - Tool 1 Translations"),
-            includes    = rmarkdown::includes(
-                in_header = file.path("www", "static", "_head.html")
-            )
-        ),
-        runtime = "static",
-        quiet   = TRUE
+        output_format = html_document(
+            title = "Expostats - Tool 1 Translations",
+            css   = file.path("..", "www", "static", "_static.css"),
+        )
     )
 
     cat(sprintf("Deploying app to the '%s' region.", region), sep = "\n")
