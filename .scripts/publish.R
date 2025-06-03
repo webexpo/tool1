@@ -3,7 +3,7 @@
 #' Bundle the application and deploy it to <https://shinyapps.io>.
 #'
 #' @details
-#' [publish()] also creates required static HTML files in www/static from
+#' [.pub()] also creates required static HTML files in www/static from
 #' Markdown files before bundling the application.
 #'
 #' Three environment variables are required:
@@ -13,18 +13,6 @@
 #'   * `RSCONNECT_ACCOUNT_SECRET`.
 #'
 #' Store them in an untracked top-level .Renviron file.
-#'
-#' @usage
-#' ## In interactive sessions
-#' .pub(...)
-#'
-#' ## In non-interactive session
-#' publish(
-#'   region       = c("dev", "prod"),
-#'   account      = "lavoue",
-#'   version      = default_version[["number"]],
-#'   release_date = default_version[["release_date"]]
-#' )
 #'
 #' @param region A character string. It must be equal to `"prod"`, or `"dev"`.
 #'
@@ -43,11 +31,10 @@
 #' [rsconnect::setAccountInfo()]
 #'
 #' @examples
-#' publish("dev")
-#' publish("prod")
-#'
-#' @export
-publish <- function(
+#' .pub()
+#' .pub("dev")
+#' .pub("prod")
+.pub <- function(
     region       = c("dev", "prod"),
     account      = "lavoue",
     version      = default_version[["number"]],
@@ -118,25 +105,27 @@ publish <- function(
     )
 
     return(
-        rsconnect::deployApp(
-            account        = account,
-            appId          = app_to_deploy[["id"]],
-            appName        = app_to_deploy[["name"]],
-            appTitle       = "Tool1: Data Interpretation for One Similar Exposure Group (SEG)",
-            appMode        = "shiny",
-            appVisibility  = "public",
-            logLevel       = "normal",
-            launch.browser = FALSE,
-            lint           = FALSE,
-            forceUpdate    = FALSE,
-            metadata       = list(
-                region               = region,
-                version_number       = version,
-                version_release_date = release_date,
-                license              = "MIT + file LICENSE",
-                bug_reports          = "https://github.com/webexpo/app-tool1/issues",
-                encoding             = "UTF-8",
-                language             = "en"
+        invisible(
+            rsconnect::deployApp(
+                account        = account,
+                appId          = app_to_deploy[["id"]],
+                appName        = app_to_deploy[["name"]],
+                appTitle       = "Tool1: Data Interpretation for One Similar Exposure Group (SEG)",
+                appMode        = "shiny",
+                appVisibility  = "public",
+                logLevel       = "normal",
+                launch.browser = FALSE,
+                lint           = FALSE,
+                forceUpdate    = FALSE,
+                metadata       = list(
+                    region               = region,
+                    version_number       = version,
+                    version_release_date = release_date,
+                    license              = "MIT + file LICENSE",
+                    bug_reports          = "https://github.com/webexpo/app-tool1/issues",
+                    encoding             = "UTF-8",
+                    language             = "en"
+                )
             )
         )
     )

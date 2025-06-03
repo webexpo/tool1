@@ -35,24 +35,29 @@ if (interactive()) {
     # Attach aliases and small dev tools.
     # Names are as small as possible by design.
     attach(name = "tools:dev", what = local({
-        # Aliases.
+        # Define aliases.
         .mb <- microbenchmark::microbenchmark
-
-        # Shortcuts to run development scripts.
-        .find <- \() invisible(source(file.path(".scripts", "find-text.R")))
-        .run  <- \() invisible(source(file.path(".scripts", "run.R")))
-        .pub  <- \(...) {
-            .src()
-            source(file.path(".scripts", "publish.R"), TRUE)
-            return(invisible(publish(...)))
-        }
 
         # Clear the global environment.
         .rm <- \() rm(list = ls(name = globalenv()), pos = globalenv())
 
-        # Source everything in R/.
+        # Source everything stored in
+        # R/ (in the global environment).
         .src <- \() invisible(lapply(list.files("R", full.names = TRUE), source))
         .src()
+
+        # Source development functions stored in .scripts/.
+        source(file.path(".scripts", "run.R"), TRUE)
+        source(file.path(".scripts", "publish.R"), TRUE)
+        source(file.path(".scripts", "find-text.R"), TRUE)
+
+        # Force .pub() to source everything
+        # in R/ before doing anything else.
+        .pub_no_source <- .pub
+        .pub <- \(...) {
+            .src()
+            .pub_no_source(...)
+        }
 
         # Return this local environment
         # (to attach it to the search path).

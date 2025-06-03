@@ -1,58 +1,87 @@
 #' Find Text That Requires Translations
 #'
-#' Prepare translations files. This creates and updates the contents of
-#' directory intl/.
+#' Scan the source code, create a new [transltr::Translator] object and create
+#' required translations files.
 #'
-#' @usage
-#' ## In interactive sessions
-#' .find()
+#' @details
+#' This creates or updates the contents of directory intl/.
 #'
-#' @note
-#' transltr does not yet have a robust mechanism to easily update existing
-#' translations. This should be done by Jean-Mathieu Potvin until further
-#' notice. Argument `overwrite` below is explicitly set to `FALSE` to avoid
-#' unintended consequences.
+#' Support further languages by adding a new entry to the default value of
+#' formal argument `other_lang_names` of [.find()]. Then, call the latter.
 #'
-#' @seealso
-#' [The transltr package](https://cran.r-project.org/web/packages/transltr/index.html)
+#' @param id A character string passed to argument `id` of [transltr::translator()].
+#'
+#' @param path A character string. The path to the translator (YAML) file of
+#'   the project.
+#'
+#' @param source_lang_code A character string. The code of the source language.
+#'
+#' @param source_lang_name A character string. The native name of the source
+#'   language.
+#'
+#' @param other_lang_names A named list of character strings. Further languages
+#'   supported by Tool 1.
+#'
+#'   * Elements are the full native names of the languages.
+#'   * Names are the corresponding language codes. Always use BCP-47 codes.
+#'
+#' @returns A [transltr::Translator] object, invisibly. It is also bound to
+#'   variable `tr` in the global environment automatically. This keeps the
+#'   main [transltr::Translator] object of the project always up-to-date.
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
-
-# Create a new (empty) Translator object.
-tr <- transltr::translator(id = "expostats:tool1")
-
-# Register languages that must be supported.
-# Each named element is interpreted as <code> = <displayed name>.
-tr$set_native_languages(
-    en = "English",
-    fr = "Français"
-)
-
-# Extract source text to translate from source scripts
-# and update the Translator object (by reference).
-transltr::find_source(tr = tr, interface = quote(translate))
-
-# The following steps are done in a local environment to avoid
-# polluting the current environment with temporary variables.
-local({
+#'
+#' @seealso
+#' [The transltr package](https://cran.r-project.org/web/packages/transltr/index.html),
+#' [BCP-47/IETF language tags](https://en.wikipedia.org/wiki/IETF_language_tag#List_of_common_primary_language_subtags)
+#'
+#' @examples
+#' .find()
+.find <- function(
+    id               = "expostats:tool1",
+    path             = getOption("transltr.path"),
+    other_lang_names = list(
+        fr = "Français"
+    ),
+    source_lang_code = transltr::language_source_get(),
+    source_lang_name = "English")
+{
     # Get the directory holding translations.
-    dir <- dirname(getOption("transltr.path"))
+    dir <- dirname(path)
 
-    # Extract non-source language codes that may
-    # have an existing translation file already.
-    langs <- names(tr$native_languages)
-    langs <- langs[langs != transltr::language_source_get()]
+    # Create a new (empty) Translator object.
+    tr <- transltr::translator(id = id)
 
-    # Only keep files that exists.
-    files <- file.path(dir, sprintf("%s.txt", langs))
+    # Register native names of languages that must be supported.
+    do.call(
+        what = tr$set_native_languages,
+        args = structure(
+            c(as.list(source_lang_name), other_lang_names),
+            names = c(source_lang_code, names(other_lang_names))
+        )
+    )
+
+    # Detect existing translation files in intl/.
+    # The source language (English) never has one.
+    files <- file.path(dir, sprintf("%s.txt", names(other_lang_names)))
     files <- files[utils::file_test("-f", files)]
+
+    # Extract source text to translate from source scripts
+    # and update the Translator object (by reference).
+    transltr::find_source(tr = tr, interface = quote(translate))
 
     # Read existing translations and import them
     # back into the Translator object created above.
     # The latter is updated by reference.
     lapply(files, transltr::translations_read, tr = tr)
-})
 
-# Export source text and translations.
-# This populates the contents of intl/.
-transltr::translator_write(tr, overwrite = TRUE)
+    # Export source text and translations.
+    # This updates the contents of intl/.
+    transltr::translator_write(tr, overwrite = TRUE)
+
+    # Update any previous Translator object
+    # defined in the global environment.
+    assign("tr", tr, globalenv())
+
+    return(invisible(tr))
+}
