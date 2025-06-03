@@ -74,7 +74,10 @@ publish <- function(
             mathjax     = NULL,
             theme       = bslib::bs_theme(5L, "shiny"),
             css         = file.path("www", "static", "_static.css"),
-            pandoc_args = c("--metadata", "title=Expostats - Tool 1 Changelog")
+            pandoc_args = c("--metadata", "title=Expostats - Tool 1 Changelog"),
+            includes    = rmarkdown::includes(
+                in_header = file.path("www", "static", "_head.html")
+            )
         ),
         runtime = "static",
         quiet   = TRUE
@@ -94,7 +97,10 @@ publish <- function(
             mathjax     = NULL,
             theme       = bslib::bs_theme(5L, "shiny"),
             css         = file.path("..", "www", "static", "_static.css"),
-            pandoc_args = c("--metadata", "title=Expostats - Tool 1 Translations")
+            pandoc_args = c("--metadata", "title=Expostats - Tool 1 Translations"),
+            includes    = rmarkdown::includes(
+                in_header = file.path("www", "static", "_head.html")
+            )
         ),
         runtime = "static",
         quiet   = TRUE
