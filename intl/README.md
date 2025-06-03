@@ -115,6 +115,13 @@ Bonjour, monde!
 
 You must erase each `# Insert a translation here.` placeholder before doing so.
 
+## Ordinal Numbers
+
+The maintainers will ask for further guidance on how to properly handle ordinal
+numbers (1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup>, etc.) in the given
+language. Such numbers are handled programmatically (grammar rules for them
+are implemented as code by the maintainers).
+
 # Further Instructions
 
 ## Placeholders
