@@ -5,7 +5,7 @@ account: lavoue
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 14521166
-bundleId: 10390462
+bundleId: 10390617
 url: https://lavoue.shinyapps.io/tool1-beta/
 version: 1
 region: dev
