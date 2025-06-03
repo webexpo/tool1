@@ -15,5 +15,5 @@
 # Ignore by-product files.
 # These can be regenerated anytime.
 www/images/img*.png
-www/static/news.html
-www/static/translations.html
+www/assets/news.html
+www/assets/translations.html

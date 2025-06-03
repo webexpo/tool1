@@ -75,6 +75,11 @@ default_express_inputs <- list(
 # Default relative path to images' directory.
 default_images_dir <- file.path("www", "images")
 
+# Default relative path to other static assets.
+# These are non-standard assets that should not
+# be stored directly in www/ (at top-level).
+default_assets_dir <- file.path("www", "assets")
+
 # Default message to show when
 #  - there is no available translation, OR
 #  - the underlying source text has not yet been registered by object tr

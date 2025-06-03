@@ -53,9 +53,22 @@ version of Tool 1 and Tool 1 Express (it is now *out of beta*).
 * All `server_panel_*()` functions now returns a `shiny::reactive()` object
   that can be called to get the panel's underlying title.
 
+* All development scripts now encapsulate their logic into proper functions
+  (`.find()`, `.pub()`, and `.run()`). The `.Rprofile` script was modified
+  accordingly.
+
 * Script `.scripts/publish.R` now generates static HTML files from `NEWS.md`
-  and `intl/README.md`. These are stored in `www/static/` and served under
-  path `/static`.
+  and `intl/README.md`. These are stored in `www/assets/` and served under
+  path `/assets`.
+
+* There is a new `README.md` in `intl/`detailing what external collaborators
+  working on translations must do.
+
+* `.pub()` (script `.scripts/publish.R`) now generates assets HTML files
+  `www/assets/translations.html` and `www/assets/news.html` from
+  source files `intl/README.md` and `NEWS.md` respectively. YAML headers
+  are not included in the Markdown files because they are rendered as
+  ugly HTML tables by GitHub.
 
 ## Fixes
 

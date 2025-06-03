@@ -10,7 +10,7 @@
 
 # Ignore scripts and files used for development.
 .scripts
-www/static/_*
+www/assets/_*
 
 # Ignore cached objects.
 .cache

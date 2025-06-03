@@ -22,6 +22,9 @@
 #'
 #' @param release_date A non-empty and non-NA character string.
 #'
+#' @param assets_dir A non-empty and non-NA character string. The
+#'   location of further static assets such as HTML documents.
+#'
 #' @returns The output of [rsconnect::deployApp()].
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
@@ -38,7 +41,8 @@
     region       = c("dev", "prod"),
     account      = "lavoue",
     version      = default_version[["number"]],
-    release_date = default_version[["release_date"]])
+    release_date = default_version[["release_date"]],
+    assets_dir   = default_assets_dir)
 {
     region <- match.arg(region)
 
@@ -48,9 +52,10 @@
         is_chr1(release_date)
     })
 
-    cat(sprintf("Generating static HTML static files."), sep = "\n")
+    cat(sprintf("Generating HTML files from source Markdown files."), sep = "\n")
 
     # Local function that encapsulates common rmarkdown parameters.
+    # File paths must be relative to the input of rmarkdown::render().
     html_document <- \(title = "", ...) {
         return(
             rmarkdown::html_document(
@@ -59,34 +64,32 @@
                 toc_float   = list(collapsed = TRUE, smooth_scroll = FALSE),
                 mathjax     = NULL,
                 theme       = bslib::bs_theme(5L, "shiny"),
-                pandoc_args = c("--metadata", sprintf("title=%s", title))
+                css         = file.path(assets_dir, "_main.css"),
+                pandoc_args = c("--metadata", sprintf("title=%s", title)),
+                includes    = rmarkdown::includes(
+                    in_header = file.path(assets_dir, "_head.html")
+                )
             )
         )
     }
 
-    # Generate www/static/news.html from NEWS.md.
+    # Generate www/assets/news.html from NEWS.md.
+    # File paths must be relative to the input.
     rmarkdown::render(
         input         = "NEWS.md",
         runtime       = "static",
         quiet         = TRUE,
-        output_file   = file.path("www", "static", "news.html"),
-        output_format = html_document(
-            title = "Expostats - Tool 1 Changelog",
-            css   = file.path("www", "static", "_static.css"),
-        )
+        output_file   = file.path(assets_dir, "news.html"),
+        output_format = html_document("Expostats - Tool 1 Changelog")
     )
 
-    # Generate www/static/translations.html from intl/README.md.
-    # File paths must be relative to the input.
+    # Generate www/assets/translations.html from TRANSLATIONS.md.
     rmarkdown::render(
-        input         = file.path("intl", "README.md"),
+        input         = "TRANSLATIONS.md",
         runtime       = "static",
         quiet         = TRUE,
-        output_file   = file.path("..", "www", "static", "translations.html"),
-        output_format = html_document(
-            title = "Expostats - Tool 1 Translations",
-            css   = file.path("..", "www", "static", "_static.css"),
-        )
+        output_file   = file.path(assets_dir, "translations.html"),
+        output_format = html_document("Expostats - Tool 1 Translations")
     )
 
     cat(sprintf("Deploying app to the '%s' region.", region), sep = "\n")
