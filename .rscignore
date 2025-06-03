@@ -7,8 +7,9 @@
 *.Rproj
 *.Rproj.user
 
-# Ignore scripts used for development.
+# Ignore scripts and files used for development.
 .scripts
+www/static/_*
 
 # Ignore Git files (.git is already ignored).
 .gitignore
