@@ -24,21 +24,12 @@ Translation files are shared by the maintainers of Tool 1 with external
 collaborators. Official versions are
 [stored on GitHub](https://github.com/webexpo/tool1/tree/main/intl).
 
-## Opening
+## Example
 
-Translation files can be opened and modified using any text editor **as long as
-the chosen character encoding is UTF-8**. No other encoding is supported. This
-is particularly important for non-Latin dialects such as 日本語 (Japanese).
-
-Lines are wrapped so that they are never longer than `80` characters (mainly to
-ease maintenance and maintain readability across all systems). Consequently, it
-is recommended that translation files be opened and modified using simple text
-editors such as Notepad.
-
-Although not required, the recommended method is to work on translations using
-your preferred software (such as Microsoft Word) in a separate file (or context)
-and to copy them into the translation file using a text editor that allows you
-to manage line wrapping manually.
+[This translation file](https://raw.githubusercontent.com/webexpo/tool1/refs/heads/main/intl/fr.txt)
+is the official file used for French translations. It has a minimal header
+(lines starting with a `#` sign) containing basic instructions and further
+sections. Most of them are pairs of source text and translation.
 
 ## Format
 
@@ -55,24 +46,47 @@ The general format is as follows.
 ```
 
 Lines starting with `::` denote a new section. What follows is its contents.
+Lines starting with a `#` sign are comments that are entirely ignored (and
+discarded).
+
+## Opening
+
+Translation files can be opened and modified using any text editor **as long as
+the chosen character encoding is UTF-8**. No other encoding is supported. This
+is particularly important for non-Latin dialects such as 日本語 (Japanese).
+
+Lines are wrapped so that they are never longer than `80` characters (mainly to
+ease maintenance and maintain readability across all systems). Consequently, it
+is recommended that translation files be opened and modified using simple text
+editors such as Notepad.
+
+Although not required, the recommended method is to work on translations using
+your preferred software (such as Microsoft Word) in a separate file (or context)
+and to copy them into the translation file using a text editor that allows you
+to manage line wrapping manually.
 
 ## Components
 
-Each translation file has five components:
+Each translation file has three internal components that **must be left as is**:
 
 1. an `Identifier` section uniquely identifying the underlying file,
-2. a `Language Code` section uniquely identifying the `Language`,
-3. a `Language` section,
-4. a `Source Language` section, and
-5. pairs of `Source Text` and `Translation` sub-subsections tied by a common
-   unique identifier.
 
-The `Identifier`, `Language Code`, and `Source Language` sections are internal
-and **must be left as is**.
+2. a `Language Code` section uniquely identifying the `Language`, and
+
+3. a `Source Language` section.
+
+It further has two further components that matter for translation purposes.
+These **can be modified**:
+
+1. a `Language` section, and
+
+2. pairs of `Source Text` and `Translation` sub-subsections tied by a common
+   unique identifier.
 
 The `Source Text` sub-subsections **must also be left as is**. Any modification
 will be ignored and automatically discarded. If you notice an error in the
-source text, please report it to the maintainers of Tool 1.
+source text, please report it to the maintainers of Tool 1. What you can modify
+are the corresponding `Translation` sub-subsections.
 
 # Objectives
 
@@ -82,19 +96,19 @@ sub-subsections.
 ## Language
 
 Provide a translation of the underlying language's name. For example, French
-would be translated as `French`, and Japanese as `日本語`.
+would be translated as `Français`, and Japanese as `日本語`.
 
 ```
-:: Language Code
-
-jp
-
 :: Language
 
 日本語
 ```
 
-## Source Text
+The maintainers will usually prefill this field. If you change it, please add
+a `[REVIEW]` label next to it so that the new value can be appropriately
+integrated into the source code.
+
+## Source Text and Translation
 
 Provide a translation of each `Source Text` subsubsection under each
 corresponding `Translation` subsubsection.
@@ -109,7 +123,7 @@ Hello, world!
 Bonjour, monde!
 ```
 
-You must erase any `# Insert ...` placeholder before doing so.
+You must erase each `# Insert a translation here.` placeholder before doing so.
 
 # Further Instructions
 
