@@ -44,7 +44,7 @@ shiny::shinyOptions(
 # Constants --------------------------------------------------------------------
 
 # Default version/release to display in footers.
-default_version <- c(number = "5.0.0", release_date = "2025-05-17")
+default_version <- c(number = "5.1.0", release_date = "2025-06-03")
 
 # Default language.
 default_lang <- transltr::language_source_get()
@@ -62,8 +62,10 @@ default_n_bayes_iter <- 25000L
 # Default number of significant digits to keep.
 default_n_digits <- 3L
 
-# Default internal values for inputs in simplified mode.
-default_simplified_inputs <- list(
+# Default internal values for inputs in express mode.
+# Names must match names of inputs defined in the Sidebar Module.
+default_express_inputs <- list(
+    oel_multiplier = 1,
     conf           = 90,
     psi            = 30,
     frac_threshold = 5,
@@ -72,6 +74,11 @@ default_simplified_inputs <- list(
 
 # Default relative path to images' directory.
 default_images_dir <- file.path("www", "images")
+
+# Default relative path to other static assets.
+# These are non-standard assets that should not
+# be stored directly in www/ (at top-level).
+default_assets_dir <- file.path("www", "assets")
 
 # Default message to show when
 #  - there is no available translation, OR
@@ -120,38 +127,57 @@ aiha_risk_levels <- list(
         tolerable   = 5L,  # [5L, 30)
         problematic = 30L  # [30L, ∞)
     ),
-    # $text must be a function in order to prevent
-    # early evaluation (lang() cannot be passed to
-    # translate() directly because it is a reactive
-    # value). Reactive values can only be called in
-    # a reactive context.
+    # $get_text() is a way to prevent early evaluation of
+    # lang(). The latter is a reactive value that can only
+    # be called in a reactive context. It is written in a
+    # way that works with transltr mechanisms: each source
+    # text requiring translation must be a literal string
+    # wrapped by translate().
     metadata = list(
         acceptable = list(
             level = "acceptable",
-            text  =  \(lang) translate(lang = lang, "acceptable"),
             color = "success",
             icon  = bsicons::bs_icon(
-                name = "check-circle",
+                name = "check-circle-fill",
                 a11y = "deco"
-            )
+            ),
+            get_text = \(lang, capitalize = FALSE) {
+                if (capitalize) {
+                    return(translate(lang = lang, "Acceptable"))
+                }
+
+                return(translate(lang = lang, "acceptable"))
+            }
         ),
         tolerable = list(
             level = "tolerable",
-            text  = \(lang) translate(lang = lang, "tolerable"),
             color = "warning",
             icon  = bsicons::bs_icon(
                 name = "exclamation-triangle-fill",
                 a11y = "deco"
-            )
+            ),
+            get_text = \(lang, capitalize = FALSE) {
+                if (capitalize) {
+                    return(translate(lang = lang, "Tolerable"))
+                }
+
+                return(translate(lang = lang, "tolerable"))
+            }
         ),
         problematic = list(
             level = "problematic",
-            text  = \(lang) translate(lang = lang, "problematic"),
             color = "danger",
             icon  = bsicons::bs_icon(
                 name = "exclamation-octagon-fill",
                 a11y = "deco"
-            )
+            ),
+            get_text = \(lang, capitalize = FALSE) {
+                if (capitalize) {
+                    return(translate(lang = lang, "Problematic"))
+                }
+
+                return(translate(lang = lang, "problematic"))
+            }
         )
     )
 )

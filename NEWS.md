@@ -1,3 +1,91 @@
+# Tool 1 version `5.1.0`
+
+This version is a massive milestone for Expostats as it becomes the official
+version of Tool 1 and Tool 1 Express (it is now *out of beta*).
+
+## User Visible Changes
+
+* Tool 1 is now available in French.
+
+* The source text was reviewed and rewritten for consistency and simplicity.
+  Notably, the abbrevation OEL is now always used for brevity and clarity.
+
+* Fixed incorrect descriptions of the Exceedance Plot's variants.
+
+* Mode names were revamped: `default` is now `extended` and `simplified` is now
+  `express`. Labels were renamed accordingly.
+
+* The default mode is now `express` (Tool 1 Express).
+
+* There is a new optional input in extended mode: Occupational Exposure Limit
+  Multiplier. Use this value to modify the OEL with an arbitrary multiplier.
+  The resulting product of these values will be used as the effective OEL in
+  all subsequent calculations and analyses.
+
+* Panels now have a title bar showing the current mode and the panel's
+  underlying name.
+
+* The footer of the sidebar and the FAQ panel was rearranged and updated.
+
+* The contents of the FAQ panel got a lot of small updates.
+
+* Latest changes (this document) are now natively accessible from Tool 1.
+  GitHub is no longer needed.
+
+## Server Changes
+
+* Many small tweaks and optimizations were introduced to ease the translation
+  process.
+
+* The Simplified Mode Inference Panel Module was renamed to Express Mode
+  Inference Panel Module. Functions, scripts, and identifiers were changed
+  accordingly.
+
+* The `README` now contains clear instructions to follow when adding a new
+  supported language.
+
+* `ui_element()` is removed.
+
+* `ui_link()` and `ui_link_mailto()` were rewritten (fixing a lof of bugs and
+  problems that would arise when they were integrated into the source text with
+  `html()`).
+
+* All `server_panel_*()` functions now returns a `shiny::reactive()` object
+  that can be called to get the panel's underlying title.
+
+* All development scripts now encapsulate their logic into proper functions
+  (`.find()`, `.pub()`, and `.run()`). The `.Rprofile` script was modified
+  accordingly.
+
+* Script `.scripts/publish.R` now generates static HTML files from `NEWS.md`
+  and `intl/README.md`. These are stored in `www/assets/` and served under
+  path `/assets`.
+
+* There is a new `README.md` in `intl/`detailing what external collaborators
+  working on translations must do.
+
+* `.pub()` (script `.scripts/publish.R`) now generates assets HTML files
+  `www/assets/translations.html` and `www/assets/news.html` from
+  source files `intl/README.md` and `NEWS.md` respectively. YAML headers
+  are not included in the Markdown files because they are rendered as
+  ugly HTML tables by GitHub.
+
+## Fixes
+
+* Fixed a logical error in development script `find-text.R` that would discard
+  existing translations stored in `intl/` without reusing them.
+
+* Fixed some pieces of text that were not wrapped in `translate()` calls.
+
+* Fixed rare annoying edge cases by forcing `html()` to explicitly convert
+  elements passed to `...` to character strings instead of deferring this
+  operation to `sprintf()`.
+
+* Fixed a bug in the Exceedance Plot Sidebar Module where input
+  `col_bg_threshold` was hidden for `plot3` (which was wrong).
+
+* Fixed incorrect descriptions and labels in the Exceedance Plot Module.
+
 # Tool 1 version `5.0.0`
 
 This major version introduces Tool 1 Express (Simplified) directly into Tool 1.
@@ -138,3 +226,9 @@ preserved.
 * Message boxes included in the Calculation Parameters sidebar now properly
   grow and shrink on all screens. They no longer collapse to a single line
   with a width equal to `2px` (top and bottom borders).
+
+# Tool 1 version `4.0.0`
+
+This major version is a complete redesign of Tool 1. It was entirely rewritten
+except for core scientific back-end components. They were left nearly as is in
+the source code.

@@ -1,0 +1,23 @@
+/* Styles of static HTML files generated from Markdown files
+   by rmarkdown::render(). See .scripts/publish.R for details. */
+
+#header {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+h1:not(#header > h1) {
+    padding-bottom: 8px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+p, ol, ul {
+  text-align: justify;
+  text-justify: inter-word;
+}

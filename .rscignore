@@ -1,24 +1,31 @@
+# .rscignore does not support wildcards, or ignoring files in subdirectories.
+# Such files are left as comments for future purposes.
+
 # Ignore environment variables. See README.
 .Renviron
 
 # Ignore local files.
 .local
-*.Rhistory
-*.Rproj
-*.Rproj.user
+.RData
+.Rhistory
+.Rproj
+.Rproj.user
 
-# Ignore scripts used for development.
+# Ignore scripts and files used for development.
 .scripts
+# www/assets/_main.css
+# www/assets/_head.html
 
-# Ignore Git files (.git is already ignored).
-.gitignore
-
-# Ignore cached objects and results.
+# Ignore cached objects.
 .cache
 .cache.log
 
-# Ignore by-products and temporary files.
-.RData
-www/images/img1.png
-www/images/img2.png
-www/images/img3.png
+# Ignore by-product files.
+# These are generated on the fly.
+# www/images/img1.png
+# www/images/img2.png
+# www/images/img3.png
+
+# Ignore further Git files.
+# .git is already ignored by default.
+.gitignore

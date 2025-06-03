@@ -45,7 +45,8 @@
 #' [ui_panel_exceedance_fraction()] returns a `shiny.tag` object
 #' (an output of [bslib::nav_panel()]).
 #'
-#' [server_panel_exceedance_fraction()] returns `NULL`, invisibly.
+#' [server_panel_exceedance_fraction()] returns a [shiny::reactive()] object.
+#' It can be called to get the panel's title.
 #'
 #' @note
 #' This module is used as a general template that is copied and refactored
@@ -278,6 +279,11 @@ server_panel_exceedance_fraction <- function(
             num_results = num_results
         )
 
+        title <- shiny::reactive({
+            translate(lang = lang(), "Exceedance Fraction")
+        }) |>
+        shiny::bindCache(lang())
+
         risk_assessment <- shiny::reactive({
             risk_level <- if (num_results()$frac.risk >= parameters()$psi) {
                 "problematic"
@@ -289,9 +295,8 @@ server_panel_exceedance_fraction <- function(
         })
 
         output$title <- shiny::renderText({
-            translate(lang = lang(), "Exceedance Fraction")
-        }) |>
-        shiny::bindCache(lang())
+            title()
+        })
 
         output$risk_assessment_title <- shiny::renderText({
             translate(lang = lang(), "Risk Assessment")
@@ -387,7 +392,7 @@ server_panel_exceedance_fraction <- function(
                     class = li_classes,
                     html(
                         translate(lang = lang, "The current situation is %s."),
-                        tags$strong(risk_assessment$text(lang))
+                        tags$strong(risk_assessment$get_text(lang))
                     )
                 )
             )
@@ -407,8 +412,8 @@ server_panel_exceedance_fraction <- function(
         output$risk_meter_plot_desc <- shiny::renderText({
             translate(lang = lang(), "
                 This risk meter shows the probability of the exposure being too
-                high when compared to the occupational exposure limit. The red
-                zone indicates a problematic exposure.
+                high when compared to the OEL. The red zone indicates a
+                problematic exposure.
             ")
         }) |>
         shiny::bindCache(lang())
@@ -501,7 +506,7 @@ server_panel_exceedance_fraction <- function(
                 gm        = results$gm$est,
                 gsd       = results$gsd$est,
                 frac      = results$frac$est,
-                c.oel     = parameters()$oel,
+                c.oel     = results$c.oel,
                 seqplot.1 = translate(lang = lang, "Concentration"),
                 seqplot.2 = translate(lang = lang, "Exceedance Fraction"),
                 seqplot.6 = translate(lang = lang, "Measurement Index")
@@ -521,13 +526,14 @@ server_panel_exceedance_fraction <- function(
 
         output$density_plot <- shiny::renderPlot({
             lang <- lang()
+            results <- num_results()
             bayesian_analysis <- bayesian_analysis()
 
             distribution.plot.frac(
                 gm         = exp(median(bayesian_analysis$mu.chain)),
                 gsd        = exp(median(bayesian_analysis$sigma.chain)),
-                frac       = num_results()$frac$est,
-                c.oel      = parameters()$oel,
+                frac       = results$frac$est,
+                c.oel      = results$c.oel,
                 distplot.1 = translate(lang = lang, "Concentration"),
                 distplot.2 = translate(lang = lang, "Density"),
                 distplot.3 = translate(lang = lang, "Exceedance Fraction"),
@@ -554,7 +560,7 @@ server_panel_exceedance_fraction <- function(
             riskband.plot.frac(
                 mu.chain       = bayesian_analysis$mu.chain,
                 sigma.chain    = bayesian_analysis$sigma.chain,
-                c.oel          = parameters$oel,
+                c.oel          = num_results()$c.oel,
                 frac_threshold = parameters$frac_threshold,
                 psi            = parameters$psi,
                 riskplot.1     = translate(lang = lang, "Exceedance Fraction Category"),
@@ -563,6 +569,9 @@ server_panel_exceedance_fraction <- function(
         })
 
         output$risk_band_plot_desc <- shiny::renderUI({
+            # These variables are used as semantic sugar
+            # because it may not be ovious what the source
+            # text refers to at first glance.
             frac_threshold <- parameters()$frac_threshold
             lower_limit <- as_percentage(frac_threshold / 10L)
             upper_limit <- as_percentage(frac_threshold)
@@ -577,7 +586,7 @@ server_panel_exceedance_fraction <- function(
                     (3) greater than %s.
                     The red column represents the probability of an
                     overexposure. The latter should be lower than the
-                    threshold shown as a black dashed line.
+                    threshold (black dashed line).
                 "),
                 lower_limit,
                 upper_limit
@@ -618,7 +627,7 @@ server_panel_exceedance_fraction <- function(
         }) |>
         shiny::bindEvent(risk_assessment())
 
-        return(invisible())
+        return(title)
     }
 
     return(shiny::moduleServer(id, server))

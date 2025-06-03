@@ -44,7 +44,8 @@
 #' [ui_panel_percentiles()] returns a `shiny.tag` object
 #' (an output of [bslib::nav_panel()]).
 #'
-#' [server_panel_percentiles()] returns `NULL`, invisibly.
+#' [server_panel_percentiles()] returns returns a [shiny::reactive()] object.
+#' It can be called to get the panel's title.
 #'
 #' @note
 #' This module is almost identical to the Exceedance Fraction panel module
@@ -267,6 +268,11 @@ server_panel_percentiles <- function(
     })
 
     server <- function(input, output, session) {
+        title <- shiny::reactive({
+            translate(lang = lang(), "Percentiles")
+        }) |>
+        shiny::bindCache(lang())
+
         risk_assessment <- shiny::reactive({
             risk_level <- if (num_results()$perc.risk >= parameters()$psi) {
                 "problematic"
@@ -278,9 +284,8 @@ server_panel_percentiles <- function(
         })
 
         output$title <- shiny::renderText({
-            translate(lang = lang(), "Percentiles")
-        }) |>
-        shiny::bindCache(lang())
+            title()
+        })
 
         output$risk_assessment_title <- shiny::renderText({
             translate(lang = lang(), "Risk Assessment")
@@ -303,9 +308,8 @@ server_panel_percentiles <- function(
         shiny::bindCache(lang())
 
         output$estimates_percentile_title <- shiny::renderText({
-            translate(lang = lang(), "Percentile")
-        }) |>
-        shiny::bindCache(lang())
+            translate(lang = lang(), "Critical Percentile")
+        })
 
         output$seq_plot_title <- shiny::renderText({
             translate(lang = lang(), "Sequential Plot")
@@ -376,7 +380,7 @@ server_panel_percentiles <- function(
                     class = li_classes,
                     html(
                         translate(lang = lang, "The current situation is %s."),
-                        tags$strong(risk_assessment$text(lang))
+                        tags$strong(risk_assessment$get_text(lang))
                     )
                 )
             )
@@ -396,8 +400,8 @@ server_panel_percentiles <- function(
         output$risk_meter_plot_desc <- shiny::renderText({
             translate(lang = lang(), "
                 This risk meter shows the probability of the exposure being too
-                high when compared to the occupational exposure limit. The red
-                zone indicates a problematic exposure.
+                high when compared to the OEL. The red zone indicates a
+                problematic exposure.
             ")
         }) |>
         shiny::bindCache(lang())
@@ -487,14 +491,14 @@ server_panel_percentiles <- function(
 
         output$seq_plot <- shiny::renderPlot({
             lang <- lang()
-            parameters <- parameters()
             results <- num_results()
+            parameters <- parameters()
 
             sequential.plot.perc(
                 gm                 = results$gm$est,
                 gsd                = results$gsd$est,
                 perc               = results$perc$est,
-                c.oel              = parameters$oel,
+                c.oel              = results$c.oel,
                 target_perc        = parameters$target_perc,
                 target_perc_suffix = ordinal_abbr(parameters$target_perc, lang),
                 seqplot.1          = translate(lang = lang, "Concentration"),
@@ -510,23 +514,25 @@ server_panel_percentiles <- function(
                 assuming 250 exposure measurements have been collected. If
                 the measurements represent 8-hour TWA (Time-Weighted Average)
                 values, this approximately represents a full year of exposure.
-                The OEL is shown as a red line.
+                The OEL is shown as a dotted red line and the point estimate
+                of the selected percentile as a continuous blue line.
             ")
         }) |>
         shiny::bindCache(lang())
 
         output$density_plot <- shiny::renderPlot({
             lang <- lang()
+            results <- num_results()
             parameters <- parameters()
             bayesian_analysis <- bayesian_analysis()
 
             distribution.plot.perc(
                 gm                 = exp(median(bayesian_analysis$mu.chain)),
                 gsd                = exp(median(bayesian_analysis$sigma.chain)),
-                perc               = num_results()$perc$est,
+                perc               = results$perc$est,
+                c.oel              = results$c.oel,
                 target_perc        = parameters$target_perc,
                 target_perc_suffix = ordinal_abbr(parameters$target_perc, lang),
-                c.oel              = parameters$oel,
                 distplot.1         = translate(lang = lang, "Concentration"),
                 distplot.2         = translate(lang = lang, "Density"),
                 distplot.4         = translate(lang = lang, "OEL outside of graphical limits."),
@@ -537,12 +543,10 @@ server_panel_percentiles <- function(
 
         output$density_plot_desc <- shiny::renderText({
             translate(lang = lang(), "
-                This plot shows the estimated exposure distribution when
-                assuming 250 exposure measurements have been collected. If
-                the measurements represent 8-hour TWA (Time-Weighted Average)
-                values, this approximately represents a full year of exposure.
-                The OEL is shown as a red dotted line and the point estimate
-                of the selected percentile as a continuous blue line.
+                This plot shows the probability density function of the
+                estimated distribution of exposures. The OEL is shown as a
+                dotted red line and the point estimate of the selected
+                percentile as a continuous blue line.
             ")
         }) |>
         shiny::bindCache(lang())
@@ -555,7 +559,7 @@ server_panel_percentiles <- function(
             riskband.plot.perc(
                 mu.chain    = bayesian_analysis$mu.chain,
                 sigma.chain = bayesian_analysis$sigma.chain,
-                c.oel       = parameters$oel,
+                c.oel       = num_results()$c.oel,
                 target_perc = parameters$target_perc,
                 psi         = parameters$psi,
                 # ≤ may not render in all IDEs. This is Unicode
@@ -580,10 +584,9 @@ server_panel_percentiles <- function(
                 (3) between 10% and 50% of the OEL,
                 (4) between 50% and 100% of the OEL, and
                 (5) greater than the OEL.
-                This is based on the classification adopted by AIHA. The
-                red column represents the probability of an overexposure.
-                The latter should be lower than the threshold shown as a
-                black dashed line.
+                This is based on the classification adopted by AIHA. The red
+                column represents the probability of an overexposure. The
+                latter should be lower than the threshold (black dashed line).
             ")
         }) |>
         shiny::bindCache(lang())
@@ -622,7 +625,7 @@ server_panel_percentiles <- function(
         }) |>
         shiny::bindEvent(risk_assessment())
 
-        return(invisible())
+        return(title)
     }
 
     return(shiny::moduleServer(id, server))

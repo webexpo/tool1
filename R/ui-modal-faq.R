@@ -252,8 +252,7 @@ server_modal_faq <- function(id, lang) {
 
         btn_open_tooltip_text <- shiny::reactive({
             translate(lang = lang(), "
-                Frequently Asked Questions. Get additional information on
-                Tool 1.
+                Get additional information on Tool 1.
             ")
         }) |>
         shiny::bindCache(lang())
@@ -279,7 +278,7 @@ server_modal_faq <- function(id, lang) {
         shiny::bindCache(lang())
 
         output$panel_metho_title <- shiny::renderText({
-            translate(lang = lang(), "Methodological Background")
+            translate(lang = lang(), "Methodology")
         }) |>
         shiny::bindCache(lang())
 
@@ -348,7 +347,7 @@ ui_panel_intro_accordion <- function(lang = "") {
                 Tool 1 is an open-source and free-to-use web application
                 that facilitates the  interpretation of industrial hygiene
                 measurements, particularly in assessing compliance with
-                occupational exposure limits (OELs).
+                occupational exposure limits (OEL).
             ")),
 
             tags$p(translate(lang = lang, "
@@ -359,7 +358,7 @@ ui_panel_intro_accordion <- function(lang = "") {
                 the Dutch Society for Occupational Hygiene (NVVA),
                 the French Institut national de recherche et de sécurité (INRS),
                 the National Institute for Occupational Safety and Health (NIOSH),
-                and the European Standards Organization.
+                and the European Committee for Standardization (CEN).
             "))
         ),
 
@@ -423,24 +422,12 @@ ui_panel_intro_accordion <- function(lang = "") {
             tags$p(
                 html(
                     translate(lang = lang, "
-                        If you have a GitHub account, you may submit bugs,
-                        request features, and provide feedback by creating
-                        an issue on %s.
+                        You may submit bugs, request features, and provide
+                        feedback on %s if you have an account. You may also
+                        send an email to the current maintainers of Tool 1:
+                        %s and %s.
                     "),
-                    ui_link(shared_urls$code, "GitHub")
-                )
-            ),
-
-            tags$p(
-                html(
-                    translate(lang = lang, "
-                        Otherwise, you may send an email to the current
-                        maintainers of Tool 1: %s and %s. The content of your
-                        email will be used to create an issue on GitHub on your
-                        behalf. The objective is twofold: be transparent with
-                        the problems of Tool 1 and have a robust way to track
-                        and discuss these issues publicly.
-                    "),
+                    ui_link(shared_urls$code, "GitHub"),
                     ui_link_mailto(
                         default_maintainers_emails[["jerome_lavoue"]],
                         "Jérôme Lavoué"
@@ -471,16 +458,11 @@ ui_panel_parameters_accordion <- function(lang = "") {
         bslib::accordion_panel(
             title = translate(lang = lang, "How should measurements be formatted?"),
 
-            tags$p(
-                html(
-                    translate(lang = lang, "
-                        Measurements are entered in the Measurements text area
-                        of the %s sidebar. Failing to follow the following rules
-                        below will inevitably lead to undefined behavior.
-                    "),
-                    ui_element(translate(lang = lang, "Calculation Parameters"))
-                )
-            ),
+            tags$p(translate(lang = lang, "
+                Measurements are entered in the Measurements text area of the
+                Calculation Parameters sidebar. Failing to follow the following
+                rules below will inevitably lead to undefined behavior.
+            ")),
 
             tags$ol(
                 class = "list-group list-group-flush px-2",
@@ -536,27 +518,28 @@ ui_panel_parameters_accordion <- function(lang = "") {
                 How can I verify that my measurements were successfully imported?
             "),
 
-            tags$p(
-                html(
-                    translate(lang = lang, "
-                        Use the %s panel. It provides descriptive statistics, a
-                        quantile-quantile plot, and a box and whiskers plot that
-                        can be used to ensure that measurements were parsed as
-                        expected and successfully imported.
-                    "),
-                    ui_element(translate(lang = lang, "About My Measurements"))
-                )
-            ),
+            tags$p(translate(lang = lang, "
+                Use the About My Measurements panel. It provides descriptive
+                statistics, a quantile-quantile plot, and a box and whiskers
+                plot that can be used to ensure that measurements were parsed
+                as expected.
+            ")),
 
-            tags$p(
-                html(
-                    translate(lang = lang, "
-                        Descriptive statistics should not be viewed as useful
-                        estimates of the underlying exposure distribution. Use
-                        the %s panels for that purpose. These provide
-                        information inferred from Bayesian models.
-                    "),
-                    ui_element(translate(lang = lang, "Statistical Inference"))
+            bslib::card(
+                class = "border-danger bg-danger-subtle mx-5",
+                fill  = FALSE,
+
+                bslib::card_body(
+                    tags$p(
+                        class = "text-danger text-center",
+                        translate(lang = lang, "
+                            Descriptive statistics should not be viewed as
+                            useful estimates of the underlying exposure
+                            distribution. Use the Statistical Inference panels
+                            for that purpose. These provide information inferred
+                            from Bayesian models.
+                        ")
+                    )
                 )
             )
         ),
@@ -605,18 +588,19 @@ ui_panel_parameters_accordion <- function(lang = "") {
         bslib::accordion_panel(
             title = translate(lang = lang, "How are censored measurements imputed?"),
 
-             tags$p(
+            tags$p(translate(lang = lang, "
+                This depends on the chosen panel.
+            ")),
+
+            tags$p(
                 html(
                     translate(lang = lang, "
-                        The %s panel and %s panels treat censored measurements
-                        differently. In %2$s panels, non-detects are interpreted
-                        as such by the Bayesian model. The latter natively
-                        extracts and uses the corresponding information. There
-                        is no imputation and no creation of arbitrary values.
-                        See %s for an example.
+                        In all Statistical Inference panels, non-detects as
+                        interpreted as such by the Bayesian model. The latter
+                        natively extracts and uses the corresponding information.
+                        There is no imputation and no creation of arbitrary
+                        values. See %s for an example.
                     "),
-                    ui_element(translate(lang = lang, "About My Measurements")),
-                    ui_element(translate(lang = lang, "Statistical Inference")),
                     ui_link(
                         "https://academic.oup.com/annweh/article-abstract/60/1/56/2196069",
                         "Huynh et al. (2015)"
@@ -624,16 +608,10 @@ ui_panel_parameters_accordion <- function(lang = "") {
                 )
             ),
 
-
-            tags$p(
-                html(
-                    translate(lang = lang, "
-                        In the %s panel, censored measurements are subject to
-                        one of the following procedures.
-                    "),
-                    ui_element(translate(lang = lang, "About My Measurements"))
-                )
-            ),
+            tags$p(translate(lang = lang, "
+                In the About My Measurements panel, censored measurements are
+                subject to one of the following procedures.
+            ")),
 
             tags$ul(
                 class = "list-group list-group-flush px-2",
@@ -691,52 +669,42 @@ ui_panel_usage_accordion <- function(lang = "") {
         bslib::accordion_panel(
             title = translate(lang = lang, "What are modes?"),
 
-            tags$p(
-                html(
-                    translate(lang = lang, "
-                        Tool 1 offers two so-called %s controlling how
-                        much information is displayed to the user.
-                    "),
-                    ui_element(
-                        title     = translate(lang = lang, "Modes"),
-                        icon_name = "layout-text-window-reverse"
-                    )
-                )
-            ),
+            tags$p(translate(lang = lang, "
+                Tool 1 offers two modes controlling how much information is
+                displayed to the user.
+            ")),
 
             tags$ul(
                 class = "list-group list-group-flush px-2 mb-3",
 
                 tags$li(
                     class = "list-group-item",
-                    html(
-                        translate(lang = lang, "
-                            The %s mode corresponds to the standard version
-                            of Tool 1. All %s panels are shown.
-                        "),
-                        tags$em(translate(lang = lang, "default")),
-                        ui_element(translate(lang = lang, "Statistical Inference"))
-                    )
+                    translate(lang = lang, "
+                        The express mode shows a curated subset of results in a
+                        single Statistical Inference panel. It is the default
+                        mode.
+                    ")
                 ),
 
                 tags$li(
                     class = "list-group-item",
-                    html(
-                        translate(lang = lang, "
-                            The %s mode corresponds to a version of Tool 1 that
-                            only shows a curated subset of results in a single
-                            %s panel. It used to be a distinct web application
-                            called Tool 1 Express (Simplified) in earlier
-                            versions of Tool 1 and Expostats.
-                        "),
-                        tags$em(translate(lang = lang, "simplified")),
-                        ui_element(translate(lang = lang, "Statistical Inference"))
-                    )
+                    translate(lang = lang, "
+                        The extended mode has more inputs and shows additional
+                        results split into multiple Statistical Inference
+                        panels.
+                    ")
                 )
             ),
 
             tags$p(translate(lang = lang, "
                 Choosing either one is a matter of personal preference.
+            ")),
+
+            tags$p(translate(lang = lang, "
+                The express mode used to be a distinct web application
+                called Tool 1 Express (Simplified) in earlier versions
+                of Tool 1 and Expostats. The latter was integrated into
+                Tool 1 in version 5.0.0.
             "))
         ),
 
@@ -766,9 +734,9 @@ ui_panel_usage_accordion <- function(lang = "") {
             title = translate(lang = lang, "Why is there no shown output initially?"),
 
             tags$p(translate(lang = lang, "
-                No outputs are shown until inputs are submitted. Some static
-                elements, such as text and icons, are pre-rendered for
-                optimization purposes.
+                No outputs are shown until calculation parameters are submitted.
+                Some static elements, such as text and icons, are pre-rendered
+                for optimization purposes.
             "))
         ),
 
@@ -778,7 +746,8 @@ ui_panel_usage_accordion <- function(lang = "") {
             title = translate(lang = lang, "How can I generate results?"),
 
             tags$p(translate(lang = lang, "
-                Locate the primary sidebar on the left and follow these steps.
+                Locate the Calculation Parameters sidebar on the left and
+                follow these steps.
             ")),
 
             tags$ol(
@@ -794,24 +763,19 @@ ui_panel_usage_accordion <- function(lang = "") {
 
                 tags$li(
                     class = "list-group-item",
-                    html(
-                        translate(lang = lang, "
-                            Enter other parameters. Some inputs are specific to
-                            certain panels and are initially hidden. They are
-                            shown when an %s panel is chosen.
-                        "),
-                        ui_element(translate(lang = lang, "Statistical Inference"))
-                    )
+                    translate(lang = lang, "
+                        Enter other parameters. Some are specific to certain
+                        panels and are hidden. They are only shown when their
+                        corresponding Statistical Inference panel is chosen.
+                    "),
                 ),
 
                 tags$li(
                     class = "list-group-item",
-                    html(
-                        translate(lang = lang, "
-                            Submit inputs by clicking on the %s button.
-                        "),
-                        ui_element(translate(lang = lang, "Submit"))
-                    )
+                    translate(lang = lang, "
+                        Submit inputs by clicking on the green button
+                        located below calculation parameters.
+                    ")
                 ),
 
                 tags$li(
@@ -829,18 +793,12 @@ ui_panel_usage_accordion <- function(lang = "") {
         bslib::accordion_panel(
             title = translate(lang = lang, "How long should I wait for the results?"),
 
-            tags$p(
-                class = "pt-3",
-                html(
-                    translate(lang = lang, "
-                        Depending on the server's current load and the sample's
-                        size, you may have to wait a little while before obtaining
-                        results. Waiting times are usually lower than 30 seconds.
-                        Some %s panels require more computing time and resources.
-                    "),
-                    ui_element(translate(lang = lang, "Statistical Inference"))
-                )
-            )
+            tags$p(translate(lang = lang, "
+                Depending on the server's current load and the sample's
+                size, you may have to wait a little while before obtaining
+                results. Waiting times are usually lower than 30 seconds.
+                Some panels require more computing time and resources.
+            "))
         ),
 
         ## Panel: Can plots be expanded? ---------------------------------------
@@ -848,19 +806,10 @@ ui_panel_usage_accordion <- function(lang = "") {
         bslib::accordion_panel(
             title = translate(lang = lang, "Can plots be expanded?"),
 
-            tags$p(
-                html(
-                    translate(lang = lang, "
-                        Yes. Each plot may be expanded to a full-screen size.
-                        Hover over it and click on the %s button on the bottom
-                        right.
-                    "),
-                    ui_element(
-                        title     = translate(lang = lang, "Expand"),
-                        icon_name = "arrows-angle-expand"
-                    )
-                )
-            )
+            tags$p(translate(lang = lang, "
+                Yes. Each plot may be expanded to a full-screen size. Hover
+                over it and click on the Expand button on the bottom right.
+            "))
         )
     )
 }
@@ -1027,25 +976,19 @@ ui_panel_metho_accordion <- function(lang = "") {
             tags$p(
                 html(
                     translate(lang = lang, "
-                        The decision scheme adopted for the Simplified mode of
+                        The decision scheme adopted for the Express mode of
                         Tool 1 was elaborated during the creation of the AIHA
-                        video series %s. In that scheme, reaching 95%% is ideal
-                        and yields an %s situation. Not reaching 95%% confidence
-                        but reaching 70%% confidence makes the situation %s. Not
-                        reaching 70%% confidence that there is no overexposure
-                        makes the situation %s.
+                        video series %s (English only). In that scheme, reaching
+                        95%% is ideal and yields an acceptable situation. Not
+                        reaching 95%% confidence but reaching 70%% confidence
+                        makes the situation tolerable. Not reaching 70%%
+                        confidence that there is no overexposure makes the
+                        situation problematic.
                     "),
                     ui_link(
                         shared_urls$aiha_videos,
-                        tags$em(
-                            translate(lang = lang, "
-                                Making Accurate Exposure Risk Decisions
-                            ")
-                        )
-                    ),
-                    tags$em(translate(lang = lang, "acceptable")),
-                    tags$em(translate(lang = lang, "tolerable")),
-                    tags$em(translate(lang = lang, "problematic"))
+                        "Making Accurate Exposure Risk Decisions"
+                    )
                 )
             ),
 
@@ -1085,10 +1028,10 @@ ui_panel_metho_accordion <- function(lang = "") {
                 html(
                     translate(lang = lang, "
                         The Bayesian models and data interpretation procedures
-                        used by this application are derived from current best
-                        practices in industrial hygiene, as reviewed in the
-                        the following accompanying scientifice paper. Further
-                        details and references are also available on %s.
+                        used by Tool 1 are derived from current best practices
+                        in industrial hygiene, as reviewed in the the following
+                        scientifice paper. Further details and references are
+                        also available on %s.
                     "),
                     ui_link(shared_urls$expostats[[lang]], "expostats.ca")
                 )
@@ -1109,7 +1052,7 @@ ui_panel_metho_accordion <- function(lang = "") {
                 Yes. Below are four videos made by the authors of Expostats.
                 The last two stem from a 6-hour-long professional development
                 course (PDC) made in 2024 for the Indonesian Industrial Hygiene
-                Association.
+                Association (IIHA).
             ")),
 
             tags$ul(
@@ -1119,7 +1062,11 @@ ui_panel_metho_accordion <- function(lang = "") {
                     class = "list-group-item",
                     ui_link(
                         "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?pid=0a7847f9-66be-4efb-9752-aed201487e1b",
-                        tags$em("Bayesian Statistics for Non-Statisticians Part 1")
+                        "Bayesian Statistics for Non-Statisticians Part 1"
+                    ),
+                    tags$span(
+                        class = "ps-1",
+                        translate(lang = lang, "(English only)")
                     )
                 ),
 
@@ -1127,7 +1074,11 @@ ui_panel_metho_accordion <- function(lang = "") {
                     class = "list-group-item",
                     ui_link(
                         "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?pid=0a7847f9-66be-4efb-9752-aed201487e1b&id=68aeaea6-3186-44fc-80e0-aeb300b2d326&advance=true",
-                        tags$em("Bayesian Statistics for Non-Statisticians Part 2")
+                        "Bayesian Statistics for Non-Statisticians Part 2"
+                    ),
+                    tags$span(
+                        class = "ps-1",
+                        translate(lang = lang, "(English only)")
                     )
                 ),
 
@@ -1135,7 +1086,11 @@ ui_panel_metho_accordion <- function(lang = "") {
                     class = "list-group-item",
                     ui_link(
                         "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?id=39e5beaa-8033-4430-8991-b2de0147b366",
-                        tags$em("Statistical Background")
+                        "Statistical Background"
+                    ),
+                    tags$span(
+                        class = "ps-1",
+                        translate(lang = lang, "(English only)")
                     )
                 ),
 
@@ -1143,7 +1098,11 @@ ui_panel_metho_accordion <- function(lang = "") {
                     class = "list-group-item",
                     ui_link(
                         "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?id=21e20e15-24aa-4946-8361-b2de0147bae3",
-                        tags$em("Bayesian Statistics & Overview of Current Recommendations")
+                        "Bayesian Statistics & Overview of Current Recommendations"
+                    ),
+                    tags$span(
+                        class = "ps-1",
+                        translate(lang = lang, "(English only)")
                     )
                 )
             ),

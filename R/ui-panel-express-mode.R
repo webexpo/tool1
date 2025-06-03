@@ -1,7 +1,7 @@
-#' Simplified Mode Inference Panel Module
+#' Express Mode Inference Panel Module
 #'
 #' @description
-#' This module controls the Simplified Mode Inference panel component. It is
+#' This module controls the Express Mode Inference panel component. It is
 #' currently nested into the application's main [bslib::navset] conceptually
 #' illustrated below.
 #'
@@ -15,7 +15,7 @@
 #' |         |  ---------------------------------  |
 #' |         |  | Active Panel                  |  |
 #' |         |  |                               |  |
-#' |         |  | Simplified Mode Panel         |  |
+#' |         |  | Express Mode Panel            |  |
 #' |         |  | (this module)                 |  |
 #' |         |  | (shown when active)           |  |
 #' |         |  |                               |  |
@@ -42,10 +42,11 @@
 #' @template param-estimates-params
 #'
 #' @returns
-#' [ui_panel_simplified()] returns a `shiny.tag` object
+#' [ui_panel_express()] returns a `shiny.tag` object
 #' (an output of [bslib::nav_panel()]).
 #'
-#' [server_panel_simplified()] returns `NULL`, invisibly.
+#' [server_panel_express()] returns returns a [shiny::reactive()] object.
+#' It can be called to get the panel's title.
 #'
 #' @note
 #' This module is similar to the Exceedance Fraction, Percentiles, and
@@ -56,11 +57,11 @@
 #'
 #' @rdname ui-panel-percentiles
 #' @export
-ui_panel_simplified <- function(id) {
+ui_panel_express <- function(id) {
     ns <- shiny::NS(id)
 
     # Override default height of cards only containing text.
-    # They require less (vertical) space in simplified mode.
+    # They require less (vertical) space in express mode.
     default_card_height_text_only <- "300px"
 
     # Risk Assessment ----------------------------------------------------------
@@ -297,7 +298,7 @@ ui_panel_simplified <- function(id) {
 
 #' @rdname ui-panel-percentiles
 #' @export
-server_panel_simplified <- function(
+server_panel_express <- function(
     id,
     lang,
     parameters,
@@ -314,6 +315,11 @@ server_panel_simplified <- function(
     })
 
     server <- function(input, output, session) {
+        title <- shiny::reactive({
+            translate(lang = lang(), "Statistical Inference")
+        }) |>
+        shiny::bindCache(lang())
+
         risk_assessment <- shiny::reactive({
             # findInterval() creates a fourth interval from
             # the standard thresholds: (-∞, 0L). It maps it
@@ -330,9 +336,8 @@ server_panel_simplified <- function(
         })
 
         output$title <- shiny::renderText({
-            translate(lang = lang(), "Statistical Inference")
-        }) |>
-        shiny::bindCache(lang())
+            title()
+        })
 
         output$risk_assessment_help_title <- shiny::renderText({
             translate(lang = lang(), "How should I interpret these results?")
@@ -365,11 +370,7 @@ server_panel_simplified <- function(
         shiny::bindCache(lang())
 
         output$estimates_panel_percentile_title <- shiny::renderUI({
-            lang <- lang()
-            html(
-                translate(lang = lang, "%s Percentile"),
-                ordinal(default_simplified_inputs$target_perc, lang)
-            )
+            translate(lang = lang(), "Critical Percentile")
         }) |>
         shiny::bindCache(lang())
 
@@ -436,7 +437,7 @@ server_panel_simplified <- function(
                     class = li_classes,
                     html(
                         translate(lang = lang, "The current situation is %s."),
-                        tags$strong(risk_assessment$text(lang))
+                        tags$strong(risk_assessment$get_text(lang))
                     )
                 )
             )
@@ -448,6 +449,7 @@ server_panel_simplified <- function(
 
         output$risk_assessment_help <- shiny::renderUI({
             lang <- lang()
+            risk_levels_metadata <- aiha_risk_levels$metadata
 
             list(
                 tags$p(
@@ -457,54 +459,62 @@ server_panel_simplified <- function(
                             overexposure (the overexposure risk, which is the
                             probability that the overexposure criterion is met)
                             follows the recommendation of the AIHA video series
-                            %s.
+                            %s (English only).
                         "),
                         ui_link(
                             shared_urls$aiha_videos,
-                            tags$em(translate(lang = lang, "
-                                Making Accurate Exposure Risk Decisions
-                            "))
+                            "Making Accurate Exposure Risk Decisions"
                         )
                     )
                 ),
 
                 tags$ul(
-                    class = "list-group list-group-flush",
+                    class = "list-group list-group-flush px-3",
 
                     tags$li(
-                        class = "list-group-item text-success",
-                        html(
-                            translate(lang = lang, "
-                                If the overexposure risk is lower than 5%%, it
-                                is very low. The situation is well controlled.
-                                We call it %s.
-                            "),
-                            tags$strong(translate(lang = lang, "acceptable"))
-                        )
+                        class = "list-group-item text-success pb-3",
+
+                        tags$h3(
+                            class = "fs-6 fw-bold",
+                            risk_levels_metadata$acceptable$icon,
+                            risk_levels_metadata$acceptable$get_text(lang, TRUE)
+                        ),
+
+                        translate(lang = lang, "
+                            If the overexposure risk is lower than 5%, it is
+                            very low. The situation is well controlled.
+                        ")
                     ),
 
                     tags$li(
-                        class = "list-group-item text-warning",
-                        html(
-                            translate(lang = lang, "
-                                If the overexposure risk is betwen 5%% and 30%%,
-                                it is moderate. The situation is controlled, but
-                                with a limited safety margin. We call it %s.
-                            "),
-                            tags$strong(translate(lang = lang, "tolerable"))
-                        )
+                        class = "list-group-item text-warning py-3",
+
+                        tags$h3(
+                            class = "fs-6 fw-bold",
+                            risk_levels_metadata$tolerable$icon,
+                            risk_levels_metadata$tolerable$get_text(lang, TRUE)
+                        ),
+
+                        translate(lang = lang, "
+                            If the overexposure risk is betwen 5% and 30%, it
+                            is moderate. The situation is controlled, but with
+                            a limited safety margin.
+                        ")
                     ),
 
                     tags$li(
-                        class = "list-group-item text-danger",
-                        html(
-                            translate(lang = lang, "
-                                If the overexposure risk is higher than 30%%, it
-                                is high. The situation requires remedial action.
-                                We call it %s.
-                            "),
-                            tags$strong(translate(lang = lang, "problematic"))
-                        )
+                        class = "list-group-item text-danger pt-3",
+
+                        tags$h3(
+                            class = "fs-6 fw-bold",
+                            risk_levels_metadata$problematic$icon,
+                            risk_levels_metadata$problematic$get_text(lang, TRUE)
+                        ),
+
+                        translate(lang = lang, "
+                            If the overexposure risk is higher than 30%, it
+                            is high. The situation requires remedial action.
+                        ")
                     )
                 )
             )
@@ -597,7 +607,7 @@ server_panel_simplified <- function(
                             equal to %s.
                         "),
                         as.character(
-                            ordinal(default_simplified_inputs$target_perc, lang)
+                            ordinal(default_express_inputs$target_perc, lang)
                         ),
                         tags$strong(
                             sprintf("%s [%s - %s]", perc$est, perc$lcl, perc$ucl)
@@ -708,8 +718,9 @@ server_panel_simplified <- function(
         output$risk_meter_plot_desc <- shiny::renderText({
             translate(lang = lang(), "
                 This risk meter shows the probability of the exposure being too
-                high when compared to the occupational exposure limit. The red
-                zone indicates a problematic exposure.
+                high when compared to the OEL. The green region indicates an
+                acceptable exposure, the yellow region a tolerable exposure,
+                and the red region a problematic exposure.
             ")
         }) |>
         shiny::bindCache(lang())
@@ -722,7 +733,7 @@ server_panel_simplified <- function(
                 gm        = results$gm$est,
                 gsd       = results$gsd$est,
                 frac      = results$frac$est,
-                c.oel     = parameters()$oel,
+                c.oel     = results$c.oel,
                 seqplot.1 = translate(lang = lang, "Concentration"),
                 seqplot.2 = translate(lang = lang, "Exceedance Fraction"),
                 seqplot.6 = translate(lang = lang, "Measurement Index")
@@ -748,7 +759,7 @@ server_panel_simplified <- function(
             riskband.plot.perc(
                 mu.chain    = bayesian_analysis$mu.chain,
                 sigma.chain = bayesian_analysis$sigma.chain,
-                c.oel       = parameters$oel,
+                c.oel       = num_results()$c.oel,
                 target_perc = parameters$target_perc,
                 psi         = parameters$psi,
                 # ≤ may not render in all IDEs. This is Unicode
@@ -777,10 +788,10 @@ server_panel_simplified <- function(
                     (5) greater than the OEL.
                     This is based on the classification adopted by AIHA. The
                     red column represents the probability of an overexposure.
-                    The latter should be lower than the threshold shown as a
-                    black dashed line.
+                    The latter should be lower than the threshold (black dashed
+                    line).
                 "),
-                ordinal(default_simplified_inputs$target_perc, lang)
+                ordinal(default_express_inputs$target_perc, lang)
             )
         }) |>
         # Since target_perc is an internal constant,
@@ -849,7 +860,7 @@ server_panel_simplified <- function(
         }) |>
         shiny::bindEvent(risk_assessment())
 
-        return(invisible())
+        return(title)
     }
 
     return(shiny::moduleServer(id, server))

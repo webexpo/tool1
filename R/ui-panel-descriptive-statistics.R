@@ -41,7 +41,8 @@
 #' [ui_panel_descriptive_statistics()] returns a `shiny.tag` object
 #' (an output of [bslib::nav_panel()]).
 #'
-#' [server_panel_descriptive_statistics()] returns `NULL`, invisibly.
+#' [server_panel_descriptive_statistics()] returns a [shiny::reactive()]
+#' object. It can be called to get the panel's title.
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
@@ -148,6 +149,11 @@ server_panel_descriptive_statistics <- function(
     })
 
     server <- function(input, output, session) {
+        title <- shiny::reactive({
+            translate(lang = lang(), "About My Measurements")
+        }) |>
+        shiny::bindCache(lang())
+
         data_sample_imputed <- reactive({
             data_sample <- data_sample()
 
@@ -160,9 +166,8 @@ server_panel_descriptive_statistics <- function(
         })
 
         output$title <- shiny::renderText({
-            translate(lang = lang(), "About My Measurements")
-        }) |>
-        shiny::bindCache(lang())
+            title()
+        })
 
         output$stats_title <- shiny::renderText({
             translate(lang = lang(), "Descriptive Statistics")
@@ -184,7 +189,7 @@ server_panel_descriptive_statistics <- function(
             stats <- as.matrix(
                 fun.desc.stat(
                     data.simply.imputed = data_sample_imputed(),
-                    c.oel               = parameters()$oel
+                    c.oel               = data_sample()$c.oel
                 )
             )
 
@@ -247,7 +252,7 @@ server_panel_descriptive_statistics <- function(
                 qqplot.3            = translate(lang = lang, "Quantiles (Standardized Measurements)"),
                 qqplot.4            = translate(lang = lang, "Measurement Type"),
                 qqplot.5            = translate(lang = lang, "Censored"),
-                qqplot.6            = translate(lang = lang, "Detected"))
+                qqplot.6            = translate(lang = lang, "Not Censored"))
         })
 
         output$qq_plot_desc <- shiny::renderText({
@@ -262,13 +267,15 @@ server_panel_descriptive_statistics <- function(
 
         output$box_plot <- shiny::renderPlot({
             lang <- lang()
+            data_sample <- data_sample()
+
             fun.boxplot(
                 data.simply.imputed = data_sample_imputed(),
-                notcensored         = data_sample()$notcensored,
-                c.oel               = parameters()$oel,
+                notcensored         = data_sample$notcensored,
+                c.oel               = data_sample$c.oel,
                 boxplot.1           = translate(lang = lang, "Measurement Type"),
                 boxplot.2           = translate(lang = lang, "Concentration"),
-                boxplot.3           = translate(lang = lang, "Exposure Limit"),
+                boxplot.3           = translate(lang = lang, "OEL"),
                 boxplot.4           = translate(lang = lang, "Censored"),
                 boxplot.5           = translate(lang = lang, "Not Censored"),
                 boxplot.6           = translate(lang = lang, "Measurements"))
@@ -293,7 +300,7 @@ server_panel_descriptive_statistics <- function(
         }) |>
         shiny::bindCache(lang())
 
-        return(invisible())
+        return(title)
     }
 
     return(shiny::moduleServer(id, server))

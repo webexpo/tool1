@@ -6,7 +6,7 @@
 # Tool 1: Data Interpretation for One Similar Exposure Group (SEG)
 
 <!-- badges: start -->
-[![Version](https://img.shields.io/badge/version-5.0.0-blue)](https://github.com/webexpo/app-tool1/releases/tag/v5.0.0)
+[![Version](https://img.shields.io/badge/version-5.1.0-blue)](https://github.com/webexpo/app-tool1/releases/tag/v5.1.0)
 [![Lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Location](https://img.shields.io/badge/live-shinyapps.io-5b90bf)](https://lavoue.shinyapps.io/tool1/)
 [![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://github.com/webexpo/tool1/blob/main/LICENSE.md)
@@ -59,7 +59,7 @@ To serve Tool 1 locally, call
 .run()
 ```
 
-This sources `.scripts/run.R`. See this script for details.
+`.run()` is defined in `.scripts/run.R`.
 
 ## Deploy
 
@@ -71,12 +71,12 @@ To deploy a new version, call `.pub()`.
 # It is publicly accessible at https://lavoue.shinyapps.io/tool1-beta/.
 .pub()
 
-# Deploy an official version.
+# Deploy an official (production) version.
 # It is publicly accessible at https://lavoue.shinyapps.io/tool1/.
 .pub("prod")
 ```
 
-This sources `.scripts/publish.R`. See this script for details.
+`.pub()` is defined in `.scripts/publish.R`.
 
 Some environment variables are required to publish new releases with `.pub()`.
 They must be stored in a top-level `.Renviron` file as shown below. This file is
@@ -103,8 +103,7 @@ in `intl/`. To update its content, call
 .find()
 ```
 
-This sources `.scripts/find-text.R` and updates all underlying
-translations files. See that script for details.
+`.find()` is defined in `.scripts/find-text.R`.
 
 Tool 1 further supports translation of ordinal numbers. Each supported
 language requires an `ordinal_rules_<lang>()` function. For example, the
@@ -116,21 +115,20 @@ ordinal numbers. See `R/helpers-translate.R` for more information.
 All files are **required at runtime** and read by `transltr::translator_read()`
 to create global constant `tr`.
 
+#### Translator file
+
 The `_translator.yml` file must **never be modified manually**. It should not
 be shared with collaborators working on translations. Notably, developers may
 consult it to locate translations in the source code.
+
+#### Translation files
 
 Further `<lang>.txt` files contain actual translations. These files are shared
 with collaborators working on translations and must be edited manually (using
 any text editor). They always include basic instructions to follow at all times.
 
-### Warning
-
-Package [transltr](https://cran.r-project.org/package=transltr) currently lacks
-a proper way to (intelligently and incrementally) update existing translations
-files. This feature will (likely) be released soon. Until further notice,
-updating `intl/` should only be done by
-[Jean-Mathieu Potvin](https://github.com/jeanmathieupotvin).
+`TRANSLATIONS.md` contains further instructions for working with translation
+files.
 
 ### Placeholders
 
@@ -138,6 +136,44 @@ Tool 1 uses `sprintf()-`placeholders (conversion specifications beginning by
 `%`) to dynamically insert HTML content into template strings. Tokens such as
 `%s`, `%i`, and `%%` in the source text and translations **must be left as is**.
 See `R/helpers-html.R` for more information.
+
+### Adding new languages
+
+Follow these steps to support a new language. Use the existing code as a
+template to follow.
+
+1. Implement a dedicated `ordinal_rules_<lang>()` function in
+   `R/helpers-translate.R`.
+
+2. Incorporate the function created at step (1) into `ordinal_rules()` in
+   `R/helpers-translate.R`.
+
+3. Add a new entry to formal argument `other_lang_names` of `.find()` in
+   `.scripts/find-text.R`. Follow instructions contained in the script to
+   do so properly.
+
+4. Implement the required button and observer in `ui_title()` and
+   `server_title()` respectively. Follow instructions contained in
+   `R/ui-title.R` to do so (see subsection Languages).
+
+   * You may add class `disabled` to the `shiny::actionButton()` created at
+     step (4) to deactivate the language in the user interface until further
+     notice. This is entirely optional.
+
+5. Call `.find()`.
+
+6. Share the `intl/<lang>.txt` file created at step (5) with collaborator(s)
+   in charge of translating Tool 1.
+
+   * Never share the `_translator.yml` file. The latter is only useful to
+     developers.
+
+7. Import the `intl/<lang>.txt` file updated at step (6) back into the source
+   code. **Commit it.**
+
+You may repeat steps (5) to (7) whenever required. Notably, they **must** be
+repeated whenever the source text is changed (whenever a call to `translate()`
+is either added or updated).
 
 ## Styling
 
@@ -169,13 +205,9 @@ We may work on these issues in a near future.
   - This could be achieved with `shiny::getCurrentOutputInfo()` and
     `bslib::bs_current_theme()`.
 
-- In the source text, many inputs have slightly different names. For example,
-  OEL (Occupational Exposure Limit) is sometimes named EL (Exposure Limit).
-
 - There are currently no explicit Terms of Service and Privacy Policy.
 
-- Some useful `<meta>` tags are currently missing in `<head>`. Notably, tags
-  used for sharing purposes such as `<meta property="og:">` are not implemented.
+- Some usual `<meta>` tags are currently missing from the `<head>` of Tool 1.
 
 ## Bugs and Feedback
 
