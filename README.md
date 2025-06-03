@@ -142,7 +142,9 @@ template to follow.
 2. Incorporate the function created at step (1) into `ordinal_rules()` in
    `R/helpers-translate.R`.
 
-3. Add a new entry to `tr$native_languages` in `.scripts/find-text.R`.
+3. Add a new entry to formal argument `other_lang_names` of `.find()` in
+   `.scripts/find-text.R`. Follow instructions contained in the script to
+   do so properly.
 
 4. Implement the required button and observer in `ui_title()` and
    `server_title()` respectively. Follow instructions contained in

@@ -40,11 +40,12 @@
 .find <- function(
     id               = "expostats:tool1",
     path             = getOption("transltr.path"),
+    source_lang_code = transltr::language_source_get(),
+    source_lang_name = "English",
+    # Add entries to this argument to support more languages.
     other_lang_names = list(
         fr = "Français"
-    ),
-    source_lang_code = transltr::language_source_get(),
-    source_lang_name = "English")
+    ))
 {
     # Get the directory holding translations.
     dir <- dirname(path)
