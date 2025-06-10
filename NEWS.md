@@ -1,3 +1,21 @@
+# Tool 1 version `5.3.0`
+
+This is a minor version. Version `5.2.0` is reserved for Spanish, and will be
+merged with this branch once deployed.
+
+## User Visible Changes
+
+* Tool 1 is now available in Korean. Many thanks to the external collaborators
+  who worked on the translations: *to be determined*.
+
+## Server Changes
+
+None.
+
+## Fixes
+
+None.
+
 # Tool 1 version `5.1.0`
 
 This version is a massive milestone for Expostats as it becomes the official
