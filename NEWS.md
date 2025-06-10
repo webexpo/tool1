@@ -1,3 +1,20 @@
+# Tool 1 version `5.2.0`
+
+This is a minor version.
+
+## User Visible Changes
+
+* Tool 1 is now available in Spanish. Many thanks to the external collaborators
+  who worked on the translations: *to be determined*.
+
+## Server Changes
+
+None.
+
+## Fixes
+
+None.
+
 # Tool 1 version `5.1.0`
 
 This version is a massive milestone for Expostats as it becomes the official
