@@ -44,7 +44,8 @@
     source_lang_name = "English",
     # Add entries to this argument to support more languages.
     other_lang_names = list(
-        fr = "Français"
+        fr = "Français",
+        es = "Español"
     ))
 {
     # Get the directory holding translations.

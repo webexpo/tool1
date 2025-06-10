@@ -1,0 +1,2092 @@
+# Translations
+#
+# - Edit each 'Translation' subsection below.
+# - Do not edit 'Source Text' subsections.
+# - Choose UTF-8 whenever you have to select a character encoding.
+# - You may use any text editor.
+# - You may split long sentences with single new lines.
+# - You may separate paragraphs by leaving a blank line between them.
+# - You may include comments.
+#   - What follows an octothorpe (#) is ignored until the next line.
+#   - An escaped octothorpe (\#) is treated as normal text.
+
+:: Identifier
+
+expostats:tool1:translations:es
+
+:: Language Code
+
+es
+
+:: Language
+
+Español
+
+:: Source Language
+
+English
+
+:: Translations: a677adc: Source Text
+
+The express mode shows a curated subset of results in a single Statistical
+Inference panel. It is the default mode.
+
+:: Translations: a677adc: Translation
+
+# Insert a translation here.
+
+:: Translations: 449ff93: Source Text
+
+The current situation is %s.
+
+:: Translations: 449ff93: Translation
+
+# Insert a translation here.
+
+:: Translations: 82cb390: Source Text
+
+Ogden, Trevor, and Jérôme Lavoué. %s, %s, Journal of Occupational and
+Environmental Hygiene, Volume 9, Issue 4, 2012, Pages D63-D70.
+
+:: Translations: 82cb390: Translation
+
+# Insert a translation here.
+
+:: Translations: 9add3cf: Source Text
+
+Risk Meter
+
+:: Translations: 9add3cf: Translation
+
+# Insert a translation here.
+
+:: Translations: dbab5ea: Source Text
+
+Below the OEL:
+
+:: Translations: dbab5ea: Translation
+
+# Insert a translation here.
+
+:: Translations: 10c4b97: Source Text
+
+You may also consult the scientific report of the Webexpo project. It includes
+a large introductory section focusing on industrial hygiene statistics.
+
+:: Translations: 10c4b97: Translation
+
+# Insert a translation here.
+
+:: Translations: 1232395: Source Text
+
+If the overexposure risk is higher than 30%, it is high. The situation requires
+remedial action.
+
+:: Translations: 1232395: Translation
+
+# Insert a translation here.
+
+:: Translations: 78552d4: Source Text
+
+Default Background:
+
+:: Translations: 78552d4: Translation
+
+# Insert a translation here.
+
+:: Translations: 0cdc87d: Source Text
+
+%s and %s currently maintains Tool 1. Ununoctium is an external collaborator
+working on the design and implementation of newer versions greater than or
+equal to 4.0.0. It oversees non-scientific components of the web application on
+behalf of Jérôme Lavoué.
+
+:: Translations: 0cdc87d: Translation
+
+# Insert a translation here.
+
+:: Translations: ad77e09: Source Text
+
+Measurements can be censored as long as they use the same units as other
+non-censored measurements.
+
+:: Translations: ad77e09: Translation
+
+# Insert a translation here.
+
+:: Translations: 46750d4: Source Text
+
+More languages are coming soon.
+
+:: Translations: 46750d4: Translation
+
+# Insert a translation here.
+
+:: Translations: e0147d1: Source Text
+
+The point estimate of the geometric mean is equal to %s.
+
+:: Translations: e0147d1: Translation
+
+# Insert a translation here.
+
+:: Translations: df83adb: Source Text
+
+Arithmetic Mean
+
+:: Translations: df83adb: Translation
+
+# Insert a translation here.
+
+:: Translations: bda8863: Source Text
+
+The %s, %s, and %s about measurement data interpretation are very similar but
+aggregate the %s and %s categories as %4$s.
+
+:: Translations: bda8863: Translation
+
+# Insert a translation here.
+
+:: Translations: a632e97: Source Text
+
+Number of Obversations
+
+:: Translations: a632e97: Translation
+
+# Insert a translation here.
+
+:: Translations: 7034018: Source Text
+
+Measurements
+
+:: Translations: 7034018: Translation
+
+# Insert a translation here.
+
+:: Translations: 82332ff: Source Text
+
+Jérôme Lavoué, Lawrence Joseph, Tracy L. Kirkham, France Labrèche, Gautier
+Mater, and Frédéric Clerc (2020). %s (Report R-1065). IRSST.
+
+:: Translations: 82332ff: Translation
+
+# Insert a translation here.
+
+:: Translations: d033ecc: Source Text
+
+This plot shows the probability distribution of the uncertainty around the
+selected percentile. It shows the probability that its true value is (1) below
+1% of the OEL, (2) between 1% and 10% of the OEL, (3) between 10% and 50% of
+the OEL, (4) between 50% and 100% of the OEL, and (5) greater than the OEL.
+This is based on the classification adopted by AIHA. The red column represents
+the probability of an overexposure. The latter should be lower than the
+threshold (black dashed line).
+
+:: Translations: d033ecc: Translation
+
+# Insert a translation here.
+
+:: Translations: 7d60ad6: Source Text
+
+tolerable
+
+:: Translations: 7d60ad6: Translation
+
+# Insert a translation here.
+
+:: Translations: 4cc6c29: Source Text
+
+Yes. Below are four videos made by the authors of Expostats. The last two stem
+from a 6-hour-long professional development course (PDC) made in 2024 for the
+Indonesian Industrial Hygiene Association (IIHA).
+
+:: Translations: 4cc6c29: Translation
+
+# Insert a translation here.
+
+:: Translations: dc74f5c: Source Text
+
+This plot shows the probability distribution of the uncertainty around the
+exceedance fraction. It shows the probability that its true value is (1) below
+%s, (2) between %1$s and %2$s, and (3) greater than %s. The red column
+represents the probability of an overexposure. The latter should be lower than
+the threshold (black dashed line).
+
+:: Translations: dc74f5c: Translation
+
+# Insert a translation here.
+
+:: Translations: 9616619: Source Text
+
+Do not put a blank character (tab, space, etc.) before and after special
+characters used to indicate how a measurement is censored. See below for more
+information.
+
+:: Translations: 9616619: Translation
+
+# Insert a translation here.
+
+:: Translations: 176669b: Source Text
+
+Select a criterion for what is considered overexposure (for example, the %s
+percentile being greater than or equal to the OEL).
+
+:: Translations: 176669b: Translation
+
+# Insert a translation here.
+
+:: Translations: a4cd560: Source Text
+
+Maximal Acceptable Exceedance:
+
+:: Translations: a4cd560: Translation
+
+# Insert a translation here.
+
+:: Translations: ad1e98e: Source Text
+
+OEL
+
+:: Translations: ad1e98e: Translation
+
+# Insert a translation here.
+
+:: Translations: 641f765: Source Text
+
+This risk meter shows the probability of the exposure being too high when
+compared to the OEL. The red zone indicates a problematic exposure.
+
+:: Translations: 641f765: Translation
+
+# Insert a translation here.
+
+:: Translations: bddbd7f: Source Text
+
+acceptable
+
+:: Translations: bddbd7f: Translation
+
+# Insert a translation here.
+
+:: Translations: 6489309: Source Text
+
+Use this value to set the percentile of the exposure distribution that will be
+compared to the OEL. It must be between 0% and 100%. The traditional default
+value is 95%.
+
+:: Translations: 6489309: Translation
+
+# Insert a translation here.
+
+:: Translations: 73dff8f: Source Text
+
+Can measurements be censored?
+
+:: Translations: 73dff8f: Translation
+
+# Insert a translation here.
+
+:: Translations: 4528da3: Source Text
+
+Acceptable Sample
+
+:: Translations: 4528da3: Translation
+
+# Insert a translation here.
+
+:: Translations: 057d849: Source Text
+
+Use this value to change the global background color.
+
+:: Translations: 057d849: Translation
+
+# Insert a translation here.
+
+:: Translations: 5dc95f8: Source Text
+
+Usage
+
+:: Translations: 5dc95f8: Translation
+
+# Insert a translation here.
+
+:: Translations: 6192e8e: Source Text
+
+This plot shows the probability distribution of the uncertainty around the
+arithmetic mean. It shows the probability that its true value is (1) below 1%
+of the OEL, (2) between 1% and 10% of the OEL, (3) between 10% and 50% of the
+OEL, (4) between 50% and 100% of the OEL, and (5) greater than the OEL. This is
+based on the classification adopted by AIHA. The red column represents the
+probability of an overexposure. The latter should be lower than the threshold
+(black dashed line).
+
+:: Translations: 6192e8e: Translation
+
+# Insert a translation here.
+
+:: Translations: 127c649: Source Text
+
+Use this value as an acceptable proportion of exposures above the OEL. It must
+be between 0% and 100%. The traditional default value is 5%.
+
+:: Translations: 127c649: Translation
+
+# Insert a translation here.
+
+:: Translations: cebe5c4: Source Text
+
+Measurement Index
+
+:: Translations: cebe5c4: Translation
+
+# Insert a translation here.
+
+:: Translations: b66eca7: Source Text
+
+The points above should follow a straight line. Random deviations from it are
+expected. However, significant deviations suggest that the data may have to be
+split into distinct subsets, or that some outliers must be investigated.
+
+:: Translations: b66eca7: Translation
+
+# Insert a translation here.
+
+:: Translations: 6863c44: Source Text
+
+Clear
+
+:: Translations: 6863c44: Translation
+
+# Insert a translation here.
+
+:: Translations: 179eb27: Source Text
+
+There must be one value per line.
+
+:: Translations: 179eb27: Translation
+
+# Insert a translation here.
+
+:: Translations: a2b22df: Source Text
+
+What are modes?
+
+:: Translations: a2b22df: Translation
+
+# Insert a translation here.
+
+:: Translations: 7e85759: Source Text
+
+Parameters
+
+:: Translations: 7e85759: Translation
+
+# Insert a translation here.
+
+:: Translations: 0524962: Source Text
+
+Mode
+
+:: Translations: 0524962: Translation
+
+# Insert a translation here.
+
+:: Translations: be4154f: Source Text
+
+It builds on a recognized risk assessment framework endorsed by leading
+institutions, including the American Industrial Hygiene Association (AIHA), the
+British Occupational Hygiene Society (BOHS), the Dutch Society for Occupational
+Hygiene (NVVA), the French Institut national de recherche et de sécurité
+(INRS), the National Institute for Occupational Safety and Health (NIOSH), and
+the European Committee for Standardization (CEN).
+
+:: Translations: be4154f: Translation
+
+# Insert a translation here.
+
+:: Translations: 3eba509: Source Text
+
+Risk Assessment
+
+:: Translations: 3eba509: Translation
+
+# Insert a translation here.
+
+:: Translations: 378fb16: Source Text
+
+General
+
+:: Translations: 378fb16: Translation
+
+# Insert a translation here.
+
+:: Translations: 426cfe3: Source Text
+
+Risk assessment based on the arithmetic mean relies on the availability of a
+long-term averaged OEL (LTA-OEL in the AIHA terminology) representing a
+cumulative burden threshold. Most current OELs are not created as LTA-OEL.
+
+Despite an annoying lack of precise definition by most organizations, they
+should be most often viewed as thresholds to be exceeded as rarely as possible.
+Some authors have suggested using one-tenth of the OEL as a practical LTA-OEL
+when assessing risk using the arithmetic mean.
+
+:: Translations: 426cfe3: Translation
+
+# Insert a translation here.
+
+:: Translations: 04339f1: Source Text
+
+Measurements are entered in the Measurements text area of the Calculation
+Parameters sidebar. Failing to follow the following rules below will inevitably
+lead to undefined behavior.
+
+:: Translations: 04339f1: Translation
+
+# Insert a translation here.
+
+:: Translations: 80d1a60: Source Text
+
+Exceedance Fraction Category
+
+:: Translations: 80d1a60: Translation
+
+# Insert a translation here.
+
+:: Translations: fa75cdd: Source Text
+
+Proportion Greater than OEL
+
+:: Translations: fa75cdd: Translation
+
+# Insert a translation here.
+
+:: Translations: 632ebd0: Source Text
+
+Sample Statistic
+
+:: Translations: 632ebd0: Translation
+
+# Insert a translation here.
+
+:: Translations: ad9a641: Source Text
+
+Who created Tool 1?
+
+:: Translations: ad9a641: Translation
+
+# Insert a translation here.
+
+:: Translations: ca296ff: Source Text
+
+The express mode used to be a distinct web application called Tool 1 Express
+(Simplified) in earlier versions of Tool 1 and Expostats. The latter was
+integrated into Tool 1 in version 5.0.0.
+
+:: Translations: ca296ff: Translation
+
+# Insert a translation here.
+
+:: Translations: 77a3276: Source Text
+
+Single plot (with uncertainty)
+
+:: Translations: 77a3276: Translation
+
+# Insert a translation here.
+
+:: Translations: fbc45b3: Source Text
+
+This depends on the chosen panel.
+
+:: Translations: fbc45b3: Translation
+
+# Insert a translation here.
+
+:: Translations: 7e21f78: Source Text
+
+Use this value to change the displayed plot. See the footer below for
+additional details on it.
+
+:: Translations: 7e21f78: Translation
+
+# Insert a translation here.
+
+:: Translations: 9578728: Source Text
+
+All rights reserved.
+
+:: Translations: 9578728: Translation
+
+# Insert a translation here.
+
+:: Translations: 380f931: Source Text
+
+Submit
+
+:: Translations: 380f931: Translation
+
+# Insert a translation here.
+
+:: Translations: af71ace: Source Text
+
+Interval censored measurements are imputed as the mid-range.
+
+:: Translations: af71ace: Translation
+
+# Insert a translation here.
+
+:: Translations: b817814: Source Text
+
+Above the OEL:
+
+:: Translations: b817814: Translation
+
+# Insert a translation here.
+
+:: Translations: 1d671e4: Source Text
+
+Overexposure is defined as the %s percentile being greater than or equal to the
+OEL.
+
+:: Translations: 1d671e4: Translation
+
+# Insert a translation here.
+
+:: Translations: 5fafea5: Source Text
+
+How long should I wait for the results?
+
+:: Translations: 5fafea5: Translation
+
+# Insert a translation here.
+
+:: Translations: 8c8796c: Source Text
+
+Can plots be expanded?
+
+:: Translations: 8c8796c: Translation
+
+# Insert a translation here.
+
+:: Translations: fd52582: Source Text
+
+The measurements are scattered around the x-axis middle point. The box (outer
+horizontal lines) represents the distance between the 25%s and 75%s
+percentiles. The whiskers (vertical lines) represent the distance between the
+10%s and 90%s percentiles. The inner black horizontal line is the median.
+
+:: Translations: fd52582: Translation
+
+# Insert a translation here.
+
+:: Translations: e80025a: Source Text
+
+Sequential Plot
+
+:: Translations: e80025a: Translation
+
+# Insert a translation here.
+
+:: Translations: d24b3ce: Source Text
+
+This plot shows the probability density function of the estimated distribution
+of exposures. The OEL is shown as a dotted red line and the point estimate of
+the arithmetic mean as a continuous green line.
+
+:: Translations: d24b3ce: Translation
+
+# Insert a translation here.
+
+:: Translations: c73ed1b: Source Text
+
+Credible intervals are shown in square brackets.
+
+:: Translations: c73ed1b: Translation
+
+# Insert a translation here.
+
+:: Translations: 930bac6: Source Text
+
+How can I generate results?
+
+:: Translations: 930bac6: Translation
+
+# Insert a translation here.
+
+:: Translations: 81fb05e: Source Text
+
+Value
+
+:: Translations: 81fb05e: Translation
+
+# Insert a translation here.
+
+:: Translations: f533761: Source Text
+
+Exceedance Plot
+
+:: Translations: f533761: Translation
+
+# Insert a translation here.
+
+:: Translations: 511580d: Source Text
+
+Statistical Inference
+
+:: Translations: 511580d: Translation
+
+# Insert a translation here.
+
+:: Translations: 305b9f6: Source Text
+
+Coefficient of Variation
+
+:: Translations: 305b9f6: Translation
+
+# Insert a translation here.
+
+:: Translations: 24a1b71: Source Text
+
+Median
+
+:: Translations: 24a1b71: Translation
+
+# Insert a translation here.
+
+:: Translations: 3976eaa: Source Text
+
+The Bayesian models and data interpretation procedures used by Tool 1 are
+derived from current best practices in industrial hygiene, as reviewed in the
+the following scientifice paper. Further details and references are also
+available on %s.
+
+:: Translations: 3976eaa: Translation
+
+# Insert a translation here.
+
+:: Translations: 2f456d9: Source Text
+
+The 70%% upper confidence limit is equal to %s.
+
+:: Translations: 2f456d9: Translation
+
+# Insert a translation here.
+
+:: Translations: 6298302: Source Text
+
+Submit all parameters and start Bayesian calculations.
+
+:: Translations: 6298302: Translation
+
+# Insert a translation here.
+
+:: Translations: f6667d4: Source Text
+
+Flasks (exposures)
+
+:: Translations: f6667d4: Translation
+
+# Insert a translation here.
+
+:: Translations: a744f49: Source Text
+
+Occupational Exposure Limit (OEL):
+
+:: Translations: a744f49: Translation
+
+# Insert a translation here.
+
+:: Translations: 03c33e5: Source Text
+
+Updating. Please wait.
+
+:: Translations: 03c33e5: Translation
+
+# Insert a translation here.
+
+:: Translations: 745ebd1: Source Text
+
+Calculation Parameters
+
+:: Translations: 745ebd1: Translation
+
+# Insert a translation here.
+
+:: Translations: 00b437c: Source Text
+
+Use this value as a probability for the credible intervals around parameter
+estimates. It must be between 0% and 100%. The default value is set equal to
+90%. The credible interval is the Bayesian equivalent of the confidence
+interval.
+
+:: Translations: 00b437c: Translation
+
+# Insert a translation here.
+
+:: Translations: 79fb413: Source Text
+
+Clear the measurement dataset. Doing so does not automatically update the
+current results. Click on the Submit button when you are ready to do so.
+
+:: Translations: 79fb413: Translation
+
+# Insert a translation here.
+
+:: Translations: 4f6392c: Source Text
+
+How should I interpret these results?
+
+:: Translations: 4f6392c: Translation
+
+# Insert a translation here.
+
+:: Translations: 0595dc0: Source Text
+
+The point estimate of the exceedance fraction is equal to %s.
+
+:: Translations: 0595dc0: Translation
+
+# Insert a translation here.
+
+:: Translations: 1a6a68b: Source Text
+
+Is the approach of Tool 1 recognized and peer-reviewed?
+
+:: Translations: 1a6a68b: Translation
+
+# Insert a translation here.
+
+:: Translations: 38210f7: Source Text
+
+Add a lower than or equal sign before each measurement censored to the left
+(e.g. <30.0).
+
+:: Translations: 38210f7: Translation
+
+# Insert a translation here.
+
+:: Translations: 8fc2a6a: Source Text
+
+Data Interpretation for One Similar Exposure Group
+
+:: Translations: 8fc2a6a: Translation
+
+# Insert a translation here.
+
+:: Translations: 7b55099: Source Text
+
+Use this value to change the color of exposures that are above the OEL.
+
+:: Translations: 7b55099: Translation
+
+# Insert a translation here.
+
+:: Translations: abe3699: Source Text
+
+Acceptable
+
+:: Translations: abe3699: Translation
+
+# Insert a translation here.
+
+:: Translations: 22d0b63: Source Text
+
+This plot shows the probability density function of the estimated distribution
+of exposures. The OEL is shown as a dotted red line and the point estimate of
+the selected percentile as a continuous blue line.
+
+:: Translations: 22d0b63: Translation
+
+# Insert a translation here.
+
+:: Translations: 92193c3: Source Text
+
+What is Tool 1?
+
+:: Translations: 92193c3: Translation
+
+# Insert a translation here.
+
+:: Translations: 10ef3a6: Source Text
+
+Quantiles (Lognormal Distribution)
+
+:: Translations: 10ef3a6: Translation
+
+# Insert a translation here.
+
+:: Translations: e3d5355: Source Text
+
+Percentiles
+
+:: Translations: e3d5355: Translation
+
+# Insert a translation here.
+
+:: Translations: 532bf12: Source Text
+
+> OEL
+
+:: Translations: 532bf12: Translation
+
+# Insert a translation here.
+
+:: Translations: bf93329: Source Text
+
+You may customize the user interface by using the menus and buttons located in
+the title bar of Tool 1 (in the top right corner). All parameters may be
+changed anytime on-the-fly throughout the session.
+
+:: Translations: bf93329: Translation
+
+# Insert a translation here.
+
+:: Translations: 1277d46: Source Text
+
+French guidelines
+
+:: Translations: 1277d46: Translation
+
+# Insert a translation here.
+
+:: Translations: d9fe05c: Source Text
+
+Use this value as the maximal overexposure risk. It must be between 0% and
+100%. It represents the maximal probability that the overexposure criterion is
+met. Above this value, the situation requires remedial action. While 5% is the
+traditional chosen value, recent guidelines suggest using 30% instead.
+
+:: Translations: d9fe05c: Translation
+
+# Insert a translation here.
+
+:: Translations: 9bdd102: Source Text
+
+Measurements:
+
+:: Translations: 9bdd102: Translation
+
+# Insert a translation here.
+
+:: Translations: a3c6c52: Source Text
+
+Censored
+
+:: Translations: a3c6c52: Translation
+
+# Insert a translation here.
+
+:: Translations: f6e929e: Source Text
+
+Tool 1 was developped by the Industrial Hygiene team of the Department of
+Environmental and Occupational Health at the %s of the %s.
+
+:: Translations: f6e929e: Translation
+
+# Insert a translation here.
+
+:: Translations: 8785301: Source Text
+
+Critical Percentile:
+
+:: Translations: 8785301: Translation
+
+# Insert a translation here.
+
+:: Translations: 3d4f8d5: Source Text
+
+Arithmetic Standard Deviation
+
+:: Translations: 3d4f8d5: Translation
+
+# Insert a translation here.
+
+:: Translations: b7b4f0b: Source Text
+
+Measurement Type
+
+:: Translations: b7b4f0b: Translation
+
+# Insert a translation here.
+
+:: Translations: e9989ce: Source Text
+
+It is as follows.
+
+:: Translations: e9989ce: Translation
+
+# Insert a translation here.
+
+:: Translations: a5db55c: Source Text
+
+If the overexposure risk is lower than 5%, it is very low. The situation is
+well controlled.
+
+:: Translations: a5db55c: Translation
+
+# Insert a translation here.
+
+:: Translations: 70d45be: Source Text
+
+Language
+
+:: Translations: 70d45be: Translation
+
+# Insert a translation here.
+
+:: Translations: 27c579f: Source Text
+
+This plot shows the estimated exposure distribution when assuming 250 exposure
+measurements have been collected. If the measurements represent 8-hour TWA
+(Time-Weighted Average) values, this approximately represents a full year of
+exposure. The OEL is shown as a red line.
+
+:: Translations: 27c579f: Translation
+
+# Insert a translation here.
+
+:: Translations: 481daf9: Source Text
+
+Tool 1 is an open-source and free-to-use web application that facilitates the
+interpretation of industrial hygiene measurements, particularly in assessing
+compliance with occupational exposure limits (OEL).
+
+:: Translations: 481daf9: Translation
+
+# Insert a translation here.
+
+:: Translations: 9b3e862: Source Text
+
+This plot shows a shaded and darker region corresponding to the maximal
+acceptable exceedance. Red flasks outside of it are unacceptable exposures. It
+does not take into account estimation uncertainty.
+
+:: Translations: 9b3e862: Translation
+
+# Insert a translation here.
+
+:: Translations: 6918de6: Source Text
+
+Proportion Censored
+
+:: Translations: 6918de6: Translation
+
+# Insert a translation here.
+
+:: Translations: e04262e: Source Text
+
+Choosing either one is a matter of personal preference.
+
+:: Translations: e04262e: Translation
+
+# Insert a translation here.
+
+:: Translations: 08b8516: Source Text
+
+The decision scheme to interpret the probability of overexposure (the
+overexposure risk, which is the probability that the overexposure criterion is
+met) follows the recommendation of the AIHA video series %s (English only).
+
+:: Translations: 08b8516: Translation
+
+# Insert a translation here.
+
+:: Translations: 8cbc334: Source Text
+
+Why is there no shown output initially?
+
+:: Translations: 8cbc334: Translation
+
+# Insert a translation here.
+
+:: Translations: 848dc48: Source Text
+
+Descriptive statistics should not be viewed as useful estimates of the
+underlying exposure distribution. Use the Statistical Inference panels for that
+purpose. These provide information inferred from Bayesian models.
+
+:: Translations: 848dc48: Translation
+
+# Insert a translation here.
+
+:: Translations: 3a55954: Source Text
+
+Toggle the current theme of the interface (light or dark).
+
+:: Translations: 3a55954: Translation
+
+# Insert a translation here.
+
+:: Translations: 3883288: Source Text
+
+Customize
+
+:: Translations: 3883288: Translation
+
+# Insert a translation here.
+
+:: Translations: 1de8474: Source Text
+
+Concentration
+
+:: Translations: 1de8474: Translation
+
+# Insert a translation here.
+
+:: Translations: e2b62b1: Source Text
+
+How can I customize the user interface?
+
+:: Translations: e2b62b1: Translation
+
+# Insert a translation here.
+
+:: Translations: 50da20b: Source Text
+
+European guidelines EN689
+
+:: Translations: 50da20b: Translation
+
+# Insert a translation here.
+
+:: Translations: b945076: Source Text
+
+You may submit bugs, request features, and provide feedback on %s if you have
+an account. You may also send an email to the current maintainers of Tool 1: %s
+and %s.
+
+:: Translations: b945076: Translation
+
+# Insert a translation here.
+
+:: Translations: 5bbca33: Source Text
+
+Geometric Standard Deviation
+
+:: Translations: 5bbca33: Translation
+
+# Insert a translation here.
+
+:: Translations: 5f52075: Source Text
+
+10% < OEL ≤ 50%
+
+:: Translations: 5f52075: Translation
+
+# Insert a translation here.
+
+:: Translations: e2b0950: Source Text
+
+Depending on the server's current load and the sample's size, you may have to
+wait a little while before obtaining results. Waiting times are usually lower
+than 30 seconds. Some panels require more computing time and resources.
+
+:: Translations: e2b0950: Translation
+
+# Insert a translation here.
+
+:: Translations: be94953: Source Text
+
+Use this value to change the background color of the maximal acceptable
+exceedance region (maximal acceptable number of exposures that are above the
+OEL).
+
+:: Translations: be94953: Translation
+
+# Insert a translation here.
+
+:: Translations: f73886c: Source Text
+
+The 95%% upper confidence limit is equal to %s.
+
+:: Translations: f73886c: Translation
+
+# Insert a translation here.
+
+:: Translations: 6aff6b7: Source Text
+
+Tool 1 uses a Bayesian approach to estimate the parameters of the lognormal
+distribution. Doing so offers at least three advantages compared to traditional
+(frequentist) methods.
+
+:: Translations: 6aff6b7: Translation
+
+# Insert a translation here.
+
+:: Translations: 9eef958: Source Text
+
+Measurements censored to the left are treated using robust Log-probit
+regression on order statistics. The algorithm used is derived from %s (itself
+derived from the work of %s).
+
+:: Translations: 9eef958: Translation
+
+# Insert a translation here.
+
+:: Translations: ed8d758: Source Text
+
+Are there other educational resources about industrial hygiene statistics?
+
+:: Translations: ed8d758: Translation
+
+# Insert a translation here.
+
+:: Translations: fc5b077: Source Text
+
+OEL outside of graphical limits.
+
+:: Translations: fc5b077: Translation
+
+# Insert a translation here.
+
+:: Translations: 4e2a12c: Source Text
+
+The probability that this criterion is met is equal to %s.
+
+:: Translations: 4e2a12c: Translation
+
+# Insert a translation here.
+
+:: Translations: c2bb46d: Source Text
+
+It naturally integrates the treatment of non-detects.
+
+:: Translations: c2bb46d: Translation
+
+# Insert a translation here.
+
+:: Translations: d2a9835: Source Text
+
+No outputs are shown until calculation parameters are submitted. Some static
+elements, such as text and icons, are pre-rendered for optimization purposes.
+
+:: Translations: d2a9835: Translation
+
+# Insert a translation here.
+
+:: Translations: c165d34: Source Text
+
+1% < OEL ≤ 10%
+
+:: Translations: c165d34: Translation
+
+# Insert a translation here.
+
+:: Translations: cd84e16: Source Text
+
+Locate the Calculation Parameters sidebar on the left and follow these steps.
+
+:: Translations: cd84e16: Translation
+
+# Insert a translation here.
+
+:: Translations: 04a1dc2: Source Text
+
+Use this value to change the color of exposures that are below the OEL.
+
+:: Translations: 04a1dc2: Translation
+
+# Insert a translation here.
+
+:: Translations: 0ff7e09: Source Text
+
+Descriptive Statistics
+
+:: Translations: 0ff7e09: Translation
+
+# Insert a translation here.
+
+:: Translations: 23eb033: Source Text
+
+Critical Percentile Category
+
+:: Translations: 23eb033: Translation
+
+# Insert a translation here.
+
+:: Translations: 8f7f102: Source Text
+
+Quantile-Quantile Plot
+
+:: Translations: 8f7f102: Translation
+
+# Insert a translation here.
+
+:: Translations: 6db5beb: Source Text
+
+50% < OEL ≤ 100%
+
+:: Translations: 6db5beb: Translation
+
+# Insert a translation here.
+
+:: Translations: 2348472: Source Text
+
+Single plot (no uncertainty)
+
+:: Translations: 2348472: Translation
+
+# Insert a translation here.
+
+:: Translations: 0a5c356: Source Text
+
+No results are shown in the right panels until the inputs are submitted, or the
+current mode is updated.
+
+:: Translations: 0a5c356: Translation
+
+# Insert a translation here.
+
+:: Translations: e510a31: Source Text
+
+The point estimate of the %s percentile is equal to %s.
+
+:: Translations: e510a31: Translation
+
+# Insert a translation here.
+
+:: Translations: dbb0a02: Source Text
+
+Always put a leading zero before decimals for numbers strictly smaller than
+one. Always use a dot for decimals. Do not use a separator for thousands.
+
+:: Translations: dbb0a02: Translation
+
+# Insert a translation here.
+
+:: Translations: 690c3dc: Source Text
+
+Percentile Category
+
+:: Translations: 690c3dc: Translation
+
+# Insert a translation here.
+
+:: Translations: ea57967: Source Text
+
+Exceedance Fraction Threshold:
+
+:: Translations: ea57967: Translation
+
+# Insert a translation here.
+
+:: Translations: f69c2db: Source Text
+
+Estimates
+
+:: Translations: f69c2db: Translation
+
+# Insert a translation here.
+
+:: Translations: 798b335: Source Text
+
+Credible Interval Probability:
+
+:: Translations: 798b335: Translation
+
+# Insert a translation here.
+
+:: Translations: e279776: Source Text
+
+Use this value to assess overexposure. It must have the same unit as the
+measurement data.
+
+:: Translations: e279776: Translation
+
+# Insert a translation here.
+
+:: Translations: b69a61b: Source Text
+
+Tool 1 offers two modes controlling how much information is displayed to the
+user.
+
+:: Translations: b69a61b: Translation
+
+# Insert a translation here.
+
+:: Translations: 6135ed1: Source Text
+
+This plot shows the estimated exposure distribution when assuming 250 exposure
+measurements have been collected. If the measurements represent 8-hour TWA
+(Time-Weighted Average) values, this approximately represents a full year of
+exposure. The OEL is shown as a dotted red line and the point estimate of the
+arithmetic mean as a continuous green line.
+
+:: Translations: 6135ed1: Translation
+
+# Insert a translation here.
+
+:: Translations: c0390ed: Source Text
+
+The decision scheme adopted for the Express mode of Tool 1 was elaborated
+during the creation of the AIHA video series %s (English only). In that scheme,
+reaching 95%% is ideal and yields an acceptable situation. Not reaching 95%%
+confidence but reaching 70%% confidence makes the situation tolerable. Not
+reaching 70%% confidence that there is no overexposure makes the situation
+problematic.
+
+:: Translations: c0390ed: Translation
+
+# Insert a translation here.
+
+:: Translations: 62fc968: Source Text
+
+Percentile
+
+:: Translations: 62fc968: Translation
+
+# Insert a translation here.
+
+:: Translations: 86f03e3: Source Text
+
+Yes. Each plot may be expanded to a full-screen size. Hover over it and click
+on the Expand button on the bottom right.
+
+:: Translations: 86f03e3: Translation
+
+# Insert a translation here.
+
+:: Translations: 8e3c26e: Source Text
+
+Enter other parameters. Some are specific to certain panels and are hidden.
+They are only shown when their corresponding Statistical Inference panel is
+chosen.
+
+:: Translations: 8e3c26e: Translation
+
+# Insert a translation here.
+
+:: Translations: e200a41: Source Text
+
+This plot illustrates the proportion of exposures that would be above the OEL
+in a fictional sample of one hundred measurements. Each flask represents an
+exposure value. Those that are above the OEL are colored in red. This can be
+changed according to your needs using the sidebar on the right. Four variants
+of the Exceedance Plot are available.
+
+:: Translations: e200a41: Translation
+
+# Insert a translation here.
+
+:: Translations: 2e733c4: Source Text
+
+If the overexposure risk is betwen 5% and 30%, it is moderate. The situation is
+controlled, but with a limited safety margin.
+
+:: Translations: 2e733c4: Translation
+
+# Insert a translation here.
+
+:: Translations: 962996f: Source Text
+
+Its resulting probabilistic statements are easier to convey to stakeholders.
+
+:: Translations: 962996f: Translation
+
+# Insert a translation here.
+
+:: Translations: 9e15647: Source Text
+
+Dutch-British guidelines
+
+:: Translations: 9e15647: Translation
+
+# Insert a translation here.
+
+:: Translations: ebaaa0c: Source Text
+
+This plot shows the probability distribution of the uncertainty around the %s
+percentile. It shows the probability that its true value is (1) below 1%% of
+the OEL, (2) between 1%% and 10%% of the OEL, (3) between 10%% and 50%% of the
+OEL, (4) between 50%% and 100%% of the OEL, and (5) greater than the OEL. This
+is based on the classification adopted by AIHA. The red column represents the
+probability of an overexposure. The latter should be lower than the threshold
+(black dashed line).
+
+:: Translations: ebaaa0c: Translation
+
+# Insert a translation here.
+
+:: Translations: aeaec6e: Source Text
+
+Wait for the server to perform the calculations. All results will be shown once
+they are ready.
+
+:: Translations: aeaec6e: Translation
+
+# Insert a translation here.
+
+:: Translations: 0660bde: Source Text
+
+Methodology
+
+:: Translations: 0660bde: Translation
+
+# Insert a translation here.
+
+:: Translations: 9797b53: Source Text
+
+Tool 1 assumes that the measurements represent a random sample drawn from the
+underlying distribution of exposures within the sampled context. In other
+words, the data is considered representative of the specific exposure regimen
+being assessed.
+
+:: Translations: 9797b53: Translation
+
+# Insert a translation here.
+
+:: Translations: 3710c88: Source Text
+
+Jérôme Lavoué, Lawrence Joseph, Peter Knott, Hugh Davies, France Labrèche,
+Frédéric Clerc, Gautier Mater, Tracy Kirkham, %s, Annals of Work Exposures and
+Health, Volume 63, Issue 3, April 2019, Pages 267-279.
+
+:: Translations: 3710c88: Translation
+
+# Insert a translation here.
+
+:: Translations: ffb2d53: Source Text
+
+Box and Whiskers Plot
+
+:: Translations: ffb2d53: Translation
+
+# Insert a translation here.
+
+:: Translations: e42d220: Source Text
+
+See the source code of Tool 1 on GitHub (English only).
+
+:: Translations: e42d220: Translation
+
+# Insert a translation here.
+
+:: Translations: 4f7aff7: Source Text
+
+How are censored measurements imputed?
+
+:: Translations: 4f7aff7: Translation
+
+# Insert a translation here.
+
+:: Translations: 87ae55d: Source Text
+
+The default mode is Tool 1 Express.
+
+:: Translations: 87ae55d: Translation
+
+# Insert a translation here.
+
+:: Translations: 46750b1: Source Text
+
+Changelog
+
+:: Translations: 46750b1: Translation
+
+# Insert a translation here.
+
+:: Translations: d1394d6: Source Text
+
+The plot on the left shows an acceptable situation for the chosen exceedance
+threshold (traditionally 5% above the OEL). The plot on the right shows the
+situation estimated by the Bayesian model. It further illustrates the
+uncertainty of the estimation with stripped flasks. The number of red plain
+flasks represents the best estimate of the number of measurements above the
+OEL. The total number of red flasks (either plain or stripped) represents the
+maximum plausible number of measurements above the OEL given the uncertainty of
+the estimation process (using the upper limit of the underlying credible
+interval).
+
+:: Translations: d1394d6: Translation
+
+# Insert a translation here.
+
+:: Translations: 67c3cba: Source Text
+
+What is the statistical approach used by Tool 1?
+
+:: Translations: 67c3cba: Translation
+
+# Insert a translation here.
+
+:: Translations: 3a47c3b: Source Text
+
+Select a threshold for the probability that this criterion is met, above which
+remedial action (or additional sampling) should be required. Equivalently, one
+can reason in terms of the degree of confidence that the exposure criterion is
+not met: an overexposure risk threshold of at most 30% is equivalent to
+reaching at least 70% confidence that there is no overexposure.
+
+:: Translations: 3a47c3b: Translation
+
+# Insert a translation here.
+
+:: Translations: 5f29b65: Source Text
+
+Tool 1 Express
+
+:: Translations: 5f29b65: Translation
+
+# Insert a translation here.
+
+:: Translations: ac24260: Source Text
+
+Overexposure is defined as the exceedance fraction being greater than or equal
+to %s.
+
+:: Translations: ac24260: Translation
+
+# Insert a translation here.
+
+:: Translations: 466a65e: Source Text
+
+Overexposure Risk Threshold:
+
+:: Translations: 466a65e: Translation
+
+# Insert a translation here.
+
+:: Translations: 97a777e: Source Text
+
+Quantiles (Standardized Measurements)
+
+:: Translations: 97a777e: Translation
+
+# Insert a translation here.
+
+:: Translations: 1b5e945: Source Text
+
+Use square brackets to denote interval censored values (e.g. [20-30]).
+
+:: Translations: 1b5e945: Translation
+
+# Insert a translation here.
+
+:: Translations: 8cdd8fb: Source Text
+
+Two plots (with uncertainty)
+
+:: Translations: 8cdd8fb: Translation
+
+# Insert a translation here.
+
+:: Translations: da34e30: Source Text
+
+Geometric Mean
+
+:: Translations: da34e30: Translation
+
+# Insert a translation here.
+
+:: Translations: a2acebe: Source Text
+
+Add a greater than or equal sign before each measurement censored to the right
+(e.g. >30.0).
+
+:: Translations: a2acebe: Translation
+
+# Insert a translation here.
+
+:: Translations: 6f32d93: Source Text
+
+Problematic
+
+:: Translations: 6f32d93: Translation
+
+# Insert a translation here.
+
+:: Translations: 89fba6b: Source Text
+
+Frequently Asked Questions
+
+:: Translations: 89fba6b: Translation
+
+# Insert a translation here.
+
+:: Translations: 0d592d3: Source Text
+
+It allows the inclusion of external information in the measurements (not yet
+leveraged).
+
+:: Translations: 0d592d3: Translation
+
+# Insert a translation here.
+
+:: Translations: cf880eb: Source Text
+
+The point estimate of the arithmetic mean is equal to %s.
+
+:: Translations: cf880eb: Translation
+
+# Insert a translation here.
+
+:: Translations: e92bf46: Source Text
+
+version
+
+:: Translations: e92bf46: Translation
+
+# Insert a translation here.
+
+:: Translations: e83e3ca: Source Text
+
+In all Statistical Inference panels, non-detects as interpreted as such by the
+Bayesian model. The latter natively extracts and uses the corresponding
+information. There is no imputation and no creation of arbitrary values. See %s
+for an example.
+
+:: Translations: e83e3ca: Translation
+
+# Insert a translation here.
+
+:: Translations: 07fb93b: Source Text
+
+problematic
+
+:: Translations: 07fb93b: Translation
+
+# Insert a translation here.
+
+:: Translations: b267cef: Source Text
+
+In accordance with the International System of Units (SI) and what the National
+Institute of Standards and Technology (NIST) of the United States recommends
+(see %s for more information), always put a leading zero before decimals for
+numbers strictly smaller than one.
+
+:: Translations: b267cef: Translation
+
+# Insert a translation here.
+
+:: Translations: 4af6872: Source Text
+
+Tool 1 Extended
+
+:: Translations: 4af6872: Translation
+
+# Insert a translation here.
+
+:: Translations: 5f12363: Source Text
+
+How should measurements be formatted?
+
+:: Translations: 5f12363: Translation
+
+# Insert a translation here.
+
+:: Translations: 2576f78: Source Text
+
+Submit inputs by clicking on the green button located below calculation
+parameters.
+
+:: Translations: 2576f78: Translation
+
+# Insert a translation here.
+
+:: Translations: ab42808: Source Text
+
+The traditional threshold for the probability of overexposure is 5% (i.e.
+reaching 95% confidence that there is no overexposure). More recently,
+following foundational work in France around 2010, several institutions have
+adopted an overexposure risk threshold of 30% (70% level of confidence).
+Discussion about the rationale for the use of 70% confidence (or a 30%
+tolerable overexposure risk) can be found in the following scientific paper.
+
+:: Translations: ab42808: Translation
+
+# Insert a translation here.
+
+:: Translations: d111f1a: Source Text
+
+Density Plot
+
+:: Translations: d111f1a: Translation
+
+# Insert a translation here.
+
+:: Translations: 4a8e3cf: Source Text
+
+The plot on the left shows an acceptable situation for the chosen exceedance
+threshold (traditionally 5% above the OEL). The plot on the right shows the
+situation estimated by the Bayesian model. It does not take into account
+estimation uncertainty.
+
+:: Translations: 4a8e3cf: Translation
+
+# Insert a translation here.
+
+:: Translations: 899d691: Source Text
+
+Enter your measurements. Measurements can be pasted from a copied spreadsheet
+column.
+
+:: Translations: 899d691: Translation
+
+# Insert a translation here.
+
+:: Translations: 0e99366: Source Text
+
+Arithmetic Mean Category
+
+:: Translations: 0e99366: Translation
+
+# Insert a translation here.
+
+:: Translations: 8d5cf97: Source Text
+
+Variant:
+
+:: Translations: 8d5cf97: Translation
+
+# Insert a translation here.
+
+:: Translations: 897e74a: Source Text
+
+Current Sample
+
+:: Translations: 897e74a: Translation
+
+# Insert a translation here.
+
+:: Translations: b5fe242: Source Text
+
+The extended mode has more inputs and shows additional results split into
+multiple Statistical Inference panels.
+
+:: Translations: b5fe242: Translation
+
+# Insert a translation here.
+
+:: Translations: 5518029: Source Text
+
+How can I verify that my measurements were successfully imported?
+
+:: Translations: 5518029: Translation
+
+# Insert a translation here.
+
+:: Translations: f111efa: Source Text
+
+Who currently maintains Tool 1?
+
+:: Translations: f111efa: Translation
+
+# Insert a translation here.
+
+:: Translations: 159e957: Source Text
+
+In the About My Measurements panel, censored measurements are subject to one of
+the following procedures.
+
+:: Translations: 159e957: Translation
+
+# Insert a translation here.
+
+:: Translations: c6e0f91: Source Text
+
+Get additional information on Tool 1.
+
+:: Translations: c6e0f91: Translation
+
+# Insert a translation here.
+
+:: Translations: 5b8a460: Source Text
+
+The point estimate of the geometric standard deviation is equal to %s.
+
+:: Translations: 5b8a460: Translation
+
+# Insert a translation here.
+
+:: Translations: 0a99270: Source Text
+
+Critical Percentile
+
+:: Translations: 0a99270: Translation
+
+# Insert a translation here.
+
+:: Translations: 96d547d: Source Text
+
+Maximum
+
+:: Translations: 96d547d: Translation
+
+# Insert a translation here.
+
+:: Translations: 7e63316: Source Text
+
+This plot shows a shaded and darker region corresponding to the maximal
+acceptable exceedance. Red symbols outside of it are unacceptable exposures. It
+further illustrates the uncertainty of the estimation with stripped flasks. The
+number of red plain flasks represents the best estimate of the number of
+measurements above the OEL. The total number of red flasks (either plain or
+stripped) represents the maximum plausible number of measurements above the OEL
+given the uncertainty of the estimation process (using the upper limit of the
+underlying credible interval).
+
+:: Translations: 7e63316: Translation
+
+# Insert a translation here.
+
+:: Translations: da9cc89: Source Text
+
+Risk Band Plot
+
+:: Translations: da9cc89: Translation
+
+# Insert a translation here.
+
+:: Translations: 9670dfb: Source Text
+
+Always use a dot for decimals.
+
+:: Translations: 9670dfb: Translation
+
+# Insert a translation here.
+
+:: Translations: c6394ac: Source Text
+
+About My Measurements
+
+:: Translations: c6394ac: Translation
+
+# Insert a translation here.
+
+:: Translations: 025cd9d: Source Text
+
+Two plots (no uncertainty)
+
+:: Translations: 025cd9d: Translation
+
+# Insert a translation here.
+
+:: Translations: 79e5ee7: Source Text
+
+Distribution Parameters
+
+:: Translations: 79e5ee7: Translation
+
+# Insert a translation here.
+
+:: Translations: f10baab: Source Text
+
+Probability
+
+:: Translations: f10baab: Translation
+
+# Insert a translation here.
+
+:: Translations: ee91f19: Source Text
+
+Not Censored
+
+:: Translations: ee91f19: Translation
+
+# Insert a translation here.
+
+:: Translations: 7385e52: Source Text
+
+The rationale proposed by Expostats for decision-making when interpreting
+industrial hygiene exposure data is described in the following accompanying
+paper.
+
+:: Translations: 7385e52: Translation
+
+# Insert a translation here.
+
+:: Translations: 815a98d: Source Text
+
+Use the About My Measurements panel. It provides descriptive statistics, a
+quantile-quantile plot, and a box and whiskers plot that can be used to ensure
+that measurements were parsed as expected.
+
+:: Translations: 815a98d: Translation
+
+# Insert a translation here.
+
+:: Translations: da5e3d2: Source Text
+
+Overexposure is defined as the arithmetic mean being greater than or equal to
+the OEL.
+
+:: Translations: da5e3d2: Translation
+
+# Insert a translation here.
+
+:: Translations: d257a4e: Source Text
+
+≤ 1% OEL
+
+:: Translations: d257a4e: Translation
+
+# Insert a translation here.
+
+:: Translations: fc0cbd8: Source Text
+
+Tolerable
+
+:: Translations: fc0cbd8: Translation
+
+# Insert a translation here.
+
+:: Translations: 2bbf9dd: Source Text
+
+How can I submit bugs or provide feedback?
+
+:: Translations: 2bbf9dd: Translation
+
+# Insert a translation here.
+
+:: Translations: 68c086f: Source Text
+
+The measurement dataset. There must be one value per line. Values can be
+censored to the left (<), to the right (>), or interval censored ([X-Y]). For
+more information, see the Calculation Parameters section in Frequently Asked
+Questions (FAQ) above.
+
+:: Translations: 68c086f: Translation
+
+# Insert a translation here.
+
+:: Translations: 463c845: Source Text
+
+This plot shows the probability density function of the estimated distribution
+of exposures. The OEL is shown as a red line. The exceedance fraction is the
+area under the curve beyond the OEL value.
+
+:: Translations: 463c845: Translation
+
+# Insert a translation here.
+
+:: Translations: f9b43e3: Source Text
+
+What is the rationale for the proposed risk assessment framework?
+
+:: Translations: f9b43e3: Translation
+
+# Insert a translation here.
+
+:: Translations: a5a2911: Source Text
+
+Exceedance Fraction
+
+:: Translations: a5a2911: Translation
+
+# Insert a translation here.
+
+:: Translations: 7be717b: Source Text
+
+Made with %s by %s.
+
+:: Translations: 7be717b: Translation
+
+# Insert a translation here.
+
+:: Translations: 8dd7020: Source Text
+
+This risk meter shows the probability of the exposure being too high when
+compared to the OEL. The green region indicates an acceptable exposure, the
+yellow region a tolerable exposure, and the red region a problematic exposure.
+
+:: Translations: 8dd7020: Translation
+
+# Insert a translation here.
+
+:: Translations: 1a0644e: Source Text
+
+Measurements censored to the right are imputed as 9/4 of the censoring point.
+
+:: Translations: 1a0644e: Translation
+
+# Insert a translation here.
+
+:: Translations: b740be6: Source Text
+
+Do not use a separator for thousands.
+
+:: Translations: b740be6: Translation
+
+# Insert a translation here.
+
+:: Translations: 603143d: Source Text
+
+The probability that this criterion is met should be lower than %s.
+
+:: Translations: 603143d: Translation
+
+# Insert a translation here.
+
+:: Translations: ceefbab: Source Text
+
+Density
+
+:: Translations: ceefbab: Translation
+
+# Insert a translation here.
+
+:: Translations: a2334d7: Source Text
+
+Backgrounds
+
+:: Translations: a2334d7: Translation
+
+# Insert a translation here.
+
+:: Translations: c810b50: Source Text
+
+Use this value to modify the OEL. The value used in subsequent calculations is
+the product of the OEL (see above) and this factor. It can be used to determine
+a protection factor for respiratory protection.
+
+:: Translations: c810b50: Translation
+
+# Insert a translation here.
+
+:: Translations: 3e0b7d6: Source Text
+
+Minimum
+
+:: Translations: 3e0b7d6: Translation
+
+# Insert a translation here.
+
+:: Translations: 12bad1c: Source Text
+
+You may bookmark your preferred settings by passing them as query parameters
+(see the current URL displayed by your web browser for the current web page).
+Values must be valid. Otherwise, they are automatically replaced by default
+values.
+
+:: Translations: 12bad1c: Translation
+
+# Insert a translation here.
+
+:: Translations: af6561e: Source Text
+
+(English only)
+
+:: Translations: af6561e: Translation
+
+# Insert a translation here.
+
+:: Translations: 5998348: Source Text
+
+OEL Multiplier:
+
+:: Translations: 5998348: Translation
+
+# Insert a translation here.
+
+:: Translations: 5540a94: Source Text
+
+This plot shows the estimated exposure distribution when assuming 250 exposure
+measurements have been collected. If the measurements represent 8-hour TWA
+(Time-Weighted Average) values, this approximately represents a full year of
+exposure. The OEL is shown as a dotted red line and the point estimate of the
+selected percentile as a continuous blue line.
+
+:: Translations: 5540a94: Translation
+
+# Insert a translation here.
