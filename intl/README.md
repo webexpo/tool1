@@ -8,7 +8,7 @@ If you notice an error or would like to submit an update, please send an e-mail
 to Jérôme Lavoué (<jerome.lavoue@umontreal.ca>). He will gladly submit your case
 to the appropriate maintainers listed below.
 
-## French (`fr`)
+## Français (`fr`)
 
 * Translator: [Jean-Mathieu Potvin](https://www.linkedin.com/in/jeanmathieupotv/)
   (<jeanmathieupotvin@ununoctium.dev>).
