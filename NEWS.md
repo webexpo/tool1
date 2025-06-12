@@ -4,8 +4,9 @@ This is a minor version.
 
 ## User Visible Changes
 
-* Tool 1 is now available in Spanish. Many thanks to the external collaborators
-  who worked on the translations: *to be determined*.
+* Tool 1 is now available in Spanish. Many thanks to
+  [Maximiliano Simaz](https://www.linkedin.com/in/msimaz/) who kindly provided
+  all translations.
 
 ## Server Changes
 
