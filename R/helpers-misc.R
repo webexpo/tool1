@@ -9,6 +9,10 @@
 #' @returns A logical value.
 #'
 #' @examples
+#' is_lgl1(TRUE)
+#' is_lgl1(FALSE)
+#' is_lgl1(1L)
+#'
 #' is_num1(1L)
 #' is_num1(1.0)
 #' is_num1(c(1.3, 2.4, 3.5))
@@ -18,8 +22,17 @@
 #' is_chr1("Hello")
 #' is_chr1(c("Hello", "world"))
 #'
+#' is_chr(character())
+#' is_chr(c("a", "b", "c"))
+#'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
+#' @rdname helpers-misc-is
+#' @export
+is_lgl1 <- function (x) {
+    return(is.logical(x) && length(x) == 1L && !is.na(x))
+}
+
 #' @rdname helpers-misc-is
 #' @export
 is_num1 <- function(x) {
@@ -35,6 +48,12 @@ is_chr1 <- function(x, allow_empty = FALSE) {
         (nzchar(x) || allow_empty) &&
         !is.na(x)
     )
+}
+
+#' @rdname helpers-misc-is
+#' @export
+is_chr <- function (x, allow_empty = FALSE) {
+    return(is.character(x) && (length(x) || allow_empty) && !anyNA(x))
 }
 
 #' Format Numeric Values as Percentages
