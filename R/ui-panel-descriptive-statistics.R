@@ -66,7 +66,8 @@ ui_panel_descriptive_statistics <- function(id) {
         ),
 
         bslib::card_body(
-            DT::DTOutput(ns("stats"))
+            class = "px-5",
+            shiny::uiOutput(ns("stats"))
         )
     )
 
@@ -154,7 +155,7 @@ server_panel_descriptive_statistics <- function(
         }) |>
         shiny::bindCache(lang())
 
-        data_sample_imputed <- reactive({
+        data_sample_imputed <- shiny::reactive({
             data_sample <- data_sample()
 
             simple.censored.treatment(
@@ -165,45 +166,12 @@ server_panel_descriptive_statistics <- function(
                 intcensored            = data_sample$intcensored)
         })
 
-        output$title <- shiny::renderText({
-            title()
-        })
-
-        output$stats_title <- shiny::renderText({
-            translate(lang = lang(), "Descriptive Statistics")
-        }) |>
-        shiny::bindCache(lang())
-
-        output$qq_plot_title <- shiny::renderText({
-            translate(lang = lang(), "Quantile-Quantile Plot")
-        }) |>
-        shiny::bindCache(lang())
-
-        output$box_plot_title <- shiny::renderText({
-            translate(lang = lang(), "Box and Whiskers Plot")
-        }) |>
-        shiny::bindCache(lang())
-
-        output$stats <- DT::renderDT(server = FALSE, {
+        # The order of row and col names must
+        # match what fun.desc.stat(() returns.
+        stats_dim_names <- shiny::reactive({
             lang <- lang()
-            stats <- as.matrix(
-                fun.desc.stat(
-                    data.simply.imputed = data_sample_imputed(),
-                    c.oel               = data_sample()$c.oel
-                )
-            )
-
-            # Values (statistics) are in the second column.
-            # The first column contains internal row names
-            # that are replaced below.
-            DT::datatable(
-                data     = stats[, "value", drop = FALSE],
-                class    = "stripe hover compact",
-                options  = list(
-                    pageLength  = nrow(stats),
-                    ordering    = FALSE
-                ),
-                rownames = c(
+            list(
+                rows = c(
                     translate(lang = lang, "Number of Obversations"),
                     translate(lang = lang, "Proportion Censored"),
                     translate(lang = lang, "Minimum"),
@@ -228,18 +196,43 @@ server_panel_descriptive_statistics <- function(
                     translate(lang = lang, "Geometric Mean"),
                     translate(lang = lang, "Geometric Standard Deviation")
                 ),
-                colnames = c(
+                cols = c(
                     translate(lang = lang, "Sample Statistic"),
                     translate(lang = lang, "Value")
-                ),
-                # Escape first HTML column (the one containing
-                # row names above) to allow usage of <sup> tags.
-                escape             = -1L,
-                filter             = "none",
-                style              = "bootstrap",
-                editable           = FALSE,
-                autoHideNavigation = TRUE
+                )
             )
+        }) |>
+        shiny::bindCache(lang())
+
+        output$title <- shiny::renderText({
+            title()
+        })
+
+        output$stats_title <- shiny::renderText({
+            translate(lang = lang(), "Descriptive Statistics")
+        }) |>
+        shiny::bindCache(lang())
+
+        output$qq_plot_title <- shiny::renderText({
+            translate(lang = lang(), "Quantile-Quantile Plot")
+        }) |>
+        shiny::bindCache(lang())
+
+        output$box_plot_title <- shiny::renderText({
+            translate(lang = lang(), "Box and Whiskers Plot")
+        }) |>
+        shiny::bindCache(lang())
+
+        output$stats <- shiny::renderUI({
+            lang <- lang()
+            dim_names <- stats_dim_names()
+            stats <- fun.desc.stat(data_sample_imputed(), data_sample()$c.oel)
+
+            # Overwrite internal row names. They are stored in
+            # the first column of whatfun.desc.stat() returns.
+            stats$parameter <- dim_names$rows
+
+            as_html_table(stats, colnames = dim_names$cols)
         })
 
         output$qq_plot <- shiny::renderPlot({
