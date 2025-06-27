@@ -392,6 +392,47 @@ ui_panel_intro_accordion <- function(lang = "") {
             )
         ),
 
+        ## Panel: Who translated Tool 1? ---------------------------------------
+
+        bslib::accordion_panel(
+            title = translate(lang = lang, "Who translated Tool 1?"),
+
+            tags$p(translate(lang = lang, "
+                Tool 1 is available in multiple languages thanks to the
+                following collaborators, who kindly contributed their time,
+                skills, and expertise to provide accurate translations. Many
+                thanks to them!
+            ")),
+
+            tags$p(
+                html(
+                    translate(lang = lang, "
+                        If you notice an error or would like to submit an update,
+                        please send an e-mail to %s. He will gladly submit your
+                        case to the appropriate maintainers listed below.
+                    "),
+                    ui_link_mailto(
+                        default_maintainers_emails[["jerome_lavoue"]],
+                        "Jérôme Lavoué"
+                    )
+                )
+            ),
+
+            tags$div(
+                class = "px-5",
+
+                as_html_table(
+                    read_collaborators(),
+                    colnames = c(
+                        translate(lang = lang, "Language"),
+                        translate(lang = lang, "Role"),
+                        translate(lang = lang, "Profile"),
+                        translate(lang = lang, "Email Address")
+                    )
+                )
+            )
+        ),
+
         ## Panel: Who currently maintains Tool 1? ------------------------------
 
         bslib::accordion_panel(
