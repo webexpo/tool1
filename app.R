@@ -58,8 +58,7 @@
 #' `ui` is a `bslib_page` object (an output of [bslib::page_sidebar()]).
 #' This is a list of `shiny.tag` objects.
 #.
-#' @returns
-#' [server()] returns `NULL`, invisibly.
+#' @returns [server()] returns `NULL`, invisibly.
 #'
 #' @author Jérôme Lavoué (<jerome.lavoue@@umontreal.ca>)
 #'

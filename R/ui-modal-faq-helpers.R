@@ -8,15 +8,14 @@
 #' @param lang_names A named character vector of languages. Names must be
 #'   language codes and values the corresponding native names.
 #'
-#' @returns
-#' A `data.frame` object.
+#' @returns A `data.frame` object.
 #'
 #' @seealso
 #' [yaml::read_yaml()]
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
-#' @rdname helpers-ui-modal-faq
+#' @rdname ui-modal-faq-helpers
 #' @export
 read_collaborators <- function(
     path       = file.path("intl", "_collaborators.yml"),

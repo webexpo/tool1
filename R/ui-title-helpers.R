@@ -103,7 +103,7 @@
 #' [shiny::updateQueryString()],
 #' [Bootstrap 5 Color Modes](https://getbootstrap.com/docs/5.3/customize/color-modes/)
 #'
-#' @rdname helpers-ui-title
+#' @rdname ui-title-helpers
 #' @export
 set_lang <- function(lang = "") {
     session <- shiny::getDefaultReactiveDomain()
@@ -111,7 +111,7 @@ set_lang <- function(lang = "") {
     return(invisible(lang))
 }
 
-#' @rdname helpers-ui-title
+#' @rdname ui-title-helpers
 #' @export
 get_lang <- function() {
     session <- shiny::getDefaultReactiveDomain()
@@ -127,7 +127,7 @@ get_lang <- function() {
     )
 }
 
-#' @rdname helpers-ui-title
+#' @rdname ui-title-helpers
 #' @export
 set_mode <- function(mode = "") {
     session <- shiny::getDefaultReactiveDomain()
@@ -135,7 +135,7 @@ set_mode <- function(mode = "") {
     return(invisible(mode))
 }
 
-#' @rdname helpers-ui-title
+#' @rdname ui-title-helpers
 #' @export
 get_mode <- function() {
     session <- shiny::getDefaultReactiveDomain()
@@ -151,7 +151,7 @@ get_mode <- function() {
     )
 }
 
-#' @rdname helpers-ui-title
+#' @rdname ui-title-helpers
 #' @export
 set_color <- function(color = "") {
     if (is.null(color)) {
@@ -177,7 +177,7 @@ set_color <- function(color = "") {
     return(invisible(state))
 }
 
-#' @rdname helpers-ui-title
+#' @rdname ui-title-helpers
 #' @export
 get_color <- function(what = c("both", "current", "label")) {
     session <- shiny::getDefaultReactiveDomain()
@@ -192,7 +192,7 @@ get_color <- function(what = c("both", "current", "label")) {
     return(switch(what, both = state, state[[what]]))
 }
 
-#' @rdname helpers-ui-title
+#' @rdname ui-title-helpers
 #' @export
 parse_lang <- function(lang = "", langs = names(default_lang_names)) {
     if (is.null(lang) || !match(lang <- tolower(lang), langs, 0L)) {
@@ -202,7 +202,7 @@ parse_lang <- function(lang = "", langs = names(default_lang_names)) {
     return(lang)
 }
 
-#' @rdname helpers-ui-title
+#' @rdname ui-title-helpers
 #' @export
 parse_mode <- function(mode = "") {
     modes <- c("express", "extended")
@@ -214,7 +214,7 @@ parse_mode <- function(mode = "") {
     return(mode)
 }
 
-#' @rdname helpers-ui-title
+#' @rdname ui-title-helpers
 #' @export
 parse_color <- function(color = "") {
     colors <- c("light", "dark")
@@ -226,7 +226,7 @@ parse_color <- function(color = "") {
     return(color)
 }
 
-#' @rdname helpers-ui-title
+#' @rdname ui-title-helpers
 #' @export
 new_query_string <- function(
     lang  = get_lang(),
@@ -236,7 +236,7 @@ new_query_string <- function(
     return(sprintf("?lang=%s&mode=%s&color=%s", lang, mode, color))
 }
 
-#' @rdname helpers-ui-title
+#' @rdname ui-title-helpers
 #' @export
 update_query_string <- function(...) {
     session <- shiny::getDefaultReactiveDomain()

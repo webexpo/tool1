@@ -35,9 +35,8 @@
 #'
 #' @template param-lang
 #'
-#' @returns
-#' [ui_banner()] returns a `shiny.tag` object
-#' (an output of [shiny::conditionalPanel()]).
+#' @returns [ui_banner()] returns a `shiny.tag` object (an output of
+#'   [shiny::conditionalPanel()]).
 #'
 #' [server_banner()] returns `NULL`, invisibly.
 #'

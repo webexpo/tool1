@@ -1,21 +1,17 @@
-#' Create HTML Tags
+#' Inject HTML Content Into a Template String
 #'
-#' Alias to Shiny's usual list of HTML <tag> functions.
-#'
-#' @rdname helpers-html
-#' @export
-tags <- htmltools::tags
-
-#' Create HTML Content
-#'
-#' Embed HTML tags into source text.
+#' Convert R objects (notably `shiny.tag` objects) to character strings with
+#' [paste0()] and inject them into a string containing [sprintf()]
+#' placeholders. The output is marked as HTML to prevent special characters
+#' from being escaped.
 #'
 #' @param template A character string containing zero or more [sprintf()]
 #'   placeholders. Use character placeholders (`%s`) for `shiny.tag` objects.
 #'
-#' @param ... Further arguments to be inserted into `template`.
+#' @param ... Further arguments to be converted to character strings and
+#' inserted into `template`.
 #'
-#' @param ignore A character string returned as is whenever `template` is
+#' @param ignore A character string to return as is whenever `template` is
 #'   identical to it.
 #'
 #' @returns A character string of class `html`.
@@ -29,20 +25,21 @@ tags <- htmltools::tags
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
-#' @rdname helpers-html
+#' @rdname html
 #' @export
 html <- function(template = "", ..., ignore = default_missing_translation_msg) {
     if (identical(template, ignore)) {
         return(htmltools::HTML(ignore))
     }
 
-    str <- do.call(sprintf, c(fmt = template, lapply(list(...), as.character)))
-    return(htmltools::HTML(str))
+    dots <- lapply(list(...), paste0, collapse = "")
+    return(htmltools::HTML(do.call(sprintf, c(fmt = template, dots))))
 }
 
 #' Create HTML Tables
 #'
-#' Convert R objects to a <table> `shiny.tag` object.
+#' Convert R rectangular datasets (`data.frame`, `matrix`, etc.) to a <table>
+#' `shiny.tag` object. The latter can easily be stylized using CSS classes.
 #'
 #' @param x An R object.
 #'
@@ -73,21 +70,20 @@ html <- function(template = "", ..., ignore = default_missing_translation_msg) {
 #' @param ... Further arguments passed to [paste0()]. This function is used
 #'   to convert each value of `x` to a character string.
 #'
-#' @returns
-#' A `shiny.tag` object.
+#' @returns A `shiny.tag` object.
 #'
 #' @examples
 #' as_html_table(mtcars)
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
-#' @rdname helpers-as-html-table
+#' @rdname html-as-html-table
 #' @export
 as_html_table <- function(x, ...) {
     UseMethod("as_html_table")
 }
 
-#' @rdname helpers-as-html-table
+#' @rdname html-as-html-table
 #' @export
 as_html_table.data.frame <- function(
     x,

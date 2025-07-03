@@ -1,11 +1,3 @@
-#' Translate Source Text
-#'
-#' Alias to method `$translate()` of the main [transltr::Translator] object.
-#'
-#' @rdname helpers-translate
-#' @export
-translate <- tr$translate
-
 #' Translatable Uniform Resource Locators
 #'
 #' Mark a URL as such and attach alternative URLs targeting other languages
@@ -47,7 +39,7 @@ translate <- tr$translate
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
-#' @rdname helpers-translate-new-url
+#' @rdname intl-url
 #' @export
 url <- function(x = "", ...) {
     names(x) <- default_lang
@@ -69,7 +61,7 @@ url <- function(x = "", ...) {
     )
 }
 
-#' @rdname helpers-translate-new-url
+#' @rdname intl-url
 #' @export
 `[[.url` <- function(x, i, ...) {
     if (is.na(match(i, names(x)))) {
@@ -109,18 +101,19 @@ url <- function(x = "", ...) {
 #' @param ... Further arguments passed to [ordinal_rules_english()] and
 #'   [ordinal_rules_french()].
 #'
-#' @param gender A character string equal to `masculin` or `feminin`. The
-#'   gender of French ordinals.
+#' @param gender A character string equal to `masculine` or `feminine`. The
+#'   gender of ordinal numbers, if any.
 #'
-#' @param plural A logical value. Should plural form of French ordinals be
+#' @param plural A logical value. Should plural form of ordinals (if any) be
 #'   used?
 #'
 #' @returns
 #' [ordinal()] and [ordinal_abbr()] return a character string.
 #'
 #' [ordinal_rules()],
-#' [ordinal_rules_english()] and
-#' [ordinal_rules_french()] return a named list of length containing the
+#' [ordinal_rules_english()],
+#' [ordinal_rules_french()], and
+#' [ordinal_rules_spanish()] return a named list of length containing the
 #' following elements.
 #'
 #' \describe{
@@ -137,11 +130,11 @@ url <- function(x = "", ...) {
 #'
 #' @examples
 #' ordinal(1)
-#' ordinal_abbr(1, gender = "feminin", plural = TRUE)
+#' ordinal_abbr(1, gender = "feminine", plural = TRUE)
 #' ordinal(1, "fr")
 #' ordinal_abbr(1, "fr")
-#' ordinal(2.34, "fr", gender = "feminin", plural = TRUE)
-#' ordinal_abbr(2.34, "fr", gender = "feminin", plural = TRUE)
+#' ordinal(2.34, "fr", gender = "feminine", plural = TRUE)
+#' ordinal_abbr(2.34, "fr", gender = "feminine", plural = TRUE)
 #'
 #' @seealso
 #' [The scales package](https://scales.r-lib.org/). It (very loosely) inspired
@@ -149,7 +142,7 @@ url <- function(x = "", ...) {
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
-#' @rdname helpers-translate
+#' @rdname intl-ordinal
 #' @export
 ordinal <- function(
     x      = numeric(1L),
@@ -186,7 +179,7 @@ ordinal <- function(
     )
 }
 
-#' @rdname helpers-translate
+#' @rdname intl-ordinal
 #' @export
 ordinal_abbr <- function(x = numeric(1L), lang = "en", ...) {
     rules <- ordinal_rules(lang, ...)
@@ -203,17 +196,20 @@ ordinal_abbr <- function(x = numeric(1L), lang = "en", ...) {
     return(rules$indicators[[(x %% 10L) + 1L]])
 }
 
-#' @rdname helpers-translate
+#' @rdname intl-ordinal
 #' @export
 ordinal_rules <- function(lang = "en", ...) {
     return(
         switch(lang,
             en = ordinal_rules_english(),
             fr = ordinal_rules_french(...),
-            stop("no support for ordinal numbers in the current language.")))
+            es = ordinal_rules_spanish(...),
+            "{no support for ordinal numbers in the current language.}"
+        )
+    )
 }
 
-#' @rdname helpers-translate
+#' @rdname intl-ordinal
 #' @export
 ordinal_rules_english <- function() {
     return(
@@ -229,18 +225,22 @@ ordinal_rules_english <- function() {
                 "6" = "th",
                 "7" = "th",
                 "8" = "th",
-                "9" = "th"),
+                "9" = "th"
+            ),
             # value of integer = abbreviation to use.
             exceptions <- c(
                 "11" = "th",
                 "12" = "th",
-                "13" = "th")))
+                "13" = "th"
+            )
+        )
+    )
 }
 
-#' @rdname helpers-translate
+#' @rdname intl-ordinal
 #' @export
 ordinal_rules_french <- function(
-    gender = c("masculin", "feminin"),
+    gender = c("masculine", "feminine"),
     plural = FALSE)
 {
     gender <- match.arg(gender)
@@ -261,10 +261,10 @@ ordinal_rules_french <- function(
 
     exceptions <- switch(gender,
         # value of integer = abbreviation to use.
-        masculin = c(
+        masculine = c(
             "1" = "er",
             "2" = "d"),
-        feminin = c(
+        feminine = c(
             "1" = "re",
             "2" = "de"))
 
@@ -274,4 +274,44 @@ ordinal_rules_french <- function(
     }
 
     return(list(indicators = indicators, exceptions = exceptions))
+}
+
+#' @rdname intl-ordinal
+#' @export
+ordinal_rules_spanish <- function(gender = c("masculine", "feminine")) {
+    gender <- match.arg(gender)
+
+    # remainder when integer is divided by 10 = abbrevation to use.
+    # Formally, \U00BA ("º") is used for masculine, and \U00AA ("ª")
+    # for feminine. These are superscript characters by nature, so
+    # "o" and "a" are used instead. This is because ordinal() wraps
+    # them in a <sup> tag.
+    indicators <- switch(gender,
+        masculine = c(
+            "0" = "o",
+            "1" = "o",
+            "2" = "o",
+            "3" = "o",
+            "4" = "o",
+            "5" = "o",
+            "6" = "o",
+            "7" = "o",
+            "8" = "o",
+            "9" = "o"
+        ),
+        feminine = c(
+            "0" = "a",
+            "1" = "a",
+            "2" = "a",
+            "3" = "a",
+            "4" = "a",
+            "5" = "a",
+            "6" = "a",
+            "7" = "a",
+            "8" = "a",
+            "9" = "a"
+        )
+    )
+
+    return(list(indicators = indicators, exceptions = character()))
 }
