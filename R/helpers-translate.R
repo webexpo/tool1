@@ -6,6 +6,79 @@
 #' @export
 translate <- tr$translate
 
+#' Translatable Uniform Resource Locators
+#'
+#' Mark a URL as such and attach alternative URLs targeting other languages
+#' to it.
+#'
+#' @param x A character string. The default URL corresponding to `default_lang`.
+#'
+#' @param ... Usage depends on the underlying function.
+#'
+#'   - For [url()], further optional named character vectors. The URLs for
+#'     languages other than `default_lang`. Names must correspond to language
+#'     codes.
+#'   - For `[[`, further arguments passed to the default `[[` S3 method.
+#'
+#' @param i A character string. A language code. If unavailable, a default
+#'   value is returned.
+#'
+#' @details
+#' S3 class `url` has a `[[` S3 method ensuring that a default value is always
+#' returned if `i` is undefined.
+#'
+#' @returns
+#' [url()] returns a named character vector of S3 class `url`. It has a
+#' `default` attribute corresponding to the default language code of `x`.
+#'
+#' `[[` returns a character string.
+#'
+#' @examples
+#' default_lang <- "en"
+#'
+#' url <- url(
+#'   "https://lavoue.shinyapps.io/Tool3v3En/",
+#'   fr = "https://lavoue.shinyapps.io/Tool3v3Fr/"
+#' )
+#'
+#' url[["en"]]  ## Returns "https://lavoue.shinyapps.io/Tool3v3En/".
+#' url[["fr"]]  ## Returns "https://lavoue.shinyapps.io/Tool3v3Fr/".
+#' url[["es"]]  ## Returns "https://lavoue.shinyapps.io/Tool3v3En/".
+#'
+#' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
+#'
+#' @rdname helpers-translate-new-url
+#' @export
+url <- function(x = "", ...) {
+    names(x) <- default_lang
+    urls <- c(x, ...)
+    langs <- names(urls)
+
+    stopifnot(exprs = {
+        is_chr(urls)
+        is_chr(langs)
+        all(nzchar(urls))
+        all(nzchar(langs))
+    })
+
+    return(
+        structure(urls,
+            default = default_lang,
+            class   = c("url", "character")
+        )
+    )
+}
+
+#' @rdname helpers-translate-new-url
+#' @export
+`[[.url` <- function(x, i, ...) {
+    if (is.na(match(i, names(x)))) {
+        i <- attr(x, "default", TRUE)
+    }
+
+    return(NextMethod())
+}
+
 #' Ordinal Numbers (1st, 2nd, 3rd, 4th, etc.)
 #'
 #' Display values as ordinal numbers (e.g. 1st, 2nd, 3rd, 4th, etc.). Built-in

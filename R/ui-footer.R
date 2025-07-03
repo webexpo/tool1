@@ -50,7 +50,7 @@ server_footer <- function(id, lang) {
     server <- function(input, output, session) {
         latest_tag_url <- sprintf(
             "%s/releases/tag/v%s",
-            shared_urls$code,
+            urls$code,
             default_version[["number"]]
         )
 
@@ -86,7 +86,7 @@ server_footer <- function(id, lang) {
             html(
                 "%s (%s). %s",
 
-                ui_link(shared_urls$jerome_lavoue, "Jérôme Lavoué"),
+                ui_link(urls$jerome_lavoue, "Jérôme Lavoué"),
                 format(Sys.time(), tz = "EST", format = "%Y"),
                 translate(lang = lang(), "All rights reserved.")
             )
@@ -105,7 +105,7 @@ server_footer <- function(id, lang) {
                     bsicons::bs_icon("heart-fill", ally = "sem")
                 ),
 
-                ui_link(shared_urls$ununoctium, "Ununoctium")
+                ui_link(urls$ununoctium, "Ununoctium")
             )
         }) |>
         # All values are constants.

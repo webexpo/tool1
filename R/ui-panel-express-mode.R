@@ -462,7 +462,7 @@ server_panel_express <- function(
                             %s (English only).
                         "),
                         ui_link(
-                            shared_urls$aiha_videos,
+                            urls$aiha_videos,
                             "Making Accurate Exposure Risk Decisions"
                         )
                     )

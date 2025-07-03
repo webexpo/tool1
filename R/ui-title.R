@@ -338,7 +338,7 @@ ui_title <- function(id) {
 
                         tags$a(
                             class  = "btn btn-outline-secondary app-btn",
-                            href   = shared_urls$code,
+                            href   = urls$code,
                             target = "_blank",
                             bsicons::bs_icon("github", a11y = "sem")
                         ) |>
@@ -550,19 +550,19 @@ server_title <- function(id) {
             lang <- lang()
             links <- list(
                 list(
-                    href  = shared_urls$tool2[[lang]],
+                    href  = urls$tool2[[lang]],
                     label = "Tool 2"
                 ),
                 list(
-                    href  = shared_urls$tool3[[lang]],
+                    href  = urls$tool3[[lang]],
                     label = "Tool 3"
                 ),
                 list(
-                    href  = shared_urls$expostats[[lang]],
+                    href  = urls$expostats[[lang]],
                     label = "Expostats"
                 ),
                 list(
-                    href  = shared_urls$ndexpo,
+                    href  = urls$ndexpo,
                     label = "NDExpo"
                 )
             )

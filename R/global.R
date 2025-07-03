@@ -14,7 +14,7 @@ suppressMessages({
     library(ggimage)
 })
 
-# External Scripts -------------------------------------------------------------
+# Scripts ----------------------------------------------------------------------
 
 source(file.path("scripts", "SEG",    "Data formatting functions_SEG.R"))
 source(file.path("scripts", "Common", "Simple censored imputation functions.R"))
@@ -28,7 +28,7 @@ source(file.path("scripts", "Common", "Main graph functions.R"))
 
 tr <- transltr::translator_read()
 
-# Global Persistent Cache ------------------------------------------------------
+# Cache ------------------------------------------------------------------------
 
 # Default in-memory cache for truly static UI elements.
 shiny::shinyOptions(
@@ -94,27 +94,26 @@ default_maintainers_emails <- c(
 )
 
 # URLs used more than once in the code.
-shared_urls <- list(
-    code          = "https://github.com/webexpo/tool1",
-    ununoctium    = "https://ununoctium.dev",
-    jerome_lavoue = "https://orcid.org/0000-0003-4950-5475",
-    aiha_videos   = "https://www.aiha.org/education/elearning/online-courses/making-accurate-exposure-risk-decisions",
-    ndexpo        = "https://www.expostats.ca/site/app-local/NDExpo",
-    # Links to resources that offer translations.
-    # Names should match names of tr$native_languages.
-    tool2 = c(
-        en = "https://lavoue.shinyapps.io/Tool2v3En/",
-        fr = "https://lavoue.shinyapps.io/Tool2v3Fr/"
-    ),
-    tool3 = c(
-        en = "https://lavoue.shinyapps.io/Tool3v3En/",
-        fr = "https://lavoue.shinyapps.io/Tool3v3Fr/"
-    ),
-    expostats = c(
-        en = "https://www.expostats.ca/site/en/info.html",
-        fr = "https://www.expostats.ca/site/info.html"
-    )
-)
+# Always mark URLs as such with url().
+# urls <- list(
+#     code          = url("https://github.com/webexpo/tool1"),
+#     ununoctium    = url("https://ununoctium.dev"),
+#     jerome_lavoue = url("https://orcid.org/0000-0003-4950-5475"),
+#     aiha_videos   = url("https://www.aiha.org/education/elearning/online-courses/making-accurate-exposure-risk-decisions"),
+#     ndexpo        = url("https://www.expostats.ca/site/app-local/NDExpo"),
+#     tool2 = url(
+#         "https://lavoue.shinyapps.io/Tool2v3En/",
+#         fr = "https://lavoue.shinyapps.io/Tool2v3Fr/"
+#     ),
+#     tool3 = url(
+#         "https://lavoue.shinyapps.io/Tool3v3En/",
+#         fr = "https://lavoue.shinyapps.io/Tool3v3Fr/"
+#     ),
+#     expostats = url(
+#         "https://www.expostats.ca/site/en/info.html",
+#         fr = "https://www.expostats.ca/site/info.html"
+#     )
+# )
 
 # Standard AIHA discrete risk levels and related metadata.
 # Names of levels and thresholds should never change.
