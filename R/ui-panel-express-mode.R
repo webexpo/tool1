@@ -320,19 +320,16 @@ server_panel_express <- function(
         }) |>
         shiny::bindCache(lang())
 
-        risk_assessment <- shiny::reactive({
+        risk_level <- shiny::reactive({
             # findInterval() creates a fourth interval from
             # the standard thresholds: (-∞, 0L). It maps it
             # to 0. It is not used.
-            risk_level <- switch(
-                findInterval(num_results()$perc.risk, aiha_risk_levels$thresholds),
-                "acceptable",  # Bin 1.
-                "tolerable",   # Bin 2.
-                "problematic", # Bin 3.
-                NULL           # Bin 0.
+            level <- findInterval(
+                num_results()$perc.risk,
+                get_risk_level_thresholds()
             )
 
-            aiha_risk_levels$metadata[[risk_level]]
+            get_risk_level_info(level, lang())
         })
 
         output$title <- shiny::renderText({
@@ -398,17 +395,17 @@ server_panel_express <- function(
             lang <- lang()
             parameters <- parameters()
             num_results <- num_results()
-            risk_assessment <- risk_assessment()
+            risk_level <- risk_level()
 
             li_classes <- sprintf(
                 "list-group-item bg-%s-subtle border-%1$s",
-                risk_assessment$color
+                risk_level$color
             )
 
             tags$ul(
                 class = sprintf(
                     "list-group list-group-flush bg-%s-subtle border-%1$s",
-                    risk_assessment$color
+                    risk_level$color
                 ),
 
                 tags$li(
@@ -437,19 +434,21 @@ server_panel_express <- function(
                     class = li_classes,
                     html(
                         translate(lang = lang, "The current situation is %s."),
-                        tags$strong(risk_assessment$get_text(lang))
+                        tags$strong(risk_level$name)
                     )
                 )
             )
         })
 
         output$risk_assessment_icon <- shiny::renderUI({
-            risk_assessment()$icon
+            risk_level()$icon
         })
 
         output$risk_assessment_help <- shiny::renderUI({
             lang <- lang()
-            risk_levels_metadata <- aiha_risk_levels$metadata
+            risk_level_1 <- get_risk_level_info(1L, lang)
+            risk_level_2 <- get_risk_level_info(2L, lang)
+            risk_level_3 <- get_risk_level_info(3L, lang)
 
             list(
                 tags$p(
@@ -472,49 +471,68 @@ server_panel_express <- function(
                     class = "list-group list-group-flush px-3",
 
                     tags$li(
-                        class = "list-group-item text-success pb-3",
+                        class = sprintf(
+                            "list-group-item text-%s pb-3",
+                            risk_level_1$color
+                        ),
 
                         tags$h3(
                             class = "fs-6 fw-bold",
-                            risk_levels_metadata$acceptable$icon,
-                            risk_levels_metadata$acceptable$get_text(lang, TRUE)
+                            risk_level_1$icon,
+                            risk_level_1$name_caps
                         ),
 
-                        translate(lang = lang, "
-                            If the overexposure risk is lower than 5%, it is
-                            very low. The situation is well controlled.
-                        ")
+                        html(
+                            translate(lang = lang, "
+                                If the overexposure risk is lower than %s, it
+                                is very low. The situation is well controlled.
+                            "),
+                            as_percentage(risk_level_1$threshold)
+                        )
                     ),
 
                     tags$li(
-                        class = "list-group-item text-warning py-3",
+                        class = sprintf(
+                            "list-group-item text-%s py-3",
+                            risk_level_2$color
+                        ),
 
                         tags$h3(
                             class = "fs-6 fw-bold",
-                            risk_levels_metadata$tolerable$icon,
-                            risk_levels_metadata$tolerable$get_text(lang, TRUE)
+                            risk_level_2$icon,
+                            risk_level_2$name_caps
                         ),
 
-                        translate(lang = lang, "
-                            If the overexposure risk is betwen 5% and 30%, it
-                            is moderate. The situation is controlled, but with
-                            a limited safety margin.
-                        ")
+                        html(
+                            translate(lang = lang, "
+                                If the overexposure risk is betwen %s and %s,
+                                it is moderate. The situation is controlled,
+                                but with a limited safety margin.
+                            "),
+                            as_percentage(risk_level_2$threshold),
+                            as_percentage(risk_level_3$threshold)
+                        )
                     ),
 
                     tags$li(
-                        class = "list-group-item text-danger pt-3",
+                        class = sprintf(
+                            "list-group-item text-%s pt-3",
+                            risk_level_3$color
+                        ),
 
                         tags$h3(
                             class = "fs-6 fw-bold",
-                            risk_levels_metadata$problematic$icon,
-                            risk_levels_metadata$problematic$get_text(lang, TRUE)
+                            risk_level_3$icon,
+                            risk_level_3$name_caps
                         ),
 
-                        translate(lang = lang, "
-                            If the overexposure risk is higher than 30%, it
-                            is high. The situation requires remedial action.
-                        ")
+                        html(
+                            translate(lang = lang, "
+                                If the overexposure risk is higher than %s, it
+                                is high. The situation requires remedial action.
+                            "),
+                            as_percentage(risk_level_3$threshold)
+                        )
                     )
                 )
             )
@@ -802,63 +820,58 @@ server_panel_express <- function(
         # of the risk assessment card based on the
         # risk level.
         shiny::observe({
-            risk_level <- risk_assessment()$level
-            color_acceptable  <- aiha_risk_levels$metadata$acceptable$color
-            color_tolerable   <- aiha_risk_levels$metadata$tolerable$color
-            color_problematic <- aiha_risk_levels$metadata$problematic$color
+            level <- risk_level()$level
+            colors <- get_risk_level_colors()
 
-            # Use green colors if the risk is acceptable.
             shinyjs::toggleClass(
                 id        = "risk_assessment_header",
-                class     = sprintf("border-%s text-%1$s", color_acceptable),
-                condition = { risk_level == "acceptable" }
+                class     = sprintf("border-%s text-%1$s", colors[[1L]]),
+                condition = { level == 1L }
             )
             shinyjs::toggleClass(
                 id        = "risk_assessment_help_btn",
-                class     = sprintf("btn-outline-%s", color_acceptable),
-                condition = { risk_level == "acceptable" }
+                class     = sprintf("btn-outline-%s", colors[[1L]]),
+                condition = { level == 1L }
             )
             shinyjs::toggleClass(
                 id        = "risk_assessment_card",
-                class     = sprintf("border-%s bg-%1$s-subtle", color_acceptable),
-                condition = { risk_level == "acceptable" }
+                class     = sprintf("border-%s bg-%1$s-subtle", colors[[1L]]),
+                condition = { level == 1L }
             )
 
-            # Use yellow colors if the risk is tolerable.
             shinyjs::toggleClass(
                 id        = "risk_assessment_header",
-                class     = sprintf("border-%s text-%1$s", color_tolerable),
-                condition = { risk_level == "tolerable" }
+                class     = sprintf("border-%s text-%1$s", colors[[2L]]),
+                condition = { level == 2L }
             )
             shinyjs::toggleClass(
                 id        = "risk_assessment_help_btn",
-                class     = sprintf("btn-outline-%s", color_tolerable),
-                condition = { risk_level == "tolerable" }
+                class     = sprintf("btn-outline-%s", colors[[2L]]),
+                condition = { level == 2L }
             )
             shinyjs::toggleClass(
                 id        = "risk_assessment_card",
-                class     = sprintf("border-%s bg-%1$s-subtle", color_tolerable),
-                condition = { risk_level == "tolerable" }
+                class     = sprintf("border-%s bg-%1$s-subtle", colors[[2L]]),
+                condition = { level == 2L }
             )
 
-            # Use red colors if the risk is problematic.
             shinyjs::toggleClass(
                 id        = "risk_assessment_header",
-                class     = sprintf("border-%s text-%1$s", color_problematic),
-                condition = { risk_level == "problematic" }
+                class     = sprintf("border-%s text-%1$s", colors[[3L]]),
+                condition = { level == 3L }
             )
             shinyjs::toggleClass(
                 id        = "risk_assessment_help_btn",
-                class     = sprintf("btn-outline-%s", color_problematic),
-                condition = { risk_level == "problematic" }
+                class     = sprintf("btn-outline-%s", colors[[3L]]),
+                condition = { level == 3L }
             )
             shinyjs::toggleClass(
                 id        = "risk_assessment_card",
-                class     = sprintf("border-%s bg-%1$s-subtle", color_problematic),
-                condition = { risk_level == "problematic" }
+                class     = sprintf("border-%s bg-%1$s-subtle", colors[[3L]]),
+                condition = { level == 3L }
             )
         }) |>
-        shiny::bindEvent(risk_assessment())
+        shiny::bindEvent(risk_level())
 
         return(title)
     }

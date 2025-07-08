@@ -292,14 +292,9 @@ server_panel_arithmetic_mean <- function(
         }) |>
         shiny::bindCache(lang())
 
-        risk_assessment <- shiny::reactive({
-            risk_level <- if (num_results()$am.risk >= parameters()$psi) {
-                "problematic"
-            } else {
-                "acceptable"
-            }
-
-            aiha_risk_levels$metadata[[risk_level]]
+        risk_level <- shiny::reactive({
+            level <- if (num_results()$am.risk >= parameters()$psi) 3L else 1L
+            get_risk_level_info(level, lang())
         })
 
         output$title <- shiny::renderText({
@@ -350,17 +345,17 @@ server_panel_arithmetic_mean <- function(
             lang <- lang()
             parameters <- parameters()
             num_results <- num_results()
-            risk_assessment <- risk_assessment()
+            risk_level <- risk_level()
 
             li_classes <- sprintf(
                 "list-group-item bg-%s-subtle border-%1$s",
-                risk_assessment$color
+                risk_level$color
             )
 
             tags$ul(
                 class = sprintf(
                     "list-group list-group-flush bg-%s-subtle border-%1$s",
-                    risk_assessment$color
+                    risk_level$color
                 ),
 
                 tags$li(
@@ -397,10 +392,14 @@ server_panel_arithmetic_mean <- function(
                     class = li_classes,
                     html(
                         translate(lang = lang, "The current situation is %s."),
-                        tags$strong(risk_assessment$get_text(lang))
+                        tags$strong(risk_level$name)
                     )
                 )
             )
+        })
+
+        output$risk_assessment_icon <- shiny::renderUI({
+            risk_level()$icon
         })
 
         output$risk_assessment_warning <- shiny::renderText({
@@ -418,10 +417,6 @@ server_panel_arithmetic_mean <- function(
             ")
         }) |>
         shiny::bindCache(lang())
-
-        output$risk_assessment_icon <- shiny::renderUI({
-            risk_assessment()$icon
-        })
 
         output$risk_meter_plot <- shiny::renderPlot({
             dessinerRisqueMetre(
@@ -616,42 +611,39 @@ server_panel_arithmetic_mean <- function(
         # of the risk assessment card based on the
         # risk level.
         shiny::observe({
-            risk_level <- risk_assessment()$level
-            color_acceptable  <- aiha_risk_levels$metadata$acceptable$color
-            color_problematic <- aiha_risk_levels$metadata$problematic$color
+            level <- risk_level()$level
+            colors <- get_risk_level_colors()
 
-            # Use green colors if the risk is acceptable.
             shinyjs::toggleClass(
                 id        = "risk_assessment_header",
-                class     = sprintf("border-%s text-%1$s", color_acceptable),
-                condition = { risk_level == "acceptable" }
+                class     = sprintf("border-%s text-%1$s", colors[[1L]]),
+                condition = { level == 1L }
             )
             shinyjs::toggleClass(
                 id        = "risk_assessment_card",
-                class     = sprintf("border-%s bg-%1$s-subtle", color_acceptable),
-                condition = { risk_level == "acceptable" }
+                class     = sprintf("border-%s bg-%1$s-subtle", colors[[1L]]),
+                condition = { level == 1L }
             )
 
-            # Use red colors if the risk is problematic.
             shinyjs::toggleClass(
                 id        = "risk_assessment_header",
-                class     = sprintf("border-%s text-%1$s", color_problematic),
-                condition = { risk_level == "problematic" }
+                class     = sprintf("border-%s text-%1$s", colors[[3L]]),
+                condition = { level == 3L }
             )
             shinyjs::toggleClass(
                 id        = "risk_assessment_card",
-                class     = sprintf("border-%s bg-%1$s-subtle", color_problematic),
-                condition = { risk_level == "problematic" }
+                class     = sprintf("border-%s bg-%1$s-subtle", colors[[3L]]),
+                condition = { level == 3L }
             )
         }) |>
-        shiny::bindEvent(risk_assessment())
+        shiny::bindEvent(risk_level())
 
         # Show the warning sub-card in the main
         # risk_assessment card when it is rendered.
         shiny::observe({
             shinyjs::toggle("risk_assessment_warning_card")
         }) |>
-        shiny::bindEvent(risk_assessment(), once = TRUE)
+        shiny::bindEvent(risk_level(), once = TRUE)
 
         return(title)
     }
