@@ -13,8 +13,11 @@
 #' is_lgl1(FALSE)
 #' is_lgl1(1L)
 #'
-#' is_num1(1L)
-#' is_num1(1.0)
+#' is_int1(1L)   # TRUE
+#' is_int1(1.0)  # FALSE
+#'
+#' is_num1(1L)   # TRUE
+#' is_num1(1.0)  # TRUE
 #' is_num1(c(1.3, 2.4, 3.5))
 #' is_num1("Hello")
 #'
@@ -31,6 +34,12 @@
 #' @export
 is_lgl1 <- function (x) {
     return(is.logical(x) && length(x) == 1L && !is.na(x))
+}
+
+#' @rdname is
+#' @export
+is_int1 <- function(x) {
+    return(is.integer(x) && length(x) == 1L && !is.na(x))
 }
 
 #' @rdname is
