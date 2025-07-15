@@ -8,8 +8,8 @@
 #' .run()
 #'
 #' @format
-#' `ui` is a `bslib_page` object (an output of [bslib::page_sidebar()]).
-#' This is a list of `shiny.tag` objects.
+#' `ui` is a `bslib_page` object (an output of [bslib::page_sidebar()]). This
+#' is a list of `shiny.tag` objects.
 #.
 #' @returns [server()] returns `NULL`, invisibly.
 #'
