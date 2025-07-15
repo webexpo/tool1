@@ -168,7 +168,8 @@ all.numeric <- function(
             frac.risk  = frac.risk(mu.chain, sigma.chain, frac_threshold, c.oel),
             perc.risk  = perc.risk(mu.chain, sigma.chain, target_perc, c.oel),
             am.risk    = am.risk(mu.chain, sigma.chain, c.oel),
-            c.oel      = c.oel))
+            c.oel      = c.oel
+        )
+    )
 }
-
 

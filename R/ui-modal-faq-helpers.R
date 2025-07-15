@@ -1,12 +1,11 @@
 #' Read the Collaborators File
 #'
-#' Read the intl/_collaborators.yml file listing all contributors who worked
+#' Read the i18n/_collaborators.yml file listing all contributors who worked
 #' on the translations of Tool 1 and format it into a `data.frame`.
 #'
 #' @param path A character string. The path to the YAML file to read.
 #'
-#' @param lang_names A named character vector of languages. Names must be
-#'   language codes and values the corresponding native names.
+#' @template param-lang-names
 #'
 #' @returns A `data.frame` object.
 #'
@@ -18,8 +17,8 @@
 #' @rdname ui-modal-faq-helpers
 #' @export
 read_collaborators <- function(
-    path       = file.path("intl", "_collaborators.yml"),
-    lang_names = default_lang_names)
+    path       = file.path("i18n", "_collaborators.yml"),
+    lang_names = tr$native_languages)
 {
     stopifnot(exprs = {
         is_chr1(path)

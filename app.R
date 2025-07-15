@@ -1,4 +1,4 @@
-#' Tool1: Data Interpretation for One Similar Exposure Group (SEG)
+#' Tool 1: Data Interpretation for One Similar Exposure Group (SEG)
 #'
 #' @description
 #' User interface and server-side logic.
@@ -6,53 +6,6 @@
 #' @usage
 #' ## In interactive sessions
 #' .run()
-#'
-#' @details
-#' Shiny modules, global constants, functions, and other objects are stored
-#' in R/. They are loaded automatically by [shiny::runApp()] and `.run()`.
-#' They are also sourced into the global environment for development purposes
-#' in [interactive()] R sessions. See .Rprofile for more information.
-#'
-#' Tool 1 depends on a large set of functions stemming from previous projects.
-#' For historical reasons, these are stored in scripts/ and are not structured
-#' in a standard way. They are explicitly sourced at runtime (see R/global.R).
-#'
-#' ## Development Scripts
-#'
-#' Development scripts are stored in .scripts/ (not scripts/ !) and automate
-#' various actions. They are not required at runtime.
-#'
-#' .Rprofile defines small helper functions to seamlessly run them.
-#'
-#' ## Static Assets
-#'
-#' Static assets are stored in www/ and served under the root URL at runtime.
-#'
-#' ## Naming Conventions
-#'
-#' `snake_case_with_lower_cases` is used at all times.
-#'
-#' CSS classes use `dash-case-with-lower-cases` for consistency with usual
-#' best practices in web development. Each CSS class name must begin with
-#' the `app-` prefix (when possible).
-#'
-#' For historical reasons, R objects defined in scripts/ use a different
-#' naming convention. Avoid it.
-#'
-#' ## Namespaces
-#'
-#' For historical reasons, scripts stored in scripts/ do not reference the
-#' namespace (the package) of the functions they call. Consequently, some
-#' packages must be attached to the search path. This is a bad practice from
-#' which Tool 1 is moving away.
-#'
-#' ```
-#' # Good
-#' transltr::language_source_get()
-#'
-#' # Bad
-#' language_source_get()
-#' ```
 #'
 #' @format
 #' `ui` is a `bslib_page` object (an output of [bslib::page_sidebar()]).
@@ -65,11 +18,9 @@
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
 #' @rdname app
-#'
 #' @export
 ui <- bslib::page_sidebar(
-    # lang is updated by server() based on the chosen lang.
-    lang         = default_lang,
+    lang         = "en",
     window_title = "Expostats - Tool 1",
     theme        = bslib::bs_theme(5L, "shiny"),
     title        = ui_title("layout_title"),
@@ -77,42 +28,7 @@ ui <- bslib::page_sidebar(
 
     # <head> -------------------------------------------------------------------
 
-    tags$head(
-        tags$link(
-            rel  = "manifest",
-            href = "site.webmanifest"
-        ),
-
-        tags$link(
-            rel   = "apple-touch-icon",
-            sizes = "180x180",
-            href  = "apple-touch-icon.png"
-        ),
-
-        tags$link(
-            rel   = "icon",
-            type  = "image/png",
-            sizes = "32x32",
-            href  = "favicon-32x32.png"
-        ),
-
-        tags$link(
-            rel   = "icon",
-            type  = "image/png",
-            sizes = "16x16",
-            href  = "favicon-16x16.png"
-        ),
-
-        tags$link(
-            rel   = "stylesheet",
-            media = "all",
-            href  = "main.css"
-        ),
-
-        tags$script(src = "main.js"),
-
-        shinyjs::useShinyjs()
-    ),
+    ui_head("head"),
 
     # <main> -------------------------------------------------------------------
 
@@ -174,20 +90,21 @@ ui <- bslib::page_sidebar(
 #' @rdname app
 #' @export
 server <- function(input, output, session) {
+    # Step 1: Collect calculation parameters from
+    # user and format the data sample it provided.
     data_sample <- shiny::reactive({
-        # calc_parameters() is a shiny::reactive object
-        # returned by the Sidebar module below. It holds
-        # all user input values.
-        calc_parameters <- calc_parameters()
+        inputs_calc <- inputs_calc()
 
         data.formatting.SEG(
-            data.in  = calc_parameters$data,
-            oel      = calc_parameters$oel,
-            oel.mult = calc_parameters$oel_multiplier
+            data.in  = inputs_calc$data,
+            oel      = inputs_calc$oel,
+            oel.mult = inputs_calc$oel_multiplier
         )
     })
 
-    bayesian_analysis <- shiny::reactive({
+    # Step 2: Generate Bayesian simulations of the
+    # mean and standard deviation on the log scale.
+    simulations <- shiny::reactive({
         data_sample <- data_sample()
 
         fun.bayes.jags(
@@ -198,34 +115,61 @@ server <- function(input, output, session) {
             intcensored   = data_sample$intcensored,
             seed          = data_sample$seed,
             c.oel         = data_sample$c.oel,
-            n.iter        = default_n_bayes_iter
+            n.iter        = getOption("app_number_bayes_iter")
         )
     })
 
-    num_results <- shiny::reactive({
-        calc_parameters <- calc_parameters()
-        bayesian_analysis <- bayesian_analysis()
+    # Step 3: Compute outputs from calculation
+    # parameters and simulated values. Format
+    # them for displaying purposes.
+    results <- shiny::reactive({
+        # data_sample() computes c.oel
+        # form oel and oel_multiplier.
+        data_sample <- data_sample()
+        inputs_calc <- inputs_calc()
+        simulations <- simulations()
 
-        all.numeric(
-            mu.chain       = bayesian_analysis$mu.chain,
-            sigma.chain    = bayesian_analysis$sigma.chain,
-            c.oel          = data_sample()$c.oel,
-            conf           = calc_parameters$conf,
-            frac_threshold = calc_parameters$frac_threshold,
-            target_perc    = calc_parameters$target_perc
+        psi <- inputs_calc$psi
+
+        results <- all.numeric(
+            conf           = inputs_calc$conf,
+            frac_threshold = inputs_calc$frac_threshold,
+            target_perc    = inputs_calc$target_perc,
+            c.oel          = data_sample$c.oel,
+            mu.chain       = simulations$mu.chain,
+            sigma.chain    = simulations$sigma.chain
         )
-    })
 
-    estimates_params <- shiny::reactive({
-        num_results <- num_results()
+        gm   <- results$gm
+        gsd  <- results$gsd
+        frac <- lapply(results$frac, as_percentage)
+        perc <- results$perc
+        am   <- results$am
 
-        gm  <- lapply(num_results$gm,  signif, digits = default_n_digits)
-        gsd <- lapply(num_results$gsd, signif, digits = default_n_digits)
-
-        list(
-            gm  = sprintf("%s [%s - %s]", gm$est,  gm$lcl,  gm$ucl),
-            gsd = sprintf("%s [%s - %s]", gsd$est, gsd$lcl, gsd$ucl)
+        # Formatted outputs are prefixed by a dot to
+        # distinguish them from results stemming from
+        # all.numeric().
+        formatted <- list(
+            .rounded = rapply(results, signif,
+                how    = "replace",
+                digits = getOption("app_n_signif_digits")
+            ),
+            .intervals = list(
+                gm   = as_interval(gm$est, gm$lcl, gm$ucl),
+                gsd  = as_interval(gsd$est, gsd$lcl, gsd$ucl),
+                frac = as_interval(frac$est, frac$lcl, frac$ucl),
+                perc = as_interval(perc$est, perc$lcl, perc$ucl),
+                am   = as_interval(am$est, am$lcl, am$ucl)
+            ),
+            .risk_levels = list(
+                frac    = if (results$frac.risk >= psi) 3L else 1L,
+                perc    = if (results$perc.risk >= psi) 3L else 1L,
+                am      = if (results$am.risk   >= psi) 3L else 1L,
+                express = findInterval(results$perc.risk, get_risk_level_thresholds())
+            )
         )
+
+        c(results, formatted)
     })
 
     # Modules ------------------------------------------------------------------
@@ -233,27 +177,22 @@ server <- function(input, output, session) {
     # This returns a list of shiny::reactive()
     # objects that can be used to get the UI's
     # current language, mode, and color.
-    ui_parameters <- server_title("layout_title")
+    inputs_ui <- server_title("layout_title")
 
-    lang <- ui_parameters$lang
-    mode <- ui_parameters$mode
+    lang <- inputs_ui$lang
+    mode <- inputs_ui$mode
 
     # This returns a shiny::reactive() object
     # returning a named list containing all
     # user inputs in a list.
-    calc_parameters <- server_sidebar(
-        id   = "layout_sidebar",
-        lang = lang,
-        mode = mode,
-        # This input can only be accessed
-        # from within a reactive context.
+    inputs_calc <- server_sidebar(
+        id           = "layout_sidebar",
+        lang         = lang,
+        mode         = mode,
         panel_active = shiny::reactive({ input$panel_active })
     )
 
-    server_banner(
-        id   = "busy_banner",
-        lang = lang
-    )
+    server_banner(id = "busy_banner", lang = lang)
 
     # Each server_panel_*() function below returns a
     # shiny::reactive() object that can be called to
@@ -261,44 +200,40 @@ server <- function(input, output, session) {
     panel_stats_title <- server_panel_descriptive_statistics(
         id          = "panel_stats",
         lang        = lang,
-        parameters  = calc_parameters,
+        inputs_calc = inputs_calc,
         data_sample = data_sample
     )
 
     panel_express_title <- server_panel_express(
-        id                = "panel_express",
-        lang              = lang,
-        parameters        = calc_parameters,
-        bayesian_analysis = bayesian_analysis,
-        num_results       = num_results,
-        estimates_params  = estimates_params
+        id          = "panel_express",
+        lang        = lang,
+        inputs_calc = inputs_calc,
+        simulations = simulations,
+        results     = results
     )
 
     panel_fraction_title <- server_panel_exceedance_fraction(
-        id                = "panel_fraction",
-        lang              = lang,
-        parameters        = calc_parameters,
-        bayesian_analysis = bayesian_analysis,
-        num_results       = num_results,
-        estimates_params  = estimates_params
+        id          = "panel_fraction",
+        lang        = lang,
+        inputs_calc = inputs_calc,
+        simulations = simulations,
+        results     = results
     )
 
     panel_percentiles_title <- server_panel_percentiles(
-        id                = "panel_percentiles",
-        lang              = lang,
-        parameters        = calc_parameters,
-        bayesian_analysis = bayesian_analysis,
-        num_results       = num_results,
-        estimates_params  = estimates_params
+        id          = "panel_percentiles",
+        lang        = lang,
+        inputs_calc = inputs_calc,
+        simulations = simulations,
+        results     = results
     )
 
     panel_mean_title <- server_panel_arithmetic_mean(
-        id                = "panel_mean",
-        lang              = lang,
-        parameters        = calc_parameters,
-        bayesian_analysis = bayesian_analysis,
-        num_results       = num_results,
-        estimates_params  = estimates_params
+        id          = "panel_mean",
+        lang        = lang,
+        inputs_calc = inputs_calc,
+        simulations = simulations,
+        results     = results
     )
 
     # Outputs ------------------------------------------------------------------
@@ -320,9 +255,10 @@ server <- function(input, output, session) {
     shiny::bindCache(input$panel_active, lang())
 
     output$panel_title_mode <- shiny::renderText({
+        lang <- lang()
         switch(mode(),
-            extended = translate(lang = lang(), "Tool 1 Extended"),
-            express  = translate(lang = lang(), "Tool 1 Express")
+            extended = translate(lang = lang, "Tool 1 Extended"),
+            express  = translate(lang = lang, "Tool 1 Express")
         )
     }) |>
     shiny::bindCache(mode(), lang())

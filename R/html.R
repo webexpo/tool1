@@ -27,7 +27,11 @@
 #'
 #' @rdname html
 #' @export
-html <- function(template = "", ..., ignore = default_missing_translation_msg) {
+html <- function(
+    template = "",
+    ...,
+    ignore = getOption("app_missing_translation_msg"))
+{
     if (identical(template, ignore)) {
         return(htmltools::HTML(ignore))
     }

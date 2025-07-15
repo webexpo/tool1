@@ -69,7 +69,7 @@ get_risk_level_thresholds <- function(level) {
 
 #' @rdname risk-levels
 #' @export
-get_risk_level_info <- function(level = 1L, lang = "") {
+get_risk_level_info <- function(level = 1L, lang = "en") {
     stopifnot(exprs = {
         is_int1(level)
         level > 0L

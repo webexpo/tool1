@@ -25,15 +25,11 @@
 #' -------------------------------------------------
 #' ```
 #'
-#' @details
-#' This module implicitly relies on values defined in `R/global.R` and
-#' `R/helpers*.R` scripts. They are sourced by [shiny::runApp()].
-#'
 #' @template param-id
 #'
 #' @template param-lang
 #'
-#' @template param-parameters
+#' @template param-inputs-calc
 #'
 #' @template param-data-sample
 #'
@@ -50,11 +46,12 @@
 #' @export
 ui_panel_descriptive_statistics <- function(id) {
     ns <- shiny::NS(id)
+    card_height <- getOption("app_card_height_md")
 
     # Descriptive Statistics ---------------------------------------------------
 
     stats <- bslib::card(
-        height      = default_card_height,
+        height      = card_height,
         full_screen = TRUE,
 
         bslib::card_header(
@@ -74,7 +71,7 @@ ui_panel_descriptive_statistics <- function(id) {
     # QQ Plot -------------------------------------------------------------------
 
     qq_plot <- bslib::card(
-        height      = default_card_height,
+        height      = card_height,
         full_screen = TRUE,
 
         bslib::card_header(
@@ -97,7 +94,7 @@ ui_panel_descriptive_statistics <- function(id) {
     # Box Plot -----------------------------------------------------------------
 
     box_plot <- bslib::card(
-        height      = default_card_height,
+        height      = card_height,
         full_screen = TRUE,
 
         bslib::card_header(
@@ -140,12 +137,12 @@ ui_panel_descriptive_statistics <- function(id) {
 server_panel_descriptive_statistics <- function(
     id,
     lang,
-    parameters,
+    inputs_calc,
     data_sample)
 {
     stopifnot(exprs = {
         shiny::is.reactive(lang)
-        shiny::is.reactive(parameters)
+        shiny::is.reactive(inputs_calc)
         shiny::is.reactive(data_sample)
     })
 
@@ -280,15 +277,15 @@ server_panel_descriptive_statistics <- function(
                 translate(lang = lang, "
                     The measurements are scattered around the x-axis middle
                     point. The box (outer horizontal lines) represents the
-                    distance between the 25%s and 75%s percentiles. The whiskers
-                    (vertical lines) represent the distance between the 10%s and
-                    90%s percentiles. The inner black horizontal line is the
-                    median.
+                    distance between the %s and %s percentiles. The whiskers
+                    (vertical lines) represent the distance between the %s
+                    and %s percentiles. The inner black horizontal line is
+                    the median.
                 "),
-                tags$sup(ordinal_abbr(25L, lang)),
-                tags$sup(ordinal_abbr(75L, lang)),
-                tags$sup(ordinal_abbr(10L, lang)),
-                tags$sup(ordinal_abbr(90L, lang))
+                ordinal(25L, lang),
+                ordinal(75L, lang),
+                ordinal(10L, lang),
+                ordinal(90L, lang)
             )
         }) |>
         shiny::bindCache(lang())

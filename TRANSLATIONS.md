@@ -12,11 +12,11 @@ by Tool 1 to manage translations
 
 Translation files are shared by the maintainers of Tool 1 with external
 collaborators. Official versions are
-[stored on GitHub](https://github.com/webexpo/tool1/tree/main/intl).
+[stored on GitHub](https://github.com/webexpo/tool1/tree/main/i18n).
 
 ## Example
 
-[This translation file](https://raw.githubusercontent.com/webexpo/tool1/refs/heads/main/intl/fr.txt)
+[This translation file](https://raw.githubusercontent.com/webexpo/tool1/refs/heads/main/i18n/fr.txt)
 is the official file used for French translations. It has a minimal header
 (lines starting with a `#` sign) containing basic instructions and further
 sections. Most of them are pairs of source text and translation.

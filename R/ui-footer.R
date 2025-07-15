@@ -1,13 +1,8 @@
 #' Footer Module
 #'
-#' @description
 #' This module controls the Footer component which gives information on the
 #' current version and copyright holder of Tool 1. It is currently nested
 #' into the Sidebar and About Modal modules.
-#'
-#' @details
-#' This module implicitly relies on values defined in `R/global.R` and
-#' `R/helpers*.R` scripts. They are sourced by [shiny::runApp()].
 #'
 #' @template param-id
 #'
@@ -48,18 +43,13 @@ server_footer <- function(id, lang) {
     stopifnot(shiny::is.reactive(lang))
 
     server <- function(input, output, session) {
-        latest_tag_url <- sprintf(
-            "%s/releases/tag/v%s",
-            urls$code,
-            default_version[["number"]]
-        )
-
         output$version <- shiny::renderUI({
+            version <- getOption("app_version")
             html(
                 "Tool 1 %s %s (%s)",
                 translate(lang = lang(), "version"),
-                ui_link(latest_tag_url, default_version[["number"]]),
-                default_version[["release_date"]]
+                ui_link(sprintf("%s/releases/tag/v%s", urls$code, version), version),
+                getOption("app_release_date")
             )
         }) |>
         # All values are constants.

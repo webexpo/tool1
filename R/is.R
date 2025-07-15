@@ -8,6 +8,9 @@
 #'
 #' @returns A logical value.
 #'
+#' @note
+#' All these functions stem from package transltr (they are unexported).
+#'
 #' @examples
 #' is_lgl1(TRUE)
 #' is_lgl1(FALSE)

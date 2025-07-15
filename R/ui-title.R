@@ -20,8 +20,10 @@
 #' ```
 #'
 #' @details
-#' This module implicitly relies on values defined in `R/global.R` and
-#' `R/helpers*.R` scripts. They are sourced by [shiny::runApp()].
+#' This module relies on a set of internal functions to parse, set, and get
+#' internal values controlling the user interface's state. They are defined
+#' in `R/ui-title-internals.R` and prefixed by a dot. To fetch UI parameters
+#' outside of [server_title()], use the [shiny::reactive()] objects it returns.
 #'
 #' ## Bootstrap Navbar
 #'
@@ -31,12 +33,6 @@
 #' returns a list of HTML elements styled with Bootstrap `navbar-*` classes
 #' directly (and not within a div.navbar). This is currently undocumented by
 #' bslib.
-#'
-#' ## User Interface State
-#'
-#' This module implements buttons that can be used to customize the user
-#' interface and oversees their underlying internal states using functions
-#' defined in `R/helpers-ui-title.R`.
 #'
 #' ## Languages
 #'
@@ -52,7 +48,7 @@
 #'   3. Create an observer for the button created at step 1 and bind it
 #'      to `input$btn_lang_<lang>` with a call to [shiny::bindEvent()].
 #'      The observer must (1) highlight the chosen `lang` in the menu,
-#'      (2) call [set_lang()], and (3) call [update_query_string()].
+#'      (2) call [.set_lang()], and (3) call [update_query_string()].
 #'
 #' You may copy/paste the existing logic for the default language and
 #' adapt it to the new `lang` value.
@@ -63,6 +59,8 @@
 #' them. It was removed in favour of simplicity.
 #'
 #' @template param-id
+#'
+#' @template param-lang-names
 #'
 #' @returns
 #' [ui_title()] returns a list of `shiny.tag` objects.
@@ -85,7 +83,7 @@
 #'
 #' @rdname ui-title
 #' @export
-ui_title <- function(id) {
+ui_title <- function(id, lang_names = tr$native_languages) {
     ns <- shiny::NS(id)
     nav_id <- ns("navbar_nav")
 
@@ -99,12 +97,12 @@ ui_title <- function(id) {
                 tags$a(
                     style    = "text-decoration: none;",
                     href     = "",
-                    hreflang = default_lang,
+                    hreflang = "en",
                     target   = "_self",
 
                     tags$img(
                         id     = ns("logo"),
-                        src    = "images/logo-400x400.png",
+                        src    = "assets/images/logo-400x400.png",
                         alt    = "Logo",
                         width  = "400px",
                         height = "400px",
@@ -247,7 +245,7 @@ ui_title <- function(id) {
                                 shiny::actionButton(
                                     inputId = ns("btn_lang_en"),
                                     class   = "dropdown-item fs-6",
-                                    label   = default_lang_names[["en"]]
+                                    label   = lang_names[["en"]]
                                 )
                             ),
 
@@ -255,7 +253,7 @@ ui_title <- function(id) {
                                 shiny::actionButton(
                                     inputId = ns("btn_lang_fr"),
                                     class   = "dropdown-item fs-6",
-                                    label   = default_lang_names[["fr"]]
+                                    label   = lang_names[["fr"]]
                                 )
                             ),
 
@@ -263,7 +261,7 @@ ui_title <- function(id) {
                                 shiny::actionButton(
                                     inputId = ns("btn_lang_es"),
                                     class   = "dropdown-item fs-6",
-                                    label   = default_lang_names[["es"]]
+                                    label   = lang_names[["es"]]
                                 )
                             ),
 
@@ -296,10 +294,40 @@ ui_title <- function(id) {
                             "Expostats"
                         ),
 
-                        shiny::uiOutput(
-                            ns("nav_item_expostats_links"),
-                            container = tags$ul,
-                            class     = "dropdown-menu dropdown-menu-end"
+                        # Labels must not be translated.
+                        tags$ul(
+                            class = "dropdown-menu dropdown-menu-end",
+
+                            shiny::uiOutput(
+                                outputId  = ns("a_link_tool2"),
+                                container = tags$li
+                            ),
+
+                            shiny::uiOutput(
+                                outputId  = ns("a_link_tool3"),
+                                container = tags$li
+                            ),
+
+                            tags$li(
+                                tags$hr(class = "dropdown-divider")
+                            ),
+
+                            shiny::uiOutput(
+                                outputId  = ns("a_link_expostats"),
+                                container = tags$li
+                            ),
+
+                            tags$li(
+                                tags$a(
+                                    class    = "dropdown-item",
+                                    href     = urls$ndexpo,
+                                    hreflang = "en",
+                                    rel      = "external",
+                                    target   = "_blank",
+                                    "NDExpo"
+                                )
+                            )
+
                         )
                     ),
 
@@ -362,7 +390,7 @@ server_title <- function(id) {
 
         # Update lang whenever one of the related buttons is clicked.
         lang <- shiny::reactive({
-            get_lang()
+            .get_lang()
         }) |>
         shiny::bindEvent(
             session$clientData$url_search,
@@ -373,7 +401,7 @@ server_title <- function(id) {
 
         # Update mode whenever one of the related buttons is clicked.
         mode <- shiny::reactive({
-            get_mode()
+            .get_mode()
         }) |>
         shiny::bindEvent(
             input$btn_mode_extended,
@@ -382,14 +410,14 @@ server_title <- function(id) {
 
         # Update color whenever the related button is clicked.
         color <- shiny::reactive({
-            get_color("current")
+            .get_color()
         }) |>
         shiny::bindEvent(input$btn_color)
 
         # Observers that set/control UI parameters (below) have a higher
         # priority to ensure they are always executed first (before all
         # other observers and reactive expressions). This is because
-        # values must always be updated with set_*() functions first.
+        # values must always be updated with .set_*() functions first.
 
         # Apply UI parameters passed as query parameters.
         shiny::observe(priority = 10L, {
@@ -397,9 +425,9 @@ server_title <- function(id) {
             query_params <- shiny::getQueryString()
 
             # Validate and set extracted parameters.
-            lang  <- set_lang(parse_lang(query_params$lang))
-            mode  <- set_mode(parse_mode(query_params$mode))
-            color <- set_color(parse_color(query_params$color))
+            lang  <- .set_lang(.parse_lang(query_params$lang))
+            mode  <- .set_mode(.parse_mode(query_params$mode))
+            color <- .set_color(.parse_color(query_params$color))
 
             # Update the URL with valid values. Some
             # values could had been invalid initially.
@@ -412,10 +440,10 @@ server_title <- function(id) {
 
             # Update the color mode and the label
             # of the button controlling it.
-            bslib::toggle_dark_mode(color[["current"]])
+            bslib::toggle_dark_mode(color)
             shiny::updateActionButton(
                 inputId = "btn_color",
-                label   = color[["label"]]
+                label   = attr(color, "icon", TRUE)
             )
         }) |>
         # After execution, the user may update current
@@ -425,32 +453,29 @@ server_title <- function(id) {
         # Update the current language.
         # Each language has a dedicated button.
         shiny::observe(priority = 10L, {
-            old_lang <- get_lang()
+            old_lang <- .get_lang()
 
             shinyjs::removeClass(sprintf("btn_lang_%s", old_lang), "active")
             shinyjs::addClass("btn_lang_en", "active")
-
-            update_query_string(lang = set_lang("en"))
+            update_query_string(lang = .set_lang("en"))
         }) |>
         shiny::bindEvent(input$btn_lang_en, ignoreInit = TRUE)
 
         shiny::observe(priority = 10L, {
-            old_lang <- get_lang()
+            old_lang <- .get_lang()
 
             shinyjs::removeClass(sprintf("btn_lang_%s", old_lang), "active")
             shinyjs::addClass("btn_lang_fr", "active")
-
-            update_query_string(lang = set_lang("fr"))
+            update_query_string(lang = .set_lang("fr"))
         }) |>
         shiny::bindEvent(input$btn_lang_fr, ignoreInit = TRUE)
 
         shiny::observe(priority = 10L, {
-            old_lang <- get_lang()
+            old_lang <- .get_lang()
 
             shinyjs::removeClass(sprintf("btn_lang_%s", old_lang), "active")
             shinyjs::addClass("btn_lang_es", "active")
-
-            update_query_string(lang = set_lang("es"))
+            update_query_string(lang = .set_lang("es"))
         }) |>
         shiny::bindEvent(input$btn_lang_es, ignoreInit = TRUE)
 
@@ -459,38 +484,33 @@ server_title <- function(id) {
         shiny::observe(priority = 10L, {
             shinyjs::addClass("btn_mode_extended", "active")
             shinyjs::removeClass("btn_mode_express", "active")
-
-            update_query_string(mode = set_mode("extended"))
+            update_query_string(mode = .set_mode("extended"))
         }) |>
         shiny::bindEvent(input$btn_mode_extended, ignoreInit = TRUE)
 
         shiny::observe(priority = 10L, {
             shinyjs::addClass("btn_mode_express", "active")
             shinyjs::removeClass("btn_mode_extended", "active")
-
-            update_query_string(mode = set_mode("express"))
+            update_query_string(mode = .set_mode("express"))
         }) |>
         shiny::bindEvent(input$btn_mode_express, ignoreInit = TRUE)
 
         # Update the current color mode.
         shiny::observe(priority = 10L, {
             # Passing a NULL toggles the state.
-            color <- set_color(NULL)
+            color <- .set_color(NULL)
 
-            update_query_string(color = color[["current"]])
-
-            bslib::toggle_dark_mode(color[["current"]])
+            update_query_string(color = color)
+            bslib::toggle_dark_mode(color)
             shiny::updateActionButton(
                 inputId = "btn_color",
-                label   = color[["label"]]
+                label   = attr(color, "icon", TRUE)
             )
         }) |>
         shiny::bindEvent(input$btn_color, ignoreInit = TRUE)
 
         # Modules --------------------------------------------------------------
 
-        # Module is loaded after defining
-        # lang() because it is required.
         server_modal_faq("faq", lang)
 
         # Outputs and Other Observers ------------------------------------------
@@ -546,41 +566,48 @@ server_title <- function(id) {
         }) |>
         shiny::bindCache(lang())
 
-        output$nav_item_expostats_links <- shiny::renderUI({
+        output$a_link_tool2 <- shiny::renderUI({
             lang <- lang()
-            links <- list(
-                list(
-                    href  = urls$tool2[[lang]],
-                    label = "Tool 2"
-                ),
-                list(
-                    href  = urls$tool3[[lang]],
-                    label = "Tool 3"
-                ),
-                list(
-                    href  = urls$expostats[[lang]],
-                    label = "Expostats"
-                ),
-                list(
-                    href  = urls$ndexpo,
-                    label = "NDExpo"
-                )
+            tags$a(
+                class = "dropdown-item",
+                href  = i18n_url(
+                    "https://lavoue.shinyapps.io/Tool2v3En/",
+                    fr = "https://lavoue.shinyapps.io/Tool2v3Fr/"
+                )[[lang]],
+                hreflang = lang,
+                rel      = "external",
+                target   = "_blank",
+                "Tool 2"
             )
+        }) |>
+        shiny::bindCache(lang())
 
-            lapply(links, \(link) {
-                return(
-                    tags$li(
-                        tags$a(
-                            class    = "dropdown-item",
-                            href     = link$href,
-                            hreflang = lang,
-                            rel      = "external",
-                            target   = "_blank",
-                            link$label
-                        )
-                    )
-                )
-            })
+        output$a_link_tool3 <- shiny::renderUI({
+            lang <- lang()
+            tags$a(
+                class = "dropdown-item",
+                href  = i18n_url(
+                    "https://lavoue.shinyapps.io/Tool3v3En/",
+                    fr = "https://lavoue.shinyapps.io/Tool3v3Fr/"
+                )[[lang]],
+                hreflang = lang,
+                rel      = "external",
+                target   = "_blank",
+                "Tool 3"
+            )
+        }) |>
+        shiny::bindCache(lang())
+
+        output$a_link_expostats <- shiny::renderUI({
+            lang <- lang()
+            tags$a(
+                class    = "dropdown-item",
+                href     = urls$expostats[[lang]],
+                hreflang = lang,
+                rel      = "external",
+                target   = "_blank",
+                "Expostats"
+            )
         }) |>
         shiny::bindCache(lang())
 

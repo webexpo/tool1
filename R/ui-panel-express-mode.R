@@ -25,21 +25,15 @@
 #' -------------------------------------------------
 #' ```
 #'
-#' @details
-#' This module implicitly relies on values defined in `R/global.R` and
-#' `R/helpers*.R` scripts. They are sourced by [shiny::runApp()].
-#'
 #' @template param-id
 #'
 #' @template param-lang
 #'
-#' @template param-parameters
+#' @template param-inputs-calc
 #'
-#' @template param-bayesian-analysis
+#' @template param-simulations
 #'
-#' @template param-num-results
-#'
-#' @template param-estimates-params
+#' @template param-results
 #'
 #' @returns
 #' [ui_panel_express()] returns a `shiny.tag` object
@@ -59,10 +53,8 @@
 #' @export
 ui_panel_express <- function(id) {
     ns <- shiny::NS(id)
-
-    # Override default height of cards only containing text.
-    # They require less (vertical) space in express mode.
-    default_card_height_text_only <- "300px"
+    card_height      <- getOption("app_card_height_md")
+    card_height_text <- getOption("app_card_height_xs")
 
     # Risk Assessment ----------------------------------------------------------
 
@@ -87,7 +79,7 @@ ui_panel_express <- function(id) {
 
     risk_assessment <- bslib::card(
         id     = ns("risk_assessment_card"),
-        height = default_card_height_text_only,
+        height = card_height_text,
 
         bslib::card_header(
             id    = ns("risk_assessment_header"),
@@ -117,7 +109,7 @@ ui_panel_express <- function(id) {
     # Estimates ----------------------------------------------------------------
 
     estimates <- bslib::navset_card_underline(
-        height   = default_card_height_text_only,
+        height   = card_height_text,
         id       = ns("estimates_panel_active"),
         selected = ns("estimates_panel_params"),
 
@@ -208,7 +200,7 @@ ui_panel_express <- function(id) {
     # Risk Meter ---------------------------------------------------------------
 
     risk_meter <- bslib::card(
-        height      = default_card_height,
+        height      = card_height,
         full_screen = TRUE,
 
         bslib::card_header(
@@ -231,7 +223,7 @@ ui_panel_express <- function(id) {
     # Sequential Plot ----------------------------------------------------------
 
     seq_plot <- bslib::card(
-        height      = default_card_height,
+        height      = card_height,
         full_screen = TRUE,
 
         bslib::card_header(
@@ -254,7 +246,7 @@ ui_panel_express <- function(id) {
     # Risk Band Plot -----------------------------------------------------------
 
     risk_band_plot <- bslib::card(
-        height      = default_card_height,
+        height      = card_height,
         full_screen = TRUE,
 
         bslib::card_header(
@@ -298,20 +290,12 @@ ui_panel_express <- function(id) {
 
 #' @rdname ui-panel-percentiles
 #' @export
-server_panel_express <- function(
-    id,
-    lang,
-    parameters,
-    bayesian_analysis,
-    num_results,
-    estimates_params)
-{
+server_panel_express <- function(id, lang, inputs_calc, simulations, results) {
     stopifnot(exprs = {
         shiny::is.reactive(lang)
-        shiny::is.reactive(parameters)
-        shiny::is.reactive(bayesian_analysis)
-        shiny::is.reactive(num_results)
-        shiny::is.reactive(estimates_params)
+        shiny::is.reactive(inputs_calc)
+        shiny::is.reactive(simulations)
+        shiny::is.reactive(results)
     })
 
     server <- function(input, output, session) {
@@ -321,15 +305,7 @@ server_panel_express <- function(
         shiny::bindCache(lang())
 
         risk_level <- shiny::reactive({
-            # findInterval() creates a fourth interval from
-            # the standard thresholds: (-∞, 0L). It maps it
-            # to 0. It is not used.
-            level <- findInterval(
-                num_results()$perc.risk,
-                get_risk_level_thresholds()
-            )
-
-            get_risk_level_info(level, lang())
+            get_risk_level_info(results()$.risk_levels$express, lang())
         })
 
         output$title <- shiny::renderText({
@@ -393,9 +369,9 @@ server_panel_express <- function(
 
         output$risk_assessment <- shiny::renderUI({
             lang <- lang()
-            parameters <- parameters()
-            num_results <- num_results()
+            results <- results()
             risk_level <- risk_level()
+            inputs_calc <- inputs_calc()
 
             li_classes <- sprintf(
                 "list-group-item bg-%s-subtle border-%1$s",
@@ -415,7 +391,7 @@ server_panel_express <- function(
                             Overexposure is defined as the %s percentile
                             being greater than or equal to the OEL.
                         "),
-                        tags$strong(ordinal(parameters$target_perc, lang))
+                        tags$strong(ordinal(inputs_calc$target_perc, lang))
                     )
                 ),
 
@@ -426,7 +402,7 @@ server_panel_express <- function(
                             The probability that this criterion is met is equal
                             to %s.
                         "),
-                        tags$strong(as_percentage(num_results$perc.risk))
+                        tags$strong(as_percentage(results$perc.risk))
                     )
                 ),
 
@@ -541,7 +517,7 @@ server_panel_express <- function(
 
         output$estimates_params <- shiny::renderUI({
             lang <- lang()
-            estimates_params <- estimates_params()
+            results <- results()
 
             list(
                 tags$li(
@@ -551,7 +527,7 @@ server_panel_express <- function(
                             The point estimate of the geometric mean is equal
                             to %s.
                         "),
-                        tags$strong(estimates_params$gm)
+                        tags$strong(results$.intervals$gm)
                     )
                 ),
 
@@ -562,7 +538,7 @@ server_panel_express <- function(
                             The point estimate of the geometric standard
                             deviation is equal to %s.
                         "),
-                        tags$strong(estimates_params$gsd)
+                        tags$strong(results$.intervals$gsd)
                     )
                 )
             )
@@ -570,7 +546,7 @@ server_panel_express <- function(
 
         output$estimates_fraction <- shiny::renderUI({
             lang <- lang()
-            frac <- lapply(num_results()$frac, as_percentage)
+            results <- results()
 
             list(
                 tags$li(
@@ -580,9 +556,7 @@ server_panel_express <- function(
                             The point estimate of the exceedance fraction is
                             equal to %s.
                         "),
-                        tags$strong(
-                            sprintf("%s [%s - %s]", frac$est, frac$lcl, frac$ucl)
-                        )
+                        tags$strong(results$.intervals$frac)
                     )
                 ),
 
@@ -592,9 +566,7 @@ server_panel_express <- function(
                         translate(lang = lang, "
                             The 70%% upper confidence limit is equal to %s.
                         "),
-                        tags$strong(
-                            as_percentage(num_results()$frac.ucl70)
-                        )
+                        tags$strong(as_percentage(results$frac.ucl70))
                     )
                 ),
 
@@ -604,9 +576,7 @@ server_panel_express <- function(
                         translate(lang = lang, "
                             The 95%% upper confidence limit is equal to %s.
                         "),
-                        tags$strong(
-                            as_percentage(num_results()$frac.ucl95)
-                        )
+                        tags$strong(as_percentage(results$frac.ucl95))
                     )
                 )
             )
@@ -614,7 +584,7 @@ server_panel_express <- function(
 
         output$estimates_percentile <- shiny::renderUI({
             lang <- lang()
-            perc <- lapply(num_results()$perc, signif, digits = default_n_digits)
+            results <- results()
 
             list(
                 tags$li(
@@ -624,12 +594,8 @@ server_panel_express <- function(
                             The point estimate of the %s percentile is
                             equal to %s.
                         "),
-                        as.character(
-                            ordinal(default_express_inputs$target_perc, lang)
-                        ),
-                        tags$strong(
-                            sprintf("%s [%s - %s]", perc$est, perc$lcl, perc$ucl)
-                        )
+                        tags$span(ordinal(inputs_calc()$target_perc, lang)),
+                        tags$strong(results$.intervals$perc)
                     )
                 ),
 
@@ -639,9 +605,7 @@ server_panel_express <- function(
                         translate(lang = lang, "
                             The 70%% upper confidence limit is equal to %s.
                         "),
-                        tags$strong(
-                            signif(num_results()$perc.ucl70, default_n_digits)
-                        )
+                        tags$strong(results$.rounded$perc.ucl70)
                     )
                 ),
 
@@ -651,9 +615,7 @@ server_panel_express <- function(
                         translate(lang = lang, "
                             The 95%% upper confidence limit is equal to %s.
                         "),
-                        tags$strong(
-                            signif(num_results()$perc.ucl95, default_n_digits)
-                        )
+                        tags$strong(results$.rounded$perc.ucl95)
                     )
                 )
             )
@@ -661,7 +623,7 @@ server_panel_express <- function(
 
         output$estimates_mean <- shiny::renderUI({
             lang <- lang()
-            am <- lapply(num_results()$am, signif, digits = default_n_digits)
+            results <- results()
 
             list(
                 tags$li(
@@ -671,9 +633,7 @@ server_panel_express <- function(
                             The point estimate of the arithmetic mean is
                             equal to %s.
                         "),
-                        tags$strong(
-                            sprintf("%s [%s - %s]", am$est, am$lcl, am$ucl)
-                        )
+                        tags$strong(results$.intervals$am)
                     )
                 ),
 
@@ -683,9 +643,7 @@ server_panel_express <- function(
                         translate(lang = lang, "
                             The 70%% upper confidence limit is equal to %s.
                         "),
-                        tags$strong(
-                            signif(num_results()$am.ucl70, default_n_digits)
-                        )
+                        tags$strong(results$.rounded$am.ucl70)
                     )
                 ),
 
@@ -695,9 +653,7 @@ server_panel_express <- function(
                         translate(lang = lang, "
                             The 95%% upper confidence limit is equal to %s.
                         "),
-                        tags$strong(
-                            signif(num_results()$am.ucl95, default_n_digits)
-                        )
+                        tags$strong(results$.rounded$am.ucl95)
                     )
                 )
             )
@@ -716,20 +672,20 @@ server_panel_express <- function(
         # is a bit more cryptic. Both functions should be merged
         # into a single unified function (and rewritten).
         output$risk_meter_plot <- shiny::renderPlot({
-            parameters <- parameters()
-            bayesian_analysis <- bayesian_analysis()
+            inputs_calc <- inputs_calc()
+            simulations <- simulations()
 
             frac <- 100 * (
                 1 - pnorm(
-                    (log(parameters$oel) - bayesian_analysis$mu) / bayesian_analysis$sigma
+                    (log(inputs_calc$oel) - simulations$mu) / simulations$sigma
                 )
             )
 
-            risk <- length(frac[frac >= parameters$frac_threshold]) / length(frac)
+            risk <- length(frac[frac >= inputs_calc$frac_threshold]) / length(frac)
 
             dessinerRisqueMetre.G(
                 actualProb          = risk,
-                minProbUnacceptable = parameters$psi / 100L
+                minProbUnacceptable = inputs_calc$psi / 100L
             )
         })
 
@@ -745,7 +701,7 @@ server_panel_express <- function(
 
         output$seq_plot <- shiny::renderPlot({
             lang <- lang()
-            results <- num_results()
+            results <- results()
 
             sequential.plot.frac(
                 gm        = results$gm$est,
@@ -771,15 +727,15 @@ server_panel_express <- function(
 
         output$risk_band_plot <- shiny::renderPlot({
             lang <- lang()
-            parameters <- parameters()
-            bayesian_analysis <- bayesian_analysis()
+            inputs_calc <- inputs_calc()
+            simulations <- simulations()
 
             riskband.plot.perc(
-                mu.chain    = bayesian_analysis$mu.chain,
-                sigma.chain = bayesian_analysis$sigma.chain,
-                c.oel       = num_results()$c.oel,
-                target_perc = parameters$target_perc,
-                psi         = parameters$psi,
+                mu.chain    = simulations$mu.chain,
+                sigma.chain = simulations$sigma.chain,
+                c.oel       = results()$c.oel,
+                target_perc = inputs_calc$target_perc,
+                psi         = inputs_calc$psi,
                 # ≤ may not render in all IDEs. This is Unicode
                 # character U+2264 (&leq;) (Less-Than or Equal To).
                 riskplot.2  = translate(lang = lang, "Probability"),
@@ -809,11 +765,11 @@ server_panel_express <- function(
                     The latter should be lower than the threshold (black dashed
                     line).
                 "),
-                ordinal(default_express_inputs$target_perc, lang)
+                ordinal(inputs_calc()$target_perc, lang)
             )
         }) |>
         # Since target_perc is an internal constant,
-        # do not take a dependency on parameters().
+        # do not take a dependency on inputs_calc().
         shiny::bindCache(lang())
 
         # Update colors of borders and background

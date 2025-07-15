@@ -1,34 +1,27 @@
 #' Translatable Uniform Resource Locators
 #'
-#' Mark a URL as such and attach alternative URLs targeting other languages
-#' to it.
+#' Provide alternatives to a default URL for other languages.
 #'
-#' @param x A character string. The default URL corresponding to `default_lang`.
+#' @param x A character string. The default URL to use.
 #'
-#' @param ... Usage depends on the underlying function.
+#' @param ... Further arguments passed to or from other methods.
 #'
-#'   - For [url()], further optional named character vectors. The URLs for
-#'     languages other than `default_lang`. Names must correspond to language
-#'     codes.
+#'   - For [i18n_url()], further optional named character vectors. Names must
+#'     be language codes, and values must be the corresponding URLs.
 #'   - For `[[`, further arguments passed to the default `[[` S3 method.
 #'
-#' @param i A character string. A language code. If unavailable, a default
-#'   value is returned.
-#'
-#' @details
-#' S3 class `url` has a `[[` S3 method ensuring that a default value is always
-#' returned if `i` is undefined.
+#' @param i A character string. A language code.
 #'
 #' @returns
-#' [url()] returns a named character vector of S3 class `url`. It has a
-#' `default` attribute corresponding to the default language code of `x`.
+#' [i18n_url()] returns `x` as a character string of S3 class `i18n_url` and
+#' having an attribute named `alts`. The latter is a named character vector
+#' of alternative URLs constructed from elements passed to ...
 #'
-#' `[[` returns a character string.
+#' `[[` returns a character string. It returns `x` if `i` does not match any
+#' language code (see ...).
 #'
 #' @examples
-#' default_lang <- "en"
-#'
-#' url <- url(
+#' url <- i18n_url(
 #'   "https://lavoue.shinyapps.io/Tool3v3En/",
 #'   fr = "https://lavoue.shinyapps.io/Tool3v3Fr/"
 #' )
@@ -39,36 +32,59 @@
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
-#' @rdname intl-url
+#' @rdname i18n-url
 #' @export
-url <- function(x = "", ...) {
-    names(x) <- default_lang
-    urls <- c(x, ...)
-    langs <- names(urls)
+i18n_url <- function(x = "", ...) {
+    alts <- c(...) %||% character()
+    langs <- names(alts)
 
-    stopifnot(exprs = {
-        is_chr(urls)
-        is_chr(langs)
-        all(nzchar(urls))
-        all(nzchar(langs))
-    })
-
-    return(
-        structure(urls,
-            default = default_lang,
-            class   = c("url", "character")
-        )
-    )
-}
-
-#' @rdname intl-url
-#' @export
-`[[.url` <- function(x, i, ...) {
-    if (is.na(match(i, names(x)))) {
-        i <- attr(x, "default", TRUE)
+    if (!is_chr1(x)) {
+        stop("'x' must be a character string.")
     }
 
-    return(NextMethod())
+    # This is a little too complex to implement with stopifnot().
+    # The resulting error message would be cryptic at best.
+    if (length(alts) && (!is_chr(langs) || !all(nzchar(langs)))) {
+        stop("all values passed to '...' must be named.")
+    }
+
+    return(structure(x, alts = alts, class = c("i18n_url", "character")))
+}
+
+#' @rdname i18n-url
+#' @export
+`[[.i18n_url` <- function(x, i, ...) {
+    alts <- attr(x, "alts")
+
+    if (is.na(alt <- alts[i])) {
+        return(as.character(x))
+    }
+
+    return(unname(alt))
+}
+
+#' @rdname i18n-url
+#' @export
+format.i18n_url <- function(x, ...) {
+    url <- paste0("<i18n_url> ", x, "\n")
+    alts <- attr(x, "alts")
+
+    if (!length(alts)) {
+        return(url)
+    }
+
+    langs <- names(alts)
+    langs_nchars <- nchar(langs)
+    langs_pads <- strrep(" ", max(langs_nchars) - langs_nchars)
+
+    return(c(url, sprintf("%s:%s %s\n", names(alts), langs_pads, alts)))
+}
+
+#' @rdname i18n-url
+#' @export
+print.i18n_url <- function(x, ...) {
+    cat(format(x))
+    return(invisible(x))
 }
 
 #' Ordinal Numbers (1st, 2nd, 3rd, 4th, etc.)
@@ -90,8 +106,6 @@ url <- function(x = "", ...) {
 #'
 #' @param x A numeric value.
 #'
-#' @param lang A character string. The underlying language code.
-#'
 #' @param format A character string equal to one of the values below and
 #'   controlling the output's format.
 #'
@@ -106,6 +120,8 @@ url <- function(x = "", ...) {
 #'
 #' @param plural A logical value. Should plural form of ordinals (if any) be
 #'   used?
+#'
+#' @template param-lang-str
 #'
 #' @returns
 #' [ordinal()] and [ordinal_abbr()] return a character string.
@@ -142,7 +158,7 @@ url <- function(x = "", ...) {
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
-#' @rdname intl-ordinal
+#' @rdname i18n-ordinal
 #' @export
 ordinal <- function(
     x      = numeric(1L),
@@ -179,7 +195,7 @@ ordinal <- function(
     )
 }
 
-#' @rdname intl-ordinal
+#' @rdname i18n-ordinal
 #' @export
 ordinal_abbr <- function(x = numeric(1L), lang = "en", ...) {
     rules <- ordinal_rules(lang, ...)
@@ -196,7 +212,7 @@ ordinal_abbr <- function(x = numeric(1L), lang = "en", ...) {
     return(rules$indicators[[(x %% 10L) + 1L]])
 }
 
-#' @rdname intl-ordinal
+#' @rdname i18n-ordinal
 #' @export
 ordinal_rules <- function(lang = "en", ...) {
     return(
@@ -209,7 +225,7 @@ ordinal_rules <- function(lang = "en", ...) {
     )
 }
 
-#' @rdname intl-ordinal
+#' @rdname i18n-ordinal
 #' @export
 ordinal_rules_english <- function() {
     return(
@@ -237,7 +253,7 @@ ordinal_rules_english <- function() {
     )
 }
 
-#' @rdname intl-ordinal
+#' @rdname i18n-ordinal
 #' @export
 ordinal_rules_french <- function(
     gender = c("masculine", "feminine"),
@@ -276,7 +292,7 @@ ordinal_rules_french <- function(
     return(list(indicators = indicators, exceptions = exceptions))
 }
 
-#' @rdname intl-ordinal
+#' @rdname i18n-ordinal
 #' @export
 ordinal_rules_spanish <- function(gender = c("masculine", "feminine")) {
     gender <- match.arg(gender)

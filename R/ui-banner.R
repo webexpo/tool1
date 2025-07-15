@@ -27,10 +27,6 @@
 #'
 #' The banner is shown whenever the Shiny engine is blocked.
 #'
-#' @details
-#' This module implicitly relies on values defined in `R/global.R` and
-#' `R/helpers*.R` scripts. They are sourced by [shiny::runApp()].
-#'
 #' @template param-id
 #'
 #' @template param-lang

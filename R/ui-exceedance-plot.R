@@ -1,22 +1,17 @@
 #' Exceedance Plot Module
 #'
-#' @description
 #' This module controls the Exceedance Plot component. It is currently nested
 #' into the Exceedance Fraction panel module. It itself relies on another
 #' module, the Exceedance Plot Sidebar module which controls customization
 #' paramaters. The latter is currently nested into the former.
 #'
-#' @details
-#' This module implicitly relies on values defined in `R/global.R` and
-#' `R/helpers*.R` scripts. They are sourced by [shiny::runApp()].
-#'
 #' @template param-id
 #'
 #' @template param-lang
 #'
-#' @template param-parameters
+#' @template param-inputs-calc
 #'
-#' @template param-num-results
+#' @template param-results
 #'
 #' @returns
 #' [ui_exceedance_plot()] returns a `bslib_fragment` object
@@ -43,7 +38,7 @@ ui_exceedance_plot <- function(id) {
         # The card may have to grow vertically
         # beyond the usual threshold to avoid
         # vertical overflowing of the sidebar.
-        min_height = default_card_height,
+        min_height = getOption("app_card_height"),
 
         bslib::card_header(
             bslib::card_title(
@@ -76,15 +71,15 @@ ui_exceedance_plot <- function(id) {
 
 #' @rdname ui-exceedance-plot
 #' @export
-server_exceedance_plot <- function(id, lang, parameters, num_results) {
+server_exceedance_plot <- function(id, lang, inputs_calc, results) {
     stopifnot(exprs = {
         shiny::is.reactive(lang)
-        shiny::is.reactive(parameters)
-        shiny::is.reactive(num_results)
+        shiny::is.reactive(inputs_calc)
+        shiny::is.reactive(results)
     })
 
     server <- function(input, output, session) {
-        sidebar_inputs <- server_exceedance_plot_sidebar("sidebar", lang)
+        inputs_exceedance_plot <- server_exceedance_plot_sidebar("sidebar", lang)
 
         output$title <- shiny::renderText({
             translate(lang = lang(), "Exceedance Plot")
@@ -92,27 +87,29 @@ server_exceedance_plot <- function(id, lang, parameters, num_results) {
         shiny::bindCache(lang())
 
         output$plot <- shiny::renderPlot({
-            lang <- lang()
-            results <- num_results()
-            sidebar_inputs <- sidebar_inputs()
+            path_dir_images <- getOption("app_path_dir_images")
 
-            frac_threshold <- parameters()$frac_threshold
+            lang <- lang()
+            results <- results()
+            frac_threshold <- inputs_calc()$frac_threshold
+            inputs_exceedance_plot <- inputs_exceedance_plot()
+
             frac_estimate <- ceiling(results$frac$est)
             frac_ucl <- ceiling(results$frac$ucl)
 
             params_plots <- paramsVariantesFracDep(
-                default_images_dir,
-                file.path(default_images_dir, "flask.png"),
-                file.path(default_images_dir, "flask-lines.png"),
-                sidebar_inputs$color_risk,
-                sidebar_inputs$color_no_risk,
-                sidebar_inputs$color_bg_threshold,
-                sidebar_inputs$color_bg
+                path_dir_images,
+                file.path(path_dir_images, "flask.png"),
+                file.path(path_dir_images, "flask-lines.png"),
+                inputs_exceedance_plot$color_risk,
+                inputs_exceedance_plot$color_no_risk,
+                inputs_exceedance_plot$color_bg_threshold,
+                inputs_exceedance_plot$color_bg
             )
 
             # gridExtra::grid.arrange() expects
             # a list even if it is of length 1.
-            plots <- switch(sidebar_inputs$variant,
+            plots <- switch(inputs_exceedance_plot$variant,
                 plot1 = list(
                     drawPlot(
                         params_plots,
@@ -171,7 +168,7 @@ server_exceedance_plot <- function(id, lang, parameters, num_results) {
         shiny::bindCache(lang())
 
         output$description_variant <- shiny::renderText({
-            switch(sidebar_inputs()$variant,
+            switch(inputs_exceedance_plot()$variant,
                 plot1 = translate(lang = lang(), "
                     The plot on the left shows an acceptable situation for the
                     chosen exceedance threshold (traditionally 5% above the OEL).
@@ -212,7 +209,7 @@ server_exceedance_plot <- function(id, lang, parameters, num_results) {
                 ")
             )
         }) |>
-        shiny::bindCache({ sidebar_inputs()$variant }, lang())
+        shiny::bindCache({ inputs_exceedance_plot()$variant }, lang())
 
         return(invisible())
     }
