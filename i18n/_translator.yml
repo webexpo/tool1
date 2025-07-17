@@ -13,20 +13,6 @@ Languages:
   fr: Français
 Texts:
   - !<Text>
-    Identifier: a677adc
-    Algorithm: sha1
-    Hash: a677adcfc957d6857360bbb8bd59fc2f7bff6006
-    Source Language: en
-    Source Text: |-
-      The express mode shows a curated subset of results in a single
-      Statistical Inference panel. It is the default mode.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: a677adc:l1
-        Path: ./R/ui-modal-faq.R
-        Ranges: Ln 711, Col 21 @ Ln 715, Col 22
-  - !<Text>
     Identifier: 449ff93
     Algorithm: sha1
     Hash: 449ff93737c92327afe5ede2781d3a20c269761c
@@ -807,21 +793,6 @@ Texts:
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 359, Col 21 @ Ln 359, Col 65
   - !<Text>
-    Identifier: ca296ff
-    Algorithm: sha1
-    Hash: ca296ff62020e2f37755855e3961b08b45ada55b
-    Source Language: en
-    Source Text: |-
-      The express mode used to be a distinct web application called Tool 1
-      Express (Simplified) in earlier versions of Tool 1 and Expostats. The
-      latter was integrated into Tool 1 in version 5.0.0.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: ca296ff:l1
-        Path: ./R/ui-modal-faq.R
-        Ranges: Ln 732, Col 20 @ Ln 737, Col 14
-  - !<Text>
     Identifier: 77a3276
     Algorithm: sha1
     Hash: 77a3276ba6adddcc3d17f1b9f6a4f67b71f8fb60
@@ -907,6 +878,20 @@ Texts:
         Identifier: b817814:l1
         Path: ./R/ui-exceedance-plot.R
         Ranges: Ln 379, Col 13 @ Ln 379, Col 54
+  - !<Text>
+    Identifier: f542f1c
+    Algorithm: sha1
+    Hash: f542f1cab3312409633bec3df6d5519488929d02
+    Source Language: en
+    Source Text: |-
+      Extended mode has more inputs and shows additional results split into
+      multiple Statistical Inference panels.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: f542f1c:l1
+        Path: ./R/ui-modal-faq.R
+        Ranges: Ln 720, Col 21 @ Ln 724, Col 22
   - !<Text>
     Identifier: 1d671e4
     Algorithm: sha1
@@ -1533,6 +1518,20 @@ Texts:
         Identifier: e9989ce:l1
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 940, Col 20 @ Ln 940, Col 62
+  - !<Text>
+    Identifier: a0028fe
+    Algorithm: sha1
+    Hash: a0028fe11e4bda0c95465e1c393bd6e44704f060
+    Source Language: en
+    Source Text: |-
+      Express mode shows a curated subset of results in a single Statistical
+      Inference panel. It is the default mode.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: a0028fe:l1
+        Path: ./R/ui-modal-faq.R
+        Ranges: Ln 711, Col 21 @ Ln 715, Col 22
   - !<Text>
     Identifier: 70d45be
     Algorithm: sha1
@@ -2941,6 +2940,21 @@ Texts:
         Path: ./R/ui-modal-faq.R
         Ranges: Ln 455, Col 21 @ Ln 459, Col 22
   - !<Text>
+    Identifier: 84fd2eb
+    Algorithm: sha1
+    Hash: 84fd2ebef1b9c146f5a3fb30a67547b34ca50782
+    Source Language: en
+    Source Text: |-
+      Express mode used to be a distinct web application called Tool 1 Express
+      (Simplified) in earlier versions of Tool 1 and Expostats. The latter was
+      integrated into Tool 1 in version 5.0.0.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 84fd2eb:l1
+        Path: ./R/ui-modal-faq.R
+        Ranges: Ln 732, Col 20 @ Ln 737, Col 14
+  - !<Text>
     Identifier: 8d5cf97
     Algorithm: sha1
     Hash: 8d5cf97211a9dfc18be52bc2ded92959bd097ac4
@@ -2966,20 +2980,6 @@ Texts:
         Ranges:
           - Ln 122, Col 42 @ Ln 122, Col 81
           - Ln 135, Col 42 @ Ln 135, Col 81
-  - !<Text>
-    Identifier: b5fe242
-    Algorithm: sha1
-    Hash: b5fe242b7a8fdf130105aa385fbcc3269bc5fcbf
-    Source Language: en
-    Source Text: |-
-      The extended mode has more inputs and shows additional results split into
-      multiple Statistical Inference panels.
-    Translations: ~
-    Locations:
-      - !<Location>
-        Identifier: b5fe242:l1
-        Path: ./R/ui-modal-faq.R
-        Ranges: Ln 720, Col 21 @ Ln 724, Col 22
   - !<Text>
     Identifier: '5518029'
     Algorithm: sha1

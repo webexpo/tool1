@@ -26,16 +26,6 @@ Español
 
 English
 
-:: Translations: a677adc: Source Text
-
-The express mode shows a curated subset of results in a single Statistical
-Inference panel. It is the default mode.
-
-:: Translations: a677adc: Translation
-
-El modo expreso muestra un subconjunto de resultados seleccionados en un único
-panel de Inferencia Estadística. Es el modo predeterminado.
-
 :: Translations: 449ff93: Source Text
 
 The current situation is %s.
@@ -98,10 +88,10 @@ behalf of Jérôme Lavoué.
 
 :: Translations: 0cdc87d: Translation
 
-%s y %s mantienen actualmente la Herramienta 1. Ununoctium es un colaborador
-externo que trabaja en el diseño y la implementación de versiones superiores o
-iguales a 4.0.0. Supervisa los componentes no científicos de la aplicación web
-en nombre de Jérôme Lavoué.
+%s y %s mantienen actualmente Tool 1. Ununoctium es un colaborador externo que
+trabaja en el diseño y la implementación de versiones superiores o iguales a
+4.0.0. Supervisa los componentes no científicos de la aplicación web en nombre
+de Jérôme Lavoué. [REVIEW]
 
 :: Translations: ad77e09: Source Text
 
@@ -127,7 +117,7 @@ Email Address
 
 :: Translations: fdd3398: Translation
 
-# Insert a translation here.
+Dirección de correo electrónico [REVIEW]
 
 :: Translations: e0147d1: Source Text
 
@@ -530,7 +520,8 @@ controlled, but with a limited safety margin.
 
 :: Translations: 4c4b9ae: Translation
 
-# Insert a translation here.
+Si el riesgo de sobreexposición se sitúa entre el %s y el %s, es moderado. La
+situación está controlada, pero con un margen de seguridad limitado.
 
 :: Translations: ad9a641: Source Text
 
@@ -538,19 +529,7 @@ Who created Tool 1?
 
 :: Translations: ad9a641: Translation
 
-¿Quién creó la Herramienta 1?
-
-:: Translations: ca296ff: Source Text
-
-The express mode used to be a distinct web application called Tool 1 Express
-(Simplified) in earlier versions of Tool 1 and Expostats. The latter was
-integrated into Tool 1 in version 5.0.0.
-
-:: Translations: ca296ff: Translation
-
-El modo expreso era una aplicación web distinta llamada Herramienta 1 Express
-(Simplificada) en las versiones anteriores de la Herramienta 1 y de Expostats.
-Fue integrada en la Herramienta 1 en la versión 5.0.0.
+¿Quién creó Tool 1?
 
 :: Translations: 77a3276: Source Text
 
@@ -610,6 +589,16 @@ Above the OEL:
 :: Translations: b817814: Translation
 
 Por encima del LEO:
+
+:: Translations: f542f1c: Source Text
+
+Extended mode has more inputs and shows additional results split into multiple
+Statistical Inference panels.
+
+:: Translations: f542f1c: Translation
+
+El modo Extendido tiene más entradas y muestra resultados adicionales divididos
+en varios paneles de inferencia estadística.
 
 :: Translations: 1d671e4: Source Text
 
@@ -703,7 +692,7 @@ Role
 
 :: Translations: 43057f4: Translation
 
-# Insert a translation here.
+Papel [REVIEW]
 
 :: Translations: 305b9f6: Source Text
 
@@ -731,9 +720,9 @@ available on %s.
 :: Translations: 3976eaa: Translation
 
 Los modelos bayesianos y los procedimientos de interpretación de datos
-utilizados por la Herramienta 1 se derivan de las mejores prácticas actuales en
-higiene industrial, tal como se revisan en el siguiente artículo científico.
-También hay más detalles y referencias disponibles en %s.
+utilizados por Tool 1 se derivan de las mejores prácticas actuales en higiene
+industrial, tal como se revisan en el siguiente artículo científico. También
+hay más detalles y referencias disponibles en %s.
 
 :: Translations: 2f456d9: Source Text
 
@@ -830,7 +819,7 @@ Is the approach of Tool 1 recognized and peer-reviewed?
 
 :: Translations: 1a6a68b: Translation
 
-¿El enfoque de la Herramienta 1 está reconocido y revisado por pares?
+¿El enfoque de Tool 1 está reconocido y revisado por pares?
 
 :: Translations: 38210f7: Source Text
 
@@ -884,7 +873,7 @@ What is Tool 1?
 
 :: Translations: 92193c3: Translation
 
-¿Qué es la Herramienta 1?
+¿Qué es Tool 1?
 
 :: Translations: 10ef3a6: Source Text
 
@@ -919,9 +908,9 @@ changed anytime on-the-fly throughout the session.
 :: Translations: bf93329: Translation
 
 Puede personalizar la interfaz de usuario utilizando los menús y botones
-situados en la barra de título de la Herramienta 1 (en la esquina superior
-derecha de la aplicación). Todos los parámetros se pueden cambiar en cualquier
-momento durante la sesión.
+situados en la barra de título de Tool 1 (en la esquina superior derecha de la
+aplicación). Todos los parámetros se pueden cambiar en cualquier momento
+durante la sesión.
 
 :: Translations: 1277d46: Source Text
 
@@ -969,8 +958,8 @@ Environmental and Occupational Health at the %s of the %s.
 
 :: Translations: f6e929e: Translation
 
-La Herramienta 1 fue desarrollada por el equipo de higiene industrial del
-Departamento de Salud Ambiental y Ocupacional de la %s de la %s.
+Tool 1 fue desarrollada por el equipo de higiene industrial del Departamento de
+Salud Ambiental y Ocupacional de la %s de la %s.
 
 :: Translations: 8785301: Source Text
 
@@ -1004,6 +993,16 @@ It is as follows.
 
 Se presenta de la siguiente manera.
 
+:: Translations: a0028fe: Source Text
+
+Express mode shows a curated subset of results in a single Statistical
+Inference panel. It is the default mode.
+
+:: Translations: a0028fe: Translation
+
+El modo Expreso muestra un subconjunto de resultados seleccionados en un único
+panel de Inferencia Estadística. Es el modo predeterminado.
+
 :: Translations: 70d45be: Source Text
 
 Language
@@ -1035,10 +1034,9 @@ compliance with occupational exposure limits (OEL).
 
 :: Translations: 481daf9: Translation
 
-La Herramienta 1 es una aplicación web de código abierto y de uso gratuito que
-facilita la interpretación de las mediciones de higiene industrial, en
-particular para evaluar su conformidad con los límites de exposición
-ocupacional (LEO).
+Tool 1 es una aplicación web de código abierto y de uso gratuito que facilita
+la interpretación de las mediciones de higiene industrial, en particular para
+evaluar su conformidad con los límites de exposición ocupacional (LEO).
 
 :: Translations: 9b3e862: Source Text
 
@@ -1059,7 +1057,7 @@ Profile
 
 :: Translations: c77a676: Translation
 
-# Insert a translation here.
+Perfil [REVIEW]
 
 :: Translations: 6918de6: Source Text
 
@@ -1207,7 +1205,7 @@ distribution. Doing so offers at least three advantages compared to traditional
 
 :: Translations: 6aff6b7: Translation
 
-La Herramienta 1 utiliza un enfoque bayesiano para estimar los parámetros de la
+Tool 1 utiliza un enfoque bayesiano para estimar los parámetros de la
 distribución log-normal. Este enfoque presenta al menos tres ventajas en
 comparación con los métodos tradicionales (frecuentistas).
 
@@ -1409,8 +1407,8 @@ user.
 
 :: Translations: b69a61b: Translation
 
-La Herramienta 1 ofrece dos modos que controlan la cantidad de información que
-se muestra al usuario.
+Tool 1 ofrece dos modos que controlan la cantidad de información que se muestra
+al usuario.
 
 :: Translations: 6135ed1: Source Text
 
@@ -1440,12 +1438,12 @@ problematic.
 
 :: Translations: c0390ed: Translation
 
-El esquema de decisión adoptado para el modo expreso de la Herramienta 1 se
-elaboró durante la creación de la serie de vídeos de la AIHA "%s" (solo en
-inglés). En este esquema, alcanzar el 95%% es ideal y da lugar a una situación
-aceptable. No alcanzar el 95%% de confianza pero alcanzar el 70%% de confianza
-hace que la situación sea tolerable. El hecho de no alcanzar el 70%% de
-confianza en que no hay sobreexposición hace que la situación sea problemática.
+El esquema de decisión adoptado para el modo Expreso de Tool 1 se elaboró
+durante la creación de la serie de vídeos de la AIHA "%s" (solo en inglés). En
+este esquema, alcanzar el 95%% es ideal y da lugar a una situación aceptable.
+No alcanzar el 95%% de confianza pero alcanzar el 70%% de confianza hace que la
+situación sea tolerable. El hecho de no alcanzar el 70%% de confianza en que no
+hay sobreexposición hace que la situación sea problemática.
 
 :: Translations: 62fc968: Source Text
 
@@ -1558,10 +1556,10 @@ being assessed.
 
 :: Translations: 9797b53: Translation
 
-La Herramienta 1 supone que las mediciones representan una muestra aleatoria
-extraída de la distribución subyacente de las exposiciones en el contexto
-muestreado. En otras palabras, los datos se consideran representativos del
-régimen de exposición específico que se está evaluando.
+Tool 1 supone que las mediciones representan una muestra aleatoria extraída de
+la distribución subyacente de las exposiciones en el contexto muestreado. En
+otras palabras, los datos se consideran representativos del régimen de
+exposición específico que se está evaluando.
 
 :: Translations: 3710c88: Source Text
 
@@ -1589,7 +1587,7 @@ See the source code of Tool 1 on GitHub (English only).
 
 :: Translations: e42d220: Translation
 
-Consulte el código fuente de la Herramienta 1 en GitHub (solo en inglés).
+Consulte el código fuente de Tool 1 en GitHub (solo en inglés).
 
 :: Translations: 4f7aff7: Source Text
 
@@ -1605,7 +1603,7 @@ The default mode is Tool 1 Express.
 
 :: Translations: 87ae55d: Translation
 
-El modo predeterminado es Herramienta 1 Express.
+El modo predeterminado es Tool 1 Express.
 
 :: Translations: 18576cd: Source Text
 
@@ -1615,7 +1613,10 @@ provide accurate translations. Many thanks to them!
 
 :: Translations: 18576cd: Translation
 
-# Insert a translation here.
+Tool 1 está disponible en varios idiomas gracias a los siguientes
+colaboradores, que han contribuido amablemente con su tiempo, conocimientos y
+experiencia para proporcionar traducciones precisas. Muchas gracias a todos
+ellos. [REVIEW]
 
 :: Translations: 46750b1: Source Text
 
@@ -1632,7 +1633,8 @@ well controlled.
 
 :: Translations: 854081a: Translation
 
-# Insert a translation here.
+Si el riesgo de sobreexposición es inferior al %s, es muy bajo. La situación
+está bien controlada.
 
 :: Translations: d1394d6: Source Text
 
@@ -1664,7 +1666,7 @@ What is the statistical approach used by Tool 1?
 
 :: Translations: 67c3cba: Translation
 
-¿Cuál es el enfoque estadístico utilizado por la Herramienta 1?
+¿Cuál es el enfoque estadístico utilizado por Tool 1?
 
 :: Translations: 3a47c3b: Source Text
 
@@ -1689,7 +1691,7 @@ Tool 1 Express
 
 :: Translations: 5f29b65: Translation
 
-Herramienta 1 Express
+Tool 1 Express
 
 :: Translations: ac24260: Source Text
 
@@ -1750,7 +1752,9 @@ below.
 
 :: Translations: 4a92c81: Translation
 
-# Insert a translation here.
+Si detecta un error o desea enviar una actualización, envíe un correo
+electrónico a %s. Estará encantado de remitir su caso a los responsables de
+mantenimiento indicados a continuación. [REVIEW]
 
 :: Translations: a2acebe: Source Text
 
@@ -1786,7 +1790,7 @@ leveraged).
 :: Translations: 0d592d3: Translation
 
 Permite incluir información externa en las mediciones (esta ventaja aún no es
-aprovechada por la Herramienta 1).
+aprovechada por Tool 1).
 
 :: Translations: 2c6b20c: Source Text
 
@@ -1795,7 +1799,8 @@ remedial action.
 
 :: Translations: 2c6b20c: Translation
 
-# Insert a translation here.
+Si el riesgo de sobreexposición es superior al %s, es alto. La situación
+requiere medidas correctoras.
 
 :: Translations: cf880eb: Source Text
 
@@ -1855,7 +1860,7 @@ Tool 1 Extended
 
 :: Translations: 4af6872: Translation
 
-Herramienta 1 Extendida
+Tool 1 Extendido
 
 :: Translations: 5f12363: Source Text
 
@@ -1942,7 +1947,21 @@ an account. You may also send an email to %s, the maintainer of Tool 1.
 
 :: Translations: be1bbe3: Translation
 
-# Insert a translation here.
+Puede enviar errores, solicitar funciones y dar su opinión sobre %s si tiene
+una cuenta. También puede enviar un correo electrónico a %s, el mantenedor de
+Tool 1. [REVIEW]
+
+:: Translations: 84fd2eb: Source Text
+
+Express mode used to be a distinct web application called Tool 1 Express
+(Simplified) in earlier versions of Tool 1 and Expostats. The latter was
+integrated into Tool 1 in version 5.0.0.
+
+:: Translations: 84fd2eb: Translation
+
+El modo Expreso era una aplicación web distinta llamada Tool 1 Express
+(Simplificada) en las versiones anteriores de Tool 1 y de Expostats. Fue
+integrada en Tool 1 en la versión 5.0.0.
 
 :: Translations: 8d5cf97: Source Text
 
@@ -1960,16 +1979,6 @@ Current Sample
 
 Muestra actual
 
-:: Translations: b5fe242: Source Text
-
-The extended mode has more inputs and shows additional results split into
-multiple Statistical Inference panels.
-
-:: Translations: b5fe242: Translation
-
-El modo extendido tiene más entradas y muestra resultados adicionales divididos
-en varios paneles de inferencia estadística.
-
 :: Translations: 5518029: Source Text
 
 How can I verify that my measurements were successfully imported?
@@ -1984,7 +1993,7 @@ Who currently maintains Tool 1?
 
 :: Translations: f111efa: Translation
 
-¿Quién mantiene actualmente la Herramienta 1?
+¿Quién mantiene actualmente Tool 1?
 
 :: Translations: 159e957: Source Text
 
@@ -2002,7 +2011,7 @@ Get additional information on Tool 1.
 
 :: Translations: c6e0f91: Translation
 
-Obtenga información adicional sobre la Herramienta 1.
+Obtenga información adicional sobre Tool 1.
 
 :: Translations: 5b8a460: Source Text
 
@@ -2282,7 +2291,7 @@ Who translated Tool 1?
 
 :: Translations: fe0789f: Translation
 
-# Insert a translation here.
+¿Quién tradujo Tool 1? [REVIEW]
 
 :: Translations: a2334d7: Source Text
 

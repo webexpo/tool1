@@ -80,7 +80,8 @@ This is a minor version that packs many internal changes on the backend side.
 
 ## Fixes
 
-None.
+* Fixed some grammar inconsistencies. Some names are now treated as proper
+  nouns. Others (like Tool 1) are considered to be untranslatable.
 
 # Tool 1 version `5.1.0`
 

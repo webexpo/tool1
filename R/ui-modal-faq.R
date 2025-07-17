@@ -709,7 +709,7 @@ ui_panel_usage_accordion <- function(lang = "en") {
                 tags$li(
                     class = "list-group-item",
                     translate(lang = lang, "
-                        The express mode shows a curated subset of results in a
+                        Express mode shows a curated subset of results in a
                         single Statistical Inference panel. It is the default
                         mode.
                     ")
@@ -718,7 +718,7 @@ ui_panel_usage_accordion <- function(lang = "en") {
                 tags$li(
                     class = "list-group-item",
                     translate(lang = lang, "
-                        The extended mode has more inputs and shows additional
+                        Extended mode has more inputs and shows additional
                         results split into multiple Statistical Inference
                         panels.
                     ")
@@ -730,10 +730,10 @@ ui_panel_usage_accordion <- function(lang = "en") {
             ")),
 
             tags$p(translate(lang = lang, "
-                The express mode used to be a distinct web application
-                called Tool 1 Express (Simplified) in earlier versions
-                of Tool 1 and Expostats. The latter was integrated into
-                Tool 1 in version 5.0.0.
+                Express mode used to be a distinct web application called
+                Tool 1 Express (Simplified) in earlier versions of Tool 1
+                and Expostats. The latter was integrated into Tool 1 in
+                version 5.0.0.
             "))
         ),
 

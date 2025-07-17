@@ -26,16 +26,6 @@ Français
 
 English
 
-:: Translations: a677adc: Source Text
-
-The express mode shows a curated subset of results in a single Statistical
-Inference panel. It is the default mode.
-
-:: Translations: a677adc: Translation
-
-Le mode express affiche un sous-ensemble de résultats dans un seul panneau
-d'inférence statistique. Il est le mode par défaut.
-
 :: Translations: 449ff93: Source Text
 
 The current situation is %s.
@@ -531,7 +521,8 @@ controlled, but with a limited safety margin.
 
 :: Translations: 4c4b9ae: Translation
 
-# Insert a translation here.
+Si le risque de surexposition se situe entre %s et %s, il est modéré. La
+situation est maîtrisée, mais avec une marge de sécurité limitée.
 
 :: Translations: ad9a641: Source Text
 
@@ -540,18 +531,6 @@ Who created Tool 1?
 :: Translations: ad9a641: Translation
 
 Qui a créé Tool 1?
-
-:: Translations: ca296ff: Source Text
-
-The express mode used to be a distinct web application called Tool 1 Express
-(Simplified) in earlier versions of Tool 1 and Expostats. The latter was
-integrated into Tool 1 in version 5.0.0.
-
-:: Translations: ca296ff: Translation
-
-Le mode express était une application web distincte appelée Tool 1 Express
-(Simplified) dans les versions antérieures de Tool 1 et d'Expostats. Elle a été
-intégrée à Tool 1 dans la version 5.0.0.
 
 :: Translations: 77a3276: Source Text
 
@@ -610,6 +589,16 @@ Above the OEL:
 :: Translations: b817814: Translation
 
 Supérieurs à la VLE:
+
+:: Translations: f542f1c: Source Text
+
+Extended mode has more inputs and shows additional results split into multiple
+Statistical Inference panels.
+
+:: Translations: f542f1c: Translation
+
+Le mode Étendu comporte plus d'entrées et affiche des résultats supplémentaires
+répartis dans plusieurs panneaux d'inférence statistique.
 
 :: Translations: 1d671e4: Source Text
 
@@ -1006,6 +995,16 @@ It is as follows.
 :: Translations: e9989ce: Translation
 
 Elle se présente comme suit.
+
+:: Translations: a0028fe: Source Text
+
+Express mode shows a curated subset of results in a single Statistical
+Inference panel. It is the default mode.
+
+:: Translations: a0028fe: Translation
+
+Le mode Express affiche un sous-ensemble de résultats sélectionnés dans un seul
+panneau d'inférence statistique. Il s'agit du mode par défaut.
 
 :: Translations: 70d45be: Source Text
 
@@ -1444,7 +1443,7 @@ problematic.
 
 :: Translations: c0390ed: Translation
 
-Le schéma décisionnel adopté pour le mode express de Tool 1 a été élaboré lors
+Le schéma décisionnel adopté pour le mode Express de Tool 1 a été élaboré lors
 de la création de la série de vidéos AIHA « %s » (en anglais uniquement). Dans
 ce schéma, atteindre 95%% est idéal et donne une situation acceptable. Ne pas
 atteindre 95%% de confiance mais atteindre 70%% de confiance rend la situation
@@ -1639,7 +1638,8 @@ well controlled.
 
 :: Translations: 854081a: Translation
 
-# Insert a translation here.
+Si le risque de surexposition est inférieur à %s, il est très faible. La
+situation est bien maîtrisée.
 
 :: Translations: d1394d6: Source Text
 
@@ -1804,7 +1804,8 @@ remedial action.
 
 :: Translations: 2c6b20c: Translation
 
-# Insert a translation here.
+Si le risque de surexposition est supérieur à %s, il est élevé. La situation
+nécessite une action corrective.
 
 :: Translations: cf880eb: Source Text
 
@@ -1950,7 +1951,21 @@ an account. You may also send an email to %s, the maintainer of Tool 1.
 
 :: Translations: be1bbe3: Translation
 
-# Insert a translation here.
+Vous pouvez soumettre des bogues, demander des fonctionnalités et fournir une
+rétroaction sur %s si vous disposez d'un compte. Vous pouvez également envoyer
+un courriel à %s, le responsable de Tool 1.
+
+:: Translations: 84fd2eb: Source Text
+
+Express mode used to be a distinct web application called Tool 1 Express
+(Simplified) in earlier versions of Tool 1 and Expostats. The latter was
+integrated into Tool 1 in version 5.0.0.
+
+:: Translations: 84fd2eb: Translation
+
+Le mode Express était une application web distincte appelée Tool 1 Express
+(Simplified) dans les versions antérieures de Tool 1 et d'Expostats. Cette
+dernière a été intégrée à l'outil 1 dans la version 5.0.0.
 
 :: Translations: 8d5cf97: Source Text
 
@@ -1967,16 +1982,6 @@ Current Sample
 :: Translations: 897e74a: Translation
 
 Échantillon actuel
-
-:: Translations: b5fe242: Source Text
-
-The extended mode has more inputs and shows additional results split into
-multiple Statistical Inference panels.
-
-:: Translations: b5fe242: Translation
-
-Le mode étendu a plus d'entrées et montre des résultats supplémentaires
-répartis dans plusieurs panneaux d'inférence statistique.
 
 :: Translations: 5518029: Source Text
 
