@@ -96,12 +96,12 @@ version of Tool 1 and Tool 1 Express (it is now *out of beta*).
 
 * Fixed incorrect descriptions of the Exceedance Plot's variants.
 
-* Mode names were revamped: `default` is now `extended` and `simplified` is now
-  `express`. Labels were renamed accordingly.
+* Mode names were revamped: `default` is now Extended and `simplified` is now
+  Express. Labels were renamed accordingly.
 
-* The default mode is now `express` (Tool 1 Express).
+* The default mode is now Express (Tool 1 Express).
 
-* There is a new optional input in extended mode: Occupational Exposure Limit
+* There is a new optional input in Extended mode: Occupational Exposure Limit
   Multiplier. Use this value to modify the OEL with an arbitrary multiplier.
   The resulting product of these values will be used as the effective OEL in
   all subsequent calculations and analyses.

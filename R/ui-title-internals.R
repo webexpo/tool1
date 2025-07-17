@@ -43,8 +43,7 @@
 #' @param mode A character string equal to `"express"` (the default) or
 #'   `"extended"`.
 #'
-#' @param color A character string equal to `"light" (the default)` or
-#'   `"dark"`.
+#' @param color A character string equal to `"light" (the default)` or `"dark"`.
 #'
 #' @template param-lang-str
 #'
