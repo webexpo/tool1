@@ -31,8 +31,21 @@
 .pub <- function(region = c("dev", "prod")) {
     region <- match.arg(region)
     path_dir_assets <- getOption("app_path_dir_assets")
+    region_meta <- switch(region,
+        dev  = getOption("app_shinyapps_meta_dev"),
+        prod = getOption("app_shinyapps_meta_prod")
+    )
 
-    cat(sprintf("Generating HTML files from source Markdown files."), sep = "\n")
+    cat("Setting account info from environment variables.", sep = "\n")
+
+    rsconnect::setAccountInfo(
+        server = "shinyapps.io",
+        name   = Sys.getenv("RSCONNECT_ACCOUNT_NAME"),
+        token  = Sys.getenv("RSCONNECT_ACCOUNT_TOKEN"),
+        secret = Sys.getenv("RSCONNECT_ACCOUNT_SECRET")
+    )
+
+    cat("Generating HTML files from source Markdown files.", sep = "\n")
 
     # Local function that encapsulates common rmarkdown parameters.
     # File paths must be relative to the input of rmarkdown::render().
@@ -74,25 +87,12 @@
 
     cat(sprintf("Deploying app to the '%s' region.", region), sep = "\n")
 
-    rsconnect::setAccountInfo(
-        server = "shinyapps.io",
-        name   = Sys.getenv("RSCONNECT_ACCOUNT_NAME"),
-        token  = Sys.getenv("RSCONNECT_ACCOUNT_TOKEN"),
-        secret = Sys.getenv("RSCONNECT_ACCOUNT_SECRET")
-    )
-
-    # Determine the remote instance to replace.
-    app_to_deploy <- switch(region,
-        prod = c(id = 13889847L, name = "tool1"),
-        dev  = c(id = 14521166L, name = "tool1-beta")
-    )
-
     return(
         invisible(
             rsconnect::deployApp(
                 account        = Sys.getenv("RSCONNECT_ACCOUNT_NAME"),
-                appId          = app_to_deploy[["id"]],
-                appName        = app_to_deploy[["name"]],
+                appId          = region_meta$id,
+                appName        = region_meta$meta,
                 appTitle       = "Tool1: Data Interpretation for One Similar Exposure Group (SEG)",
                 appMode        = "shiny",
                 appVisibility  = "public",
