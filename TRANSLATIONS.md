@@ -136,8 +136,17 @@ Limit and its acronym (OEL).
 
 ## Proper Nouns
 
-The convention is to treat the following terms and names as untranslatable
-proper nouns. Do not translate them.
+Treat the following terms and names as proper nouns in all languages.
+
+- Tool 1
+- Express mode
+- Extended mode
+
+### Untranslatable Proper Nouns
+
+Treat the following terms and names as untranslatable proper nouns. Do not
+translate them. They should be written *as is* (using the Latin alphabet)
+whenever possible.
 
 - Tool 1
 
