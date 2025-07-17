@@ -11,7 +11,8 @@
 #' they are not translated.
 #'
 #' The Head Module is static. It has no corresponding `server_head()` function
-#' like other modules.
+#' like other modules. Consequently, `id` is required (and checked) for
+#' consistency, but ignored otherwise.
 #'
 #' @template param-id
 #'
@@ -27,8 +28,7 @@
 ui_head <- function(id, lang_names = tr$native_languages) {
     ns <- shiny::NS(id)
     langs <- names(lang_names)
-
-    return(
+    head <- htmltools::singleton(
         tags$head(
             # General Metadata -------------------------------------------------
 
@@ -180,9 +180,9 @@ ui_head <- function(id, lang_names = tr$native_languages) {
 
             # Scripts ----------------------------------------------------------
 
-            tags$script(src = "main.js"),
-
-            shinyjs::useShinyjs()
+            tags$script(src = "main.js")
         )
     )
+
+    return(htmltools::tagList(head, shinyjs::useShinyjs()))
 }
