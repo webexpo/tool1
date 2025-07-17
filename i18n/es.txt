@@ -1603,7 +1603,7 @@ The default mode is Tool 1 Express.
 
 :: Translations: 87ae55d: Translation
 
-El modo predeterminado es Tool 1 Express.
+El modo predeterminado es Tool 1 Expreso.
 
 :: Translations: 18576cd: Source Text
 
@@ -1691,7 +1691,7 @@ Tool 1 Express
 
 :: Translations: 5f29b65: Translation
 
-Tool 1 Express
+Tool 1 Expreso
 
 :: Translations: ac24260: Source Text
 
