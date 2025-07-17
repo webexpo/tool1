@@ -128,6 +128,19 @@ are implemented as code by the maintainers).
 
 # Further Instructions
 
+## Scientific Terms
+
+Unless stated otherwise, all scientific terms and acronyms must be translated.
+For example, you must provide a translation for both Occupational Exposure
+Limit and its acronym (OEL).
+
+## Proper Nouns
+
+The convention is to treat the following terms and names as untranslatable
+proper nouns. Do not translate them.
+
+- Tool 1
+
 ## Placeholders
 
 Tool 1 uses placeholders to inject text into other text: `%s`, `%i`, `%%`, etc.
