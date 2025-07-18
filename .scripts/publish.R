@@ -16,15 +16,6 @@
 #'
 #' @param region A character string. It must be equal to `"prod"`, or `"dev"`.
 #'
-#' @param account A non-empty and non-NA character string.
-#'
-#' @param version A non-empty and non-NA character string.
-#'
-#' @param release_date A non-empty and non-NA character string.
-#'
-#' @param assets_dir A non-empty and non-NA character string. The
-#'   location of further static assets such as HTML documents.
-#'
 #' @returns The output of [rsconnect::deployApp()].
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
@@ -37,22 +28,24 @@
 #' .pub()
 #' .pub("dev")
 #' .pub("prod")
-.pub <- function(
-    region       = c("dev", "prod"),
-    account      = "lavoue",
-    version      = default_version[["number"]],
-    release_date = default_version[["release_date"]],
-    assets_dir   = default_assets_dir)
-{
+.pub <- function(region = c("dev", "prod")) {
     region <- match.arg(region)
+    path_dir_assets <- getOption("app_path_dir_assets")
+    region_meta <- switch(region,
+        dev  = getOption("app_shinyapps_meta_dev"),
+        prod = getOption("app_shinyapps_meta_prod")
+    )
 
-    stopifnot(exprs = {
-        is_chr1(account)
-        is_chr1(version)
-        is_chr1(release_date)
-    })
+    cat("Setting account info from environment variables.", sep = "\n")
 
-    cat(sprintf("Generating HTML files from source Markdown files."), sep = "\n")
+    rsconnect::setAccountInfo(
+        server = "shinyapps.io",
+        name   = Sys.getenv("RSCONNECT_ACCOUNT_NAME"),
+        token  = Sys.getenv("RSCONNECT_ACCOUNT_TOKEN"),
+        secret = Sys.getenv("RSCONNECT_ACCOUNT_SECRET")
+    )
+
+    cat("Generating HTML files from source Markdown files.", sep = "\n")
 
     # Local function that encapsulates common rmarkdown parameters.
     # File paths must be relative to the input of rmarkdown::render().
@@ -64,10 +57,10 @@
                 toc_float   = list(collapsed = TRUE, smooth_scroll = FALSE),
                 mathjax     = NULL,
                 theme       = bslib::bs_theme(5L, "shiny"),
-                css         = file.path(assets_dir, "_main.css"),
+                css         = file.path(path_dir_assets, "_main.css"),
                 pandoc_args = c("--metadata", sprintf("title=%s", title)),
                 includes    = rmarkdown::includes(
-                    in_header = file.path(assets_dir, "_head.html")
+                    in_header = file.path(path_dir_assets, "_head.html")
                 )
             )
         )
@@ -79,7 +72,7 @@
         input         = "NEWS.md",
         runtime       = "static",
         quiet         = TRUE,
-        output_file   = file.path(assets_dir, "news.html"),
+        output_file   = file.path(path_dir_assets, "news.html"),
         output_format = html_document("Expostats - Tool 1 Changelog")
     )
 
@@ -88,47 +81,25 @@
         input         = "TRANSLATIONS.md",
         runtime       = "static",
         quiet         = TRUE,
-        output_file   = file.path(assets_dir, "translations.html"),
+        output_file   = file.path(path_dir_assets, "translations.html"),
         output_format = html_document("Expostats - Tool 1 Translations")
     )
 
     cat(sprintf("Deploying app to the '%s' region.", region), sep = "\n")
 
-    rsconnect::setAccountInfo(
-        server = "shinyapps.io",
-        name   = Sys.getenv("RSCONNECT_ACCOUNT_NAME"),
-        token  = Sys.getenv("RSCONNECT_ACCOUNT_TOKEN"),
-        secret = Sys.getenv("RSCONNECT_ACCOUNT_SECRET")
-    )
-
-    # Determine the remote instance to replace.
-    app_to_deploy <- switch(region,
-        prod = c(id = 13889847L, name = "tool1"),
-        dev  = c(id = 14521166L, name = "tool1-beta")
-    )
-
     return(
         invisible(
             rsconnect::deployApp(
-                account        = account,
-                appId          = app_to_deploy[["id"]],
-                appName        = app_to_deploy[["name"]],
+                account        = Sys.getenv("RSCONNECT_ACCOUNT_NAME"),
+                appId          = region_meta$id,
+                appName        = region_meta$meta,
                 appTitle       = "Tool1: Data Interpretation for One Similar Exposure Group (SEG)",
                 appMode        = "shiny",
                 appVisibility  = "public",
                 logLevel       = "normal",
                 launch.browser = FALSE,
                 lint           = FALSE,
-                forceUpdate    = FALSE,
-                metadata       = list(
-                    region               = region,
-                    version_number       = version,
-                    version_release_date = release_date,
-                    license              = "MIT + file LICENSE",
-                    bug_reports          = "https://github.com/webexpo/app-tool1/issues",
-                    encoding             = "UTF-8",
-                    language             = "en"
-                )
+                forceUpdate    = FALSE
             )
         )
     )

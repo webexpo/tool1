@@ -27,17 +27,12 @@
 #'
 #' The banner is shown whenever the Shiny engine is blocked.
 #'
-#' @details
-#' This module implicitly relies on values defined in `R/global.R` and
-#' `R/helpers*.R` scripts. They are sourced by [shiny::runApp()].
-#'
 #' @template param-id
 #'
 #' @template param-lang
 #'
-#' @returns
-#' [ui_banner()] returns a `shiny.tag` object
-#' (an output of [shiny::conditionalPanel()]).
+#' @returns [ui_banner()] returns a `shiny.tag` object (an output of
+#'   [shiny::conditionalPanel()]).
 #'
 #' [server_banner()] returns `NULL`, invisibly.
 #'

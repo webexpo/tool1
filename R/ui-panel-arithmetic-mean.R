@@ -25,21 +25,15 @@
 #' -------------------------------------------------
 #' ```
 #'
-#' @details
-#' This module implicitly relies on values defined in `R/global.R` and
-#' `R/helpers*.R` scripts. They are sourced by [shiny::runApp()].
-#'
 #' @template param-id
 #'
 #' @template param-lang
 #'
-#' @template param-parameters
+#' @template param-inputs-calc
 #'
-#' @template param-bayesian-analysis
+#' @template param-simulations
 #'
-#' @template param-num-results
-#'
-#' @template param-estimates-params
+#' @template param-results
 #'
 #' @returns
 #' [ui_panel_arithmetic_mean()] returns a `shiny.tag` object
@@ -58,12 +52,14 @@
 #' @export
 ui_panel_arithmetic_mean <- function(id) {
     ns <- shiny::NS(id)
+    card_height      <- getOption("app_card_height_md")
+    card_height_text <- getOption("app_card_height_sm")
 
     # Risk Assessment ----------------------------------------------------------
 
     risk_assessment <- bslib::card(
         id     = ns("risk_assessment_card"),
-        height = default_card_height_text_only,
+        height = card_height_text,
 
         bslib::card_header(
             id = ns("risk_assessment_header"),
@@ -108,7 +104,7 @@ ui_panel_arithmetic_mean <- function(id) {
     # Risk Meter ---------------------------------------------------------------
 
     risk_meter <- bslib::card(
-        height      = default_card_height,
+        height      = card_height,
         full_screen = TRUE,
 
         bslib::card_header(
@@ -131,7 +127,7 @@ ui_panel_arithmetic_mean <- function(id) {
     # Estimates ----------------------------------------------------------------
 
     estimates <- bslib::card(
-        height = default_card_height_text_only,
+        height = card_height_text,
 
         bslib::card_header(
             bslib::card_title(
@@ -179,7 +175,7 @@ ui_panel_arithmetic_mean <- function(id) {
     # Sequential Plot ----------------------------------------------------------
 
     seq_plot <- bslib::card(
-        height      = default_card_height,
+        height      = card_height,
         full_screen = TRUE,
 
         bslib::card_header(
@@ -202,7 +198,7 @@ ui_panel_arithmetic_mean <- function(id) {
     # Density Plot -------------------------------------------------------------
 
     density_plot <- bslib::card(
-        height      = default_card_height,
+        height      = card_height,
         full_screen = TRUE,
 
         bslib::card_header(
@@ -225,7 +221,7 @@ ui_panel_arithmetic_mean <- function(id) {
     # Risk Band Plot -----------------------------------------------------------
 
     risk_band_plot <- bslib::card(
-        height      = default_card_height,
+        height      = card_height,
         full_screen = TRUE,
 
         bslib::card_header(
@@ -273,17 +269,15 @@ ui_panel_arithmetic_mean <- function(id) {
 server_panel_arithmetic_mean <- function(
     id,
     lang,
-    parameters,
-    bayesian_analysis,
-    num_results,
-    estimates_params)
+    inputs_calc,
+    simulations,
+    results)
 {
     stopifnot(exprs = {
         shiny::is.reactive(lang)
-        shiny::is.reactive(parameters)
-        shiny::is.reactive(bayesian_analysis)
-        shiny::is.reactive(num_results)
-        shiny::is.reactive(estimates_params)
+        shiny::is.reactive(inputs_calc)
+        shiny::is.reactive(simulations)
+        shiny::is.reactive(results)
     })
 
     server <- function(input, output, session) {
@@ -292,14 +286,8 @@ server_panel_arithmetic_mean <- function(
         }) |>
         shiny::bindCache(lang())
 
-        risk_assessment <- shiny::reactive({
-            risk_level <- if (num_results()$am.risk >= parameters()$psi) {
-                "problematic"
-            } else {
-                "acceptable"
-            }
-
-            aiha_risk_levels$metadata[[risk_level]]
+        risk_level <- shiny::reactive({
+            get_risk_level_info(results()$.risk_levels$am, lang())
         })
 
         output$title <- shiny::renderText({
@@ -348,19 +336,18 @@ server_panel_arithmetic_mean <- function(
 
         output$risk_assessment <- shiny::renderUI({
             lang <- lang()
-            parameters <- parameters()
-            num_results <- num_results()
-            risk_assessment <- risk_assessment()
+            risk_level <- risk_level()
+            inputs_calc <- inputs_calc()
 
             li_classes <- sprintf(
                 "list-group-item bg-%s-subtle border-%1$s",
-                risk_assessment$color
+                risk_level$color
             )
 
             tags$ul(
                 class = sprintf(
                     "list-group list-group-flush bg-%s-subtle border-%1$s",
-                    risk_assessment$color
+                    risk_level$color
                 ),
 
                 tags$li(
@@ -378,7 +365,7 @@ server_panel_arithmetic_mean <- function(
                             The probability that this criterion is met is equal
                             to %s.
                         "),
-                        tags$strong(as_percentage(num_results$am.risk))
+                        tags$strong(as_percentage(results()$am.risk))
                     )
                 ),
 
@@ -389,7 +376,7 @@ server_panel_arithmetic_mean <- function(
                             The probability that this criterion is met should
                             be lower than %s.
                         "),
-                        tags$strong(as_percentage(parameters$psi))
+                        tags$strong(as_percentage(inputs_calc$psi))
                     )
                 ),
 
@@ -397,10 +384,14 @@ server_panel_arithmetic_mean <- function(
                     class = li_classes,
                     html(
                         translate(lang = lang, "The current situation is %s."),
-                        tags$strong(risk_assessment$get_text(lang))
+                        tags$strong(risk_level$name)
                     )
                 )
             )
+        })
+
+        output$risk_assessment_icon <- shiny::renderUI({
+            risk_level()$icon
         })
 
         output$risk_assessment_warning <- shiny::renderText({
@@ -419,21 +410,17 @@ server_panel_arithmetic_mean <- function(
         }) |>
         shiny::bindCache(lang())
 
-        output$risk_assessment_icon <- shiny::renderUI({
-            risk_assessment()$icon
-        })
-
         output$risk_meter_plot <- shiny::renderPlot({
             dessinerRisqueMetre(
-                actualProb          = num_results()$am.risk,
-                minProbUnacceptable = parameters()$psi
+                actualProb          = results()$am.risk,
+                minProbUnacceptable = inputs_calc()$psi
             )
         })
 
         output$risk_meter_plot_desc <- shiny::renderText({
             translate(lang = lang(), "
-                This risk meter shows the probability of the exposure being too
-                high when compared to the OEL. The red zone indicates a
+                This risk meter shows the probability of the exposure being
+                too high when compared to the OEL. The red zone indicates a
                 problematic exposure.
             ")
         }) |>
@@ -441,7 +428,7 @@ server_panel_arithmetic_mean <- function(
 
         output$estimates_params <- shiny::renderUI({
             lang <- lang()
-            estimates_params <- estimates_params()
+            results <- results()
 
             list(
                 tags$li(
@@ -451,7 +438,7 @@ server_panel_arithmetic_mean <- function(
                             The point estimate of the geometric mean is equal
                             to %s.
                         "),
-                        tags$strong(estimates_params$gm)
+                        tags$strong(results$.intervals$gm)
                     )
                 ),
 
@@ -462,7 +449,7 @@ server_panel_arithmetic_mean <- function(
                             The point estimate of the geometric standard
                             deviation is equal to %s.
                         "),
-                        tags$strong(estimates_params$gsd)
+                        tags$strong(results$.intervals$gsd)
                     )
                 )
             )
@@ -470,7 +457,7 @@ server_panel_arithmetic_mean <- function(
 
         output$estimates_mean <- shiny::renderUI({
             lang <- lang()
-            am <- lapply(num_results()$am, signif, digits = default_n_digits)
+            results <- results()
 
             list(
                 tags$li(
@@ -480,9 +467,7 @@ server_panel_arithmetic_mean <- function(
                             The point estimate of the arithmetic mean is
                             equal to %s.
                         "),
-                        tags$strong(
-                            sprintf("%s [%s - %s]", am$est, am$lcl, am$ucl)
-                        )
+                        tags$strong(results$.intervals$am)
                     )
                 ),
 
@@ -492,9 +477,7 @@ server_panel_arithmetic_mean <- function(
                         translate(lang = lang, "
                             The 70%% upper confidence limit is equal to %s.
                         "),
-                        tags$strong(
-                            signif(num_results()$am.ucl70, default_n_digits)
-                        )
+                        tags$strong(results$.rounded$am.ucl70)
                     )
                 ),
 
@@ -504,9 +487,7 @@ server_panel_arithmetic_mean <- function(
                         translate(lang = lang, "
                             The 95%% upper confidence limit is equal to %s.
                         "),
-                        tags$strong(
-                            signif(num_results()$am.ucl95, default_n_digits)
-                        )
+                        tags$strong(results$.rounded$am.ucl95)
                     )
                 )
             )
@@ -521,7 +502,7 @@ server_panel_arithmetic_mean <- function(
 
         output$seq_plot <- shiny::renderPlot({
             lang <- lang()
-            results <- num_results()
+            results <- results()
 
             sequential.plot.am(
                 gm        = results$gm$est,
@@ -549,12 +530,12 @@ server_panel_arithmetic_mean <- function(
 
         output$density_plot <- shiny::renderPlot({
             lang <- lang()
-            results <- num_results()
-            bayesian_analysis <- bayesian_analysis()
+            results <- results()
+            simulations <- simulations()
 
             distribution.plot.am(
-                gm         = exp(median(bayesian_analysis$mu.chain)),
-                gsd        = exp(median(bayesian_analysis$sigma.chain)),
+                gm         = exp(median(simulations$mu.chain)),
+                gsd        = exp(median(simulations$sigma.chain)),
                 am         = results$am$est,
                 c.oel      = results$c.oel,
                 distplot.1 = translate(lang = lang, "Concentration"),
@@ -577,14 +558,14 @@ server_panel_arithmetic_mean <- function(
 
         output$risk_band_plot <- shiny::renderPlot({
             lang <- lang()
-            parameters <- parameters()
-            bayesian_analysis <- bayesian_analysis()
+            inputs_calc <- inputs_calc()
+            simulations <- simulations()
 
             riskband.plot.am(
-                mu.chain    = bayesian_analysis$mu.chain,
-                sigma.chain = bayesian_analysis$sigma.chain,
-                c.oel       = num_results()$c.oel,
-                psi         = parameters$psi,
+                mu.chain    = simulations$mu.chain,
+                sigma.chain = simulations$sigma.chain,
+                c.oel       = results()$c.oel,
+                psi         = inputs_calc$psi,
                 riskplot.2  = translate(lang = lang, "Probability"),
                 riskplot.3  = translate(lang = lang, "≤ 1% OEL"),
                 riskplot.4  = translate(lang = lang, "1% < OEL ≤ 10%"),
@@ -616,42 +597,39 @@ server_panel_arithmetic_mean <- function(
         # of the risk assessment card based on the
         # risk level.
         shiny::observe({
-            risk_level <- risk_assessment()$level
-            color_acceptable  <- aiha_risk_levels$metadata$acceptable$color
-            color_problematic <- aiha_risk_levels$metadata$problematic$color
+            level <- risk_level()$level
+            colors <- get_risk_level_colors()
 
-            # Use green colors if the risk is acceptable.
             shinyjs::toggleClass(
                 id        = "risk_assessment_header",
-                class     = sprintf("border-%s text-%1$s", color_acceptable),
-                condition = { risk_level == "acceptable" }
+                class     = sprintf("border-%s text-%1$s", colors[[1L]]),
+                condition = { level == 1L }
             )
             shinyjs::toggleClass(
                 id        = "risk_assessment_card",
-                class     = sprintf("border-%s bg-%1$s-subtle", color_acceptable),
-                condition = { risk_level == "acceptable" }
+                class     = sprintf("border-%s bg-%1$s-subtle", colors[[1L]]),
+                condition = { level == 1L }
             )
 
-            # Use red colors if the risk is problematic.
             shinyjs::toggleClass(
                 id        = "risk_assessment_header",
-                class     = sprintf("border-%s text-%1$s", color_problematic),
-                condition = { risk_level == "problematic" }
+                class     = sprintf("border-%s text-%1$s", colors[[3L]]),
+                condition = { level == 3L }
             )
             shinyjs::toggleClass(
                 id        = "risk_assessment_card",
-                class     = sprintf("border-%s bg-%1$s-subtle", color_problematic),
-                condition = { risk_level == "problematic" }
+                class     = sprintf("border-%s bg-%1$s-subtle", colors[[3L]]),
+                condition = { level == 3L }
             )
         }) |>
-        shiny::bindEvent(risk_assessment())
+        shiny::bindEvent(risk_level())
 
         # Show the warning sub-card in the main
         # risk_assessment card when it is rendered.
         shiny::observe({
             shinyjs::toggle("risk_assessment_warning_card")
         }) |>
-        shiny::bindEvent(risk_assessment(), once = TRUE)
+        shiny::bindEvent(risk_level(), once = TRUE)
 
         return(title)
     }

@@ -19,10 +19,6 @@
 #' ---------------------------------------------
 #' ```
 #'
-#' @details
-#' This module implicitly relies on values defined in `R/global.R` and
-#' `R/helpers*.R` scripts. They are sourced by [shiny::runApp()].
-#'
 #' @template param-id
 #'
 #' @template param-lang
@@ -423,18 +419,22 @@ server_sidebar <- function(id, lang, mode, panel_active) {
         return(
             shiny::reactive({
                 switch(mode(),
-                    express = c(
-                        oel  = input$oel,
-                        data = input$data,
-                        default_express_inputs
+                    express = list(
+                        oel            = input$oel,
+                        data           = input$data,
+                        oel_multiplier = getOption("app_express_oel_multiplier"),
+                        conf           = getOption("app_express_conf"),
+                        psi            = getOption("app_express_psi"),
+                        frac_threshold = getOption("app_express_frac_threshold"),
+                        target_perc    = getOption("app_express_target_perc")
                     ),
                     # Default case (mode == "extended").
                     list(
                         oel            = input$oel,
+                        data           = input$data,
                         oel_multiplier = input$oel_multiplier,
                         conf           = input$conf,
                         psi            = input$psi,
-                        data           = input$data,
                         frac_threshold = input$frac_threshold,
                         target_perc    = input$target_perc
                     )

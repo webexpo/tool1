@@ -9,17 +9,38 @@
 #'
 #' @seealso
 #' [Startup process](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html)
+#'
+#' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 
 # Set the default source language.
 transltr::language_source_set("en")
 
+# Set global options.
+# Options specific to Tool 1 are prefixed by app_.
 options(
-    shiny.autoload.r       = TRUE,
-    transltr.path          = file.path("intl", "_translator.yml"),
-    transltr.verbose       = TRUE,
-    warnPartialMatchArgs   = TRUE,
-    warnPartialMatchDollar = TRUE,
-    warnPartialMatchAttr   = TRUE
+    app_version                 = "5.2.0",
+    app_release_date            = "2025-07-18",
+    app_shinyapps_meta_dev      = list(id = 14521166L, name = "tool1-beta"),
+    app_shinyapps_meta_prod     = list(id = 13889847L, name = "tool1"),
+    app_card_height_md          = "600px",
+    app_card_height_sm          = "425px",
+    app_card_height_xs          = "300px",
+    app_path_dir_assets         = file.path("www", "assets"),
+    app_path_dir_images         = file.path("www", "assets", "images"),
+    app_missing_translation_msg = "{no translation}",
+    app_n_signif_digits         = 3L,
+    app_number_bayes_iter       = 25000L,
+    app_express_oel_multiplier  = 1,
+    app_express_conf            = 90,
+    app_express_psi             = 30,
+    app_express_frac_threshold  = 5,
+    app_express_target_perc     = 95,
+    shiny.autoload.r            = TRUE,
+    transltr.path               = file.path("i18n", "_translator.yml"),
+    transltr.verbose            = TRUE,
+    warnPartialMatchArgs        = TRUE,
+    warnPartialMatchDollar      = TRUE,
+    warnPartialMatchAttr        = TRUE
 )
 
 # Development Tools ------------------------------------------------------------

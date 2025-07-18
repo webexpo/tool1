@@ -6,7 +6,7 @@
 # Tool 1: Data Interpretation for One Similar Exposure Group (SEG)
 
 <!-- badges: start -->
-[![Version](https://img.shields.io/badge/version-5.1.0-blue)](https://github.com/webexpo/app-tool1/releases/tag/v5.1.0)
+[![Version](https://img.shields.io/badge/version-5.2.0-blue)](https://github.com/webexpo/app-tool1/releases/tag/v5.2.0)
 [![Lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Location](https://img.shields.io/badge/live-shinyapps.io-5b90bf)](https://lavoue.shinyapps.io/tool1/)
 [![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://github.com/webexpo/tool1/blob/main/LICENSE.md)
@@ -48,8 +48,17 @@ are thoroughly described in
 
 ## Requirements
 
-R version `4.4.0` is required to work on and serve Tool 1 locally. To be
-completed.
+R version `4.4.0` is required to work on and serve Tool 1 locally. These
+packages (and their transitive dependencies) are required.
+
+- `shiny`
+- `bslib`
+- `ggplot2`
+- `ggimage`
+- `htmltools`
+- `rjags`
+- `randtoolbox`
+- `transltr`
 
 ## Usage
 
@@ -89,7 +98,75 @@ RSCONNECT_ACCOUNT_TOKEN=<token>
 RSCONNECT_ACCOUNT_SECRET=<secret>
 ```
 
-## Internationalization
+## General Structure
+
+The project is organized as a standard Shiny application as follows.
+
+```
+./
+├── .local/
+|   └── [temporary files ignored by Git scoped to each developer]
+|
+├── .scripts/
+|   └── [scripts used while developing and ignored at runtime]
+|
+├── i18n/
+|   └── [data used for internationalization (i18n) purposes]
+|
+├── man-roxygen/
+|   └── [shared/common roxygen2 tags used more than once]
+|
+├── R/
+|   └── [objects, constants, functions, etc.]
+|
+├── rsconnect/
+|   └── [metadata on latest deployments]
+|
+├── scripts/
+|   └── [official Expostats scripts and functions]
+|
+├── wwww/
+│   ├── assets/
+│   |   └── images/
+|   |       └── [static images (any format)]
+|   └── [static files served at runtime under root path]
+|
+└── [usual top-level source files]
+```
+
+Most objects are defined in `.Rprofile`, `app.R`, and in `R/`. For historical
+reasons, all Expostats functions are stored in `scripts/`. They are explicitly
+sourced at runtime by `R/global.R`. Other files are sourced automatically.
+
+### Static Assets
+
+Static assets are stored in `www/` and served under the root URL at runtime.
+For example, file `www/favicon.ico` is served under `/favicon.ico`.
+
+### Naming Conventions
+
+`snake_case_with_lower_cases` is used at all times.
+
+CSS classes use `dash-case-with-lower-cases` for consistency with usual
+best practices in web development. Each CSS class name must be prefixed
+by `app-`.
+
+### Namespaces
+
+For historical reasons (again), scripts stored in `scripts/` do not reference
+namespaces (packages). Consequently, some packages are explicitly attached to
+the search path (see `R/global.R`). This is a bad practice from which Tool 1
+is moving away.
+
+```r
+# Good
+transltr::language_source_get()
+
+# Bad
+language_source_get()
+```
+
+## Internationalization (i18n)
 
 > We are actively looking for external collaborators who could help us with
 > supporting more languages. If you are interested, please send an e-mail
@@ -97,7 +174,7 @@ RSCONNECT_ACCOUNT_SECRET=<secret>
 
 Tool 1 relies on package [transltr](https://cran.r-project.org/package=transltr)
 to support multiple languages. Translations (and related metadata) are stored
-in `intl/`. To update its content, call
+in `i18n/`. To update its content, call
 
 ```r
 .find()
@@ -108,20 +185,16 @@ in `intl/`. To update its content, call
 Tool 1 further supports translation of ordinal numbers. Each supported
 language requires an `ordinal_rules_<lang>()` function. For example, the
 `ordinal_rules_english()` function implements grammar rules for English
-ordinal numbers. See `R/helpers-translate.R` for more information.
+ordinal numbers. See `R/i18n.R` for more information.
 
-### Working with translation files stored in `intl/`
+### Working With Translation Files
 
 All files are **required at runtime** and read by `transltr::translator_read()`
 to create global constant `tr`.
 
-#### Translator file
-
 The `_translator.yml` file must **never be modified manually**. It should not
 be shared with collaborators working on translations. Notably, developers may
 consult it to locate translations in the source code.
-
-#### Translation files
 
 Further `<lang>.txt` files contain actual translations. These files are shared
 with collaborators working on translations and must be edited manually (using
@@ -135,18 +208,17 @@ files.
 Tool 1 uses `sprintf()-`placeholders (conversion specifications beginning by
 `%`) to dynamically insert HTML content into template strings. Tokens such as
 `%s`, `%i`, and `%%` in the source text and translations **must be left as is**.
-See `R/helpers-html.R` for more information.
+See `R/html.R` for more information.
 
-### Adding new languages
+### Adding New Languages
 
 Follow these steps to support a new language. Use the existing code as a
 template to follow.
 
-1. Implement a dedicated `ordinal_rules_<lang>()` function in
-   `R/helpers-translate.R`.
+1. Implement a dedicated `ordinal_rules_<lang>()` function in `R/i18n.R`.
 
 2. Incorporate the function created at step (1) into `ordinal_rules()` in
-   `R/helpers-translate.R`.
+   `R/i18n.R`.
 
 3. Add a new entry to formal argument `other_lang_names` of `.find()` in
    `.scripts/find-text.R`. Follow instructions contained in the script to
@@ -156,19 +228,15 @@ template to follow.
    `server_title()` respectively. Follow instructions contained in
    `R/ui-title.R` to do so (see subsection Languages).
 
-   * You may add class `disabled` to the `shiny::actionButton()` created at
-     step (4) to deactivate the language in the user interface until further
-     notice. This is entirely optional.
-
 5. Call `.find()`.
 
-6. Share the `intl/<lang>.txt` file created at step (5) with collaborator(s)
+6. Share the `i18n/<lang>.txt` file created at step (5) with collaborator(s)
    in charge of translating Tool 1.
 
    * Never share the `_translator.yml` file. The latter is only useful to
      developers.
 
-7. Import the `intl/<lang>.txt` file updated at step (6) back into the source
+7. Import the `i18n/<lang>.txt` file updated at step (6) back into the source
    code. **Commit it.**
 
 You may repeat steps (5) to (7) whenever required. Notably, they **must** be
@@ -206,8 +274,6 @@ We may work on these issues in a near future.
     `bslib::bs_current_theme()`.
 
 - There are currently no explicit Terms of Service and Privacy Policy.
-
-- Some usual `<meta>` tags are currently missing from the `<head>` of Tool 1.
 
 ## Bugs and Feedback
 

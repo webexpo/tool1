@@ -30,10 +30,6 @@
 #' The button displays and hides an hidden container. When shown, it is
 #' shown at the center of the page on top of other elements.
 #'
-#' @details
-#' This module implicitly relies on values defined in `R/global.R` and
-#' `R/helpers*.R` scripts. They are sourced by [shiny::runApp()].
-#'
 #' ## Modals
 #'
 #' A modal is a child window layered on top of the main user interface. While
@@ -81,11 +77,6 @@
 #' [Bootstrap Accordions](https://getbootstrap.com/docs/5.3/components/accordion/),
 #' [Bootstrap List Groups](https://getbootstrap.com/docs/5.3/components/list-group/)
 #' [bslib::accordion()]
-#'
-#' @note
-#' Some embedded URLs are ridiculously long and break all usual styling
-#' conventions. They are still written as single character strings for
-#' simplicity.
 #'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
@@ -329,7 +320,7 @@ server_modal_faq <- function(id, lang) {
 
 #' @rdname ui-modal-faq
 #' @export
-ui_panel_intro_accordion <- function(lang = "") {
+ui_panel_intro_accordion <- function(lang = "en") {
     # To preserve space, the return()
     # statement is avoided exceptionally.
     bslib::accordion(
@@ -375,19 +366,59 @@ ui_panel_intro_accordion <- function(lang = "") {
                         at the %s of the %s.
                     "),
 
-                    c(
-                        en = "https://espum.umontreal.ca/english/home",
-                        fr = "https://espum.umontreal.ca/accueil"
-                    ) |>
-                    _[[lang]] |>
-                    ui_link("École de Santé Publique"),
+                    ui_link(
+                        "École de Santé Publique",
+                        href = i18n_url(
+                            "https://espum.umontreal.ca/english/home",
+                            fr = "https://espum.umontreal.ca/accueil"
+                        )[[lang]]
+                    ),
 
-                    c(
-                        en = "https://www.umontreal.ca/en",
-                        fr = "https://www.umontreal.ca"
-                    ) |>
-                    _[[lang]] |>
-                    ui_link("Université de Montréal")
+                    ui_link(
+                        "Université de Montréal",
+                        href = i18n_url(
+                            "https://www.umontreal.ca/en",
+                            fr = "https://www.umontreal.ca"
+                        )[[lang]]
+                    )
+                )
+            )
+        ),
+
+        ## Panel: Who translated Tool 1? ---------------------------------------
+
+        bslib::accordion_panel(
+            title = translate(lang = lang, "Who translated Tool 1?"),
+
+            tags$p(translate(lang = lang, "
+                Tool 1 is available in multiple languages thanks to the
+                following collaborators, who kindly contributed their time,
+                skills, and expertise to provide accurate translations. Many
+                thanks to them!
+            ")),
+
+            tags$p(
+                html(
+                    translate(lang = lang, "
+                        If you notice an error or would like to submit an update,
+                        please send an e-mail to %s. He will gladly submit your
+                        case to the appropriate maintainers listed below.
+                    "),
+                    ui_link_mailto("jerome.lavoue@umontreal.ca", "Jérôme Lavoué")
+                )
+            ),
+
+            tags$div(
+                class = "px-5",
+
+                as_html_table(
+                    read_collaborators(),
+                    colnames = c(
+                        translate(lang = lang, "Language"),
+                        translate(lang = lang, "Role"),
+                        translate(lang = lang, "Profile"),
+                        translate(lang = lang, "Email Address")
+                    )
                 )
             )
         ),
@@ -406,8 +437,8 @@ ui_panel_intro_accordion <- function(lang = "") {
                         to 4.0.0. It oversees non-scientific components of the
                         web application on behalf of Jérôme Lavoué.
                     "),
-                    ui_link(shared_urls$jerome_lavoue, "Jérôme Lavoué"),
-                    ui_link(shared_urls$ununoctium, "Ununoctium")
+                    ui_link(urls$jerome_lavoue, "Jérôme Lavoué"),
+                    ui_link(urls$ununoctium, "Ununoctium")
                 )
             )
         ),
@@ -424,18 +455,10 @@ ui_panel_intro_accordion <- function(lang = "") {
                     translate(lang = lang, "
                         You may submit bugs, request features, and provide
                         feedback on %s if you have an account. You may also
-                        send an email to the current maintainers of Tool 1:
-                        %s and %s.
+                        send an email to %s, the maintainer of Tool 1.
                     "),
-                    ui_link(shared_urls$code, "GitHub"),
-                    ui_link_mailto(
-                        default_maintainers_emails[["jerome_lavoue"]],
-                        "Jérôme Lavoué"
-                    ),
-                    ui_link_mailto(
-                        default_maintainers_emails[["ununoctium"]],
-                        "Ununoctium"
-                    )
+                    ui_link(urls$code, "GitHub"),
+                    ui_link_mailto("jerome.lavoue@umontreal.ca", "Jérôme Lavoué")
                 )
             )
         )
@@ -444,7 +467,7 @@ ui_panel_intro_accordion <- function(lang = "") {
 
 #' @rdname ui-modal-faq
 #' @export
-ui_panel_parameters_accordion <- function(lang = "") {
+ui_panel_parameters_accordion <- function(lang = "en") {
     # To preserve space, the return()
     # statement is avoided exceptionally.
     bslib::accordion(
@@ -484,7 +507,9 @@ ui_panel_parameters_accordion <- function(lang = "") {
                             than one.
                         "),
                         ui_link(
-                            "https://www.nist.gov/system/files/documents/2023/09/26/J-032%20Writing%20with%20the%20SI.pdf",
+                            i18n_url(
+                                "https://www.nist.gov/system/files/documents/2023/09/26/J-032%20Writing%20with%20the%20SI.pdf"
+                            )[[lang]],
                             "J-032"
                         )
                     )
@@ -602,7 +627,9 @@ ui_panel_parameters_accordion <- function(lang = "") {
                         values. See %s for an example.
                     "),
                     ui_link(
-                        "https://academic.oup.com/annweh/article-abstract/60/1/56/2196069",
+                        i18n_url(
+                            "https://academic.oup.com/annweh/article-abstract/60/1/56/2196069"
+                        )[[lang]],
                         "Huynh et al. (2015)"
                     )
                 )
@@ -641,9 +668,11 @@ ui_panel_parameters_accordion <- function(lang = "") {
                             The algorithm used is derived from %s (itself
                             derived from the work of %s).
                         "),
-                        ui_link(shared_urls$ndexpo, "NDExpo"),
+                        ui_link(urls$ndexpo, "NDExpo"),
                         ui_link(
-                            "https://www.practicalstats.com/info2use/books.html",
+                            i18n_url(
+                                "https://www.practicalstats.com/info2use/books.html"
+                            )[[lang]],
                             "Dennis Helsel"
                         )
                     )
@@ -655,7 +684,7 @@ ui_panel_parameters_accordion <- function(lang = "") {
 
 #' @rdname ui-modal-faq
 #' @export
-ui_panel_usage_accordion <- function(lang = "") {
+ui_panel_usage_accordion <- function(lang = "en") {
     # To preserve space, the return()
     # statement is avoided exceptionally.
     bslib::accordion(
@@ -680,7 +709,7 @@ ui_panel_usage_accordion <- function(lang = "") {
                 tags$li(
                     class = "list-group-item",
                     translate(lang = lang, "
-                        The express mode shows a curated subset of results in a
+                        Express mode shows a curated subset of results in a
                         single Statistical Inference panel. It is the default
                         mode.
                     ")
@@ -689,7 +718,7 @@ ui_panel_usage_accordion <- function(lang = "") {
                 tags$li(
                     class = "list-group-item",
                     translate(lang = lang, "
-                        The extended mode has more inputs and shows additional
+                        Extended mode has more inputs and shows additional
                         results split into multiple Statistical Inference
                         panels.
                     ")
@@ -701,10 +730,10 @@ ui_panel_usage_accordion <- function(lang = "") {
             ")),
 
             tags$p(translate(lang = lang, "
-                The express mode used to be a distinct web application
-                called Tool 1 Express (Simplified) in earlier versions
-                of Tool 1 and Expostats. The latter was integrated into
-                Tool 1 in version 5.0.0.
+                Express mode used to be a distinct web application called
+                Tool 1 Express (Simplified) in earlier versions of Tool 1
+                and Expostats. The latter was integrated into Tool 1 in
+                version 5.0.0.
             "))
         ),
 
@@ -816,7 +845,7 @@ ui_panel_usage_accordion <- function(lang = "") {
 
 #' @rdname ui-modal-faq
 #' @export
-ui_panel_metho_accordion <- function(lang = "") {
+ui_panel_metho_accordion <- function(lang = "en") {
     expostats_paper_card <- bslib::card(
         class = "border-primary bg-primary-subtle mx-5",
 
@@ -832,7 +861,9 @@ ui_panel_metho_accordion <- function(lang = "") {
                         3, April 2019, Pages 267-279.
                     "),
                     ui_link(
-                        "https://doi.org/10.1093/annweh/wxy100",
+                        i18n_url(
+                            "https://doi.org/10.1093/annweh/wxy100"
+                        )[[lang]],
                         tags$em(
                             "Expostats: A Bayesian Toolkit to Aid the Interpretation of Occupational Exposure Measurements"
                         )
@@ -964,7 +995,9 @@ ui_panel_metho_accordion <- function(lang = "") {
                                 D63-D70.
                             "),
                             ui_link(
-                                "https://doi.org/10.1080/15459624.2012.663702",
+                                i18n_url(
+                                    "https://doi.org/10.1080/15459624.2012.663702"
+                                )[[lang]],
                                 tags$em("2011 William P. Yant Award Lecture")
                             ),
                             tags$em("Testing Compliance with Occupational Exposure Limits: Development of the British-Dutch Guidance")
@@ -986,7 +1019,7 @@ ui_panel_metho_accordion <- function(lang = "") {
                         situation problematic.
                     "),
                     ui_link(
-                        shared_urls$aiha_videos,
+                        urls$aiha_videos,
                         "Making Accurate Exposure Risk Decisions"
                     )
                 )
@@ -1000,15 +1033,21 @@ ui_panel_metho_accordion <- function(lang = "") {
                         as %4$s.
                     "),
                     ui_link(
-                        "https://www.inrs.fr/dms/inrs/PDF/metropol-strategie-principe/metropol-strategie-principe.pdf",
+                        i18n_url(
+                            "https://www.inrs.fr/dms/inrs/PDF/metropol-strategie-principe/metropol-strategie-principe.pdf"
+                        )[[lang]],
                         translate(lang = lang, "French guidelines")
                     ),
                     ui_link(
-                        "https://knowledge.bsigroup.com/products/workplace-exposure-measurement-of-exposure-by-inhalation-to-chemical-agents-strategy-for-testing-compliance-with-occupational-exposure-limit-values",
+                        i18n_url(
+                            "https://knowledge.bsigroup.com/products/workplace-exposure-measurement-of-exposure-by-inhalation-to-chemical-agents-strategy-for-testing-compliance-with-occupational-exposure-limit-values"
+                        )[[lang]],
                         translate(lang = lang, "European guidelines EN689")
                     ),
                     ui_link(
-                        "https://www.bohs.org/app/uploads/2022/11/Testing-Compliance-with-OELs-for-Airborne-Substances-2022.pdf",
+                        i18n_url(
+                            "https://www.bohs.org/app/uploads/2022/11/Testing-Compliance-with-OELs-for-Airborne-Substances-2022.pdf"
+                        )[[lang]],
                         translate(lang = lang, "Dutch-British guidelines")
                     ),
                     tags$em(translate(lang = lang, "acceptable")),
@@ -1033,7 +1072,7 @@ ui_panel_metho_accordion <- function(lang = "") {
                         scientifice paper. Further details and references are
                         also available on %s.
                     "),
-                    ui_link(shared_urls$expostats[[lang]], "expostats.ca")
+                    ui_link(urls$expostats[[lang]], "expostats.ca")
                 )
             ),
 
@@ -1061,7 +1100,9 @@ ui_panel_metho_accordion <- function(lang = "") {
                 tags$li(
                     class = "list-group-item",
                     ui_link(
-                        "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?pid=0a7847f9-66be-4efb-9752-aed201487e1b",
+                        i18n_url(
+                            "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?pid=0a7847f9-66be-4efb-9752-aed201487e1b"
+                        )[[lang]],
                         "Bayesian Statistics for Non-Statisticians Part 1"
                     ),
                     tags$span(
@@ -1073,7 +1114,9 @@ ui_panel_metho_accordion <- function(lang = "") {
                 tags$li(
                     class = "list-group-item",
                     ui_link(
-                        "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?pid=0a7847f9-66be-4efb-9752-aed201487e1b&id=68aeaea6-3186-44fc-80e0-aeb300b2d326&advance=true",
+                        i18n_url(
+                            "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?pid=0a7847f9-66be-4efb-9752-aed201487e1b&id=68aeaea6-3186-44fc-80e0-aeb300b2d326&advance=true"
+                        )[[lang]],
                         "Bayesian Statistics for Non-Statisticians Part 2"
                     ),
                     tags$span(
@@ -1085,7 +1128,9 @@ ui_panel_metho_accordion <- function(lang = "") {
                 tags$li(
                     class = "list-group-item",
                     ui_link(
-                        "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?id=39e5beaa-8033-4430-8991-b2de0147b366",
+                        i18n_url(
+                            "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?id=39e5beaa-8033-4430-8991-b2de0147b366"
+                        )[[lang]],
                         "Statistical Background"
                     ),
                     tags$span(
@@ -1097,7 +1142,9 @@ ui_panel_metho_accordion <- function(lang = "") {
                 tags$li(
                     class = "list-group-item",
                     ui_link(
-                        "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?id=21e20e15-24aa-4946-8361-b2de0147bae3",
+                        i18n_url(
+                            "https://umontreal.ca.panopto.com/Panopto/Pages/Viewer.aspx?id=21e20e15-24aa-4946-8361-b2de0147bae3"
+                        )[[lang]],
                         "Bayesian Statistics & Overview of Current Recommendations"
                     ),
                     tags$span(
@@ -1126,7 +1173,9 @@ ui_panel_metho_accordion <- function(lang = "") {
                                 Frédéric Clerc (2020). %s (Report R-1065). IRSST.
                             "),
                             ui_link(
-                                "https://pharesst.irsst.qc.ca/cgi/viewcontent.cgi?article=1087&context=rapports-scientifique",
+                                i18n_url(
+                                    "https://pharesst.irsst.qc.ca/cgi/viewcontent.cgi?article=1087&context=rapports-scientifique"
+                                )[[lang]],
                                 tags$em("WebExpo: Towards a Better Interpretation of Measurements of Occupational Exposure to Chemicals In the Workplace")
                             )
                         )

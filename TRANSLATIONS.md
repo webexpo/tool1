@@ -12,11 +12,11 @@ by Tool 1 to manage translations
 
 Translation files are shared by the maintainers of Tool 1 with external
 collaborators. Official versions are
-[stored on GitHub](https://github.com/webexpo/tool1/tree/main/intl).
+[stored on GitHub](https://github.com/webexpo/tool1/tree/main/i18n).
 
 ## Example
 
-[This translation file](https://raw.githubusercontent.com/webexpo/tool1/refs/heads/main/intl/fr.txt)
+[This translation file](https://raw.githubusercontent.com/webexpo/tool1/refs/heads/main/i18n/fr.txt)
 is the official file used for French translations. It has a minimal header
 (lines starting with a `#` sign) containing basic instructions and further
 sections. Most of them are pairs of source text and translation.
@@ -127,6 +127,28 @@ language. Such numbers are handled programmatically (grammar rules for them
 are implemented as code by the maintainers).
 
 # Further Instructions
+
+## Scientific Terms
+
+Unless stated otherwise, all scientific terms and acronyms must be translated.
+For example, you must provide a translation for both Occupational Exposure
+Limit and its acronym (OEL).
+
+## Proper Nouns
+
+Treat the following terms and names as proper nouns in all languages.
+
+- Tool 1
+- Express mode
+- Extended mode
+
+### Untranslatable Proper Nouns
+
+Treat the following terms and names as untranslatable proper nouns. Do not
+translate them. They should be written *as is* (using the Latin alphabet)
+whenever possible.
+
+- Tool 1
 
 ## Placeholders
 

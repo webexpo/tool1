@@ -4,15 +4,13 @@
 #' required translations files.
 #'
 #' @details
-#' This creates or updates the contents of directory intl/.
+#' This creates or updates the contents of directory i18n/.
 #'
 #' Support further languages by adding a new entry to the default value of
-#' formal argument `other_lang_names` of [.find()]. Then, call the latter.
+#' formal argument `other_lang_names` of [.find()] and calling it.
 #'
-#' @param id A character string passed to argument `id` of [transltr::translator()].
-#'
-#' @param path A character string. The path to the translator (YAML) file of
-#'   the project.
+#' @param id A character string. It is passed to argument `id` of
+#'   [transltr::translator()].
 #'
 #' @param source_lang_code A character string. The code of the source language.
 #'
@@ -39,14 +37,18 @@
 #' .find()
 .find <- function(
     id               = "expostats:tool1",
-    path             = getOption("transltr.path"),
-    source_lang_code = transltr::language_source_get(),
+    source_lang_code = "en",
     source_lang_name = "English",
     # Add entries to this argument to support more languages.
     other_lang_names = list(
         fr = "Français"
+        # FIXME: Deactivated until review is completed.
+        # Release as part of a patch version.
+        # es = "Español"
     ))
 {
+    path <- getOption("transltr.path")
+
     # Get the directory holding translations.
     dir <- dirname(path)
 
@@ -62,7 +64,7 @@
         )
     )
 
-    # Detect existing translation files in intl/.
+    # Detect existing translation files in i18n/.
     # The source language (English) never has one.
     files <- file.path(dir, sprintf("%s.txt", names(other_lang_names)))
     files <- files[utils::file_test("-f", files)]
@@ -77,7 +79,7 @@
     lapply(files, transltr::translations_read, tr = tr)
 
     # Export source text and translations.
-    # This updates the contents of intl/.
+    # This updates the contents of i18n/.
     transltr::translator_write(tr, overwrite = TRUE)
 
     # Update any previous Translator object

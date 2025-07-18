@@ -8,9 +8,19 @@
 #'
 #' @returns A logical value.
 #'
+#' @note
+#' All these functions stem from package transltr (they are unexported).
+#'
 #' @examples
-#' is_num1(1L)
-#' is_num1(1.0)
+#' is_lgl1(TRUE)
+#' is_lgl1(FALSE)
+#' is_lgl1(1L)
+#'
+#' is_int1(1L)   # TRUE
+#' is_int1(1.0)  # FALSE
+#'
+#' is_num1(1L)   # TRUE
+#' is_num1(1.0)  # TRUE
 #' is_num1(c(1.3, 2.4, 3.5))
 #' is_num1("Hello")
 #'
@@ -18,15 +28,30 @@
 #' is_chr1("Hello")
 #' is_chr1(c("Hello", "world"))
 #'
+#' is_chr(character())
+#' is_chr(c("a", "b", "c"))
+#'
 #' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
 #'
-#' @rdname helpers-misc-is
+#' @rdname is
+#' @export
+is_lgl1 <- function (x) {
+    return(is.logical(x) && length(x) == 1L && !is.na(x))
+}
+
+#' @rdname is
+#' @export
+is_int1 <- function(x) {
+    return(is.integer(x) && length(x) == 1L && !is.na(x))
+}
+
+#' @rdname is
 #' @export
 is_num1 <- function(x) {
     return(is.numeric(x) && length(x) == 1L && !is.na(x))
 }
 
-#' @rdname helpers-misc-is
+#' @rdname is
 #' @export
 is_chr1 <- function(x, allow_empty = FALSE) {
     return(
@@ -37,22 +62,8 @@ is_chr1 <- function(x, allow_empty = FALSE) {
     )
 }
 
-#' Format Numeric Values as Percentages
-#'
-#' Coerce numeric values to characters, keeping a certain number of digits
-#' and appending a percentage sign to the output.
-#'
-#' @param x Passed as is to [signif()].
-#'
-#' @param digits Passed as is to [signif()].
-#'
-#' @returns A character string.
-#'
-#' @author Jean-Mathieu Potvin (<jeanmathieupotvin@@ununoctium.dev>)
-#'
-#' @rdname helpers-misc-percentages
-#'
+#' @rdname is
 #' @export
-as_percentage <- function(x, digits = default_n_digits) {
-    return(paste0(signif(x, digits), "%"))
+is_chr <- function (x, allow_empty = FALSE) {
+    return(is.character(x) && (length(x) || allow_empty) && !anyNA(x))
 }

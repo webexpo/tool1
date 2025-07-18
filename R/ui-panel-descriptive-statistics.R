@@ -25,15 +25,11 @@
 #' -------------------------------------------------
 #' ```
 #'
-#' @details
-#' This module implicitly relies on values defined in `R/global.R` and
-#' `R/helpers*.R` scripts. They are sourced by [shiny::runApp()].
-#'
 #' @template param-id
 #'
 #' @template param-lang
 #'
-#' @template param-parameters
+#' @template param-inputs-calc
 #'
 #' @template param-data-sample
 #'
@@ -50,11 +46,12 @@
 #' @export
 ui_panel_descriptive_statistics <- function(id) {
     ns <- shiny::NS(id)
+    card_height <- getOption("app_card_height_md")
 
     # Descriptive Statistics ---------------------------------------------------
 
     stats <- bslib::card(
-        height      = default_card_height,
+        height      = card_height,
         full_screen = TRUE,
 
         bslib::card_header(
@@ -66,14 +63,15 @@ ui_panel_descriptive_statistics <- function(id) {
         ),
 
         bslib::card_body(
-            DT::DTOutput(ns("stats"))
+            class = "px-5",
+            shiny::uiOutput(ns("stats"))
         )
     )
 
     # QQ Plot -------------------------------------------------------------------
 
     qq_plot <- bslib::card(
-        height      = default_card_height,
+        height      = card_height,
         full_screen = TRUE,
 
         bslib::card_header(
@@ -96,7 +94,7 @@ ui_panel_descriptive_statistics <- function(id) {
     # Box Plot -----------------------------------------------------------------
 
     box_plot <- bslib::card(
-        height      = default_card_height,
+        height      = card_height,
         full_screen = TRUE,
 
         bslib::card_header(
@@ -139,12 +137,12 @@ ui_panel_descriptive_statistics <- function(id) {
 server_panel_descriptive_statistics <- function(
     id,
     lang,
-    parameters,
+    inputs_calc,
     data_sample)
 {
     stopifnot(exprs = {
         shiny::is.reactive(lang)
-        shiny::is.reactive(parameters)
+        shiny::is.reactive(inputs_calc)
         shiny::is.reactive(data_sample)
     })
 
@@ -154,7 +152,7 @@ server_panel_descriptive_statistics <- function(
         }) |>
         shiny::bindCache(lang())
 
-        data_sample_imputed <- reactive({
+        data_sample_imputed <- shiny::reactive({
             data_sample <- data_sample()
 
             simple.censored.treatment(
@@ -165,45 +163,12 @@ server_panel_descriptive_statistics <- function(
                 intcensored            = data_sample$intcensored)
         })
 
-        output$title <- shiny::renderText({
-            title()
-        })
-
-        output$stats_title <- shiny::renderText({
-            translate(lang = lang(), "Descriptive Statistics")
-        }) |>
-        shiny::bindCache(lang())
-
-        output$qq_plot_title <- shiny::renderText({
-            translate(lang = lang(), "Quantile-Quantile Plot")
-        }) |>
-        shiny::bindCache(lang())
-
-        output$box_plot_title <- shiny::renderText({
-            translate(lang = lang(), "Box and Whiskers Plot")
-        }) |>
-        shiny::bindCache(lang())
-
-        output$stats <- DT::renderDT(server = FALSE, {
+        # The order of row and col names must
+        # match what fun.desc.stat(() returns.
+        stats_dim_names <- shiny::reactive({
             lang <- lang()
-            stats <- as.matrix(
-                fun.desc.stat(
-                    data.simply.imputed = data_sample_imputed(),
-                    c.oel               = data_sample()$c.oel
-                )
-            )
-
-            # Values (statistics) are in the second column.
-            # The first column contains internal row names
-            # that are replaced below.
-            DT::datatable(
-                data     = stats[, "value", drop = FALSE],
-                class    = "stripe hover compact",
-                options  = list(
-                    pageLength  = nrow(stats),
-                    ordering    = FALSE
-                ),
-                rownames = c(
+            list(
+                rows = c(
                     translate(lang = lang, "Number of Obversations"),
                     translate(lang = lang, "Proportion Censored"),
                     translate(lang = lang, "Minimum"),
@@ -228,18 +193,43 @@ server_panel_descriptive_statistics <- function(
                     translate(lang = lang, "Geometric Mean"),
                     translate(lang = lang, "Geometric Standard Deviation")
                 ),
-                colnames = c(
+                cols = c(
                     translate(lang = lang, "Sample Statistic"),
                     translate(lang = lang, "Value")
-                ),
-                # Escape first HTML column (the one containing
-                # row names above) to allow usage of <sup> tags.
-                escape             = -1L,
-                filter             = "none",
-                style              = "bootstrap",
-                editable           = FALSE,
-                autoHideNavigation = TRUE
+                )
             )
+        }) |>
+        shiny::bindCache(lang())
+
+        output$title <- shiny::renderText({
+            title()
+        })
+
+        output$stats_title <- shiny::renderText({
+            translate(lang = lang(), "Descriptive Statistics")
+        }) |>
+        shiny::bindCache(lang())
+
+        output$qq_plot_title <- shiny::renderText({
+            translate(lang = lang(), "Quantile-Quantile Plot")
+        }) |>
+        shiny::bindCache(lang())
+
+        output$box_plot_title <- shiny::renderText({
+            translate(lang = lang(), "Box and Whiskers Plot")
+        }) |>
+        shiny::bindCache(lang())
+
+        output$stats <- shiny::renderUI({
+            lang <- lang()
+            dim_names <- stats_dim_names()
+            stats <- fun.desc.stat(data_sample_imputed(), data_sample()$c.oel)
+
+            # Overwrite internal row names. They are stored in
+            # the first column of whatfun.desc.stat() returns.
+            stats$parameter <- dim_names$rows
+
+            as_html_table(stats, colnames = dim_names$cols)
         })
 
         output$qq_plot <- shiny::renderPlot({
@@ -287,15 +277,15 @@ server_panel_descriptive_statistics <- function(
                 translate(lang = lang, "
                     The measurements are scattered around the x-axis middle
                     point. The box (outer horizontal lines) represents the
-                    distance between the 25%s and 75%s percentiles. The whiskers
-                    (vertical lines) represent the distance between the 10%s and
-                    90%s percentiles. The inner black horizontal line is the
-                    median.
+                    distance between the %s and %s percentiles. The whiskers
+                    (vertical lines) represent the distance between the %s
+                    and %s percentiles. The inner black horizontal line is
+                    the median.
                 "),
-                tags$sup(ordinal_abbr(25L, lang)),
-                tags$sup(ordinal_abbr(75L, lang)),
-                tags$sup(ordinal_abbr(10L, lang)),
-                tags$sup(ordinal_abbr(90L, lang))
+                ordinal(25L, lang),
+                ordinal(75L, lang),
+                ordinal(10L, lang),
+                ordinal(90L, lang)
             )
         }) |>
         shiny::bindCache(lang())

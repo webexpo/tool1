@@ -26,16 +26,6 @@ Français
 
 English
 
-:: Translations: a677adc: Source Text
-
-The express mode shows a curated subset of results in a single Statistical
-Inference panel. It is the default mode.
-
-:: Translations: a677adc: Translation
-
-Le mode express affiche un sous-ensemble de résultats dans un seul panneau
-d'inférence statistique. Il est le mode par défaut.
-
 :: Translations: 449ff93: Source Text
 
 The current situation is %s.
@@ -81,16 +71,6 @@ Vous pouvez également consulter le rapport scientifique du projet Webexpo. Il
 comprend une section introductive consacrée aux statistiques de l'hygiène
 industrielle.
 
-:: Translations: 1232395: Source Text
-
-If the overexposure risk is higher than 30%, it is high. The situation requires
-remedial action.
-
-:: Translations: 1232395: Translation
-
-Si le risque de surexposition est supérieur à 30%, il est élevé. La situation
-nécessite une action corrective.
-
 :: Translations: 78552d4: Source Text
 
 Default Background:
@@ -130,6 +110,14 @@ More languages are coming soon.
 :: Translations: 46750d4: Translation
 
 D'autres langues seront bientôt disponibles.
+
+:: Translations: fdd3398: Source Text
+
+Email Address
+
+:: Translations: fdd3398: Translation
+
+Adresse électronique
 
 :: Translations: e0147d1: Source Text
 
@@ -526,6 +514,16 @@ Sample Statistic
 
 Statistique d'échantillonnage
 
+:: Translations: 4c4b9ae: Source Text
+
+If the overexposure risk is betwen %s and %s, it is moderate. The situation is
+controlled, but with a limited safety margin.
+
+:: Translations: 4c4b9ae: Translation
+
+Si le risque de surexposition se situe entre %s et %s, il est modéré. La
+situation est maîtrisée, mais avec une marge de sécurité limitée.
+
 :: Translations: ad9a641: Source Text
 
 Who created Tool 1?
@@ -533,18 +531,6 @@ Who created Tool 1?
 :: Translations: ad9a641: Translation
 
 Qui a créé Tool 1?
-
-:: Translations: ca296ff: Source Text
-
-The express mode used to be a distinct web application called Tool 1 Express
-(Simplified) in earlier versions of Tool 1 and Expostats. The latter was
-integrated into Tool 1 in version 5.0.0.
-
-:: Translations: ca296ff: Translation
-
-Le mode express était une application web distincte appelée Tool 1 Express
-(Simplified) dans les versions antérieures de Tool 1 et d'Expostats. Elle a été
-intégrée à Tool 1 dans la version 5.0.0.
 
 :: Translations: 77a3276: Source Text
 
@@ -604,6 +590,16 @@ Above the OEL:
 
 Supérieurs à la VLE:
 
+:: Translations: f542f1c: Source Text
+
+Extended mode has more inputs and shows additional results split into multiple
+Statistical Inference panels.
+
+:: Translations: f542f1c: Translation
+
+Le mode Étendu comporte plus d'entrées et affiche des résultats supplémentaires
+répartis dans plusieurs panneaux d'inférence statistique.
+
 :: Translations: 1d671e4: Source Text
 
 Overexposure is defined as the %s percentile being greater than or equal to the
@@ -629,21 +625,6 @@ Can plots be expanded?
 :: Translations: 8c8796c: Translation
 
 Les graphiques peuvent-ils être agrandis?
-
-:: Translations: fd52582: Source Text
-
-The measurements are scattered around the x-axis middle point. The box (outer
-horizontal lines) represents the distance between the 25%s and 75%s
-percentiles. The whiskers (vertical lines) represent the distance between the
-10%s and 90%s percentiles. The inner black horizontal line is the median.
-
-:: Translations: fd52582: Translation
-
-Les mesures sont dispersées autour du point central de l'axe des x. La boîte
-(lignes horizontales extérieures) représente la distance entre les 25%s et 75%s
-percentiles. Les moustaches (lignes verticales) représentent la distance entre
-les 10%s et 90%s percentiles. La ligne horizontale noire intérieure est la
-médiane.
 
 :: Translations: e80025a: Source Text
 
@@ -705,6 +686,14 @@ Statistical Inference
 :: Translations: 511580d: Translation
 
 Inférence statistique
+
+:: Translations: 43057f4: Source Text
+
+Role
+
+:: Translations: 43057f4: Translation
+
+Rôle
 
 :: Translations: 305b9f6: Source Text
 
@@ -1007,15 +996,15 @@ It is as follows.
 
 Elle se présente comme suit.
 
-:: Translations: a5db55c: Source Text
+:: Translations: a0028fe: Source Text
 
-If the overexposure risk is lower than 5%, it is very low. The situation is
-well controlled.
+Express mode shows a curated subset of results in a single Statistical
+Inference panel. It is the default mode.
 
-:: Translations: a5db55c: Translation
+:: Translations: a0028fe: Translation
 
-Si le risque de surexposition est inférieur à 5%, il est très faible. La
-situation est bien maîtrisée.
+Le mode Express affiche un sous-ensemble de résultats sélectionnés dans un seul
+panneau d'inférence statistique. Il s'agit du mode par défaut.
 
 :: Translations: 70d45be: Source Text
 
@@ -1063,6 +1052,14 @@ Ce graphique montre une région ombrée et plus foncée correspondant au
 dépassement maximal acceptable. Les flacons rouges situés en dehors de cette
 région correspondent à des expositions inacceptables. Il ne tient pas compte de
 l'incertitude de l'estimation.
+
+:: Translations: c77a676: Source Text
+
+Profile
+
+:: Translations: c77a676: Translation
+
+Profil
 
 :: Translations: 6918de6: Source Text
 
@@ -1153,18 +1150,6 @@ European guidelines EN689
 :: Translations: 50da20b: Translation
 
 lignes directrices européennes EN689
-
-:: Translations: b945076: Source Text
-
-You may submit bugs, request features, and provide feedback on %s if you have
-an account. You may also send an email to the current maintainers of Tool 1: %s
-and %s.
-
-:: Translations: b945076: Translation
-
-Vous pouvez soumettre des bogues, demander des fonctionnalités et fournir une
-rétroaction sur %s si vous avez un compte. Vous pouvez également envoyer un
-courriel aux responsables actuels de Tool 1 : %s et %s.
 
 :: Translations: 5bbca33: Source Text
 
@@ -1458,7 +1443,7 @@ problematic.
 
 :: Translations: c0390ed: Translation
 
-Le schéma décisionnel adopté pour le mode express de Tool 1 a été élaboré lors
+Le schéma décisionnel adopté pour le mode Express de Tool 1 a été élaboré lors
 de la création de la série de vidéos AIHA « %s » (en anglais uniquement). Dans
 ce schéma, atteindre 95%% est idéal et donne une situation acceptable. Ne pas
 atteindre 95%% de confiance mais atteindre 70%% de confiance rend la situation
@@ -1511,16 +1496,6 @@ valeur d'exposition. Ceux qui sont supérieurs à la limite d'exposition sont
 colorés en rouge. Cette couleur peut être modifiée en fonction de vos besoins à
 l'aide de la barre latérale de droite. Quatre variantes du graphique de la
 fraction de dépassement sont disponibles.
-
-:: Translations: 2e733c4: Source Text
-
-If the overexposure risk is betwen 5% and 30%, it is moderate. The situation is
-controlled, but with a limited safety margin.
-
-:: Translations: 2e733c4: Translation
-
-Si le risque de surexposition se situe entre 5% et 30%, il est modéré. La
-situation est maîtrisée, mais avec une marge de sécurité limitée.
 
 :: Translations: 962996f: Source Text
 
@@ -1636,6 +1611,18 @@ The default mode is Tool 1 Express.
 
 Le mode par défaut est Tool 1 Express.
 
+:: Translations: 18576cd: Source Text
+
+Tool 1 is available in multiple languages thanks to the following
+collaborators, who kindly contributed their time, skills, and expertise to
+provide accurate translations. Many thanks to them!
+
+:: Translations: 18576cd: Translation
+
+Tool 1 est disponible en plusieurs langues grâce aux collaborateurs suivants,
+qui ont consacré leur temps, leurs compétences et leur expertise pour fournir
+des traductions précises. Un grand merci à eux!
+
 :: Translations: 46750b1: Source Text
 
 Changelog
@@ -1643,6 +1630,16 @@ Changelog
 :: Translations: 46750b1: Translation
 
 Modifications
+
+:: Translations: 854081a: Source Text
+
+If the overexposure risk is lower than %s, it is very low. The situation is
+well controlled.
+
+:: Translations: 854081a: Translation
+
+Si le risque de surexposition est inférieur à %s, il est très faible. La
+situation est bien maîtrisée.
 
 :: Translations: d1394d6: Source Text
 
@@ -1752,6 +1749,18 @@ Geometric Mean
 
 Moyenne géométrique
 
+:: Translations: 4a92c81: Source Text
+
+If you notice an error or would like to submit an update, please send an e-mail
+to %s. He will gladly submit your case to the appropriate maintainers listed
+below.
+
+:: Translations: 4a92c81: Translation
+
+Si vous remarquez une erreur ou si vous souhaitez soumettre une mise à jour,
+envoyez un courriel à %s. Il se fera un plaisir de soumettre votre cas aux
+mainteneurs appropriés listés ci-dessous.
+
 :: Translations: a2acebe: Source Text
 
 Add a greater than or equal sign before each measurement censored to the right
@@ -1787,6 +1796,16 @@ leveraged).
 
 Il permet d'inclure des informations externes dans les mesures (cet avantage
 n'est pas encore exploité par Tool 1).
+
+:: Translations: 2c6b20c: Source Text
+
+If the overexposure risk is higher than %s, it is high. The situation requires
+remedial action.
+
+:: Translations: 2c6b20c: Translation
+
+Si le risque de surexposition est supérieur à %s, il est élevé. La situation
+nécessite une action corrective.
 
 :: Translations: cf880eb: Source Text
 
@@ -1925,6 +1944,29 @@ Arithmetic Mean Category
 
 Catégorie de la moyenne arithmétique
 
+:: Translations: be1bbe3: Source Text
+
+You may submit bugs, request features, and provide feedback on %s if you have
+an account. You may also send an email to %s, the maintainer of Tool 1.
+
+:: Translations: be1bbe3: Translation
+
+Vous pouvez soumettre des bogues, demander des fonctionnalités et fournir une
+rétroaction sur %s si vous disposez d'un compte. Vous pouvez également envoyer
+un courriel à %s, le responsable de Tool 1.
+
+:: Translations: 84fd2eb: Source Text
+
+Express mode used to be a distinct web application called Tool 1 Express
+(Simplified) in earlier versions of Tool 1 and Expostats. The latter was
+integrated into Tool 1 in version 5.0.0.
+
+:: Translations: 84fd2eb: Translation
+
+Le mode Express était une application web distincte appelée Tool 1 Express
+(Simplified) dans les versions antérieures de Tool 1 et d'Expostats. Cette
+dernière a été intégrée à l'outil 1 dans la version 5.0.0.
+
 :: Translations: 8d5cf97: Source Text
 
 Variant:
@@ -1940,16 +1982,6 @@ Current Sample
 :: Translations: 897e74a: Translation
 
 Échantillon actuel
-
-:: Translations: b5fe242: Source Text
-
-The extended mode has more inputs and shows additional results split into
-multiple Statistical Inference panels.
-
-:: Translations: b5fe242: Translation
-
-Le mode étendu a plus d'entrées et montre des résultats supplémentaires
-répartis dans plusieurs panneaux d'inférence statistique.
 
 :: Translations: 5518029: Source Text
 
@@ -2009,6 +2041,14 @@ Maximum
 
 Maximum
 
+:: Translations: da9cc89: Source Text
+
+Risk Band Plot
+
+:: Translations: da9cc89: Translation
+
+Bandes de risque
+
 :: Translations: 7e63316: Source Text
 
 This plot shows a shaded and darker region corresponding to the maximal
@@ -2031,14 +2071,6 @@ supérieures à la VLE. Le nombre total de flacons rouges (pleins ou rayés)
 représente le nombre maximal plausible de mesures supérieures à la VLE compte
 tenu de l'incertitude du processus d'estimation (en utilisant la limite
 supérieure de l'intervalle de crédibilité sous-jacent).
-
-:: Translations: da9cc89: Source Text
-
-Risk Band Plot
-
-:: Translations: da9cc89: Translation
-
-Bandes de risque
 
 :: Translations: 9670dfb: Source Text
 
@@ -2088,6 +2120,30 @@ Not Censored
 
 Non censuré
 
+:: Translations: da5e3d2: Source Text
+
+Overexposure is defined as the arithmetic mean being greater than or equal to
+the OEL.
+
+:: Translations: da5e3d2: Translation
+
+Le critère de surexposition est défini comme étant la moyenne arithmétique
+supérieure ou égale à la VLE.
+
+:: Translations: 1708b36: Source Text
+
+The measurements are scattered around the x-axis middle point. The box (outer
+horizontal lines) represents the distance between the %s and %s percentiles.
+The whiskers (vertical lines) represent the distance between the %s and %s
+percentiles. The inner black horizontal line is the median.
+
+:: Translations: 1708b36: Translation
+
+Les mesures sont dispersées autour du point central de l'axe des x. La boîte
+(lignes horizontales extérieures) représente la distance entre les %s et %s
+percentiles. Les moustaches (lignes verticales) représentent la distance entre
+les %s et %s percentiles. La ligne horizontale noire intérieure est la médiane.
+
 :: Translations: 7385e52: Source Text
 
 The rationale proposed by Expostats for decision-making when interpreting
@@ -2112,16 +2168,6 @@ Utilisez le panneau À propos de mes mesures. Il fournit des statistiques
 descriptives, un graphique quantile-quantile et un graphique boîte à moustaches
 qui peuvent être utilisés pour s'assurer que les mesures ont été importées et
 analysées comme prévu.
-
-:: Translations: da5e3d2: Source Text
-
-Overexposure is defined as the arithmetic mean being greater than or equal to
-the OEL.
-
-:: Translations: da5e3d2: Translation
-
-Le critère de surexposition est défini comme étant la moyenne arithmétique
-supérieure ou égale à la VLE.
 
 :: Translations: d257a4e: Source Text
 
@@ -2242,6 +2288,14 @@ Density
 :: Translations: ceefbab: Translation
 
 Densité
+
+:: Translations: fe0789f: Source Text
+
+Who translated Tool 1?
+
+:: Translations: fe0789f: Translation
+
+Qui a traduit Tool 1?
 
 :: Translations: a2334d7: Source Text
 
