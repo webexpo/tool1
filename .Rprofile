@@ -19,7 +19,7 @@ transltr::language_source_set("en")
 # Options specific to Tool 1 are prefixed by app_.
 options(
     app_version                 = "5.2.0",
-    app_release_date            = "2025-06-10",
+    app_release_date            = "2025-07-18",
     app_shinyapps_meta_dev      = list(id = 14521166L, name = "tool1-beta"),
     app_shinyapps_meta_prod     = list(id = 13889847L, name = "tool1"),
     app_card_height_md          = "600px",
