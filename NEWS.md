@@ -1,3 +1,27 @@
+# Tool 1 version `5.3.0`
+
+This is a minor version introducing support for Spanish.
+
+## User Visible Changes
+
+* Tool 1 is now available in Spanish. Many thanks to
+  [Maximiliano Simaz](https://www.linkedin.com/in/msimaz/), who kindly provided
+  all translations, and to
+  [Claudia-Alejandra Jaramillo](https://www.linkedin.com/in/claudia-alejandra-jaramillo-67993058/),
+  who thoroughly reviewed them.
+
+## Server Changes
+
+None.
+
+## Fixes
+
+* `read_collaborators()` now handles null (`~`) `Profile` and `Email` fields in
+  `i18n/_collaborators.yml`. The latter is replaced by em dashes (`—`) if null.
+  This is useful to avoid including personal information without obtaining an
+  explicit consent from the collaborators first. Fields `Role` and `Name` are
+  always required.
+
 # Tool 1 version `5.2.0`
 
 This is a minor version that packs many internal changes on the backend side.

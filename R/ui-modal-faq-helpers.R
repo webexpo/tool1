@@ -51,6 +51,10 @@ read_collaborators <- function(
                 href      = persons$Profile,
                 name      = persons$Name,
                 \(href, name) {
+                    if (is.null(href)) {
+                        return(name)
+                    }
+
                     return(as.character(ui_link(href, name)))
                 }
             ),
@@ -59,6 +63,10 @@ read_collaborators <- function(
                 USE.NAMES = FALSE,
                 persons$Email,
                 \(email) {
+                    if (is.null(email)) {
+                        return("—")
+                    }
+
                     return(as.character(ui_link_mailto(email, email)))
                 }
             )
