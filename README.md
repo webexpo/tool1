@@ -6,7 +6,7 @@
 # Tool 1: Data Interpretation for One Similar Exposure Group (SEG)
 
 <!-- badges: start -->
-[![Version](https://img.shields.io/badge/version-5.2.0-blue)](https://github.com/webexpo/app-tool1/releases/tag/v5.2.0)
+[![Version](https://img.shields.io/badge/version-5.3.0-blue)](https://github.com/webexpo/app-tool1/releases/tag/v5.3.0)
 [![Lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Location](https://img.shields.io/badge/live-shinyapps.io-5b90bf)](https://lavoue.shinyapps.io/tool1/)
 [![License](https://img.shields.io/badge/license-MIT-orange.svg)](https://github.com/webexpo/tool1/blob/main/LICENSE.md)
