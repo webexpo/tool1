@@ -4,16 +4,20 @@ This is a minor version that packs many internal changes on the backend side.
 
 ## User Visible Changes
 
-* Tool 1 is now available in Spanish. Many thanks to
-  [Maximiliano Simaz](https://www.linkedin.com/in/msimaz/) who kindly provided
-  all translations.
-
 * There is a new section listing external collaborators who worked on
   translations in the FAQ modal.
 
 * The source text (and underlying translations) received minor updates.
 
 ## Server Changes
+
+* The required logic and functions (`ordinal_rules_spanish()`) to support
+  Spanish is implemented. Translations are also available internally, but
+  since they are still being reviewed, they will be released soon in the
+  next version.
+
+  * Many thanks to [Maximiliano Simaz](https://www.linkedin.com/in/msimaz/)
+    who kindly provided all translations.
 
 * `.Rprofile`, `app.R`, and all scripts stored in `R/` were renamed and/or
   reorganized. The new structure should be easier to comprehend and navigate (hopefully!).
@@ -53,8 +57,9 @@ This is a minor version that packs many internal changes on the backend side.
   currently one method defined for `data.frame` objects. The objective is
   twofold.
 
-    1. Avoid complex mechanisms and packages (like `DT`) when appropriate.
-    2. Style tables using CSS (Bootstrap) classes.
+  1. Avoid complex mechanisms and packages (like `DT`) when appropriate.
+
+  2. Style tables using CSS (Bootstrap) classes.
 
 * New `i18n/_collaborators.yml` file listing external collaborators who worked
   on translations in the FAQ modal. There is also a new `read_collaborators()`

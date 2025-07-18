@@ -257,13 +257,15 @@ ui_title <- function(id, lang_names = tr$native_languages) {
                                 )
                             ),
 
-                            tags$li(
-                                shiny::actionButton(
-                                    inputId = ns("btn_lang_es"),
-                                    class   = "dropdown-item fs-6",
-                                    label   = lang_names[["es"]]
-                                )
-                            ),
+                            # FIXME: Deactivated until review is completed.
+                            # Release as part of a patch version.
+                            # tags$li(
+                            #     shiny::actionButton(
+                            #         inputId = ns("btn_lang_es"),
+                            #         class   = "dropdown-item fs-6",
+                            #         label   = lang_names[["es"]]
+                            #     )
+                            # ),
 
                             tags$li(
                                 tags$hr(class = "dropdown-divider")
@@ -395,8 +397,10 @@ server_title <- function(id) {
         shiny::bindEvent(
             session$clientData$url_search,
             input$btn_lang_en,
-            input$btn_lang_fr,
-            input$btn_lang_es
+            input$btn_lang_fr
+            # FIXME: Deactivated until review is completed.
+            # Release as part of a patch version.
+            # input$btn_lang_es
         )
 
         # Update mode whenever one of the related buttons is clicked.
@@ -470,14 +474,16 @@ server_title <- function(id) {
         }) |>
         shiny::bindEvent(input$btn_lang_fr, ignoreInit = TRUE)
 
-        shiny::observe(priority = 10L, {
-            old_lang <- .get_lang()
+        # FIXME: Deactivated until review is completed.
+        # Release as part of a patch version.
+        # shiny::observe(priority = 10L, {
+        #     old_lang <- .get_lang()
 
-            shinyjs::removeClass(sprintf("btn_lang_%s", old_lang), "active")
-            shinyjs::addClass("btn_lang_es", "active")
-            update_query_string(lang = .set_lang("es"))
-        }) |>
-        shiny::bindEvent(input$btn_lang_es, ignoreInit = TRUE)
+        #     shinyjs::removeClass(sprintf("btn_lang_%s", old_lang), "active")
+        #     shinyjs::addClass("btn_lang_es", "active")
+        #     update_query_string(lang = .set_lang("es"))
+        # }) |>
+        # shiny::bindEvent(input$btn_lang_es, ignoreInit = TRUE)
 
         # Update the current mode.
         # Each mode has a dedicated button.

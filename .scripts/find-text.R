@@ -41,8 +41,10 @@
     source_lang_name = "English",
     # Add entries to this argument to support more languages.
     other_lang_names = list(
-        fr = "Français",
-        es = "Español"
+        fr = "Français"
+        # FIXME: Deactivated until review is completed.
+        # Release as part of a patch version.
+        # es = "Español"
     ))
 {
     path <- getOption("transltr.path")

@@ -16,8 +16,10 @@ fr:
     Profile: https://www.linkedin.com/in/j%C3%A9r%C3%B4me-lavou%C3%A9-1a348427/
     Email: jerome.lavoue@umontreal.ca
 
-es:
-  - Role: Translator
-    Name: Maximiliano Simaz
-    Profile: https://www.linkedin.com/in/msimaz/
-    Email: msimaz@safe-work.com.ar
+# FIXME: Deactivated until review is completed.
+# Release as part of a patch version.
+# es:
+#   - Role: Translator
+#     Name: Maximiliano Simaz
+#     Profile: https://www.linkedin.com/in/msimaz/
+#     Email: msimaz@safe-work.com.ar
