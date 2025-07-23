@@ -17,8 +17,8 @@
 #' @param source_lang_name A character string. The native name of the source
 #'   language.
 #'
-#' @param other_lang_names A named list of character strings. Further languages
-#'   supported by Tool 1.
+#' @param other_lang_names A named list of character strings. Further supported
+#'   languages.
 #'
 #'   * Elements are the full native names of the languages.
 #'   * Names are the corresponding language codes. Always use BCP-47 codes.

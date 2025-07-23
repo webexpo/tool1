@@ -93,7 +93,7 @@
                 account        = Sys.getenv("RSCONNECT_ACCOUNT_NAME"),
                 appId          = region_meta$id,
                 appName        = region_meta$meta,
-                appTitle       = "Tool1: Data Interpretation for One Similar Exposure Group (SEG)",
+                appTitle       = "Tool 1: Data Interpretation for One Similar Exposure Group (SEG)",
                 appMode        = "shiny",
                 appVisibility  = "public",
                 logLevel       = "normal",

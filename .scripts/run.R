@@ -1,4 +1,4 @@
-#' Local Entry Point of Tool 1
+#' Local Entry Point
 #'
 #' Launch the application locally for development purposes.
 #'
