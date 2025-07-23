@@ -242,9 +242,7 @@ server_modal_faq <- function(id, lang) {
         server_footer("footer", lang)
 
         btn_open_tooltip_text <- shiny::reactive({
-            translate(lang = lang(), "
-                Get additional information on Tool 1.
-            ")
+            translate(lang = lang(), "Get additional information on Tool 1.")
         }) |>
         shiny::bindCache(lang())
 

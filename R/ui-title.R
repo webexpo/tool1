@@ -111,8 +111,6 @@ ui_title <- function(id, lang_names = tr$native_languages) {
                     )
                 ),
 
-                # Tool 1 is treated as a proper noun
-                # that must not be translated.
                 tags$span(
                     class = "fw-bolder",
                     "Tool 1"
@@ -123,7 +121,6 @@ ui_title <- function(id, lang_names = tr$native_languages) {
                 # more information.
                 tags$span(
                     class = "d-none d-xxl-inline",
-
                     ":",
                     shiny::textOutput(ns("title"), tags$span),
                     "(SEG)"
@@ -327,7 +324,6 @@ ui_title <- function(id, lang_names = tr$native_languages) {
                                     "NDExpo"
                                 )
                             )
-
                         )
                     ),
 

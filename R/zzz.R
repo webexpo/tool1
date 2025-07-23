@@ -1,6 +1,6 @@
 #' Miscellaneous Actions
 #'
-#' Perform actions (as part of Tool 1's initialization process) once all other
+#' Perform actions (as part of the initialization process) once all other
 #' R scripts stored in R/ are loaded.
 #'
 #' @format
