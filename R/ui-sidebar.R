@@ -133,7 +133,7 @@ ui_sidebar <- function(id) {
 
         tags$div(
             class = "d-flex justify-content-around",
-            style = "gap: 1rem; margin-bottom: 1rem;",
+            style = "gap: 0.5rem; margin-bottom: 1rem;",
 
             shiny::actionButton(
                 inputId = ns("btn_submit"),
