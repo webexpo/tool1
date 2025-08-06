@@ -19,6 +19,11 @@
 #' ---------------------------------------------
 #' ```
 #'
+#' @param mode A [shiny::reactive()] object returning the current mode.
+#'
+#' @param panel_active A [shiny::reactive()] object returning the current
+#'   (active) panel's identifier.
+#'
 #' @template param-id
 #'
 #' @template param-lang
