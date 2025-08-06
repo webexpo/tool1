@@ -73,8 +73,8 @@ ui <- bslib::page_sidebar(
         # Group other default inference panels.
         # It is shown by default and hidden if mode() returns "express".
         bslib::nav_menu(
-            value = "panels_menu",
-            title = shiny::textOutput("panels_menu_title", tags$span),
+            value = "menu",
+            title = shiny::textOutput("menu_title", tags$span),
             icon  = tags$span(
                 class = "pe-1",
                 bsicons::bs_icon(name = "list", a11y = "deco")
@@ -238,7 +238,7 @@ server <- function(input, output, session) {
 
     # Outputs ------------------------------------------------------------------
 
-    output$panels_menu_title <- shiny::renderText({
+    output$menu_title <- shiny::renderText({
         translate(lang = lang(), "Statistical Inference")
     }) |>
     shiny::bindCache(lang())
@@ -276,12 +276,12 @@ server <- function(input, output, session) {
     shiny::observe({
         state <- switch(mode(),
             extended = c(
-                show = "panels_menu",
+                show = "menu",
                 hide = "panel_express"
             ),
             express = c(
                 show = "panel_express",
-                hide = "panels_menu"
+                hide = "menu"
             )
         )
 
