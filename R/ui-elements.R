@@ -15,7 +15,9 @@
 #'   arguments) passed to various tag functions of package htmltools.
 #'
 #' @returns
-#' [ui_link()] and [ui_link_mailto()] returns a `shiny.tag` object.
+#' [ui_link()],
+#' [ui_link_mailto()], and
+#' [ui_menu_icon()] return a `shiny.tag` object.
 #'
 #' [ui_bs_color()] returns a character string of class `BootstrapColorName`
 #' which is equal to `color` if it is valid.
@@ -79,4 +81,15 @@ ui_bs_color <- function(
     ))
 {
     return(structure(match.arg(color), class = "BootstrapColorName"))
+}
+
+#' @rdname ui-helpers
+#' @export
+ui_menu_icon <- function() {
+    return(
+        tags$span(
+            class = "pe-1",
+            bsicons::bs_icon(name = "list", a11y = "deco")
+        )
+    )
 }

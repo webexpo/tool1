@@ -130,10 +130,7 @@ ui_panel_express <- function(id) {
         # it breaks the layout.
         bslib::nav_menu(
             title = shiny::textOutput(ns("estimates_menu_title"), tags$span),
-            icon  = tags$span(
-                class = "pe-1",
-                bsicons::bs_icon(name = "list", a11y = "deco")
-            ),
+            icon  = ui_menu_icon(),
 
             # Estimates of the underlying distribution parameters.
             bslib::nav_panel(

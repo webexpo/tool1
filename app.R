@@ -75,10 +75,7 @@ ui <- bslib::page_sidebar(
         bslib::nav_menu(
             value = "menu",
             title = shiny::textOutput("menu_title", tags$span),
-            icon  = tags$span(
-                class = "pe-1",
-                bsicons::bs_icon(name = "list", a11y = "deco")
-            ),
+            icon  = ui_menu_icon(),
 
             ui_panel_exceedance_fraction("panel_fraction"),
             ui_panel_percentiles("panel_percentiles"),
