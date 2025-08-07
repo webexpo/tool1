@@ -23,18 +23,17 @@ library(ggplot2)
 
 ############# for the group
 
-fun.qqplot.group.D <-function(data.simply.imputed ,
-                              notcensored ,
+fun.qqplot.group.D <-function(data.simply.imputed,
+                              notcensored,
                               cats,
-
-                              qqplot.1="Quantile-quantile plot",
-                              qqplot.2="Quantile (lognormal dist)",
-                              qqplot.3="Quantile (standardized obs)",
-                              qqplot.4="Measurement type",
-                              qqplot.5="Censored",
-                              qqplot.6="Detected") {
-
-
+                              qqplot.1       = "Quantile-quantile plot",
+                              qqplot.2       = "Quantile (lognormal dist)",
+                              qqplot.3       = "Quantile (standardized obs)",
+                              qqplot.4       = "Measurement type",
+                              qqplot.5       = "Censored",
+                              qqplot.6       = "Detected",
+                              label_category = "Category")
+{
   #data.simply.imputed <- data.sample.imputed
   #notcensored <- data.sample.formatted$notcensored
   #cats <- data.sample.formatted$var
@@ -45,7 +44,7 @@ fun.qqplot.group.D <-function(data.simply.imputed ,
   data.f <-data.frame(x=res2$x,
                       y=res2$y,
                       is.censored=notcensored[res2$reorder],
-                     category=cats[res2$reorder],
+                      category=cats[res2$reorder],
                       x.prime=res2$x.prime,
                       stringsAsFactors=F)
 
@@ -53,6 +52,10 @@ fun.qqplot.group.D <-function(data.simply.imputed ,
 
     p<-ggplot(data.f,aes(x=x,y=y),main=qqplot.1)
     p<-p+ suppressWarnings(geom_point(size=4,aes(colour=category)))
+
+    # Change title of legend to label_category.
+    p <- p + guides(color = guide_legend(title = label_category))
+
     p<-p+geom_abline(intercept=0, slope=1)+
 
       xlab(qqplot.2)+ylab(qqplot.3)+
@@ -60,7 +63,7 @@ fun.qqplot.group.D <-function(data.simply.imputed ,
       theme(axis.text.x=element_text(size=14))+
       theme(axis.title.y=element_text(size=16,angle=90))+
       theme(axis.text.y=element_text(size=13,angle=90))+
-      theme(legend.position='top',
+      p+theme(legend.position='top',
             legend.title=element_text(size=14),
             legend.text=element_text(size=14) )
 
@@ -69,6 +72,10 @@ fun.qqplot.group.D <-function(data.simply.imputed ,
   if (length(data.f[data.f$is.censored==0,1])!=0) {
 
     p<-ggplot(data.f,aes(x=x,y=y,colour=category),main=qqplot.1)
+
+    # Change title of legend to label_category.
+    p <- p + guides(color = guide_legend(title = label_category))
+
     p<-p+ suppressWarnings(geom_point(size=4,aes(pch=is.censored)))+
       scale_shape_manual(values=c(1,16),
                          name=qqplot.4,
@@ -87,9 +94,4 @@ fun.qqplot.group.D <-function(data.simply.imputed ,
   }
 
   print(p)
-
 }
-
-
-
-
