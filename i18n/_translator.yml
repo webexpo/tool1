@@ -9,7 +9,10 @@ Identifier: expostats:tool1
 Algorithm: sha1
 Languages:
   en: English
+  es: Español
   fr: Français
+  ko: 한국어
+  pt: Português do Brasil
 Texts:
   - !<Text>
     Identifier: 449ff93
@@ -153,7 +156,7 @@ Texts:
       - !<Location>
         Identifier: 46750d4:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 551, Col 13 @ Ln 551, Col 71
+        Ranges: Ln 581, Col 7 @ Ln 581, Col 65
   - !<Text>
     Identifier: fdd3398
     Algorithm: sha1
@@ -190,6 +193,24 @@ Texts:
         Identifier: e0147d1:l4
         Path: ./R/ui-panel-percentiles.R
         Ranges: Ln 405, Col 25 @ Ln 408, Col 26
+  - !<Text>
+    Identifier: 569a384
+    Algorithm: sha1
+    Hash: 569a384dd7fa1a7afb95e702f482309dd92b0bca
+    Source Language: en
+    Source Text: |-
+      With such a high proportion of censored values, your data contains very
+      little information. As a result, the statistical inference relies
+      increasingly on the prior assumptions and may not be robust to changes in
+      them. Expostats does not currently allow prior customization; until it
+      does, we recommend using IHSTAT_Bayes to assess how sensitive your
+      conclusions are to different prior choices.
+    Translations: ~
+    Locations:
+      - !<Location>
+        Identifier: 569a384:l1
+        Path: ./app.R
+        Ranges: Ln 304, Col 7 @ Ln 312, Col 14
   - !<Text>
     Identifier: df83adb
     Algorithm: sha1
@@ -637,7 +658,7 @@ Texts:
       - !<Location>
         Identifier: 0524962:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 556, Col 13 @ Ln 556, Col 44
+        Ranges: Ln 586, Col 7 @ Ln 586, Col 38
   - !<Text>
     Identifier: be4154f
     Algorithm: sha1
@@ -1043,7 +1064,7 @@ Texts:
       - !<Location>
         Identifier: 511580d:l1
         Path: ./app.R
-        Ranges: Ln 242, Col 9 @ Ln 242, Col 57
+        Ranges: Ln 251, Col 5 @ Ln 251, Col 53
       - !<Location>
         Identifier: 511580d:l2
         Path: ./R/ui-panel-express-mode.R
@@ -1286,7 +1307,7 @@ Texts:
       - !<Location>
         Identifier: 8fc2a6a:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 539, Col 13 @ Ln 541, Col 14
+        Ranges: Ln 569, Col 7 @ Ln 571, Col 14
   - !<Text>
     Identifier: 7b55099
     Algorithm: sha1
@@ -1546,7 +1567,7 @@ Texts:
       - !<Location>
         Identifier: 70d45be:l2
         Path: ./R/ui-title.R
-        Ranges: Ln 546, Col 13 @ Ln 546, Col 48
+        Ranges: Ln 576, Col 7 @ Ln 576, Col 42
   - !<Text>
     Identifier: 27c579f
     Algorithm: sha1
@@ -1688,7 +1709,7 @@ Texts:
       - !<Location>
         Identifier: 3a55954:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 525, Col 13 @ Ln 527, Col 14
+        Ranges: Ln 555, Col 7 @ Ln 557, Col 14
   - !<Text>
     Identifier: '3883288'
     Algorithm: sha1
@@ -2440,7 +2461,7 @@ Texts:
       - !<Location>
         Identifier: e42d220:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 532, Col 13 @ Ln 534, Col 14
+        Ranges: Ln 562, Col 7 @ Ln 564, Col 14
   - !<Text>
     Identifier: 4f7aff7
     Algorithm: sha1
@@ -2464,7 +2485,7 @@ Texts:
       - !<Location>
         Identifier: 87ae55d:l1
         Path: ./R/ui-title.R
-        Ranges: Ln 561, Col 13 @ Ln 561, Col 75
+        Ranges: Ln 591, Col 7 @ Ln 591, Col 69
   - !<Text>
     Identifier: 18576cd
     Algorithm: sha1
@@ -2568,11 +2589,11 @@ Texts:
       - !<Location>
         Identifier: 5f29b65:l1
         Path: ./app.R
-        Ranges: Ln 261, Col 24 @ Ln 261, Col 63
+        Ranges: Ln 270, Col 23 @ Ln 270, Col 62
       - !<Location>
         Identifier: 5f29b65:l2
         Path: ./R/ui-title.R
-        Ranges: Ln 571, Col 13 @ Ln 571, Col 54
+        Ranges: Ln 601, Col 7 @ Ln 601, Col 48
   - !<Text>
     Identifier: ac24260
     Algorithm: sha1
@@ -2811,11 +2832,11 @@ Texts:
       - !<Location>
         Identifier: 4af6872:l1
         Path: ./app.R
-        Ranges: Ln 260, Col 24 @ Ln 260, Col 64
+        Ranges: Ln 269, Col 23 @ Ln 269, Col 63
       - !<Location>
         Identifier: 4af6872:l2
         Path: ./R/ui-title.R
-        Ranges: Ln 566, Col 13 @ Ln 566, Col 55
+        Ranges: Ln 596, Col 7 @ Ln 596, Col 49
   - !<Text>
     Identifier: 5f12363
     Algorithm: sha1
