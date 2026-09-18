@@ -127,6 +127,26 @@ The point estimate of the geometric mean is equal to %s.
 
 La estimación puntual de la media geométrica es igual a %s.
 
+:: Translations: 569a384: Source Text
+
+With such a high proportion of censored values, your data contains very little
+information. As a result, the statistical inference relies increasingly on the
+prior assumptions and may not be robust to changes in them. Expostats does not
+currently allow prior customization; until it does, we recommend using
+IHSTAT_Bayes to assess how sensitive your conclusions are to different prior
+choices.
+
+:: Translations: 569a384: Translation
+
+# [AI DRAFT - REVIEW]
+Con una proporción tan alta de valores censurados, sus datos
+contienen muy poca información. En consecuencia, la inferencia
+estadística depende cada vez más de los supuestos a priori y puede
+no ser robusta ante cambios en ellos. Expostats actualmente no
+permite la personalización de a priori; hasta que lo haga,
+recomendamos utilizar IHSTAT_Bayes para evaluar cuán sensibles son
+sus conclusiones a diferentes opciones de a priori.
+
 :: Translations: df83adb: Source Text
 
 Arithmetic Mean

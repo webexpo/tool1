@@ -35,56 +35,56 @@
 #' @rdname i18n-url
 #' @export
 i18n_url <- function(x = "", ...) {
-    alts <- c(...) %||% character()
-    langs <- names(alts)
-
-    if (!is_chr1(x)) {
-        stop("'x' must be a character string.")
-    }
-
-    # This is a little too complex to implement with stopifnot().
-    # The resulting error message would be cryptic at best.
-    if (length(alts) && (!is_chr(langs) || !all(nzchar(langs)))) {
-        stop("all values passed to '...' must be named.")
-    }
-
-    return(structure(x, alts = alts, class = c("i18n_url", "character")))
+  alts <- c(...) %||% character()
+  langs <- names(alts)
+  
+  if (!is_chr1(x)) {
+    stop("'x' must be a character string.")
+  }
+  
+  # This is a little too complex to implement with stopifnot().
+  # The resulting error message would be cryptic at best.
+  if (length(alts) && (!is_chr(langs) || !all(nzchar(langs)))) {
+    stop("all values passed to '...' must be named.")
+  }
+  
+  return(structure(x, alts = alts, class = c("i18n_url", "character")))
 }
 
 #' @rdname i18n-url
 #' @export
 `[[.i18n_url` <- function(x, i, ...) {
-    alts <- attr(x, "alts")
-
-    if (is.na(alt <- alts[i])) {
-        return(as.character(x))
-    }
-
-    return(unname(alt))
+  alts <- attr(x, "alts")
+  
+  if (is.na(alt <- alts[i])) {
+    return(as.character(x))
+  }
+  
+  return(unname(alt))
 }
 
 #' @rdname i18n-url
 #' @export
 format.i18n_url <- function(x, ...) {
-    url <- paste0("<i18n_url> ", x, "\n")
-    alts <- attr(x, "alts")
-
-    if (!length(alts)) {
-        return(url)
-    }
-
-    langs <- names(alts)
-    langs_nchars <- nchar(langs)
-    langs_pads <- strrep(" ", max(langs_nchars) - langs_nchars)
-
-    return(c(url, sprintf("%s:%s %s\n", names(alts), langs_pads, alts)))
+  url <- paste0("<i18n_url> ", x, "\n")
+  alts <- attr(x, "alts")
+  
+  if (!length(alts)) {
+    return(url)
+  }
+  
+  langs <- names(alts)
+  langs_nchars <- nchar(langs)
+  langs_pads <- strrep(" ", max(langs_nchars) - langs_nchars)
+  
+  return(c(url, sprintf("%s:%s %s\n", names(alts), langs_pads, alts)))
 }
 
 #' @rdname i18n-url
 #' @export
 print.i18n_url <- function(x, ...) {
-    cat(format(x))
-    return(invisible(x))
+  cat(format(x))
+  return(invisible(x))
 }
 
 #' Ordinal Numbers (1st, 2nd, 3rd, 4th, etc.)
@@ -166,91 +166,93 @@ ordinal <- function(
     format = c("html", "string"),
     ...)
 {
-    format <- match.arg(format)
-    x_int <- as.integer(x)
-    abbr <- ordinal_abbr(x_int, lang, ...)
-
-    return(
-        switch(format,
-            string = sprintf("%i%s", x_int, abbr),
-            html   = tags$span(
-                x_int,
-                tags$sup(
-                    abbr,
-                    .noWS = c(
-                        "before",
-                        "after",
-                        "outside",
-                        "after-begin",
-                        "before-end"
-                    )
-                ),
-                .noWS = c(
-                    "before",
-                    "after-begin",
-                    "before-end"
-                )
-            )
-        )
+  format <- match.arg(format)
+  x_int <- as.integer(x)
+  abbr <- ordinal_abbr(x_int, lang, ...)
+  
+  return(
+    switch(format,
+           string = sprintf("%i%s", x_int, abbr),
+           html   = tags$span(
+             x_int,
+             tags$sup(
+               abbr,
+               .noWS = c(
+                 "before",
+                 "after",
+                 "outside",
+                 "after-begin",
+                 "before-end"
+               )
+             ),
+             .noWS = c(
+               "before",
+               "after-begin",
+               "before-end"
+             )
+           )
     )
+  )
 }
 
 #' @rdname i18n-ordinal
 #' @export
 ordinal_abbr <- function(x = numeric(1L), lang = "en", ...) {
-    rules <- ordinal_rules(lang, ...)
-
-    # Check if x is an exception first.
-    # values is coerced to an integer to drop decimals
-    # and implicitly coerced to a character by match()
-    # for matching purposes.
-    if (m <- match(as.integer(x), names(rules$exceptions), 0L)[[1L]]) {
-        return(rules$exceptions[[m]])
-    }
-
-    # Oterwise, return the expected indicator.
-    return(rules$indicators[[(x %% 10L) + 1L]])
+  rules <- ordinal_rules(lang, ...)
+  
+  # Check if x is an exception first.
+  # values is coerced to an integer to drop decimals
+  # and implicitly coerced to a character by match()
+  # for matching purposes.
+  if (m <- match(as.integer(x), names(rules$exceptions), 0L)[[1L]]) {
+    return(rules$exceptions[[m]])
+  }
+  
+  # Oterwise, return the expected indicator.
+  return(rules$indicators[[(x %% 10L) + 1L]])
 }
 
 #' @rdname i18n-ordinal
 #' @export
 ordinal_rules <- function(lang = "en", ...) {
-    return(
-        switch(lang,
-            en = ordinal_rules_english(),
-            fr = ordinal_rules_french(...),
-            es = ordinal_rules_spanish(...),
-            "{no support for ordinal numbers in the current language.}"
-        )
+  return(
+    switch(lang,
+           en = ordinal_rules_english(),
+           fr = ordinal_rules_french(...),
+           es = ordinal_rules_spanish(...),
+           ko = ordinal_rules_korean(),
+           pt = ordinal_rules_portuguese(...),
+           "{no support for ordinal numbers in the current language.}"
     )
+  )
 }
 
 #' @rdname i18n-ordinal
 #' @export
 ordinal_rules_english <- function() {
-    return(
-        list(
-            # remainder when integer is divided by 10 = abbrevation to use.
-            indicators = c(
-                "0" = "th",
-                "1" = "st",
-                "2" = "nd",
-                "3" = "rd",
-                "4" = "th",
-                "5" = "th",
-                "6" = "th",
-                "7" = "th",
-                "8" = "th",
-                "9" = "th"
-            ),
-            # value of integer = abbreviation to use.
-            exceptions <- c(
-                "11" = "th",
-                "12" = "th",
-                "13" = "th"
-            )
-        )
+  return(
+    list(
+      # remainder when integer is divided by 10 = abbrevation to use.
+      indicators = c(
+        "0" = "th",
+        "1" = "st",
+        "2" = "nd",
+        "3" = "rd",
+        "4" = "th",
+        "5" = "th",
+        "6" = "th",
+        "7" = "th",
+        "8" = "th",
+        "9" = "th"
+      ),
+      # value of integer = abbreviation to use.
+      exceptions <- c(
+        "11" = "th",
+        "12" = "th",
+        "13" = "th"
+      )
     )
+  )
 }
 
 #' @rdname i18n-ordinal
@@ -259,75 +261,143 @@ ordinal_rules_french <- function(
     gender = c("masculine", "feminine"),
     plural = FALSE)
 {
-    gender <- match.arg(gender)
-
-    # remainder when integer is divided by 10 = abbrevation to use.
-    indicators <- c(
-        "0" = "e",
-        "1" = "e",
-        "2" = "e",
-        "3" = "e",
-        "4" = "e",
-        "5" = "e",
-        "6" = "e",
-        "7" = "e",
-        "8" = "e",
-        "9" = "e"
-    )
-
-    exceptions <- switch(gender,
-        # value of integer = abbreviation to use.
-        masculine = c(
-            "1" = "er",
-            "2" = "d"),
-        feminine = c(
-            "1" = "re",
-            "2" = "de"))
-
-    if (plural) {
-        indicators <- structure(paste0(indicators, "s"), names = names(indicators))
-        exceptions <- structure(paste0(exceptions, "s"), names = names(exceptions))
-    }
-
-    return(list(indicators = indicators, exceptions = exceptions))
+  gender <- match.arg(gender)
+  
+  # remainder when integer is divided by 10 = abbrevation to use.
+  indicators <- c(
+    "0" = "e",
+    "1" = "e",
+    "2" = "e",
+    "3" = "e",
+    "4" = "e",
+    "5" = "e",
+    "6" = "e",
+    "7" = "e",
+    "8" = "e",
+    "9" = "e"
+  )
+  
+  exceptions <- switch(gender,
+                       # value of integer = abbreviation to use.
+                       masculine = c(
+                         "1" = "er",
+                         "2" = "d"),
+                       feminine = c(
+                         "1" = "re",
+                         "2" = "de"))
+  
+  if (plural) {
+    indicators <- structure(paste0(indicators, "s"), names = names(indicators))
+    exceptions <- structure(paste0(exceptions, "s"), names = names(exceptions))
+  }
+  
+  return(list(indicators = indicators, exceptions = exceptions))
 }
 
 #' @rdname i18n-ordinal
 #' @export
 ordinal_rules_spanish <- function(gender = c("masculine", "feminine")) {
-    gender <- match.arg(gender)
+  gender <- match.arg(gender)
+  
+  # remainder when integer is divided by 10 = abbrevation to use.
+  # Formally, \U00BA ("º") is used for masculine, and \U00AA ("ª")
+  # for feminine. These are superscript characters by nature, so
+  # "o" and "a" are used instead. This is because ordinal() wraps
+  # them in a <sup> tag.
+  indicators <- switch(gender,
+                       masculine = c(
+                         "0" = "o",
+                         "1" = "o",
+                         "2" = "o",
+                         "3" = "o",
+                         "4" = "o",
+                         "5" = "o",
+                         "6" = "o",
+                         "7" = "o",
+                         "8" = "o",
+                         "9" = "o"
+                       ),
+                       feminine = c(
+                         "0" = "a",
+                         "1" = "a",
+                         "2" = "a",
+                         "3" = "a",
+                         "4" = "a",
+                         "5" = "a",
+                         "6" = "a",
+                         "7" = "a",
+                         "8" = "a",
+                         "9" = "a"
+                       )
+  )
+  
+  return(list(indicators = indicators, exceptions = character()))
+}
 
-    # remainder when integer is divided by 10 = abbrevation to use.
-    # Formally, \U00BA ("º") is used for masculine, and \U00AA ("ª")
-    # for feminine. These are superscript characters by nature, so
-    # "o" and "a" are used instead. This is because ordinal() wraps
-    # them in a <sup> tag.
-    indicators <- switch(gender,
-        masculine = c(
-            "0" = "o",
-            "1" = "o",
-            "2" = "o",
-            "3" = "o",
-            "4" = "o",
-            "5" = "o",
-            "6" = "o",
-            "7" = "o",
-            "8" = "o",
-            "9" = "o"
-        ),
-        feminine = c(
-            "0" = "a",
-            "1" = "a",
-            "2" = "a",
-            "3" = "a",
-            "4" = "a",
-            "5" = "a",
-            "6" = "a",
-            "7" = "a",
-            "8" = "a",
-            "9" = "a"
-        )
+#' @rdname i18n-ordinal
+#' @export
+ordinal_rules_korean <- function() {
+  # In Korean, ordinal numbers in scientific/statistical contexts are typically
+  # expressed without an explicit ordinal suffix -- the numeral stands directly
+  # before the noun and reads naturally as ordinal (e.g., "95 백분위수" reads
+  # as "95th percentile"). Empty indicators produce clean output for all
+  # numeric values. Korean has no irregular ordinals, so exceptions is empty.
+  return(
+    list(
+      indicators = c(
+        "0" = "",
+        "1" = "",
+        "2" = "",
+        "3" = "",
+        "4" = "",
+        "5" = "",
+        "6" = "",
+        "7" = "",
+        "8" = "",
+        "9" = ""
+      ),
+      exceptions = character()
     )
+  )
+}
 
-    return(list(indicators = indicators, exceptions = character()))
+#' @rdname i18n-ordinal
+#' @export
+ordinal_rules_portuguese <- function(gender = c("masculine", "feminine")) {
+  gender <- match.arg(gender)
+  
+  # Portuguese ordinal indicators. Formally, "º" is used for masculine and
+  # "ª" for feminine (both are naturally superscript characters). Since
+  # ordinal() wraps the indicator in a <sup> tag, "o" and "a" are used
+  # instead. This mirrors the Spanish implementation above. Portuguese
+  # has no irregular ordinals for the digits 0-9, so all indicators are
+  # the same character and exceptions is empty.
+  indicators <- switch(gender,
+                       masculine = c(
+                         "0" = "o",
+                         "1" = "o",
+                         "2" = "o",
+                         "3" = "o",
+                         "4" = "o",
+                         "5" = "o",
+                         "6" = "o",
+                         "7" = "o",
+                         "8" = "o",
+                         "9" = "o"
+                       ),
+                       feminine = c(
+                         "0" = "a",
+                         "1" = "a",
+                         "2" = "a",
+                         "3" = "a",
+                         "4" = "a",
+                         "5" = "a",
+                         "6" = "a",
+                         "7" = "a",
+                         "8" = "a",
+                         "9" = "a"
+                       )
+  )
+  
+  return(list(indicators = indicators, exceptions = character()))
 }
