@@ -17,3 +17,5 @@
 www/images/img*.png
 www/assets/news.html
 www/assets/translations.html
+.positai
+.DS_Store
