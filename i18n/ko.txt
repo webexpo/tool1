@@ -1,0 +1,2297 @@
+# Translations
+#
+# - Edit each 'Translation' subsection below.
+# - Do not edit 'Source Text' subsections.
+# - Choose UTF-8 whenever you have to select a character encoding.
+# - You may use any text editor.
+# - You may split long sentences with single new lines.
+# - You may separate paragraphs by leaving a blank line between them.
+# - You may include comments.
+#   - What follows an octothorpe (#) is ignored until the next line.
+#   - An escaped octothorpe (\#) is treated as normal text.
+
+:: Identifier
+
+expostats:tool1:translations:ko
+
+:: Language Code
+
+ko
+
+:: Language
+
+한국어
+
+:: Source Language
+
+English
+
+:: Translations: 449ff93: Source Text
+
+The current situation is %s.
+
+:: Translations: 449ff93: Translation
+
+현재 상황은 %s입니다.
+
+:: Translations: 82cb390: Source Text
+
+Ogden, Trevor, and Jérôme Lavoué. %s, %s, Journal of Occupational and
+Environmental Hygiene, Volume 9, Issue 4, 2012, Pages D63-D70.
+
+:: Translations: 82cb390: Translation
+
+Ogden, Trevor, and Jérôme Lavoué. %s, %s, Journal of Occupational and
+Environmental Hygiene, Volume 9, Issue 4, 2012, Pages D63-D70.
+
+:: Translations: 9add3cf: Source Text
+
+Risk Meter
+
+:: Translations: 9add3cf: Translation
+
+위험 지수
+
+:: Translations: dbab5ea: Source Text
+
+Below the OEL:
+
+:: Translations: dbab5ea: Translation
+
+노출기준(OEL) 미만:
+
+:: Translations: 10c4b97: Source Text
+
+You may also consult the scientific report of the Webexpo project. It includes
+a large introductory section focusing on industrial hygiene statistics.
+
+:: Translations: 10c4b97: Translation
+
+사용자는 더 나은 결과를 위해 Webexpo 프로젝트의 과학 보고서를 참고할 수
+있습니다. 이 보고서에는 산업위생 통계에 중점을 둔 광범위한 소개가 포함되어
+있습니다.
+
+:: Translations: 78552d4: Source Text
+
+Default Background:
+
+:: Translations: 78552d4: Translation
+
+기본 배경:
+
+:: Translations: 0cdc87d: Source Text
+
+%s and %s currently maintains Tool 1. Ununoctium is an external collaborator
+working on the design and implementation of newer versions greater than or
+equal to 4.0.0. It oversees non-scientific components of the web application on
+behalf of Jérôme Lavoué.
+
+:: Translations: 0cdc87d: Translation
+
+현재 %s와 %s가 Tool 1을 유지 관리하고 있습니다. Ununoctium은 4.0.0 이상의 최신
+버전 설계 및 구현을 담당하는 외부 협력자입니다. Ununoctium은 Jérôme Lavoué를
+대신하여 웹 애플리케이션의 구성 요소를 감독합니다.
+
+:: Translations: ad77e09: Source Text
+
+Measurements can be censored as long as they use the same units as other
+non-censored measurements.
+
+:: Translations: ad77e09: Translation
+
+측정값은 검열되지 않은 다른 측정값과 동일한 단위를 사용하는 한 검열된 데이터로
+입력할 수 있습니다.
+
+:: Translations: 46750d4: Source Text
+
+More languages are coming soon.
+
+:: Translations: 46750d4: Translation
+
+더 많은 언어가 곧 추가될 예정입니다.
+
+:: Translations: fdd3398: Source Text
+
+Email Address
+
+:: Translations: fdd3398: Translation
+
+이메일 주소
+
+:: Translations: e0147d1: Source Text
+
+The point estimate of the geometric mean is equal to %s.
+
+:: Translations: e0147d1: Translation
+
+기하평균의 점 추정치는 %s입니다.
+
+:: Translations: 569a384: Source Text
+
+With such a high proportion of censored values, your data contains very little
+information. As a result, the statistical inference relies increasingly on the
+prior assumptions and may not be robust to changes in them. Expostats does not
+currently allow prior customization; until it does, we recommend using
+IHSTAT_Bayes to assess how sensitive your conclusions are to different prior
+choices.
+
+:: Translations: 569a384: Translation
+
+# [AI DRAFT - REVIEW]
+이렇게 검열된 값의 비율이 높은 경우, 데이터에 포함된 정보가 매우
+적습니다. 그 결과, 통계적 추론은 사전 가정에 점점 더 의존하게 되며
+사전 가정의 변화에 대해 강건하지 않을 수 있습니다. Expostats는 현재
+사전 분포의 사용자 정의를 지원하지 않습니다. 지원되기 전까지는,
+결론이 다양한 사전 분포 선택에 얼마나 민감한지 평가하기 위해
+IHSTAT_Bayes 사용을 권장합니다.
+
+:: Translations: df83adb: Source Text
+
+Arithmetic Mean
+
+:: Translations: df83adb: Translation
+
+산술평균
+
+:: Translations: bda8863: Source Text
+
+The %s, %s, and %s about measurement data interpretation are very similar but
+aggregate the %s and %s categories as %4$s.
+
+:: Translations: bda8863: Translation
+
+측정 데이터 해석에 관한 %s, %s 및 %s는 매우 유사하지만, %s 및 %s 범주를 %4$s로
+통합합니다.
+
+:: Translations: a632e97: Source Text
+
+Number of Obversations
+
+:: Translations: a632e97: Translation
+
+관측 수
+
+:: Translations: 7034018: Source Text
+
+Measurements
+
+:: Translations: 7034018: Translation
+
+측정값
+
+:: Translations: 82332ff: Source Text
+
+Jérôme Lavoué, Lawrence Joseph, Tracy L. Kirkham, France Labrèche, Gautier
+Mater, and Frédéric Clerc (2020). %s (Report R-1065). IRSST.
+
+:: Translations: 82332ff: Translation
+
+Jérôme Lavoué, Lawrence Joseph, Tracy L. Kirkham, France Labrèche, Gautier
+Mater, and Frédéric Clerc (2020). %s (Report R-1065). IRSST.
+
+:: Translations: d033ecc: Source Text
+
+This plot shows the probability distribution of the uncertainty around the
+selected percentile. It shows the probability that its true value is (1) below
+1% of the OEL, (2) between 1% and 10% of the OEL, (3) between 10% and 50% of
+the OEL, (4) between 50% and 100% of the OEL, and (5) greater than the OEL.
+This is based on the classification adopted by AIHA. The red column represents
+the probability of an overexposure. The latter should be lower than the
+threshold (black dashed line).
+
+:: Translations: d033ecc: Translation
+
+이 그래프는 선택된 백분위수 주변의 불확실성에 대한 확률 분포를 보여줍니다.
+참값이 (1) 노출기준의 1% 미만, (2) 1%~10% 사이, (3) 10%~50% 사이, (4) 50%~100%
+사이, (5) 노출기준 초과일 확률을 나타냅니다. 이는 AIHA에서 채택한 분류를
+기반으로 합니다. 빨간색 기둥은 과다 노출 확률을 나타냅니다. 이 확률은
+임계값(검은색 점선)보다 낮아야 합니다.
+
+:: Translations: 7d60ad6: Source Text
+
+tolerable
+
+:: Translations: 7d60ad6: Translation
+
+허용 가능
+
+:: Translations: 4cc6c29: Source Text
+
+Yes. Below are four videos made by the authors of Expostats. The last two stem
+from a 6-hour-long professional development course (PDC) made in 2024 for the
+Indonesian Industrial Hygiene Association (IIHA).
+
+:: Translations: 4cc6c29: Translation
+
+예. 아래는 Expostats 저자들이 제작한 4개의 비디오입니다. 마지막 두 개는 2024년
+인도네시아 산업위생협회(IIHA)를 위해 제작된 6시간짜리 전문 역량 개발
+과정(PDC)에서 발췌한 것입니다.
+
+:: Translations: dc74f5c: Source Text
+
+This plot shows the probability distribution of the uncertainty around the
+exceedance fraction. It shows the probability that its true value is (1) below
+%s, (2) between %1$s and %2$s, and (3) greater than %s. The red column
+represents the probability of an overexposure. The latter should be lower than
+the threshold (black dashed line).
+
+:: Translations: dc74f5c: Translation
+
+이 그래프는 초과율 주변의 불확실성에 대한 확률 분포를 보여줍니다. 참값이 (1) %s
+미만, (2) %1$s와 %2$s 사이, (3) %s 초과일 확률을 나타냅니다. 빨간색 기둥은 과다
+노출 확률을 나타냅니다. 이 확률은 임계값(검은색 점선)보다 낮아야 합니다.
+
+:: Translations: 9616619: Source Text
+
+Do not put a blank character (tab, space, etc.) before and after special
+characters used to indicate how a measurement is censored. See below for more
+information.
+
+:: Translations: 9616619: Translation
+
+측정값의 검열 방식을 나타내는 특수 문자 앞뒤에 공백 문자(탭, 스페이스 등)를
+넣지 마십시오. 자세한 내용은 아래를 참조하십시오.
+
+:: Translations: 176669b: Source Text
+
+Select a criterion for what is considered overexposure (for example, the %s
+percentile being greater than or equal to the OEL).
+
+:: Translations: 176669b: Translation
+
+과다 노출로 간주할 기준을 선택하십시오 (예: %s 백분위수가 노출기준(OEL) 이상인
+경우).
+
+:: Translations: a4cd560: Source Text
+
+Maximal Acceptable Exceedance:
+
+:: Translations: a4cd560: Translation
+
+최대 허용 초과율:
+
+:: Translations: ad1e98e: Source Text
+
+OEL
+
+:: Translations: ad1e98e: Translation
+
+노출기준(OEL)
+
+:: Translations: 641f765: Source Text
+
+This risk meter shows the probability of the exposure being too high when
+compared to the OEL. The red zone indicates a problematic exposure.
+
+:: Translations: 641f765: Translation
+
+이 위험 지수는 노출기준(OEL)과 비교했을 때 노출 수준이 너무 높을 확률을
+보여줍니다. 빨간색 구역은 문제가 있는 노출 상황임을 나타냅니다.
+
+:: Translations: bddbd7f: Source Text
+
+acceptable
+
+:: Translations: bddbd7f: Translation
+
+수용 가능
+
+:: Translations: 6489309: Source Text
+
+Use this value to set the percentile of the exposure distribution that will be
+compared to the OEL. It must be between 0% and 100%. The traditional default
+value is 95%.
+
+:: Translations: 6489309: Translation
+
+노출기준(OEL)과 비교할 노출 분포의 백분위수를 설정하려면 이 값을 사용하십시오.
+0%에서 100% 사이여야 합니다. 전통적인 기본값은 95%입니다.
+
+:: Translations: 73dff8f: Source Text
+
+Can measurements be censored?
+
+:: Translations: 73dff8f: Translation
+
+측정값이 검출한계미만이거나 검출범위를 넘어섰습니까?
+
+:: Translations: 4528da3: Source Text
+
+Acceptable Sample
+
+:: Translations: 4528da3: Translation
+
+수용 가능한 샘플
+
+:: Translations: 057d849: Source Text
+
+Use this value to change the global background color.
+
+:: Translations: 057d849: Translation
+
+전체 배경색을 변경하려면 이 값을 사용하십시오.
+
+:: Translations: 5dc95f8: Source Text
+
+Usage
+
+:: Translations: 5dc95f8: Translation
+
+사용법
+
+:: Translations: 6192e8e: Source Text
+
+This plot shows the probability distribution of the uncertainty around the
+arithmetic mean. It shows the probability that its true value is (1) below 1%
+of the OEL, (2) between 1% and 10% of the OEL, (3) between 10% and 50% of the
+OEL, (4) between 50% and 100% of the OEL, and (5) greater than the OEL. This is
+based on the classification adopted by AIHA. The red column represents the
+probability of an overexposure. The latter should be lower than the threshold
+(black dashed line).
+
+:: Translations: 6192e8e: Translation
+
+이 그래프는 산술평균 주변의 불확실성에 대한 확률 분포를 보여줍니다. 참값이 (1)
+노출기준의 1% 미만, (2) 1%~10% 사이, (3) 10%~50% 사이, (4) 50%~100% 사이, (5)
+노출기준 초과일 확률을 나타냅니다. 이는 AIHA에서 채택한 분류를 기반으로 합니다.
+빨간색 기둥은 과다 노출 확률을 나타냅니다. 이 확률은 임계값(검은색 점선)보다
+낮아야 합니다.
+
+:: Translations: 127c649: Source Text
+
+Use this value as an acceptable proportion of exposures above the OEL. It must
+be between 0% and 100%. The traditional default value is 5%.
+
+:: Translations: 127c649: Translation
+
+노출기준(OEL)을 초과하는 노출의 허용 비율로 이 값을 사용하십시오. 0%에서 100%
+사이여야 합니다. 전통적인 기본값은 5%입니다.
+
+:: Translations: cebe5c4: Source Text
+
+Measurement Index
+
+:: Translations: cebe5c4: Translation
+
+측정 지수
+
+:: Translations: b66eca7: Source Text
+
+The points above should follow a straight line. Random deviations from it are
+expected. However, significant deviations suggest that the data may have to be
+split into distinct subsets, or that some outliers must be investigated.
+
+:: Translations: b66eca7: Translation
+
+위의 점들은 직선을 따라야 합니다. 직선으로부터의 무작위 편차는 발생할 수
+있습니다. 그러나 상당한 편차가 있다면 데이터를 별개의 하위 집합으로 나누어야
+하거나, 일부 이상치에 대해 조사해야 함을 시사합니다.
+
+:: Translations: 6863c44: Source Text
+
+Clear
+
+:: Translations: 6863c44: Translation
+
+지우기
+
+:: Translations: 179eb27: Source Text
+
+There must be one value per line.
+
+:: Translations: 179eb27: Translation
+
+한 줄에 하나의 값만 있어야 합니다.
+
+:: Translations: a2b22df: Source Text
+
+What are modes?
+
+:: Translations: a2b22df: Translation
+
+모드란 무엇입니까?
+
+:: Translations: 7e85759: Source Text
+
+Parameters
+
+:: Translations: 7e85759: Translation
+
+매개변수
+
+:: Translations: 0524962: Source Text
+
+Mode
+
+:: Translations: 0524962: Translation
+
+모드
+
+:: Translations: be4154f: Source Text
+
+It builds on a recognized risk assessment framework endorsed by leading
+institutions, including the American Industrial Hygiene Association (AIHA), the
+British Occupational Hygiene Society (BOHS), the Dutch Society for Occupational
+Hygiene (NVVA), the French Institut national de recherche et de sécurité
+(INRS), the National Institute for Occupational Safety and Health (NIOSH), and
+the European Committee for Standardization (CEN).
+
+:: Translations: be4154f: Translation
+
+이 도구는 American Industrial Hygiene Association (AIHA), British Occupational
+Hygiene Society (BOHS), Dutch Society for Occupational Hygiene (NVVA), French
+Institut national de recherche et de sécurité (INRS), National Institute for
+Occupational Safety and Health (NIOSH), European Committee for Standardization
+(CEN)을 포함한 주요 기관에서 인정하는 위험성평가 프레임워크를 기반으로
+구축되었습니다.
+
+:: Translations: 3eba509: Source Text
+
+Risk Assessment
+
+:: Translations: 3eba509: Translation
+
+위험 평가
+
+:: Translations: 378fb16: Source Text
+
+General
+
+:: Translations: 378fb16: Translation
+
+일반
+
+:: Translations: 426cfe3: Source Text
+
+Risk assessment based on the arithmetic mean relies on the availability of a
+long-term averaged OEL (LTA-OEL in the AIHA terminology) representing a
+cumulative burden threshold. Most current OELs are not created as LTA-OEL.
+
+Despite an annoying lack of precise definition by most organizations, they
+should be most often viewed as thresholds to be exceeded as rarely as possible.
+Some authors have suggested using one-tenth of the OEL as a practical LTA-OEL
+when assessing risk using the arithmetic mean.
+
+:: Translations: 426cfe3: Translation
+
+산술평균에 기반한 위험 평가는 누적 부담 임계값을 나타내는 장기 평균
+노출기준(AIHA 용어로 LTA-OEL)의 가용성에 의존합니다. 대부분의 현재
+노출기준(OEL)은 LTA-OEL로 생성되지 않았습니다.
+
+대부분의 기관에서 정확한 정의를 내리지 않고 있지만, 노출기준은 대개 가능한 한
+드물게 초과해야 하는 임계값으로 간주되어야 합니다. 일부 저자들은 산술평균을
+사용하여 위험을 평가할 때 노출기준의 1/10을 실질적인 LTA-OEL로 사용할 것을
+제안하기도 했습니다.
+
+:: Translations: 04339f1: Source Text
+
+Measurements are entered in the Measurements text area of the Calculation
+Parameters sidebar. Failing to follow the following rules below will inevitably
+lead to undefined behavior.
+
+:: Translations: 04339f1: Translation
+
+측정값은 '계산 매개변수' 사이드바의 '측정값' 텍스트 영역에 입력합니다. 아래
+규칙을 따르지 않을 경우 예기치 않은 동작이 발생할 수 있습니다.
+
+:: Translations: 80d1a60: Source Text
+
+Exceedance Fraction Category
+
+:: Translations: 80d1a60: Translation
+
+초과율 범주
+
+:: Translations: fa75cdd: Source Text
+
+Proportion Greater than OEL
+
+:: Translations: fa75cdd: Translation
+
+노출기준(OEL) 초과 비율
+
+:: Translations: 632ebd0: Source Text
+
+Sample Statistic
+
+:: Translations: 632ebd0: Translation
+
+표준 통계량
+
+:: Translations: 4c4b9ae: Source Text
+
+If the overexposure risk is betwen %s and %s, it is moderate. The situation is
+controlled, but with a limited safety margin.
+
+:: Translations: 4c4b9ae: Translation
+
+과다 노출 위험이 %s에서 %s 사이이면 보통 수준입니다. 상황이 제어되고는 있으나
+안전 여유가 제한적입니다.
+
+:: Translations: ad9a641: Source Text
+
+Who created Tool 1?
+
+:: Translations: ad9a641: Translation
+
+Tool 1은 누가 만들었습니까?
+
+:: Translations: 77a3276: Source Text
+
+Single plot (with uncertainty)
+
+:: Translations: 77a3276: Translation
+
+단일 그래프 (불확실성 포함)
+
+:: Translations: fbc45b3: Source Text
+
+This depends on the chosen panel.
+
+:: Translations: fbc45b3: Translation
+
+이는 선택한 패널에 따라 다릅니다.
+
+:: Translations: 7e21f78: Source Text
+
+Use this value to change the displayed plot. See the footer below for
+additional details on it.
+
+:: Translations: 7e21f78: Translation
+
+표시되는 그래프를 변경하려면 이 값을 사용하십시오. 자세한 내용은 아래 바닥글을
+참조하십시오.
+
+:: Translations: 9578728: Source Text
+
+All rights reserved.
+
+:: Translations: 9578728: Translation
+
+All rights reserved.
+
+:: Translations: 380f931: Source Text
+
+Submit
+
+:: Translations: 380f931: Translation
+
+제출
+
+:: Translations: af71ace: Source Text
+
+Interval censored measurements are imputed as the mid-range.
+
+:: Translations: af71ace: Translation
+
+구간 측정값은 중간값으로 대체됩니다.
+
+:: Translations: b817814: Source Text
+
+Above the OEL:
+
+:: Translations: b817814: Translation
+
+노출기준(OEL) 초과:
+
+:: Translations: f542f1c: Source Text
+
+Extended mode has more inputs and shows additional results split into multiple
+Statistical Inference panels.
+
+:: Translations: f542f1c: Translation
+
+상세 모드는 더 많은 입력 항목이 있으며 여러 패널로 나누어 추가 결과를
+보여줍니다.
+
+:: Translations: 1d671e4: Source Text
+
+Overexposure is defined as the %s percentile being greater than or equal to the
+OEL.
+
+:: Translations: 1d671e4: Translation
+
+과다 노출은 %s 백분위수가 노출기준(OEL) 이상인 것으로 정의됩니다.
+
+:: Translations: 5fafea5: Source Text
+
+How long should I wait for the results?
+
+:: Translations: 5fafea5: Translation
+
+결과가 나올 때까지 얼마나 기다려야 합니까?
+
+:: Translations: 8c8796c: Source Text
+
+Can plots be expanded?
+
+:: Translations: 8c8796c: Translation
+
+그래프를 확대할 수 있습니까?
+
+:: Translations: e80025a: Source Text
+
+Sequential Plot
+
+:: Translations: e80025a: Translation
+
+순차 그래프
+
+:: Translations: d24b3ce: Source Text
+
+This plot shows the probability density function of the estimated distribution
+of exposures. The OEL is shown as a dotted red line and the point estimate of
+the arithmetic mean as a continuous green line.
+
+:: Translations: d24b3ce: Translation
+
+이 그래프는 추정된 노출 분포의 확률 밀도 함수를 보여줍니다. 노출기준(OEL)은
+빨간색 점선으로, 산술평균의 점 추정치는 녹색 실선으로 표시됩니다.
+
+:: Translations: c73ed1b: Source Text
+
+Credible intervals are shown in square brackets.
+
+:: Translations: c73ed1b: Translation
+
+신용 구간은 대괄호 안에 표시됩니다.
+
+:: Translations: 930bac6: Source Text
+
+How can I generate results?
+
+:: Translations: 930bac6: Translation
+
+어떻게 결과를 생성하나요?
+
+:: Translations: 81fb05e: Source Text
+
+Value
+
+:: Translations: 81fb05e: Translation
+
+값
+
+:: Translations: f533761: Source Text
+
+Exceedance Plot
+
+:: Translations: f533761: Translation
+
+초과 그래프
+
+:: Translations: 511580d: Source Text
+
+Statistical Inference
+
+:: Translations: 511580d: Translation
+
+통계적 추론
+
+:: Translations: 43057f4: Source Text
+
+Role
+
+:: Translations: 43057f4: Translation
+
+역할
+
+:: Translations: 305b9f6: Source Text
+
+Coefficient of Variation
+
+:: Translations: 305b9f6: Translation
+
+변동 계수
+
+:: Translations: 24a1b71: Source Text
+
+Median
+
+:: Translations: 24a1b71: Translation
+
+중앙값
+
+:: Translations: 3976eaa: Source Text
+
+The Bayesian models and data interpretation procedures used by Tool 1 are
+derived from current best practices in industrial hygiene, as reviewed in the
+the following scientifice paper. Further details and references are also
+available on %s.
+
+:: Translations: 3976eaa: Translation
+
+Tool 1에서 사용하는 베이지안 모델 및 데이터 해석 절차는 다음 과학 논문에서
+검토된 산업위생의 최신 모범 사례에서 파생되었습니다. 추가 세부 사항 및 참고
+문헌은 %s에서도 확인할 수 있습니다.
+
+:: Translations: 2f456d9: Source Text
+
+The 70%% upper confidence limit is equal to %s.
+
+:: Translations: 2f456d9: Translation
+
+70%% 상한 신뢰 한계는 %s입니다.
+
+:: Translations: 6298302: Source Text
+
+Submit all parameters and start Bayesian calculations.
+
+:: Translations: 6298302: Translation
+
+모든 매개변수를 제출하고 베이지안 계산을 시작합니다.
+
+:: Translations: f6667d4: Source Text
+
+Flasks (exposures)
+
+:: Translations: f6667d4: Translation
+
+플라스크 (노출값)
+
+:: Translations: a744f49: Source Text
+
+Occupational Exposure Limit (OEL):
+
+:: Translations: a744f49: Translation
+
+직업적 노출기준 (OEL):
+
+:: Translations: 03c33e5: Source Text
+
+Updating. Please wait.
+
+:: Translations: 03c33e5: Translation
+
+업데이트 중입니다. 잠시만 기다려 주십시오.
+
+:: Translations: 745ebd1: Source Text
+
+Calculation Parameters
+
+:: Translations: 745ebd1: Translation
+
+계산 매개변수
+
+:: Translations: 00b437c: Source Text
+
+Use this value as a probability for the credible intervals around parameter
+estimates. It must be between 0% and 100%. The default value is set equal to
+90%. The credible interval is the Bayesian equivalent of the confidence
+interval.
+
+:: Translations: 00b437c: Translation
+
+매개변수 추정치 주변의 신용 구간에 대한 확률로 이 값을 사용하십시오. 0%에서
+100% 사이여야 합니다. 기본값은 90%로 설정되어 있습니다. 신용 구간은 신뢰 구간에
+상응하는 베이지안 개념입니다.
+
+:: Translations: 79fb413: Source Text
+
+Clear the measurement dataset. Doing so does not automatically update the
+current results. Click on the Submit button when you are ready to do so.
+
+:: Translations: 79fb413: Translation
+
+측정 데이터셋을 지웁니다. 이 작업이 현재 결과를 자동으로 업데이트하지는
+않습니다. 준비가 되면 '제출' 버튼을 클릭하십시오.
+
+:: Translations: 4f6392c: Source Text
+
+How should I interpret these results?
+
+:: Translations: 4f6392c: Translation
+
+이 결과를 어떻게 해석해야 합니까?
+
+:: Translations: 0595dc0: Source Text
+
+The point estimate of the exceedance fraction is equal to %s.
+
+:: Translations: 0595dc0: Translation
+
+초과율의 점 추정치는 %s입니다.
+
+:: Translations: 1a6a68b: Source Text
+
+Is the approach of Tool 1 recognized and peer-reviewed?
+
+:: Translations: 1a6a68b: Translation
+
+Tool 1의 방식은 인정받고 동료 검토를 거쳤습니까?
+
+:: Translations: 38210f7: Source Text
+
+Add a lower than or equal sign before each measurement censored to the left
+(e.g. <30.0).
+
+:: Translations: 38210f7: Translation
+
+검출한계 미만 측정값은 각 측정값 앞에 작거나 같음 기호를 추가하십시오 (예:
+<30.0).
+
+:: Translations: 8fc2a6a: Source Text
+
+Data Interpretation for One Similar Exposure Group
+
+:: Translations: 8fc2a6a: Translation
+
+단일 유사 노출 그룹에 대한 데이터 해석
+
+:: Translations: 7b55099: Source Text
+
+Use this value to change the color of exposures that are above the OEL.
+
+:: Translations: 7b55099: Translation
+
+노출기준(OEL)을 초과하는 노출값의 색상을 변경하려면 이 값을 사용하십시오.
+
+:: Translations: abe3699: Source Text
+
+Acceptable
+
+:: Translations: abe3699: Translation
+
+수용 가능
+
+:: Translations: 22d0b63: Source Text
+
+This plot shows the probability density function of the estimated distribution
+of exposures. The OEL is shown as a dotted red line and the point estimate of
+the selected percentile as a continuous blue line.
+
+:: Translations: 22d0b63: Translation
+
+이 그래프는 추정된 노출 분포의 확률 밀도 함수를 보여줍니다. 노출기준(OEL)은
+빨간색 점선으로, 선택된 백분위수의 점 추정치는 파란색 실선으로 표시됩니다.
+
+:: Translations: 92193c3: Source Text
+
+What is Tool 1?
+
+:: Translations: 92193c3: Translation
+
+Tool 1이란 무엇입니까?
+
+:: Translations: 10ef3a6: Source Text
+
+Quantiles (Lognormal Distribution)
+
+:: Translations: 10ef3a6: Translation
+
+분위수 (대수정규분포)
+
+:: Translations: e3d5355: Source Text
+
+Percentiles
+
+:: Translations: e3d5355: Translation
+
+백분위수
+
+:: Translations: 532bf12: Source Text
+
+> OEL
+
+:: Translations: 532bf12: Translation
+
+> 노출기준(OEL)
+
+:: Translations: bf93329: Source Text
+
+You may customize the user interface by using the menus and buttons located in
+the title bar of Tool 1 (in the top right corner). All parameters may be
+changed anytime on-the-fly throughout the session.
+
+:: Translations: bf93329: Translation
+
+Tool 1의 제목 표시줄(우측 상단)에 있는 메뉴와 버튼을 사용하여 사용자
+인터페이스를 사용자 정의할 수 있습니다. 모든 매개변수는 세션 중에 언제든지 즉시
+변경할 수 있습니다.
+
+:: Translations: 1277d46: Source Text
+
+French guidelines
+
+:: Translations: 1277d46: Translation
+
+프랑스 지침
+
+:: Translations: d9fe05c: Source Text
+
+Use this value as the maximal overexposure risk. It must be between 0% and
+100%. It represents the maximal probability that the overexposure criterion is
+met. Above this value, the situation requires remedial action. While 5% is the
+traditional chosen value, recent guidelines suggest using 30% instead.
+
+:: Translations: d9fe05c: Translation
+
+최대 과다 노출 위험으로 이 값을 사용하십시오. 0%에서 100% 사이여야 합니다. 이는
+과다 노출 기준이 충족될 최대 확률을 나타냅니다. 이 값을 초과하면 시정 조치가
+필요한 상황임을 의미합니다. 전통적으로 5%를 사용해 왔으나, 최근 지침에서는
+30%를 사용할 것을 제안합니다.
+
+:: Translations: 9bdd102: Source Text
+
+Measurements:
+
+:: Translations: 9bdd102: Translation
+
+측정값:
+
+:: Translations: a3c6c52: Source Text
+
+Censored
+
+:: Translations: a3c6c52: Translation
+
+검출한계·범위 제한 값
+
+:: Translations: f6e929e: Source Text
+
+Tool 1 was developped by the Industrial Hygiene team of the Department of
+Environmental and Occupational Health at the %s of the %s.
+
+:: Translations: f6e929e: Translation
+
+Tool 1은 %s %s 산업위생학과에 의해 개발되었습니다.
+
+:: Translations: 8785301: Source Text
+
+Critical Percentile:
+
+:: Translations: 8785301: Translation
+
+임계 백분위수:
+
+:: Translations: 3d4f8d5: Source Text
+
+Arithmetic Standard Deviation
+
+:: Translations: 3d4f8d5: Translation
+
+산술표준편차
+
+:: Translations: b7b4f0b: Source Text
+
+Measurement Type
+
+:: Translations: b7b4f0b: Translation
+
+측정 유형
+
+:: Translations: e9989ce: Source Text
+
+It is as follows.
+
+:: Translations: e9989ce: Translation
+
+내용은 다음과 같습니다.
+
+:: Translations: a0028fe: Source Text
+
+Express mode shows a curated subset of results in a single Statistical
+Inference panel. It is the default mode.
+
+:: Translations: a0028fe: Translation
+
+요약 모드는 단일 통계적 추론 패널에 선별된 결과 하위 집합을 보여줍니다. 기본
+모드입니다.
+
+:: Translations: 70d45be: Source Text
+
+Language
+
+:: Translations: 70d45be: Translation
+
+언어
+
+:: Translations: 27c579f: Source Text
+
+This plot shows the estimated exposure distribution when assuming 250 exposure
+measurements have been collected. If the measurements represent 8-hour TWA
+(Time-Weighted Average) values, this approximately represents a full year of
+exposure. The OEL is shown as a red line.
+
+:: Translations: 27c579f: Translation
+
+이 그래프는 250개의 노출 측정값이 수집되었다고 가정했을 때의 추정 노출 분포를
+보여줍니다. 측정값이 8시간 TWA 값을 나타낸다면, 이는 대략 1년 전체의 노출을
+의미합니다. 노출기준(OEL)은 빨간색 실선으로 표시됩니다.
+
+:: Translations: 481daf9: Source Text
+
+Tool 1 is an open-source and free-to-use web application that facilitates the
+interpretation of industrial hygiene measurements, particularly in assessing
+compliance with occupational exposure limits (OEL).
+
+:: Translations: 481daf9: Translation
+
+Tool 1은 산업위생 측정값의 해석, 특히 직업적 노출기준(OEL) 준수 여부 평가를
+용이하게 하는 오픈 소스 및 무료 웹 애플리케이션입니다.
+
+:: Translations: 9b3e862: Source Text
+
+This plot shows a shaded and darker region corresponding to the maximal
+acceptable exceedance. Red flasks outside of it are unacceptable exposures. It
+does not take into account estimation uncertainty.
+
+:: Translations: 9b3e862: Translation
+
+이 그래프는 최대 허용 초과율에 해당하는 어둡게 음영 처리된 영역을 보여줍니다.
+그 영역 밖에 있는 빨간색 플라스크는 수용할 수 없는 노출값입니다. 이 그래프는
+추정의 불확실성을 고려하지 않습니다.
+
+:: Translations: c77a676: Source Text
+
+Profile
+
+:: Translations: c77a676: Translation
+
+프로필
+
+:: Translations: 6918de6: Source Text
+
+Proportion Censored
+
+:: Translations: 6918de6: Translation
+
+검출한계·범위 제한 값 비율
+
+:: Translations: e04262e: Source Text
+
+Choosing either one is a matter of personal preference.
+
+:: Translations: e04262e: Translation
+
+둘 중 어느 것을 선택하느냐는 개인의 선호 문제입니다.
+
+:: Translations: 08b8516: Source Text
+
+The decision scheme to interpret the probability of overexposure (the
+overexposure risk, which is the probability that the overexposure criterion is
+met) follows the recommendation of the AIHA video series %s (English only).
+
+:: Translations: 08b8516: Translation
+
+과다 노출 확률을 해석하기 위한 결정 체계는 AIHA 비디오 시리즈 %s(영어만 제공)의
+권장 사항을 따릅니다.
+
+:: Translations: 8cbc334: Source Text
+
+Why is there no shown output initially?
+
+:: Translations: 8cbc334: Translation
+
+처음에 출력 결과가 표시되지 않는 이유는 무엇입니까?
+
+:: Translations: 848dc48: Source Text
+
+Descriptive statistics should not be viewed as useful estimates of the
+underlying exposure distribution. Use the Statistical Inference panels for that
+purpose. These provide information inferred from Bayesian models.
+
+:: Translations: 848dc48: Translation
+
+기술 통계량을 잠재적인 노출 분포의 유용한 추정치로 간주해서는 안 됩니다. 그
+목적으로는 '통계적 추론' 패널을 사용하십시오. 여기서는 베이지안 모델에서 추론된
+정보를 제공합니다.
+
+:: Translations: 3a55954: Source Text
+
+Toggle the current theme of the interface (light or dark).
+
+:: Translations: 3a55954: Translation
+
+인터페이스의 현재 테마(밝게 또는 어둡게)를 전환합니다.
+
+:: Translations: 3883288: Source Text
+
+Customize
+
+:: Translations: 3883288: Translation
+
+사용자 정의
+
+:: Translations: 1de8474: Source Text
+
+Concentration
+
+:: Translations: 1de8474: Translation
+
+농도
+
+:: Translations: e2b62b1: Source Text
+
+How can I customize the user interface?
+
+:: Translations: e2b62b1: Translation
+
+사용자 인터페이스를 어떻게 사용자 정의할 수 있습니까?
+
+:: Translations: 50da20b: Source Text
+
+European guidelines EN689
+
+:: Translations: 50da20b: Translation
+
+유럽 지침 EN689
+
+:: Translations: 5bbca33: Source Text
+
+Geometric Standard Deviation
+
+:: Translations: 5bbca33: Translation
+
+기하표준편차
+
+:: Translations: 5f52075: Source Text
+
+10% < OEL ≤ 50%
+
+:: Translations: 5f52075: Translation
+
+10% < 노출기준 ≤ 50%
+
+:: Translations: e2b0950: Source Text
+
+Depending on the server's current load and the sample's size, you may have to
+wait a little while before obtaining results. Waiting times are usually lower
+than 30 seconds. Some panels require more computing time and resources.
+
+:: Translations: e2b0950: Translation
+
+서버의 현재 부하와 샘플 크기에 따라 결과를 얻기까지 잠시 기다려야 할 수도
+있습니다. 대기 시간은 보통 30초 미만입니다. 일부 패널은 더 많은 계산 시간과
+자원이 필요합니다.
+
+:: Translations: be94953: Source Text
+
+Use this value to change the background color of the maximal acceptable
+exceedance region (maximal acceptable number of exposures that are above the
+OEL).
+
+:: Translations: be94953: Translation
+
+최대 허용 초과 영역의 배경색을 변경하려면 이 값을 사용하십시오.
+
+:: Translations: f73886c: Source Text
+
+The 95%% upper confidence limit is equal to %s.
+
+:: Translations: f73886c: Translation
+
+95%% 상한 신뢰 한계는 %s입니다.
+
+:: Translations: 6aff6b7: Source Text
+
+Tool 1 uses a Bayesian approach to estimate the parameters of the lognormal
+distribution. Doing so offers at least three advantages compared to traditional
+(frequentist) methods.
+
+:: Translations: 6aff6b7: Translation
+
+Tool 1은 베이지안 접근법을 사용하여 대수정규분포의 매개변수를 추정합니다. 이
+방식은 전통적인 방법과 비교하여 최소 세 가지 장점을 제공합니다.
+
+:: Translations: 9eef958: Source Text
+
+Measurements censored to the left are treated using robust Log-probit
+regression on order statistics. The algorithm used is derived from %s (itself
+derived from the work of %s).
+
+:: Translations: 9eef958: Translation
+
+검출한계 미만 측정값은 순서 통계량에 기반한 강한 로그-프로빗 회귀 분석을
+사용하여 처리됩니다. 사용된 알고리즘은 %s에서 파생되었으며, 이는 %s의 연구에서
+파생된 것입니다.
+
+:: Translations: ed8d758: Source Text
+
+Are there other educational resources about industrial hygiene statistics?
+
+:: Translations: ed8d758: Translation
+
+산업위생 통계에 관한 다른 교육 자료가 있습니까?
+
+:: Translations: fc5b077: Source Text
+
+OEL outside of graphical limits.
+
+:: Translations: fc5b077: Translation
+
+노출기준(OEL)이 그래프 범위를 벗어났습니다.
+
+:: Translations: 4e2a12c: Source Text
+
+The probability that this criterion is met is equal to %s.
+
+:: Translations: 4e2a12c: Translation
+
+이 기준이 충족될 확률은 %s입니다.
+
+:: Translations: c2bb46d: Source Text
+
+It naturally integrates the treatment of non-detects.
+
+:: Translations: c2bb46d: Translation
+
+미검출 데이터의 처리가 자연스럽게 통합됩니다.
+
+:: Translations: d2a9835: Source Text
+
+No outputs are shown until calculation parameters are submitted. Some static
+elements, such as text and icons, are pre-rendered for optimization purposes.
+
+:: Translations: d2a9835: Translation
+
+계산 매개변수가 제출되기 전까지는 결과가 표시되지 않습니다. 텍스트 및 아이콘과
+같은 일부 정적 요소는 최적화 목적으로 미리 렌더링됩니다.
+
+:: Translations: c165d34: Source Text
+
+1% < OEL ≤ 10%
+
+:: Translations: c165d34: Translation
+
+1% < 노출기준 ≤ 10%
+
+:: Translations: cd84e16: Source Text
+
+Locate the Calculation Parameters sidebar on the left and follow these steps.
+
+:: Translations: cd84e16: Translation
+
+왼쪽의 '계산 매개변수' 사이드바를 찾아 다음 단계를 따르십시오.
+
+:: Translations: 04a1dc2: Source Text
+
+Use this value to change the color of exposures that are below the OEL.
+
+:: Translations: 04a1dc2: Translation
+
+노출기준(OEL) 미만인 노출값의 색상을 변경하려면 이 값을 사용하십시오.
+
+:: Translations: 0ff7e09: Source Text
+
+Descriptive Statistics
+
+:: Translations: 0ff7e09: Translation
+
+기술 통계량
+
+:: Translations: 23eb033: Source Text
+
+Critical Percentile Category
+
+:: Translations: 23eb033: Translation
+
+임계 백분위수 범주
+
+:: Translations: 8f7f102: Source Text
+
+Quantile-Quantile Plot
+
+:: Translations: 8f7f102: Translation
+
+Q-Q 그래프
+
+:: Translations: 6db5beb: Source Text
+
+50% < OEL ≤ 100%
+
+:: Translations: 6db5beb: Translation
+
+50% < 노출기준 ≤ 100%
+
+:: Translations: 2348472: Source Text
+
+Single plot (no uncertainty)
+
+:: Translations: 2348472: Translation
+
+단일 그래프 (불확실성 미포함)
+
+:: Translations: 0a5c356: Source Text
+
+No results are shown in the right panels until the inputs are submitted, or the
+current mode is updated.
+
+:: Translations: 0a5c356: Translation
+
+입력값이 제출되거나 현재 모드가 업데이트될 때까지 오른쪽 패널에 결과가 표시되지
+않습니다.
+
+:: Translations: e510a31: Source Text
+
+The point estimate of the %s percentile is equal to %s.
+
+:: Translations: e510a31: Translation
+
+%s 백분위수의 점 추정치는 %s입니다.
+
+:: Translations: dbb0a02: Source Text
+
+Always put a leading zero before decimals for numbers strictly smaller than
+one. Always use a dot for decimals. Do not use a separator for thousands.
+
+:: Translations: dbb0a02: Translation
+
+1보다 작은 숫자의 소수점 앞에는 항상 0을 붙이십시오. 소수점 기호로는 항상
+마침표를 사용하십시오. 천 단위 구분 기호는 사용하지 마십시오.
+
+:: Translations: 690c3dc: Source Text
+
+Percentile Category
+
+:: Translations: 690c3dc: Translation
+
+백분위수 범주
+
+:: Translations: ea57967: Source Text
+
+Exceedance Fraction Threshold:
+
+:: Translations: ea57967: Translation
+
+초과율 임계값:
+
+:: Translations: f69c2db: Source Text
+
+Estimates
+
+:: Translations: f69c2db: Translation
+
+추정치
+
+:: Translations: 798b335: Source Text
+
+Credible Interval Probability:
+
+:: Translations: 798b335: Translation
+
+신용 구간 확률:
+
+:: Translations: e279776: Source Text
+
+Use this value to assess overexposure. It must have the same unit as the
+measurement data.
+
+:: Translations: e279776: Translation
+
+과다 노출을 평가하려면 이 값을 사용하십시오. 측정 데이터와 동일한 단위여야
+합니다.
+
+:: Translations: b69a61b: Source Text
+
+Tool 1 offers two modes controlling how much information is displayed to the
+user.
+
+:: Translations: b69a61b: Translation
+
+Tool 1은 사용자에게 표시되는 정보의 양을 제어하는 두 가지 모드를 제공합니다.
+
+:: Translations: 6135ed1: Source Text
+
+This plot shows the estimated exposure distribution when assuming 250 exposure
+measurements have been collected. If the measurements represent 8-hour TWA
+(Time-Weighted Average) values, this approximately represents a full year of
+exposure. The OEL is shown as a dotted red line and the point estimate of the
+arithmetic mean as a continuous green line.
+
+:: Translations: 6135ed1: Translation
+
+이 그래프는 250개의 측정값이 수집되었다고 가정했을 때의 추정 노출 분포를
+보여줍니다. 측정값이 8시간 TWA 값을 나타낸다면, 이는 대략 1년 전체의 노출을
+의미합니다. 노출기준(OEL)은 빨간색 점선으로, 산술평균의 점 추정치는 녹색
+실선으로 표시됩니다.
+
+:: Translations: c0390ed: Source Text
+
+The decision scheme adopted for the Express mode of Tool 1 was elaborated
+during the creation of the AIHA video series %s (English only). In that scheme,
+reaching 95%% is ideal and yields an acceptable situation. Not reaching 95%%
+confidence but reaching 70%% confidence makes the situation tolerable. Not
+reaching 70%% confidence that there is no overexposure makes the situation
+problematic.
+
+:: Translations: c0390ed: Translation
+
+Tool 1의 요약 모드에서 채택된 결정 체계는 AIHA 비디오 시리즈 %s 제작 중에
+정교화되었습니다. 이 체계에서 95%%에 도달하는 것은 수용 가능한 상황임을
+의미합니다. 95%% 신뢰 수준에는 도달하지 못했지만 70%% 신뢰 수준에 도달하면 허용
+가능한 상황이 됩니다. 과다 노출이 없다는 것에 대해 70%% 신뢰 수준에 도달하지
+못하면 문제가 있는 상황으로 간주됩니다.
+
+:: Translations: 62fc968: Source Text
+
+Percentile
+
+:: Translations: 62fc968: Translation
+
+백분위수
+
+:: Translations: 86f03e3: Source Text
+
+Yes. Each plot may be expanded to a full-screen size. Hover over it and click
+on the Expand button on the bottom right.
+
+:: Translations: 86f03e3: Translation
+
+예. 각 그래프는 전체 화면 크기로 확대할 수 있습니다. 그래프 위에 마우스를
+올리고 오른쪽 하단의 '확대' 버튼을 클릭하십시오.
+
+:: Translations: 8e3c26e: Source Text
+
+Enter other parameters. Some are specific to certain panels and are hidden.
+They are only shown when their corresponding Statistical Inference panel is
+chosen.
+
+:: Translations: 8e3c26e: Translation
+
+다른 매개변수를 입력하십시오. 일부는 특정 패널에만 해당되어 숨겨져 있으며, 해당
+패널이 선택될 때만 표시됩니다.
+
+:: Translations: e200a41: Source Text
+
+This plot illustrates the proportion of exposures that would be above the OEL
+in a fictional sample of one hundred measurements. Each flask represents an
+exposure value. Those that are above the OEL are colored in red. This can be
+changed according to your needs using the sidebar on the right. Four variants
+of the Exceedance Plot are available.
+
+:: Translations: e200a41: Translation
+
+이 그래프는 100개의 가상 샘플에서 노출기준을 초과하는 노출 비율을 예시합니다.
+각 플라스크는 노출값을 나타내며, 노출기준을 초과하는 것은 빨간색으로
+표시됩니다. 이는 오른쪽 사이드바를 사용하여 변경할 수 있습니다. 네 가지 변형을
+사용할 수 있습니다.
+
+:: Translations: 962996f: Source Text
+
+Its resulting probabilistic statements are easier to convey to stakeholders.
+
+:: Translations: 962996f: Translation
+
+그 결과로 도출된 확률적 서술은 이해관계자들에게 전달하기가 더 쉽습니다.
+
+:: Translations: 9e15647: Source Text
+
+Dutch-British guidelines
+
+:: Translations: 9e15647: Translation
+
+네덜란드-영국 지침
+
+:: Translations: ebaaa0c: Source Text
+
+This plot shows the probability distribution of the uncertainty around the %s
+percentile. It shows the probability that its true value is (1) below 1%% of
+the OEL, (2) between 1%% and 10%% of the OEL, (3) between 10%% and 50%% of the
+OEL, (4) between 50%% and 100%% of the OEL, and (5) greater than the OEL. This
+is based on the classification adopted by AIHA. The red column represents the
+probability of an overexposure. The latter should be lower than the threshold
+(black dashed line).
+
+:: Translations: ebaaa0c: Translation
+
+이 그래프는 %s 백분위수 주변의 불확실성에 대한 확률 분포를 보여줍니다. 참값이
+(1) 노출기준의 1%% 미만, (2) 1%%~10%% 사이, (3) 10%%~50%% 사이, (4) 50%%~100%%
+사이, (5) 노출기준 초과일 확률을 나타냅니다. 이는 AIHA에서 채택한 분류를
+기반으로 합니다. 빨간색 기둥은 과다 노출 확률을 나타냅니다. 이 확률은
+임계값보다 낮아야 합니다.
+
+:: Translations: aeaec6e: Source Text
+
+Wait for the server to perform the calculations. All results will be shown once
+they are ready.
+
+:: Translations: aeaec6e: Translation
+
+서버가 계산을 수행하는 동안 기다려 주십시오. 준비되는 대로 모든 결과가
+표시됩니다.
+
+:: Translations: 0660bde: Source Text
+
+Methodology
+
+:: Translations: 0660bde: Translation
+
+방법론
+
+:: Translations: 9797b53: Source Text
+
+Tool 1 assumes that the measurements represent a random sample drawn from the
+underlying distribution of exposures within the sampled context. In other
+words, the data is considered representative of the specific exposure regimen
+being assessed.
+
+:: Translations: 9797b53: Translation
+
+Tool 1은 측정값이 샘플링된 상황 내 노출의 기저 분포에서 추출된 무작위
+샘플이라고 가정합니다. 즉, 데이터가 평가 대상인 특정 노출 양태를 대표한다고
+간주됩니다.
+
+:: Translations: 3710c88: Source Text
+
+Jérôme Lavoué, Lawrence Joseph, Peter Knott, Hugh Davies, France Labrèche,
+Frédéric Clerc, Gautier Mater, Tracy Kirkham, %s, Annals of Work Exposures and
+Health, Volume 63, Issue 3, April 2019, Pages 267-279.
+
+:: Translations: 3710c88: Translation
+
+Jérôme Lavoué, Lawrence Joseph, Peter Knott, Hugh Davies, France Labrèche,
+Frédéric Clerc, Gautier Mater, Tracy Kirkham, %s, Annals of Work Exposures and
+Health, Volume 63, Issue 3, April 2019, Pages 267-279.
+
+:: Translations: ffb2d53: Source Text
+
+Box and Whiskers Plot
+
+:: Translations: ffb2d53: Translation
+
+박스 및 수염 그림
+
+:: Translations: e42d220: Source Text
+
+See the source code of Tool 1 on GitHub (English only).
+
+:: Translations: e42d220: Translation
+
+GitHub에서 Tool 1의 소스 코드를 확인하십시오(영어만 제공).
+
+:: Translations: 4f7aff7: Source Text
+
+How are censored measurements imputed?
+
+:: Translations: 4f7aff7: Translation
+
+검출한계·범위 제한 값은 어떻게 대체됩니까?
+
+:: Translations: 87ae55d: Source Text
+
+The default mode is Tool 1 Express.
+
+:: Translations: 87ae55d: Translation
+
+기본 모드는 Tool 1 요약 모드입니다.
+
+:: Translations: 18576cd: Source Text
+
+Tool 1 is available in multiple languages thanks to the following
+collaborators, who kindly contributed their time, skills, and expertise to
+provide accurate translations. Many thanks to them!
+
+:: Translations: 18576cd: Translation
+
+Tool 1은 다음 협력자들 덕분에 여러 언어로 제공됩니다. 이들은 정확한 번역을
+제공하기 위해 시간, 기술, 전문 지식을 기꺼이 기여해 주셨습니다. 정말
+감사드립니다!
+
+:: Translations: 46750b1: Source Text
+
+Changelog
+
+:: Translations: 46750b1: Translation
+
+변경 이력
+
+:: Translations: 854081a: Source Text
+
+If the overexposure risk is lower than %s, it is very low. The situation is
+well controlled.
+
+:: Translations: 854081a: Translation
+
+과다 노출 위험이 %s보다 낮으면 위험 수준이 매우 낮음으로 간주됩니다. 이 상황은
+잘 제어되고 있습니다.
+
+:: Translations: d1394d6: Source Text
+
+The plot on the left shows an acceptable situation for the chosen exceedance
+threshold (traditionally 5% above the OEL). The plot on the right shows the
+situation estimated by the Bayesian model. It further illustrates the
+uncertainty of the estimation with stripped flasks. The number of red plain
+flasks represents the best estimate of the number of measurements above the
+OEL. The total number of red flasks (either plain or stripped) represents the
+maximum plausible number of measurements above the OEL given the uncertainty of
+the estimation process (using the upper limit of the underlying credible
+interval).
+
+:: Translations: d1394d6: Translation
+
+왼쪽 그래프는 선택된 초과 임계값에 대해 수용 가능한 상황을 보여줍니다. 오른쪽
+그래프는 베이지안 모델에 의해 추정된 상황을 보여줍니다. 줄무늬 플라스크를 통해
+추정의 불확실성을 나타냅니다. 무늬가 없는 빨간색 플라스크의 수는 노출기준을
+초과하는 측정값 수에 대한 최선의 추정치를 나타냅니다. 빨간색 플라스크의 총합은
+추정 과정의 불확실성을 감안할 때 노출기준을 초과할 수 있는 최대 개연성 있는
+측정값 수를 나타냅니다.
+
+:: Translations: 67c3cba: Source Text
+
+What is the statistical approach used by Tool 1?
+
+:: Translations: 67c3cba: Translation
+
+Tool 1에서 사용하는 통계적 접근 방식은 무엇입니까?
+
+:: Translations: 3a47c3b: Source Text
+
+Select a threshold for the probability that this criterion is met, above which
+remedial action (or additional sampling) should be required. Equivalently, one
+can reason in terms of the degree of confidence that the exposure criterion is
+not met: an overexposure risk threshold of at most 30% is equivalent to
+reaching at least 70% confidence that there is no overexposure.
+
+:: Translations: 3a47c3b: Translation
+
+이 기준이 충족될 확률에 대한 임계값을 선택하십시오. 이 값을 초과하면 시정
+조치가 필요합니다. 최대 30%의 과다 노출 위험 임계값은 과다 노출이 없다는 것에
+대해 최소 70%의 신뢰 수준에 도달하는 것과 동일합니다.
+
+:: Translations: 5f29b65: Source Text
+
+Tool 1 Express
+
+:: Translations: 5f29b65: Translation
+
+Tool 1 요약 모드
+
+:: Translations: ac24260: Source Text
+
+Overexposure is defined as the exceedance fraction being greater than or equal
+to %s.
+
+:: Translations: ac24260: Translation
+
+과다 노출은 초과율이 %s 이상인 것으로 정의됩니다.
+
+:: Translations: 466a65e: Source Text
+
+Overexposure Risk Threshold:
+
+:: Translations: 466a65e: Translation
+
+과다 노출 위험 임계값:
+
+:: Translations: 97a777e: Source Text
+
+Quantiles (Standardized Measurements)
+
+:: Translations: 97a777e: Translation
+
+분위수 (표준화된 측정값)
+
+:: Translations: 1b5e945: Source Text
+
+Use square brackets to denote interval censored values (e.g. [20-30]).
+
+:: Translations: 1b5e945: Translation
+
+구간범위를 나타내려면 대괄호를 사용하십시오 (예: [20-30]).
+
+:: Translations: 8cdd8fb: Source Text
+
+Two plots (with uncertainty)
+
+:: Translations: 8cdd8fb: Translation
+
+두 개의 그래프 (불확실성 포함)
+
+:: Translations: da34e30: Source Text
+
+Geometric Mean
+
+:: Translations: da34e30: Translation
+
+기하평균
+
+:: Translations: 4a92c81: Source Text
+
+If you notice an error or would like to submit an update, please send an e-mail
+to %s. He will gladly submit your case to the appropriate maintainers listed
+below.
+
+:: Translations: 4a92c81: Translation
+
+오류를 발견하시거나 업데이트를 제출하고 싶으시면 %s에게 이메일을 보내주십시오.
+그가 아래에 나열된 해당 유지 관리자에게 귀하의 사례를 기꺼이 전달할 것입니다.
+
+:: Translations: a2acebe: Source Text
+
+Add a greater than or equal sign before each measurement censored to the right
+(e.g. >30.0).
+
+:: Translations: a2acebe: Translation
+
+측정범위 초과 측정값 앞에 크거나 같음 기호를 추가하십시오 (예: >30.0).
+
+:: Translations: 6f32d93: Source Text
+
+Problematic
+
+:: Translations: 6f32d93: Translation
+
+문제 있음
+
+:: Translations: 89fba6b: Source Text
+
+Frequently Asked Questions
+
+:: Translations: 89fba6b: Translation
+
+자주 묻는 질문 (FAQ)
+
+:: Translations: 0d592d3: Source Text
+
+It allows the inclusion of external information in the measurements (not yet
+leveraged).
+
+:: Translations: 0d592d3: Translation
+
+측정값에 외부 정보를 포함할 수 있습니다(아직 활용되지 않음).
+
+:: Translations: 2c6b20c: Source Text
+
+If the overexposure risk is higher than %s, it is high. The situation requires
+remedial action.
+
+:: Translations: 2c6b20c: Translation
+
+과다 노출 위험이 %s보다 높으면 위험 수준이 높음으로 평가됩니다. 관리 조치가
+필요합니다.
+
+:: Translations: cf880eb: Source Text
+
+The point estimate of the arithmetic mean is equal to %s.
+
+:: Translations: cf880eb: Translation
+
+산술평균의 점 추정치는 %s입니다.
+
+:: Translations: e92bf46: Source Text
+
+version
+
+:: Translations: e92bf46: Translation
+
+버전
+
+:: Translations: e83e3ca: Source Text
+
+In all Statistical Inference panels, non-detects as interpreted as such by the
+Bayesian model. The latter natively extracts and uses the corresponding
+information. There is no imputation and no creation of arbitrary values. See %s
+for an example.
+
+:: Translations: e83e3ca: Translation
+
+모든 패널에서 미검출 데이터는 베이지안 모델에 의해 있는 그대로 해석됩니다.
+모델은 해당 정보를 기본적으로 추출하여 사용하며, 임의의 값을 생성하지 않습니다.
+예시는 %s를 참조하십시오.
+
+:: Translations: 07fb93b: Source Text
+
+problematic
+
+:: Translations: 07fb93b: Translation
+
+문제 있음
+
+:: Translations: b267cef: Source Text
+
+In accordance with the International System of Units (SI) and what the National
+Institute of Standards and Technology (NIST) of the United States recommends
+(see %s for more information), always put a leading zero before decimals for
+numbers strictly smaller than one.
+
+:: Translations: b267cef: Translation
+
+국제 단위계 및 NIST 권장 사항에 따라, 1보다 작은 숫자의 소수점 앞에는 항상 0을
+붙이십시오. 자세한 내용은 %s를 참조하십시오.
+
+:: Translations: 4af6872: Source Text
+
+Tool 1 Extended
+
+:: Translations: 4af6872: Translation
+
+Tool 1 상세 모드
+
+:: Translations: 5f12363: Source Text
+
+How should measurements be formatted?
+
+:: Translations: 5f12363: Translation
+
+측정값의 형식을 어떻게 지정해야 합니까?
+
+:: Translations: 2576f78: Source Text
+
+Submit inputs by clicking on the green button located below calculation
+parameters.
+
+:: Translations: 2576f78: Translation
+
+계산 매개변수 아래에 있는 녹색 버튼을 클릭하여 입력값을 제출하십시오.
+
+:: Translations: ab42808: Source Text
+
+The traditional threshold for the probability of overexposure is 5% (i.e.
+reaching 95% confidence that there is no overexposure). More recently,
+following foundational work in France around 2010, several institutions have
+adopted an overexposure risk threshold of 30% (70% level of confidence).
+Discussion about the rationale for the use of 70% confidence (or a 30%
+tolerable overexposure risk) can be found in the following scientific paper.
+
+:: Translations: ab42808: Translation
+
+전통적인 과다 노출 확률 임계값은 5%입니다. 최근에는 2010년경 프랑스 연구에 따라
+여러 기관에서 30%의 임계값을 채택했습니다. 70% 신뢰 수준 사용의 근거는 다음
+과학 논문에서 찾을 수 있습니다.
+
+:: Translations: d111f1a: Source Text
+
+Density Plot
+
+:: Translations: d111f1a: Translation
+
+밀도 그래프
+
+:: Translations: 4a8e3cf: Source Text
+
+The plot on the left shows an acceptable situation for the chosen exceedance
+threshold (traditionally 5% above the OEL). The plot on the right shows the
+situation estimated by the Bayesian model. It does not take into account
+estimation uncertainty.
+
+:: Translations: 4a8e3cf: Translation
+
+왼쪽 그래프는 선택된 초과 임계값에 대해 수용 가능한 상황을 보여줍니다. 오른쪽
+그래프는 베이지안 모델에 의해 추정된 상황을 보여주며, 추정의 불확실성은
+고려하지 않습니다.
+
+:: Translations: 899d691: Source Text
+
+Enter your measurements. Measurements can be pasted from a copied spreadsheet
+column.
+
+:: Translations: 899d691: Translation
+
+측정값을 입력하십시오. 복사한 스프레드시트 열에서 붙여넣을 수 있습니다.
+
+:: Translations: 0e99366: Source Text
+
+Arithmetic Mean Category
+
+:: Translations: 0e99366: Translation
+
+산술평균 범주
+
+:: Translations: be1bbe3: Source Text
+
+You may submit bugs, request features, and provide feedback on %s if you have
+an account. You may also send an email to %s, the maintainer of Tool 1.
+
+:: Translations: be1bbe3: Translation
+
+계정이 있는 경우 %s에서 버그를 제출하거나 기능을 요청하고 피드백을 제공할 수
+있습니다. Tool 1의 유지 관리자인 %s에게 이메일을 보낼 수도 있습니다.
+
+:: Translations: 84fd2eb: Source Text
+
+Express mode used to be a distinct web application called Tool 1 Express
+(Simplified) in earlier versions of Tool 1 and Expostats. The latter was
+integrated into Tool 1 in version 5.0.0.
+
+:: Translations: 84fd2eb: Translation
+
+요약 모드는 이전 버전의 Tool 1 및 Expostats에서 'Tool 1 Express
+(Simplified)'라는 별도의 웹 애플리케이션이었습니다. 이후 버전 5.0.0에서 Tool
+1로 통합되었습니다.
+
+:: Translations: 8d5cf97: Source Text
+
+Variant:
+
+:: Translations: 8d5cf97: Translation
+
+변형:
+
+:: Translations: 897e74a: Source Text
+
+Current Sample
+
+:: Translations: 897e74a: Translation
+
+현재 샘플
+
+:: Translations: 5518029: Source Text
+
+How can I verify that my measurements were successfully imported?
+
+:: Translations: 5518029: Translation
+
+측정값이 성공적으로 가져오기 되었는지 어떻게 확인할 수 있습니까?
+
+:: Translations: f111efa: Source Text
+
+Who currently maintains Tool 1?
+
+:: Translations: f111efa: Translation
+
+현재 Tool 1을 누가 유지 관리하고 있습니까?
+
+:: Translations: 159e957: Source Text
+
+In the About My Measurements panel, censored measurements are subject to one of
+the following procedures.
+
+:: Translations: 159e957: Translation
+
+'내 측정값 정보' 패널에서 검출한계·범위 제한 값은 다음 절차 중 하나에 따라
+처리됩니다.
+
+:: Translations: c6e0f91: Source Text
+
+Get additional information on Tool 1.
+
+:: Translations: c6e0f91: Translation
+
+Tool 1에 대한 추가 정보를 확인하십시오.
+
+:: Translations: 5b8a460: Source Text
+
+The point estimate of the geometric standard deviation is equal to %s.
+
+:: Translations: 5b8a460: Translation
+
+기하표준편차의 점 추정치는 %s입니다.
+
+:: Translations: 0a99270: Source Text
+
+Critical Percentile
+
+:: Translations: 0a99270: Translation
+
+임계 백분위수
+
+:: Translations: 96d547d: Source Text
+
+Maximum
+
+:: Translations: 96d547d: Translation
+
+최댓값
+
+:: Translations: da9cc89: Source Text
+
+Risk Band Plot
+
+:: Translations: da9cc89: Translation
+
+위험 대역 그래프
+
+:: Translations: 7e63316: Source Text
+
+This plot shows a shaded and darker region corresponding to the maximal
+acceptable exceedance. Red symbols outside of it are unacceptable exposures. It
+further illustrates the uncertainty of the estimation with stripped flasks. The
+number of red plain flasks represents the best estimate of the number of
+measurements above the OEL. The total number of red flasks (either plain or
+stripped) represents the maximum plausible number of measurements above the OEL
+given the uncertainty of the estimation process (using the upper limit of the
+underlying credible interval).
+
+:: Translations: 7e63316: Translation
+
+이 그래프는 최대 허용 초과율에 해당하는 어둡게 음영 처리된 영역을 보여줍니다.
+그 영역 밖에 있는 빨간색 기호는 수용할 수 없는 노출값입니다. 줄무늬 플라스크를
+통해 추정의 불확실성을 나타냅니다. 무늬가 없는 빨간색 플라스크의 수는 노출기준
+초과 수에 대한 최선의 추정치를 나타냅니다. 빨간색 플라스크의 총합은 추정 과정의
+불확실성을 감안할 때 노출기준을 초과할 수 있는 최대 개연성 있는 측정값 수를
+나타냅니다.
+
+:: Translations: 9670dfb: Source Text
+
+Always use a dot for decimals.
+
+:: Translations: 9670dfb: Translation
+
+소수점 기호로 항상 마침표를 사용하십시오.
+
+:: Translations: c6394ac: Source Text
+
+About My Measurements
+
+:: Translations: c6394ac: Translation
+
+내 측정값 정보
+
+:: Translations: 025cd9d: Source Text
+
+Two plots (no uncertainty)
+
+:: Translations: 025cd9d: Translation
+
+두 개의 그래프 (불확실성 미포함)
+
+:: Translations: 79e5ee7: Source Text
+
+Distribution Parameters
+
+:: Translations: 79e5ee7: Translation
+
+분포 매개변수
+
+:: Translations: f10baab: Source Text
+
+Probability
+
+:: Translations: f10baab: Translation
+
+확률
+
+:: Translations: ee91f19: Source Text
+
+Not Censored
+
+:: Translations: ee91f19: Translation
+
+검출되지 않음(확인이 필요함)
+
+:: Translations: da5e3d2: Source Text
+
+Overexposure is defined as the arithmetic mean being greater than or equal to
+the OEL.
+
+:: Translations: da5e3d2: Translation
+
+과다 노출은 산술평균이 노출기준 이상인 것으로 정의됩니다.
+
+:: Translations: 1708b36: Source Text
+
+The measurements are scattered around the x-axis middle point. The box (outer
+horizontal lines) represents the distance between the %s and %s percentiles.
+The whiskers (vertical lines) represent the distance between the %s and %s
+percentiles. The inner black horizontal line is the median.
+
+:: Translations: 1708b36: Translation
+
+측정값은 x축 중앙 지점 주변에 분산되어 있습니다. 박스(외부 수평선)는 %s 및 %s
+백분위수 사이의 거리를 나타냅니다. 수염(수직선)은 %s 및 %s 백분위수 사이의
+거리를 나타냅니다. 내부의 검은색 수평선은 중앙값입니다.
+
+:: Translations: 7385e52: Source Text
+
+The rationale proposed by Expostats for decision-making when interpreting
+industrial hygiene exposure data is described in the following accompanying
+paper.
+
+:: Translations: 7385e52: Translation
+
+산업위생 노출 데이터를 해석할 때 의사 결정을 위해 Expostats에서 제안한 근거는
+다음 수반 논문에 설명되어 있습니다.
+
+:: Translations: 815a98d: Source Text
+
+Use the About My Measurements panel. It provides descriptive statistics, a
+quantile-quantile plot, and a box and whiskers plot that can be used to ensure
+that measurements were parsed as expected.
+
+:: Translations: 815a98d: Translation
+
+'내 측정값 정보' 패널을 사용하십시오. 기술 통계량, Q-Q 그래프 및 박스플랏을
+통해 측정값이 예상대로 파싱되었는지 확인할 수 있습니다.
+
+:: Translations: d257a4e: Source Text
+
+≤ 1% OEL
+
+:: Translations: d257a4e: Translation
+
+≤ 노출기준의 1%
+
+:: Translations: fc0cbd8: Source Text
+
+Tolerable
+
+:: Translations: fc0cbd8: Translation
+
+허용 가능
+
+:: Translations: 2bbf9dd: Source Text
+
+How can I submit bugs or provide feedback?
+
+:: Translations: 2bbf9dd: Translation
+
+어떻게 버그를 제출하거나 피드백을 제공할 수 있습니까?
+
+:: Translations: 68c086f: Source Text
+
+The measurement dataset. There must be one value per line. Values can be
+censored to the left (<), to the right (>), or interval censored ([X-Y]). For
+more information, see the Calculation Parameters section in Frequently Asked
+Questions (FAQ) above.
+
+:: Translations: 68c086f: Translation
+
+측정 데이터셋입니다. 한 줄에 하나의 값만 있어야 하며, 검출한계 미만 측정값,
+측정범위 초과 측정값, 또는 구간 범위([X-Y])이 가능합니다. 자세한 내용은 FAQ의
+'계산 매개변수' 섹션을 참조하십시오.
+
+:: Translations: 463c845: Source Text
+
+This plot shows the probability density function of the estimated distribution
+of exposures. The OEL is shown as a red line. The exceedance fraction is the
+area under the curve beyond the OEL value.
+
+:: Translations: 463c845: Translation
+
+이 그래프는 추정된 노출 분포의 확률 밀도 함수를 보여줍니다. 노출기준은 빨간색
+실선으로 표시되며, 초과율은 노출기준을 벗어난 곡선 아래 면적입니다.
+
+:: Translations: f9b43e3: Source Text
+
+What is the rationale for the proposed risk assessment framework?
+
+:: Translations: f9b43e3: Translation
+
+제안된 위험 평가 프레임워크의 근거는 무엇입니까?
+
+:: Translations: a5a2911: Source Text
+
+Exceedance Fraction
+
+:: Translations: a5a2911: Translation
+
+초과율
+
+:: Translations: 7be717b: Source Text
+
+Made with %s by %s.
+
+:: Translations: 7be717b: Translation
+
+%s를 사용하여 %s가 제작했습니다.
+
+:: Translations: 8dd7020: Source Text
+
+This risk meter shows the probability of the exposure being too high when
+compared to the OEL. The green region indicates an acceptable exposure, the
+yellow region a tolerable exposure, and the red region a problematic exposure.
+
+:: Translations: 8dd7020: Translation
+
+이 위험 지수는 노출기준과 비교했을 때 노출 수준이 너무 높을 확률을 보여줍니다.
+녹색 영역은 수용 가능, 노란색은 허용 가능, 빨간색은 문제 있음을 나타냅니다.
+
+:: Translations: 1a0644e: Source Text
+
+Measurements censored to the right are imputed as 9/4 of the censoring point.
+
+:: Translations: 1a0644e: Translation
+
+측정범위 초과 측정값 검열 지점의 9/4 값으로 대체됩니다.
+
+:: Translations: b740be6: Source Text
+
+Do not use a separator for thousands.
+
+:: Translations: b740be6: Translation
+
+천 단위 구분 기호는 사용하지 마십시오.
+
+:: Translations: 603143d: Source Text
+
+The probability that this criterion is met should be lower than %s.
+
+:: Translations: 603143d: Translation
+
+이 기준이 충족될 확률은 %s보다 낮아야 합니다.
+
+:: Translations: ceefbab: Source Text
+
+Density
+
+:: Translations: ceefbab: Translation
+
+밀도
+
+:: Translations: fe0789f: Source Text
+
+Who translated Tool 1?
+
+:: Translations: fe0789f: Translation
+
+Tool 1은 누가 번역했습니까?
+
+:: Translations: a2334d7: Source Text
+
+Backgrounds
+
+:: Translations: a2334d7: Translation
+
+배경
+
+:: Translations: c810b50: Source Text
+
+Use this value to modify the OEL. The value used in subsequent calculations is
+the product of the OEL (see above) and this factor. It can be used to determine
+a protection factor for respiratory protection.
+
+:: Translations: c810b50: Translation
+
+노출기준을 수정하려면 이 값을 사용하십시오. 계산에 사용되는 값은 노출기준과 이
+계수의 곱입니다.
+
+:: Translations: 3e0b7d6: Source Text
+
+Minimum
+
+:: Translations: 3e0b7d6: Translation
+
+최솟값
+
+:: Translations: 12bad1c: Source Text
+
+You may bookmark your preferred settings by passing them as query parameters
+(see the current URL displayed by your web browser for the current web page).
+Values must be valid. Otherwise, they are automatically replaced by default
+values.
+
+:: Translations: 12bad1c: Translation
+
+선호 설정을 쿼리 매개변수로 전달하여 북마크할 수 있습니다. 유효하지 않은 값은
+기본값으로 대체됩니다.
+
+:: Translations: af6561e: Source Text
+
+(English only)
+
+:: Translations: af6561e: Translation
+
+(영어만 제공)
+
+:: Translations: 5998348: Source Text
+
+OEL Multiplier:
+
+:: Translations: 5998348: Translation
+
+노출기준 승수:
+
+:: Translations: 5540a94: Source Text
+
+This plot shows the estimated exposure distribution when assuming 250 exposure
+measurements have been collected. If the measurements represent 8-hour TWA
+(Time-Weighted Average) values, this approximately represents a full year of
+exposure. The OEL is shown as a dotted red line and the point estimate of the
+selected percentile as a continuous blue line.
+
+:: Translations: 5540a94: Translation
+
+이 그래프는 250개의 측정값이 수집되었다고 가정했을 때의 추정 노출 분포를
+보여줍니다. 노출기준은 빨간색 점선으로, 선택된 백분위수의 점 추정치는 파란색
+실선으로 표시됩니다.

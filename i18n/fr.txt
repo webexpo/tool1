@@ -1983,6 +1983,16 @@ Current Sample
 
 Échantillon actuel
 
+:: Translations: 617dec0: Source Text
+
+Measurements must be strictly positive numbers. Zero and negative values are
+not compatible with the lognormal model used by Tool 1. Please review your data
+and try again.
+
+:: Translations: 617dec0: Translation
+
+# Insert a translation here.
+
 :: Translations: 5518029: Source Text
 
 How can I verify that my measurements were successfully imported?
@@ -2256,6 +2266,16 @@ Cet indicateur de risque montre la probabilité que l'exposition soit trop
 élevée par rapport à la VLE. La zone verte indique une exposition acceptable,
 la zone jaune une exposition tolérable et la zone rouge une exposition
 problématique.
+
+:: Translations: 78a54b9: Source Text
+
+Measurements must be strictly positive numbers. Do not enter zero or negative
+values: the lognormal model used by Tool 1 requires positive measurements
+(log(0) is undefined). Submitting a value of 0 will be rejected with an error.
+
+:: Translations: 78a54b9: Translation
+
+# Insert a translation here.
 
 :: Translations: 1a0644e: Source Text
 
