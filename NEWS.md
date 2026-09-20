@@ -1,3 +1,63 @@
+# Tool 1 version `5.3.0`
+
+This minor version releases three new officially supported languages, replaces
+the Bayesian engine with the WebExpo library, and fixes several data-entry
+edge cases that previously disconnected the server or produced misleading
+output.
+
+## User Visible Changes
+
+* Tool 1 is now officially available in three new languages: Spanish, Korean,
+  and Brazilian Portuguese. Each language has its own dedicated entry in the
+  Language dropdown of the Title Bar.
+
+  * Many thanks to [Maximiliano Simaz](https://www.linkedin.com/in/msimaz/)
+    (Spanish), [Kyoung-Mu Lee](https://www.linkedin.com/) (Korean), and
+    [Adelaide Cassia Nardocci](https://www.linkedin.com/) (Brazilian
+    Portuguese) who kindly provided all translations.
+
+* A new warning banner is shown in the sidebar when more than 80% of the
+  submitted measurements are left-censored. Under such conditions, the
+  posterior increasingly reflects prior assumptions rather than the data.
+  The banner recommends using IHSTAT_Bayes to assess how sensitive the
+  conclusions are to different prior choices.
+
+* Submitting a value of `0` (or a negative value) in the Measurements text
+  area is now rejected with a clear validation message. This replaces the
+  previous behavior, which silently disconnected the server (the lognormal
+  model requires strictly positive measurements because `log(0)` is
+  undefined).
+
+* A new bullet in the Frequently Asked Questions panel documents this
+  requirement under *How should measurements be formatted?*.
+
+## Server Changes
+
+* The Bayesian engine was migrated to the
+  [WebExpo](https://github.com/webexpo/webexpo_r_lib) library. All required
+  files were vendored into `scripts/webexpo/` with provenance headers. A
+  thin adapter preserves the public signature of `fun.bayes.jags()` so
+  downstream code is unaffected.
+
+* Retired files: `Script Stan Model_SEG.R`, `stanmodel.seg.RDS`, `fcts.R`,
+  `data-summary.R`, and `model-SEG-informedvar.R`. The legacy Stan back end
+  and its helpers are no longer used.
+
+* `R/global.R` now sources the vendored WebExpo files in dependency order
+  before the Bayesian engine adapter.
+
+## Fixes
+
+* Fixed a bug where measurements written with a space after the censoring
+  sign (e.g. `< 30.0`) were parsed as `30.0` (uncensored) instead of a
+  left-censored value. Whitespace between `<`, `>`, `[` and the numeric
+  value is now stripped in `data.formatting.SEG()`.
+
+* Fixed a bug in the Descriptive Graphs where the Box and Whiskers Plot
+  jittered points vertically because the default `height` argument of
+  `ggplot2::position_jitter()` is derived from the data resolution. Vertical
+  jitter is now explicitly set to `0`.
+
 # Tool 1 version `5.2.0`
 
 This is a minor version that packs many internal changes on the backend side.
